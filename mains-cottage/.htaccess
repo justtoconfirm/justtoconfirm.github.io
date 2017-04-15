@@ -1,0 +1,9 @@
+# Web Address forwarding to 'www.mainscottage.com' address
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^mainscottage.com[nc]
+RewriteRule ^(.*)$ http://www.mainscottage.com/$1 [r=301,nc]
+
+# Cache-control static assets for one month
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico|ttf)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>

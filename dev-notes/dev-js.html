@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - JavaScript</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--js">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>JavaScript</h1>
+
+		<p>JavaScript (<strong>JS</strong>) was created in 1995 by Brendan Eich at Netscape. It is a high-level, dynamic programming language used to make web pages interactive and to build web applications. JavaScript is part of the <strong>ECMAScript</strong> language specification.</p> 
+
+		<p>A high-level programming language, such as JavaScript, is closer to a naturally spoken language, whereas low-level languages are closer to machine language in syntax.</p>
+
+		<blockquote>
+			<p>JavaScript files usually have the file extension of <span class="hl">.js</span></p>
+		</blockquote>
+
+		<h2>External JavaScript &amp; HTML</h2>
+
+		<p>External JavaScript files are practical as the same code can be used in multiple locations. To use an external JavaScript/Script file, the name of the file is added to the <span class="hl">src</span> attribute of the <strong>HTML</strong> <span class="hl">&lt;script&gt;</span> tag.</p> 
+
+		<p>Find further notes on HTML <a href="index.html" class="link">here</a>.
+
+		<p>It is recommended to place scripts at the <strong>bottom</strong> of the <span class="hl">&lt;body&gt;</span> element just before the closing <span class="hl">&lt;/body&gt;</span> element to allow the <strong>parser</strong> to load and display the <strong>HTML/CSS (Cascading Style Sheets)</strong> before loading the JavaScript. If the parser encounters a script file, it will stop loading the webpage until the script has been downloaded.</p>
+
+		<p>This method has it's own issue. The browser cannot download the script until the entire document has been <strong>parsed</strong>. The abilty to download the script as soon as possible, is very important for <strong>performance</strong>.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;script <span class="syntax-keyword">src</span>=<span class="syntax-value">"scripts/js-file.js"</span>&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Today, modern browsers support the <span class="hl">async</span> and <span class="hl">defer</span> attributes on scripts tags. These attributes will tell the browser that it is safe to continue parsing while the JavaScript is being downloaded.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;script <span class="syntax-keyword">src</span>=<span class="syntax-value">"scripts/js-file.js"</span> <span class="syntax-keyword">async</span>&gt;&lt;/script&gt;
+&lt;script <span class="syntax-keyword">src</span>=<span class="syntax-value">"scripts/js-file-two.js"</span> <span class="syntax-keyword">defer</span>&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Scripts with the <span class="hl">async</span> attribute are executed <strong>asynchronously</strong>. The script is executed <strong>as soon as it is downloaded</strong> without blocking the browser.</p>
+
+		<p>Scripts with the <span class="hl">defer</span> attribute are <strong>executed in order of how they are added to the HTML</strong>, but this also does not block the browser. Defer scripts are <strong>only executed</strong> after the entire document has been loaded.</p>
+
+		<blockquote>
+			<p><strong>90%</strong> of browsers support the use of the <span class="hl">async</span> attribute, <strong>92%</strong> support the use of <span class="hl">defer</span>.</p>
+		</blockquote>
+
+		<h2>Strict mode</h2>
+
+		<p>Strict mode can be applied on entire scripts by using the strict statement before any other statement (usually placed as the <strong>first line</strong> in a JavaScript file). Strict mode is <strong>only</strong> enabled in scripts where it is defined. This is not shared between different script files.</p>
+
+		<p>It was introduced in <strong>ECMAScript 5 (ES5)</strong> and is supported in the following browsers:</p>
+
+		<ul>
+			<li><strong>IE10</strong> and greater.</li>
+			<li><strong>Firefox</strong> from version <strong>4</strong>.</li>
+			<li><strong>Chrome</strong> from version <strong>13</strong>.</li>
+			<li><strong>Safari</strong> from version <strong>5.1</strong>.</li>
+			<li><strong>Opera</strong> from version <strong>12</strong>.</li>
+		</ul>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+"use <span class="syntax-keyword">strict</span>";		<span class="syntax-comment">// now applies for the rest of the script</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<blockquote>
+			<p>All code written inside <span class="hl">ES2015 (ES6)</span> <strong>modules</strong> and <strong>classes</strong> is strict by default.</p>
+		</blockquote>
+
+		<p>With script mode, for example, you cannot use <strong>undeclared</strong> variables, so a variable would always need to use the <span class="hl">var</span> keyword to declare a variable or an error will be thrown.</p>
+
+		<p>Script mode basically catches things that are most likely valid, but could cause errors.</p>
+
+		<h2>Comments</h2>
+
+		<p>Comments are used to explain what your code is doing or to prevent code from being executed. It is always recommended to add comments to your code to help you remember what you've done and to explain to other developers how the code works.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// A single line comment
+
+/*
+A multi-line comment
+over multiple lines
+to describe the code below
+*/</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Variables</h2>
+
+		<p>Data or information that needs to be temporarily stored can use a variable. Variables are containers that you can use to store values. To allow the variable to be used, it first needs to be <strong>declared</strong> using the <span class="hl">var</span> keyword. Once declared, the variable is given a name - called the <strong>identifier</strong>.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> myVariable;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>After declaring the variable, you can then give it a value. Until a variable has a value, it is said to be <strong>undefined</strong>. A value is assigned to a variable using the assignment operator <span class="hl">=</span>. The example below shows a value being assigned to a variable:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> myVariable = <span class="syntax-value">"Dan"</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The value of a variable can be changed:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> myVariable = <span class="syntax-value">"Dan"</span>;
+myVariable = <span class="syntax-value">"John"</span>;			<span class="syntax-comment">// Change variable value to 'John'</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Example of how to use variables to calculate the total value:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> quantity = <span class="syntax-value">6</span>;
+<span class="syntax-keyword">var</span> add = <span class="syntax-value">2</span>;
+<span class="syntax-keyword">var</span> total = quantity + add;
+
+console.log(total);			<span class="syntax-comment">// 8</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Functions</h2>
+
+		<p>Functions are one of the fundemental building blocks of JavaScript. A function is a JavaScript <strong>procedure</strong> (a set of statements that perform a task).</p>
+
+		<p>To create a function, it must first be <strong>declared</strong> using the <span class="hl">function</span> keyword.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> myFunc () {
+
+	<span class="syntax-comment">// Code is placed here</span>
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Defining a function <strong>does not</strong> execute it, but names the function and specifies what the function is to do when it is called. To <strong>call</strong> the function, follow the example code below:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+myFunc();
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>A simple example can be found below. This example will display an alert message when the function is called.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> helloWorld () {
+	
+	<span class="syntax-comment">// Show alert when function is called</span>
+	<span class="syntax-keyword">alert</span>(<span class="syntax-value">"Hello World"</span>);
+
+}
+
+<span class="syntax-comment">// Call the helloWorld() function</span>
+helloWorld();
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->		
+
+		<p>Functions must be in <strong>scope</strong> when they are called, but the function declaration can appear below the function call.</p>
+
+		<p>An example of a simple function which takes two numbers as <span class="hl">arguments</span> passed into the <strong>num1</strong> and <strong>num2</strong> parameters (within the function <span class="hl">parenthesis</span>), multiplies the values together, stores the result in a <strong>variable</strong> and returns the result using the <span class="hl">return</span> statement.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> multiply ( <span class="syntax-arg">num1</span>, <span class="syntax-arg">num2</span> ) {
+
+	<span class="syntax-keyword">var</span> result = <span class="syntax-arg">num1</span> * <span class="syntax-arg">num2</span>;
+	<span class="syntax-return">return</span> result;
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>When we <strong>call</strong> the function, the two values we want to multiply are passed as <span class="hl">arguments</span> into the multiply function and the result will then be returned.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+multiply(<span class="syntax-arg">4</span>, <span class="syntax-arg">2</span>);		<span class="syntax-comment">// Multiply 4 and 2. Result: 8</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The <span class="hl">return</span> statement tells the browser to return the variable (<strong>result</strong>) outside of the function so it is available to use. This is necessary because a variable defined inside of a function is only available inside of that function. This is called <strong>variable scoping</strong>. The return statement simply specifies that the value be returned by the function.</p>
+
+		<p>We can use functions to return more than one value using an <span class="hl">array</span>. The code example, below, calculates both the <strong>area</strong> and the <strong>volume</strong> of a shape. The area of the shape is stored in a variable called <span class="hl">area</span> and the volume is stored in a variable called <span class="hl">volume</span>. Both variables are then placed into an <strong>array</strong> called <span class="hl">sizes</span> which is returned to the code that called the function. This allows both values to then be used.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/calculate-size.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> calculateSize ( <span class="syntax-arg">width</span>, <span class="syntax-arg">height</span>, <span class="syntax-arg">depth</span> ) {
+
+	<span class="syntax-keyword">var</span> area = <span class="syntax-arg">width</span> * <span class="syntax-arg">height</span>;
+	<span class="syntax-keyword">var</span> volume = <span class="syntax-arg">width</span> * <span class="syntax-arg">height</span> * <span class="syntax-arg">depth</span>;
+	<span class="syntax-comment">// Array named sizes created to contain the area and volume values</span>
+	<span class="syntax-keyword">var</span> sizes = [area, volume];
+	<span class="syntax-return">return</span> sizes;
+
+}
+
+<span class="syntax-comment">// Array index is [0] so area will be calculated</span>
+<span class="syntax-keyword">var</span> getArea = calculateSize(<span class="syntax-arg">3</span>, <span class="syntax-arg">2</span>, <span class="syntax-arg">5</span>)[<span class="syntax-index">0</span>];
+<span class="syntax-comment">// Array index is [1] so volume will be calculated</span>
+<span class="syntax-keyword">var</span> getVolume = calculateSize(<span class="syntax-arg">3</span>, <span class="syntax-arg">2</span>, <span class="syntax-arg">5</span>)[<span class="syntax-index">1</span>];
+
+<span class="syntax-comment">// Output values in the variables within the console</span>
+console.log(getArea);					<span class="syntax-comment">// 6</span>
+console.log(getVolume);				<span class="syntax-comment">// 30</span>
+				</code>
+			</pre> 
+		</div>
+		<!-- / Code example -->
+
+		<h2>Output JavaScript to HTML</h2>
+
+		<p>Once JavaScript code has been written we can use HTML to show the output. The most common way of doing this is to use the <span class="hl">innerHTML</span> JavaScript method.</p>
+
+		<p>Begin by creating a JavaScript file named <span class="hl">myfile.js</span> and place this within a directory folder called <span class="hl">scripts</span>. Inside this JavaScript file, add the following code:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/myfile.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+document.getElementById(<span class="syntax-value">"demo"</span>).<span class="syntax-keyword">innerHTML</span> = <span class="syntax-value">5</span> + <span class="syntax-value">6</span>;
+
+<span class="syntax-comment">// If you want to use a value from a variable</span>
+document.getElementById(<span class="syntax-value">"demo"</span>).<span class="syntax-keyword">innerHTML</span> = <span class="syntax-value">variableName</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Next, create a simple HTML page called <span class="hl">index.html</span> where we will output the result from the JavaScript code.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
+	&lt;<span class="syntax-property">meta</span> name=<span class="syntax-value">"viewport"</span> content=<span class="syntax-value">"width=device-width, initial-scale=1"</span> /&gt;
+	&lt;<span class="syntax-property">title</span>&gt;HTML page&lt;<span class="syntax-property">/title</span>&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+<span class="syntax-comment">&lt;!-- This is where our JavaScript output will be displayed --&gt;</span>
+&lt;<span class="syntax-keyword">p</span> id=<span class="syntax-value">"demo"</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/myfile.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Now when you open the HTML page, the number <span class="hl">11</span> should be displayed.</p>
+
+		<h2>Object Oriented Programming (OOP)</h2>
+
+		<p>Objects in JavaScript can be likened to objects in the real world. A car is an example of a real world object that has <span class="hl">properties</span>, used to define the object's characteristics such as: <strong>name</strong> or <strong>colour</strong>, and <span class="hl">methods</span> such as: <strong>accelerate</strong> or <strong>brake</strong>.</p>
+
+		<p>Objects group together a set of <span class="hl">properties</span> and <span class="hl">methods</span> to create a <strong>model</strong>. In JavaScript, <strong>properties</strong> can be seen to be similar to <span class="hl">variables</span>, <strong>methods</strong> are like <span class="hl">functions</span>, within an object.</p>
+
+		<h3>Objects: Literal notation</h3>
+
+		<p><strong>Literal notation</strong> is often used when creating a <strong>single object</strong> in JavaScript. The <strong>constructor notation</strong> can also be used if we want to create <strong>multiple objects</strong>.</p>
+
+		<p>In the following example, a <strong>Hotel object</strong> is created - using literal notation - containing a number of <span class="hl">properties</span>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> hotel = {
+	<span class="syntax-property">name</span>: <span class="syntax-value">"The Grand Hotel"</span>,
+	<span class="syntax-property">rooms</span>: <span class="syntax-value">104</span>,
+	<span class="syntax-property">booked</span>: <span class="syntax-value">98</span>
+};
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Properties of an object can be accessed using <span class="hl">dot notation</span>. This uses the <strong>name of the object</strong> followed by a <strong>period</strong> (called the <span class="hl">member operator</span>), followed by the <strong>name of the property</strong>.</p>
+
+		<p>Lets get the name of the hotel and the number of rooms from the hotel object using dot notation:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> hotelName = hotel.<span class="syntax-property">name</span>;			<span class="syntax-comment">// The Grand Hotel</span>
+<span class="syntax-keyword">var</span> hotelRooms = hotel.<span class="syntax-property">rooms</span>;		<span class="syntax-comment">// 104</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Square brackets can also be used:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> hotelName = hotel[<span class="syntax-property">'name'</span>];		<span class="syntax-comment">// The Grand Hotel</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Properties within an object can also be <strong>updated</strong>. Lets change the name of our hotel to <strong>'Park Hotel'</strong>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+hotelName = <span class="syntax-value">"Park Hotel"</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>We can also <strong>delete</strong> or <strong>clear</strong> a property from the hotel object:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">delete</span> hotel.<span class="syntax-property">name</span>;		<span class="syntax-comment">// Delete name property</span>
+hotel.<span class="syntax-property">name</span> = <span class="syntax-value">''</span>;			<span class="syntax-comment">// Clear the value of the property</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Within the hotel object, a <span class="hl">method</span> will now be created to check for available rooms within our hotel. This <span class="hl">method</span>, can be thought of as a function, uses the keyword of <span class="hl">this</span> to indicate that our method is using the properties of <strong>rooms</strong> and <strong>booked</strong>.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+checkAvailable: <span class="syntax-keyword">function</span> () {
+
+	<span class="syntax-return">return</span> <span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> - <span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span>;
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The <strong>checkAvailable()</strong> method can then be called:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+hotel.checkAvailable();
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>A variable can also be used to store the value.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> roomsAvailable = hotel.checkAvailable();
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h3>Full code example: Literal notation</h3>
+
+		<p>The full code can be found below:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotel.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> hotel = {
+	<span class="syntax-property">name</span>: <span class="syntax-value">"The Grand Hotel"</span>,
+	<span class="syntax-property">rooms</span>: <span class="syntax-value">104</span>,
+	<span class="syntax-property">booked</span>: <span class="syntax-value">98</span>,
+
+	checkAvailable: <span class="syntax-keyword">function</span> () {
+
+		<span class="syntax-return">return</span> <span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> - <span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span>;
+
+	}
+};
+
+<span class="syntax-keyword">var</span> hotelName = hotel.<span class="syntax-property">name</span>;
+<span class="syntax-keyword">var</span> hotelRooms = hotel.<span class="syntax-property">rooms</span>;
+<span class="syntax-keyword">var</span> roomsAvailable = hotel.checkAvailable();
+
+<span class="syntax-comment">// If you want to output the values in the console</span>
+console.log(hotelName);					<span class="syntax-comment">// The Grand Hotel</span>
+console.log(hotelRooms);				<span class="syntax-comment">// 104</span>
+console.log(roomsAvailable);		<span class="syntax-comment">// 6</span>
+
+<span class="syntax-comment">/*
+If you want to output the values within HTML
+You will need to create an element with an ID attribute for each value
+*/</span>
+document.getElementById(<span class="syntax-value">"hotel-name"</span>).<span class="syntax-keyword">innerHTML</span> = hotelName;
+document.getElementById(<span class="syntax-value">"hotel-rooms"</span>).<span class="syntax-keyword">innerHTML</span> = hotelRooms;
+document.getElementById(<span class="syntax-value">"hotel-rooms-available"</span>).<span class="syntax-keyword">innerHTML</span> = roomsAvailable;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The HTML can be found below to display the hotel values.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
+	&lt;<span class="syntax-property">meta</span> name=<span class="syntax-value">"viewport"</span> content=<span class="syntax-value">"width=device-width, initial-scale=1"</span> /&gt;
+	&lt;<span class="syntax-property">title</span>&gt;The Grand Hotel&lt;<span class="syntax-property">/title</span>&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+<span class="syntax-comment">&lt;!-- This is where our JavaScript output will be displayed --&gt;</span>
+&lt;<span class="syntax-keyword">p</span>&gt;Hotel name: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"hotel-name"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;Hotel rooms: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"hotel-rooms"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;Available rooms: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"hotel-rooms-available"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/hotel.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h3>Objects: Constructor notation</h3>
+
+		<p>The previous object was created using <strong>Literal notation</strong>. This is fine should you need just the <strong>one</strong> object, but not useful if we want to create multiple objects. The <span class="hl">Constructor notation</span> allows a JavaScript function to be used to make a <strong>'template'</strong> for creating multiple objects. <span class="hl">Instances</span> of this object can then be created using the keyword of <span class="hl">new</span>, followed by a <strong>call</strong> to the function to create a new object.</p>
+
+		<p>The name of the Constructor function usually begins with an <strong>uppercase</strong> letter.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotels.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> Hotel ( <span class="syntax-value">name</span>, <span class="syntax-value">rooms</span>, <span class="syntax-value">booked</span> ) {
+
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">name</span> = <span class="syntax-value">name</span>;
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> = <span class="syntax-value">rooms</span>;
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span> = <span class="syntax-value">booked</span>;
+
+	<span class="syntax-comment">// Method to check the rooms available in the Hotel</span>
+	<span class="syntax-keyword">this</span>.checkAvailable = <span class="syntax-keyword">function</span> () {
+
+		<span class="syntax-return">return</span> <span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> - <span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span>;
+
+	};
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>An <span class="hl">instance</span> of this object can now be created. This will <strong>inherit</strong> the <strong>properties</strong> and <strong>methods</strong> within the Hotel object. Values for each hotel will be passed into the object using <span class="hl">arguments</span> when the function is called. The keyword of <span class="hl">this</span> is used instead of the object's name, to indicate that the properties and methods belong to the Hotel object.</p>
+
+		<p>Lets now create a hotel named <strong>'The Grand Hotel'</strong> as an instance of the Hotel object:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotels.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> grandHotel = <span class="syntax-keyword">new</span> Hotel(<span class="syntax-value">"The Grand Hotel"</span>, <span class="syntax-value">104</span>, <span class="syntax-value">98</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>We can create a second hotel as another instance of our Hotel object.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotels.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">var</span> parkHotel = <span class="syntax-keyword">new</span> Hotel(<span class="syntax-value">"Park Hotel"</span>, <span class="syntax-value">98</span>, <span class="syntax-value">94</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Each time the Hotel function is called, the values are passed as <span class="hl">arguments</span> into the object <strong>parameters</strong> and then assigned to the <strong>properties</strong>. Both instances can then use the <strong>checkAvailable()</strong> method within the object to confirm the number of rooms the hotel has available for bookings.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotels.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// Properties of the Grand Hotel</span>
+<span class="syntax-keyword">var</span> grandHotelName = grandHotel.<span class="syntax-property">name</span>;
+<span class="syntax-keyword">var</span> grandHotelRooms = grandHotel.<span class="syntax-property">rooms</span>;
+
+<span class="syntax-comment">// Method to check the rooms available at the Grand Hotel</span>
+<span class="syntax-keyword">var</span> grandAvailableRooms = grandHotel.checkAvailable();
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h3>Full code example: Constructor notation</h3>
+
+		<p>Example code showing the Constructor notation snippets fully.</p>
+		
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/hotels.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> Hotel ( <span class="syntax-value">name</span>, <span class="syntax-value">rooms</span>, <span class="syntax-value">booked</span> ) {
+
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">name</span> = <span class="syntax-value">name</span>;
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> = <span class="syntax-value">rooms</span>;
+	<span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span> = <span class="syntax-value">booked</span>;
+
+	<span class="syntax-comment">// Method to check the rooms available in the Hotel</span>
+	<span class="syntax-keyword">this</span>.checkAvailable = <span class="syntax-keyword">function</span> () {
+
+		<span class="syntax-return">return</span> <span class="syntax-keyword">this</span>.<span class="syntax-property">rooms</span> - <span class="syntax-keyword">this</span>.<span class="syntax-property">booked</span>;
+
+	};
+
+}
+
+<span class="syntax-keyword">var</span> grandHotel = <span class="syntax-keyword">new</span> Hotel(<span class="syntax-value">"The Grand Hotel"</span>, <span class="syntax-value">104</span>, <span class="syntax-value">98</span>);
+<span class="syntax-keyword">var</span> parkHotel = <span class="syntax-keyword">new</span> Hotel(<span class="syntax-value">"Park Hotel"</span>, <span class="syntax-value">98</span>, <span class="syntax-value">94</span>);
+
+<span class="syntax-comment">// Properties of the Grand Hotel</span>
+<span class="syntax-keyword">var</span> grandHotelName = grandHotel.<span class="syntax-property">name</span>;
+<span class="syntax-keyword">var</span> grandHotelRooms = grandHotel.<span class="syntax-property">rooms</span>;
+
+<span class="syntax-comment">// Output variable values to the console - if you wish to</span>
+console.log(grandHotelName);					<span class="syntax-comment">// The Grand Hotel</span>
+console.log(grandHotelRooms);					<span class="syntax-comment">// 104</span>
+
+<span class="syntax-comment">// Method to check the rooms available at the Grand Hotel</span>
+<span class="syntax-keyword">var</span> grandAvailableRooms = grandHotel.checkAvailable();
+
+<span class="syntax-comment">// Output the rooms available using variable to the console</span>
+console.log(grandAvailableRooms);			<span class="syntax-comment">// 6</span>
+
+<span class="syntax-comment">/* 
+Include the code below if you want to output to HTML
+Remove the console.log statements
+*/</span>
+document.getElementById(<span class="syntax-value">"grandhotel-name"</span>).<span class="syntax-keyword">innerHTML</span> = grandHotelName;
+document.getElementById(<span class="syntax-value">"grandhotel-rooms"</span>).<span class="syntax-keyword">innerHTML</span> = grandHotelRooms;
+document.getElementById(<span class="syntax-value">"grandhotel-rooms-available"</span>).<span class="syntax-keyword">innerHTML</span> = grandAvailableRooms;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>We can now output the hotel information in HTML:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
+	&lt;<span class="syntax-property">meta</span> name=<span class="syntax-value">"viewport"</span> content=<span class="syntax-value">"width=device-width, initial-scale=1"</span> /&gt;
+	&lt;<span class="syntax-property">title</span>&gt;The Grand Hotel&lt;<span class="syntax-property">/title</span>&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+<span class="syntax-comment">&lt;!-- This is where our JavaScript output will be displayed - The Grand Hotel --&gt;</span>
+&lt;<span class="syntax-keyword">p</span>&gt;Hotel name: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"grandhotel-name"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;Hotel rooms: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"grandhotel-rooms"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;Available rooms: &lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"grandhotel-rooms-available"</span>&gt;&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">/p</span>&gt;
+
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/hotels.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-2 medium-2 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
