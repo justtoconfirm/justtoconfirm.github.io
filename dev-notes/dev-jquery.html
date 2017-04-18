@@ -221,6 +221,7 @@
 				</code>
 			</pre>
 		</div>
+		<!-- / Code example -->
 
 		<h2>Document Ready Event</h2>
 
@@ -251,12 +252,104 @@
 		</div>
 		<!-- / Code example -->
 
+		<h2>Example: Tool tip</h2>
+
+		<p>As an example, jQuery will be used to show how a simple function can be created to implement a simple tool-tip. When a link is clicked, the corresponding element will be hidden and then will be visible if the same link is clicked once again.</p>
+
+		<p>Begin be creating a simple HTML page.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">link</span> rel=<span class="syntax-value">"stylesheet"</span> href=<span class="syntax-value">"styles/style.css"</span> /&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"#"</span> class=<span class="syntax-value">"js-link"</span> id=<span class="syntax-value">"one"</span>&gt;Hide/Show Span One&lt;<span class="syntax-keyword">/a</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"#"</span> class=<span class="syntax-value">"js-link"</span> id=<span class="syntax-value">"two"</span>&gt;Hide/Show Span Two&lt;<span class="syntax-keyword">/a</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"#"</span> class=<span class="syntax-value">"js-link"</span> id=<span class="syntax-value">"three"</span>&gt;Hide/Show Span Three&lt;<span class="syntax-keyword">/a</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+
+&lt;<span class="syntax-keyword">p</span>&gt;
+	&lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"span-one"</span>&gt;Span one&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+	&lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"span-two"</span>&gt;Span two&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+	&lt;<span class="syntax-keyword">span</span> id=<span class="syntax-value">"span-three"</span>&gt;Span three&lt;<span class="syntax-keyword">/span</span>&gt;&lt;<span class="syntax-keyword">br/</span>&gt;
+&lt;<span class="syntax-keyword">/p</span>&gt;
+
+<span class="syntax-comment">&lt;!-- jQuery CDN version --&gt;</span>
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+<span class="syntax-comment">&lt;!-- JavaScript script file --&gt;</span>
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/tooltip.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The jQuery needs to be added in a file to be saved as <span class="hl">tooltip.js</span> within the <span class="hl">scripts</span> directory.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: scripts/tooltip.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">$</span>(<span class="syntax-property">document</span>).ready( <span class="syntax-keyword">function</span> () {
+
+	<span class="syntax-comment">// Select any link with the class attribute</span>
+	<span class="syntax-keyword">var</span> link = <span class="syntax-keyword">$</span>(<span class="syntax-value">'.js-link'</span>);
+
+	link.click( <span class="syntax-keyword">function</span> () {
+
+		<span class="syntax-comment">/*
+		When the link is clicked, get it's ID attribute value
+		The value will be assigned to the thisID variable
+		*/</span>
+		<span class="syntax-keyword">var</span> thisID = <span class="syntax-keyword">$</span>(<span class="syntax-keyword">this</span>).attr(<span class="syntax-value">'id'</span>);
+
+		<span class="syntax-comment">/*
+		Toggle the .hidden CSS class to hide/show the relevant span element when link is clicked
+		The # symbol indicates an ID attribute
+		For example:
+		link id="one" will hide/show the span element with the id="span-one"
+		link id="two" will hide/show the span element with the id="span-two"
+		...
+		*/</span>
+		<span class="syntax-keyword">$</span>(<span class="syntax-value">'#span-'</span>+thisID).<span class="syntax-keyword">toggleClass</span>(<span class="syntax-value">'hidden'</span>);
+
+	});
+
+});
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>And finally, the CSS is needed so we can have a class to toggle using jQuery to hide and show the <span class="hl">&lt;span&gt;</span> elements when the relevant links are clicked.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS: styles/style.css">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.hidden</span> {
+	<span class="syntax-property">display</span>: <span class="syntax-value">none</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
 	</div>
 </div>
 
 <footer>
 	<div class="row">
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-12 medium-6 large-2 columns">
 			<h3>Languages</h3>
 
 			<ul class="no-bullets">
@@ -270,7 +363,7 @@
 			</ul>
 		</div>
 
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-12 medium-6 large-2 columns">
 			<h3>Tools</h3>
 
 			<ul class="no-bullets">
@@ -278,7 +371,7 @@
 			</ul>
 		</div>
 
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-12 medium-6 large-2 columns">
 			<h3>Frameworks</h3>
 
 			<ul class="no-bullets">
@@ -286,8 +379,12 @@
 			</ul>
 		</div>
 
-		<div class="small-2 medium-2 large-2 columns">
-			<!-- Empty column -->
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
 		</div>
 
 		<div class="small-2 medium-2 large-2 columns">

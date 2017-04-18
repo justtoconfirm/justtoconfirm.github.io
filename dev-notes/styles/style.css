@@ -74,6 +74,11 @@ ul {
 	background-color: #800000;
 }
 
+/* Header icon background colour - BEM */
+.header__icon--bem {
+	background-color: #dfc48c;
+}
+
 .header__icon--marks {
 	display: block;
 	text-align: center;
