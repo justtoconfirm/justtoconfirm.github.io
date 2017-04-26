@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - Babel</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--babel">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>Babel</h1>
+
+		<p>Babel is a <span class="hl">transpiler</span> for JavaScript best known for it's ability to turn ES6 JavaScript into ES5 JavaScript code that runs in all browsers.</p>
+
+		<h2>Install Babel</h2>
+
+		<p>Begin by creating an empty folder/directory where Babel can be installed. From inside this project folder, create a <span class="hl">src</span> and <span class="hl">dist</span> folder. The <span class="hl">src</span> folder will contain our <strong>ES6 JavaScript</strong> code and Babel will output <strong>ES5 JavaScript</strong> code within the <span class="hl">dist</span> folder.</p>
+
+		<blockquote>
+			<p>Our example project folder will be named <span class="hl">babel-project</span>.</p>
+		</blockquote>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ <span class="syntax-keyword">mkdir</span> babel-project
+$ <span class="syntax-keyword">cd</span> babel-project
+$ <span class="syntax-keyword">mkdir</span> src
+$ <span class="syntax-keyword">mkdir</span> dist
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>Next, we want to create a <span class="hl">package.json</span> file so we can install Babel locally using <span class="hl">NPM (Node Package Manager)</span>.</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ <span class="syntax-keyword">mkdir</span> init
+			</code>
+		</pre>
+		<!-- / Code example -->	
+
+		<p>Once the <span class="hl">package.json</span> file has been created, Babel can be installed using <strong>NPM</strong>. We will begin by installing <span class="hl">babel-cli (Babel Command-Line Interface)</span> followed by the <span class="hl">ECMAScript 2015 preset</span>, which will allow us to write ES6 JavaScript code.</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ npm <span class="syntax-keyword">install</span> <span class="syntax-value">babel-cli</span> <span class="syntax-keyword">--save-dev</span>
+$ npm <span class="syntax-keyword">install</span> <span class="syntax-value">babel-preset-es2015</span> <span class="syntax-keyword">--save-dev</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>Both NPM packages will be listed as <span class="hl">devDependencies</span> within the <span class="hl">package.json</span> file. Open the package.json file and add the following task within the scripts property:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: package.json">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+{
+  <span class="syntax-property">"name"</span>: <span class="syntax-value">"babel"</span>,
+  <span class="syntax-property">"version"</span>: <span class="syntax-value">"1.0.0"</span>,
+  <span class="syntax-property">"description"</span>: <span class="syntax-value">""</span>,
+  <span class="syntax-property">"main"</span>: <span class="syntax-value">"index.js"</span>,
+  <span class="syntax-property">"scripts"</span>: {
+    <span class="syntax-property">"test"</span>: <span class="syntax-value">"echo \"Error: no test specified\" && exit 1"</span>,
+    <span class="syntax-property">"babel"</span>: <span class="syntax-value">"babel --presets es2015 src/main.js -o dist/main.bundle.js"</span>
+  },
+  <span class="syntax-property">"keywords"</span>: <span class="syntax-value">[]</span>,
+  <span class="syntax-property">"author"</span>: <span class="syntax-value">""</span>,
+  <span class="syntax-property">"license"</span>: <span class="syntax-value">"ISC"</span>,
+  <span class="syntax-property">"devDependencies"</span>: {
+    <span class="syntax-property">"babel-cli"</span>: <span class="syntax-value">"^6.24.1"</span>,
+    <span class="syntax-property">"babel-preset-env"</span>: <span class="syntax-value">"^1.4.0"</span>
+  }
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>To run Babel and compile code from <strong>ES6 JavaScript</strong> into <strong>ES5 JavaScript</strong>, use the following <strong>NPM</strong> command within the root of our project folder:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ npm <span class="syntax-keyword">run</span> <span class="syntax-value">babel</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>This command will run the <span class="hl">babel</span> command listed within the scripts property of the <span class="hl">package.json</span> file.</p>
+
+		<p>The ES6 file to be compiled is named <span class="hl">main.js</span> and is placed within the <span class="hl">src</span> directory/folder of our project. Once compiled, a file named <span class="hl">main.bundle.js</span> will be created in the <span class="hl">dist</span> directory/folder containing the compiled ES5 JavaScript code.</p>
+
+		<p>If you want to compile more than one JavaScript file and bundle into a single file, the <span class="hl">package.json</span> file can be updated to use a <strong>glob</strong> rather than a specific filename.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: package.json">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-property">"babel"</span>: <span class="syntax-value">"babel --presets es2015 src/*.js -o dist/main.bundle.js"</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>ES6</h2>
+
+		<p>Should you want to write ES6 JavaScript code, please view the JavaScript section of the Development notes, <a href="dev-js.html" class="link">here</a>.</p>
+
+		<h2>Including JavaScript with HTML</h2>
+
+		<p>ES6 JavaScript code cannot currently be used with some current browsers, so Babel can be used to compiled the code into ES5 for use in all browsers. Once compiled into ES5, we can include the JavaScript code within HTML using a standard <span class="hl">&lt;script&gt;</span> tag.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"dist/main.bundle.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Development Server</h2>
+
+		<p>We can also use a lightweight web server to run the application locally during development. Use NPM to install <span class="hl">http-server</span>. You would use a local web server if you want to test an application that needs to be loaded using the <strong>http</strong> protocol and will not work if loaded using the file protocol.</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ npm <span class="syntax-keyword">install</span> <span class="syntax-value">http-server</span> <span class="syntax-keyword">--save-dev</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>Once installed, update the <span class="hl">package.json</span> file to allow the server to be run.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: package.json">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+{
+  <span class="syntax-property">"name"</span>: <span class="syntax-value">"babel"</span>,
+  <span class="syntax-property">"version"</span>: <span class="syntax-value">"1.0.0"</span>,
+  <span class="syntax-property">"description"</span>: <span class="syntax-value">""</span>,
+  <span class="syntax-property">"main"</span>: <span class="syntax-value">"index.js"</span>,
+  <span class="syntax-property">"scripts"</span>: {
+    <span class="syntax-property">"test"</span>: <span class="syntax-value">"echo \"Error: no test specified\" && exit 1"</span>,
+    <span class="syntax-property">"babel"</span>: <span class="syntax-value">"babel --presets es2015 src/main.js -o dist/main.bundle.js"</span>,
+    <span class="syntax-property">"start"</span>: <span class="syntax-value">"http-server"</span>
+  },
+  <span class="syntax-property">"keywords"</span>: <span class="syntax-value">[]</span>,
+  <span class="syntax-property">"author"</span>: <span class="syntax-value">""</span>,
+  <span class="syntax-property">"license"</span>: <span class="syntax-value">"ISC"</span>,
+  <span class="syntax-property">"devDependencies"</span>: {
+    <span class="syntax-property">"babel-cli"</span>: <span class="syntax-value">"^6.24.1"</span>,
+    <span class="syntax-property">"babel-preset-env"</span>: <span class="syntax-value">"^1.4.0"</span>
+  }
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>To run the server, use the following <strong>NPM</strong> command in the terminal:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ npm <span class="syntax-keyword">run</span> <span class="syntax-value">start</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+		
+		<p>Open the browser and point the URL to: <span class="hl">http://localhost:8080</span> to view the server. To change the <strong>port</strong> being used, update the <span class="hl">package.json</span> file:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: package.json">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-property">"scripts"</span>: {
+    <span class="syntax-property">"test"</span>: <span class="syntax-value">"echo \"Error: no test specified\" && exit 1"</span>,
+    <span class="syntax-property">"babel"</span>: <span class="syntax-value">"babel --presets es2015 src/main.js -o dist/main.bundle.js"</span>,
+    <span class="syntax-property">"start"</span>: <span class="syntax-value">"http-server -p 9000"</span>
+},
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<blockquote>
+			<p>The above example would change the port of the server to <span class="hl">9000</span></p>
+		</blockquote>
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

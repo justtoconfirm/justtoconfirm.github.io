@@ -725,6 +725,306 @@ document.getElementById(<span class="syntax-value">"grandhotel-rooms-available"<
 		</div>
 		<!-- / Code example -->
 
+		<h2>ES6</h2>
+
+		<p><strong>ES6</strong> - also known as <span class="hl">ECMAScript 2015 / ES2015</span> - is the latest version of JavaScript (<strong>ECMAScript standard</strong>), that was ratified in June 2015. ES6 is a significant update to the language, and the first major update since ES5 was standardized in 2009. ES6 contains a number of new features and implementation of these new features of ES6 in major JavaScript engines for use in browsers is underway now, however, not all browsers support ES6. To use ES6 currently, we must use tools such as <span class="hl">Babel</span> to transpile the ES6 code we write into ES5 JavaScript code so that all browsers can use the code we write.</p> 
+
+		<p>If you would like to setup <span class="hl">Babel</span>, the installation and setup instructions can be found <a href="dev-babel.html" class="link">here</a>.</p>
+
+		<h3>Variables</h3>
+
+		<p>You can create variables using <span class="hl">var</span>, <span class="hl">let</span>, or <span class="hl">const</span> in ES6. Variables do not have a type and as long a they are <strong>not</strong> constants, you can change their data.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// This is how you define a variable. 'x' will be 'undefined'</span>
+var <span class="syntax-keyword">x</span>;
+
+<span class="syntax-comment">// Declare a constant - the convention is to us CAPS for constants</span>
+const <span class="syntax-keyword">FOO</span> = <span class="syntax-value">42</span>;
+
+<span class="syntax-comment">// Variable declared using 'let'</span>
+let <span class="syntax-keyword">bar</span> = <span class="syntax-value">'Hello'</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p><span class="hl">let</span> and <span class="hl">var</span> are pretty similar when it comes to declaring variables, but unlike <span class="hl">var</span>, <span class="hl">let</span> allows you to declare a variable that are limited in scope to the <strong>block</strong>, <strong>statement</strong>, or <strong>expression</strong> on which it is used. The <span class="hl">var</span> keyword defines a variable to an entire function regardless of block scope.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+var <span class="syntax-keyword">a</span> = <span class="syntax-value">42</span>;
+<span class="syntax-keyword">if</span> (<span class="syntax-property">true</span>) {
+	var <span class="syntax-keyword">b</span> = <span class="syntax-value">7</span>;
+	let <span class="syntax-keyword">c</span> = <span class="syntax-value">123</span>;
+}
+
+<span class="syntax-comment">// We can access the 'a' variable</span>
+console.log(<span class="syntax-keyword">a</span>);
+
+<span class="syntax-comment">// We can also access the 'b' variable</span>
+console.log(<span class="syntax-keyword">b</span>);
+
+<span class="syntax-comment">/* 
+The variable of 'c' cannot be accessed
+This is because we are declaring it using 'let' inside of the 'if' block.
+It is only, therefore, accessible within the 'if' block itself.
+*/</span>
+console.log(<span class="syntax-keyword">c</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p><span class="hl">Const</span> is slightly simpler in that you can use it for a variable that has a value that is to remain the same.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+const <span class="syntax-keyword">PI</span> = <span class="syntax-value">3.14</span>;
+
+<span class="syntax-comment">// You cannot assign a new value to a const - this will cause an error</span>
+<span class="syntax-keyword">PI</span> = <span class="syntax-value">3</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h3>Functions</h3>
+
+		<p>There are a few ways to define functions in JavaScript. The common uses are:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+function <span class="syntax-keyword">sum</span> ( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) {
+	
+	return <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+
+}
+
+<span class="syntax-comment">// Declare function using a variable</span>
+var <span class="syntax-keyword">sum</span> = function ( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) {
+	
+	return <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+
+}
+
+<span class="syntax-comment">// Using the ES6 arrow function</span>
+let <span class="syntax-keyword">sum</span> = ( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) <span class="syntax-keyword">=></span> <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<blockquote>
+			<p>The Arrow function <span class="hl">=></span> is sometimes called the <span class="hl">"fat arrow"</span> function and is a concise way of writing function expressions in ES6. The expression after the arrow leads to what is being <strong>returned</strong>. In the example above, this is <span class="hl">a + b</span>.</p>
+		</blockquote>
+
+		<p>You can then <strong>call</strong> the function:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+let <span class="syntax-keyword">result</span> = <span class="syntax-keyword">sum</span>( <span class="syntax-value">40</span>, <span class="syntax-value">2</span> );
+
+<span class="syntax-comment">// OR, without using a variable</span>
+<span class="syntax-keyword">sum</span>( <span class="syntax-value">40</span>, <span class="syntax-value">2</span> );
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>As an example, lets run the ES6 code using <strong>Babel</strong> and view the ES5 JavaScript output. You will notice that Babel will add <span class="hl">"use strict"</span> at the top of the file being output once the ES6 code has been transpiled.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// Arrow function</span>
+let <span class="syntax-keyword">sum</span> = ( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) <span class="syntax-keyword">=></span> <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+
+<span class="syntax-comment">/* 
+Call the function and pass the values as arguments into the function parameters 'a' and 'b'
+The variable will then hold the result
+*/</span>
+let <span class="syntax-keyword">result</span> = <span class="syntax-keyword">sum</span>( <span class="syntax-value">40</span>, <span class="syntax-value">2</span> );
+
+console.log(<span class="syntax-keyword">result</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The <strong>ES5</strong> that is created once the <strong>ES6</strong> code above is transpiled:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+"use <span class="syntax-keyword">strict</span>";
+
+var <span class="syntax-keyword">sum</span> = function <span class="syntax-keyword">sum</span>( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) {
+	
+	<span class="syntax-return">return</span> <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+
+};
+
+var <span class="syntax-keyword">result</span> = <span class="syntax-keyword">sum</span>( <span class="syntax-value">40</span>, <span class="syntax-value">2</span> );
+
+console.log(<span class="syntax-keyword">result</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>When the code is run within the console, the value of <span class="hl">42</span> should be output.</p>
+
+		<h3>Classes</h3>
+
+		<p>JavaScript classes were introduced in ES6 and are syntactical sugar over JavaScript's existing prototype-based inheritance. The class syntax is not introducing a new object-oriented model to JavaScript, but it does create a much simpler syntax for creating objects.</p>
+
+		<p>Classes are <span class="hl">special functions</span> and has two components: <span class="hl">class expressions</span> and <span class="hl">class declarations</span>.</p>
+
+		<p>To define a class, we use a <span class="hl">class declaration</span>. This uses the <span class="hl">class</span>keyword followed by the name of the class.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">class</span> ClassName {
+	<span class="syntax-comment">...</span>
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Another way to define a class is to use a <span class="hl">class expression</span>. Class expressions can be <strong>named</strong> or <strong>unnamed</strong>. The name given to a named class expression is local to the class's body.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// Unnamed class expression</span>
+<span class="syntax-keyword">var</span> VariableName = <span class="syntax-keyword">class</span> {
+	<span class="syntax-comment">...</span>
+}
+
+<span class="syntax-comment">// Named class expression</span>
+<span class="syntax-keyword">var</span> VariableName = <span class="syntax-keyword">class</span> ClassName {
+	<span class="syntax-comment">...</span>
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Lets create a simple example of a class in ES6. This will use the <span class="hl">class declaration</span> syntax.</p>
+
+		<blockquote>
+			<p>This is very similar to how we use <span class="hl">Constructor notation</span> in JavaScript.</p>
+		</blockquote>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">class</span> Person {
+	<span class="syntax-keyword">constructor</span> ( <span class="syntax-value">name</span> ) {
+		<span class="syntax-keyword">this</span>.<span class="syntax-property">name</span> = <span class="syntax-value">name</span>;
+	}
+
+	getName () {
+		<span class="syntax-return">return</span> <span class="syntax-property">this</span>.<span class="syntax-value">name</span>;
+	}
+}
+
+<span class="syntax-comment">// Create a new instance of the 'Person' class</span>
+<span class="syntax-keyword">var</span> p = <span class="syntax-keyword">new</span> Person(<span class="syntax-value">"Dan"</span>);
+
+<span class="syntax-comment">// Output: Dan</span>
+console.log(p.getName());
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<blockquote>
+			<p>The <span class="hl">constructor</span> method is a special method for creating and initializing an object created with a <strong>class</strong>. There can only be <strong>one</strong> constructor within a class. A <strong>SyntaxError</strong> will be thrown if more than one is added. The constructor will take the value(s) passed as arguments when the function is called, and allow them to be used within the class - as with the <span class="hl">name</span> example (above).</p>
+		</blockquote>
+
+		<h2>Modules</h2>
+
+		<p>JavaScript, by default, lacks the ability to create modules to create modular code and seperate the code into seperate files to allow it to be easy to maintain and reusable. There are two main standards which let developers use modules in JavaScript, they are <span class="hl">CommonJS</span> and <span class="hl">Asynchronous Mobile Definition (AMD)</span>. By using ES6, modules will are brought into JavaScript as standard. As most browsers are still to support ES6, we still will need to transpile ES6 modules into ES5 JavaScript code.</p>
+
+		<p>Each ES6 module is defined in it's own file. The functions or variables defined in a module are not visible outside of it, unless you explicitly export them. This means that you can write code in your module and only export what should be accessed by other parts of your application.</p>
+
+		<p>To export your module, use the keyword of <span class="hl">export</span>. Similarly, to consume exported modules, you use the <span class="hl">import</span> keyword.</p>
+
+		<p>Next, let's create a file named <span class="hl">utility.js</span> for the module.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: utility.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">function</span> generateRandom() {
+
+	<span class="syntax-return">return</span> <span class="syntax-keyword">Math</span>.<span class="syntax-property">random</span>();
+
+}
+
+<span class="syntax-keyword">function</span> sum ( <span class="syntax-value">a</span>, <span class="syntax-value">b</span> ) {
+
+	<span class="syntax-return">return</span> <span class="syntax-value">a</span> + <span class="syntax-value">b</span>;
+
+}
+
+<span class="syntax-keyword">export</span> { generateRandom, sum }
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The <span class="hl">export</span> keyword on the last line of the file, exports the two functions (as listed in curly braces).</p>
+
+		<p>In another file where we want to import the functions we have exported from the utility.js module, we can now import them using the code below:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: main.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">import</span> { generateRandom, sum } <span class="syntax-keyword">from</span> <span class="syntax-value">'utility'</span>;
+
+<span class="syntax-comment">// Logs a random number</span>
+console.log(generateRandom());
+<span class="syntax-comment">// Output: 3</span>
+console.log(sum( <span class="syntax-value">1</span>, <span class="syntax-value">2</span> ));
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
 	</div>
 </div>
 
@@ -749,6 +1049,8 @@ document.getElementById(<span class="syntax-value">"grandhotel-rooms-available"<
 
 			<ul class="no-bullets">
 				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
 			</ul>
 		</div>
 
@@ -757,6 +1059,8 @@ document.getElementById(<span class="syntax-value">"grandhotel-rooms-available"<
 
 			<ul class="no-bullets">
 				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
 			</ul>
 		</div>
 

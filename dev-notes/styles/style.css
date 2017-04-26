@@ -38,13 +38,15 @@ ul {
 	z-index: 2;
 }
 
-/* Header icon background colour - HTML */
-.header__icon--html {
+/* Header icon background colour - HTML / Webpack */
+.header__icon--html,
+.header__icon--webpack {
 	background-color: #1779ba;
 }
 
-/* Header icon background colour - CSS */
-.header__icon--css {
+/* Header icon background colour - CSS / Angular */
+.header__icon--css,
+.header__icon--angular {
 	background-color: #f04124;
 }
 
@@ -57,6 +59,11 @@ ul {
 .header__icon--js,
 .header__icon--jquery {
 	background-color: #ff9800;
+}
+
+/* Header icon background colour - React */
+.header__icon--react {
+	background-color: #00d8ff;
 }
 
 /* Header icon background colour - PHP */
@@ -77,6 +84,11 @@ ul {
 /* Header icon background colour - BEM */
 .header__icon--bem {
 	background-color: #dfc48c;
+}
+
+/* Header icon background colour - Babel */
+.header__icon--babel {
+	background-color: #f5da55;
 }
 
 .header__icon--marks {
@@ -146,8 +158,9 @@ code {
 	background-color: #1779ba;
 }
 
-/* Code block description bar colour - CSS */
-.code[rel="css"]::before {
+/* Code block description bar colour - CSS / Angular */
+.code[rel="css"]::before,
+.code[rel="angular"]::before {
 	color: #fff;
 	background-color: #f04124;
 }
@@ -162,6 +175,12 @@ code {
 .code[rel="js"]::before {
 	color: #fff;
 	background-color: #ff9800;
+}
+
+/* Code block description bar colour - React */
+.code[rel="react"]::before {
+	color: #fff;
+	background-color: #00d8ff;
 }
 
 /* Code block description bar colour - PHP */
