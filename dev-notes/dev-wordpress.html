@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - WordPress</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--wordpress">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>WordPress</h1>
+
+		<h2>Install</h2>
+
+		<p>To install WordPress locally you will need <strong>MAMP</strong> (Mac) or <strong>WAMP/XAMPP</strong> (Windows or other), installed also. This will allow you to have <strong>PHP</strong>, <strong>MySQL</strong> and an <strong>Apache</strong> server available.</p>
+
+		<p>Next, go to <a href="https://wordpress.org/" class="link">https://wordpress.org/</a> to download the latest version of WordPress. This will be in the form of a <span class="hl">.zip</span> file which will need to be extracted.</p>
+
+		<blockquote>
+			<p>The folder will be named <span class="hl">wordpress</span> once downloaded, but feel free to rename it to something else if you wish.</p>
+		</blockquote>
+
+		<p>Once WordPress has downloaded, locate the folder where MAMP/WAMP or XAMPP has been installed. Within this directory/folder should be a <span class="hl">htdocs</span> folder. This is where we want to place our downloaded WordPress folder/directory. For the purpose of our examples, we will be renaming our WordPress directory/folder as <span class="hl">wp-project</span>.</p>
+
+		<blockquote>
+			<p>In the MAMP/WAMP or XAMPP control panel, you will need to start the <strong>Apache server</strong> and <strong>MySQL database</strong>.</p>
+		</blockquote>
+
+		<p>To begin the setup, start MAMP/WAMP or XAMPP, open a browser and point the URL to: <span class="hl">http://localhost/wp-project</span></p>
+
+		<blockquote>
+			<p><span class="hl">wp-project</span> is the name of our WordPress project - in this example.</p>
+		</blockquote>
+
+		<p>This will open the <span class="hl">wp-admin/setup-config.php</span> page. Select the language and click the <span class="hl">Continue</span> button.</p>
+
+		<img src="img/wordpress/wp-setup-one.png" alt="WordPress setup screen" />
+
+		<p>Next, follow the instructions as we will now be setting up the database configuration in the <span class="hl">wp-config.php</span> file. Click the <span class="hl">Let's go!</span> button to continue.</p>
+
+		<img src="img/wordpress/wp-setup-two.png" alt="WordPress setup screen" />
+
+		<p>You will need to create a database in the MySQL database so we can setup our WordPress installation. To do this, you can use <span class="hl">PHPMyAdmin</span>. Open a browser tab/window and enter the URL: <span class="hl">http://localhost/phpmyadmin</span>.</p>
+
+		<p>Click on the <span class="hl">Databases</span> tab/link and enter the name of the database you want to create in the input field. For our example project, the database is to be named <span class="hl">wp-project</span>.</p>
+
+		<img src="img/wordpress/wp-database-setup.png" alt="Database setup in PHPMyAdmin" />
+
+		<p>Click the <span class="hl">Create</span> button.</p>
+
+		<p>The database connection details need to now be entered. Once entered, click the <span class="hl">Submit</span> button.</p>
+
+		<blockquote>
+			<p>Unless changed, the default MAMP/WAMP or XAMPP <strong>Username</strong> is: <span class="hl">root</span> and the <strong>Password</strong> remains <strong>empty</strong> with no input. The <strong>database host</strong> should be <span class="hl">localhost</span>. The <strong>Database Name</strong> can be changed to what you would like, and the <strong>Table Prefix</strong> field can also be changed, but we will keep it as <span class="hl">wp_</span> for now (unless you have multiple WordPress installations, then you may want to change it for each one).</p>
+		</blockquote>
+
+		<img src="img/wordpress/wp-setup-three.png" alt="WordPress setup screen" />
+
+		<p>The database setup should now be complete. If an issues occur with the connection, close the browser and follow the setup steps once again. Click the <span class="hl">Run the install</span> button.</p>
+
+		<img src="img/wordpress/wp-setup-four.png" alt="WordPress setup screen" />
+
+		<p>Follow the on-screen instructions to complete the installation. Click the <span class="hl">Install WordPress</span> button to complete the installation.</p>
+
+		<img src="img/wordpress/wp-setup-five.png" alt="WordPress setup screen" />
+
+		<blockquote>
+			<p>Remember you can change the <strong>Password</strong> and <strong>Username</strong> fields to something more simple should you want to test locally, but this is not recommended for production when security is a key concern. For our example project, the <strong>Username</strong> is: <span class="hl">username</span> and the <strong>Password</strong> is: <span class="hl">password</span></p>
+		</blockquote>
+
+		<p>The installation is a success. Click the <span class="hl">Log In</span> button to log in with your <strong>username</strong> and <strong>password</strong>.</p>
+
+		<img src="img/wordpress/wp-setup-six.png" alt="WordPress setup screen" />
+
+		<p>The <strong>login</strong> screen:</p>
+
+		<img src="img/wordpress/wp-login.png" alt="WordPress login screen" />
+
+		<p>Once logged in, you will see the WordPress <strong>dashboard</strong>.</p>
+
+		<img src="img/wordpress/wp-dashboard.png" alt="Wordpress dashboard" />
+
+		<blockquote>
+			<p>When WordPress is installed, any configuration settings (such as database settings), can be found within the <span class="hl">wp-config.php</span> file.</p>
+		</blockquote>
+
+		<h2>Login to WordPress</h2>
+
+		<p>To login to WordPress, open the browser and point the URL to: <span class="hl">http://localhost/wp-project/wp-admin</span>. Enter your <strong>Username</strong> and <strong>Password</strong> to complete the login process.</p>
+
+		<p>This will now display the <span class="hl">dashboard</span>.</p>
+
+		<h2>Create a page</h2>
+
+		<p>In WordPress, you can put content on your site as either a <span class="hl">post</span> or a <span class="hl">page</span>. Posts are usually for content you want to display in reverse chronological order. In contrast, pages are for content such as <strong>About</strong> or <strong>Contact</strong> pages. Pages are usually used to present timeless information about yourself or your site.</p>
+
+		<p>To create a new page, login to the WordPress dashboard and navigate to <span class="hl">Pages / Add New</span></p>
+
+		<img src="img/wordpress/wp-add-page.png" alt="Add new page option on the WordPress dashboard" />
+
+		<p>On the <span class="hl">Add New Page</span> page, enter a title in the first input field followed by text you wish to appear on the page itself as copy in the larger textarea below. For this example, we will create a simple <span class="hl">About</span> page.</p>
+
+		<img src="img/wordpress/wp-about-page.png" alt="About page on the WordPress dashboard" />
+
+		<p>Click the <span class="hl">Publish</span> button to create the page.</p>
+
+		<p>The <span class="hl">About</span> page has been created. Click on the <span class="hl">Pages / All Pages</span> menu/tab item in the sidebar menu of the WordPress dashboard to see all pages within the website.</p>
+
+		<blockquote>
+			<p>When you install WordPress, a <span class="hl">Sample Page</span> will be created. This has been removed to keep things simple to just leave the <span class="hl">About us</span> page.</p>
+		</blockquote>
+
+		<img src="img/wordpress/wp-pages.png" alt="List of pages on the WordPress dashboard" />
+
+		<p>To view the page itself, you can either select the page from the list and click <span class="hl">View Page</span> from the Dashboard header or navigating to the <span class="hl">Permalink</span> URL: <span class="hl">http://localhost/wp-project.about-us/</span></p>
+
+		<img src="img/wordpress/wp-view-page.png" alt="View Page link" />
+
+		<p>The initial <strong>About us</strong> page looks like this:</p>
+
+		<img src="img/wordpress/wp-view-about-page.png" alt="The About page" />
+
+		<blockquote>
+			<p>Almost everything in WordPress is generated dynamically, including Pages. Everything published in WordPress - <strong>Posts</strong>, <strong>Pages</strong>, <strong>Comments</strong> etc - is stored in the <strong>MySQL</strong> database.</p>
+		</blockquote>
+
+		<h2>Update a page</h2>
+
+		<p>If you make any changes to a page, remember to click the <span class="hl">Update</span> button within the <span class="hl">Publish</span> panel in the WordPress dashboard.</p>
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-wordpress.html" class="footer__link">WordPress</a></li>
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

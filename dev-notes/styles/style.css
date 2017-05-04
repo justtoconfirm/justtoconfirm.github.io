@@ -16,6 +16,10 @@ ul {
 	padding-left: 15px;
 }
 
+img {
+	width: 100%;
+}
+
 /* Default hyperlink styling */
 .link {
 	color: #ff9800;
@@ -38,9 +42,10 @@ ul {
 	z-index: 2;
 }
 
-/* Header icon background colour - HTML / Webpack */
+/* Header icon background colour - HTML / Webpack / WordPress */
 .header__icon--html,
-.header__icon--webpack {
+.header__icon--webpack,
+.header__icon--wordpress {
 	background-color: #1779ba;
 }
 
