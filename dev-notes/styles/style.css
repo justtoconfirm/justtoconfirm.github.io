@@ -96,6 +96,11 @@ img {
 	background-color: #f5da55;
 }
 
+/* Header icon background colour - Express */
+.header__icon--express {
+	background-color: #ddd;
+}
+
 .header__icon--marks {
 	display: block;
 	text-align: center;

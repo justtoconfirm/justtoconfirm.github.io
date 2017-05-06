@@ -126,7 +126,7 @@
 
 		<img src="img/wordpress/wp-pages.png" alt="List of pages on the WordPress dashboard" />
 
-		<p>To view the page itself, you can either select the page from the list and click <span class="hl">View Page</span> from the Dashboard header or navigating to the <span class="hl">Permalink</span> URL: <span class="hl">http://localhost/wp-project.about-us/</span></p>
+		<p>To view the page itself, you can either select the page from the list and click <span class="hl">View Page</span> from the Dashboard header or navigating to the <span class="hl">Permalink</span> URL: <span class="hl">http://localhost/wp-project/about-us/</span></p>
 
 		<img src="img/wordpress/wp-view-page.png" alt="View Page link" />
 
@@ -141,6 +141,113 @@
 		<h2>Update a page</h2>
 
 		<p>If you make any changes to a page, remember to click the <span class="hl">Update</span> button within the <span class="hl">Publish</span> panel in the WordPress dashboard.</p>
+
+		<h2>Create a Post</h2>
+
+		<p>We are now going to create a <span class="hl">Post</span>. This is a very basic process within WordPress. Posts are entries that display in reverse order and usually have comment fields beneath them. This makes posts ideal for blogs and other similar features.</p>
+
+		<p>To begin, login to your WordPress dashboard and go to <span class="hl">Posts / Add New</span>.</p>
+
+		<img src="img/wordpress/wp-posts.png" alt="WordPress Posts" />
+
+		<p>On this page you will see the WordPress posts editor. The most important parts of this page are:</p>
+
+		<ul>
+			<li><span class="hl">Post Title</span> - enter the title of your post in this field.</li>
+			<li><span class="hl">Post Content</span> - Add content to your post.</li>
+		</ul>
+
+		<img src="img/wordpress/wp-posts-edit.png" alt="WordPress Posts editor" />
+
+		<p>Once you enter the content of your post in WordPress, you need to publish it. Publishing brings your post onto your website. Click the <span class="hl">Publish</span> button to publish your post.</p>
+
+		<blockquote>
+			<p>If you view <span class="hl">All Posts</span>, you will find an example post called <span class="hl">Hello world!</span> This can be removed if you wish as was created when WordPress was installed.</p>
+		</blockquote>
+
+		<img src="img/wordpress/wp-posts-homepage.png" alt="WordPress Posts on the homepage" />
+
+		<p>The post created should now be displayed on your homepage. The homepage can either be viewed by clicking the <span class="hl">Test WP / Visit Site</span> on the main navigation bar of the WordPress dashboard, or visiting the URL of: <span class="hl">http://localhost/wp-project/</span> in the browser.</p>
+
+		<img src="img/wordpress/wp-dashboard-navigation.png" alt="WordPress Dashboard navigation" />
+
+		<blockquote>
+			<p>For both pages and posts, when a title is added into the title field when a post or page is created, WordPress will clean up the title and generate a user-friendly URL called a <span class="hl">slug</span>. This will compose a <span class="hl">permalink</span> for the page or post created.</p>
+		</blockquote> 
+
+		<h2>Post Types</h2>
+
+		<p>WordPress can hold and display many different types of content. Any content added to a WordPress site, usually has a <span class="hl">post type</span>. A <strong>post</strong> is an example of a post type, as are <strong>pages</strong>. WordPress has <strong>several</strong> default post types available when installed. Post types are installed within the <span class="hl">wp_posts</span> table within the <strong>MySQL database</strong>. Posts themselves are placed within a <strong>column</strong> of this table called <span class="hl">post_type</span>.</p>
+
+		<p><span class="hl">Post</span> - in WordPress, the post type of post is typically used for blogs. Posts are normally displayed in reverse order by time with the newest post first. Posts are also used for creating feeds.</p>
+
+		<p><span class="hl">Page</span> - similar to posts, but a page is a post type that is not displayed based on time and can use different page templates.</p>
+
+		<blockquote>
+			<p>You can see the default post types of <strong>Posts</strong> and <strong>Pages</strong>, listed in the <strong>sidebar</strong> of the WordPress dashboard.</p>
+		</blockquote>
+
+		<img src="img/wordpress/wp-sidebar.png" alt="WordPress Dashboard sidebar" />
+
+		<h2>Custom Post Types (CPT)</h2>
+
+		<p><span class="hl">Custom Post Types</span> are new post types that you can create. A <strong>Custom Post Type (CPT)</strong> is nothing more than a regular post and will be added to the <span class="hl">post_type</span> column (along with any other post type) as a new value in the database. You can create as many custom post types as you wish. Since WordPress evolved from a blogging platform, the term Custom Post Types, has stuck, even though - as mentioned before - they are not used just for posts.</p>
+
+		<blockquote>
+			<p>A Custom Post Type can be added to WordPress by using the <span class="hl">register_post_type()</span> function. The <span class="hl">post_type</span> column in the database is limited to <span class="hl">20 characters</span> and is currently a <span class="hl">VARCHAR</span> field of that length.</p>
+		</blockquote>
+
+		<p>WordPress comes with built-in support for displaying Custom Post Types. When a Custom Post Type is created, it will be added to the <span class="hl">sidebar</span> (<strong>admin panel</strong>) in the WordPress dashboard as a separate menu item with it's own post list and <span class="hl">Add New</span> page. From here you can then <strong>add</strong> and <strong>view</strong> posts within the post type created.</p>
+
+		<blockquote>
+			<p>An example of a Custom Post Type may include <strong>products for online stores</strong>, <strong>property listings for an estate agent</strong> - just a few examples of many you can create.</p>
+		</blockquote>
+
+		<h3>Create a Custom Post Type</h3>
+
+		<p>To create a Custom Post Type, it is usually recommended to create a <span class="hl">plugin</span>, although you can also use the <strong>functions.php</strong> file within your theme directory - <span class="hl">wp-project/wp-content/themes</span>. As we are currently using the <span class="hl">twentyseventeen</span> theme in the current WordPress install, the file will be located in this theme directory.</p>
+
+		<blockquote>
+			<p>When making changes to the <strong>functions.php</strong> file, do not make any changes to the code currently there. If you want to create a Custom Post Type (CPT), this can be placed at the top or bottom of the file.</p>
+		</blockquote>
+
+		<p>Within the <span class="hl">functions.php</span> file, add the following code to the bottom of the file, to create a Custom Post Type (CPT) called <span class="hl">Products</span>.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="php" data-title="PHP: wp-project/wp-content/themes/twentyseventeen/functions.php">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// Custom Post Type function</span>
+<span class="syntax-keyword">function</span> create_products_cpt () {
+
+	<span class="syntax-keyword">register_post_type</span>( <span class="syntax-value">'products'</span>,
+		<span class="syntax-comment">// CPT options</span>
+		array (
+			<span class="syntax-property">'labels'</span> => array (
+				<span class="syntax-property">'name'</span> => __( <span class="syntax-value">'Products'</span> ),
+				<span class="syntax-property">'singular_name'</span> => __( <span class="syntax-value">'Product'</span> )
+			),
+			<span class="syntax-property">'public'</span> => true,
+			<span class="syntax-property">'has_archive'</span> => true,
+			<span class="syntax-property">'rewrite'</span> => array ( <span class="syntax-property">'slug'</span> => <span class="syntax-value">'products'</span> )
+		)
+	);
+
+}
+
+<span class="syntax-comment">// Add the CPT to the theme</span>
+<span class="syntax-keyword">add_action</span>( <span class="syntax-value">'init'</span>, <span class="syntax-value">'create_products_cpt'</span> );
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Save the <strong>functions.php</strong> file and the Custom Post Type will be added to the sidebar within the WordPress dashboard.</p>
+
+		<img src="img/wordpress/wp-cpt-added.png" alt="Custom Post Type added to the WordPress dashboard" />
+
+		<p>Because the Custom Post Type has been added to the <span class="hl">functions.php</span> file within a theme, should you change theme, the Custom Post Type will not be available. A <strong>plugin</strong> maybe a more suitable option to use a CPT across multiple templates.</p>
 
 	</div>
 </div>
@@ -178,6 +285,7 @@
 				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
 				<li><a href="dev-react.html" class="footer__link">React</a></li>
 				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+				<li><a href="dev-express.html" class="footer__link">Express</a></li>
 			</ul>
 		</div>
 
