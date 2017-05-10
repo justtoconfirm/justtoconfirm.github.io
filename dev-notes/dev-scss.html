@@ -161,7 +161,10 @@
 			<pre>
 				<code>
 <!-- Leave this line empty -->
-<span class="syntax-keyword">.message</span>, <span class="syntax-keyword">.success</span>, <span class="syntax-keyword">.error</span>, <span class="syntax-keyword">.warning</span> {
+<span class="syntax-keyword">.message</span>, 
+<span class="syntax-keyword">.success</span>, 
+<span class="syntax-keyword">.error</span>, 
+<span class="syntax-keyword">.warning</span> {
 	<span class="syntax-property">border</span>: <span class="syntax-value">1px solid #ccc</span>;
 	<span class="syntax-property">padding</span>: <span class="syntax-value">10px</span>;
 	<span class="syntax-property">color</span>: <span class="syntax-value">#333</span>;
@@ -182,6 +185,180 @@
 			</pre>
 		</div>
 		<!-- / Code example -->
+
+		<h2>Placeholder selectors</h2>
+
+		<p>The <span class="hl">@extend</span> directive creates relationships. Whenever you use <strong>@extend</strong>, you are transplanting a selector elsewhere in your stylesheet in order to share properties with other selectors. An example of this can be found below.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// This is a placeholder selector</span>
+<span class="syntax-keyword">%brand-font</span> {
+	<span class="syntax-property">font-family</span>: <span class="syntax-value">verdana</span>;
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">700</span>;
+}
+
+<span class="syntax-keyword">h1</span> {
+	<span class="syntax-keyword">@extend %brand-font</span>;
+	<span class="syntax-property">font-size</span>: <span class="syntax-value">2em</span>;
+}
+
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-keyword">@extend %brand-font</span>;
+	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
+	<span class="syntax-property">padding</span>: <span class="syntax-value">1em</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<blockquote>
+			<p>The <span class="hl">placeholder selector</span> starts with <span class="hl">%</span> and does not get output within your CSS when the Sass code is compiled.</p>
+		</blockquote>
+
+		<p>Which of course, gives us the following CSS:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">h1</span>,
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">verdana</span>;
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">700</span>;
+}
+
+<span class="syntax-keyword">h1</span> {
+	<span class="syntax-property">font-size</span>: <span class="syntax-value">2em</span>;
+}
+
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
+	<span class="syntax-property">padding</span>: <span class="syntax-value">1em</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The issue here is that a relationship has been forced between <strong>unrelated rules</strong> that can often be many lines of code away from one another, based on shared properties. This creates a very unusual <strong>source order</strong> and selectors are then distributed across the codebase. This is a bad use for <span class="hl">@extend</span> as we have transplanted unrelated rulesets many lines away from their source order to be located with other rulesets.</p>
+
+		<p>Sometimes <span class="hl">@extend</span> is used to avoid repeating the same selector multiple times.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">%bold</span> {
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">bold</span>;
+}
+
+<span class="syntax-keyword">.header</span> {
+	<span class="syntax-keyword">@extend %bold</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">#333</span>;
+}
+
+<span class="syntax-keyword">.sub-header</span> {
+	<span class="syntax-keyword">@extend %bold</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">#fafafa</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>As you would expect, this is similar to our example before:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.header</span>,
+<span class="syntax-keyword">.sub-header</span> {
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">bold</span>;
+}
+
+<span class="syntax-keyword">.header</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#333</span>;
+}
+
+<span class="syntax-keyword">.sub-header</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#fafafa</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>If we were to actually just use <strong>font-weight</strong> in each of our declarations, we would actually achieve a smaller file size. Extending single declarations can often be counter-productive.</p>
+
+		<blockquote>
+			<p>Sometimes reducing the number of <span class="hl">@extend</span> declarations can also help to reduce the file size of your CSS.</p>
+		</blockquote>
+
+		<p>We use <span class="hl">@extend</span> to <strong>share properties</strong> among related rulesets. An example can be something like this:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">%btn</span> {
+	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
+	<span class="syntax-property">padding</span>: <span class="syntax-value">1em</span>;
+}
+
+<span class="syntax-keyword">.btn-positive</span> {
+	<span class="syntax-keyword">@extend %btn</span>;
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">green</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">white</span>;
+}
+
+<span class="syntax-keyword">.btn-negative</span> {
+	<span class="syntax-keyword">@extend %btn</span>;
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">white</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The rulesets are inherently related - they all relate to the buttons - so their shared properties are shared for a reason. Furthermore, everything is kept together within the source, so the CSS is nice and simple to understand:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn-positive</span>,
+<span class="syntax-keyword">.btn-negative</span> {
+	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
+	<span class="syntax-property">padding</span>: <span class="syntax-value">1em</span>;
+}
+
+<span class="syntax-keyword">.btn-positive</span> {
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">green</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">white</span>;
+}
+
+<span class="syntax-keyword">.btn-negative</span> {
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">white</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>In Sass, <span class="hl">%</span> is a <span class="hl">placeholder selector</span>. They are designed to not show up within your generated CSS when your Sass code is compiled. If you we're to use a <strong>class</strong> - such as an icon class - inside of your Sass code and it's only purpose was to be used with <span class="hl">@extend</span>, it will be output within your CSS code when compiled, so the CSS file will be larger as it includes a style that it will never use. Placeholder selectors solve this problem.</p>
 
 		<h2>Mixins</h2>
 

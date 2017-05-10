@@ -206,6 +206,140 @@
 		</div>
 		<!-- / Code example -->	
 
+		<h2>CSS Shorthand Syntax</h2>
+
+		<p>The use of <strong>shorthand syntax</strong> in CSS is often used within many CSS examples, but it can unset properties that we never intended to modify.</p>
+
+		<p>When we write something like:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background</span>: <span class="syntax-value">red</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>We are likely to get the background colour applied to our button, but what we're really saying is:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background-image</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-position-x</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-position-y</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-size</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-repeat-x</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-repeat-y</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-attachment</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-origin</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-clip</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;	
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Simply by using the shorter syntax, we have included everything else associated with the <strong>background property</strong>. In CSS you should <span class="hl">only ever do as little as you need to do and nothing more</span>. Shorthand is a surefire way to do too much too soon and should be avoided - if possible.</p>
+
+		<p>A better example to apply a background colour would be:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>We have done exactly what we needed to do, and <strong>nothing more</strong>.</p>
+		</blockquote>
+
+		<p>Another common use-case is <strong>vertical centering</strong>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.wrapper</span> {
+	<span class="syntax-property">margin</span>: <span class="syntax-value">0 auto</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The problem here is that in order to use shorthand to define <strong>auto</strong> only once - use it on both the <strong>left</strong> and <strong>right</strong> - we have to make a decision about <strong>top</strong> and <strong>bottom</strong> as well. We have now explicitly removed any top or bottom margins that may have been intentionally introduced elsewhere.</p>
+
+		<p>If all you want to do is centre a <span class="hl">block-level</span> element, then you don't mention anything to do with it's top and bottom edges, so we can favour the <span class="hl">longhand</span> version:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.wrapper</span> {
+	<span class="syntax-property">margin-left</span>: <span class="syntax-value">auto</span>;
+	<span class="syntax-property">margin-right</span>: <span class="syntax-value">auto</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>In some circumstances, shorthand can be used. Take for example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">padding</span>: <span class="syntax-value">10px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Here, we are not unsetting anything because we want <strong>all four sides</strong> to carry <strong>10px padding</strong>. Shorthand can also be used in this example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">padding</span>: <span class="syntax-value">12px 24px</span>;
+}
+
+<span class="syntax-comment">/* Another example */</span>
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">margin</span>: <span class="syntax-value">12px 17px 16px 10px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>By favouring <strong>longhand CSS</strong> over shorthand, it maybe more repetative and less <span class="hl">DRY</span>, but it will produce more <strong>accurate code</strong>.</p>
+
 	</div>
 </div>
 
