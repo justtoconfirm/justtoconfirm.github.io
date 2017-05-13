@@ -399,7 +399,7 @@ ReactDOM.<span class="syntax-keyword">render</span>(
 		</div>
 		<!-- / Code example -->	
 
-		<p>If the application is not currently running, you can open the command terminal, cd into the my-app directory and run the React application to see the result.</p>
+		<p>If the application is not currently running, you can open the command terminal, <span class="hl">cd</span> into the <span class="hl">my-app</span> directory and run the React application to see the result.</p>
 
 		<!-- Code example -->
 		<pre>
@@ -434,7 +434,13 @@ $ npm <span class="syntax-keyword">start</span>
 
 		<blockquote>
 			<p>The simplest way to define a component is to write a JavaScript function. Component names should <strong>always</strong> start with an uppercase letter.</p>
-		</blockquote>			
+		</blockquote>	
+
+		<h2>Virtual DOM</h2>
+
+		<p>The <span class="hl">Virtual DOM</span> selectively renders <strong>subtrees</strong> and <strong>nodes</strong> based upon state changes, doing the least amount of DOM manipulation in order to keep your components up to date. React uses a <strong>"diffing"</strong> algorithm to identify what has changes before updating the DOM with results of the diff. So, rather than rebuild from the ground up, only the bits that need changing are updated.</p>
+
+		<p>This means that if you had text in an input and a render took place, as long as the input's parent node wasn't scheduled to change, the text would stay undisturbed.</p>		
 
 	</div>
 </div>

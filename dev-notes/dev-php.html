@@ -769,6 +769,156 @@ I am a class property
 		</div>
 		<!-- / Code example -->
 
+		<h2>PHP Exceptions</h2>
+
+		<p>PHP 5 came with an object oriented way of dealing with errors. <strong>Exception handling</strong> is used to change the normal flow of the code execution if a specified error - an <span class="hl">exception</span> - occurs.</p>
+
+		<p>Exceptions should <strong>only</strong> be used with <strong>error conditions</strong>, and should not be used to jump to another place in the code at a specified point.</p>
+
+		<p>When an exception is <span class="hl">thrown</span>, the code following it will <strong>not</strong> be executed and PHP will try to find - and go to - a matching <span class="hl">catch</span> block.</p>
+
+		<blockquote>
+			<p>If you <span class="hl">thrown</span> an exception, you <strong>need</strong> to <span class="hl">catch</span> it.</p>
+		</blockquote>
+
+		<p>If an exception is not caught, a <strong>fatal error</strong> will be issued with an <span class="hl">Uncaught Exception</span> message.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="php" data-title="PHP">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;?php
+
+<span class="syntax-comment">// Create a function with an exception</span>
+<span class="syntax-keyword">function</span> checkNum (<span class="syntax-value">$number</span>) {
+	
+	if (<span class="syntax-value">$number</span> > <span class="syntax-value">1</span>) {
+
+		<span class="syntax-comment">// Exception is thrown</span>
+		<span class="syntax-keyword">throw new</span> Exception(<span class="syntax-value">"This value must be 1 or less"</span>);
+
+	}
+	<span class="syntax-return">return</span> <span class="syntax-keyword">true</span>;
+
+}
+
+<span class="syntax-comment">/* 
+ * Call the function
+ * This will trigger the exception as the value is greater than 1
+ */</span>
+checkNum(<span class="syntax-value">2</span>);
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The code above will get the <span class="hl">Uncaught Exception</span> error. To avoid the error occuring, the exception code should include:</p>
+
+		<ul>
+			<li><span class="hl">TRY</span> - A functon using an exception should be in a <span class="hl">try</span> block. If the exception does not trigger, the code will continue as normal. If the exception is triggered, an exception is <span class="hl">thrown</span>.</li>
+			<li><span class="hl">THROW</span> - This is how you trigger an exception. Each <span class="hl">throw</span> must have at least one <span class="hl">catch</span>.</li>
+			<li><span class="hl">CATCH</span> - A <span class="hl">catch</span> block retrieves an exception and creates an <strong>object</strong> containing the exception information.</li>
+		</ul>
+
+		<!-- Code example -->
+		<div class="code" rel="php" data-title="PHP">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;?php
+
+<span class="syntax-comment">// Create a function with an exception</span>
+<span class="syntax-keyword">function</span> checkNum (<span class="syntax-value">$number</span>) {
+	
+	if (<span class="syntax-value">$number</span> > <span class="syntax-value">1</span>) {
+
+		<span class="syntax-comment">// Exception is thrown</span>
+		<span class="syntax-keyword">throw new</span> Exception(<span class="syntax-value">"This value must be 1 or less"</span>);
+
+	}
+	<span class="syntax-return">return</span> <span class="syntax-keyword">true</span>;
+
+}
+
+<span class="syntax-comment">// Trigger the exception in a 'try' block</span>
+<span class="syntax-keyword">try</span> {
+
+	<span class="syntax-comment">/* 
+ 	 * Call the function
+ 	 * This will trigger the exception as the value is greater than 1
+ 	 */</span>
+	checkNum(<span class="syntax-value">2</span>);
+	<span class="syntax-comment">// If the exception is thrown, this text will not be shown as no error has occured</span>
+	<span class="syntax-keyword">echo</span> <span class="syntax-value">'If you see this, the number is 1 or below'</span>
+
+}
+
+<span class="syntax-comment">/* 
+ * Catch the exception
+ * Display error message when exception is caught
+ */</span>
+<span class="syntax-keyword">catch</span> (Exception <span class="syntax-property">$e</span>) {
+
+	<span class="syntax-keyword">echo</span> <span class="syntax-value">'Message: '</span> .<span class="syntax-property">$e</span>->getMessage();
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The code above will get the error message:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+Message: The value must be 1 or less
+			</code>
+		</pre>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>The <span class="hl">$e</span> within the catch statement is an <strong>object</strong> created by the object containing information about the exception.</p>
+		</blockquote>
+
+		<p>To describe what is happening in the code:</p>
+
+		<ul>
+			<li>The <span class="hl">checkNum()</span> function is created, it checks if a number is greater than <strong>1</strong>. If it is, an exception is thrown.</li>
+			<li>The <span class="hl">checkNum()</span> function is called in the <span class="hl">try</span> block.</li>
+			<li>The exception with the <span class="hl">checkNum()</span> function is <span class="hl">thrown</span>.</li>
+			<li>The <span class="hl">catch</span> block retrieves the exception and creates an object <span class="hl">$e</span> containing the exception information.</li>
+			<li>The error message from the exception is echoed by calling <span class="hl">$e->getMessage()</span> from the exception object.</li>
+		</ul>
+
+		<p>The <span class="hl">getMessage()</span> function in PHP returns the Exception message. The function has <strong>no</strong> parameters and returns the message as a <strong>String</strong>.</p>
+
+		<p>Here is a simplified version of a PHP exception:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="php" data-title="PHP">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;?php
+
+<span class="syntax-keyword">try</span> {
+	
+	<span class="syntax-keyword">throw new</span> Exception(<span class="syntax-value">"Some error message here"</span>);
+
+} <span class="syntax-keyword">catch</span> (Exception <span class="syntax-property">$e</span>) {
+	
+	<span class="syntax-keyword">echo</span> <span class="syntax-property">$e</span>->getMessage();
+
+}
+
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
 	</div>
 </div>
 

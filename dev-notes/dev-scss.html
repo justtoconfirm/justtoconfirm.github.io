@@ -206,6 +206,8 @@
 	<span class="syntax-property">font-size</span>: <span class="syntax-value">2em</span>;
 }
 
+<span class="syntax-comment">...</span>
+
 <span class="syntax-keyword">.btn</span> {
 	<span class="syntax-keyword">@extend %brand-font</span>;
 	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
@@ -236,6 +238,8 @@
 <span class="syntax-keyword">h1</span> {
 	<span class="syntax-property">font-size</span>: <span class="syntax-value">2em</span>;
 }
+
+<span class="syntax-comment">...</span>
 
 <span class="syntax-keyword">.btn</span> {
 	<span class="syntax-property">display</span>: <span class="syntax-value">inline-block</span>;
@@ -299,9 +303,34 @@
 
 		<p>If we were to actually just use <strong>font-weight</strong> in each of our declarations, we would actually achieve a smaller file size. Extending single declarations can often be counter-productive.</p>
 
+		<h3>A better example</h3>
+
+		<p>An improved example where we are using <strong>font-weight</strong> in each declaration, and not using <span class="hl">@extend</span> at all.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.header</span> {
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">bold</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">#333</span>;
+}
+
+<span class="syntax-keyword">.sub-header</span> {
+	<span class="syntax-property">font-weight</span>: <span class="syntax-value">bold</span>;
+	<span class="syntax-property">color</span>: <span class="syntax-value">#fafafa</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
 		<blockquote>
 			<p>Sometimes reducing the number of <span class="hl">@extend</span> declarations can also help to reduce the file size of your CSS.</p>
 		</blockquote>
+
+		<h3>Related rulesets</h3>
 
 		<p>We use <span class="hl">@extend</span> to <strong>share properties</strong> among related rulesets. An example can be something like this:</p>
 
@@ -465,6 +494,120 @@
 <span class="syntax-keyword">aside</span>[role=<span class="syntax-value">"complementary"</span>] {
 	<span class="syntax-property">float</span>: <span class="syntax-value">right</span>;
 	<span class="syntax-property">width</span>: <span class="syntax-value">31.25%</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Mixin Examples</h2>
+
+		<p>Here are a few examples of Sass mixins that can be used within your projects.</p>
+
+		<h3>Browser/Vendor prefix mixin</h3>
+
+		<p>This mixin allows browser/vendor prefixes to be added to elements that require support in multiple browsers. This mixin is an alternative to <span class="hl">Autoprefixer</span> or <span class="hl">Compass</span> and the prefixes we want to use are passed within the mixin allowing us to customise what is supported.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS: mixins/_vendor-prefix.scss">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">@mixin</span> <span class="syntax-property">prefix</span>( <span class="syntax-value">$prop</span>, <span class="syntax-value">$val</span>, <span class="syntax-value">$prefixes</span>: <span class="syntax-value">webkit moz ms o</span> ) {
+	<span class="syntax-keyword">@if</span> <span class="syntax-value">$prefixes</span> {
+		<span class="syntax-comment">// Loop through each prefix listed</span>
+		<span class="syntax-keyword">@each</span> <span class="syntax-value">$prefix</span> in <span class="syntax-value">$prefixes</span> {
+			<span class="syntax-comment">// Apply each prefix to the property and value</span>
+			<span class="syntax-keyword">#</span>{<span class="syntax-value">'-'</span> + <span class="syntax-value">$prefix</span> + <span class="syntax-value">'-'</span> + <span class="syntax-value">$prop</span>}: <span class="syntax-keyword">#</span>{<span class="syntax-value">$val</span>};
+		}
+	}
+	<span class="syntax-comment">// Output the non-prefixed CSS declaration</span>
+	<span class="syntax-keyword">#</span>{<span class="syntax-value">$prop</span>}: <span class="syntax-keyword">#</span>{<span class="syntax-value">$val</span>};
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Usage example: setting the <strong>border-radius</strong> of an element to be <strong>5px</strong>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.element</span> {
+	<span class="syntax-keyword">@include</span> <span class="syntax-property">prefix</span>( <span class="syntax-value">'border-radius'</span>, <span class="syntax-value">5px</span>, <span class="syntax-value">webkit moz ms o</span> );
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The CSS output once compiled:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.element</span> {
+  <span class="syntax-property">-webkit-border-radius</span>: <span class="syntax-value">5px</span>;
+  <span class="syntax-property">-moz-border-radius</span>: <span class="syntax-value">5px</span>;
+  <span class="syntax-property">-ms-border-radius</span>: <span class="syntax-value">5px</span>;
+  <span class="syntax-property">-o-border-radius</span>: <span class="syntax-value">5px</span>;
+  <span class="syntax-property">border-radius</span>: <span class="syntax-value">5px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h3>Opacity mixin</h3>
+
+		<p>Set the opacity of an element with a fallback for <strong>IE8 (Internet Explorer 8)</strong>.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS: mixins/_opacity.scss">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">@mixin</span> <span class="syntax-property">opacity</span>( <span class="syntax-value">$opacity</span> ) {
+	<span class="syntax-property">opacity</span>: <span class="syntax-value">$opacity</span>;
+	<span class="syntax-property">$opacity-ie</span>: <span class="syntax-value">$opacity * 100</span>;
+	<span class="syntax-comment">// IE8 fallback</span>
+	<span class="syntax-property">filter</span>: <span class="syntax-value">alpha(opacity=$opacity-ie)</span>;	
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Usage example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="scss" data-title="SCSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.element</span> {
+	<span class="syntax-keyword">@include</span> <span class="syntax-property">opacity</span>(<span class="syntax-value">0.8</span>);
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The CSS output once compiled:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.element</span> {
+	<span class="syntax-property">opacity</span>: <span class="syntax-value">0.8</span>;
+	<span class="syntax-property">filter</span>: <span class="syntax-value">alpha(opacity=80)</span>;
 }
 				</code>
 			</pre>

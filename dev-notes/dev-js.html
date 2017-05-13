@@ -1025,6 +1025,42 @@ console.log(sum( <span class="syntax-value">1</span>, <span class="syntax-value"
 		</div>
 		<!-- / Code example -->
 
+		<h2>Fetch API</h2>
+
+		<!-- https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data -->
+
+		<p>JavaScript has a built-in new standard for making <strong>requests</strong> to get data that replaces the previous <span class="hl">XMLHttpRequest</span> API. We can use the <span class="hl">Fetch API</span>, which is much cleaner, to make server requests easily.</p>
+
+		<p>To use the <strong>Fetch API</strong>, we simply call <span class="hl">fetch</span> with the <strong>URL</strong> you want. By default, the Fetch API uses the <span class="hl">GET</span> method.</p>
+
+		<blockquote>
+			<p>Support for <strong>Fetch API</strong> is not present in <span class="hl">IE (including IE11)</span> and much of <span class="hl">Safari</span> currently, but <span class="hl">Edge</span>, <span class="hl">Chrome</span> and <span class="hl">Firefox</span> do provide support. <strong>This is still very much an experimental implementation</strong>.</p>
+		</blockquote>
+
+		<p>A simple <strong>call</strong> using Fetch API would look like this:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">// Call the fetch function, passing the URL of the API as a parameter</span>
+<span class="syntax-keyword">fetch</span>( <span class="syntax-value">url</span> )
+<span class="syntax-keyword">.then</span>( function() {
+	
+	<span class="syntax-comment">// Your code for handling the data you get from the API</span>
+
+})
+<span class="syntax-keyword">.catch</span>( function() {
+
+	<span class="syntax-comment">// This is where you run code if the server returns any errors</span>
+	
+});
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
 	</div>
 </div>
 
