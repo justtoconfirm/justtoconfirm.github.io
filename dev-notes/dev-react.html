@@ -24,17 +24,15 @@
 
 		<h1>React</h1>
 
-		<p><strong>React</strong> (sometimes also called <strong>React.js</strong> or <strong>ReactJS</strong>), is an open-source <span class="hl">JavaScript library</span> for building <span class="hl">user interfaces</span>. It was developed by Facebook. It is used in the creation of interactive and reusable UI (User Interface) components. React can be used on both the client side and server side.</p>
+		<p><strong>React</strong> (sometimes also called <strong>React.js</strong> or <strong>ReactJS</strong>), is an open-source <span class="hl">JavaScript library</span> for building <span class="hl">user interfaces</span>. It was developed by Facebook. It is used in the creation of interactive and reusable UI (User Interface) components. React can be used on both the client side and server side. This JavaScript library allows you to turn a complex UI into simple and reusable components.</p>
 
-		<p><strong>React is only the view layer.</strong></p>
-
-		<p>React gives you a template language and functions to render HTML. This is all React will output.</p>
-
-		<p>React allows developers to create large applications that use data which can change over time, without reloading the page.</p>
+		<p>React allows developers to create large applications that use data which can change over time without the need to reload the page. React also provides a template language and functions to render HTML.</p>
 
 		<blockquote>
-			<p>React corresponds only to the <strong>View</strong> layer in the <strong>Model-View-Controller (MVC)</strong> template. It can be used alongside other JavaScript libraries or frameworks in MVC.</p>
-		</blockquote> 
+			<p>React is only the view layer. ReactDOM is a standalone library that is used to render React components on the DOM. React will only output HTML.</p>
+		</blockquote>
+
+		<p>React only corresponds to the View layer in the Model-View-Controller (MVC) template. React can also be used alongside other JavaScript libraries or frameworks.</p>
 
 		<h2>Install React</h2>
 
@@ -44,7 +42,10 @@
 		<pre>
 			<code>
 <!-- Leave this line empty -->
+<span class="syntax-comment">// If you need to install the create-react-app package</span>
 $ npm <span class="syntax-keyword">install</span> -g <span class="syntax-value">create-react-app</span>
+
+<span class="syntax-comment">// Create a new React application if create-react-app is already installed</span>
 $ <span class="syntax-value">create-react-app</span> <span class="syntax-property">my-app</span>
 
 $ cd <span class="syntax-property">my-app</span>
@@ -76,22 +77,6 @@ $ npm <span class="syntax-keyword">run</span> build
 		</pre>
 		<!-- / Code example -->
 
-		<h3>Alternative installation</h3>
-
-		<p>Another way to install and setup React, is to install each component required individually. Begin by using <strong>NPM (Node Package Manager)</strong> to install React.</p>
-
-		<p>The <span class="hl">npm init</span> command will create the <strong>package.json</strong> file. We will then install the <span class="hl">react</span> and <span class="hl">react-dom</span> NPM packages.</p>
-
-		<!-- Code example -->
-		<pre>
-			<code>
-<!-- Leave this line empty -->
-$ npm <span class="syntax-keyword">init</span>
-$ npm <span class="syntax-keyword">install</span> <span class="syntax-value">react react-dom</span> <span class="syntax-keyword">--save-dev</span>
-			</code>
-		</pre>
-		<!-- / Code example -->	
-
 		<p>The React documentation recommends using React with <span class="hl">Babel</span> to let you use <span class="hl">ES6</span> and/or <span class="hl">JSX</span> in your code. ES6 is the modern JavaScript syntax and includes new features to make development easier. JSX is an extension to the JavaScript language that works well with React.</p>	
 		<p>It is recommended to install <span class="hl">babel-preset-react</span> and <span class="hl">babel-preset-es2015</span> and to create a <span class="hl">.babelrc</span> config file to use Babel.</p>
 
@@ -101,346 +86,210 @@ $ npm <span class="syntax-keyword">install</span> <span class="syntax-value">rea
 			<p>A modern build pipeline typically consists of: <strong>Package manager</strong>, <strong>bundler</strong> and <strong>compiler</strong>.</p>
 		</blockquote>
 
-		<h2>JSX</h2>
+		<h2>Simple Application</h2>	
 
-		<p>JSX is a <strong>syntax extension</strong> of JavaScript and is neither a string nor HTML. JSX is used to describe what the UI should look like. React elements are produced when we use JSX.</p>
-
-		<blockquote>
-			<p>JSX is closer to JavaScript than HTML. React DOM uses the <span class="hl">camelCase</span> property for naming conventions instead of HTML attribute names. For example, <span class="hl">class</span> becomes <span class="hl">className</span> in JSX, and <span class="hl">tabindex</span> becomes <span class="hl">tabIndex</span>. JSX is not a requirement for using React</p>
-		</blockquote>
-
-		<h2>Hello World</h2>
-
-		<p>In this example, the smallest React example is created to output <span class="hl">Hello World</span>.</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-<span class="syntax-keyword">import</span> ReactDOM <span class="syntax-keyword">from</span> <span class="syntax-value">'react-dom'</span>;
-
-ReactDOM.<span class="syntax-keyword">render</span>(
-	&lt;<span class="syntax-keyword">h1</span>&gt;Hello World&lt;<span class="syntax-keyword">/h1</span>&gt;,
-	document.getElementById(<span class="syntax-value">'root'</span>)
-);
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->	
-
-		<p>This file is saved as <span class="hl">index.js</span> within the <span class="hl">src</span> directory. When we run React using NPM, <strong>Hello World</strong> will be output on the webpage.</p>
+		<p>We are going to create a very simple application. When the create-react-app package is used to create a new application, the file structure will look like this:</p>
 
 		<!-- Code example -->
 		<pre>
 			<code>
 <!-- Leave this line empty -->
-$ cd <span class="syntax-property">my-app</span>
-
-<span class="syntax-comment"># This is used to start a React application</span>
-$ npm <span class="syntax-keyword">start</span>
+.gitignore
+node_modules /
+public /
+	favicon.ico
+	index.html
+src /
+	App.css
+	App.js
+	App.test.js
+	index.css
+	index.js
+	logo.svg
+package.json
+README.md
 			</code>
 		</pre>
-		<!-- / Code example -->			
-
-		<p>The <span class="hl">index.js</span> file will be the homepage of this React application.</p>
-
-		<h3>Adding CSS</h3>
-
-		<p>Create a simple CSS stylesheet within the <span class="hl">src</span> directory of the <span class="hl">my-app</span> React application. This will be called <span class="hl">style.css</span>.</p>
-
-		<!-- Code example -->
-		<div class="code" rel="css" data-title="CSS: src/style.css">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">body</span> {
-	<span class="syntax-property">color</span>: <span class="syntax-value">#00d8ff</span>;
-}
-				</code>
-			</pre>
-		</div>
 		<!-- / Code example -->
 
-		<p>We can then include the stylesheet within the <span class="hl">index.js</span> file. This will change the colour of the text within our page.</p>
+		<blockquote>
+			<p>The "root" attribute (root DOM node) within the index.html file is managed by the React DOM and is where the application will be rendered within the HTML (public/index.html). This does not have to be called "root", but we will keep it as such for now.</p>
+		</blockquote>	
 
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-<span class="syntax-keyword">import</span> ReactDOM <span class="syntax-keyword">from</span> <span class="syntax-value">'react-dom'</span>;
-<span class="syntax-keyword">import</span> <span class="syntax-value">'./style.css'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->	
-
-		<h2>Import &amp; Export</h2>
-
-		<p>Importing and exporting modules or components, is a big part of JavaScript. ES6 introduced the <span class="hl">import</span> and <span class="hl">export</span> keywords.</p>
-
-		<p>To import a module or component, you can use the <span class="hl">import</span> statement. In React, this will look like the following syntax:</p>	
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-<span class="syntax-keyword">import</span> ReactDOM <span class="syntax-keyword">from</span> <span class="syntax-value">'react-dom'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->	
-
-		<p>An <span class="hl">export</span> statement may look like this:</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/App.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-comment">// App is the name of the class we want to export</span>
-<span class="syntax-keyword">export</span> <span class="syntax-property">default</span> <span class="syntax-value">App</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->		
-
-		<p>The <span class="hl">default</span> keyword is used, in the example above, when the module is being exported. This is telling the JavaScript engine that the function or variable should be included as default. The default module can be imported using any variable name. For example, if we wanted to import the module as <strong>SomeExampleClass</strong>, we could do something like this:</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> SomeExampleClass <span class="syntax-keyword">from</span> <span class="syntax-value">'./App'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->
-
-		<p>Exporting without the default keyword means we will have to use <span class="hl">braces</span> to import the file. Say we want to export a constant, we could add another export statement to the file.</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/App.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">export</span> <span class="syntax-property">default</span> class <span class="syntax-value">App</span> {
-	<span class="syntax-comment">// ...</span>
-}
-
-<span class="syntax-keyword">export</span> <span class="syntax-property">const</span> DIRECTION_IN = <span class="syntax-value">'DIRECTION_IN'</span>;
-<span class="syntax-keyword">export</span> <span class="syntax-property">const</span> DIRECTION_OUT = <span class="syntax-value">'DIRECTION_OUT'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->
-
-		<p>The first line of the file will export the <strong>App</strong> class directly. Now, we can import both the App class and the <strong>DIRECTION_OUT</strong> constant, using braces.</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> App, {DIRECTION_OUT} <span class="syntax-keyword">from</span> <span class="syntax-value">'./App'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->
-
-		<p>The <span class="hl">as</span> keyword can also be used to rename the variable/constant:</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> App, {DIRECTION_OUT <span class="syntax-keyword">as</span> APP_DIRECTION_OUT} <span class="syntax-keyword">from</span> <span class="syntax-value">'./App'</span>;
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->
-
-		<h2>Example</h2>
-
-		<p>To keep things simple, an example has been created to show how components can be created and used with React. Inside the <span class="hl">src</span> folder of our <span class="hl">my-app</span> project, created earlier, open an empty file. This will be our main index file that React will use to create our application.</p>
-
-		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
-			<pre>
-				<code>
-<!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-<span class="syntax-keyword">import</span> ReactDOM <span class="syntax-keyword">from</span> <span class="syntax-value">'react-dom'</span>;
-
-<span class="syntax-keyword">function</span> <span class="syntax-property">AppContainer</span> () {
-	<span class="syntax-return">return</span> (
-		&lt;<span class="syntax-keyword">div</span>&gt;
-			&lt;<span class="syntax-property">Header /</span>&gt;
-			&lt;<span class="syntax-keyword">h1</span>&gt;Hello World&lt;<span class="syntax-keyword">/h1</span>&gt;
-		&lt;<span class="syntax-keyword">/div</span>&gt;
-	);
-}
-
-<span class="syntax-keyword">function</span> <span class="syntax-property">Header</span> () {
-	<span class="syntax-return">return</span> (
-		&lt;<span class="syntax-keyword">header</span>&gt;
-			&lt;<span class="syntax-keyword">p</span>&gt;This is a header&lt;<span class="syntax-keyword">/p</span>&gt;
-		&lt;<span class="syntax-keyword">/header</span>&gt;
-	);
-}
-
-ReactDOM.<span class="syntax-keyword">render</span>(
-	&lt;<span class="syntax-property">AppContainer /</span>&gt;,
-	document.getElementById(<span class="syntax-value">'root'</span>)
-);
-				</code>
-			</pre>
-		</div>
-		<!-- / Code example -->		
-
-		<p>Next, we need to create a simple HTML page where we can render our React application. This will be placed within a <span class="hl">public</span> directory.</p>
+		<p>Once installed, the files that make up the application look like this:</p>
 
 		<!-- Code example -->
 		<div class="code" rel="html" data-title="HTML: public/index.html">
 			<pre>
 				<code>
 <!-- Leave this line empty -->
-&lt;!DOCTYPE html&gt;
-&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
-&lt;<span class="syntax-keyword">head</span>&gt;
-	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
-	&lt;<span class="syntax-property">title</span>&gt;React application&lt;<span class="syntax-property">/title</span>&gt;
-&lt;<span class="syntax-keyword">/head</span>&gt;
-&lt;<span class="syntax-keyword">body</span>&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"&gt;
+    &lt;!--
+      	Notice the use of %PUBLIC_URL% in the tag above.
+      	It will be replaced with the URL of the `public` folder during the build.
+      	Only files inside the `public` folder can be referenced from the HTML.
 
-<span class="syntax-comment">&lt;!-- Where our React application will be rendered --&gt;</span>
-&lt;<span class="syntax-keyword">div</span> id=<span class="syntax-value">"root"</span>&gt;&lt;<span class="syntax-keyword">/div</span>&gt;
+      	Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      	work correctly both with client-side routing and a non-root public URL.
+      	Learn how to configure a non-root public URL by running `npm run build`.
+    --&gt;
+    &lt;title&gt;React App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-<span class="syntax-comment">&lt;!-- Need to include the JS file --&gt;</span>
-&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"../src/index.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the &lt;body&gt; tag.
 
-&lt;<span class="syntax-keyword">/body</span>&gt;
-&lt;<span class="syntax-keyword">/html</span>&gt;
+      To begin the development, run `npm start`.
+      To create a production bundle, use `npm run build`.
+    --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 				</code>
 			</pre>
 		</div>
-		<!-- / Code example -->	
-
-		<blockquote>
-			<p>The <span class="hl">"root"</span> attribute used within the <strong>index.html</strong> file, is called a <span class="hl">"root" DOM node</span> because everything inside it will be managed by React DOM. Applications built with just React usually have a <strong>single</strong> root DOM node. This does not have to be called "root" to work.</p>
-		</blockquote>
-
-		<p>We may also want to create components. Create a components directory within the <span class="hl">src</span> folder of our project and add the following file:</p>
+		<!-- / Code example -->
 
 		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/components/Box.js">
+		<div class="code" rel="css" data-title="CSS: src/index.css">
 			<pre>
 				<code>
 <!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-
-<span class="syntax-keyword">function</span> <span class="syntax-property">Box</span> () {
-	<span class="syntax-return">return</span> (
-		&lt;<span class="syntax-keyword">div</span> className=<span class="syntax-value">'box'</span>&gt;
-			&lt;<span class="syntax-keyword">p</span>&gt;This is a component&lt;<span class="syntax-keyword">/p</span>&gt;
-		&lt;<span class="syntax-keyword">/div</span>&gt;
-	);
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
 }
-
-<span class="syntax-keyword">export</span> <span class="syntax-property">default Box</span>;
 				</code>
 			</pre>
 		</div>
-		<!-- / Code example -->	
-
-		<p>The <span class="hl">index.js</span> file needs to be updated to include the <span class="hl">Box</span> component.</p>	
+		<!-- / Code example -->
 
 		<!-- Code example -->
-		<div class="code" rel="react" data-title="React: src/index.js">
+		<div class="code" rel="js" data-title="JS: src/App.js">
 			<pre>
 				<code>
 <!-- Leave this line empty -->
-<span class="syntax-keyword">import</span> React <span class="syntax-keyword">from</span> <span class="syntax-value">'react'</span>;
-<span class="syntax-keyword">import</span> ReactDOM <span class="syntax-keyword">from</span> <span class="syntax-value">'react-dom'</span>;
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-<span class="syntax-keyword">import</span> Box <span class="syntax-keyword">from</span> <span class="syntax-value">'./components/Box'</span>;
-
-<span class="syntax-keyword">function</span> <span class="syntax-property">AppContainer</span> () {
-	<span class="syntax-return">return</span> (
-		&lt;<span class="syntax-keyword">div</span>&gt;
-			&lt;<span class="syntax-property">Header /</span>&gt;
-			&lt;<span class="syntax-keyword">h1</span>&gt;Hello World&lt;<span class="syntax-keyword">/h1</span>&gt;
-			&lt;<span class="syntax-property">Box /</span>&gt;
-		&lt;<span class="syntax-keyword">/div</span>&gt;
-	);
+class App extends Component {
+	render() {
+    	return (
+      		&lt;div className="App"&gt;
+        		&lt;div className="App-header"&gt;
+          			&lt;img src={logo} className="App-logo" alt="logo" /&gt;
+          			&lt;h2&gt;Welcome to React&lt;/h2&gt;
+        		&lt;/div&gt;
+        		&lt;p className="App-intro"&gt;
+          			To get started, edit &lt;code&gt;src/App.js&lt;/code&gt; and save to reload.
+        		&lt;/p&gt;
+      		&lt;/div&gt;
+    	);
+  	}
 }
 
-<span class="syntax-keyword">function</span> <span class="syntax-property">Header</span> () {
-	<span class="syntax-return">return</span> (
-		&lt;<span class="syntax-keyword">header</span>&gt;
-			&lt;<span class="syntax-keyword">p</span>&gt;This is a header&lt;<span class="syntax-keyword">/p</span>&gt;
-		&lt;<span class="syntax-keyword">/header</span>&gt;
-	);
+export default App;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: src/App.test.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+it('renders without crashing', () => {
+  	const div = document.createElement('div');
+  	ReactDOM.render(&lt;App /&gt;, div);
+});
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS: src/App.css">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+.App {
+	text-align: center;
 }
 
-ReactDOM.<span class="syntax-keyword">render</span>(
-	&lt;<span class="syntax-property">AppContainer /</span>&gt;,
-	document.getElementById(<span class="syntax-value">'root'</span>)
+.App-logo {
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+}
+
+.App-header {
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
+}
+
+.App-intro {
+	font-size: large;
+}
+
+@keyframes App-logo-spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<!-- Code example -->
+		<div class="code" rel="js" data-title="JS: src/index.js">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.css';
+
+ReactDOM.render(
+  	&lt;App /&gt;,
+  	document.getElementById('root')
 );
 				</code>
 			</pre>
 		</div>
-		<!-- / Code example -->	
+		<!-- / Code example -->
 
-		<p>If the application is not currently running, you can open the command terminal, <span class="hl">cd</span> into the <span class="hl">my-app</span> directory and run the React application to see the result.</p>
+		<p>When we run the application, the browser will open and the application will be displayed.</p>
 
 		<!-- Code example -->
 		<pre>
 			<code>
 <!-- Leave this line empty -->
-$ cd <span class="syntax-property">my-app</span>
 $ npm <span class="syntax-keyword">start</span>
 			</code>
 		</pre>
-		<!-- / Code example -->	
+		<!-- / Code example -->
 
-		<p>The file structure should look like this:</p>
+		<p>The application running:</p>
 
-		<!-- Code example -->
-		<pre>
-			<code>
-<!-- Leave this line empty -->
-<span class="syntax-property">my-app /</span>
-	.gitignore
-	<span class="syntax-property">node_modules /</span>
-	package.json
-	<span class="syntax-property">public /</span>
-		<span class="syntax-keyword">index.html</span>
-	README.md
-	<span class="syntax-property">src /</span>
-		<span class="syntax-keyword">index.js</span>
-		<span class="syntax-property">components /</span>
-			<span class="syntax-keyword">Box.js</span>
-			</code>
-		</pre>
-		<!-- / Code example -->	
-
-		<blockquote>
-			<p>The simplest way to define a component is to write a JavaScript function. Component names should <strong>always</strong> start with an uppercase letter.</p>
-		</blockquote>	
-
-		<h2>Virtual DOM</h2>
-
-		<p>The <span class="hl">Virtual DOM</span> selectively renders <strong>subtrees</strong> and <strong>nodes</strong> based upon state changes, doing the least amount of DOM manipulation in order to keep your components up to date. React uses a <strong>"diffing"</strong> algorithm to identify what has changes before updating the DOM with results of the diff. So, rather than rebuild from the ground up, only the bits that need changing are updated.</p>
-
-		<p>This means that if you had text in an input and a render took place, as long as the input's parent node wasn't scheduled to change, the text would stay undisturbed.</p>		
+		<img src="img/react/react-default.png" alt="React application running" />
 
 	</div>
 </div>
