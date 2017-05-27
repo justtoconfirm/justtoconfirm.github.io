@@ -251,6 +251,47 @@
 
 		<p>Because the Custom Post Type has been added to the <span class="hl">functions.php</span> file within a theme, should you change theme, the Custom Post Type will not be available. A <strong>plugin</strong> maybe a more suitable option to use a CPT across multiple templates.</p>
 
+		<p>Create a new post within the <span class="hl">Products</span> <strong>Custom Post Type</strong>. Click the <span class="hl">Publish</span> button once the post has been created.</p>
+
+		<img src="img/wordpress/wp-new-cpt.png" alt="New CPT added" />
+
+		<blockquote>
+			<p>The <strong>Custom Post Type</strong> created will <strong>not</strong> be added to the homepage by default.</p>
+		</blockquote>
+
+		<p>One advantage of using Custom Post Types is that it keeps your custom content types away from regular posts. To add a <strong>Custom Post Type</strong> to the homepage, along with normal posts that are added to the homepage when they are created, we can add the following code into the <span class="hl">functions.php</span> file of our theme.</p>
+
+		<blockquote>
+			<p>This code needs to be placed under our code we added to the <span class="hl">functions.php</span> file to create the <strong>CPT</strong>.</p>
+		</blockquote>
+
+		<!-- Code example -->
+		<div class="code" rel="php" data-title="PHP: wp-project/wp-content/themes/twentyseventeen/functions.php">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+add_action( <span class="syntax-value">'pre_get_posts'</span>, <span class="syntax-value">'add_my_post_types_to_query'</span> );
+
+<span class="syntax-comment">// Function to add the Custom Post Type to the query</span>
+<span class="syntax-keyword">function</span> add_my_post_types_to_query( <span class="syntax-value">$query</span> ) {
+
+	<span class="syntax-comment">// Add the CPT to the homepage</span>
+	<span class="syntax-keyword">if</span> ( is_home() <span class="syntax-keyword">&amp;&amp;</span> <span class="syntax-value">$query</span>->is_main_query() )
+		<span class="syntax-value">$query</span>-><span class="syntax-keyword">set</span>( <span class="syntax-value">'post_type'</span>, array( <span class="syntax-value">'post'</span>, <span class="syntax-value">'products'</span> ) );
+	<span class="syntax-return">return</span> <span class="syntax-value">$query</span>;
+
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Our <strong>Custom Post Type</strong> will now be visible on the homepage of our site.</p>
+
+		<img src="img/wordpress/wp-cpt-homepage.png" alt="New CPT displayed on the homepage" />
+
+		<p>The Custom Post Type we have added to the homepage does not display the <strong>date</strong> as with a normal post. Also, the CPT is not displayed within the <strong>Recent posts</strong> list on the page.</p>
+
 	</div>
 </div>
 
