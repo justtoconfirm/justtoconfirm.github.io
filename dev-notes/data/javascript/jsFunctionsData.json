@@ -1,0 +1,90 @@
+{
+  "page": {
+    "title": "JavaScript Functions",
+    "heading": "Functions",
+    "intro": "Intro text here",
+    "content": [
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Declaring a function",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "To create a function it must first be declared using the function keyword. Declaring the function gives the function a name and specifies what the function is to do when it is called."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "function myFunc () {",
+          " ",
+          "   // Code is added here",
+          " ",
+          "}"
+        ],
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Calling a function",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "Defining a function does not execute it. To call the function, follow the example code below:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "myFunc();"
+        ],
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": false,
+        "subheading": "Calling a function",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "We can now declare a function that will display an alert message when the function is called."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "function helloAlert () {",
+          " ",
+          "   // Show alert when the function is called",
+          "   alert('Hello World');",
+          " ",
+          "}",
+          " ",
+          "// Call the function",
+          "helloAlert();"
+        ],
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      }
+    ]
+  }
+}

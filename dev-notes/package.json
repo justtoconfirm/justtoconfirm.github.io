@@ -1,0 +1,17 @@
+{
+  "name": "mm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-example && npm run build-js-functions",
+    "build-example": "mustache -p views/partials/footer.mustache data/exampleData.json views/templates/pageTemplate.mustache > example.html",
+    "build-js-functions": "mustache -p views/partials/footer.mustache data/javascript/jsFunctionsData.json views/templates/pageTemplate.mustache > js-functions.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mustache": "^2.3.0"
+  }
+}

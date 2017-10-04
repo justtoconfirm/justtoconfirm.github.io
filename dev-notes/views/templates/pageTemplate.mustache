@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1" />
+	<title>Dev notes - {{page.title}}</title>
+</head>
+<body>
+
+<h1>{{page.heading}}</h1>
+<h2>{{page.intro}}</h2>
+
+{{#page.content}}
+<section>
+	{{#showsubheading}}
+   	<h3>{{subheading}}</h3>
+  {{/showsubheading}}
+  {{#showimage}}
+   	<img src="{{src}}"" alt="{{alt}}" />
+  {{/showimage}}
+	{{#copy}}
+	<p>{{{.}}}</p>
+	{{/copy}}
+	{{#showmarkup}}
+<!-- Code example -->
+<div class="code" rel="{{rel}}" data-title="{{datatitle}}">
+<pre>
+	<code>
+<!-- Leave space here -->
+{{#code}}
+{{{.}}}
+{{/code}}
+   	</code>
+</pre>
+</div>
+<!-- / Code example -->
+  {{/showmarkup}}
+  {{#showinfo}}
+    <div>
+      {{#info}}
+	    <p>{{{.}}}</p>
+      {{/info}}
+    </div>
+	{{/showinfo}}
+  {{#showsubcopy}}
+    {{#subcopy}}
+    <p>{{{.}}}</p>
+    {{/subcopy}}
+  {{/showsubcopy}}
+</section>
+{{/page.content}}
+
+{{> footerPartial}}
+
+</body>
+</html>

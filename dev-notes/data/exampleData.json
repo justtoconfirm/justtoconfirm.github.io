@@ -1,0 +1,69 @@
+{
+  "page": {
+    "title": "Page Title",
+    "heading": "Page Heading",
+    "intro": "Intro text is placed here",
+    "content": [
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Subheading",
+        "showimage": true,
+        "src": "image1.jpg",
+        "alt": "Alt text here",
+        "copy": [
+          "This is a paragraph of text within a section.",
+          "This is a second paragraph of text within a section Y"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "HTML",
+        "datatitle": "HTML: Example file",
+        "code": [
+          "&lt;html lang='en'&gt;"
+        ],
+        "label": "INFOBOX",
+        "showinfo": true,
+        "info": [
+          "INFO This is a paragraph of text within a section.",
+          "INFO This is a second paragraph of text within a section Y"
+        ],
+        "showsubcopy": true,
+        "subcopy": [
+          "This is a paragraph of text within a section.",
+          "This is a second paragraph of text within a section Y"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Subheading",
+        "showimage": true,
+        "src": "image1.jpg",
+        "alt": "Alt text here",
+        "copy": [
+          "This is a paragraph of text within a section.",
+          "This is a second paragraph of text within a section Y"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "HTML",
+        "datatitle": "HTML: Example file",
+        "code": [
+          "&lt;html lang='en'&gt;"
+        ],
+        "label": "INFOBOX",
+        "showinfo": true,
+        "info": [
+          "INFO This is a paragraph of text within a section.",
+          "INFO This is a second paragraph of text within a section Y"
+        ],
+        "showsubcopy": true,
+        "subcopy": [
+          "This is a paragraph of text within a section.",
+          "This is a second paragraph of text within a section Y"
+        ]
+      }
+    ]
+  }
+}
