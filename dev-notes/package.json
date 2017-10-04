@@ -1,17 +1,25 @@
 {
-  "name": "mm",
+  "name": "dev-notes",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "build": "npm run build-example && npm run build-js-functions",
+    "build": "npm run compile-scss && npm run build-example && npm run build-js-functions",
     "build-example": "mustache -p views/partials/footer.mustache data/exampleData.json views/templates/pageTemplate.mustache > example.html",
     "build-js-functions": "mustache -p views/partials/footer.mustache data/javascript/jsFunctionsData.json views/templates/pageTemplate.mustache > js-functions.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",
+    "minify-css": "minify dist/css/style.css"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mustache": "^2.3.0"
+    "beautify-css": "^1.0.0",
+    "cssbeautify-cli": "^0.5.3",
+    "minifier": "^0.8.1",
+    "mustache": "^2.3.0",
+    "node-sass": "^4.5.3"
+  },
+  "dependencies": {
+    "foundation-sites": "^6.4.4-rc1"
   }
 }
