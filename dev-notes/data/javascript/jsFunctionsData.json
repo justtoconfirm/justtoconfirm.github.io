@@ -2,7 +2,9 @@
   "page": {
     "title": "JavaScript Functions",
     "heading": "Functions",
-    "intro": "Intro text here",
+    "intro": [
+      "We can use functions to section off small bits of logic or tasks that we can then call when we need to. Functions can help take large problems and break them into small manageable chunks."
+    ],
     "content": [
       {
         "label": "SECTION",
@@ -19,9 +21,9 @@
         "rel": "js",
         "datatitle": "JS",
         "code": [
-          "function myFunc () {",
+          "<span class='keyword'>function</span> myFunc () {",
           " ",
-          "   // Code is added here",
+          "   <span class='comment'>// Code is added here</span>",
           " ",
           "}"
         ],
@@ -39,13 +41,20 @@
         "src": null,
         "alt": null,
         "copy": [
-          "Defining a function does not execute it. To call the function, follow the example code below:"
+          "Defining a function does not execute it. The function needs to be called."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
         "datatitle": "JS",
         "code": [
+          "<span class='keyword'>function</span> myFunc () {",
+          " ",
+          "   <span class='comment'>// Code is added here</span>",
+          " ",
+          "}",
+          " ",
+          "<span class='comment'>// Call the function</span>",
           "myFunc();"
         ],
         "label": "INFOBOX",
@@ -56,31 +65,64 @@
       },
       {
         "label": "SECTION",
-        "showsubheading": false,
-        "subheading": "Calling a function",
+        "showsubheading": true,
+        "subheading": "Parameters & Arguments",
         "showimage": false,
         "src": null,
         "alt": null,
         "copy": [
-          "We can now declare a function that will display an alert message when the function is called."
+          "Below is an example of a simple function that takes two numbers as arguments and passes them into the num1 and num2 parameters. These values are then multiplied together, the result is stored in a variable and returned using a return statement.",
+          "When we call the function, the two values we want to multiply are passed as arguments into the function."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
         "datatitle": "JS",
         "code": [
-          "function helloAlert () {",
+          "<span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {",
           " ",
-          "   // Show alert when the function is called",
-          "   alert('Hello World');",
+          "   <span class='keyword'>var</span> <span class='name'>result</span> = <span class='value'>num1</span> * <span class='value'>num2</span>;",
+          "   <span class='return'>return</span> <span class='name'>result</span>;",
           " ",
           "}",
           " ",
-          "// Call the function",
-          "helloAlert();"
+          "<span class='comment'>// Call the function to multiply 4 and 2</span>",
+          "multiplyNumbers(<span class='value'>4</span>, <span class='value'>2</span>);"
         ],
         "label": "INFOBOX",
-        "showinfo": false,
+        "showinfo": true,
+        "info": [
+          "The return statement tells the browser to return the variable value so it can be used outside of the function. This is necesssary because a variable defined inside a function is only available inside of that function.",
+          "Return values are returned by the function once it executes. This is called variable scoping."
+        ],
+        "showsubcopy": false,
+        "subcopy": null
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Anonymous Functions",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "An anonymous function is a function that has no name - it is anonymous.",
+          "If you're writing a one-off chunk of JavaScript that never needs to be referred elsewhere, it's wise to use an anonymous function.",
+          "The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expresssion (IIFE)."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "( <span class='keyword'>function</span> () {",
+          " ",
+          "   <span class='comment'>// Code is added here</span>",
+          " ",
+          "})();"
+        ],
+        "label": "INFOBOX",
+        "showinfo": true,
         "info": null,
         "showsubcopy": false,
         "subcopy": null

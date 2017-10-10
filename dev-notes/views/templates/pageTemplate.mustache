@@ -1,69 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, minimum-scale=1" />
-  <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
-	<title>Dev notes - {{page.title}}</title>
-  <link rel="stylesheet" href="dist/css/style.min.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <title>Dev notes - {{page.title}}</title>
+    <link rel="stylesheet" href="dist/css/style.min.css" />
 </head>
 <body>
 
 <main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
 
-  <div class="row">
-    <div class="small-12 medium-12 large-8 columns">
+            <h1>{{page.heading}}</h1>
+            <h2>{{page.intro}}</h2>
 
-    <h1>{{page.heading}}</h1>
-    <h2>{{page.intro}}</h2>
-
-    {{#page.content}}
-    <section>
-    	{{#showsubheading}}
-       	<h3>{{subheading}}</h3>
-      {{/showsubheading}}
-      {{#showimage}}
-       	<img src="{{src}}"" alt="{{alt}}" />
-      {{/showimage}}
-    	{{#copy}}
-    	<p>{{{.}}}</p>
-    	{{/copy}}
-    	{{#showmarkup}}
-    <!-- Code example -->
-    <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
-    <pre>
-    	<code>
-    <!-- Leave space here -->
-    {{#code}}
-    {{{.}}}
-    {{/code}}
-       	</code>
-    </pre>
-    </div>
-    <!-- / Code example -->
-      {{/showmarkup}}
-      {{#showinfo}}
-        <div>
-          {{#info}}
-    	    <p>{{{.}}}</p>
-          {{/info}}
         </div>
-    	{{/showinfo}}
-      {{#showsubcopy}}
-        {{#subcopy}}
-        <p>{{{.}}}</p>
-        {{/subcopy}}
-      {{/showsubcopy}}
-    </section>
-    {{/page.content}}
-
     </div>
-  </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
 
+            {{#page.content}}
+            <section>
+                {{#showsubheading}}
+                <h3>{{subheading}}</h3>
+                {{/showsubheading}}
+                {{#showimage}}
+                <img src="{{src}}"" alt="{{alt}}" />
+                {{/showimage}}
+                {{#copy}}
+                <p>{{{.}}}</p>
+                {{/copy}}
+                {{#showmarkup}}
+                <!-- Code example -->
+                <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+{{#code}}
+{{{.}}}
+{{/code}}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                {{/showmarkup}}     
+                {{#showinfo}}
+                <div>
+                    {{#info}}
+                    <p>{{{.}}}</p>
+                    {{/info}}
+                </div>
+                {{/showinfo}}
+                {{#showsubcopy}}
+                {{#subcopy}}
+                <p>{{{.}}}</p>
+                {{/subcopy}}
+                {{/showsubcopy}}
+            </section>
+
+            {{/page.content}}
+
+        </div>
+    </div>
 </main>
 
-{{> footerPartial}}
+{{> footer}}
 
 </body>
 </html>
