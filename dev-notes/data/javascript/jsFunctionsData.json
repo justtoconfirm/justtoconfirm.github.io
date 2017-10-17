@@ -108,7 +108,7 @@
         "copy": [
           "An anonymous function is a function that has no name - it is anonymous.",
           "If you're writing a one-off chunk of JavaScript that never needs to be referred elsewhere, it's wise to use an anonymous function.",
-          "The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expresssion (IIFE)."
+          "The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expression (IIFE)."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
