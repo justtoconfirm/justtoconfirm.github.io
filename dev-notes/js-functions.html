@@ -25,12 +25,13 @@
             <section>
                 <h3>Declaring a function</h3>
                 <p>To create a function it must first be declared using the function keyword. Declaring the function gives the function a name and specifies what the function is to do when it is called.</p>
+                <p>As an example, our function will be called multiplyNumbers.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
                         <code>
 <!-- Leave space here -->
-<span class='keyword'>function</span> myFunc () {
+<span class='keyword'>function</span> multiplyNumbers () {
  
    <span class='comment'>// Code is added here</span>
  
@@ -42,6 +43,39 @@
             </section>
 
             <section>
+                <p>There are a number of ways to define a function in JavaScript. Here are a few examples:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>// Declare a function</span>
+<span class='keyword'>function</span> sum ( <span class='value'>a</span>, <span class='value'>b</span> ) {
+ 
+   <span class='return'>return</span> <span class='value'>a</span> + <span class='value'>b</span>;
+ 
+}
+ 
+<span class='comment'>// Declare a function using a variable</span>
+<span class='keyword'>var</span> <span class='name'>sum</span> = <span class='keyword'>function</span> ( <span class='value'>a</span>, <span class='value'>b</span> ) {
+ 
+   <span class='return'>return</span> <span class='value'>a</span> + <span class='value'>b</span>;
+ 
+}
+ 
+<span class='comment'>// Declare an ES6 arrow function</span>
+<span class='keyword'>let</span> <span class='name'>sum</span> = ( <span class='value'>a</span>, <span class='value'>b</span> ) =>
+   <span class='value'>a</span> + <span class='value'>b</span>;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <div>
+                    <p>The arrow function is sometimes called the 'fat arrow' function and is a concise way of writing functions in ES6. The expression after the arrow leads to what is being returned, so no return statement is needed.</p>
+                </div>
+            </section>
+
+            <section>
                 <h3>Calling a function</h3>
                 <p>Defining a function does not execute it. The function needs to be called.</p>
                 <!-- Code example -->
@@ -49,14 +83,14 @@
                     <pre>
                         <code>
 <!-- Leave space here -->
-<span class='keyword'>function</span> myFunc () {
+<span class='keyword'>function</span> multiplyNumbers () {
  
    <span class='comment'>// Code is added here</span>
  
 }
  
 <span class='comment'>// Call the function</span>
-myFunc();
+multiplyNumbers();
                         </code>
                     </pre>
                 </div>
@@ -74,13 +108,15 @@ myFunc();
 <!-- Leave space here -->
 <span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {
  
-   <span class='keyword'>var</span> <span class='name'>result</span> = <span class='value'>num1</span> * <span class='value'>num2</span>;
-   <span class='return'>return</span> <span class='name'>result</span>;
+   <span class='comment'>// Total stored in variable</span>
+   <span class='keyword'>var</span> <span class='name'>total</span> = <span class='value'>num1</span> * <span class='value'>num2</span>;
+   <span class='comment'>// Return the total</span>
+   <span class='return'>return</span> <span class='name'>total</span>;
  
 }
  
 <span class='comment'>// Call the function to multiply 4 and 2</span>
-multiplyNumbers(<span class='value'>4</span>, <span class='value'>2</span>);
+multiplyNumbers( <span class='value'>4</span>, <span class='value'>2</span> );
                         </code>
                     </pre>
                 </div>
@@ -95,7 +131,7 @@ multiplyNumbers(<span class='value'>4</span>, <span class='value'>2</span>);
                 <h3>Anonymous Functions</h3>
                 <p>An anonymous function is a function that has no name - it is anonymous.</p>
                 <p>If you're writing a one-off chunk of JavaScript that never needs to be referred elsewhere, it's wise to use an anonymous function.</p>
-                <p>The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expresssion (IIFE).</p>
+                <p>The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expression (IIFE).</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
