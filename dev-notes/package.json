@@ -2,8 +2,9 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run compile-scss && npm run build-js-functions",
+    "build": "npm run compile-scss && npm run build-js-variables && npm run build-js-functions",
     "build-js-functions": "mustache -p views/partials/footer.mustache data/javascript/jsFunctionsData.json views/templates/pageTemplate.mustache > js-functions.html",
+    "build-js-variables": "mustache -p views/partials/footer.mustache data/javascript/jsVariablesData.json views/templates/pageTemplate.mustache > js-variables.html",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",
     "minify-css": "minify dist/css/style.css"

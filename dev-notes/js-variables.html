@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <title>Dev notes - JavaScript Variables</title>
+    <link rel="stylesheet" href="dist/css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Variables</h1>
+            <h2>A variable is a container for storing a value, like numbers we can use in a calculation, or a string we might use within a sentence.</h2>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section>
+                <h3>Declaring a variable</h3>
+                <p>To use a variable you've first got to create it, or more accurately, we call this declaring the variable. To do this, we use the keyword var followed by the name you want to call the variable. The name of the variable is often called the identifier.</p>
+                <p>Here we are creating two variables called myName and myAge. The variables declared have no value; they are empty containers. A variable without any value is an undefined variable. When you enter the variable names in the console, you should get a value of undefined returned.</p>
+                <p>If the variable does not exist, you'll get an error message.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var myName;
+var myAge;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <p>To assign a value to a variable - also known as initializing a value - we use the assignment operator (=). We will not assign values to the two variables declared. When the variable name is used within the console, the value will be returned.</p>
+            </section>
+
+            <section>
+                <h3>Initializing variables</h3>
+                <p>We are declaring and initializing the variables at the same time.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var myName = 'Dan';
+var myAge = 30;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Updating and changing values</h3>
+                <p>Once a variable has been initialized with a value, you can change (or update) the value by providing it a different value. Let's change the value of myName to 'Bob':</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Declare and initialize the variable
+var myName = 'Dan';
+// Change the value
+myName = 'Bob';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+            <section>
+                <p>Unlike some other languages, you don't need to specify what data type (e.g. numbers, strings, arrays, etc) a variable will contain. This is because JavaScript is a 'loosely types language'. For example, if you declare a variable and give it a value within quotes, the browser will treat the variable as a string.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// A String
+var myString = 'Hello';
+// Also a String
+var myNumber = '500';
+// Not a String, but a Number
+var myOtherNumber = 500;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+            <section>
+                <p>We can use the special function called typeof() to return the data type of the variable that you pass into it.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var myString = 'Hello';
+typeof(myString);     // returns: 'string'
+var myNumber = '500';
+typeof(myNumber);     // returns: 'string'
+var myOtherNumber = 500;
+typeof(myOtherNumber);    // returns: 'number'
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <div>
+                </div>
+            </section>
+
+            <section>
+                <p>A simple example using variables to calculate the total value:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var num1 = 24;
+var num2 = 17;
+var total = num1 + num2;
+total;    // 41
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <div>
+                </div>
+            </section>
+
+            <section>
+                <p>You can declare variables using the keywords of: var, let or const. As long as a variable is not declared as a constant - using the const keyword - you can change it's value. A variable declared as a constant should have it's name in uppercase. This is a general convention.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Declare a variable using the var keyword
+var myName = 'Dan';
+// Declare a variable using the let keyword
+let myName = 'Dan';
+// Declare a variable as a constant
+const PI = 3.14;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <div>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	Page Footer
+</footer>
+
+</body>
+</html>
