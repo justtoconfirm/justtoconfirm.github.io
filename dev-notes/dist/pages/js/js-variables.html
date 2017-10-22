@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, minimum-scale=1" />
-    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="shortcut icon" type="image/ico" href="../../../src/img/favicon/code.ico" />
     <title>Dev notes - JavaScript Variables</title>
-    <link rel="stylesheet" href="dist/css/style.min.css" />
+    <link rel="stylesheet" href="../../css/style.min.css" />
 </head>
 <body>
 
@@ -15,7 +15,7 @@
         <div class="small-12 medium-12 large-12 columns">
 
             <h1>Variables</h1>
-            <h2>A variable is a container for storing a value, like numbers we can use in a calculation, or a string we might use within a sentence.</h2>
+            <h2>A variable is a container for storing a value, like a number we can use in a calculation, or a string we might use within a sentence.</h2>
 
         </div>
     </div>
@@ -39,6 +39,20 @@ var myAge;
                 </div>
                 <!-- / Code example -->
                 <p>To assign a value to a variable - also known as initializing a value - we use the assignment operator (=). We will not assign values to the two variables declared. When the variable name is used within the console, the value will be returned.</p>
+                <p>A simple example using variables to calculate the total value:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var num1 = 24;
+var num2 = 17;
+var total = num1 + num2;
+total;    // 41
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
 
             <section>
@@ -55,88 +69,6 @@ var myAge = 30;
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <div>
-                </div>
-            </section>
-
-            <section>
-                <h3>Updating and changing values</h3>
-                <p>Once a variable has been initialized with a value, you can change (or update) the value by providing it a different value. Let's change the value of myName to 'Bob':</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-// Declare and initialize the variable
-var myName = 'Dan';
-// Change the value
-myName = 'Bob';
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-            </section>
-
-            <section>
-                <p>Unlike some other languages, you don't need to specify what data type (e.g. numbers, strings, arrays, etc) a variable will contain. This is because JavaScript is a 'loosely types language'. For example, if you declare a variable and give it a value within quotes, the browser will treat the variable as a string.</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-// A String
-var myString = 'Hello';
-// Also a String
-var myNumber = '500';
-// Not a String, but a Number
-var myOtherNumber = 500;
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-            </section>
-
-            <section>
-                <p>We can use the special function called typeof() to return the data type of the variable that you pass into it.</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-var myString = 'Hello';
-typeof(myString);     // returns: 'string'
-var myNumber = '500';
-typeof(myNumber);     // returns: 'string'
-var myOtherNumber = 500;
-typeof(myOtherNumber);    // returns: 'number'
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-                <div>
-                </div>
-            </section>
-
-            <section>
-                <p>A simple example using variables to calculate the total value:</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-var num1 = 24;
-var num2 = 17;
-var total = num1 + num2;
-total;    // 41
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-                <div>
-                </div>
-            </section>
-
-            <section>
                 <p>You can declare variables using the keywords of: var, let or const. As long as a variable is not declared as a constant - using the const keyword - you can change it's value. A variable declared as a constant should have it's name in uppercase. This is a general convention.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
@@ -155,6 +87,56 @@ const PI = 3.14;
                 <!-- / Code example -->
                 <div>
                 </div>
+            </section>
+
+            <section>
+                <h3>Values &amp; Data types</h3>
+                <p>Once a variable has been initialized with a value, you can change (or update) the value by providing it a different value. Let's change the value of myName to 'Bob':</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Declare and initialize the variable
+var myName = 'Dan';
+// Change the value
+myName = 'Bob';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <p>Unlike some other languages, you don't need to specify what data type (e.g. numbers, strings, arrays, etc) a variable will contain. This is because JavaScript is a 'loosely types language'. For example, if you declare a variable and give it a value within quotes, the browser will treat the variable as a string.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// A String
+var myString = 'Hello';
+// Also a String
+var myNumber = '500';
+// Not a String, but a Number
+var myOtherNumber = 500;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                <p>We can use the special function called typeof() to return the data type of the variable that you pass into it.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var myString = 'Hello';
+typeof(myString);     // returns: 'string'
+var myNumber = '500';
+typeof(myNumber);     // returns: 'string'
+var myOtherNumber = 500;
+typeof(myOtherNumber);    // returns: 'number'
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
 
 

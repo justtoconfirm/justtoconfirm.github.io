@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, minimum-scale=1" />
-    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="shortcut icon" type="image/ico" href="../../../src/img/favicon/code.ico" />
     <title>Dev notes - {{page.title}}</title>
-    <link rel="stylesheet" href="dist/css/style.min.css" />
+    <link rel="stylesheet" href="../../css/style.min.css" />
 </head>
 <body>
 
@@ -46,7 +46,41 @@
                     </pre>
                 </div>
                 <!-- / Code example -->
-                {{/showmarkup}}     
+                {{/showmarkup}}  
+                {{#copy2}}
+                <p>{{{.}}}</p>
+                {{/copy2}}
+                {{#showmarkup2}}
+                <!-- Code example -->
+                <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+{{#code2}}
+{{{.}}}
+{{/code2}}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                {{/showmarkup2}}     
+                {{#copy3}}
+                <p>{{{.}}}</p>
+                {{/copy3}}
+                {{#showmarkup3}}
+                <!-- Code example -->
+                <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+{{#code3}}
+{{{.}}}
+{{/code3}}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+                {{/showmarkup3}}        
                 {{#showinfo}}
                 <div>
                     {{#info}}

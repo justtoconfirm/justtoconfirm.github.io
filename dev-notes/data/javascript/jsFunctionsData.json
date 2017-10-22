@@ -28,27 +28,14 @@
           " ",
           "}"
         ],
-        "label": "INFOBOX",
-        "showinfo": false,
-        "info": null,
-        "showsubcopy": false,
-        "subcopy": null
-      },
-      {
-        "label": "SECTION",
-        "showsubheading": null,
-        "subheading": null,
-        "showimage": false,
-        "src": null,
-        "alt": null,
-        "copy": [
+        "copy2": [
           "There are a number of ways to define a function in JavaScript. Here are a few examples:"
         ],
         "label": "CODE/MARKUP",
-        "showmarkup": true,
+        "showmarkup2": true,
         "rel": "js",
         "datatitle": "JS",
-        "code": [
+        "code2": [
           "<span class='comment'>// Declare a function</span>",
           "<span class='keyword'>function</span> sum ( <span class='value'>a</span>, <span class='value'>b</span> ) {",
           " ",
@@ -67,6 +54,12 @@
           "<span class='keyword'>let</span> <span class='name'>sum</span> = ( <span class='value'>a</span>, <span class='value'>b</span> ) =>",
           "   <span class='value'>a</span> + <span class='value'>b</span>;"
         ],
+        "copy3": null,
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": null,
         "label": "INFOBOX",
         "showinfo": true,
         "info": [
@@ -75,6 +68,7 @@
         "showsubcopy": false,
         "subcopy": null
       },
+
       {
         "label": "SECTION",
         "showsubheading": true,
@@ -99,6 +93,18 @@
           "<span class='comment'>// Call the function</span>",
           "multiplyNumbers();"
         ],
+        "copy2": null,
+        "label": "CODE/MARKUP",
+        "showmarkup2": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": null,
+        "copy3": null,
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": null,
         "label": "INFOBOX",
         "showinfo": false,
         "info": null,
@@ -133,12 +139,24 @@
           "<span class='comment'>// Call the function to multiply 4 and 2</span>",
           "multiplyNumbers( <span class='value'>4</span>, <span class='value'>2</span> );"
         ],
-        "label": "INFOBOX",
-        "showinfo": true,
-        "info": [
+        "copy2": [
           "The return statement tells the browser to return the variable value so it can be used outside of the function. This is necesssary because a variable defined inside a function is only available inside of that function.",
           "Return values are returned by the function once it executes. This is called variable scoping."
         ],
+        "label": "CODE/MARKUP",
+        "showmarkup2": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": null,
+        "copy3": null,
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": null,
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
         "showsubcopy": false,
         "subcopy": null
       },
@@ -165,6 +183,18 @@
           " ",
           "})();"
         ],
+        "copy2": null,
+        "label": "CODE/MARKUP",
+        "showmarkup2": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": null,
+        "copy3": null,
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": null,
         "label": "INFOBOX",
         "showinfo": true,
         "info": null,

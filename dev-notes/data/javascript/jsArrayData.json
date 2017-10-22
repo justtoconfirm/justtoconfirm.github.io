@@ -1,0 +1,135 @@
+{
+  "page": {
+    "title": "JavaScript Array",
+    "heading": "Array",
+    "intro": "An Array is an object used by JavaScript to make lists. These lists can store different data types in an ordered way meaning the position of each list item is numbered/indexed by JavaScript to make them easy to find. They are constructed of square brackets, which contain a list of items separated by commas.",
+    "content": [
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Create an Array",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "Here we can create an empty array:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "var array = [];"
+        ],
+        "copy2": [
+          "If we use the typeof() function on the array it will return 'object' as it's data type, not array."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup2": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": [
+          "var array = [];",
+          "typeof(array);    // returns: 'object'"
+        ],
+        "copy3": [
+          "In this example, each item in the shoppingList array is a string, but you can store any type of item in an array: string, number, object, variable, even another array."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup3": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": [
+          "var shoppingList = [ 'bread', 'milk', 'cheese', 'fruit', 'noodles' ];",
+          "shoppingList;   // Output the array"
+        ],
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Access an Array item",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "Each item in the array has a numbered position. This is it's index. We can access a specific item using it's index. JavaScript counts from 0 and not 1, so the first item in the array will always have the index of 0. This is because JavaScript is zero-indexed.",
+          "We want to get milk from our shoppingList array. This item has the index of 1. You can access the individual items in the array using bracket notation."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "shoppingList[1];  // returns: 'milk'"
+        ],
+        "copy2": [
+          "You can also modify an item in an array by simply giving the item a new value. Let's remove 'milk' from our shoppingList and replace it with 'hot chocolate'."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup2": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": [
+          "shoppingList[1];            // returns: 'milk'",
+          "shoppingList[1] = 'hot chocolate';    // Modify the item in the array",
+          "shoppingList[1];" 
+        ],
+        "copy3": [
+          "The shoppingList array will now return:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": [
+          "(5) ['bread', 'hot chocolate', 'cheese', 'fruit', 'noodles']" 
+        ],
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      },
+      {
+        "label": "SECTION",
+        "showsubheading": true,
+        "subheading": "Length property",
+        "showimage": false,
+        "src": null,
+        "alt": null,
+        "copy": [
+          "You can find out the number of items an array contains - the length of the array - using the length property."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "shoppingList.length;   // returns: 5"  
+        ],
+        "copy2": null,
+        "label": "CODE/MARKUP",
+        "showmarkup2": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code2": null,
+        "copy3": null,
+        "label": "CODE/MARKUP",
+        "showmarkup3": false,
+        "rel": "js",
+        "datatitle": "JS",
+        "code3": null,
+        "label": "INFOBOX",
+        "showinfo": false,
+        "info": null,
+        "showsubcopy": false,
+        "subcopy": null
+      }
+    ]
+  }
+}
