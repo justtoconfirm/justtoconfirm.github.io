@@ -26,49 +26,29 @@
                 <h3>Declaring a variable</h3>
                 <p>To use a variable you've first got to create it, or more accurately, we call this declaring the variable. To do this, we use the keyword var followed by the name you want to call the variable. The name of the variable is often called the identifier.</p>
                 <p>Here we are creating two variables called myName and myAge. The variables declared have no value; they are empty containers. A variable without any value is an undefined variable. When you enter the variable names in the console, you should get a value of undefined returned.</p>
+                <p>To assign a value to a variable - also known as initializing a value - we use the assignment operator (=). When the variable name is used within the console, the value will be returned.</p>
                 <p>If the variable does not exist, you'll get an error message.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
                         <code>
 <!-- Leave space here -->
+// Undefined variables
 var myName;
 var myAge;
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-                <p>To assign a value to a variable - also known as initializing a value - we use the assignment operator (=). We will not assign values to the two variables declared. When the variable name is used within the console, the value will be returned.</p>
-                <p>A simple example using variables to calculate the total value:</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-var num1 = 24;
-var num2 = 17;
-var total = num1 + num2;
-total;    // 41
+
+// Declaring and initializing variables
+var myName = 'Dan';
+var myAge = '31';
+
+myName;    // Output: 'Dan'
+myAge;     // Output: 31
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
             </section>
-
             <section>
-                <h3>Initializing variables</h3>
-                <p>We are declaring and initializing the variables at the same time.</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JS">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-var myName = 'Dan';
-var myAge = 30;
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
                 <p>You can declare variables using the keywords of: var, let or const. As long as a variable is not declared as a constant - using the const keyword - you can change it's value. A variable declared as a constant should have it's name in uppercase. This is a general convention.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
@@ -77,21 +57,20 @@ var myAge = 30;
 <!-- Leave space here -->
 // Declare a variable using the var keyword
 var myName = 'Dan';
+
 // Declare a variable using the let keyword
 let myName = 'Dan';
+
 // Declare a variable as a constant
 const PI = 3.14;
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <div>
-                </div>
             </section>
-
             <section>
-                <h3>Values &amp; Data types</h3>
-                <p>Once a variable has been initialized with a value, you can change (or update) the value by providing it a different value. Let's change the value of myName to 'Bob':</p>
+                <h3>Updating values</h3>
+                <p>Once a variable has been initialized with a value, you can change (or update) the value by providing it a different value. Let's change the value of myName to 'Bob'.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
@@ -105,7 +84,10 @@ myName = 'Bob';
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <p>Unlike some other languages, you don't need to specify what data type (e.g. numbers, strings, arrays, etc) a variable will contain. This is because JavaScript is a 'loosely types language'. For example, if you declare a variable and give it a value within quotes, the browser will treat the variable as a string.</p>
+            </section>
+            <section>
+                <h3>Data types</h3>
+                <p>Unlike some other languages, you don't need to specify what data type (e.g. numbers, strings, arrays, etc) a variable will contain. This is because JavaScript is a 'loosely types language'. For example, if you declare a variable and give it a value within quotes (double or single), the browser will treat the variable as a string.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
@@ -121,7 +103,10 @@ var myOtherNumber = 500;
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <p>We can use the special function called typeof() to return the data type of the variable that you pass into it.</p>
+            </section>
+            <section>
+                <h3>Typeof function</h3>
+                <p>We can use the special function called typeof to return the data type of the variable that you pass into it.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
@@ -129,8 +114,10 @@ var myOtherNumber = 500;
 <!-- Leave space here -->
 var myString = 'Hello';
 typeof(myString);     // returns: 'string'
+
 var myNumber = '500';
 typeof(myNumber);     // returns: 'string'
+
 var myOtherNumber = 500;
 typeof(myOtherNumber);    // returns: 'number'
                         </code>
@@ -138,7 +125,6 @@ typeof(myOtherNumber);    // returns: 'number'
                 </div>
                 <!-- / Code example -->
             </section>
-
 
         </div>
     </div>

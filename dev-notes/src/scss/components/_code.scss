@@ -10,6 +10,7 @@ pre {
 code {
 	/* Allow code examples to wrap when viewport width is small */
 	white-space: pre-wrap;
+	font-size: 14px;
 }
 
 /* Code block description bar */
@@ -25,6 +26,12 @@ code {
 .code[rel="js"]::before {
 	color: #fff;
 	background-color: #ff9800;
+}
+
+/* Code block description bar colour - HTML */
+.code[rel="html"]::before {
+	color: #fff;
+	background-color: #1779ba;
 }
 
 /* Code syntax colours */

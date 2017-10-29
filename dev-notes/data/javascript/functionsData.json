@@ -1,0 +1,190 @@
+{
+  "page": {
+    "pagetitle": "JavaScript Functions",
+    "pageheading": "Functions",
+    "pageintro": "We can use functions to section off small bits of logic or tasks that we can then call when we need to. Functions can help take large problems and break them into small manageable chunks.",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Declaring a function",
+        "copy": [
+          "To create a function it must first be declared using the function keyword. Declaring the function gives the function a name and specifies what the function is to do when it is called.",
+          "As an example, our function will be called multiplyNumbers."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "<span class='keyword'>function</span> multiplyNumbers () {",
+          "",
+          "   <span class='comment'>// Code is added here</span>",
+          "",
+          "}"  
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "There are a number of ways to define a function in JavaScript.",
+          "The arrow function is sometimes called the 'fat arrow' function and is a concise way of writing functions in ES6. The expression after the arrow leads to what is being returned, so no return statement is needed.",
+          "Here are a few examples:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "<span class='comment'>// Declare a function</span>",
+          "<span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {",
+          "",
+          "   <span class='return'>return</span> <span class='value'>num1</span> * <span class='value'>num2</span>;",
+          "",
+          "}",
+          "",
+          "<span class='comment'>// Declare a function using a variable</span>",
+          "<span class='keyword'>var</span> <span class='name'>multiplyNumbers</span> = <span class='keyword'>function</span> ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {",
+          "",
+          "   <span class='return'>return</span> <span class='value'>num1</span> * <span class='value'>num2</span>;",
+          "",
+          "}",
+          "",
+          "<span class='comment'>// Declare an ES6 arrow function</span>",
+          "<span class='keyword'>let</span> <span class='name'>multiplyNumbers</span> = ( <span class='value'>num1</span>, <span class='value'>num2</span> ) =>",
+          "   <span class='value'>num1</span> * <span class='value'>num2</span>;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Calling a function",
+        "copy": [
+          "Defining a function does not execute it. The function needs to be called."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "<span class='keyword'>function</span> multiplyNumbers () {",
+          "",
+          "   <span class='comment'>// Code is added here</span>",
+          "",
+          "}",
+          "",
+          "<span class='comment'>// Call the function</span>",
+          "multiplyNumbers();"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Return statement",
+        "copy": [
+          "The return statement specifies the value to be returned by the function and tells the browser to return the result so it can be made available and used outside of the function. This is necessary as any variable declared inside the function is only available within that function. This is called variable scoping."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "return value;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Parameters & Arguments",
+        "copy": [
+          "Below is an example of a simple function that takes two numbers as arguments and passes them into the num1 and num2 parameters. These values are then multiplied together, the result is stored in a variable and returned using a return statement.",
+          "When we call the function, the two values we want to multiply are passed as arguments into the function."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "<span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {",
+          "",
+          "   <span class='comment'>// Total stored in variable</span>",
+          "   <span class='keyword'>var</span> <span class='name'>total</span> = <span class='value'>num1</span> * <span class='value'>num2</span>;",
+          "   <span class='comment'>// Return the total</span>",
+          "   <span class='return'>return</span> <span class='name'>total</span>;",
+          "",
+          "}",
+          "",
+          "<span class='comment'>// Call the function to multiply 4 and 2</span>",
+          "multiplyNumbers( <span class='value'>4</span>, <span class='value'>2</span> );"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can return values from one function and pass them into other functions as this example demonstrates:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "/*",
+          "This function is used to calculate the temperature in farenheit",
+          "We pass this function into the getFahrenheit function",
+          "*/",
+          "function multiplyByNineFifths ( celsius ) {",
+          "",
+          "   return celsius * ( 9 / 5 );",
+          "",
+          "}",
+          "",
+          "// This is the function we call",
+          "function getFahrenheit ( celsius ) {",
+          "",
+          "   // Return the result",
+          "   return multiplyByNineFifths ( celsius ) + 32;",
+          "",
+          "}",
+          "",
+          "console.log( 'The temperature is: ' + getFahrenheit( 15 ) + 'F' );"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can also use functions to return more than one value at a time using an array.",
+          "This next example calculates both the area and volume. The values are stored in two variables, before being added to an array called sizes which returns the results."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "function calculateSize ( width, height, depth ) {",
+          "",
+          "   var area = width * height;",
+          "   var volume = width * height * depth;",
+          "   // Array to contain the area and volume values",
+          "   var sizes = [ area, volume ];",
+          "   return sizes;",
+          "",
+          "}",
+          "",
+          "// Array index is [0] so area will be calculated",
+          "var getArea = calculateSize(3, 2, 5)[0];",
+          "// Array index is [1] so volume will be calculated",
+          "var getVolume = calculateSize(3, 2, 5)[1];",
+          "",
+          "getArea;    // 6",
+          "getVolume;    // 30"        
+        ]
+      }
+    ]
+  }
+}

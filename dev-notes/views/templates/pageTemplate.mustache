@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, minimum-scale=1" />
     <link rel="shortcut icon" type="image/ico" href="../../../src/img/favicon/code.ico" />
-    <title>Dev notes - {{page.title}}</title>
+    <title>Dev notes - {{page.pagetitle}}</title>
     <link rel="stylesheet" href="../../css/style.min.css" />
 </head>
 <body>
@@ -14,8 +14,8 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>{{page.heading}}</h1>
-            <h2>{{page.intro}}</h2>
+            <h1>{{page.pageheading}}</h1>
+            <h2>{{page.pageintro}}</h2>
 
         </div>
     </div>
@@ -24,12 +24,9 @@
 
             {{#page.content}}
             <section>
-                {{#showsubheading}}
-                <h3>{{subheading}}</h3>
-                {{/showsubheading}}
-                {{#showimage}}
-                <img src="{{src}}"" alt="{{alt}}" />
-                {{/showimage}}
+                {{#showheading}}
+                <h3>{{heading}}</h3>
+                {{/showheading}}
                 {{#copy}}
                 <p>{{{.}}}</p>
                 {{/copy}}
@@ -47,54 +44,7 @@
                 </div>
                 <!-- / Code example -->
                 {{/showmarkup}}  
-                {{#copy2}}
-                <p>{{{.}}}</p>
-                {{/copy2}}
-                {{#showmarkup2}}
-                <!-- Code example -->
-                <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-{{#code2}}
-{{{.}}}
-{{/code2}}
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-                {{/showmarkup2}}     
-                {{#copy3}}
-                <p>{{{.}}}</p>
-                {{/copy3}}
-                {{#showmarkup3}}
-                <!-- Code example -->
-                <div class="code" rel="{{rel}}" data-title="{{datatitle}}">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-{{#code3}}
-{{{.}}}
-{{/code3}}
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-                {{/showmarkup3}}        
-                {{#showinfo}}
-                <div>
-                    {{#info}}
-                    <p>{{{.}}}</p>
-                    {{/info}}
-                </div>
-                {{/showinfo}}
-                {{#showsubcopy}}
-                {{#subcopy}}
-                <p>{{{.}}}</p>
-                {{/subcopy}}
-                {{/showsubcopy}}
             </section>
-
             {{/page.content}}
 
         </div>

@@ -32,46 +32,46 @@
                         <code>
 <!-- Leave space here -->
 <span class='keyword'>function</span> multiplyNumbers () {
- 
+
    <span class='comment'>// Code is added here</span>
- 
+
 }
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <p>There are a number of ways to define a function in JavaScript. Here are a few examples:</p>
+            </section>
+            <section>
+                <p>There are a number of ways to define a function in JavaScript.</p>
+                <p>The arrow function is sometimes called the 'fat arrow' function and is a concise way of writing functions in ES6. The expression after the arrow leads to what is being returned, so no return statement is needed.</p>
+                <p>Here are a few examples:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
                         <code>
 <!-- Leave space here -->
 <span class='comment'>// Declare a function</span>
-<span class='keyword'>function</span> sum ( <span class='value'>a</span>, <span class='value'>b</span> ) {
- 
-   <span class='return'>return</span> <span class='value'>a</span> + <span class='value'>b</span>;
- 
+<span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {
+
+   <span class='return'>return</span> <span class='value'>num1</span> * <span class='value'>num2</span>;
+
 }
- 
+
 <span class='comment'>// Declare a function using a variable</span>
-<span class='keyword'>var</span> <span class='name'>sum</span> = <span class='keyword'>function</span> ( <span class='value'>a</span>, <span class='value'>b</span> ) {
- 
-   <span class='return'>return</span> <span class='value'>a</span> + <span class='value'>b</span>;
- 
+<span class='keyword'>var</span> <span class='name'>multiplyNumbers</span> = <span class='keyword'>function</span> ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {
+
+   <span class='return'>return</span> <span class='value'>num1</span> * <span class='value'>num2</span>;
+
 }
- 
+
 <span class='comment'>// Declare an ES6 arrow function</span>
-<span class='keyword'>let</span> <span class='name'>sum</span> = ( <span class='value'>a</span>, <span class='value'>b</span> ) =>
-   <span class='value'>a</span> + <span class='value'>b</span>;
+<span class='keyword'>let</span> <span class='name'>multiplyNumbers</span> = ( <span class='value'>num1</span>, <span class='value'>num2</span> ) =>
+   <span class='value'>num1</span> * <span class='value'>num2</span>;
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <div>
-                    <p>The arrow function is sometimes called the 'fat arrow' function and is a concise way of writing functions in ES6. The expression after the arrow leads to what is being returned, so no return statement is needed.</p>
-                </div>
             </section>
-
             <section>
                 <h3>Calling a function</h3>
                 <p>Defining a function does not execute it. The function needs to be called.</p>
@@ -81,11 +81,11 @@
                         <code>
 <!-- Leave space here -->
 <span class='keyword'>function</span> multiplyNumbers () {
- 
+
    <span class='comment'>// Code is added here</span>
- 
+
 }
- 
+
 <span class='comment'>// Call the function</span>
 multiplyNumbers();
                         </code>
@@ -93,7 +93,20 @@ multiplyNumbers();
                 </div>
                 <!-- / Code example -->
             </section>
-
+            <section>
+                <h3>Return statement</h3>
+                <p>The return statement specifies the value to be returned by the function and tells the browser to return the result so it can be made available and used outside of the function. This is necessary as any variable declared inside the function is only available within that function. This is called variable scoping.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+return value;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
             <section>
                 <h3>Parameters &amp; Arguments</h3>
                 <p>Below is an example of a simple function that takes two numbers as arguments and passes them into the num1 and num2 parameters. These values are then multiplied together, the result is stored in a variable and returned using a return statement.</p>
@@ -104,47 +117,82 @@ multiplyNumbers();
                         <code>
 <!-- Leave space here -->
 <span class='keyword'>function</span> multiplyNumbers ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {
- 
+
    <span class='comment'>// Total stored in variable</span>
    <span class='keyword'>var</span> <span class='name'>total</span> = <span class='value'>num1</span> * <span class='value'>num2</span>;
    <span class='comment'>// Return the total</span>
    <span class='return'>return</span> <span class='name'>total</span>;
- 
+
 }
- 
+
 <span class='comment'>// Call the function to multiply 4 and 2</span>
 multiplyNumbers( <span class='value'>4</span>, <span class='value'>2</span> );
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <p>The return statement tells the browser to return the variable value so it can be used outside of the function. This is necesssary because a variable defined inside a function is only available inside of that function.</p>
-                <p>Return values are returned by the function once it executes. This is called variable scoping.</p>
             </section>
-
             <section>
-                <h3>Anonymous Functions</h3>
-                <p>An anonymous function is a function that has no name - it is anonymous.</p>
-                <p>If you're writing a one-off chunk of JavaScript that never needs to be referred elsewhere, it's wise to use an anonymous function.</p>
-                <p>The empty brackets after the function causes the function to automatically be invoked (called) on the page load. This is known as an immediately-invoked function expression (IIFE).</p>
+                <p>We can return values from one function and pass them into other functions as this example demonstrates:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JS">
                     <pre>
                         <code>
 <!-- Leave space here -->
-( <span class='keyword'>function</span> () {
- 
-   <span class='comment'>// Code is added here</span>
- 
-})();
+/*
+This function is used to calculate the temperature in farenheit
+We pass this function into the getFahrenheit function
+*/
+function multiplyByNineFifths ( celsius ) {
+
+   return celsius * ( 9 / 5 );
+
+}
+
+// This is the function we call
+function getFahrenheit ( celsius ) {
+
+   // Return the result
+   return multiplyByNineFifths ( celsius ) + 32;
+
+}
+
+console.log( 'The temperature is: ' + getFahrenheit( 15 ) + 'F' );
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
-                <div>
-                </div>
             </section>
+            <section>
+                <p>We can also use functions to return more than one value at a time using an array.</p>
+                <p>This next example calculates both the area and volume. The values are stored in two variables, before being added to an array called sizes which returns the results.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+function calculateSize ( width, height, depth ) {
 
+   var area = width * height;
+   var volume = width * height * depth;
+   // Array to contain the area and volume values
+   var sizes = [ area, volume ];
+   return sizes;
+
+}
+
+// Array index is [0] so area will be calculated
+var getArea = calculateSize(3, 2, 5)[0];
+// Array index is [1] so volume will be calculated
+var getVolume = calculateSize(3, 2, 5)[1];
+
+getArea;    // 6
+getVolume;    // 30
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
 
         </div>
     </div>
