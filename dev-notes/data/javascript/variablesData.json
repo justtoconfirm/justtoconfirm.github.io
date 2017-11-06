@@ -1,0 +1,110 @@
+{
+  "page": {
+    "pagetitle": "JavaScript Variables",
+    "pageheading": "Variables",
+    "pageintro": "",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Declaring a variable",
+        "copy": [
+          "A variable is a container for storing a value. To use a variable you first have to create it, or more accurately, this is called declaring a variable.",
+          "To declare a variable we use the var keyword followed by the name you want to call the variable. This name is often called the identifier.",
+          "When a variable is declared without any value it is an empty container. A variable without any value is an undefined variable. When you enter the variable names in the console, you should get a value of undefined returned.",
+          "To assing a value to a variable - also known as initializing a value - we use the assignment operator ( = ). When the variable name is used within the console, it's value will be returned.",
+          "Should a variable not exist, you'll get an error message."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "// Undefined variable",
+          "var myName;",
+          "// Output: undefined variable",
+          "myName;", 
+          "",
+          "// Declaring and initializing a variable",
+          "var myName = 'Dan';",
+          "// Output: 'Dan'",
+          "myName;",    
+          "",
+          "// Output: Uncaught ReferenceError: myAge is not defined",
+          "myAge;"        
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "When a variable is declared - outside of a function - it becomes part of the window object. The window object is supported by all browsers and represents the browser's window.",
+          "The variable declared is then a global variable and is a property of the window object. By declaring variables globally, conflict can occur as other parts of the JavaScript code can use the same variable.",
+          "It is recommended to not pollute the global namespace by having variables declared globally, but instead, declare them within functions.",
+          "You can take a look at the window object by typing window in the console. This will output the many methods and properties (including any variables we have declared) in the console output."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "// Declaring and initializing a variable",
+          "var myName = 'Dan';",
+          "",
+          "/*", 
+          "View the window object in the console",
+          "Our myName variable will be located within the window object",
+          "*/",
+          "window"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Once a variable has been declared with a value, the value can be changed/updated by providing a new value."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "// Declaring and initializing a variable",
+          "var myName = 'Dan';",
+          "// Change the value",
+          "myName = 'Bob';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "The typeof operator",
+        "copy": [
+          "Unlike some other languages, you don't need to specify what data type - numbers, strings, arrays - a variable will contain. This is because JavaScript is a 'loosely typed language'.",
+          "If you were to declare a variable and give it a value within quotes (double or single), the browser will treat the variable as a string. Without any quotes, the value would be a number.",
+          "We can use the special operator called typeof to return the data type of the variable that you pass into it."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JS",
+        "code": [
+          "/*", 
+          "Declaring and initializing a variable",
+          "The value is a string as it's within quotation marks",
+          "*/",
+          "var myAge = '25';",
+          "// Return: 'string'",
+          "typeof(myAge);",
+          "",
+          "// Declaring and initializing a variable",
+          "var currentYear = 2017;",
+          "// Return: 'number'",
+          "typeof(currentYear);"
+        ]
+      }
+    ]
+  }
+}

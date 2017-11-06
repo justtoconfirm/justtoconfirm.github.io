@@ -2,15 +2,17 @@
   "page": {
     "pagetitle": "JavaScript Objects",
     "pageheading": "Objects",
-    "pageintro": "Objects group together a set of properties and methods to create a model. In an object, a property is similar to a variable and a method is similar to a function.",
+    "pageintro": "",
     "content": [
       {
         "label": "SECTION",
         "showheading": false,
         "heading": null,
         "copy": [
+          "Not everything in JavaScript is an object. Many things such as: strings, numbers and booleans are primitives not objects as they do not have properties or methods, unlike objects.",
+          "Objects group together a set of properties and methods to create a model.",
           "Objects in JavaScript can be likened to objects in the real world. A car, as an example of a real world object, has properties used to define it's characteristics such as: name or colour. A car can also have methods such as: accelerate or brake.",
-          "Not everything in JavaScript is an object. Many things, such as: Strings, numbers, booleans, are primitives, not objects. Objects have methods and properties, primitives do not."    
+          "Properties are similar to variables within an object and methods are similar to functions."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
@@ -24,7 +26,7 @@
         "heading": "Literal notation",
         "copy": [
           "Literal notation is often used when you want to create a single object in JavaScript.",
-          "In the following example we will use literal notation to create a Hotel object containing a number of properties."
+          "In the following example we will use literal notation to create a Hotel object containing a number of properties such as: name, rooms, and booked. This object is declared as a property of the global window object. If you view the window object in the console, the hotel object will be located within."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
@@ -35,7 +37,7 @@
           "   name: 'The Grand Hotel',",
           "   rooms: 104,",
           "   booked: 98",
-          "};"  
+          "};"      
         ]
       },
       {
@@ -43,17 +45,16 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "Properties of an object can be accessed using dot notation. The name of the object followed by a period (known as the member operator) and then the name of the property you wish to use.",
-          "Remember, properties within objects are just like variables.",
-          "The name and number of rooms available within the Hotel object can be retrieved using dot notation."
+          "Properties of an object can be accessed using dot notation, the name of the object followed by a period (known as the member operator) and then the name of the property you wish to use.",
+          "Within objects, properties are just like variables. The name and number of rooms available within the Hotel object can be retrieved using dot notation."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
         "datatitle": "JS",
         "code": [
-          "hotel.name;   // 'The Grand Hotel'",
-          "hotel.rooms;  // 104"
+          "hotel.name;",
+          "hotel.rooms;" 
         ]
       },
       {
@@ -61,8 +62,8 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "Within our Hotel object a method will now be created to check the available rooms within our hotel. The method uses the keyword of this to indicate that the method is using the properties of the object.",
-          "The return statement is used to allow the result the method returns to be available outside of the function.",
+          "Within our Hotel object a method will now be created to check the available rooms within our hotel. A method is similar to a function that is within an object. This method uses the keyword of this to indicate that the method is using the properties of the object.",
+          "The return statement is used to allow the result the method returns to be available outside of the object.",
           "We can call the method using dot notation once again."
         ],
         "label": "CODE/MARKUP",
@@ -77,13 +78,13 @@
           "",
           "   checkAvailableRooms: function () {",
           "",
-          "      // return the number of available rooms",
+          "      // Return the number of available rooms",
           "      return this.rooms - this.booked;",
           "",
           "   }",
           "};",
           "",
-          "hotel.checkAvailableRooms();    // Output: 6"
+          "hotel.checkAvailableRooms ();"
         ]
       },
       {
@@ -91,7 +92,7 @@
         "showheading": true,
         "heading": "Constructor notation",
         "copy": [
-          "If you need more that one object, the Constructor notation can be used to allow a JavaScript function to be ued to make a template for creating multiple objects. Instances of this object can then be created using the keyword of new, followed by a call to the function when you need to create a new object.",
+          "If you need more that one object, the Constructor notation can be used to allow a JavaScript function to be used to make a template for creating multiple objects. Instances of this object can then be created using the keyword of new followed by a call to the function when you need to create a new object.",
           "The name of the Constructor function should always begin with an uppercase letter.",
           "Let's create a new Hotel object using the Constructor notation."
         ],
@@ -119,11 +120,11 @@
       },
       {
         "label": "SECTION",
-        "showheading": true,
-        "heading": "Constructor notation",
+        "showheading": false,
+        "heading": null,
         "copy": [
-          "An instance of an object will inherit the properties and methods within the object. Values for each hotel will be passed into the object paremeters - name, rooms, booked - using arguments when the function is called. The keyword of this is used instead of the object's name to indicate that the properties and methods belong to the Hotel object.",
-          "Let us now create a two new Hotels named 'The Grand Hotel' and 'Park Hotel' as instances of our Hotel object. Each time we create a new hotel, the Hotel function is called and the values for each hotel are passed as arguments into the object's parameters. These values are then assigned to the properties of: name, rooms, and booked. Any instance created can use the methods within the Hotel object, so we can use the checkAvailableRooms method to check the availability of rooms within both hotels."
+          "An instance of an object will inherit the properties and methods from within the object. Values for each hotel will be passed into the object paremeters - name, rooms, booked - using arguments when the function is called. The keyword of this is used instead of the object's name to indicate that the properties and methods belong to the Hotel object.",
+          "Let us now create two new Hotels named 'The Grand Hotel' and 'Park Hotel' as instances of our Hotel object. Each time we create a new hotel, the Hotel function is called and the values for each hotel are passed as arguments into the object's parameters. These values are then assigned to the properties of: name, rooms, and booked. Any instance created can use the methods within the Hotel object, so we can use the checkAvailableRooms method to check the availability of rooms within both hotels."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
@@ -147,12 +148,12 @@
           "}",
           "",
           "// Create instances of the Hotel object",
-          "var grandHotel = new Hotel( 'The Grand Hotel', 104, 98 );",
-          "var parkHotel = new Hotel( 'Park Hotel', 98, 94 );",
+          "var grandHotel = new Hotel ( 'The Grand Hotel', 104, 98 );",
+          "var parkHotel = new Hotel ( 'Park Hotel', 98, 94 );",
           "",
-          "// Method to check the rooms available",
-          "grandHotel.checkAvailableRooms();     // Output: 6",
-          "parkHotel.checkAvailableRooms();      // Output: 4"
+          "// Call the method to check the available rooms for each hotel",
+          "grandHotel.checkAvailableRooms ();",
+          "parkHotel.checkAvailableRooms ();"
         ]
       }
     ]
