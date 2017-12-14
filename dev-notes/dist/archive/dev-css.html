@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - CSS</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--css">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>CSS</h1>
+
+		<p><strong>CSS (Cascading Style Sheets)</strong> is a language used to describe the style of <strong>HTML</strong> documents and describes how HTML elements should be displayed.</p>
+
+		<blockquote>
+			<p>CSS files have the file extension of <span class="hl">.css</span></p>
+		</blockquote>
+
+		<p>A CSS rule-set consists of a <span class="hl">selector</span> and <span class="hl">declaration block</span>. The selector points to the <strong>HTML element</strong> you want to style. The declaration block contains one or more declarations separated by semicolons.</p>
+
+		<p>Each declaration includes a CSS <span class="hl">property name</span> and <span class="hl">property value</span>, separated by a colon.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">selector</span> {
+	<span class="syntax-comment">/* Declaration block */</span>
+}
+
+<span class="syntax-comment">/* Example */</span>
+<span class="syntax-keyword">h1</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#f04124</span>;
+	<span class="syntax-property">font-size</span>: <span class="syntax-value">12px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>CSS <span class="hl">selectors</span> are used to <span class="hl">select HTML elements</span> based on their element <strong>name</strong>, <strong>id</strong>, <strong>class</strong> or <strong>attribute</strong>.</p>
+		</blockquote>
+
+		<p>As a simple example, lets use the <span class="hl">p</span> selector to find all <span class="hl">&lt;p&gt;</span> paragraph elements with the HTML page and set the text colour:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS: styles/stylesheet.css">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">p</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#f04124</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>HTML code:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">html</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">link</span> rel=<span class="syntax-value">"stylesheet"</span> href=<span class="syntax-value">"styles/stylesheet.css"</span> /&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+	&lt;<span class="syntax-keyword">p</span>&gt;This text will be red&lt;<span class="syntax-keyword">/p</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>The <span class="hl">class selector</span> selects elements with a specific class attribute. To select elements with a specific class, write a period <span class="hl">.</span> followed by the name of the class.</p>	
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS: styles/stylesheet.css">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">p</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#f04124</span>;
+}
+
+<span class="syntax-keyword">.new-paragraph</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#1779ba</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Lets update the HTML code:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">p</span>&gt;This text will be red&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;This text will be red&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span> class=<span class="syntax-value">"new-paragraph"</span>&gt;This text will be blue&lt;<span class="syntax-keyword">/p</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>A <span class="hl">class</span> should be used if you intend to re-use it more than once and/or on multiple elements. An <span class="hl">id</span> selector should only be used once and should be unique.</p>
+		</blockquote>	
+
+		<p>The <span class="hl">id selector</span> uses the <strong>id</strong> attribute of an HTML element to select a specific element. The id of an element should always be unique within a page.</p>
+
+		<p>To select an element with an id, write a hash <span class="hl">#</span> followed by the id of the element.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS: styles/stylesheet.css">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">/* Element */</span>
+<span class="syntax-keyword">p</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#f04124</span>;
+}
+
+<span class="syntax-comment">/* Class */</span>
+<span class="syntax-keyword">.new-paragraph</span> {
+	<span class="syntax-property">color</span>: <span class="syntax-value">#1779ba</span>;
+}
+
+<span class="syntax-comment">/* id */</span>
+<span class="syntax-keyword">#paraOne</span> {
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">#4caf50</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Now, lets update the HTML to apply the id (we do not need to include the <strong>hash</strong> when we use the id within the HTML code):</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">p</span>&gt;This text will be red&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span>&gt;This text will be red&lt;<span class="syntax-keyword">/p</span>&gt;
+
+<span class="syntax-comment">&lt;!-- We can use the class as many times as we wish --&gt;</span>
+&lt;<span class="syntax-keyword">p</span> class=<span class="syntax-value">"new-paragraph"</span>&gt;This text will be blue&lt;<span class="syntax-keyword">/p</span>&gt;
+&lt;<span class="syntax-keyword">p</span> class=<span class="syntax-value">"new-paragraph"</span>&gt;This text will be blue&lt;<span class="syntax-keyword">/p</span>&gt;
+
+<span class="syntax-comment">&lt;!-- This id is unique so can we can only use the id once in the HTML --&gt;</span>
+&lt;<span class="syntax-keyword">p</span> class=<span class="syntax-value">"new-paragraph"</span> id=<span class="syntax-value">"paraOne"</span>&gt;This text will be blue with a background colour&lt;<span class="syntax-keyword">/p</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->			
+
+		<h2>CSS &amp; HTML</h2>
+
+		<p>Usually CSS is placed in an <strong>external stylesheet</strong> so the code can be shared between multiple HTML pages. This allows changes to be made in a single CSS file to change the styling of an entire website very quickly. Each page that requires the stylesheet must include a reference to the CSS within the <span class="hl">&lt;head&gt;</span> section of the HTML code.</p>
+
+		<p>Find further notes on HTML <a href="index.html" class="link">here</a>.
+
+		<p>This example is showing that the stylesheet is named <span class="hl">stylesheet.css</span> and is located with a <span class="hl">styles</span> folder/directory.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+&lt;<span class="syntax-property">link</span> rel=<span class="syntax-value">"stylesheet"</span> href=<span class="syntax-value">"styles/stylesheet.css"</span> /&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<h2>CSS Shorthand Syntax</h2>
+
+		<p>The use of <strong>shorthand syntax</strong> in CSS is often used within many CSS examples, but it can unset properties that we never intended to modify.</p>
+
+		<p>When we write something like:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background</span>: <span class="syntax-value">red</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>We are likely to get the background colour applied to our button, but what we're really saying is:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background-image</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-position-x</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-position-y</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-size</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-repeat-x</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-repeat-y</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-attachment</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-origin</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-clip</span>: <span class="syntax-value">initial</span>;
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;	
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Simply by using the shorter syntax, we have included everything else associated with the <strong>background property</strong>. In CSS you should <span class="hl">only ever do as little as you need to do and nothing more</span>. Shorthand is a surefire way to do too much too soon and should be avoided - if possible.</p>
+
+		<p>A better example to apply a background colour would be:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.btn</span> {
+	<span class="syntax-property">background-color</span>: <span class="syntax-value">red</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>We have done exactly what we needed to do, and <strong>nothing more</strong>.</p>
+		</blockquote>
+
+		<p>Another common use-case is <strong>vertical centering</strong>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.wrapper</span> {
+	<span class="syntax-property">margin</span>: <span class="syntax-value">0 auto</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>The problem here is that in order to use shorthand to define <strong>auto</strong> only once - use it on both the <strong>left</strong> and <strong>right</strong> - we have to make a decision about <strong>top</strong> and <strong>bottom</strong> as well. We have now explicitly removed any top or bottom margins that may have been intentionally introduced elsewhere.</p>
+
+		<p>If all you want to do is centre a <span class="hl">block-level</span> element, then you don't mention anything to do with it's top and bottom edges, so we can favour the <span class="hl">longhand</span> version:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.wrapper</span> {
+	<span class="syntax-property">margin-left</span>: <span class="syntax-value">auto</span>;
+	<span class="syntax-property">margin-right</span>: <span class="syntax-value">auto</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>In some circumstances, shorthand can be used. Take for example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">padding</span>: <span class="syntax-value">10px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Here, we are not unsetting anything because we want <strong>all four sides</strong> to carry <strong>10px padding</strong>. Shorthand can also be used in this example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="css" data-title="CSS">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">padding</span>: <span class="syntax-value">12px 24px</span>;
+}
+
+<span class="syntax-comment">/* Another example */</span>
+<span class="syntax-keyword">.box</span> {
+	<span class="syntax-property">margin</span>: <span class="syntax-value">12px 17px 16px 10px</span>;
+}
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>By favouring <strong>longhand CSS</strong> over shorthand, it maybe more repetative and less <span class="hl">DRY</span>, but it will produce more <strong>accurate code</strong>.</p>
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+				<li><a href="dev-express.html" class="footer__link">Express</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-wordpress.html" class="footer__link">WordPress</a></li>
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

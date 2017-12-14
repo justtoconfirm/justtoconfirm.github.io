@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - Ruby</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--ruby">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>Ruby</h1>
+
+		<p>Ruby is a dynamic, open source, object-oriented programming language designed and developed in the mid 1990's by Yukihiro "Matz" Matsumoto in Japan.</p>	
+
+		<blockquote>
+			<p>Ruby files use the file extension <span class="hl">.rb</span></p>
+		</blockquote>
+
+		<h2>Install</h2>
+
+		<p>If you're using a <strong>Mac</strong> or <strong>Linux</strong> machine, Ruby should already be pre-installed. Open the command line or terminal application and enter the following command to confirm the version of Ruby installed:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ ruby <span class="syntax-keyword">-v</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>Some versions of Ruby pre-installed on Mac, may have limited permissions to allow you to install <span class="hl">gems</span> or update Ruby. It is therefore recommended to install Ruby anyway using one of four methods:</p>
+
+		<ul>
+			<li><strong>rvm</strong></li>
+			<li><strong>rbenv</strong></li>
+			<li><strong>Homebrew (Mac only)</strong></li>
+			<li><strong>Build from source</strong></li>
+		</ul>
+
+		<p>On a Windows machine, Ruby will need to be downloaded manually using tools such as <strong>RubyInstaller</strong>.</p>
+
+		<p><strong>RubyGems</strong> comes with <span class="hl">Ruby 1.9.3</span> and higher, so once Ruby has been installed, you can verify that RubyGems has been installed by confirming the version number.</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ gem <span class="syntax-keyword">-v</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<h2>Ruby "Gems"</h2>
+
+		<p>Sometimes called <span class="hl">RubyGems</span> or simply <span class="hl">"gems"</span> for short, refers to a collection of <strong>Ruby files</strong>, or a <strong>Ruby library</strong>, that performs a certain task. This also refers to the publishing system that allows these <strong>'packages'</strong> to be installed and published. The libraries this system publishes are called <span class="hl">"gems"</span>.</p>
+
+		<p>RubyGems is integrated into <span class="hl">Ruby 1.9</span> and later. The code in a gem is a <strong>pre-packaged bundle</strong> of code to allow features and additional functionality to be added. The versioning of gems is based on <span class="hl">Semantic Versioning</span>, and a gem is said to have been <span class="hl">"cut"</span> when a new version becomes available.</p>
+
+		<p>The <span class="hl">gem</span> command allows you to use RubyGems. When combined with the <span class="hl">install</span> command, a gem can be downloaded and installed (with their dependencies and/or relevant documentation).</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ gem <span class="syntax-keyword">install</span> &lt;<span class="syntax-value">gem name</span>&gt;
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>In the example above, <span class="hl">&lt;gem name&gt;</span> is the actual name of the gem you want to install.</p>
+
+		<h2>Syntax conventions</h2>
+
+		<p>The Ruby language has specific syntax conventions that make writing and reading Ruby code easier for all. Please follow these conventions when coding in Ruby:</p>
+
+		<ul>
+			<li><span class="hl">Tab</span> function should be set to <span class="hl">2 spaces</span> and indenting should be set to use spaces.</li>
+			<li>Comments should start with <span class="hl">#</span> at the beginning of the line.</li>
+			<li>Methods, variables or files should always use <span class="hl">snake_case</span> formatting for naming conventions (all lowercase and separate words with underscores).</li>
+			<li>A value that does not change - such as a constant variable - is a <span class="hl">constant</span> and should be denoted with all uppercase letters.</li>
+			<li>Declare a class name using <span class="hl">CamelCase</span> formatting. CamelCase uses no spaces and capitalizes the first letter of each work, for example, <strong>MyFirstClass</strong></li>
+		</ul>
+
+		<blockquote>
+			<p>Like Python, Ruby does not use <strong>semi-colons</strong> (<span class="hl">;</span>) to end statements.</p>
+		</blockquote>
+
+		<h2>Comments</h2>
+
+		<p>Comments are programmer-readable annotations that are ignored at runtime. Their purpose is to make source code easier to understand.</p>
+
+		<p>The <span class="hl">#</span> character is used to add a single line comment.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># This is a single line comment</span>
+<span class="syntax-keyword">puts</span> <span class="syntax-value">"Hello World"</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>Multiple-line comments can be added by using <span class="hl">=begin</span> and <span class="hl">=end</span> syntax (known as <strong>block markers</strong>).</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">=begin
+This is a 
+multiline comment.
+=end</span>
+<span class="syntax-keyword">puts</span> <span class="syntax-value">"Hello World"</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Execute Ruby files</h2>
+
+		<p>To execute a Ruby file from the command terminal, use the following command:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># Example command to execute a Ruby file</span>
+$ ruby <span class="syntax-value">&lt;filename_here&gt;</span>.rb
+
+$ ruby <span class="syntax-value">my_file.rb</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>Ruby source files don't need to be compiled before being executed. The Ruby interpreter compiles and executes the Ruby files at runtime.</p>
+
+		<h2>Hello World</h2>
+
+		<p>An example of how to recreate the famous <strong>"Hello World"</strong> code example in Ruby. Begin by opening an empty file and save the file as <span class="hl">hello.rb</span>. Place the following line of code into this file:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">puts</span> <span class="syntax-value">"Hello World"</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>From the command line, type the following command to execute the Ruby code from the source file:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># The output should be: Hello World</span>
+$ ruby <span class="syntax-value">hello.rb</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<p>If we want to use a method, we can use the following example:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby: hello_world.rb">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># Method</span>
+<span class="syntax-keyword">def</span> hello_world
+	<span class="syntax-keyword">puts</span> <span class="syntax-value">"Hello World"</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment"># Call the method</span>
+hello_world()
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>And once again, use the same command to execute the code:</p>
+
+		<!-- Code example -->
+		<pre>
+			<code>
+<!-- Leave this line empty -->
+$ ruby <span class="syntax-keyword">hello_world.rb</span>
+			</code>
+		</pre>
+		<!-- / Code example -->
+
+		<h2>Variables</h2>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># Example variable</span>
+<span class="syntax-property">variable_name</span> = <span class="syntax-value">value</span>
+
+<span class="syntax-comment"># Assigning a variable</span>
+<span class="syntax-property">forty_two</span> = <span class="syntax-value">42</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Methods</h2>
+
+		<p>You may often have a piece of code that needs to be executed many times. In Ruby, this is called a <span class="hl">method</span> (similar to a function in other languages). Before a method can be used, it needs to be defined using the keyword <span class="hl">def</span> followed by the name of the method.</p>
+
+		<p>At the end of the method, the keyword <span class="hl">end</span> is used.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-keyword">def</span> method_name
+	<span class="syntax-comment"># method body goes here</span>
+<span class="syntax-keyword">end</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>A method can be called by using the name given.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="ruby" data-title="Ruby">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment"># Call method</span>
+method_name()
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<p>In the method definition, we can add <span class="hl">parameters</span>. Parameters are used when you have data outside of a method's scope, but you need access to it within the method. If the method does not need access to any outside data, you do not need to define any parameters.</p>
+
+		<p><span class="hl">Arguments</span> are pieces of information that are sent to a method to be modified to return a specific result. We pass arguments to a method when we call it.</p>
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+				<li><a href="dev-express.html" class="footer__link">Express</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-wordpress.html" class="footer__link">WordPress</a></li>
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

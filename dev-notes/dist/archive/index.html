@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Dev Notes - HTML</title>
+	<link rel="stylesheet" href="styles/foundation.min.css" />
+	<link rel="stylesheet" href="styles/style.min.css" />
+</head>
+<body>
+
+<header>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<div class="header__icon header__icon--html">
+				<span class="header__icon--marks">&lt; &gt;</span>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+
+		<h1>HTML</h1>
+
+		<p><strong>HTML</strong> stands for <span class="hl">HyperText Markup Language</span> and describes the structure of web pages using HTML elements which act like building blocks. HTML elements are represented by <span class="hl">tags</span>.</p>
+
+		<h2>Introduction</h2>
+
+		<p>An example of a basic HTML structure. This file needs to be saved with the file extension of <span class="hl">.html</span></p>
+
+		<p>The structure of HTML can be explained:</p>
+
+		<ul>
+			<li><span class="hl">&lt;!DOCTYPE html&gt;</span> - Browser instruction about the version of HTML the document is written in.</li>
+			<li><span class="hl">&lt;html&gt;</span> - HTML root element.</li>
+			<li><span class="hl">&lt;head&gt;</span> - Element that contains meta information about the document.</li>
+			<li><span class="hl">&lt;title&gt;</span> - This element specifies the title for the document.</li>
+			<li><span class="hl">&lt;body&gt;</span> - Contains the visible page content (what you want to display on the page).</li>
+		</ul>
+
+		<p>The HTML document itself begins with <span class="hl">&lt;html&gt;</span> and ends with <span class="hl">&lt;/html&gt;</span>. The visible part of the HTML document is between <span class="hl">&lt;body&gt;</span> and <span class="hl">&lt;/body&gt;</span>.</p>
+
+		<p>An example HTML structure can be found below:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+	&lt;<span class="syntax-property">title</span>&gt;HTML page&lt;<span class="syntax-property">/title</span>&gt;
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+<span class="syntax-comment">&lt;!-- Webpage content goes here --&gt;</span>
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>&lt;!DOCTYPE&gt; declaration</h2>
+
+		<p>The <span class="hl">&lt;!DOCTYPE&gt;</span> declaration must be the very first thing in your HTML document, before the <span class="hl">&lt;html&gt;</span> tag. The declaration is not an HTML tag, but an instruction to the browser about what version of HTML the page is written in.</p>
+
+		<p>In <strong>HTML5</strong> there is only one declaration:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<h2>Character encoding</h2>
+
+		<p>The charset attribute specifies the character encoding for the HTML document.</p>
+
+		<p>This should be placed as the first meta tag in the HTML document.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+	
+	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
+
+	&lt;<span class="syntax-property">title</span>&gt;HTML page&lt;<span class="syntax-property">/title</span>&gt;
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->		
+
+		<h2>Viewport Meta tag</h2>
+
+		<p>On desktop browsers, the <strong>viewport</strong> is always a fixed number of pixels wide and the content is rendered into it. Safari on iOS introduced <strong>mobile viewports</strong> that are <span class="hl">virtual</span>. Even though the screen maybe 320 pixels in width, the browser creates the virtual viewport that's larger and renders the content there. The content is then <strong>zoomed out</strong> until it fits into the actual physical pixels available on the device's screen.</p>
+
+		<p>The viewport meta tag allows the mobile browser to specify what this virtual viewport should be.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">meta</span> name=<span class="syntax-value">"viewport"</span> content=<span class="syntax-value">"width=device-width, initial-scale=1"</span> /&gt;
+
+	&lt;<span class="syntax-property">title</span>&gt;HTML page&lt;<span class="syntax-property">/title</span>&gt;
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->		
+
+		<p>The <span class="hl">width</span> property controls the size of the viewport. It can be set to a specific value of pixels (<strong>width=600</strong>) or to the special value of <span class="hl">device-width</span> which is the width of the screen in CSS pixels at a scale of <strong>100%</strong>.</p>
+
+		<p>The <span class="hl">initial-scale</span> property controls the zoom level when the page is first loaded. The <span class="hl">maximum-scale</span>, <span class="hl">minimum-scale</span>, and <span class="hl">user-scalable</span> properties control how users are allowed to zoom the page in or out.</p>
+
+		<p>Setting the <span class="hl">initial-scale</span> to equal <span class="hl">1</span>, seems to be necessary to make the virtual viewport adapt to <strong>landscape</strong> mode in iOS.</p>
+
+		<p>This meta tag needs to be added to your HTML to make the page <strong>mobile responsive</strong>. Without this meta tag being added, the page would be rendered, but the user would have to zoom in.</p>
+
+		<h2>Language attribute</h2>
+
+		<p>The <span class="hl">lang</span> attribute specifies the language of the element's content. In <strong>HTML5</strong>, the <span class="hl">lang</span> attribute can be used on any HTML element.</p>
+
+		<p>To specify the language of the document, it can be added to the <span class="hl">&lt;html&gt;</span> tag.</p>
+
+		<p>Here we specify the language as <strong>English</strong>:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->			
+
+		<h2>Adding CSS to HTML</h2>
+
+		<p><strong>CSS (Cascading Style Sheets)</strong> describes how HTML elements are to be displayed. CSS is often kept in an external/separate file to allow the look of the entire web site to be created using a single file.</p>
+
+		<p>To add CSS to HTML, we add a link to it within the <span class="hl">&lt;head&gt;</span> section of the HTML code. In the example, we are linking to a CSS file named <span class="hl">stylesheet.css</span> within the <span class="hl">styles</span> directory.</p>
+
+		<p>Find further notes on CSS <a href="dev-css.html" class="link">here</a>.
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">head</span>&gt;
+	
+&lt;<span class="syntax-property">link</span> rel=<span class="syntax-value">"stylesheet"</span> href=<span class="syntax-value">"styles/stylesheet.css"</span> /&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->
+
+		<h2>Adding JavaScript to HTML</h2>	
+
+		<p>JavaScript external files should always be placed before the closing <span class="hl">&lt;/body&gt;</span> tag within the HTML code. In this example, the <span class="hl">myfile.js</span> JavaScript file within the <span class="hl">scripts</span> directory is added to the HTML code.</p>	
+
+		<p>The JavaScript notes can be found <a href="dev-js.html" class="link">here</a></p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/myfile.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example --> 
+
+		<h2>HTML Structure</h2>
+
+		<p>Here is a full example showing the basic structure of the HTML document:</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML: index.html">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+&lt;<span class="syntax-keyword">head</span>&gt;
+
+	&lt;<span class="syntax-property">meta</span> charset=<span class="syntax-value">"utf-8"</span> /&gt;
+	&lt;<span class="syntax-property">meta</span> name=<span class="syntax-value">"viewport"</span> content=<span class="syntax-value">"width=device-width, initial-scale=1"</span> /&gt;
+	&lt;<span class="syntax-property">title</span>&gt;HTML page&lt;<span class="syntax-property">/title</span>&gt;
+	&lt;<span class="syntax-property">link</span> rel=<span class="syntax-value">"stylesheet"</span> href=<span class="syntax-value">"styles/stylesheet.css"</span> /&gt;
+
+&lt;<span class="syntax-keyword">/head</span>&gt;
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+<span class="syntax-comment">&lt;!-- Webpage content goes here --&gt;</span>
+
+&lt;<span class="syntax-property">script</span> src=<span class="syntax-value">"scripts/myfile.js"</span>&gt;&lt;<span class="syntax-property">/script</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+&lt;<span class="syntax-keyword">/html</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<h2>Elements</h2>
+
+		<p>HTML elements usually consist of a <strong>start tag</strong> and an <strong>end tag</strong>. The HTML element is everything from the start tag to the end tag.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">&lt;!-- Example HTML element --&gt;</span>
+&lt;<span class="syntax-keyword">start-tag</span>&gt;Content here&lt;<span class="syntax-keyword">/end-tag</span>&gt;
+
+&lt;<span class="syntax-keyword">p</span>&gt;Example paragraph&lt;<span class="syntax-keyword">/p</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<p>Elements with no content are called <span class="hl">empty elements</span>. Empty elements do not have an end tag. <span class="hl">&lt;br&gt;</span> is an empty element without a closing tag.</p>
+
+		<p>Empty elements can be <strong>"closed"</strong> by using a backslash within the tag itself: <span class="hl">&lt;br /&gt;</span>.</p>
+
+		<blockquote>
+			<p>HTML5 <strong>does not</strong> require empty elements to be closed. If you want stricter validation, or you need to make the document to be readable by XML parsers, you can use this method.</p>
+		</blockquote>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">&lt;!-- This is acceptable --&gt;</span>
+&lt;<span class="syntax-keyword">br</span>&gt;
+<span class="syntax-comment">&lt;!-- This is the strict version and still works --&gt;</span>
+&lt;<span class="syntax-keyword">br /</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->		
+
+		<h2>Attributes</h2>
+
+		<p>Attributes provide additional information about HTML elements. All HTML elements can have attributes. To specify an attribute, it should always be added to the start/opening tag. Attributes are normally in name/value pairs.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">start-tag</span> attribute=<span class="syntax-value">"value"</span>&gt;Content here&lt;<span class="syntax-keyword">/end-tag</span>&gt;
+
+<span class="syntax-comment">&lt;!-- lang attribute added --&gt;</span>
+&lt;<span class="syntax-keyword">html</span> lang=<span class="syntax-value">"en"</span>&gt;
+<span class="syntax-comment">&lt;!-- This link has the href attribute --&gt;</span>
+&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"https://www.google.co.uk"</span>&gt;This is a link&lt;<span class="syntax-keyword">/a</span>&gt;
+
+<span class="syntax-comment">&lt;!-- class attribute added to the element so we can use CSS class --&gt;</span>
+&lt;<span class="syntax-keyword">div</span> class=<span class="syntax-value">"css-class"</span>&gt; ... &lt;<span class="syntax-keyword">/div</span>&gt;
+<span class="syntax-comment">&lt;!-- ID attribute added to the element so we can use CSS id --&gt;</span>
+&lt;<span class="syntax-keyword">div</span> id=<span class="syntax-value">"css-id"</span>&gt; ... &lt;<span class="syntax-keyword">/div</span>&gt;
+
+<span class="syntax-comment">&lt;!-- js hook attribute added to the element so we can use JavaScript --&gt;</span>
+&lt;<span class="syntax-keyword">div</span> class=<span class="syntax-value">"js-class"</span>&gt; ... &lt;<span class="syntax-keyword">/div</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->	
+
+		<blockquote>
+			<p>It is recommended to use JavaScript <strong>hooks</strong> to identify JavaScript when using HTML attributes. The attribute should always be prefixed with <span class="hl">js-</span>. This allows the element to be styled using CSS without the need to change the JavaScript code also if the styling should change.</p>
+		</blockquote>
+
+		<p>Multiple attributes can be added to an element.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">&lt;!-- multiple attributes can be added to HTML elements --&gt;</span>
+&lt;<span class="syntax-keyword">div</span> id=<span class="syntax-value">"css-id"</span> class=<span class="syntax-value">"css-class css-class-two js-class"</span>&gt; ... &lt;<span class="syntax-keyword">/div</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example -->		
+
+		<blockquote>
+			<p>The HTML5 standard <strong>does not</strong> require quotes around attribute values, but it is recommended.</p>
+		</blockquote>			
+
+		<h2>Comments</h2>
+
+		<p>Comment tags are used to insert comments into the HTML source code. Comments are not displayed by the browser, but they can help to document your HTML code.</p>
+
+		<blockquote>
+			<p>HTML comments start with an exclamation mark <span class="hl">!</span> in the opening tag, but not in the closing tag.</p>
+		</blockquote>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+<span class="syntax-comment">&lt;!-- Comment Here --&gt;</span>
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example --> 
+
+		<h2>Links</h2>
+
+		<p>Links are defined with the <span class="hl">&lt;a&gt;</span> tag. The <span class="hl">href</span> attribute specifies the <strong>destination web address/URL</strong> of the link and the <span class="hl">link text</span> will be the visible label given to the link. Clicking on the link text will open the specified address.</p>
+
+		<p>Links can be used to open external URL/full web addresses or pages within the current website.</p>
+
+		<p>Links should be added between the opening <span class="hl">&lt;body&gt;</span> and closing <span class="hl">&lt;/body&gt;</span> tags.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+	<span class="syntax-comment">&lt;!-- Open Google --&gt;</span>
+	&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"http://www.google.co.uk"</span>&gt;Google&lt;<span class="syntax-keyword">/a</span>&gt;
+
+	<span class="syntax-comment">&lt;!-- Open page2.html within the current website --&gt;</span>
+	&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"page2.html"</span>&gt;Open Page 2&lt;<span class="syntax-keyword">/a</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example --> 
+
+		<p>Should you want to open the link in a new browser tab/window, the <span class="hl">target</span> attribute can be used.</p>
+
+		<!-- Code example -->
+		<div class="code" rel="html" data-title="HTML">
+			<pre>
+				<code>
+<!-- Leave this line empty -->
+&lt;<span class="syntax-keyword">body</span>&gt;
+
+	<span class="syntax-comment">&lt;!-- Open Google in a new browser window/tab --&gt;</span>
+	&lt;<span class="syntax-keyword">a</span> href=<span class="syntax-value">"http://www.google.co.uk"</span> target=<span class="syntax-value">"_blank"</span>&gt;Google&lt;<span class="syntax-keyword">/a</span>&gt;
+
+&lt;<span class="syntax-keyword">/body</span>&gt;
+				</code>
+			</pre>
+		</div>
+		<!-- / Code example --> 		
+
+	</div>
+</div>
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Languages</h3>
+
+			<ul class="no-bullets">
+				<li><a href="index.html" class="footer__link">HTML</a></li>
+				<li><a href="dev-css.html" class="footer__link">CSS</a></li>
+				<li><a href="dev-scss.html" class="footer__link">SCSS &amp; Sass</a></li>
+				<li><a href="dev-js.html" class="footer__link">JavaScript</a></li>
+				<li><a href="dev-php.html" class="footer__link">PHP</a></li>
+				<li><a href="dev-python.html" class="footer__link">Python</a></li>
+				<li><a href="dev-ruby.html" class="footer__link">Ruby</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Tools</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-node.html" class="footer__link">Node</a></li>
+				<li><a href="dev-babel.html" class="footer__link">Babel</a></li>
+				<li><a href="dev-webpack.html" class="footer__link">Webpack</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Frameworks</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-jquery.html" class="footer__link">jQuery</a></li>
+				<li><a href="dev-react.html" class="footer__link">React</a></li>
+				<li><a href="dev-angular.html" class="footer__link">Angular</a></li>
+				<li><a href="dev-express.html" class="footer__link">Express</a></li>
+			</ul>
+		</div>
+
+		<div class="small-12 medium-6 large-2 columns">
+			<h3>Other</h3>
+
+			<ul class="no-bullets">
+				<li><a href="dev-wordpress.html" class="footer__link">WordPress</a></li>
+				<li><a href="dev-bem.html" class="footer__link">BEM</a></li>
+			</ul>
+		</div>
+
+		<div class="small-2 medium-2 large-2 columns">
+			<!-- Empty column -->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
