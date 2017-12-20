@@ -1,0 +1,255 @@
+{
+  "page": {
+    "pagetitle": "Vue.js Component",
+    "pageheading": "Component",
+    "pageintro": null,
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction to Components",
+        "copy": [
+          "Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code.",
+          "Components should have the file extension of '.vue' and all filenames should start with an uppercase letter."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "App.vue",
+        "copy": [
+          "This is the main component of the app - App.vue - and is the first to be rendered. It contains an image and a component called &lt;router-view/&gt;. This is a component of vue-router.",
+          "This template is used throughout the application. The Vue logo will appear in all templates as it's within this component (template)."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "App.vue (src/App.vue)",
+        "code": [
+          "&lt;<span class='name'>template</span>&gt;",
+          "  &lt;<span class='name'>div</span> <span class='keyword'>id</span>=<span class='value'>'app'</span>&gt;",
+          "    &lt;<span class='name'>img</span> <span class='keyword'>src</span>=<span class='value'>'./assets/logo.png'</span>&gt;",
+          "    &lt;<span class='name'>router-view/</span>&gt;",
+          "  &lt;<span class='name'>/div</span>&gt;",
+          "&lt;<span class='name'>/template</span>&gt;",
+          "",
+          "&lt;<span class='tag'>script</span>&gt;",
+          "<span class='keyword'>export</span> default {",
+          "  <span class='name'>name</span>: <span class='value'>'app'</span>",
+          "}",
+          "&lt;<span class='tag'>/script</span>&gt;",
+          "",
+          "&lt;<span class='tag'>style</span>&gt;",
+          "<span class='name'>#app</span> {",
+          "  <span class='name'>font-family</span>: <span class='value'>'Avenir', Helvetica, Arial, sans-serif</span>;",
+          "  <span class='name'>-webkit-font-smoothing</span>: <span class='value'>antialiased</span>;",
+          "  <span class='name'>-moz-osx-font-smoothing</span>: <span class='value'>grayscale</span>;",
+          "  <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "  <span class='name'>color</span>: <span class='value'>#2c3e50</span>;",
+          "  <span class='name'>margin-top</span>: <span class='value'>60px</span>;",
+          "}",
+          "&lt;<span class='tag'>/style</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The App.vue component is imported into the main.js file to be used within the application."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "main.js (src/main.js)",
+        "code": [
+          "<span class='comment'>// The Vue build version to load with the `import` command",
+          "// (runtime-only or standalone) has been set in webpack.base.conf with an alias.</span>",
+          "<span class='keyword'>import</span> <span class='name'>Vue</span> from <span class='value'>'vue'</span>",
+          "<span class='keyword'>import</span> <span class='name'>App</span> from <span class='value'>'./App'</span>",
+          "<span class='keyword'>import</span> <span class='name'>router</span> from <span class='value'>'./router'</span>",
+          "",
+          "<span class='keyword'>Vue</span>.config.productionTip = <span class='value'>false</span>",
+          "",
+          "<span class='comment'>/* eslint-disable no-new */</span>",
+          "<span class='keyword'>new</span> <span class='name'>Vue</span>({",
+          "  <span class='name'>el</span>: <span class='value'>'#app'</span>,",
+          "      <span class='value'>router</span>,",
+          "  <span class='name'>template</span>: <span class='value'>'&lt;App/&gt;'</span>,",
+          "  <span class='name'>components</span>: { <span class='value'>App</span> }",
+          "})"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The application is rendered within the 'root' element of the index.html page."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "HTML",
+        "datatitle": "index.html",
+        "code": [
+          "&lt;!DOCTYPE <span class='keyword'>html</span>&gt;",
+          "&lt;<span class='name'>html</span>&gt;",
+          "  &lt;<span class='name'>head</span>&gt;",
+          "    &lt;<span class='name'>meta</span> <span class='keyword'>charset</span>=<span class='value'>'utf-8'</span>&gt;",
+          "    &lt;<span class='name'>meta</span> <span class='keyword'>name</span>=<span class='value'>'viewport'</span> <span class='keyword'>content</span>=<span class='value'>'width=device-width,initial-scale=1.0'</span>&gt;",
+          "    &lt;<span class='name'>title</span>&gt;my-project&lt;<span class='name'>/title</span>&gt;",
+          "  &lt;<span class='name'>/head</span>&gt;",
+          "  &lt;<span class='name'>body</span>&gt;",
+          "    &lt;<span class='name'>div</span> <span class='keyword'>id</span>=<span class='value'>'app'</span>&gt;&lt;<span class='name'>/div</span>&gt;",
+          "    <span class='comment'>&lt;!-- built files will be auto injected --&gt;</span>",
+          "  &lt;<span class='name'>/body</span>&gt;",
+          "&lt;<span class='name'>/html</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "New Component",
+        "copy": [
+          "We will now create a new component. Open a new file and add the following code.",
+          "Components should be placed in the 'components' directory within 'src'.",
+          "When writing code in Vue.js, two spaces are used for indentation and not tabs. Without correct formatting, es-lint will show errors in the console/terminal."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "MyComponent.vue (src/components/MyComponent.vue)",
+        "code": [
+          "&lt;<span class='name'>template</span>&gt;",
+          "  &lt;<span class='name'>p</span>&gt;This is a new component.&lt;<span class='name'>/p</span>&gt;",
+          "&lt;<span class='name'>/template</span>&gt;",
+          "",
+          "&lt;<span class='tag'>script</span>&gt;",
+          "  <span class='name'>export</span>: <span class='value'>default</span> {",
+          "    <span class='name'>name</span>: <span class='value'>'mycomponent'</span>,",
+          "    <span class='name'>data</span>: <span class='keyword'>function</span> () {",
+          "      <span class='return'>return</span> {}",
+          "    },",
+          "    <span class='name'>methods</span>: {}",
+          "  }",
+          "&lt;<span class='tag'>/script</span>&gt;",
+          "",
+          "&lt;<span class='tag'>style</span> <span class='keyword'>scoped</span>&gt;",
+          "  <span class='comment'>/* component-only CSS when using 'scoped' */</span>",
+          "&lt;<span class='tag'>/style</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We are going to add our component to the vue-router so we can view the template. Open the src/router/index.js file and add the new component to the router.",
+          "Our new component should be visible here: <a href='http://localhost:8080/#/newcomponent' target='_application'>http://localhost:8080/#/newcomponent</a>.",
+          "So, when reaching http://localhost:8080/#/newcomponent vue-router will render the attached component of the path/login we defined in router/index.js inside the router-view component. Since the App component contains the image of Vue.js logo in this template, we also have it display."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "index.js (src/router/index.js)",
+        "code": [
+          "<span class='keyword'>import</span> <span class='name'>Vue</span> from <span class='value'>'vue'</span>",
+          "<span class='keyword'>import</span> <span class='name'>Router</span> from <span class='value'>'vue-router'</span>",
+          "",
+          "<span class='keyword'>import</span> <span class='name'>HelloWorld</span> from <span class='value'>'@/components/HelloWorld'</span>",
+          "<span class='comment'>// Import our new component</span>",
+          "<span class='keyword'>import</span> <span class='name'>MyComponent</span> from <span class='value'>'@/components/MyComponent'</span>",
+          "",
+          "<span class='keyword'>Vue</span>.use(<span class='value'>Router</span>)",
+          "",
+          "<span class='keyword'>export</span> default <span class='keyword'>new</span> <span class='name'>Router</span>({",
+          "  <span class='name'>routes</span>: [",
+          "    {",
+          "      <span class='name'>path</span>: <span class='value'>'/'</span>,",
+          "      <span class='name'>name</span>: <span class='value'>'HelloWorld'</span>,",
+          "      <span class='name'>component</span>: <span class='value'>HelloWorld</span>",
+          "    },",
+          "    {",
+          "      <span class='comment'>// Add the route to our new component</span>",
+          "      <span class='name'>path</span>: <span class='value'>'/newcomponent'</span>,",
+          "      <span class='name'>name</span>: <span class='value'>'mycomponent'</span>,",
+          "      <span class='name'>component</span>: <span class='value'>MyComponent</span>",
+          "    }",
+          "  ]",
+          "})"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Navigate between views",
+        "copy": [
+          "Now that we have created a new component (view), we can use a component of vue-router called router-link, to link them.",
+          "&lt;router-link&gt; is the component for enabling user navigation in a router-enabled app. The target location is specified with the to prop. It renders as an &lt;a&gt; tag with correct href by default, but can be configured with the tag prop. In addition, the link automatically gets an active CSS class when the target route is active."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "JavaScript",
+        "code": [
+          "&lt;<span class='name'>router-link</span> <span class='keyword'>to</span>=<span class='value'>'/newcomponent'</span>&gt;New Component&lt;<span class='name'>/router-link</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The router-link can be added to our component so we can navigate back to the homepage of our application."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "MyComponent.vue (src/components/MyComponent.vue)",
+        "code": [
+          "&lt;<span class='name'>template</span>&gt;",
+          "  &lt;<span class='name'>div</span>&gt;",
+          "    &lt;<span class='name'>p</span>&gt;This is a new component.&lt;<span class='name'>/p</span>&gt;",
+          "    <span class='comment'>&lt;!-- Link to the home page (root) --&gt;</span>",
+          "    &lt;<span class='name'>router-link</span> <span class='keyword'>to</span>=<span class='value'>'/'</span>&gt;Home&lt;<span class='name'>/router-link</span>&gt;",
+          "  &lt;<span class='name'>/div</span>&gt;",
+          "&lt;<span class='name'>/template</span>&gt;",
+          "",
+          "&lt;<span class='tag'>script</span>&gt;",
+          "  <span class='name'>export</span>: <span class='value'>default</span> {",
+          "    <span class='name'>name</span>: <span class='value'>'mycomponent'</span>,",
+          "    <span class='name'>data</span>: <span class='keyword'>function</span> () {",
+          "      <span class='return'>return</span> {}",
+          "    },",
+          "    <span class='name'>methods</span>: {}",
+          "  }",
+          "&lt;<span class='tag'>/script</span>&gt;",
+          "",
+          "&lt;<span class='tag'>style</span> <span class='keyword'>scoped</span>&gt;",
+          "  <span class='comment'>/* component-only CSS when using 'scoped' */</span>",
+          "&lt;<span class='tag'>/style</span>&gt;"
+        ]
+      },
+
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Updating HelloWorld",
+        "copy": [
+          "Our current HelloWorld component is used as the homepage for our application. We should rename the component (view) to 'Home' to be more in keeping with it's purpose.",
+          "Locate the existing 'HelloWorld' component and rename the file to be 'Home.vue'. The src/router/index.js file and test/unit/specs/HelloWorld.spec.js file will also need to be updated."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      }
+    ]
+  }
+}

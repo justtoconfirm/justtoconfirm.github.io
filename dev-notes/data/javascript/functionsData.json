@@ -15,7 +15,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Example function declaration</span>",
           "<span class='keyword'>function</span> <span class='name'>functionName</span> () {",
@@ -33,7 +33,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Call the function</span>",
           "<span class='name'>functionName</span> ();"
@@ -49,7 +49,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>/*",
           "@param {number} The radius of the circle",
@@ -74,7 +74,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='return'>return</span> <span class='value'>value</span>;"
         ]
@@ -89,7 +89,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>computerOn</span> = <span class='value'>false</span>;",
           "",
@@ -121,7 +121,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>orderCount</span> = <span class='value'>0</span>;",
           "",
@@ -184,7 +184,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Declare a function with two parameters</span>",
           "<span class='keyword'>function</span> <span class='name'>multiplyNumbers</span> ( <span class='value'>num1</span>, <span class='value'>num2</span> ) {",
@@ -210,7 +210,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>function</span> <span class='name'>player</span> ( <span class='value'>args</span> ) {",
           "",
@@ -237,7 +237,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>function</span> <span class='name'>calculateSize</span> ( <span class='value'>width</span>, <span class='value'>height</span>, <span class='value'>depth</span> ) {",
           "",

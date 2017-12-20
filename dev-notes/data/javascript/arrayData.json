@@ -1,0 +1,137 @@
+{
+  "page": {
+    "pagetitle": "JavaScript Array",
+    "pageheading": "Array",
+    "pageintro": "",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Create an Array",
+        "copy": [
+          "The JavaScript Array object is a global object that is used to construct arrays; which are high-level, list-like objects. Arrays are used to store multiple values in a single variable.",
+          "An array can hold many values under a single name that can be accessed using an index number.",
+          "The typeof operator in JavaScript returns 'object' for arrays. Arrays use numbers (indexes) to access elements. Objects use names (key/value pairs) to access it's 'members'. In JavaScript, it is best to describe arrays as arrays and not objects.",
+          "An example to create an empty array:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>array</span> = [ ];"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Assign values",
+        "copy": [
+          "Once an array has been created, values (elements) can be assigned. The following example creates an array to list a number of fruits."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Length property",
+        "copy": [
+          "The length property returns the number of elements within the array. This is the length of the array."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];",
+          "",
+          "<span class='name'>fruits</span>.<span class='keyword'>length</span>;    <span class='comment'>// 3</span>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Accessing Array elements",
+        "copy": [
+          "Each element in an array has an index number. [0] is the first element in an array, [1] is the second, and so on. The first element in an array always starts at 0."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];",
+          "",
+          "<span class='name'>fruits</span>[0];    <span class='comment'>// Apple</span>",
+          "<span class='name'>fruits</span>[1];    <span class='comment'>// Banana</span>",
+          "<span class='name'>fruits</span>[2];    <span class='comment'>// Orange</span>",
+          "",
+          "<span class='comment'>// Return the last element in the array</span>",
+          "<span class='name'>fruits</span>[<span class='name'>fruits</span>.<span class='keyword'>length</span> - <span class='value'>1</span>];"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Adding elements",
+        "copy": [
+          "New elements can be added to the end of an array using the push() method or length property. Here we are using both examples to add 'Lemon' or 'Pear' as a new element into our Array."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];",
+          "",
+          "<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange', 'Lemon']</span>",
+          "<span class='name'>fruits</span>.<span class='keyword'>push</span>( <span class='value'>'Lemon'</span> );",
+          "",
+          "<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange', 'Pear']</span>",
+          "<span class='name'>fruits</span>[<span class='name'>fruits</span>.<span class='keyword'>length</span>] = <span class='value'>'Pear'</span>;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Removing elements",
+        "copy": [
+          "To remove the last element from an array, the pop() method can be used."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];",
+          "",
+          "<span class='name'>fruits</span>.<span class='keyword'>pop</span>();    <span class='comment'>// Remove the last element, returns 'Orange'</span>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Sorting the Array",
+        "copy": [
+          "To alphabetically sort an array, the sort() method can be used."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Banana'</span>, <span class='value'>'Apple'</span>, <span class='value'>'Orange'</span>];",
+          "",
+          "<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange']</span>",
+          "<span class='name'>fruits</span>.<span class='keyword'>sort</span>();"
+        ]
+      }        
+    ]
+  }
+}

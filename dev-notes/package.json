@@ -2,10 +2,15 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run compile-scss && npm run build-js-variables && npm run build-js-functions && npm run build-js-objects",
+    "build": "npm run compile-scss && npm run build-js && npm run build-js-array && npm run build-js-variables && npm run build-js-functions && npm run build-js-objects && npm run build-vuejs && npm run build-vuejs-install && npm run build-vuejs-component",
+    "build-js": "mustache -p views/partials/footer.mustache data/javascript/javascriptData.json views/templates/pageTemplate.mustache > dist/pages/js/javascript.html",
+    "build-js-array": "mustache -p views/partials/footer.mustache data/javascript/arrayData.json views/templates/pageTemplate.mustache > dist/pages/js/js-array.html",
     "build-js-variables": "mustache -p views/partials/footer.mustache data/javascript/variablesData.json views/templates/pageTemplate.mustache > dist/pages/js/js-variables.html",
     "build-js-functions": "mustache -p views/partials/footer.mustache data/javascript/functionsData.json views/templates/pageTemplate.mustache > dist/pages/js/js-functions.html",
     "build-js-objects": "mustache -p views/partials/footer.mustache data/javascript/objectsData.json views/templates/pageTemplate.mustache > dist/pages/js/js-objects.html",
+    "build-vuejs": "mustache -p views/partials/footer.mustache data/vuejs/vuejsData.json views/templates/pageTemplate.mustache > dist/pages/vuejs/vuejs.html",
+    "build-vuejs-install": "mustache -p views/partials/footer.mustache data/vuejs/installData.json views/templates/pageTemplate.mustache > dist/pages/vuejs/vuejs-install.html",
+    "build-vuejs-component": "mustache -p views/partials/footer.mustache data/vuejs/componentData.json views/templates/pageTemplate.mustache > dist/pages/vuejs/vuejs-component.html",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",
     "minify-css": "minify dist/css/style.css"

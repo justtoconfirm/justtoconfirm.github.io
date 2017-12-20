@@ -18,7 +18,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>/** Example one **/</span>",
           "",
@@ -72,7 +72,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Declaring and initializing a variable</span>",
           "<span class='keyword'>var</span> <span class='name'>myName</span> = <span class='value'>'Dan'</span>;",
@@ -94,7 +94,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Declaring and initializing a variable</span>",
           "<span class='keyword'>var</span> <span class='name'>myName</span> = <span class='value'>'Dan'</span>;",
@@ -113,7 +113,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// The same value of 'true' in memory, is being used by two variables</span>",
           "<span class='keyword'>var</span> <span class='name'>variableOne</span> = <span class='value'>'true'</span>",
@@ -132,7 +132,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>/*", 
           "Declaring and initializing a variable",

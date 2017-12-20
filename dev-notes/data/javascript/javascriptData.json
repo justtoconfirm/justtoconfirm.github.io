@@ -1,0 +1,87 @@
+{
+  "page": {
+    "pagetitle": "JavaScript",
+    "pageheading": "JavaScript",
+    "pageintro": null,
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Chapters",
+        "copy": [
+          "<a href='js-variables.html'>Variables</a>",
+          "<a href='js-functions.html'>Functions</a>",
+          "<a href='js-array.html'>Array</a>",
+          "<a href='js-objects.html'>Objects</a>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Statements",
+        "copy": [
+          "A script is a series of instructions that a computer can follow one-by-one. Each individual instruction is known as a statement. Statements should end with a semicolon.",
+          "Some statements are surrounded by curly braces. These are known as code blocks. The closing curly brace is not followed by a semicolon.",
+          "Statements should always start on a new line. This makes your code easier to read and maintain. The semicolon at the end also tells the JavaScript interpreter when a statement ends indicating that it should move to the next line/statement."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Syntax Errors",
+        "copy": [
+          "These are the most basic kind of errors, also known as parsing errors. They occur in interpretation time in JavaScript. Something is wrong with how the code has been written.",
+          "The last line of code in this example will cause a syntax error because it is missing a closing parenthesis. Usually when a syntax error occurs in JavaScript, the rest of the code in other threads will get executed if they contain nothing that depends on the code containing the error."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "JS",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='keyword'>var</span> <span class='name'>x</span> = <span class='value'>2</span>;",
+          "<span class='keyword'>var</span> <span class='name'>y</span> = <span class='value'>3</span>;",
+          "",
+          "<span class='comment'>// Uncaught SyntaxError: missing ')' after argument list</span>",
+          "console.log( <span class='name'>x</span> + <span class='name'>y</span>;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Runtime Error",
+        "copy": [
+          "Also known as exceptions. These errors occur when your program is executed, usually when it has been compiled or interpreted. Even though the syntax maybe correct, at runtime it is trying to call a method that doesn't exist."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "ECMA",
+        "copy": [
+          "ECMAScript is the standard for scripting languages and JavaScript is an implementation of ECMAScript. ECMA stands for European Computer Manufacturer's Association. ECMAScript and JavaScript are virtually the same thing.",
+          "The first standardised version of JavaScript was referred to as ES5. Today, the current version of JavaScript is referred to as ES6/ECMAScript 2015/ES2015. This is the very first update to the language since it was standardised in 2009."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      }
+    ]
+  }
+}

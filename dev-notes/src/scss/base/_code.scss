@@ -1,0 +1,35 @@
+/* Code block */
+pre {
+	padding: 0 25px;
+	margin-top: 0;
+	tab-size: 2;
+	color: #fff;
+	background-color: #000;
+}
+
+code {
+	/* Allow code examples to wrap when viewport width is small */
+	white-space: pre-wrap;
+	font-size: 14px;
+}
+
+/* Code block description bar */
+.code:before {
+	width: 100%;
+	padding: 10px 0;
+	text-indent: 15px;
+	display: block;
+	content: attr(data-title);
+}
+
+/* Code block description bar colour - JavaScript / jQuery */
+.code[rel="js"]::before {
+	color: #fff;
+	background-color: #ff9800;
+}
+
+/* Code block description bar colour - HTML */
+.code[rel="html"]::before {
+	color: #fff;
+	background-color: #1779ba;
+}

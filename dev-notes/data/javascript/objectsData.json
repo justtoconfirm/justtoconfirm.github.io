@@ -16,7 +16,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>obj</span> = {",
           "",
@@ -36,7 +36,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": false,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": null
       },
       {
@@ -49,7 +49,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": false,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": null
       },
       {
@@ -62,7 +62,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": false,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": null
       }, 
       {
@@ -76,7 +76,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": false,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": null
       },  
       {
@@ -90,7 +90,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>obj</span> = {",
           "",
@@ -113,7 +113,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>obj</span> = {",
           "",
@@ -141,7 +141,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>hotel</span> = {",
           "   <span class='name'>name</span> : <span class='value'>'The Grand Hotel'</span>,",
@@ -161,7 +161,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='name'>hotel</span>.<span class='name'>name</span>;    <span class='comment'>// The Grand Hotel</span>",
           "<span class='name'>hotel</span>.<span class='name'>rooms</span>;    <span class='comment'>// 104</span>" 
@@ -179,7 +179,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>var</span> <span class='name'>hotel</span> = {",
           "   <span class='name'>name</span> : <span class='value'>'The Grand Hotel'</span>,",
@@ -211,7 +211,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>function</span> <span class='name'>Hotel</span> ( <span class='value'>name</span>, <span class='value'>rooms</span>, <span class='value'>booked</span> ) {",
           "",
@@ -244,7 +244,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='keyword'>function</span> <span class='name'>Hotel</span> ( <span class='value'>name</span>, <span class='value'>rooms</span>, <span class='value'>booked</span> ) {",
           "",
@@ -282,7 +282,7 @@
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
-        "datatitle": "JS",
+        "datatitle": "JavaScript",
         "code": [
           "<span class='comment'>// Object containing properties and values</span>",
           "<span class='keyword'>var</span> <span class='name'>options</span> = {",
@@ -298,36 +298,6 @@
           "<span class='name'>title</span>;    <span class='comment'>// Menu</span>",
           "<span class='name'>width</span>;    <span class='comment'>// 100</span>",
           "<span class='name'>height</span>;   <span class='comment'>// 50</span>"
-        ]
-      },
-      {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "Objects, keys & entries",
-        "copy": null,
-        "label": "CODE/MARKUP",
-        "showmarkup": true,
-        "rel": "js",
-        "datatitle": "JS",
-        "code": [
-          "<span class='comment'>// Object containing properties</span>",
-          "<span class='keyword'>var</span> <span class='name'>user</span> = {",
-          "    <span class='name'>name</span> : <span class='value'>'Dan'</span>,",
-          "    <span class='name'>age</span> : <span class='value'>30</span>",
-          "};",
-          "",
-          "<span class='comment'>// Loop over the properties in the object</span>",
-          "<span class='keyword'>for</span> ( <span class='keyword'>var</span> <span class='value'>value</span> of <span class='keyword'>Object</span>.<span class='value'>values</span> ( <span class='value'>user</span> ) ) {",
-          "",
-          "    <span class='comment'>// Output the values in the object</span>",
-          "    console.log( <span class='value'>value</span> );   <span class='comment'>// Dan, 30</span>",
-          "",
-          "}",
-          "",
-          "<span class='comment'>// Output all the object property names and properties</span>",
-          "<span class='keyword'>Object</span>.<span class='value'>keys</span>( <span class='value'>user</span> );    <span class='comment'>// [ 'name', 'age' ]</span>",
-          "<span class='keyword'>Object</span>.<span class='value'>values</span>( <span class='value'>user</span> );    <span class='comment'>// [ 'Dan', 30 ]</span>",
-          "<span class='keyword'>Object</span>.<span class='value'>entries</span>( <span class='value'>user</span> );      <span class='comment'>// [ 'name', 'Dan'], [ 'age', '30' ]</span>"
         ]
       }
     ]

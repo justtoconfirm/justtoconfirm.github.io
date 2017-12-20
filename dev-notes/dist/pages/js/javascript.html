@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../../src/img/favicon/code.ico" />
+    <title>Dev notes - JavaScript</title>
+    <link rel="stylesheet" href="../../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>JavaScript</h1>
+            <h2></h2>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section>
+                <h3>Chapters</h3>
+                <p><a href='js-variables.html'>Variables</a></p>
+                <p><a href='js-functions.html'>Functions</a></p>
+                <p><a href='js-array.html'>Array</a></p>
+                <p><a href='js-objects.html'>Objects</a></p>
+            </section>
+            <section>
+                <h3>Statements</h3>
+                <p>A script is a series of instructions that a computer can follow one-by-one. Each individual instruction is known as a statement. Statements should end with a semicolon.</p>
+                <p>Some statements are surrounded by curly braces. These are known as code blocks. The closing curly brace is not followed by a semicolon.</p>
+                <p>Statements should always start on a new line. This makes your code easier to read and maintain. The semicolon at the end also tells the JavaScript interpreter when a statement ends indicating that it should move to the next line/statement.</p>
+            </section>
+            <section>
+                <h3>Syntax Errors</h3>
+                <p>These are the most basic kind of errors, also known as parsing errors. They occur in interpretation time in JavaScript. Something is wrong with how the code has been written.</p>
+                <p>The last line of code in this example will cause a syntax error because it is missing a closing parenthesis. Usually when a syntax error occurs in JavaScript, the rest of the code in other threads will get executed if they contain nothing that depends on the code containing the error.</p>
+                <!-- Code example -->
+                <div class="code" rel="JS" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>x</span> = <span class='value'>2</span>;
+<span class='keyword'>var</span> <span class='name'>y</span> = <span class='value'>3</span>;
+
+<span class='comment'>// Uncaught SyntaxError: missing ')' after argument list</span>
+console.log( <span class='name'>x</span> + <span class='name'>y</span>;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section>
+                <h3>Runtime Error</h3>
+                <p>Also known as exceptions. These errors occur when your program is executed, usually when it has been compiled or interpreted. Even though the syntax maybe correct, at runtime it is trying to call a method that doesn't exist.</p>
+            </section>
+            <section>
+                <h3>ECMA</h3>
+                <p>ECMAScript is the standard for scripting languages and JavaScript is an implementation of ECMAScript. ECMA stands for European Computer Manufacturer's Association. ECMAScript and JavaScript are virtually the same thing.</p>
+                <p>The first standardised version of JavaScript was referred to as ES5. Today, the current version of JavaScript is referred to as ES6/ECMAScript 2015/ES2015. This is the very first update to the language since it was standardised in 2009.</p>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	Page Footer
+</footer>
+
+</body>
+</html>
