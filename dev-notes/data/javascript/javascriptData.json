@@ -12,7 +12,22 @@
           "<a href='js-variables.html'>Variables</a>",
           "<a href='js-functions.html'>Functions</a>",
           "<a href='js-array.html'>Array</a>",
-          "<a href='js-objects.html'>Objects</a>"
+          "<a href='js-objects.html'>Objects</a>",
+          "<a href='js-xhr.html'>XMLHttpRequest</a>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "JavaScript tools",
+        "copy": [
+          "JavaScript libraries — Usually one or more JavaScript files containing custom functions that you can attach to your web page to speed up or enable writing common functionality. Examples include jQuery.",
+          "JavaScript frameworks — The next step up from libraries, JavaScript frameworks - Angular, Vue.js, Ember, Backbone.js - tend to be packages of HTML, CSS, JavaScript, and other technologies that you install and then use to write an entire web application from scratch."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
