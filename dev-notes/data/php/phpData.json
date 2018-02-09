@@ -1,0 +1,86 @@
+{
+  "page": {
+    "pagetitle": "PHP",
+    "pageheading": "PHP",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='php-variables.html'>Variables</a>",
+          "<a href='php-functions.html'>Functions</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction to PHP",
+        "copy": [
+          "PHP (PHP: Hypertext Preprocessor) is an open-source, server-side scripting language for building interactive web pages and applications. Both WordPress and Drupal are written in PHP.",
+          "PHP files have the file extension .php",
+          "A PHP script is executed on the server, and plain HTML is returned to the browser. PHP scripts can be placed anywhere within a document and start with &lt;?php before ending with ?&gt;"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "php",
+        "datatitle": "PHP",
+        "code": [
+          "&lt;<span class='keyword'>?php</span>",
+          "<span class='comment'>// PHP code goes here</span>",
+          "<span class='keyword'>?</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Below we have an example of a simple PHP script. We use the PHP built-in echo function to output 'Hello World' onto a web page."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "php",
+        "datatitle": "PHP : index.php",
+        "code": [
+          "&lt;!DOCTYPE html&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;",
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;",
+          "    &lt;<span class='keyword'>title</span>&gt;Page Title&lt;<span class='keyword'>/title</span>&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;",
+          "&lt;<span class='keyword'>body</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>?php</span>",
+          "<span class='keyword'>echo</span> 'Hello World';",
+          "<span class='keyword'>?</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>/body</span>&gt;",
+          "&lt;<span class='keyword'>/html</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "PHP Local Server",
+        "copy": [
+          "PHP 5.4 and later have a built-in web server that can be used for local PHP development. You will need to open your terminal to run the server.",
+          "If successful, it should be possible to view your server in the browser at: <a href='http://localhost:8000' target='_blank'>http://localhost:8000</a>. If you have a file named 'hello.php', for example, you would use the URL http://localhost:8000/hello.php"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "<span class='comment'># Example: cd desktop/php-app</span>",
+          "$ <span class='keyword'>cd</span> path/to/your/app",
+          "$ <span class='keyword'>php</span> <span class='name'>-S</span> localhost:8000",
+          "",
+          "<span class='comment'># Typical output if server is running</span>",
+          "PHP 7.1.7 Development Server started at Wed Jan 31 10:42:49 2018",
+          "Listening on http://localhost:8000",
+          "Document root is /Users/dan.jackson/Desktop"
+        ]
+      }
+    ]
+  }
+}

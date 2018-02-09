@@ -1,0 +1,65 @@
+{
+  "page": {
+    "pagetitle": "React.js Elements",
+    "pageheading": "Elements",
+    "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='reactjs.html'>React.js</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Elements are the smallest building blocks of a React application and are used to describe what you want to see on the screen. Unlike browser DOM elements, React elements are objects. Components in React are made up of elements. React DOM takes care of updating the DOM to match the React element.",
+          "Once you create an element you cannot change its children or attributes, the React element is immutable. The element is a representation of the UI at a certain point in time."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='comment'>{/* Element in a variable */}</span>",
+          "<span class='keyword'>const</span> <span class='name'>elem</span> = &lt;<span class='keyword'>h1</span>&gt;Hello World&lt;<span class='keyword'>/h1</span>&gt;;",
+          "",
+          "<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "    <span class='name'>elem</span>,    <span class='comment'>{/* Element rendered using the variable name */}</span>",
+          "    &lt;<span class='keyword'>h2</span>&gt;Welcome&lt;<span class='keyword'>/h2</span>&gt;,    <span class='comment'>{/* Element rendered without variable */}</span>",
+          "    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Example : Clock",
+        "copy": [
+          "In this next example, we will create a ticking clock. A function will be created containing a new element that will be passed into the ReactDOM.render method. The function will be called every second to update the clock displayed on the page. In practice, most React applications only call ReactDOM.render once.",
+          "If you inspect the HTML of our simple application, only the time will be updated and the page will remain the same. React DOM compares the element and its children to the previous one - a bit like a single frame in a movie - and only updates the DOM to the necessary state if it needs updating. As the page itself does not need updating, it remains the same and only the clock itself (where the contents have changed) is updated by React DOM."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "<span class='keyword'>function</span> <span class='name'>tick</span> () {",
+          "",
+          "    <span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "        <span class='comment'>{/* Element */}</span>",
+          "        &lt;<span class='keyword'>h1</span>&gt;{<span class='keyword'>new</span> <span class='name'>Date</span>().<span class='keyword'>toLocaleTimeString</span>()}&lt;<span class='keyword'>/h1</span>&gt;,",
+          "        <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          "    );",
+          "",
+          "}",
+          "",
+          "<span class='comment'>{/* Call ReactDOM.render every second from the setInterval callback */}</span>",
+          "<span class='keyword'>setInterval</span>(<span class='value'>tick</span>, <span class='value'>1000</span>);"
+        ]
+      }
+    ]
+  }
+}

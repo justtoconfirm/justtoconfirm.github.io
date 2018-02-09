@@ -2,8 +2,14 @@
   "page": {
     "pagetitle": "JavaScript Objects",
     "pageheading": "Objects",
-    "pageintro": "",
-    "content": [     
+    "content": [ 
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='javascript.html'>JavaScript</a>"
+        ]
+      },    
       {
         "label": "SECTION",
         "showheading": false,
@@ -184,7 +190,7 @@
           "<span class='keyword'>var</span> <span class='name'>hotel</span> = {",
           "   <span class='name'>name</span> : <span class='value'>'The Grand Hotel'</span>,",
           "   <span class='name'>rooms</span> : <span class='value'>104</span>,",
-          "   <span class='name'>booked</span> : <span class='value'>98</span>",
+          "   <span class='name'>booked</span> : <span class='value'>98</span>,",
           "",
           "   <span class='comment'>// Method to check the rooms available</span>",
           "   <span class='name'>checkAvailableRooms</span> : <span class='keyword'>function</span> () {",

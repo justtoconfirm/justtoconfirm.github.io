@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Vue.js Getting Started</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Getting Started</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Install using NPM</h2>
+                <p>Vue.js can be installed using NPM (Node Package Manager). You will need to have this installed before you can install Vue.js. NPM is the recommended installation method when building large scale applications with Vue.js, as it pairs nicely with tools such as Webpack or Browserify.</p>
+                <p>An official CLI (Command-line Interface) is provided by Vue.js to quickly scaffold the structure of Single Page Applications (SPA). The CLI provides the setup for a modern frontend workflow.</p>
+                <p>When you create a project using the Vue.js CLI, a package.json file is already created within the project folder.</p>
+                <p>Open the terminal and enter the following commands to install Vue.js using NPM and the Vue.js CLI. Remember that the '$' symbols are there to indicate a terminal command and do not need to be entered. Vue.js will be installed globally allowing the 'vue' command to be used within the terminal in any directory.</p>
+                <p>Here, the project folder is named 'my-project'.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'># Install latest stable version of Vue.js</span>
+$ <span class='keyword'>npm</span> install <span class='name'>vue</span>
+<span class='comment'># Install vue-cli</span>
+$ <span class='keyword'>npm</span> install <span class='name'>vue-cli</span> <span class='value'>--global</span>
+<span class='comment'># Create a new project named 'my-project' using the 'webpack' template</span>
+$ <span class='keyword'>vue</span> init webpack <span class='name'>my-project</span>
+
+<span class='comment'># Install dependencies</span>
+$ <span class='keyword'>cd</span> <span class='name'>my-project</span>
+$ <span class='keyword'>npm</span> install
+<span class='comment'># Run</span>
+$ <span class='keyword'>npm</span> run dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Running the application</h2>
+                <p>To run the application locally during development, open the terminal and enter the following commands. Your application should be running locally here: <a href='http://localhost:8081' target='_application'>http://localhost:8081</a></p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'># Open the directory containing your project</span>
+$ <span class='keyword'>cd</span> <span class='name'>my-project</span>
+<span class='comment'># Run</span>
+$ <span class='keyword'>npm</span> run dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>File Structure</h2>
+                <p>Once Vue.js has been installed, the file structure of your project should look something like the example (below). Most development work will take place within the 'src' directory.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.eslintrc.js
+.gitignore
+.postcssrc.js
+<span class='keyword'>build/</span>
+    build.js
+    check-versions.js
+    logo.png
+    utils.js
+    vue-loader.conf.js
+    webpack.base.conf.js
+    webpack.dev.conf.js
+    webpack.prod.conf.js
+<span class='keyword'>config/</span>
+    dev.env.js
+    index.js
+    prod.env.js
+    test.env.js
+index.html
+<span class='keyword'>node_modules/</span>
+package.json
+README.md
+<span class='keyword'>src/</span>
+    App.vue
+    <span class='keyword'>assets/</span>
+        logo.png
+    <span class='keyword'>components/</span>
+        HelloWorld.vue
+    main.js
+    <span class='keyword'>router/</span>
+        index.js
+<span class='keyword'>static/</span>
+<span class='keyword'>test/</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='vuejs.html'>Vue.js</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

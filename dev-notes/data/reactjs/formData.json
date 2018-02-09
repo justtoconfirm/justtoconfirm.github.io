@@ -1,0 +1,283 @@
+{
+  "page": {
+    "pagetitle": "React.js Form",
+    "pageheading": "Form",
+    "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='reactjs.html'>React.js</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "HTML forms have default form behavior of browsing to a new page when the user submits the form. This will be the same behavior that occurs when using React. In most cases, it maybe convenient to have a JavaScript function that handles the form submission and to allow access to the data that the user has entered into the form. The standard way to do this in React is to use a technique called 'controlled components'. React also has the option to use uncontrolled components that do not require an event handler for every way your data can change.",
+          "In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt; have their own state that is updated based on user input. In React, we want the component that renders a form to also control the user input. This is a 'controlled component' and is a way of using setState to combine the default state of the HTML form elements and the React state to be a 'single source of truth'.",
+          "Let's create a simple form component.",
+          "<!-- https://www.sitepoint.com/work-with-forms-in-react/ -->",
+          "<!-- https://medium.freecodecamp.org/how-to-use-reacts-controlled-inputs-for-instant-form-field-validation-b1c7b033527e -->"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;",
+          "<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;",
+          "",
+          "<span class='keyword'>class</span> <span class='name'>NameForm</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='keyword'>Component</span> {",
+          "    <span class='name'>constructor</span> (<span class='value'>props</span>) {",
+          "        <span class='keyword'>super</span> (<span class='value'>props</span>);",
+          "        <span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>''</span>};",
+          "    }",
+          "",
+          "    <span class='name'>render</span> () {",
+          "        <span class='return'>return</span> (",
+          "            &lt;<span class='keyword'>form</span>&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'text'</span> <span class='name'>value</span>={<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>value</span>} /&gt;",
+          "            &lt;<span class='keyword'>/form</span>&gt;",
+          "        );",
+          "    }",
+          "}",
+          "",
+          "<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "    &lt;<span class='name'>NameForm</span> /&gt;,",
+          "    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "If we change the value in this.state, we can set the value that appears in the input text field. In the previous example, the value was empty ('') so no value appeared. Since the value attribute is set on our form element, the displayed value will always be this.state.value, making the React state the 'source of truth'. Notice that this.state.value is initialized in the constructor, so that the input field starts off with some text in it."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='comment'>{/* Constructor */}</span>",
+          "<span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>'Dan Jackson'</span>};"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Since handleChange runs on every keystroke to update the React state, the displayed value will update as the user types. We will add an onChange attribute to the input text field. Controlled components will have an associated handler function - such as handleChange - for every state mutation/change. This makes it useful to modify or validate user input.",
+          "Below, we can find an example of the handleChange handler function, and a further example should how we can enforce that names are written in uppercase letters.",
+          "React can’t know about users typing in the form elements. Developers need to implement an event handler to capture changes with onChange."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='comment'>{/* handleChange function */}</span>",
+          "<span class='name'>handleChange</span> (<span class='value'>event</span>) {",
+          "    <span class='keyword'>this</span>.<span class='name'>setState</span>({<span class='name'>value</span>: <span class='value'>event</span>.<span class='name'>target</span>.<span class='name'>value</span>});",
+          "}",
+          "",
+          "<span class='comment'>{/* handleChange function with validation */}</span>",
+          "<span class='name'>handleChange</span> (<span class='value'>event</span>) {",
+          "    <span class='keyword'>this</span>.<span class='name'>setState</span>({<span class='name'>value</span>: <span class='value'>event</span>.<span class='name'>target</span>.<span class='name'>value</span>.<span class='keyword'>toUpperCase</span>()});",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We now need to add the handleChange to the constructor."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "<span class='name'>constructor</span> (<span class='value'>props</span>) {",
+          "    <span class='keyword'>super</span> (<span class='value'>props</span>);",
+          "    <span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>''</span>};",
+          "",
+          "    <span class='keyword'>this</span>.<span class='name'>handleChange</span> = <span class='keyword'>this</span>.<span class='name'>handleChange</span>.<span class='keyword'>bind</span>(<span class='keyword'>this</span>);",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Finally, add the onChange attribute to the input text field."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "&lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'text'</span> <span class='name'>value</span>={<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>value</span>} <span class='name'>onChange</span>={<span class='keyword'>this</span>.<span class='name'>handleChange</span>} /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is the full code:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;",
+          "<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;",
+          "",
+          "<span class='keyword'>class</span> <span class='name'>NameForm</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='keyword'>Component</span> {",
+          "    <span class='name'>constructor</span> (<span class='value'>props</span>) {",
+          "        <span class='keyword'>super</span> (<span class='value'>props</span>);",
+          "        <span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>''</span>};",
+          "",
+          "        <span class='keyword'>this</span>.<span class='name'>handleChange</span> = <span class='keyword'>this</span>.<span class='name'>handleChange</span>.<span class='keyword'>bind</span>(<span class='keyword'>this</span>);",
+          "    }",
+          "",
+          "    <span class='comment'>{/* handleChange function with validation */}</span>",
+          "    <span class='name'>handleChange</span> (<span class='value'>event</span>) {",
+          "        <span class='keyword'>this</span>.<span class='name'>setState</span>({<span class='name'>value</span>: <span class='value'>event</span>.<span class='name'>target</span>.<span class='name'>value</span>.<span class='keyword'>toUpperCase</span>()});",
+          "    }",
+          "",
+          "    <span class='name'>render</span> () {",
+          "        <span class='return'>return</span> (",
+          "            &lt;<span class='keyword'>form</span>&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'text'</span>", 
+          "                       <span class='name'>value</span>={<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>value</span>}",
+          "                       <span class='name'>onChange</span>={<span class='keyword'>this</span>.<span class='name'>handleChange</span>} /&gt;",
+          "            &lt;<span class='keyword'>/form</span>&gt;",
+          "        );",
+          "    }",
+          "}",
+          "",
+          "<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "    &lt;<span class='name'>NameForm</span> /&gt;,",
+          "    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can now also add another function to handle the form submission. An onSubmit attribute will be added to the &lt;form&gt; element and a function named handleSubmit will be added to the component. We need to add a submit button to the form also."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;",
+          "<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;",
+          "",
+          "<span class='keyword'>class</span> <span class='name'>NameForm</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='keyword'>Component</span> {",
+          "    <span class='name'>constructor</span> (<span class='value'>props</span>) {",
+          "        <span class='keyword'>super</span> (<span class='value'>props</span>);",
+          "        <span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>''</span>};",
+          "",
+          "        <span class='keyword'>this</span>.<span class='name'>handleChange</span> = <span class='keyword'>this</span>.<span class='name'>handleChange</span>.<span class='keyword'>bind</span>(<span class='keyword'>this</span>);",
+          "        <span class='keyword'>this</span>.<span class='name'>handleSubmit</span> = <span class='keyword'>this</span>.<span class='name'>handleSubmit</span>.<span class='keyword'>bind</span>(<span class='keyword'>this</span>);",
+          "    }",
+          "",
+          "    <span class='comment'>{/* handleChange function with validation */}</span>",
+          "    <span class='name'>handleChange</span> (<span class='value'>event</span>) {",
+          "        <span class='keyword'>this</span>.<span class='name'>setState</span>({<span class='name'>value</span>: <span class='value'>event</span>.<span class='name'>target</span>.<span class='name'>value</span>.<span class='keyword'>toUpperCase</span>()});",
+          "    }",
+          "",
+          "    <span class='comment'>{/* handleSubmit function  */}</span>",
+          "    <span class='name'>handleSubmit</span> (<span class='value'>event</span>) {",
+          "        <span class='comment'>{/* Output the value entered into the text input field */}</span>",
+          "        console.log(<span class='value'>'Input field value: '</span> + <span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>value</span>);",
+          "        <span class='value'>event</span>.<span class='keyword'>preventDefault</span>();",
+          "    }",
+          "",
+          "    <span class='name'>render</span> () {",
+          "        <span class='return'>return</span> (",
+          "            &lt;<span class='keyword'>form</span> <span class='name'>onSubmit</span>={<span class='keyword'>this</span>.<span class='name'>handleSubmit</span>}&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'text'</span>", 
+          "                       <span class='name'>value</span>={<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>value</span>}",
+          "                       <span class='name'>onChange</span>={<span class='keyword'>this</span>.<span class='name'>handleChange</span>} /&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'submit'</span> <span class='name'>value</span>=<span class='value'>'Submit'</span> /&gt;",
+          "            &lt;<span class='keyword'>/form</span>&gt;",
+          "        );",
+          "    }",
+          "}",
+          "",
+          "<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "    &lt;<span class='name'>NameForm</span> /&gt;,",
+          "    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Uncontrolled Components",
+        "copy": [
+          "In most cases, it is recommended to use Controlled Components, as described above, to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.",
+          "<!-- https://reactjs.org/docs/uncontrolled-components.html -->",
+          "<!-- https://lorenstewart.me/2016/10/31/react-js-forms-controlled-components/ -->",
+          "<!-- http://react.tips/ -->",
+          "<!-- https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/ -->",
+          "To write an uncontrolled component, instead of writing an event handler for every state update, you can use the ref attribute to get form values from the DOM."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;",
+          "<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;",
+          "",
+          "<span class='keyword'>class</span> <span class='name'>NameForm</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='keyword'>Component</span> {",
+          "    <span class='name'>constructor</span> (<span class='value'>props</span>) {",
+          "        <span class='keyword'>super</span> (<span class='value'>props</span>);",
+          "        <span class='keyword'>this</span>.<span class='name'>state</span> = {<span class='name'>value</span>: <span class='value'>''</span>};",
+          "",
+          "        <span class='keyword'>this</span>.<span class='name'>handleSubmit</span> = <span class='keyword'>this</span>.<span class='name'>handleSubmit</span>.<span class='keyword'>bind</span>(<span class='keyword'>this</span>);",
+          "    }",
+          "",
+          "    <span class='comment'>{/* handleSubmit function  */}</span>",
+          "    <span class='name'>handleSubmit</span> (<span class='value'>event</span>) {",
+          "        <span class='comment'>{/* Output the value entered into the text input field */}</span>",
+          "        console.log(<span class='value'>'Input field value: '</span> + <span class='keyword'>this</span>.<span class='name'>input</span>.<span class='name'>value</span>);",
+          "        <span class='value'>event</span>.<span class='keyword'>preventDefault</span>();",
+          "    }",
+          "",
+          "    <span class='name'>render</span> () {",
+          "        <span class='return'>return</span> (",
+          "            &lt;<span class='keyword'>form</span> <span class='name'>onSubmit</span>={<span class='keyword'>this</span>.<span class='name'>handleSubmit</span>}&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'text'</span>", 
+          "                       <span class='name'>ref</span>={(input) => <span class='keyword'>this</span>.<span class='name'>input</span> = <span class='name'>input</span>} /&gt;",
+          "                &lt;<span class='keyword'>input</span> <span class='name'>type</span>=<span class='value'>'submit'</span> <span class='name'>value</span>=<span class='value'>'Submit'</span> /&gt;",
+          "            &lt;<span class='keyword'>/form</span>&gt;",
+          "        );",
+          "    }",
+          "}",
+          "",
+          "<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (",
+          "    &lt;<span class='name'>NameForm</span> /&gt;,",
+          "    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)",
+          ");"
+        ]
+      }
+
+    ]
+  }
+}

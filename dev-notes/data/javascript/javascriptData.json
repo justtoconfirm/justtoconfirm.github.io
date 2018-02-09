@@ -2,24 +2,17 @@
   "page": {
     "pagetitle": "JavaScript",
     "pageheading": "JavaScript",
-    "pageintro": null,
     "content": [
       {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "Chapters",
-        "copy": [
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
           "<a href='js-variables.html'>Variables</a>",
           "<a href='js-functions.html'>Functions</a>",
           "<a href='js-array.html'>Array</a>",
           "<a href='js-objects.html'>Objects</a>",
           "<a href='js-xhr.html'>XMLHttpRequest</a>"
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
+        ]
       },
       {
         "label": "SECTION",

@@ -2,8 +2,14 @@
   "page": {
     "pagetitle": "JavaScript Variables",
     "pageheading": "Variables",
-    "pageintro": "",
     "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='javascript.html'>JavaScript</a>"
+        ]
+      },
       {
         "label": "SECTION",
         "showheading": true,

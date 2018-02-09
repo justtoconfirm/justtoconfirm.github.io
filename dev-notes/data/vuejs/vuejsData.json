@@ -2,8 +2,15 @@
   "page": {
     "pagetitle": "Vue.js",
     "pageheading": "Vue.js",
-    "pageintro": null,
     "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='vuejs-install.html'>Getting Started</a>",
+          "<a href='vuejs-component.html'>Component</a>"
+        ]
+      },
       {
         "label": "SECTION",
         "showheading": true,
@@ -12,20 +19,6 @@
           "Vue.js is a progressive JavaScript framework for building user interfaces. The core library is focussed on the view layer only. Vue.js can also be used to create Single-Page Applications (SPA).",
           "Vue.js was created by Evan You after working for Google using AngularJS, and was released in February 2014.",
           "Vue.js is a JavaScript framework that helps you build web applications using the MVVM (Model-View-ViewModel) architectural pattern. At first glance, it might seem quite similar to AngularJS, but once you start working with it you'll quickly realize that Vue.js is not only much simpler and easier to learn, but also more flexible."
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
-      },
-      {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "Chapters",
-        "copy": [
-          "<a href='vuejs-install.html'>Getting Started</a>",
-          "<a href='vuejs-component.html'>Component</a>"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,

@@ -1,0 +1,175 @@
+{
+  "page": {
+    "pagetitle": "Responsive Web Design",
+    "pageheading": "RWD - Responsive Web Design",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Responsive design is an approach to creating websites in which the layout adapts to fit the device's screen."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Viewport",
+        "copy": [
+          "The viewport is the visible area of a web page. This can change based on the type of device being used. The viewport will often be smaller on a mobile phone and tablet, but larger on a desktop screen.",
+          "Older websites and web pages that are not responsive, having been designed using static/fixed sizes, are often too large to fit within the viewport on small devices. Browsers will often scale the web page down to fit the screen to allow the page to be viewed.",
+          "HTML5 introduced a &lt;meta&gt; tag to give the browser instructions on how to control the dimensions and scaling of a web page.",
+          "The first step is to define the viewport within the &lt;head&gt; section of your HTML code. Before you do anything else, you have to define the width of the viewport in your HTML. This will ensure that your site has no horizontal scroll - the full site will be visible, and users will not have to zoom in on mobile to see the content.",
+          "<ul class='list'><li>The width=device-width sets the width of the page to follow the screen-width of the device, which can vary depending on the device being used.</li>",
+          "<li>The initial-scale=1 sets the initial zoom level when the page is first loaded by the browser.</li></ul>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>meta</span> <span class='name'>name</span>=<span class='value'>'viewport'</span> <span class='name'>content</span>=<span class='value'>'width=device-width, initial-scale=1'</span> /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Browser resets",
+        "copy": [
+          "Every browser renders content a little differently, so we can use Reset or Normalize to combat these differences using either of these stylesheets. Reset completely eradicates all styles, while Normalize attempts to add consistency to the browser styling.",
+          "You may also want to consider resetting the border box - not always included within the reset stylesheets - to make padding consistent and prevent frustration.",
+          "Information about box-sizing can be found in the <a href='css.html'>CSS</a> notes."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='keyword'>html</span> {",
+          "   <span class='name'>box-sizing</span>: <span class='value'>border-box</span>;",
+          "}",
+          "",
+          "<span class='keyword'>*</span>, <span class='keyword'>*:before</span>, <span class='keyword'>*:after</span> {",
+          "   <span class='name'>box-sizing</span>: <span class='value'>inherit</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Media Queries",
+        "copy": [
+          "The @media rule, introduced in CSS2, has made it possible to define different style rules for different media types. Media queries in CSS3 extended this further to allow style rules to be applied based on the device type.",
+          "Media queries can be used to check many things, including:",
+          "<ul class='list'><li>Width and height of the viewport or device</li>",
+          "<li>Orientation - landscape or portrait</li>",
+          "<li>Resolution</li></ul>",
+          "CSS3 supports all of the same media types as CSS, such as screen and print, but now includes new media features including: max-width, device-width, orientation, and color. The new features are ignored by older browsers that do not support CSS3.",
+          "Internet Explorer (IE) versions before IE9 do not support media queries."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='comment'>/* Syntax */</span>",
+          "<span class='keyword'>@media</span> <span class='name'>not | only</span> <span class='value'>mediatype</span> <span class='name'>and</span> (<span class='value'>expressions</span>) {",
+          "   <span class='comment'>/* CSS code here */</span>",
+          "}",
+          "",
+          "",
+          "<span class='comment'>/* CSS3 Example */</span>",
+          "<span class='keyword'>@media</span> <span class='name'>only</span> <span class='value'>screen</span> <span class='name'>and</span> (<span class='name'>max-width</span>: <span class='value'>500px</span>) {",
+          "   <span class='keyword'>body</span> {",
+          "      <span class='name'>background-color</span>: <span class='value'>#1779ba</span>;",
+          "   }",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Responsive Images : width",
+        "copy": [
+          "If the width property of an &lt;img&gt; is set to 100%, the image will be responsive and scale up and down. The image can be scaled up to be larger than its original size. If the max-width property is set to 100%, the image will scale down if required, but will never scale up to be larger than its original size.",
+          "The height set to auto will automatically adjust the height of the &lt;img&gt; element to allow its content to be displayed correctly."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='keyword'>img</span> {",
+          "   <span class='name'>height</span>: <span class='value'>auto</span>;",
+          "   <span class='name'>width</span>: <span class='value'>100%</span>;",
+          "}",
+          "",
+          "<span class='keyword'>img</span> {",
+          "   <span class='name'>height</span>: <span class='value'>auto</span>;",
+          "   <span class='name'>max-width</span>: <span class='value'>100%</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Responsive Images : srcset & sizes",
+        "copy": [
+          "Typically when you use a large image, for a full-width header/banner, the image will generally appear fine on large screen devices such as laptops or desktop, but the problem comes when you start to view the website on a narrow screen device such as on mobile. It is much better to show a cropped version of the image that sets the focus on the important details of the image when viewed on a narrow screen and also for medium width screens such as a tablet. This is commonly known as the art direction problem and involves wanting to change the image displayed to suit different image display sizes.",
+          "There is also no need to embed such large images on the page if it is being viewed on small devices. This is called the resolution switching problem.",
+          "We begin with a simple non-responsive image using the HTML &lt;img&gt; element.",
+          "<!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images -->"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>img</span> <span class='name'>src</span>=<span class='value'>'smiley-face.jpg'</span> <span class='name'>alt</span>=<span class='value'>'Smiley face'</span> /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Now that we have an image, we ideally want to display identical content just smaller or larger depending on the device. The standard &lt;img&gt; element traditionally only lets you point the browser to a single source file. We can however use two new attributes - srcset and sizes - to provide multiple additional source images along with hints to help the browser pick the right image based on the device size.",
+          "Both srcset and sizes attributes are not supported in Internet Explorer (IE) or Edge (13, 14, & 15), but are supported in Chrome, Firefox and Safari.",
+          "For browsers that do not support the two attributes, the image is fetched from the regular src attribute and displayed.",
+          "<!-- https://bitsofco.de/the-srcset-and-sizes-attributes/ -->",
+          "The srcset defines the set of images we will allow the browser to choose between, and what size each image is.",
+          "<ul class='list'><li>An image filename (smiley-face-480w.jpg)</li>",
+          "<li>The image's width in pixels (480w). This uses the w unit, not px, as this is the image's real size and can be found be inspecting the image file to get this value.</li></ul>",
+          "The sizes attribute defines a set of media conditions - screen widths - that indicates what image size would be best to choose from when certain media conditions are true.",
+          "<ul class='list'><li>A media condition (max-width: 480px) to check the viewport width is 480 pixels or less.</li>",
+          "<li>Explicitly define the size the image should be according to a set media condition (440px). This is the slot size and will load the image referenced in the srcset list that most closely matches it.</li></ul>",
+          "If a supporting browser with a viewport width of 480px loads the page, the (max-width: 480px) media condition will be true, therefore the 440px slot will be chosen and the smiley-face-480w.jpg image will be loaded with its inherited width (480w) being closest to 440px."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>img</span> <span class='name'>srcset</span>=<span class='value'>'smiley-face-320w.jpg 320w</span>,",
+          "            <span class='value'>smiley-face-480w.jpg 480w</span>,",
+          "            <span class='value'>smiley-face-800w.jpg 800w'</span>",
+          "     <span class='name'>sizes</span>=<span class='value'>'</span>(<span class='name'>max-width</span>: <span class='value'>320px</span>) <span class='value'>280px</span>,",
+          "            (<span class='name'>max-width</span>: <span class='value'>480px</span>) <span class='value'>440px</span>,",
+          "            <span class='value'>800px</span><span class='value'>'</span>",
+          "     <span class='name'>src</span>=<span class='value'>'smiley-face-800w.jpg'</span> <span class='name'>alt</span>=<span class='value'>'Smiley face'</span> /&gt;"
+        ]
+      }
+    ]
+  }
+}

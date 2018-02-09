@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - JavaScript Objects</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Objects</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <p>In computer programming, each physical thing in the world can be represented as an object. So if you had one object for a hotal and another for a car, programmers would often say there is one instance of a hotel object and one instance of the car object.</p>
+                <p>Each object can have its own properties, methods and events.</p>
+                <p>Here is an empty object:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>obj</span> = {
+
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Not everything in JavaScript is an object. Many things such as: strings, numbers and booleans, are primitives not objects as they do not have properties or methods, unlike objects.</p>
+                <p>Objects group together a set of properties and methods to create a model.</p>
+                <p>Objects in JavaScript can be likened to objects in the real world. A car, as an example of a real world object, has properties used to define it's characteristics such as: name or colour. A car can also have methods such as: accelerate or brake.</p>
+                <p>Properties are similar to variables within an object and methods are similar to functions.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Native objects</h2>
+                <p>Native objects are part of the language specification. They're available to us regardless of the client our JavaScript code is running on. Examples of native objects would be: Array, Date, and Math.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>User objects</h2>
+                <p>User objects - sometimes referred to as contributed objects - are custom objects we define at run time. The two ways to declare our own objects are: Object literals and Constructor notation/functions.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Host objects</h2>
+                <p>Host objects are made available by the client our JavaScript code is running on. Different clients have different host objects that allow us to interact with it.</p>
+                <p>If we're writing code for a browser, for example, the browser will provide us with host objects such as: window, document, location, and history.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Properties</h2>
+                <p>Properties are similar to variables within an object. They are used to hold names with values.</p>
+                <p>A car may have common characteristics such as colour, make, model, and engine size that are common with all cars. When we talk about a model, these characteristics are the properties of the car object.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>obj</span> = {
+
+    <span class='comment'>// Property of the object</span>
+    <span class='name'>name</span> : <span class='value'>value</span>;
+
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Methods</h2>
+                <p>Methods represent what people need to do with objects and can receive or update the values of properties within an object. They are similar to functions.</p>
+                <p>Methods contain the block of code to perform a task. These methods can be called by events.</p>
+                <p>For example, in the hotel object, the makeBooking() method will increase the value of the bookings property and the cancelBooking() method will decrease this value. The checkAvailability() method can be used to return the number of remaining rooms the hotel has available.</p>
+                <p>The 'book' event will call the makeBooking() method (the block of code to perform the task, to increase the value of the bookings property), and the 'cancel' event will use the cancelBooking() method to reduce the value of the bookings property. The bookings property value within the hotel object is then updated each time either method (the block of code performing the task) is called.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>obj</span> = {
+
+    <span class='comment'>// Property of the object</span>
+    <span class='name'>name</span> : <span class='value'>value</span>;
+
+    <span class='comment'>// Method within the object</span>
+    <span class='name'>exampleMethod</span> : <span class='keyword'>function</span> () {
+
+        <span class='comment'>// Code goes here</span>
+
+    }
+
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Literal notation</h2>
+                <p>Literal notation is often used when you want to create a single object in JavaScript.</p>
+                <p>In the following example we will use literal notation to create a Hotel object containing a number of properties such as: name, rooms, and booked. This object is declared as a property of the global window object. If you view the window object in the console, the hotel object will be located within.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>hotel</span> = {
+   <span class='name'>name</span> : <span class='value'>'The Grand Hotel'</span>,
+   <span class='name'>rooms</span> : <span class='value'>104</span>,
+   <span class='name'>booked</span> : <span class='value'>98</span>
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Properties of an object can be accessed using dot notation, the name of the object followed by a period (known as the member operator) and then the name of the property you wish to use.</p>
+                <p>Within objects, properties are just like variables. The name and number of rooms available within the Hotel object can be retrieved using dot notation.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>hotel</span>.<span class='name'>name</span>;    <span class='comment'>// The Grand Hotel</span>
+<span class='name'>hotel</span>.<span class='name'>rooms</span>;    <span class='comment'>// 104</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Within our Hotel object a method will now be created to check the available rooms within our hotel. A method is similar to a function that is within an object. This method uses the keyword of this to indicate that the method is using the properties of the object.</p>
+                <p>The return statement is used to allow the result the method returns to be available outside of the object.</p>
+                <p>We can call the method using dot notation once again.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>hotel</span> = {
+   <span class='name'>name</span> : <span class='value'>'The Grand Hotel'</span>,
+   <span class='name'>rooms</span> : <span class='value'>104</span>,
+   <span class='name'>booked</span> : <span class='value'>98</span>,
+
+   <span class='comment'>// Method to check the rooms available</span>
+   <span class='name'>checkAvailableRooms</span> : <span class='keyword'>function</span> () {
+
+      <span class='comment'>// Return the number of available rooms</span>
+      <span class='return'>return</span> <span class='keyword'>this</span>.<span class='name'>rooms</span> - <span class='keyword'>this</span>.<span class='name'>booked</span>;
+
+   }
+};
+
+<span class='comment'>// Call the method to return the number of rooms available</span>
+<span class='name'>hotel</span>.<span class='name'>checkAvailableRooms</span> ();
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Constructor notation</h2>
+                <p>If you need more that one object, the Constructor notation can be used. This allows a JavaScript function to build a template for creating multiple objects. Instances of this object can then be created using the keyword of new, followed by a call to the function when you need to create a new object.</p>
+                <p>The name of the Constructor function should always begin with an uppercase letter.</p>
+                <p>Let's create a new Hotel object using the Constructor notation.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>function</span> <span class='name'>Hotel</span> ( <span class='value'>name</span>, <span class='value'>rooms</span>, <span class='value'>booked</span> ) {
+
+   <span class='comment'>// Hotel properties</span>
+   <span class='keyword'>this</span>.<span class='name'>name</span> = <span class='value'>name</span>;
+   <span class='keyword'>this</span>.<span class='name'>rooms</span> = <span class='value'>rooms</span>;
+   <span class='keyword'>this</span>.<span class='name'>booked</span> = <span class='value'>booked</span>;
+
+   <span class='comment'>// Method to check the rooms available</span>
+   <span class='keyword'>this</span>.<span class='name'>checkAvailableRooms</span> = <span class='keyword'>function</span> () {
+
+      <span class='comment'>// Return the number of available rooms</span>
+      <span class='return'>return</span> <span class='keyword'>this</span>.<span class='name'>rooms</span> - <span class='keyword'>this</span>.<span class='name'>booked</span>;
+
+   };
+
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>An instance of an object will inherit the properties and methods from within the object. Values for each hotel will be passed into the object paremeters - name, rooms, booked - using arguments when the function is called. The keyword of this is used instead of the object's name to indicate that the properties and methods belong to the Hotel object.</p>
+                <p>Let us now create two new Hotels named 'The Grand Hotel' and 'Park Hotel' as instances of our Hotel object.</p>
+                <p>Each time we create a new hotel, the Hotel function is called and the values for each hotel are passed as arguments into the object's parameters. These values are then assigned to the properties of: name, rooms, and booked.</p>
+                <p>Any instance created can use the methods within the Hotel object, so we can use the checkAvailableRooms method to check the availability of rooms within both hotels.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>function</span> <span class='name'>Hotel</span> ( <span class='value'>name</span>, <span class='value'>rooms</span>, <span class='value'>booked</span> ) {
+
+   <span class='comment'>// Hotel properties</span>
+   <span class='keyword'>this</span>.<span class='name'>name</span> = <span class='value'>name</span>;
+   <span class='keyword'>this</span>.<span class='name'>rooms</span> = <span class='value'>rooms</span>;
+   <span class='keyword'>this</span>.<span class='name'>booked</span> = <span class='value'>booked</span>;
+
+   <span class='comment'>// Method to check the rooms available</span>
+   <span class='keyword'>this</span>.<span class='name'>checkAvailableRooms</span> = <span class='keyword'>function</span> () {
+
+      <span class='comment'>// Return the number of available rooms</span>
+      <span class='return'>return</span> <span class='keyword'>this</span>.<span class='name'>rooms</span> - <span class='keyword'>this</span>.<span class='name'>booked</span>;
+
+   };
+
+}
+
+<span class='comment'>// Create instances of the Hotel object</span>
+<span class='keyword'>var</span> <span class='name'>grandHotel</span> = <span class='keyword'>new</span> <span class='name'>Hotel</span> ( <span class='value'>'The Grand Hotel'</span>, <span class='value'>104</span>, <span class='value'>98</span> );
+<span class='keyword'>var</span> <span class='name'>parkHotel</span> = <span class='keyword'>new</span> <span class='name'>Hotel</span> ( <span class='value'>'Park Hotel'</span>, <span class='value'>98</span>, <span class='value'>94</span> );
+
+<span class='comment'>// Call the method to check the available rooms for each hotel</span>
+<span class='name'>grandHotel</span>.<span class='name'>checkAvailableRooms</span> ();
+<span class='name'>parkHotel</span>.<span class='name'>checkAvailableRooms</span> ();
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Destructuring objects</h2>
+                <p>Destructuring assignment is a special syntax that allows us to 'unpack' objects into a bunch of variables. Now we can work with variables instead of properties.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>// Object containing properties and values</span>
+<span class='keyword'>var</span> <span class='name'>options</span> = {
+    <span class='name'>title</span> : <span class='value'>'Menu'</span>,
+    <span class='name'>width</span> : <span class='value'>100</span>,
+    <span class='name'>height</span> : <span class='value'>50</span>
+};
+
+<span class='comment'>// 'Unpack' the object into individual variables</span>
+<span class='keyword'>var</span> { <span class='name'>title</span>, <span class='name'>width</span>, <span class='name'>height</span> } = <span class='name'>options</span>;
+
+<span class='comment'>// Variables</span>
+<span class='name'>title</span>;    <span class='comment'>// Menu</span>
+<span class='name'>width</span>;    <span class='comment'>// 100</span>
+<span class='name'>height</span>;   <span class='comment'>// 50</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='javascript.html'>JavaScript</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

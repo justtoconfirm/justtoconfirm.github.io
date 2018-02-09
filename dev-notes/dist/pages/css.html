@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - CSS</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>CSS - Cascading Style Sheets</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>Cascading Style Sheets (CSS) is a style sheet language used to describe the presentation of a document written in HTML or XML. CSS describes how elements should be rendered/styled.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Internal &amp; Inline CSS</h2>
+                <p>Internal CSS is used if a single HTML page has a unique style. Internal styles are defined within the &lt;style&gt; element inside the &lt;head&gt; section of your HTML code</p>
+                <p>It is usually recommended to use external CSS over inline or internal CSS.</p>
+                <p>CSS can also be added to HTML elements themselves. This is called Inline styling</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>head</span>&gt;
+   &lt;<span class='keyword'>style</span>&gt;
+   <span class='comment'>/* Your CSS goes here */</span>
+   &lt;<span class='keyword'>/style</span>&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+
+&lt;<span class='keyword'>body</span>&gt;
+   <span class='comment'>&lt;!-- Example of inline CSS styling --&gt;</span>
+   &lt;<span class='keyword'>div</span> <span class='name'>style</span>=<span class='value'>'color: #ff9800; text-align: center;'</span>&gt;Example text&lt;<span class='keyword'>/div</span>&gt;
+&lt;<span class='keyword'>/body</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>External CSS</h2>
+                <p>An external CSS style sheet can be used to change the look of a website using a single file. HTML must include a reference to the external style sheet inside a &lt;link&gt; element. This element is placed inside the &lt;head&gt; section of your HTML code.</p>
+                <p>External CSS files should have the .css file extension.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>head</span>&gt;
+   &lt;<span class='keyword'>link</span> <span class='name'>rel</span>=<span class='value'>'stylesheet'</span> <span class='name'>href</span>=<span class='value'>'mystylesheet.css'</span> /&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>CSS Comments</h2>
+                <p>Comments are used to explain what your code is doing to other developers and to help you when you need to understand the code at a later date. Comments are ignored by the browser.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>/*
+CSS comments
+can be over
+multiple lines
+*/</span>
+<span class='keyword'>selector</span> {
+   <span class='comment'>/* This is a single-line comment */</span>
+   <span class='name'>property</span>: <span class='value'>value</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>CSS Syntax</h2>
+                <p>CSS consists of a selector and a declaration block. The selector points to the HTML element you want to style. The declaration block contains one or more declarations separated by semicolons. Each declaration includes a CSS property name and value.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>/* CSS declaration block */</span>
+<span class='keyword'>selector</span> {
+   <span class='comment'>/* CSS declarations */</span>
+   <span class='name'>property</span>: <span class='value'>value</span>;
+   <span class='name'>property</span>: <span class='value'>value</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>In the following example, we are using CSS to set all &lt;p&gt; elements to be center-aligned with a text colour.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>p</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>CSS Selectors</h2>
+                <p>CSS selectors are used to find/select HTML elements based on their element name, id, class or attribute.</p>
+                <p>The element selector is used to select elements based on the element name.</p>
+                <p>The id selector uses the id attribute to select a specific HTML element. The id of an element should be unique within a HTML page, so the id selector is used to select only one unique element. To select an element with an id, write a hash (#) followed by the id of the HTML element.</p>
+                <p>Class selectors allow HTML elements with a specific class attribute to be selected. To select elements with a class attribute, use the period (.) character followed by the class name. HTML elements can have more than one class.</p>
+                <p>Here are some examples:</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>/* Element selector - select all &lt;p&gt; elements on the HTML page */</span>
+<span class='keyword'>p</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+
+<span class='comment'>/* Styling only applied to the one HTML element that has the id attribute */</span>
+<span class='keyword'>#paragraphOne</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+
+<span class='comment'>/* Styling applied to all HTML elements with the class attribute */</span>
+<span class='keyword'>.center</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+
+<span class='comment'>/* Only &lt;p&gt; elements with the center class will apply styling */</span>
+<span class='keyword'>p.center</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Grouping Selectors</h2>
+                <p>If CSS selectors are using the same styling, it is often better to group them together. In this next example, &lt;h1&gt;, &lt;h2&gt;, and &lt;p&gt; elements will all have the same CSS styling.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>h1, h2, p</span> {
+   <span class='name'>color</span>: <span class='value'>#ff9800</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Cascading Order</h2>
+                <p>All styles will 'cascade' into a 'virtual' style sheet when the browser reads CSS. The HTML document will then be formatted according to the style sheet content.</p>
+                <p>If properties to style the same element are in different style sheets, the styling found in the last read CSS style sheet will be used and this will override any previous styling applied.</p>
+                <p>Inline CSS styles within HTML elements have a higher priority than either Inline or External CSS. Default browser styling has the lowest priority.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Example</h2>
+                <p>An example showing both HTML and CSS.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML : index.html">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+&lt;<span class='keyword'>head</span>&gt;
+   &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;
+   &lt;<span class='keyword'>title</span>&gt;My Page&lt;<span class='keyword'>/title</span>&gt;
+   <span class='comment'>&lt;!-- This is our CSS stylesheet --&gt;</span>
+   &lt;<span class='keyword'>link</span> <span class='name'>rel</span>=<span class='value'>'stylesheet'</span> <span class='name'>href</span>=<span class='value'>'styles/mystylesheet.css'</span> /&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+&lt;<span class='keyword'>body</span>&gt;
+
+&lt;<span class='keyword'>h1</span>&gt;Hello World&lt;<span class='keyword'>/h1</span>&gt;
+&lt;<span class='keyword'>p</span> <span class='name'>id</span>=<span class='value'>'message'</span> <span class='name'>class</span>=<span class='value'>'bold'</span>&gt;This is an example HTML page using CSS.&lt;<span class='keyword'>/p</span>&gt;
+&lt;<span class='keyword'>p</span> <span class='name'>class</span>=<span class='value'>'copy bold'</span>&gt;Another message here.&lt<span class='keyword'>/p</span>&gt;
+&lt;<span class='keyword'>p</span> <span class='name'>class</span>=<span class='value'>'copy'</span>&gt;Another message here.&lt<span class='keyword'>/p</span>&gt;
+
+&lt;<span class='keyword'>/body</span>&gt;
+&lt;<span class='keyword'>/html</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>And we now apply the CSS within a style sheet.</p>
+                <!-- Code example -->
+                <div class="code" rel="CSS" data-title="CSS : styles&#x2F;mystylesheet.css">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>h1</span> {
+   <span class='name'>color</span>: <span class='value'>#1779ba</span>;
+   <span class='name'>text-align</span>: <span class='value'>center</span>;
+}
+
+<span class='keyword'>.bold</span> {
+   <span class='name'>font-weight</span>: <span class='value'>bold</span>;
+}
+
+<span class='keyword'>.copy</span> {
+   <span class='name'>text-decoration</span>: <span class='value'>underline</span>;
+}
+
+<span class='keyword'>#message</span> {
+   <span class='name'>color</span>: <span class='value'>#ffa019</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

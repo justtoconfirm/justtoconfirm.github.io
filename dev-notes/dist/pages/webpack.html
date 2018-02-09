@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Webpack</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Webpack</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>Webpack is a module bundler for modern JavaScript applications. This process is called a dependency graph and includes every module your application needs, which is then packaged into one or more bundles. Webpack is also known as a build tool.</p>
+                <p><!-- https://tutorialzine.com/2017/04/learn-webpack-in-15-minutes --></p>
+                <p><!-- https://webpack.js.org/concepts/ --></p>
+            </section>
+            <section class="pad-btm">
+                <h2>Install</h2>
+                <p>The easiest way to install Webpack is by using a package manager such as NPM (Node Package Manager) or Yarn. With NPM, you will need to have Node.js installed on your machine and a package.json file created. This document will not describe how to install Node.js or NPM at this time.</p>
+                <p>It is preferred to install Webpack locally (without the -g tag). This will make sure any developer working on your project will have the same version of Webpack.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'># Create project directory</span>
+$ mkdir my-app
+$ cd my-app
+
+<span class='comment'># Create package.json file</span>
+npm init -y
+<span class='comment'># Install Webpack</span>
+$ npm install webpack --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Once we have Webpack installed within our project directory, it is best to run Webpack using a Node.js script. By calling npm run build from the terminal, we can make Webpack bundle our files (the -p flag/option stands for production and minifies the bundled code). Running npm run watch will start a process that automatically bundles our files when any of them change.</p>
+                <p>The example below shows a JSON file using single quotes ( ' ' ), but this should be double quotes.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JSON : package.json">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>'scripts'</span> {
+    <span class='name'>'build'</span>: <span class='value'>'webpack -p'</span>,
+    <span class='name'>'watch'</span>: <span class='value'>'webpack --watch'</span>
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Webpack Config file</h2>
+                <p>The Webpack config file (webpack.config.js) file is placed in the root directory of your project.</p>
+                <p>Each dependency is processed and outputted into files called bundles.</p>
+                <p>The entry property tells Webpack where our main JavaScript file is located. For example, to bundle a JavaScript file named index.js in a 'js' directory within our project, the path property would have the value './js/index.js'. The bundled file would be placed in a dist/ directory and be named 'bundle.js'.</p>
+                <p>The output property specifies the name and path of our bundle. After running Webpack we will have our JavaScript in a file called bundle.js. This is the only script file that we will link in our HTML. We have set the path to output our bundle in a 'dist' directory.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
+
+<span class='keyword'>module</span>.<span class='name'>exports</span> = {
+    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
+    }
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Modules</h2>
+                <p><!-- https://webpack.js.org/concepts/modules/ --></p>
+                <p>In modular programming, developers break programs up into chunks of functionality called a module (sometimes also called Components). Webpack supports modules written in a variety of languages and preprocessors using Loaders. Loaders describe to Webpack how to process non-JavaScript modules. By default, Webpack handles JavaScript modules only.</p>
+                <p>When writing JavaScript, Webpack provides multiple way to work with modules. For example, we can use the ES6 import syntax for writing JavaScript modules which can then be imported. A few other examples include:</p>
+                <p><ul class='list'><li>An ES2015/ES6 import statement</li></p>
+                <p><li>CommonJS require() statement</li></p>
+                <p><li>AMD define and require statement</li></p>
+                <p><li>An @import statement inside of a CSS/SCSS/Sass file</li></ul></p>
+                <p>Webpack 1 requires a specific loader to convert ES2015/ES6 import, but this is standard within Webpack 2.</p>
+                <p>Let's create a JavaScript module that greets our users. We create a JavaScript file called greeting.js in the js/ directory of our project folder, and export a simple function. The code can be found below.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;js&#x2F;greeting.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>function</span> <span class='name'>greeting</span> () {
+    console.log( <span class='value'>'Welcome, have a great day.'</span> );
+};
+
+<span class='comment'>// Export this module for use in other JavaScript modules</span>
+<span class='keyword'>export default</span> <span class='name'>greeting</span>;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Next, we want to import it into our main JavaScript file - index.js. This is the file that's called in the entry point property within the webpack.config.js file and is our main JavaScript file. Once imported, both JavaScript files will be bundled into the bundle.js file for use within the HTML.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;js&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>// Import the greeting module</span>
+<span class='keyword'>import</span> <span class='name'>greeting</span> <span class='keyword'>from</span> <span class='value'>'./greeting.js'</span>;
+
+console.log( <span class='value'>'I am the entry point'</span> );
+
+<span class='comment'>// Call the function from the greeting module</span>
+<span class='name'>greeting</span>();
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>You may want to move your module files into a separate directory within the js/ directory to organise your project structure. You will need to update the file paths in the relevant files and the webpack.config.js file if you want to do this. Our file structure in the project should look like this:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>my-app/</span>
+    <span class='keyword'>dist/</span>
+        bundle.js
+    index.html
+    <span class='keyword'>js/</span>
+        index.js
+        <span class='keyword'>modules/</span>
+            greeting.js
+    <span class='keyword'>node_modules/</span>
+    package.json
+    webpack.config.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Remember, modules are sometimes referred to as Components.</p>
+            </section>
+            <section class="pad-btm">
+                <p>Here is the HTML code that we will use to include our bundle.js file. This will be named index.html and saved within the root of our project folder.</p>
+                <p>The page will be empty, but if you inspect the page using the developer tools and view the console, you will see the console.log output from both JavaScript module files that have been included within bundle.js</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML : my-app&#x2F;index.html">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+&lt;<span class='keyword'>head</span>&gt;
+    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;
+    &lt;<span class='keyword'>title</span>&gt;My App&lt;<span class='keyword'>/title</span>&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+&lt;<span class='keyword'>body</span>&gt;
+
+<span class='comment'>&lt;!-- Webpack bundle.js file --&gt;</span>
+&lt;<span class='keyword'>script</span> <span class='name'>src</span>=<span class='value'>'dist/bundle.js'</span>&gt;&lt;<span class='keyword'>/script</span>&gt;
+
+&lt;<span class='keyword'>/body</span>&gt;
+&lt;<span class='keyword'>/html</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Loaders</h2>
+                <p><!-- https://webpack.js.org/concepts/loaders/#example --></p>
+                <p>Loaders allow extra functionality and features to be applied to Webpack. Loaders are the node-based utilities built for Webpack to help Webpack to compile and/or transform a given type of resource that can be bundled as a JavaScript module. They are not include with Webpack itself when first installed, but can be added. They are a way to execute tasks during the bundling and pre/post processing. You can use NPM to install Loaders that you may need to use in your Webpack configuration. In other words, Loaders are kind of like 'tasks' to handle front-end build steps. For example, you can use Loaders to compile SCSS files into CSS, transform files in languages such as TypeScript into JavaScript, and even import CSS files directly from your JavaScript modules.</p>
+                <p>As an example we will use NPM to install loaders that will tell Webpack to load a CSS file and to convert TypeScript to JavaScript. This process can be repeated for any Loaders you need. The loaders will be listed as devDependencies within the package.json file.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install css-loader --save-dev
+$ npm install ts-loader --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Within our webpack.config.js file we can then instruct Webpack - using a regular expression (RegEx) - to use the css-loader for every .css file and ts-loader for all .ts files.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
+
+<span class='keyword'>module</span>.<span class='name'>exports</span> = {
+    module: {
+        rules: [
+            { test: &#47;&#92;.css$/, use: 'css-loader' },
+            { test: &#47;&#92;.ts$/, use: 'ts-loader' }
+        ]
+    }
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>SCSS &amp; Sass</h2>
+                <p>Many projects now use SCSS or Sass. To compile SCSS/Sass code into CSS for use in our application, we can use Webpack and Loaders. In this next example, we will be adding sass-loader to our Webpack configuration.</p>
+                <p><!-- https://medium.com/a-beginners-guide-for-webpack-2/using-sass-9f52e447c5ae --></p>
+                <p><!-- https://github.com/webpack-contrib/sass-loader --></p>
+                <p>We begin by using NPM to install sass-loader. This is also dependent on another loader, node-sass, so we'll install both at the same time and also install the other loaders we require.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install sass-loader node-sass --save-dev
+$ npm install style-loader css-loader --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Begin by creating a simple style.scss file in the root of our project directory/folder.</p>
+                <p>You will need to import your SCSS code into the main JavaScript file - index.js - so that it can be considered as a dependency by Webpack. The SCSS file itself is currently in the root directory, but should be moved to its own directory/folder.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;js&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Import the style.scss file in the root directory
+import './../style.scss';
+
+<span class='comment'>// Import the greeting module</span>
+<span class='keyword'>import</span> <span class='name'>greeting</span> <span class='keyword'>from</span> <span class='value'>'./greeting.js'</span>;
+
+console.log( <span class='value'>'I am the entry point'</span> );
+
+<span class='comment'>// Call the function from the greeting module</span>
+<span class='name'>greeting</span>();
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The webpack.config.js file is now updated to chain sass-loader, then css-loader, and then chain their output to style-loader.</p>
+                <p>The rule itself has been updated to handle both our Sass and CSS files. The regular expression now matches any .scss or .css file, which should then be compiled with the chain of loaders specified in the use array. The loaders are chained in reverse order.</p>
+                <p><ul class='list'><li>style-loader - creates style nodes from JS strings</li></p>
+                <p><li>css-loader - translates CSS into CommonJS</li></p>
+                <p><li>sass-loader - compiles Sass/SCSS into CSS</li></ul></p>
+                <p>This rule will process and .css files and pass on the .css to style-loader, which does the job of putting the CSS code inside &lt;style&gt; tags inside of &lt;head&gt; within our HTML code to apply our styles to our application. The CSS will be internal and can be seen by viewing the page source code or inspecting the HTML page within the developer tools. We can use the extract-text-plugin to extract the CSS into a separate (external stylesheet) .css file.</p>
+                <p><!-- https://medium.com/a-beginners-guide-for-webpack-2/extract-text-plugin-668e7cd5f551 --></p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
+
+<span class='keyword'>module</span>.<span class='name'>exports</span> = {
+    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,
+    module: {
+        rules: [
+            {
+                test: &#47;&#92;.(s*)css$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+        ]
+    },
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
+    }
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>It would be better to compile our SCSS code into CSS using Webpack and then have the CSS be within an external stylesheet and not internal within the HTML code. To do this we will use the ExtractTextPlugin.</p>
+                <p>We begin by opening the terminal and installing the plugin using NPM.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install extract-text-webpack-plugin --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Next, we update our Webpack configuration file (webpack.config.js) to use the plugin. This will compile our SCSS/Sass code into CSS and the resulting CSS file will be placed in the dist/ directory and will be named 'bundle.css'.</p>
+                <p>Remove the import statement to the SCSS (style.scss) file in the index.js JavaScript module, and add a link to the dist/bundle.css stylesheet in your index.html HTML page. This will apply the CSS stylesheet styling to your application.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+<span class='keyword'>module</span>.<span class='name'>exports</span> = {
+    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,
+    module: {
+        rules: [
+            {
+                test: &#47;&#92;.(s*)css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader'],
+                })
+            }
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin({filename: 'bundle.css'}),
+    ],
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
+    }
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The file structure should now look like this:</p>
+                <p><!-- https://www.codementor.io/tamizhvendan/beginner-guide-setup-reactjs-environment-npm-babel-6-webpack-du107r9zr --></p>
+                <p><!-- https://reactjs.org/docs/add-react-to-an-existing-app.html --></p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>my-app/</span>
+    <span class='keyword'>dist/</span>
+        bundle.css
+        bundle.js
+    index.html
+    <span class='keyword'>js/</span>
+        index.js
+        <span class='keyword'>modules/</span>
+            greeting.js
+    <span class='keyword'>node_modules/</span>
+    package.json
+    <span class='keyword'>src/</span>
+        style.scss
+    webpack.config.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Babel Loader</h2>
+                <p>If we want to use ES6 JavaScript syntax within our application, or JSX while working with React, we can use Babel to translate both into formats that are supported by all browsers. Webpack uses loaders to translate the file before bundling them. For example, we can take a JSX file (not supported by browsers), Webpack will bundle the file (and translate into standard JavaScript when using Babel) and this will output a standard JavaScript file supported by all browsers.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Install React</h2>
+                <p>You can install React using NPM. This will install React and ReactDOM as a dependency - as seen when you view the package.json file - so we can work with React using Webpack.</p>
+                <p>The React documentation can be found <a href='reactjs.html' target='_blank'>here</a>.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install react react-dom --save
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

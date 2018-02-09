@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - React.js Elements</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Elements</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>Elements are the smallest building blocks of a React application and are used to describe what you want to see on the screen. Unlike browser DOM elements, React elements are objects. Components in React are made up of elements. React DOM takes care of updating the DOM to match the React element.</p>
+                <p>Once you create an element you cannot change its children or attributes, the React element is immutable. The element is a representation of the UI at a certain point in time.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>{/* Element in a variable */}</span>
+<span class='keyword'>const</span> <span class='name'>elem</span> = &lt;<span class='keyword'>h1</span>&gt;Hello World&lt;<span class='keyword'>/h1</span>&gt;;
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    <span class='name'>elem</span>,    <span class='comment'>{/* Element rendered using the variable name */}</span>
+    &lt;<span class='keyword'>h2</span>&gt;Welcome&lt;<span class='keyword'>/h2</span>&gt;,    <span class='comment'>{/* Element rendered without variable */}</span>
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Example : Clock</h2>
+                <p>In this next example, we will create a ticking clock. A function will be created containing a new element that will be passed into the ReactDOM.render method. The function will be called every second to update the clock displayed on the page. In practice, most React applications only call ReactDOM.render once.</p>
+                <p>If you inspect the HTML of our simple application, only the time will be updated and the page will remain the same. React DOM compares the element and its children to the previous one - a bit like a single frame in a movie - and only updates the DOM to the necessary state if it needs updating. As the page itself does not need updating, it remains the same and only the clock itself (where the contents have changed) is updated by React DOM.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>function</span> <span class='name'>tick</span> () {
+
+    <span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+        <span class='comment'>{/* Element */}</span>
+        &lt;<span class='keyword'>h1</span>&gt;{<span class='keyword'>new</span> <span class='name'>Date</span>().<span class='keyword'>toLocaleTimeString</span>()}&lt;<span class='keyword'>/h1</span>&gt;,
+        <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+    );
+
+}
+
+<span class='comment'>{/* Call ReactDOM.render every second from the setInterval callback */}</span>
+<span class='keyword'>setInterval</span>(<span class='value'>tick</span>, <span class='value'>1000</span>);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='reactjs.html'>React.js</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

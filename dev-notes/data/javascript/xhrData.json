@@ -2,8 +2,14 @@
   "page": {
     "pagetitle": "JavaScript XMLHttpRequest",
     "pageheading": "XMLHttpRequest",
-    "pageintro": "",
     "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='javascript.html'>JavaScript</a>"
+        ]
+      },
       {
         "label": "SECTION",
         "showheading": true,
@@ -73,7 +79,7 @@
           "The second paremeter of the open method is the URL you're sending the request to. The exact domain is needed or a 'permission denied' error will be returned.",
           "The optional third parameter sets whether the request is asynchronous. It is set to 'true' by default. JavaScript execution will continue and the user will interact with the page while the server response is being returned.",
           "The paremeter in the send method can be any data you want to send to the server. This can be data entered in a form, for example. Form data should be sent in a format that the server can parse, like a query string.",
-          "https://stackoverflow.com/questions/3038901/how-to-get-the-response-of-xmlhttprequest"
+          "<!--https://stackoverflow.com/questions/3038901/how-to-get-the-response-of-xmlhttprequest-->"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,

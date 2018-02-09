@@ -1,0 +1,48 @@
+{
+  "page": {
+    "pagetitle": "React.js",
+    "pageheading": "React.js",
+    "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='reactjs-install.html'>Getting Started</a>",
+          "<a href='reactjs-element.html'>Elements</a>",
+          "<a href='reactjs-component.html'>Components</a>",
+          "<a href='reactjs-state.html'>State</a>",
+          "<a href='reactjs-form.html'>Form</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "React - also called React.js or ReactJS - is a JavaScript library for building user interfaces. It is maintained by Facebook, Instagram and a community of independent developers.",
+          "React allows developers to create web applications/single-page web applications (SPA) that can change over time without reloading the page. This corresponds to the View layer in the Model-View-Controller (MVC) pattern. This allows React to be used in combination with other JavaScript libraries or frameworks."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "JSX",
+        "copy": [
+          "JSX is a syntax extension of JavaScript that looks like regular HTML. It is used to describe what the UI (User Interface) should look like and is used to create React 'elements'. React does not require the use of JSX, and standard JavaScript can be used, however, JSX can be used as a visual aid when working with the UI and it also allows React to show more useful error/warning messages.",
+          "Since JSX is closer to JavaScript than to HTML, React DOM uses camelCase property naming conventions instead of HTML attribute names. For example, class becomes className in JSX, and tabindex becomes tabIndex.",
+          "It is recommended to use the Babel 'language definition' within your IDE so that both JSX and ES6 code is properly highlighted."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      }
+    ]
+  }
+}

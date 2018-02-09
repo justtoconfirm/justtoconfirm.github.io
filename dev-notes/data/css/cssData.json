@@ -1,0 +1,272 @@
+{
+  "page": {
+    "pagetitle": "CSS",
+    "pageheading": "CSS - Cascading Style Sheets",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Cascading Style Sheets (CSS) is a style sheet language used to describe the presentation of a document written in HTML or XML. CSS describes how elements should be rendered/styled."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Internal & Inline CSS",
+        "copy": [
+          "Internal CSS is used if a single HTML page has a unique style. Internal styles are defined within the &lt;style&gt; element inside the &lt;head&gt; section of your HTML code",
+          "It is usually recommended to use external CSS over inline or internal CSS.",
+          "CSS can also be added to HTML elements themselves. This is called Inline styling"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "   &lt;<span class='keyword'>style</span>&gt;",
+          "   <span class='comment'>/* Your CSS goes here */</span>",
+          "   &lt;<span class='keyword'>/style</span>&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>body</span>&gt;",
+          "   <span class='comment'>&lt;!-- Example of inline CSS styling --&gt;</span>",
+          "   &lt;<span class='keyword'>div</span> <span class='name'>style</span>=<span class='value'>'color: #ff9800; text-align: center;'</span>&gt;Example text&lt;<span class='keyword'>/div</span>&gt;",
+          "&lt;<span class='keyword'>/body</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "External CSS",
+        "copy": [
+          "An external CSS style sheet can be used to change the look of a website using a single file. HTML must include a reference to the external style sheet inside a &lt;link&gt; element. This element is placed inside the &lt;head&gt; section of your HTML code.",
+          "External CSS files should have the .css file extension."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "   &lt;<span class='keyword'>link</span> <span class='name'>rel</span>=<span class='value'>'stylesheet'</span> <span class='name'>href</span>=<span class='value'>'mystylesheet.css'</span> /&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "CSS Comments",
+        "copy": [
+          "Comments are used to explain what your code is doing to other developers and to help you when you need to understand the code at a later date. Comments are ignored by the browser."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='comment'>/*",
+          "CSS comments",
+          "can be over",
+          "multiple lines",
+          "*/</span>",
+          "<span class='keyword'>selector</span> {",
+          "   <span class='comment'>/* This is a single-line comment */</span>",
+          "   <span class='name'>property</span>: <span class='value'>value</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "CSS Syntax",
+        "copy": [
+          "CSS consists of a selector and a declaration block. The selector points to the HTML element you want to style. The declaration block contains one or more declarations separated by semicolons. Each declaration includes a CSS property name and value."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='comment'>/* CSS declaration block */</span>",
+          "<span class='keyword'>selector</span> {",
+          "   <span class='comment'>/* CSS declarations */</span>",
+          "   <span class='name'>property</span>: <span class='value'>value</span>;",
+          "   <span class='name'>property</span>: <span class='value'>value</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In the following example, we are using CSS to set all &lt;p&gt; elements to be center-aligned with a text colour."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='keyword'>p</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "CSS Selectors",
+        "copy": [
+          "CSS selectors are used to find/select HTML elements based on their element name, id, class or attribute.",
+          "The element selector is used to select elements based on the element name.",
+          "The id selector uses the id attribute to select a specific HTML element. The id of an element should be unique within a HTML page, so the id selector is used to select only one unique element. To select an element with an id, write a hash (#) followed by the id of the HTML element.",
+          "Class selectors allow HTML elements with a specific class attribute to be selected. To select elements with a class attribute, use the period (.) character followed by the class name. HTML elements can have more than one class.",
+          "Here are some examples:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='comment'>/* Element selector - select all &lt;p&gt; elements on the HTML page */</span>",
+          "<span class='keyword'>p</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}",
+          "",
+          "<span class='comment'>/* Styling only applied to the one HTML element that has the id attribute */</span>",
+          "<span class='keyword'>#paragraphOne</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}",
+           "",
+          "<span class='comment'>/* Styling applied to all HTML elements with the class attribute */</span>",
+          "<span class='keyword'>.center</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}",
+          "",
+          "<span class='comment'>/* Only &lt;p&gt; elements with the center class will apply styling */</span>",
+          "<span class='keyword'>p.center</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}"
+        ]
+      },
+
+
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Grouping Selectors",
+        "copy": [
+          "If CSS selectors are using the same styling, it is often better to group them together. In this next example, &lt;h1&gt;, &lt;h2&gt;, and &lt;p&gt; elements will all have the same CSS styling."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "<span class='keyword'>h1, h2, p</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ff9800</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Cascading Order",
+        "copy": [
+          "All styles will 'cascade' into a 'virtual' style sheet when the browser reads CSS. The HTML document will then be formatted according to the style sheet content.",
+          "If properties to style the same element are in different style sheets, the styling found in the last read CSS style sheet will be used and this will override any previous styling applied.",
+          "Inline CSS styles within HTML elements have a higher priority than either Inline or External CSS. Default browser styling has the lowest priority."
+
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+
+
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Example",
+        "copy": [
+          "An example showing both HTML and CSS."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML : index.html",
+        "code": [
+          "&lt;!DOCTYPE html&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;",
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "   &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;",
+          "   &lt;<span class='keyword'>title</span>&gt;My Page&lt;<span class='keyword'>/title</span>&gt;",
+          "   <span class='comment'>&lt;!-- This is our CSS stylesheet --&gt;</span>",
+          "   &lt;<span class='keyword'>link</span> <span class='name'>rel</span>=<span class='value'>'stylesheet'</span> <span class='name'>href</span>=<span class='value'>'styles/mystylesheet.css'</span> /&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;",
+          "&lt;<span class='keyword'>body</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>h1</span>&gt;Hello World&lt;<span class='keyword'>/h1</span>&gt;",
+          "&lt;<span class='keyword'>p</span> <span class='name'>id</span>=<span class='value'>'message'</span> <span class='name'>class</span>=<span class='value'>'bold'</span>&gt;This is an example HTML page using CSS.&lt;<span class='keyword'>/p</span>&gt;",
+          "&lt;<span class='keyword'>p</span> <span class='name'>class</span>=<span class='value'>'copy bold'</span>&gt;Another message here.&lt<span class='keyword'>/p</span>&gt;",
+          "&lt;<span class='keyword'>p</span> <span class='name'>class</span>=<span class='value'>'copy'</span>&gt;Another message here.&lt<span class='keyword'>/p</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>/body</span>&gt;",
+          "&lt;<span class='keyword'>/html</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "And we now apply the CSS within a style sheet."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "CSS",
+        "datatitle": "CSS : styles/mystylesheet.css",
+        "code": [
+          "<span class='keyword'>h1</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#1779ba</span>;",
+          "   <span class='name'>text-align</span>: <span class='value'>center</span>;",
+          "}",
+          "",
+          "<span class='keyword'>.bold</span> {",
+          "   <span class='name'>font-weight</span>: <span class='value'>bold</span>;",
+          "}",
+          "",
+          "<span class='keyword'>.copy</span> {",
+          "   <span class='name'>text-decoration</span>: <span class='value'>underline</span>;",
+          "}",
+          "",
+          "<span class='keyword'>#message</span> {",
+          "   <span class='name'>color</span>: <span class='value'>#ffa019</span>;",
+          "}"
+        ]
+      }
+    ]
+  }
+}

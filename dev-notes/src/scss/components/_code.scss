@@ -1,56 +1,94 @@
-/* Code block */
 pre {
-	padding: 0 25px;
-	margin-top: 0;
-	tab-size: 2;
-	color: #fff;
 	background-color: #000;
+	color: #fff;
+	margin-top: 0;
+	padding: 0 25px;
+	tab-size: 2;
+
+	code {
+		font-size: 14px;
+		// Allow code to wrap if screen is small
+		whites-space: pre-wrap;
+
+		// Syntax highlighting colours
+		.comment {
+			color: #9fa6ad;
+		}
+
+		.keyword {
+			color: #ff9800;
+		}
+
+		.name {
+			color: #dfc48c;
+		}
+
+		.value {
+			color: #cd6a51;
+		}
+
+		.return {
+			color: #add8e6;
+		}
+
+		.tag {
+			color: #e96900;
+		}
+	}
 }
 
-code {
-	/* Allow code examples to wrap when viewport width is small */
-	white-space: pre-wrap;
-	font-size: 14px;
-}
-
-/* Code block description bar */
+// Code block description bar
 .code:before {
-	width: 100%;
+	content: attr(data-title);
+	display: block;
 	padding: 10px 0;
 	text-indent: 15px;
-	display: block;
-	content: attr(data-title);
+	width: 100%;
 }
 
-/* Code block description bar colour - JavaScript / jQuery */
-.code[rel="js"]::before {
+/*
+%code-description {
 	color: #fff;
+	font-size: 14px;
+}
+*/
+
+@mixin code-description($rel, $color){
+	.code[rel=#{$rel}]::before {
+    	background-color: #{$color};
+    	color: #fff;
+    	font-size: 14px;
+  	}  
+}
+
+// Calling the mixin
+@include code-description('js', #ff9800);
+@include code-description('html', #1779ba);
+@include code-description('css', #f5da55);
+@include code-description('php', #42b983);
+
+
+
+
+// Code block description bar colours
+/*
+.code[rel="js"]::before {
+	@extend %code-description;
 	background-color: #ff9800;
 }
 
-/* Code block description bar colour - HTML */
 .code[rel="html"]::before {
-	color: #fff;
+	@extend %code-description;
 	background-color: #1779ba;
 }
 
-/* Code syntax colours */
-.comment {
-	color: #9fa6ad;
+.code[rel="css"]::before {
+	@extend %code-description;
+	background-color: #f5da55;
 }
 
-.keyword {
-	color: #ff9800;
+.code[rel="php"]::before {
+	@extend %code-description;
+	background-color: #42b983;
 }
-
-.name {
-	color: #dfc48c;
-}
-
-.value {
-	color: #cd6a51;
-}
-
-.return {
-	color: #add8e6;
-}
+*/

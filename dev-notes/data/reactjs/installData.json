@@ -1,0 +1,156 @@
+{
+  "page": {
+    "pagetitle": "React.js Getting Started",
+    "pageheading": "Getting Started",
+    "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='reactjs.html'>React.js</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Install using NPM",
+        "copy": [
+          "Create React App is the easiest way to start building a new React single page application (SPA). It sets up your development environment so you can use the latest JavaScript features and helps prepare your application for production. You will need to have Node version 6 or later installed on your machine.",
+          "This does not handle any databases or backend logic, but is used to create the frontend build pipeline to allow you to use tools such as Babel and Webpack. React allows you to use any backend you want."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install create-react-app -g",
+          "$ create-react-app my-app",
+          "",
+          "$ cd my-app",
+          "$ npm start"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Node version",
+        "copy": [
+          "Node version 6 or later is required to use Create React App. To check the version of Node installed, use the following command:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ node --version"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Deploy to Production",
+        "copy": [
+          "When you're ready to deploy your application to production, use the following command to create an optimized build of your app in the build folder."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm run build"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "File Structure",
+        "copy": [
+          "Once your React application has been created, the file structure should look something like the example below. If everything works as expected, your application should be visible within the browser at the URL of <a href='http://localhost:3000/' target='_blank'>http://localhost:3000/</a>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "my-app /",
+          "   .gitignore",
+          "   node_modules /",
+          "   package-json",
+          "   public /",
+          "      favicon.ico",
+          "      index.html",
+          "      manifest.json",
+          "   README.md",
+          "   src /",
+          "      App.css",
+          "      App.js",
+          "      App.test.js",
+          "      index.css",
+          "      index.js",
+          "      logo.svg",
+          "      registerServiceWorker.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Hello World",
+        "copy": [
+          "The simplest code example in React is to render a header saying 'Hello World' on the page. In the src/ directory of my-app, open the index.js file and amend the code to look like this:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "import React from 'react';",
+          "import ReactDOM from 'react-dom';",
+          "import './index.css';",
+          "import App from './App';",
+          "import registerServiceWorker from './registerServiceWorker';",
+          "",
+          "ReactDOM.render(",
+          "    &lt;h1&gt;Hello World&lt;/h1&gt;,",
+          "    document.getElementById('root')",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "DOM Node : 'Root'",
+        "copy": [
+          "You may have a &lt;div&gt; somewhere in your HTML file that has the id attribute value of 'root'. This is called the 'root' DOM node because everything inside it will be managed by React DOM. This is where your React application will be rendered.",
+          "Applications built just with React usually have a single root DOM node. In the initial file structure, the 'root' DOM node can be found within the index.html file in the public/ directory."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML : my-app/public/index.html",
+        "code": [
+          "&lt;div id='root'&gt;&lt;/div&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "To render a React element into a root DOM node, pass both to the ReactDOM.render() method."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript : my-app/src/index.js",
+        "code": [
+          "const elem = &lt;h1&gt;Hello World&lt;/h1&gt;;",
+          "",
+          "ReactDOM.render(",
+          "    elem,",
+          "    document.getElementById('root')",
+          ");"
+        ]
+      }
+    ]
+  }
+}

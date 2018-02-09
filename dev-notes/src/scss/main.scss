@@ -1,7 +1,7 @@
-// Vendor
-@import 'vendor/foundation';
+// Utility
+@import 'util/base';
+@import 'util/list';
+@import 'util/padding';
 
-// Base
-@import 'base/base';
-@import 'base/code';
-@import 'base/code-syntax';
+// Components
+@import 'components/code';

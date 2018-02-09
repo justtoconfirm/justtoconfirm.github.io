@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - React.js Components</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Components</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Creating a Component</h2>
+                <p>Components allow you to split the UI (User Interface) into independent, reusable pieces. React components are like JavaScript functions. They accept input - called props (properties) - and return elements that describes what should be on the screen.</p>
+                <p>React components can be created using JavaScript functions. This is the simplest way to write a React component and is called a 'functional component' because they are functions. ES6 JavaScript classes can also be used to create React components. ES6 Arrow functions can also be used. We do not need a return statement when using ES6 Arrow functions. Classes have some additional features over functions when creating a component, but either can be used.</p>
+                <p>Component names should always start with an uppercase letter.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>{/* Functional component */}</span>
+<span class='keyword'>function</span> <span class='name'>Welcome</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;
+}
+
+<span class='comment'>{/* ES6 Arrow function - no return statement */}</span>
+<span class='keyword'>const</span> <span class='name'>Welcome</span> = (<span class='value'>props</span>) =>
+    &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;
+
+<span class='comment'>{/* Using an ES6 class */}</span>
+<span class='keyword'>class</span> <span class='name'>Welcome</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='name'>Component</span> {
+    <span class='keyword'>render</span>() {
+        <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='keyword'>this</span>.<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;;
+    }
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>In our React application - my-app - we have an App.js file within the src/ directory containing a component. The example below shows how the component has been created using a JavaScript ES6 class:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;App.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span>, { <span class='name'>Component</span> } <span class='keyword'>from</span> <span class='value'>'react'</span>;
+
+<span class='keyword'>class</span> <span class='name'>App</span> <span class='keyword'>extends</span> <span class='name'>Component</span> {
+    <span class='keyword'>render</span>() {
+        <span class='return'>return</span> (
+            <span class='comment'>{/* Elements go here */}</span>
+        );
+    }
+}
+
+<span class='keyword'>export default</span> <span class='name'>App</span>;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Rendering a Component</h2>
+                <p>We are going to create a simple user-defined component. This simple component will be created using a JavaScript function and will allow an attribute to be passed into it using the props (properties) object. In the index.js file, update the code to include the component. Our component will be called 'Welcome'.</p>
+                <p>Once the component has been created, we want to pass a prop into the component which will allow us to render 'Hello, Dan' on the screen.</p>
+                <p>To summarise, this is what is occuring:</p>
+                <p><ul class='list'><li>We call React.render with the &lt;Welcome name='Dan' age='32' /&gt; element.</li></p>
+                <p><li>React calls the Welcome component with the {name: 'Dan', age: '32'} as the props (within the props object).</li></p>
+                <p><li>Our Welcome component returns &lt;h1&gt;Hello, Dan 32&lt;/h1&gt; element as a result.</li></p>
+                <p><li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan 32&lt;/h1&gt;</li></ul></p>
+                <p><!-- https://medium.com/@justtoconfirm/react-2d6bba32e764 --></p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='comment'>{/*
+props object contains any attribute values passed into the component
+Component has an uppercase name
+*/}</span>
+<span class='keyword'>function</span> <span class='name'>Welcome</span> (<span class='value'>props</span>) {
+    <span class='comment'>{/* Hello, Dan 32 */}</span>
+    <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>} {<span class='value'>props</span>.<span class='name'>age</span>}&lt;<span class='keyword'>/h1</span>&gt;;
+}
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    <span class='comment'>{/* Attribute values are passed into the component props object */}</span>
+    &lt;<span class='name'>Welcome</span> <span class='name'>name</span>=<span class='value'>'Dan'</span> <span class='name'>age</span>=<span class='value'>'32'</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>This is a simplified example:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='keyword'>function</span> <span class='name'>Welcome</span> () {
+    <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello World&lt;<span class='keyword'>/h1</span>&gt;;
+}
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    <span class='comment'>{/* Render the Welcome component here */}</span>
+    &lt;<span class='name'>Welcome</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Component Structure</h2>
+                <p>Components can refer to other components in their output. We can reuse components and also use components within another component if we need to. In React applications a button, form, dialog and screen are all commonly expressed as components. It's better to split components into smaller components so they can be reused.</p>
+                <p>We can create an App component that renders the Welcome component multiple times. Typically, new React apps have a single App component at the very top.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='keyword'>function</span> <span class='name'>Welcome</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;;
+}
+
+<span class='keyword'>function</span> <span class='name'>App</span> () {
+    <span class='return'>return</span> (
+        <span class='comment'>{/* Need the &lt;div&gt; element to prevent syntax errors */}</span>
+        &lt;<span class='keyword'>div</span>&gt;
+            <span class='comment'>{/* Reusing the Welcome component multiple times */}</span>
+            &lt;<span class='name'>Welcome name</span>=<span class='value'>'Dan'</span> /&gt;
+            &lt;<span class='name'>Welcome name</span>=<span class='value'>'Cassie'</span> /&gt;
+            &lt;<span class='name'>Welcome name</span>=<span class='value'>'Pearl'</span> /&gt;
+        &lt;<span class='keyword'>/div</span>&gt;
+    );
+}
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    <span class='comment'>{/*
+    Will render:
+    Hello, Dan
+    Hello, Cassie
+    Hello, Pearl
+    */}</span>
+    &lt;<span class='name'>App</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>As described in the code comments, if we do not wrap an element around the Welcome components in the App component, a syntax error will be displayed in the browser and terminal. Therefore, we wrap these components within an empty &lt;div&gt; element. The syntax error example can be seen below.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Extracting Components</h2>
+                <p>If part of your UI is used multiple times in other components - Buttons, Panel - or complex enough on its own, it is a good candidate to become a reusable component. As we are using Webpack, we can also place components within individual files to make them easier to locate and maintain.</p>
+                <p><!-- https://reactjs.org/docs/components-and-props.html --></p>
+                <p>We can begin by creating a simple comment component.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='keyword'>function</span> <span class='name'>formatDate</span> (<span class='value'>date</span>) {
+    <span class='return'>return</span> <span class='keyword'>date</span>.<span class='name'>toLocaleDateString</span>();
+}
+
+<span class='keyword'>function</span> <span class='name'>Comment</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment'</span>&gt;
+            &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'user-info'</span>&gt;
+                &lt;<span class='keyword'>img</span> <span class='name'>className</span>=<span class='value'>'avatar'</span>
+                    <span class='name'>src</span>={<span class='value'>props</span>.<span class='name'>author</span>.<span class='name'>avatarUrl</span>}
+                    <span class='name'>alt</span>={<span class='value'>props</span>.<span class='name'>author</span>.<span class='name'>name</span>} /&gt;
+                &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'userinfo-name'</span>&gt;
+                    {<span class='value'>props</span>.<span class='name'>author</span>.<span class='name'>name</span>}
+                &lt;<span class='keyword'>/div</span>&gt;
+                &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment-text'</span>&gt;
+                    {<span class='value'>props</span>.<span class='name'>text</span>}
+                &lt;<span class='keyword'>/div</span>&gt;
+                &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment-date'</span>&gt;
+                    {<span class='name'>formatDate</span>(<span class='value'>props</span>.<span class='name'>date</span>)}
+                &lt;<span class='keyword'>/div</span>&gt;
+            &lt;<span class='keyword'>/div</span>&gt;
+        &lt;<span class='keyword'>/div</span>&gt;
+    );
+}
+
+<span class='keyword'>const</span> <span class='name'>comment</span> = {
+    <span class='name'>date</span>: <span class='keyword'>new</span> <span class='name'>Date</span>(),
+    <span class='name'>text</span>: <span class='value'>'I hope you like React'</span>,
+    <span class='name'>author</span>: {
+        <span class='name'>name</span>: <span class='value'>'Dan Jackson'</span>,
+        <span class='name'>avatarUrl</span>: <span class='value'>'http://placekitten.com/g/64/64'</span>,
+    }
+};
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    &lt;<span class='name'>Comment</span>
+        <span class='name'>date</span>={<span class='name'>comment</span>.<span class='value'>date</span>}
+        <span class='name'>text</span>={<span class='name'>comment</span>.<span class='value'>text</span>}
+        <span class='name'>author</span>={<span class='name'>comment</span>.<span class='value'>author</span>}
+    /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The comment component can be difficult to change due to all the nesting. The component itself accepts author (object), text (string), and date as props. This type of component would be something you would see on a social media website.</p>
+                <p>Let's extract a few components from the rather large comment component.</p>
+                <p>The Avatar doesn't need to know that its being rendered inside a comment component, so the prop name is the now more generic user rather than author. By removing this component from inside the comment component, we can still reuse it anywhere we choose.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='comment'>{/* Function to format the date */}</span>
+<span class='keyword'>function</span> <span class='name'>formatDate</span> (<span class='value'>date</span>) {
+    <span class='return'>return</span> <span class='keyword'>date</span>.<span class='name'>toLocaleDateString</span>();
+}
+
+<span class='comment'>{/* Avatar component */}</span>
+<span class='keyword'>function</span> <span class='name'>Avatar</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>img</span> <span class='name'>className</span>=<span class='value'>'avatar'</span>
+            <span class='name'>src</span>={<span class='value'>props</span>.<span class='name'>user</span>.<span class='name'>avatarUrl</span>}
+            <span class='name'>alt</span>={<span class='value'>props</span>.<span class='name'>user</span>.<span class='name'>name</span>}
+        /&gt;
+    );
+}
+
+<span class='comment'>{/* UserInfo component */}</span>
+<span class='keyword'>function</span> <span class='name'>UserInfo</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'user-info'</span>&gt;
+            <span class='comment'>{/* Include the Avatar component here */}</span>
+            &lt;<span class='name'>Avatar</span> <span class='name'>user</span>={<span class='value'>props</span>.<span class='name'>user</span>} /&gt;
+            &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'userinfo-name'</span>&gt;
+                {<span class='value'>props</span>.<span class='name'>user</span>.<span class='name'>name</span>}
+            &lt;<span class='keyword'>/div</span>&gt;
+        &lt;<span class='keyword'>/div</span>&gt;
+    );
+}
+
+<span class='comment'>{/* Comment component - simplified version */}</span>
+<span class='keyword'>function</span> <span class='name'>Comment</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment'</span>&gt;
+            <span class='comment'>{/* Include the UserInfo component here */}</span>
+            &lt;<span class='name'>UserInfo</span> <span class='name'>user</span>={<span class='value'>props</span>.<span class='name'>author</span>} /&gt;
+            &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment-text'</span>&gt;
+                {<span class='value'>props</span>.<span class='name'>text</span>}
+            &lt;<span class='keyword'>/div</span>&gt;
+            &lt;<span class='keyword'>div</span> <span class='name'>className</span>=<span class='value'>'comment-date'</span>&gt;
+                <span class='comment'>{/* Uses the formatDate function */}</span>
+                {<span class='name'>formatDate</span>(<span class='value'>props</span>.<span class='name'>date</span>)}
+            &lt;<span class='keyword'>/div</span>&gt;
+        &lt;<span class='keyword'>/div</span>&gt;
+    );
+}
+
+<span class='comment'>{/* Element */}</span>
+<span class='keyword'>const</span> <span class='name'>comment</span> = {
+    <span class='name'>date</span>: <span class='keyword'>new</span> <span class='name'>Date</span>(),
+    <span class='name'>text</span>: <span class='value'>'I hope you like React'</span>,
+    <span class='name'>author</span>: {
+        <span class='name'>name</span>: <span class='value'>'Dan Jackson'</span>,
+        <span class='name'>avatarUrl</span>: <span class='value'>'http://placekitten.com/g/64/64'</span>,
+    }
+};
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    &lt;<span class='name'>Comment</span>
+        <span class='name'>date</span>={<span class='name'>comment</span>.<span class='value'>date</span>}
+        <span class='name'>text</span>={<span class='name'>comment</span>.<span class='value'>text</span>}
+        <span class='name'>author</span>={<span class='name'>comment</span>.<span class='value'>author</span>}
+    /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Individual Files</h2>
+                <p>As we are using Webpack, we can separate our components into individual files. We currently already do this for the existing App component (my-app/src/App.js).</p>
+                <p>Begin by creating a new folder/directory named 'components' within the src/ directory of our React project. Because we are using Babel and Webpack, we can remove the semi-colons that are used to end statements within the JavaScript code.</p>
+                <p>Below we are recreating the same component multiple times to show how it can be done. You can of course use a class, however to keep things simple, we are just using functions initially.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;components&#x2F;Welcome.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>{/* Functional component */}</span>
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>
+
+<span class='keyword'>function</span> <span class='name'>Welcome</span> (<span class='value'>props</span>) {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>div</span>&gt;
+            &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;
+            &lt;<span class='keyword'>h2</span>&gt;Welcome to React!&lt;<span class='keyword'>/h2</span>&gt;
+        &lt;<span class='keyword'>/div</span>&gt;
+    )
+}
+
+<span class='keyword'>export default</span> <span class='name'>Welcome</span>
+
+
+<span class='comment'>{/* ES6 functional component */}</span>
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>
+
+<span class='keyword'>const</span> <span class='name'>Welcome</span> = (<span class='value'>props</span>) =>
+    &lt;<span class='keyword'>div</span>&gt;
+        &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;
+        &lt;<span class='keyword'>h2</span>&gt;Welcome to React!&lt;<span class='keyword'>/h2</span>&gt;
+    &lt;<span class='keyword'>/div</span>&gt;
+
+<span class='keyword'>export default</span> <span class='name'>Welcome</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now that the component has been created and exported, we can import it so it can be used. Open up the index.js file in the src/ directory and import the Welcome component we have just created. Once again we have removed the semi-colon at the end of the statement as we do not need this when writing ES6.</p>
+                <p>The first few lines of index.js should now look like this:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>
+
+<span class='keyword'>import</span> <span class='name'>Welcome</span> <span class='keyword'>from</span> <span class='value'>'./components/Welcome'</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>And now we just want to render the Welcome component. This is the full code:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>
+
+<span class='keyword'>import</span> <span class='name'>Welcome</span> <span class='keyword'>from</span> <span class='value'>'./components/Welcome'</span>
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    &lt;<span class='name'>Welcome</span> <span class='name'>name</span>=<span class='value'>'Dan'</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+)
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>It is worth noting that props are read-only. Whether you declare a component as a function or a class, it must never modify its own props. Such functions are called 'pure' because they do no attempt to change their inputs and always returns the same result for the same input. All React components must act like pure functions with respect to their props.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>// This is a pure function - a correct function</span>
+<span class='keyword'>function</span> <span class='name'>sum</span> (<span class='value'>a</span>, <span class='value'>b</span>) {
+    <span class='return'>return</span> <span class='value'>a</span> + <span class='value'>b</span>;
+}
+
+<span class='comment'>// This is an inpure function</span>
+<span class='keyword'>function</span> <span class='name'>withdraw</span> (<span class='value'>account</span>, <span class='value'>amount</span>) {
+    <span class='value'>account.total</span> -= <span class='value'>amount</span>;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='reactjs.html'>React.js</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

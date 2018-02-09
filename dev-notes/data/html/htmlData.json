@@ -1,0 +1,143 @@
+{
+  "page": {
+    "pagetitle": "HTML",
+    "pageheading": "HTML",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "HTML (Hyper Text Markup Language) is the standard markup language and is used to describe the structure of web pages. HTML elements are represented by tags and are the building blocks of HTML pages. Browsers do not display the HTML tags, but use them to render the content of the page.",
+          "HTML files should have the .html file extension.",
+          "A very basic HTML document can be found below:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML : index.html",
+        "code": [
+          "&lt;!DOCTYPE html&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;",
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;",
+          "    &lt;<span class='keyword'>title</span>&gt;Page Title&lt;<span class='keyword'>/title</span>&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;",
+          "&lt;<span class='keyword'>body</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>h1</span>&gt;Heading&lt;<span class='keyword'>/h1</span>&gt;",
+          "&lt;<span class='keyword'>p</span>&gt;A very simple paragraph.&lt;<span class='keyword'>/p</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>/body</span>&gt;",
+          "&lt;<span class='keyword'>/html</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Comments",
+        "copy": [
+          "Comment tags are used to insert comments in your HTML code. Comments are not displayed by the browser, but they can help document your HTML source code. Comments can also be used for debugging because you can comment out HTML code to search for errors."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "<span class='comment'>&lt;!-- This is a comment in HTML --&gt;</span>",
+          "",
+          "<span class='comment'>&lt;!-- Do not display this",
+          "&lt;p&gt;A very simple paragraph.&lt;/p&gt;",
+          "--&gt;</span>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "HTML Elements & Tags",
+        "copy": [
+          "HTML tags are element names surrounded by brackets. Tags normally come in pairs, like &lt;p&gt; and &lt;/p&gt;. The first tag is called the start/opening tag, and the end tag is called the end/closing tag.",
+          "An HTML element usually consists of a start tag and end tag, with the content inserted between. The HTML element is everything from the start tag to the end tag.",
+          "HTML elements with no content are called empty element. These elements have no end tag, such as the &lt;br&gt; element."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>tag</span>&gt;Content goes here.&lt;<span class='keyword'>/tag</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>p</span>&gt;A very simple paragraph.&lt;<span class='keyword'>/p</span>&gt;",
+          "",
+          "<span class='comment'>&lt;!-- Empty HTML element --&gt;</span>",
+          "&lt;<span class='keyword'>br</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "HTML Attributes",
+        "copy": [
+          "Attributes provide additional information about an HTML element. All HTML elements can have attributes and they are always specified in the start/opening tag. You can apply more than one attribute to HTML elements if required.",
+          "Further information can be found <a href='css.html'>here</a>."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "<span class='comment'>&lt;!-- Link without the href attribute --&gt;</span>",
+          "&lt;<span class='keyword'>a</span>&gt;Link&lt;<span class='keyword'>/a</span>&gt;",
+          "<span class='comment'>&lt;!-- With href attribute --&gt;</span>",
+          "&lt;<span class='keyword'>a</span> <span class='name'>href</span>=<span class='value'>'https://www.website.com'</span>&gt;Link&lt;<span class='keyword'>/a</span>&gt;",
+          "",
+          "<span class='comment'>&lt;!-- div element without any attributes --&gt;</span>",
+          "&lt;<span class='keyword'>div</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;",
+          "<span class='comment'>&lt;!-- div element with class attribute --&gt;</span>",
+          "&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'bold'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;",
+          "<span class='comment'>&lt;!-- div element with id attribute --&gt;</span>",
+          "&lt;<span class='keyword'>div</span> <span class='name'>id</span>=<span class='value'>'blockOne'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;",
+          "<span class='comment'>&lt;!-- div element with multiple attributes --&gt;</span>",
+          "&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'bold border'</span> <span class='name'>id</span>=<span class='value'>'blockTwo'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "When applying JavaScript to HTML elements, it is recommended to use attributes with a 'js-' prefix. This helps separate CSS styling and JavaScript functionality in HTML."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "<span class='comment'>&lt;!-- div element with CSS and JavaScript class attributes --&gt;</span>",
+          "&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'js-function bold'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "HTML Language",
+        "copy": [
+          "The HTML lang attribute can be used to declare the language of a web page or portion of a web page to assist search engines and browsers. You should declare the primary language for each web page in your HTML code using the lang atribute within the &lt;html&gt; tag. In this example, the language has been set to English."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "page": {
+    "pagetitle": "PHP Variables",
+    "pageheading": "PHP Variables",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='php.html'>PHP</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Declaring Variables",
+        "copy": [
+          "In PHP, a variable is created (declared) with the $ sign, followed by the name of the variable. You can think of a variable as being a container for storing data. Unlike other programming languages, PHP has no command for declaring a variable, it is created the moment you first assign a value to it.",
+          "We do not have to tell PHP which data type the variable is as PHP automatically converts the variable to the correct data type based on its value. This is because PHP is a loosely typed language."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "php",
+        "datatitle": "PHP",
+        "code": [
+          "&lt;<span class='keyword'>?php</span>",
+          "<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;",
+          "<span class='name'>$number</span> = <span class='value'>34</span>;",
+          "<span class='name'>$boolean</span> = <span class='value'>true</span>;",
+          "<span class='name'>$x</span> = <span class='value'>10.5</span>;",
+          "<span class='keyword'>?</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Output Variables",
+        "copy": [
+          "Once a variable has been declared you can often use the PHP echo statement to output the data onto the screen."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "php",
+        "datatitle": "PHP",
+        "code": [
+          "&lt;<span class='keyword'>?php</span>",
+          "<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;",
+          "<span class='keyword'>echo</span> 'Message: <span class='name'>$message</span>';",
+          "<span class='keyword'>?</span>&gt;",
+          "",
+          "<span class='comment'>// Will produce the same output</span>",
+          "&lt;<span class='keyword'>?php</span>",
+          "<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;",
+          "<span class='keyword'>echo</span> 'Message: ' . <span class='name'>$message</span>;",
+          "<span class='keyword'>?</span>&gt;"
+        ]
+      }
+    ]
+  }
+}

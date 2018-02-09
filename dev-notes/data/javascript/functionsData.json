@@ -2,8 +2,14 @@
   "page": {
     "pagetitle": "JavaScript Functions",
     "pageheading": "Functions",
-    "pageintro": "",
     "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='javascript.html'>JavaScript</a>"
+        ]
+      },
       {
         "label": "SECTION",
         "showheading": true,
@@ -165,7 +171,7 @@
           "<span class='name'>takeOrder</span> ( <span class='value'>'thick'</span>, <span class='value'>'cheese'</span> );",
           "",
           "<span class='comment'>// Number of items in the order</span>",
-          "console.log( <span class='value'>'Items: '</span> + orderCount );",
+          "console.log( <span class='value'>'Items: '</span> + <span class='name'>orderCount</span> );",
           "<span class='comment'>// Subtotal to two decimal places</span>",
           "console.log( <span class='value'>'Subtotal: £'</span> + <span class='name'>getSubTotal</span> ( <span class='name'>orderCount</span> ).<span class='keyword'>toFixed</span>(<span class='value'>2</span>) );",
           "<span class='comment'>// Total to two decimal places</span>",
