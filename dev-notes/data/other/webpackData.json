@@ -16,7 +16,8 @@
         "copy": [
           "Webpack is a module bundler for modern JavaScript applications. This process is called a dependency graph and includes every module your application needs, which is then packaged into one or more bundles. Webpack is also known as a build tool.",
           "<!-- https://tutorialzine.com/2017/04/learn-webpack-in-15-minutes -->",
-          "<!-- https://webpack.js.org/concepts/ -->"
+          "<!-- https://webpack.js.org/concepts/ -->",
+          "<!-- https://medium.com/front-end-hacking/what-are-npm-yarn-babel-and-webpack-and-how-to-properly-use-them-d835a758f987 -->"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
@@ -38,13 +39,13 @@
         "datatitle": null,
         "code": [
           "<span class='comment'># Create project directory</span>",
-          "$ mkdir my-app",
-          "$ cd my-app",
+          "$ <span class='keyword'>mkdir</span> <span class='name'>my-app</span>",
+          "$ <span class='keyword'>cd</span> <span class='name'>my-app</span>",
           "",
           "<span class='comment'># Create package.json file</span>",
-          "npm init -y",
+          "$ <span class='keyword'>npm init</span> <span class='value'>-y</span>",
           "<span class='comment'># Install Webpack</span>",
-          "$ npm install webpack --save-dev"
+          "$ <span class='keyword'>npm install</span> <span class='name'>webpack</span> <span class='value'>--save-dev</span>"
         ]
       },
       {
@@ -52,17 +53,16 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "Once we have Webpack installed within our project directory, it is best to run Webpack using a Node.js script. By calling npm run build from the terminal, we can make Webpack bundle our files (the -p flag/option stands for production and minifies the bundled code). Running npm run watch will start a process that automatically bundles our files when any of them change.",
-          "The example below shows a JSON file using single quotes ( ' ' ), but this should be double quotes."
+          "Once we have Webpack installed within our project directory, it is best to run Webpack using a Node.js script. By calling npm run build from the terminal, we can make Webpack bundle our files (the -p flag/option stands for production and minifies the bundled code). Running npm run watch will start a process that automatically bundles our files when any of them change."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "js",
         "datatitle": "JSON : package.json",
         "code": [
-          "<span class='name'>'scripts'</span> {",
-          "    <span class='name'>'build'</span>: <span class='value'>'webpack -p'</span>,",
-          "    <span class='name'>'watch'</span>: <span class='value'>'webpack --watch'</span>",
+          "<span class='name'>\"scripts\"</span> {",
+          "    <span class='name'>\"build\"</span>: <span class='value'>\"webpack -p\"</span>,",
+          "    <span class='name'>\"watch\"</span>: <span class='value'>\"webpack --watch\"</span>",
           "},"
         ]
       },
@@ -81,6 +81,7 @@
         "rel": "js",
         "datatitle": "JavaScript : webpack.config.js",
         "code": [
+          "<span class='comment'>// This library allows us to combine paths easily</span>",
           "<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);",
           "",
           "<span class='keyword'>module</span>.<span class='name'>exports</span> = {",
@@ -221,8 +222,8 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "$ npm install css-loader --save-dev",
-          "$ npm install ts-loader --save-dev"
+          "$ <span class='keyword'>npm install</span> <span class='name'>css-loader</span> <span class='value'>--save-dev</span>",
+          "$ <span class='keyword'>npm install</span> <span class='name'>ts-loader</span> <span class='value'>--save-dev</span>"
         ]
       },
       {
@@ -240,10 +241,10 @@
           "<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);",
           "",
           "<span class='keyword'>module</span>.<span class='name'>exports</span> = {",
-          "    module: {",
-          "        rules: [",
-          "            { test: &#47;&#92;.css$/, use: 'css-loader' },",
-          "            { test: &#47;&#92;.ts$/, use: 'ts-loader' }",
+          "    <span class='name'>module</span>: {",
+          "        <span class='name'>rules</span>: [",
+          "            { <span class='name'>test</span>: <span class='value'>&#47;&#92;.css$/</span>, <span class='name'>use</span>: <span class='value'>'css-loader'</span> },",
+          "            { <span class='name'>test</span>: <span class='value'>&#47;&#92;.ts$/</span>, <span class='name'>use</span>: <span class='value'>'ts-loader'</span> }",
           "        ]",
           "    }",
           "};"
@@ -264,8 +265,8 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "$ npm install sass-loader node-sass --save-dev",
-          "$ npm install style-loader css-loader --save-dev"
+          "$ <span class='keyword'>npm install</span> <span class='name'>sass-loader node-sass</span> <span class='value'>--save-dev</span>",
+          "$ <span class='keyword'>npm install</span> <span class='name'>style-loader css-loader</span> <span class='value'>--save-dev</span>"
         ]
       },
       {
@@ -281,8 +282,8 @@
         "rel": "js",
         "datatitle": "JavaScript : my-app/js/index.js",
         "code": [
-          "// Import the style.scss file in the root directory",
-          "import './../style.scss';",
+          "<span class='comment'>// Import the style.scss file in the root directory</span>",
+          "<span class='keyword'>import</span> <span class='value'>'./../style.scss'</span>;",
           "",
           "<span class='comment'>// Import the greeting module</span>",
           "<span class='keyword'>import</span> <span class='name'>greeting</span> <span class='keyword'>from</span> <span class='value'>'./greeting.js'</span>;",
@@ -315,11 +316,11 @@
           "",
           "<span class='keyword'>module</span>.<span class='name'>exports</span> = {",
           "    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,",
-          "    module: {",
-          "        rules: [",
+          "    <span class='name'>module</span>: {",
+          "        <span class='name'>rules</span>: [",
           "            {",
-          "                test: &#47;&#92;.(s*)css$/,",
-          "                use: ['style-loader', 'css-loader', 'sass-loader']",
+          "                <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,",
+          "                <span class='name'>use</span>: [<span class='value'>'style-loader'</span>, <span class='value'>'css-loader'</span>, <span class='value'>'sass-loader'</span>]",
           "            }",
           "        ]",
           "    },",
@@ -343,7 +344,7 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "$ npm install extract-text-webpack-plugin --save-dev"
+          "$ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpack-plugin</span> <span class='value'>--save-dev</span>"
         ]
       },
       {
@@ -361,23 +362,23 @@
         "code": [
           "<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);",
           "",
-          "const ExtractTextPlugin = require('extract-text-webpack-plugin');",
+          "<span class='keyword'>const</span> <span class='name'>ExtractTextPlugin</span> = <span class='keyword'>require</span>(<span class='value'>'extract-text-webpack-plugin'</span>);",
           "",
           "<span class='keyword'>module</span>.<span class='name'>exports</span> = {",
           "    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,",
-          "    module: {",
-          "        rules: [",
+          "    <span class='name'>module</span>: {",
+          "        <span class='name'>rules</span>: [",
           "            {",
-          "                test: &#47;&#92;.(s*)css$/,",
-          "                use: ExtractTextPlugin.extract({",
-          "                    fallback: 'style-loader',",
-          "                    use: ['css-loader', 'sass-loader'],",
+          "                <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,",
+          "                <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({",
+          "                    <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,",
+          "                    <span class='name'>use</span>: [<span class='value'>'css-loader'</span>, <span class='value'>'sass-loader'</span>],",
           "                })",
           "            }",
           "        ]",
           "    },",
-          "    plugins: [",
-          "        new ExtractTextPlugin({filename: 'bundle.css'}),",
+          "    <span class='name'>plugins</span>: [",
+          "        <span class='keyword'>new</span> <span class='name'>ExtractTextPlugin</span>({<span class='name'>filename</span>: <span class='value'>'bundle.css'</span>}),",
           "    ],",
           "    <span class='name'>output</span>: {",
           "        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),",
@@ -442,7 +443,7 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "$ npm install react react-dom --save"
+          "$ <span class='keyword'>npm install</span> <span class='name'>react react-dom</span> <span class='value'>--save</span>"
         ]
       }
     ]
