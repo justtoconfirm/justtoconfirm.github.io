@@ -422,7 +422,8 @@
         "showheading": true,
         "heading": "Babel Loader",
         "copy": [
-          "If we want to use ES6 JavaScript syntax within our application, or JSX while working with React, we can use Babel to translate both into formats that are supported by all browsers. Webpack uses loaders to translate the file before bundling them. For example, we can take a JSX file (not supported by browsers), Webpack will bundle the file (and translate into standard JavaScript when using Babel) and this will output a standard JavaScript file supported by all browsers."
+          "If we want to use ES6 JavaScript syntax within our application, or JSX while working with React, we can use Babel to translate both into formats that are supported by all browsers. Webpack uses loaders to translate the file before bundling them. For example, we can take a JSX file (not supported by browsers), Webpack will bundle the file (and translate into standard JavaScript when using Babel) and this will output a standard JavaScript file supported by all browsers.",
+          "<!-- https://florianbrinkmann.com/en/4197/webpack-and-babel/ -->"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
