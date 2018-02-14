@@ -335,7 +335,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
 <span class='keyword'>const</span> <span class='name'>ExtractTextPlugin</span> = <span class='keyword'>require</span>(<span class='value'>'extract-text-webpack-plugin'</span>);
 
 <span class='keyword'>module</span>.<span class='name'>exports</span> = {
-    <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,
+    <span class='name'>entry</span>: [<span class='value'>'./js/index.js'</span>, <span class='value'>'./scss/main.scss'</span>],
     <span class='name'>module</span>: {
         <span class='name'>rules</span>: [
             {
