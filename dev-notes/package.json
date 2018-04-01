@@ -2,14 +2,6 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run compile-scss && npm run build-html-doc && npm run build-stylesheet && npm run build-javascript && npm run build-php-doc && npm run build-vue && npm run build-react && npm run build-other",
-    "build-html-doc": "npm run build-html",
-    "build-stylesheet": "npm run build-css",
-    "build-javascript": "npm run build-js && npm run build-js-array && npm run build-js-variables && npm run build-js-functions && npm run build-js-objects && npm run build-js-xhr",
-    "build-php-doc": "npm run build-php && npm run build-php-variables && npm run build-php-functions",
-    "build-vue": "npm run build-vuejs && npm run build-vuejs-install && npm run build-vuejs-component",
-    "build-react": "npm run build-reactjs && npm run build-reactjs-install && npm run build-reactjs-element && npm run build-reactjs-component && npm run build-reactjs-state && npm run build-reactjs-form",
-    "build-other": "npm run build-api && npm run build-rwd && npm run build-webpack",
     "build-html": "mustache -p views/partials/footer.mustache data/html/htmlData.json views/templates/pageTemplate.mustache > dist/pages/html.html",
     "build-css": "mustache -p views/partials/footer.mustache data/css/cssData.json views/templates/pageTemplate.mustache > dist/pages/css.html",
     "build-js": "mustache -p views/partials/footer.mustache data/javascript/javascriptData.json views/templates/pageTemplate.mustache > dist/pages/javascript.html",
@@ -33,6 +25,8 @@
     "build-api": "mustache -p views/partials/footer.mustache data/other/apiData.json views/templates/pageTemplate.mustache > dist/pages/api.html",
     "build-rwd": "mustache -p views/partials/footer.mustache data/other/rwdData.json views/templates/pageTemplate.mustache > dist/pages/rwd.html",
     "build-webpack": "mustache -p views/partials/footer.mustache data/other/webpackData.json views/templates/pageTemplate.mustache > dist/pages/webpack.html",
+    "build-tdd": "mustache -p views/partials/footer.mustache data/other/tddData.json views/templates/pageTemplate.mustache > dist/pages/tdd.html",
+    "build-redux": "mustache -p views/partials/footer.mustache data/other/reduxData.json views/templates/pageTemplate.mustache > dist/pages/redux.html",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",
     "minify-css": "minify dist/css/style.css"
