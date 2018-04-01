@@ -26,6 +26,122 @@
             </section>
             <section class="pad-btm">
                 <h2>Introduction</h2>
+                <p>Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The main rule of TDD is that you don't write any module code until a test fails.</p>
+                <p><!-- https://www.youtube.com/watch?v=MLTRHc5dk6s --></p>
+            </section>
+            <section class="pad-btm">
+                <h2>Mocha</h2>
+                <p>Mocha is a JavaScript test framework that runs using Node.js and within the browser. To install Mocha v3.0.0 or later, you will need NPM (Node Package Manager) v2.14.2 or later. To run Mocha, Node.js version 4 or later is required.</p>
+                <p>Alternatives to Mocha include: Jest, Jasmine, AVA, and Tape. Mocha does not have an assertion library, a tool used to verify that things are correct, but assertion libraries such as Expect or Chai can be used with Mocha.</p>
+                <p>Using NPM (Node Package Manager), Mocha can be installed using the terminal. The NPM package should be installed as a devDependency.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install mocha --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Chai</h2>
+                <p>Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.</p>
+                <p>Chai can be installed as a devDependency using the following terminal command:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install chai --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Writing Tests</h2>
+                <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ mkdir test
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>As an example, create a file named app.js in the root directory of your project, this will be our module we are testing, and within the test directory create a file named appTest.js that will contain our tests.</p>
+                <p>We'll begin by writing the app.js module file first.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Export module to be accessible
+module.exports = function() {
+    return 'hello';
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now we can write the test in test/appTest.js to check if 'hello' is returned.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: test&#x2F;app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Bring in the Chai assertion library
+const assert = require('chai').assert;
+// Bring in the app.js file
+const app = require('../app');
+
+describe('App', function() {
+   it('app should return hello', function() {
+      // assert function from Chai
+      assert.equal(app(), 'hello');
+   });
+})
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Running Tests</h2>
+                <p>Once the test has been written, we can use NPM (Node Package Manager) to run the test. Open the package.json file and add the following:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+'scripts': {
+   'test': 'mocha'
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The test can now be run from with the terminal using the following command:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$npm run test
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
 
         </div>

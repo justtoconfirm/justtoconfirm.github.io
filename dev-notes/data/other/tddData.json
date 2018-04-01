@@ -14,13 +14,138 @@
         "showheading": true,
         "heading": "Introduction",
         "copy": [
-
+          "Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The main rule of TDD is that you don't write any module code until a test fails.",
+          "<!-- https://www.youtube.com/watch?v=MLTRHc5dk6s -->"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
         "rel": null,
         "datatitle": null,
         "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Mocha",
+        "copy": [
+          "Mocha is a JavaScript test framework that runs using Node.js and within the browser. To install Mocha v3.0.0 or later, you will need NPM (Node Package Manager) v2.14.2 or later. To run Mocha, Node.js version 4 or later is required.",
+          "Alternatives to Mocha include: Jest, Jasmine, AVA, and Tape. Mocha does not have an assertion library, a tool used to verify that things are correct, but assertion libraries such as Expect or Chai can be used with Mocha.",
+          "Using NPM (Node Package Manager), Mocha can be installed using the terminal. The NPM package should be installed as a devDependency."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install mocha --save-dev"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Chai",
+        "copy": [
+          "Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.",
+          "Chai can be installed as a devDependency using the following terminal command:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install chai --save-dev"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Writing Tests",
+        "copy": [
+          "By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ mkdir test"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "As an example, create a file named app.js in the root directory of your project, this will be our module we are testing, and within the test directory create a file named appTest.js that will contain our tests.",
+          "We'll begin by writing the app.js module file first."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "// Export module to be accessible",
+          "module.exports = function() {",
+          "    return 'hello';",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Now we can write the test in test/appTest.js to check if 'hello' is returned."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: test/app.js",
+        "code": [
+          "// Bring in the Chai assertion library",
+          "const assert = require('chai').assert;",
+          "// Bring in the app.js file",
+          "const app = require('../app');",
+          "",
+          "describe('App', function() {",
+          "   it('app should return hello', function() {",
+          "      // assert function from Chai",
+          "      assert.equal(app(), 'hello');",  
+          "   });",
+          "})"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Running Tests",
+        "copy": [
+          "Once the test has been written, we can use NPM (Node Package Manager) to run the test. Open the package.json file and add the following:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "'scripts': {",
+          "   'test': 'mocha'",
+          "},"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The test can now be run from with the terminal using the following command:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$npm run test"
+        ]
       }
     ]
   }
