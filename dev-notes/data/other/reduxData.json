@@ -6,7 +6,8 @@
       {
         "label": "LINKS",
         "links": [
-          "<a href='../../index.html'>Home</a>"
+          "<a href='../../index.html'>Home</a>",
+          "<!-- https://dev.to/aurelkurtula/introduction-to-redux-1g3 -->"
         ]
       },
       {
@@ -14,7 +15,35 @@
         "showheading": true,
         "heading": "Introduction",
         "copy": [
-
+          "Redux is a JavaScript library to manage the state of your application - it helps you to manage the data you display and how you respond to user actions."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Install Redux",
+        "copy": [
+          "Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install redux --save"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Store",
+        "copy": [
+          "The store is an object that holds the complete state of your application."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,

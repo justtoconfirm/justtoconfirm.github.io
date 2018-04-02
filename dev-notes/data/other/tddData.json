@@ -127,8 +127,8 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "'scripts': {",
-          "   'test': 'mocha'",
+          "\"scripts\": {",
+          "   \"test\": \"mocha\"",
           "},"
         ]
       },
@@ -144,7 +144,7 @@
         "rel": null,
         "datatitle": null,
         "code": [
-          "$npm run test"
+          "$ npm run test"
         ]
       }
     ]
