@@ -26,6 +26,7 @@
     "build-rwd": "mustache -p views/partials/footer.mustache data/other/rwdData.json views/templates/pageTemplate.mustache > dist/pages/rwd.html",
     "build-webpack": "mustache -p views/partials/footer.mustache data/other/webpackData.json views/templates/pageTemplate.mustache > dist/pages/webpack.html",
     "build-tdd": "mustache -p views/partials/footer.mustache data/other/tddData.json views/templates/pageTemplate.mustache > dist/pages/tdd.html",
+    "build-bem": "mustache -p views/partials/footer.mustache data/other/bemData.json views/templates/pageTemplate.mustache > dist/pages/bem.html",
     "build-redux": "mustache -p views/partials/footer.mustache data/other/reduxData.json views/templates/pageTemplate.mustache > dist/pages/redux.html",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",

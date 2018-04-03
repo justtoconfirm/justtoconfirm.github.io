@@ -14,7 +14,7 @@
         "showheading": true,
         "heading": "Introduction",
         "copy": [
-          "Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The main rule of TDD is that you don't write any module code until a test fails.",
+          "Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The tests are written to fail initially, and the developer then writes the code to fulfill the requirements of the test so that they pass.",
           "<!-- https://www.youtube.com/watch?v=MLTRHc5dk6s -->"
         ],
         "label": "CODE/MARKUP",
@@ -38,6 +38,26 @@
         "datatitle": null,
         "code": [
           "$ npm install mocha --save-dev"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "You can use the built-in Node.js assert module to test if true is equal to true. This will be our initial test, and should pass. This example is using the ES6 arrow function."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: test/test.js",
+        "code": [
+          "// Include assertion library",
+          "const assert = require('assert');",
+          "",
+          "it('should return true', () => {",
+          "   assert.equal(true, true);",
+          "})"
         ]
       },
       {

@@ -1,0 +1,236 @@
+{
+  "page": {
+    "pagetitle": "BEM",
+    "pageheading": "Block Element Modifier (BEM)",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "BEM (Block Element Modifier) is a front-end development methodology that helps you to create reusable code.",
+          "Block styles are never dependent on other elements on a page, and composing blocks reduces the amount of CSS code that you will have to maintain.",
+          "<!-- https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/ -->"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Block",
+        "copy": [
+          "A block is a standalone entity that has meaning on it's own."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;div class='block'&gt; ... &lt;/div&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The CSS can be written like so:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          ".block {",
+          "   color: #042;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Element",
+        "copy": [
+          "Parts of a block that have no standalone meaning."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;div class='block'&gt;",
+          "    &lt;span class='block__elem'&gt; ... &lt;/span&gt;",
+          "&lt;/div&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The CSS can be written like so:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          ".block {",
+          "   color: #042;",
+          "}",
+          "",
+          ".block__elem {",
+          "   color: #042;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Modifier",
+        "copy": [
+          "Modifiers are flags on blocks or elements used to change appearance, behaviour or state. A modifier is an extra class that is added to a block or element. Add modifier classes only to blocks or elements that require modifying and keep the original class."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;div class='block block--shadow'&gt;",
+          "    &lt;span class='block__elem'&gt; ... &lt;/span&gt;",
+          "&lt;/div&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The CSS can be written like so:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          ".block {",
+          "   color: #042;",
+          "}",
+          "",
+          ".block__elem {",
+          "   color: #042;",
+          "}",
+          "",
+          ".block--shadow {",
+          "   border-bottom: 1px solid #000;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Example: Form",
+        "copy": [
+          "As an example, a simple HTML form has been created within a block. The form has a number of elements and a number of modifiers."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;form class='form form--xmas-theme'&gt;",
+          "   &lt;input class='form__input' type='text' /&gt;",
+          "   &lt;button class='form__submit form__submit--disabled' type='submit'&gt;Submit&lt;/button&gt;", 
+          "&lt;/form&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": null,
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* Block */",
+          ".form { }",
+          "",
+          "/* Element */",
+          ".form__input { }",
+          ".form__submit { }",
+          "",
+          "/* Modifier */",
+          ".form--xmas-theme { }",
+          ".form__submit--disabled { }"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Example: Button",
+        "copy": [
+          "Let's look at another example of how we can implement BEM. This example will use buttons. We can have a normal button for usual cases, with a further two states."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;button class='button'&gt;",
+          "   Button",
+          "&lt;/button&gt;",
+          "",
+          "&lt;button class='button button--success'&gt;",
+          "   Success",
+          "&lt;/button&gt;",
+          "",
+          "&lt;button class='button button--error'&gt;",
+          "   Error",
+          "&lt;/button&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": null,
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          ".button {",
+          "   display: inline-block;",
+          "   border-radius: 3px;",
+          "   padding: 7px 12px;",
+          "   border: 1px solid #d5d5d5;",
+          "   background-image: linear-gradient(#eee, #ddd);",
+          "   font: 700 13px/18px Helvetica, arial;",
+          "}",
+          "",
+          ".button--success {",
+          "   color: #fff;",
+          "   background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;",
+          "   border-color: #4a993e;",
+          "}",
+          "",
+          ".button--error {",
+          "   color: #900;",
+          "}"          
+        ]
+      }
+    ]
+  }
+}
