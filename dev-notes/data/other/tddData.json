@@ -96,26 +96,8 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "As an example, create a file named app.js in the root directory of your project, this will be our module we are testing, and within the test directory create a file named appTest.js that will contain our tests.",
-          "We'll begin by writing the app.js module file first."
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": true,
-        "rel": "js",
-        "datatitle": "JavaScript: app.js",
-        "code": [
-          "// Export module to be accessible",
-          "module.exports = function() {",
-          "    return 'hello';",
-          "}"
-        ]
-      },
-      {
-        "label": "SECTION",
-        "showheading": false,
-        "heading": null,
-        "copy": [
-          "Now we can write the test in test/appTest.js to check if 'hello' is returned."
+          "Within the test directory create a file named appTest.js that will contain our tests.",
+          "We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
@@ -133,6 +115,25 @@
           "      assert.equal(app(), 'hello');",  
           "   });",
           "})"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Create a file named app.js in the root directory of your project, this will be our module we are testing.",
+          "We'll now write the app.js module code. When the test is run, 'hello' should be returned and the test will now pass."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "// Export module to be accessible",
+          "module.exports = function() {",
+          "    return 'hello';",
+          "}"
         ]
       },
       {

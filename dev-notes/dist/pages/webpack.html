@@ -71,7 +71,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>webpack</span> <sp
             </section>
             <section class="pad-btm">
                 <h2>Webpack Config file</h2>
-                <p>The Webpack config file (webpack.config.js) file is placed in the root directory of your project.</p>
+                <p>The Webpack config file (webpack.config.js) is placed in the root directory of your project.</p>
                 <p>Each dependency is processed and outputted into files called bundles.</p>
                 <p>The entry property tells Webpack where our main JavaScript file is located. For example, to bundle a JavaScript file named index.js in a 'js' directory within our project, the path property would have the value './js/index.js'. The bundled file would be placed in a dist/ directory and be named 'bundle.js'.</p>
                 <p>The output property specifies the name and path of our bundle. After running Webpack we will have our JavaScript in a file called bundle.js. This is the only script file that we will link in our HTML. We have set the path to output our bundle in a 'dist' directory.</p>
@@ -80,6 +80,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>webpack</span> <sp
                     <pre>
                         <code>
 <!-- Leave space here -->
+const webpack = require('webpack');
 <span class='comment'>// This library allows us to combine paths easily</span>
 <span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
 
@@ -217,6 +218,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>ts-loader</span> <
                     <pre>
                         <code>
 <!-- Leave space here -->
+const webpack = require('webpack');
 <span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
 
 <span class='keyword'>module</span>.<span class='name'>exports</span> = {
@@ -286,10 +288,15 @@ console.log( <span class='value'>'I am the entry point'</span> );
                     <pre>
                         <code>
 <!-- Leave space here -->
+const webpack = require('webpack');
 <span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
 
 <span class='keyword'>module</span>.<span class='name'>exports</span> = {
     <span class='name'>entry</span>: <span class='value'>'./js/index.js'</span>,
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
+    },
     <span class='name'>module</span>: {
         <span class='name'>rules</span>: [
             {
@@ -297,10 +304,6 @@ console.log( <span class='value'>'I am the entry point'</span> );
                 <span class='name'>use</span>: [<span class='value'>'style-loader'</span>, <span class='value'>'css-loader'</span>, <span class='value'>'sass-loader'</span>]
             }
         ]
-    },
-    <span class='name'>output</span>: {
-        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
-        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
     }
 };
                         </code>
@@ -330,12 +333,19 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
                     <pre>
                         <code>
 <!-- Leave space here -->
+const webpack = require('webpack');
 <span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
-
 <span class='keyword'>const</span> <span class='name'>ExtractTextPlugin</span> = <span class='keyword'>require</span>(<span class='value'>'extract-text-webpack-plugin'</span>);
 
 <span class='keyword'>module</span>.<span class='name'>exports</span> = {
-    <span class='name'>entry</span>: [<span class='value'>'./js/index.js'</span>, <span class='value'>'./scss/main.scss'</span>],
+    <span class='name'>entry</span>: [
+        <span class='value'>'./js/index.js'</span>
+        <span class='value'>'./scss/main.scss'</span>
+    ],
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
+    },
     <span class='name'>module</span>: {
         <span class='name'>rules</span>: [
             {
@@ -350,10 +360,6 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
     <span class='name'>plugins</span>: [
         <span class='keyword'>new</span> <span class='name'>ExtractTextPlugin</span>({<span class='name'>filename</span>: <span class='value'>'bundle.css'</span>}),
     ],
-    <span class='name'>output</span>: {
-        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
-        <span class='name'>filename</span>: <span class='value'>'bundle.js'</span>
-    }
 };
                         </code>
                     </pre>
@@ -389,6 +395,179 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
+                <h2>Revised File Structure</h2>
+                <p>Now that we have got the basic webpack.config.js file working, it's time to make some revisions to tidy-up the file structure of our project. The .gitignore file has been added to ensure we do not commit the node_modules directory when using Git version control.</p>
+                <p>Here is the revised file structure:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>my-app/</span>
+    <span class='keyword'>dist/</span>
+        scripts/
+            main.js
+        styles/
+            style.css
+    <span class='keyword'>src/</span>
+        scss/
+            main.scss
+        index.js
+    .gitignore
+    index.html
+    <span class='keyword'>node_modules/</span>
+    package.json
+    webpack.config.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now that the file structure has been revised, we can update the webpack.config.js file also.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+const webpack = require('webpack');
+<span class='keyword'>const</span> <span class='name'>path</span> = <span class='keyword'>require</span>(<span class='value'>'path'</span>);
+<span class='keyword'>const</span> <span class='name'>ExtractTextPlugin</span> = <span class='keyword'>require</span>(<span class='value'>'extract-text-webpack-plugin'</span>);
+
+<span class='keyword'>module</span>.<span class='name'>exports</span> = {
+    <span class='name'>entry</span>: [
+        <span class='value'>'./src/index.js'</span>
+        <span class='value'>'./src/scss/main.scss'</span>
+    ],
+    <span class='name'>output</span>: {
+        <span class='name'>path</span>: <span class='name'>path</span>.<span class='keyword'>resolve</span>(<span class='value'>__dirname</span>, <span class='value'>'dist'</span>),
+        <span class='name'>filename</span>: <span class='value'>'scripts/main.js'</span>
+    },
+    <span class='name'>module</span>: {
+        <span class='name'>rules</span>: [
+            {
+                <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,
+                <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({
+                    <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,
+                    <span class='name'>use</span>: [<span class='value'>'css-loader'</span>, <span class='value'>'sass-loader'</span>],
+                })
+            }
+        ]
+    },
+    <span class='name'>plugins</span>: [
+        <span class='keyword'>new</span> <span class='name'>ExtractTextPlugin</span>({<span class='name'>filename</span>: <span class='value'>'styles/style.css'</span>}),
+    ],
+};
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>We now want to exclude the node_modules directory and minimise the CSS once the SCSS files have been transpiled.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>module</span>: {
+   <span class='name'>rules</span>: [
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({
+            <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,
+            <span class='name'>use</span>: [
+               {
+                  loader: <span class='value'>'css-loader'</span>,
+                  options: {
+                     minimise: true
+                  }
+               },
+               {
+                  loader: <span class='value'>'sass-loader'</span>
+               }
+            ]
+         })
+      }
+   ]
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Autoprefixer</h2>
+                <p>We begin by using NPM (Node Package Manager) to install Autoprefixer and postcss-loader as devDependencies.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install autoprefixer --save-dev
+$ npm install postcss-loader --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>module</span>: {
+   <span class='name'>rules</span>: [
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({
+            <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,
+            <span class='name'>use</span>: [
+               {
+                  loader: <span class='value'>'css-loader'</span>,
+                  options: {
+                     minimise: true
+                  }
+               },
+               {
+                  loader: <span class='value'>'postcss-loader'</span>,
+                  options: {
+                     plugins: () => [require('autoprefixer')]
+                  }
+               },
+               {
+                  loader: <span class='value'>'sass-loader'</span>
+               }
+            ]
+         })
+      }
+   ]
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Your package.json file will also need updating to set the browsers that are to be supported by Autoprefixer.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+"browserslist": [
+   "> 1%,"
+   "ie > 9"
+],
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
                 <h2>Babel Loader</h2>
                 <p>If we want to use ES6 JavaScript syntax within our application, or JSX while working with React, we can use Babel to translate both into formats that are supported by all browsers. Webpack uses loaders to translate the file before bundling them. For example, we can take a JSX file (not supported by browsers), Webpack will bundle the file (and translate into standard JavaScript when using Babel) and this will output a standard JavaScript file supported by all browsers.</p>
                 <p><!-- https://florianbrinkmann.com/en/4197/webpack-and-babel/ --></p>
@@ -398,7 +577,58 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
                     <pre>
                         <code>
 <!-- Leave space here -->
-$ <span class='keyword'>npm install</span> <span class='name'>babel-cli babel-core babel-loader babel-preset-env babel-preset-react</span> <span class='value'>--save-dev</span>
+$ <span class='keyword'>npm install</span> <span class='name'>babel-cli babel-core</span> <span class='value'>--save-dev</span>
+$ <span class='keyword'>npm install</span> <span class='name'>babel-loader babel-preset-env babel-preset-react</span> <span class='value'>--save-dev</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now that the NPM packages have been installed, we can update our webpack.config.js file to process ES6 JavaScript.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>module</span>: {
+   <span class='name'>rules</span>: [
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.js$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: {
+            loader: <span class='value'>'babel-loader'</span>,
+            options: {
+               presets: ['env']
+            }
+         }
+      },
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({
+            <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,
+            <span class='name'>use</span>: [
+               {
+                  loader: <span class='value'>'css-loader'</span>,
+                  options: {
+                     minimise: true
+                  }
+               },
+               {
+                  loader: <span class='value'>'postcss-loader'</span>,
+                  options: {
+                     plugins: () => [require('autoprefixer')]
+                  }
+               },
+               {
+                  loader: <span class='value'>'sass-loader'</span>
+               }
+            ]
+         })
+      }
+   ]
+},
                         </code>
                     </pre>
                 </div>
@@ -414,6 +644,120 @@ $ <span class='keyword'>npm install</span> <span class='name'>babel-cli babel-co
                         <code>
 <!-- Leave space here -->
 $ <span class='keyword'>npm install</span> <span class='name'>react react-dom</span> <span class='value'>--save</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>A small change is needed to our webpack.config.js file to use React. Create a components directory within the src directory of your project where any React components can be placed.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>module</span>: {
+   <span class='name'>rules</span>: [
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.js$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: {
+            loader: <span class='value'>'babel-loader'</span>,
+            options: {
+               presets: ['env', 'react']
+            }
+         }
+      },
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Images</h2>
+                <p>Begin by using NPM (Node Package Manager) to install file-loader as a devDependency</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install file-loader --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Update the webpack.config.file to process image files. The image file should be placed within the src directory of your project. When Webpack runs, the image is moved into the dist directory. The name of the image in the dist directory will be renamed with a hash.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>module</span>: {
+   <span class='name'>rules</span>: [
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.js$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: {
+            loader: <span class='value'>'babel-loader'</span>,
+            options: {
+               presets: ['env']
+            }
+         }
+      },
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.(s*)css$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: <span class='name'>ExtractTextPlugin</span>.<span class='keyword'>extract</span>({
+            <span class='name'>fallback</span>: <span class='value'>'style-loader'</span>,
+            <span class='name'>use</span>: [
+               {
+                  loader: <span class='value'>'css-loader'</span>,
+                  options: {
+                     minimise: true
+                  }
+               },
+               {
+                  loader: <span class='value'>'postcss-loader'</span>,
+                  options: {
+                     plugins: () => [require('autoprefixer')]
+                  }
+               },
+               {
+                  loader: <span class='value'>'sass-loader'</span>
+               }
+            ]
+         })
+      }
+      {
+         <span class='name'>test</span>: <span class='value'>&#47;&#92;.(png|svg|jpg|gif)$/</span>,
+         exclude: /node_modules/,
+         <span class='name'>use</span>: {
+            loader: <span class='value'>'file-loader'</span>,
+         }
+      }
+   ]
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>To avoid the image having a hash, update the webpack.config.js file. This amendment will also place the image within an img folder inside of the dist directory.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+{
+   <span class='name'>test</span>: <span class='value'>&#47;&#92;.(png|svg|jpg|gif)$/</span>,
+      exclude: /node_modules/,
+      <span class='name'>use</span>: {
+         loader: <span class='value'>'file-loader?name=img/[name].[ext]'</span>,
+      }
+},
                         </code>
                     </pre>
                 </div>

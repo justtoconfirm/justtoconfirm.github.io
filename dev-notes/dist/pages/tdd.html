@@ -93,24 +93,8 @@ $ mkdir test
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <p>As an example, create a file named app.js in the root directory of your project, this will be our module we are testing, and within the test directory create a file named appTest.js that will contain our tests.</p>
-                <p>We'll begin by writing the app.js module file first.</p>
-                <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: app.js">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-// Export module to be accessible
-module.exports = function() {
-    return 'hello';
-}
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-            </section>
-            <section class="pad-btm">
-                <p>Now we can write the test in test/appTest.js to check if 'hello' is returned.</p>
+                <p>Within the test directory create a file named appTest.js that will contain our tests.</p>
+                <p>We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: test&#x2F;app.js">
                     <pre>
@@ -127,6 +111,23 @@ describe('App', function() {
       assert.equal(app(), 'hello');
    });
 })
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Create a file named app.js in the root directory of your project, this will be our module we are testing.</p>
+                <p>We'll now write the app.js module code. When the test is run, 'hello' should be returned and the test will now pass.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// Export module to be accessible
+module.exports = function() {
+    return 'hello';
+}
                         </code>
                     </pre>
                 </div>

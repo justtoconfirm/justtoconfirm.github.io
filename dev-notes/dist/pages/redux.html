@@ -26,25 +26,57 @@
             </section>
             <section class="pad-btm">
                 <h2>Introduction</h2>
-                <p>Redux is a JavaScript library to manage the state of your application - it helps you to manage the data you display and how you respond to user actions.</p>
+                <p>Redux is a JavaScript library to manage the state (or data) of your application, helping you to manage the data you display and how you respond to user actions. It's ideal for Single Page Applications (SPA).</p>
+                <p>Redux is no relation to React. You can use Redux with React, Angular, Ember, jQuery, or vanilla JavaScript.</p>
+                <p>A Google Chrome extension exists for Redux and can be installed from <a href='https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en' target='_blank'>here</a></p>
             </section>
             <section class="pad-btm">
                 <h2>Install Redux</h2>
                 <p>Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file.</p>
+                <p>Should you want to use Redux with React, use NPM to install react-redux as a dependency also. The react-redux module makes the connection between React and Redux.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
 $ npm install redux --save
+
+# For React install react-redux also
+$ npm install react-redux --save
                         </code>
                     </pre>
                 </div>
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Store</h2>
-                <p>The store is an object that holds the complete state of your application.</p>
+                <h2></h2>
+                <p><!-- https://appdividend.com/2017/08/23/redux-tutorial-example-scratch/ --></p>
+                <p><!-- https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f --></p>
+                <p><!-- https://blog.usejournal.com/understanding-redux-bedf9325dda4 --></p>
+                <p><!-- https://engineering.musefind.com/our-best-practices-for-writing-react-components-dec3eb5c3fc8 --></p>
+                <p>Within our React project you will find a src directory. Within this directory a file named index.js can be found. Now that Redux has been installed using NPM (Node Package Manager), we can import it into the index.js file.</p>
+                <p>In the example below, the App component within the src/components directory contains our application.</p>
+                <p>The Provider wrapped around our App component provides us access to the Store throughout our entire application.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import App from './components/App'
+
+ReactDOM.render (
+   &lt;Provider&gt;
+      &lt;App /&gt;
+   &lt;/Provider&gt;,
+   document.getElementById('root')
+)
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
 
         </div>
@@ -55,6 +87,16 @@ $ npm install redux --save
                 <ul class="no-list">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><!-- https://dev.to/aurelkurtula/introduction-to-redux-1g3 --></li>
+                    <li><!-- https://hackernoon.com/redux-step-by-step-a-simple-and-robust-workflow-for-real-life-apps-1fdf7df46092 --></li>
+                    <li><!-- https://flaviocopes.com/redux/ --></li>
+                    <li><!-- https://www.codementor.io/jesikahwhite/how-i-learned-react-bxp24gjzh --></li>
+                    <li><!-- https://www.codementor.io/mz026/getting-started-with-react-redux-an-intro-8r6kurcxf --></li>
+                    <li><!-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e --></li>
+                    <li><!-- https://code.likeagirl.io/tutorial-for-adding-redux-to-a-react-app-1a94cc1738e5 --></li>
+                    <li><!-- https://www.javascriptfatigue.club/blog/2018/1/18/redux-fundamentals-using-redux-with-react-part-one --></li>
+                    <li><!-- https://www.pshrmn.com/tutorials/react/react-redux/ --></li>
+                    <li><!-- https://www.sohamkamani.com/blog/2017/03/31/react-redux-connect-explained/ --></li>
+                    <li><!-- https://appdividend.com/2017/08/23/redux-tutorial-example-scratch/ --></li>
                 </ul>
             </div>
 

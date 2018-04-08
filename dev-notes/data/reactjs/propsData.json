@@ -1,0 +1,212 @@
+{
+  "page": {
+    "pagetitle": "React.js Props",
+    "pageheading": "Props",
+    "content": [
+      {
+        "label": "SECTION",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='reactjs.html'>React.js</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called 'props') and return React elements describing what should appear on the screen.",
+          "The file structure for our simple React project can be found below. We follow the Atomic Design methodology for our file structure."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "src/",
+          "   components/",
+          "      1-atoms/",
+          "         input/",
+          "            Input.js",
+          "         label/",
+          "            Label.js",
+          "      2-molecules/",
+          "         form-field/",
+          "             FormField.js",
+          "   scss/",
+          "   index.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Passing Props",
+        "copy": [
+          "We can pass props between components. Usually in React, props are passed from parent components down into child components.",
+          "In this next example, we will pass props into the Input component. This will use the index.js file. We are passing props of 'type' and 'placeholder' with values down to the Input component. If the props are not used, the default values in the Input component itself will be used.",
+          "This example would render an Input field with the type of 'email' and with a placeholder of 'Email'. The Input field would also have the class of 'input' for CSS to be used to style the element, as this has also been used within the component."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/index.js",
+        "code": [
+          "import React from 'react'",
+          "import ReactDOM from 'react-dom'",
+          "import Input from './components/1-atomic/input/Input'",
+          "",
+          "ReactDOM.render (",
+          "   &lt;Input type='email' placeholder='Email' /&gt;,",
+          "   document.getElementById('root')",
+          ")"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Spread Attribute",
+        "copy": [
+          "The aim of the spread attribute is to make the passing of props easier between React components.",
+          "We can firstly create a simple React component for an input field which accepts multiple props."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/components/1-atoms/input/Input.js",
+        "code": [
+          "import React from 'react'",
+          "",
+          "function Input ({ name, type = 'text', placeholder = '' }) {",
+          "   return (",
+          "      &lt;input type={type} placeholder={placeholder} className='input' /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Input"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can simplify the use of props by now applying the spread attributes."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/components/1-atoms/input/Input.js",
+        "code": [
+          "import React from 'react'",
+          "",
+          "function Input ({ name, type = 'text', placeholder = '' }) {",
+          "   return (",
+          "      &lt;input {...{ type, placeholder }} className='input' /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Input"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The Label code has also been provided below. As with the Input field, the values for the props will be passed into the Label and Input components from the FormField component (parent component) initially.",
+          "Within the Label component you will see the htmlFor attribute. This is simply the 'for' attribute for use of HTML Label elements within forms."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/components/1-atoms/label/Label.js",
+        "code": [
+          "import React from 'react'",
+          "",
+          "function Label ({ labelFor, labelValue }) {",
+          "   return (",
+          "      &lt;label htmlFor={labelFor} className='label'&gt;",
+          "          {labelValue}",
+          "      &lt;label/&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Label"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In the examples above, you may have noticed the attribute of className. This allows the element to have a class attribute applied. In this example, we are applying the class of 'input' to the Input element to allow CSS styling to be applied.",
+          "The 'type' prop has the value of 'text'. If no 'type' is passed to the component, the default type of 'text' will be applied, therefore the input field will always be a text input field by default. This is similar to the 'placeholder' prop. This will be empty by default unless a value is passed to the component."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Render Function",
+        "copy": [
+          "We can now create an example showing how we can pass props to components and create a component that will generate a form field using an Input and Label component."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/components/2-molecules/form-field/FormField.js",
+        "code": [
+          "import React from 'react'",
+          "// Import the Label and Input components",
+          "import Label from '../../1-atoms/label/Label'",
+          "import Input from '../../1-atoms/input/Input'",
+          "",
+          "function FormField ({ labelFor, labelValue, name, type = 'text', placeholder }) {",
+          "",
+          "   const renderLabel = () =>",
+          "      &lt;Label {...{ labelFor, labelValue }} /&gt;",
+          "",
+          "   const renderInput = () =>",
+          "      &lt;Input {...{ name, type, placeholder }} /&gt;",
+          "",
+          "   return (",
+          "      &lt;div className='field__container'&gt;",
+          "         {renderLabel()}",
+          "         {renderInput()}",
+          "      &lt;/div&gt;",
+          "   )",
+          "",
+          "}",
+          "",
+          "export default FormField"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Updating the index.js file to render the FormField component on the page. This will render a Label and Input component. We will pass the props when we render the FormField on the page down into the Input and Label components."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/index.js",
+        "code": [
+          "import React from 'react'",
+          "import ReactDOM from 'react-dom'",
+          "import FormField from './components/2-molecules/form-field/FormField'",
+          "",
+          "ReactDOM.render (",
+          "   &lt;FormField labelFor='firstname' labelValue='First name' name='firstname' /&gt;,",
+          "   document.getElementById('root')",
+          ")"
+        ]
+      }
+    ]
+  }
+}

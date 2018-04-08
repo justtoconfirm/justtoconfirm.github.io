@@ -20,6 +20,7 @@
     "build-reactjs-install": "mustache -p views/partials/footer.mustache data/reactjs/installData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-install.html",
     "build-reactjs-element": "mustache -p views/partials/footer.mustache data/reactjs/elementData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-element.html",
     "build-reactjs-component": "mustache -p views/partials/footer.mustache data/reactjs/componentData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-component.html",
+    "build-reactjs-props": "mustache -p views/partials/footer.mustache data/reactjs/propsData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-props.html",
     "build-reactjs-state": "mustache -p views/partials/footer.mustache data/reactjs/stateData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-state.html",
     "build-reactjs-form": "mustache -p views/partials/footer.mustache data/reactjs/formData.json views/templates/pageTemplate.mustache > dist/pages/reactjs-form.html",
     "build-api": "mustache -p views/partials/footer.mustache data/other/apiData.json views/templates/pageTemplate.mustache > dist/pages/api.html",

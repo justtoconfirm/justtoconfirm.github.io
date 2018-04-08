@@ -7,7 +7,17 @@
         "label": "LINKS",
         "links": [
           "<a href='../../index.html'>Home</a>",
-          "<!-- https://dev.to/aurelkurtula/introduction-to-redux-1g3 -->"
+          "<!-- https://dev.to/aurelkurtula/introduction-to-redux-1g3 -->",
+          "<!-- https://hackernoon.com/redux-step-by-step-a-simple-and-robust-workflow-for-real-life-apps-1fdf7df46092 -->",
+          "<!-- https://flaviocopes.com/redux/ -->",
+          "<!-- https://www.codementor.io/jesikahwhite/how-i-learned-react-bxp24gjzh -->",
+          "<!-- https://www.codementor.io/mz026/getting-started-with-react-redux-an-intro-8r6kurcxf -->",
+          "<!-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e -->",
+          "<!-- https://code.likeagirl.io/tutorial-for-adding-redux-to-a-react-app-1a94cc1738e5 -->",
+          "<!-- https://www.javascriptfatigue.club/blog/2018/1/18/redux-fundamentals-using-redux-with-react-part-one -->",
+          "<!-- https://www.pshrmn.com/tutorials/react/react-redux/ -->",
+          "<!-- https://www.sohamkamani.com/blog/2017/03/31/react-redux-connect-explained/ -->",
+          "<!-- https://appdividend.com/2017/08/23/redux-tutorial-example-scratch/ -->"
         ]
       },
       {
@@ -15,7 +25,9 @@
         "showheading": true,
         "heading": "Introduction",
         "copy": [
-          "Redux is a JavaScript library to manage the state of your application - it helps you to manage the data you display and how you respond to user actions."
+          "Redux is a JavaScript library to manage the state (or data) of your application, helping you to manage the data you display and how you respond to user actions. It's ideal for Single Page Applications (SPA).",
+          "Redux is no relation to React. You can use Redux with React, Angular, Ember, jQuery, or vanilla JavaScript.",
+          "A Google Chrome extension exists for Redux and can be installed from <a href='https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en' target='_blank'>here</a>"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
@@ -28,28 +40,50 @@
         "showheading": true,
         "heading": "Install Redux",
         "copy": [
-          "Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file."
+          "Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file.",
+          "Should you want to use Redux with React, use NPM to install react-redux as a dependency also. The react-redux module makes the connection between React and Redux."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": null,
         "datatitle": null,
         "code": [
-          "$ npm install redux --save"
+          "$ npm install redux --save",
+          "",
+          "# For React install react-redux also",
+          "$ npm install react-redux --save"
         ]
       },
       {
         "label": "SECTION",
         "showheading": true,
-        "heading": "Store",
+        "heading": "",
         "copy": [
-          "The store is an object that holds the complete state of your application."
+          "<!-- https://appdividend.com/2017/08/23/redux-tutorial-example-scratch/ -->",
+          "<!-- https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f -->",
+          "<!-- https://blog.usejournal.com/understanding-redux-bedf9325dda4 -->",
+          "<!-- https://engineering.musefind.com/our-best-practices-for-writing-react-components-dec3eb5c3fc8 -->",
+          "Within our React project you will find a src directory. Within this directory a file named index.js can be found. Now that Redux has been installed using NPM (Node Package Manager), we can import it into the index.js file.",
+          "In the example below, the App component within the src/components directory contains our application.",
+          "The Provider wrapped around our App component provides us access to the Store throughout our entire application."
         ],
         "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "src/index.js",
+        "code": [
+          "import React from 'react'",
+          "import ReactDOM from 'react-dom'",
+          "import { Provider } from 'react-redux'",
+          "import App from './components/App'",
+          "",
+          "ReactDOM.render (",
+          "   &lt;Provider&gt;",
+          "      &lt;App /&gt;",
+          "   &lt;/Provider&gt;,",
+          "   document.getElementById('root')",
+          ")"
+        ]
       }
     ]
   }
