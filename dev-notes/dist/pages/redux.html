@@ -49,14 +49,16 @@ $ npm install react-redux --save
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2></h2>
+                <h2>Store</h2>
                 <p><!-- https://appdividend.com/2017/08/23/redux-tutorial-example-scratch/ --></p>
                 <p><!-- https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f --></p>
                 <p><!-- https://blog.usejournal.com/understanding-redux-bedf9325dda4 --></p>
                 <p><!-- https://engineering.musefind.com/our-best-practices-for-writing-react-components-dec3eb5c3fc8 --></p>
-                <p>Within our React project you will find a src directory. Within this directory a file named index.js can be found. Now that Redux has been installed using NPM (Node Package Manager), we can import it into the index.js file.</p>
+                <p>The store is a single object that contains the state of our whole application. The store cannot be directly modified. The only way to do so is through the use of reducers. Reducers are triggered using actions.</p>
+                <p>Within our React project you will find a src directory. Within this directory a file named index.js can be found. Now that react-redux has been installed using NPM (Node Package Manager), we can import it into the index.js file.</p>
                 <p>In the example below, the App component within the src/components directory contains our application.</p>
-                <p>The Provider wrapped around our App component provides us access to the Store throughout our entire application.</p>
+                <p>If we want to link our React application with Redux store, we first have to let our application know that the store exists. The Provider is the first major part of the react-redux library, it is the root of your components. The Provider wrapped around our App component provides us access to the Store throughout our entire application. It is a React component given to us by the react-redux library. It has one purpose, to provide the store to it's child components.</p>
+                <p><!-- https://www.sohamkamani.com/blog/2017/03/31/react-redux-connect-explained/ --></p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="src&#x2F;index.js">
                     <pre>
@@ -77,6 +79,119 @@ ReactDOM.render (
                     </pre>
                 </div>
                 <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>We can use the createStore method provided by Redux to create the store. The Provider is given the store as a prop. This makes the Redux store available to the connect() calls. Normally, you cannot use connect() without wrapping a parent component in &lt;Provider&gt;</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './components/App'
+
+// This is the store we create with Redux's createStore method
+const store = createStore(myApp, {})
+
+// Provider is given the store as a prop
+ReactDOM.render (
+   &lt;Provider store={store}&gt;
+      &lt;App /&gt;
+   &lt;/Provider&gt;,
+   document.getElementById('root')
+)
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now that we have provided the Redux store to our application, we can now connect our React components to it. There is no way to directly interact with the store, but we can either retrieve data by obtaining it's current state, or change it's state by dispatching an action.</p>
+                <p>The react-redux library has connect. This is used to map the state of the store and dispatch to the props of a component.</p>
+                <p>An example of a simple example React component can be found below:</p>
+                <p><!-- https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options --></p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="src&#x2F;components&#x2F;todo&#x2F;TodoItem.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import {connect} from 'react-redux'
+
+const ToDoItem = ({todo, destroyTodo}) => {
+   return (
+      &lt;div&gt;
+         {todo.text}
+         &lt;span onClick={destroyTodo}&gt; x &lt;/span&gt;
+      &lt;/div&gt;
+   )
+}
+
+const mapStateToProps = state => {
+   return {
+      todo : state.todos[0]
+   }
+}
+
+const mapDispatchToProps = dispatch => {
+   return {
+      destroyTodo : () => dispatch({
+         type : 'DESTROY_TODO'
+      })
+   }
+}
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(TodoItem)
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>mapStateToProps and mapDispatchToProps are both pure functions that are provided the stores 'state' and 'dispatch' respectively. Furthermore, both functions have to return an object, whose keys will then be passed on as the props of the component they are connected to. In this case, mapStateToProps returns an object with only one key : 'todo', and mapDispatchToProps returns an object with the destroyTodo key. The connected component (which is exported) provides todo and destroyTodo as props to TodoItem.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Actions</h2>
+                <p>Actions allow you to send data from your application to the store. They are plain JavaScript objects with a type property that indicates the type of action being performed.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Action Creators</h2>
+                <p>Action creators are the functions that create actions.</p>
+                <p><!-- https://www.pshrmn.com/tutorials/react/react-redux/ --></p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+function addTodo(text) {
+   return {
+      type: ADD_TODO,
+      text
+   }
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Reducers</h2>
+                <p>Actions describe how something has happened but don't specify how the application's state changes in response. This is the job of reducers.</p>
             </section>
 
         </div>
