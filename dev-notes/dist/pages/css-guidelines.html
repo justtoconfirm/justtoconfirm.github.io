@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - CSS Guidelines</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>CSS Guidelines</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>Here are a few guidelines for writing CSS really well.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>CSS Reset</h2>
+                <p>A CSS Reset allows you to start with a clean code base, making it easier to style your website with more predictable outcomes. A CSS Rest resets or overrides the default styles of the browser. You can write your own, or use an existing CSS reset that maybe available.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Alphabetical Properties</h2>
+                <p>By alphabetizing your CSS properties you are creating consistency that will help you to reduce time you spend searching for specific properties. This may not be a solution for all projects, but may help with organisation of your code.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.foo {
+   z-index: 100;
+   color: #000;
+   line-height: 24px;
+}
+
+/* Organised properties */
+.foo {
+   color: #000;
+   line-height: 24px;
+   z-index: 100;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>DRY - Don&#39;t Repeat Yourself</h2>
+                <p>The best advice for writing CSS it to follow the DRY (Don't repeat yourself) methodology. Essentially this is to avoid writing the same bits of code over and over again.</p>
+                <p>One way to keep things DRY in CSS is to group things together.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Not DRY */
+.menu li {
+   color: red;
+}
+
+.menu li a {
+   color: red;
+}
+
+/* DRY */
+.main li,
+.main li a {
+   color: red;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>!important</h2>
+                <p>The !important declaration is almost always a bad thing to use within your CSS. It is generally misused to override CSS declarations to apply new styling. Often it is used to combat specificity problems as a result of poorly architected CSS, to force styling to be applied. Proactive use of !important is when it is used before you encounter any specificity problems; when it is used as a guatantee rather than as a fix. Therefore !important should be used to always ensure something is styled a certain way and don't get accidentally overridden by something more specific.</p>
+                <p>In this example, two helper (or utility) classes are very specific in their intentions. You would only use them should you want something to be rendered at 50% width or not rendered at all. If you don't require this behaviour, you wouldn't use either class.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.one-half {
+   width: 50% !important;
+}
+
+.hidden {
+   display: none !important;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Multi-line CSS</h2>
+                <p>CSS should be written across multiple lines. This reduces the chance of merge conflicts when using version control - something like Git - because each piece of functionality exists on it's own line. Code can be compared more easily as one line of code only ever carries one change.</p>
+                <p>If a CSS selector has only the one declaration, then this will still conform to this guideline.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Multiple declarations on single lines */
+.icon {
+   display: inline-block;
+   width: 16px;
+   height: 16px;
+   background-image: url(/img/sprite.svg);
+}
+
+/* Acceptable CSS as single declaration */
+.icon--home { background-position: 0 0; }
+.icon--person { background-position: -16px 0; }
+.icon--files { background-position: -16px -16px; }
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>JavaScript Hooks</h2>
+                <p>As a rule, it is unwise to bind your CSS and your JavaScript onto the same class in your HTML. This means you cannot remove one without removing the other. It is much cleaner and much more maintainable to bind your JavaScript onto specific classes.</p>
+                <p>Typically, these are classes that are prepended with js-, for example. This means we can have once class for the CSS styling and one class with the JavaScript behaviour.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;input type='submit' class='btn js-btn' value='Submit' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Alignment</h2>
+                <p>Attempt to align common and related identical strings in declarations.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.foo {
+   -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+           border-radius: 3px;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Single Responsibility Principle</h2>
+                <p>The single reponsibility principle is a paradigm that states that all pieces of code - in CSS, the classes - should focus on doing one thing and one thing only. In CSS, our classes should be small and focus on providing very specific and limited functionality.</p>
+                <p>In this next example, our CSS classes handle quite a lot: layout, structure, and styling. This also includes a lot of repetition between classes.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.error-message {
+   display: block;
+   padding: 10px;
+   border-top: 1px solid #f00;
+   border-bottom: 1px solid #f00;
+   background-color: #fee;
+   color: #f00;
+   font-weight: bold;
+}
+
+.success-message {
+   display: block;
+   padding: 10px;
+   border-top: 1px solid #0f0;
+   border-bottom: 1px solid #0f0;
+   background-color: #efe;
+   color: #0f0;
+   font-weight: bold;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>We can break these classes into smaller classes creating general abstraction:</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.box {
+   display: block;
+   padding: 10px;
+}
+
+.message {
+   border-style: solid;
+   border-width: 1px 0;
+   font-weight: bold;
+}
+
+.message--error {
+   background-color: #fee;
+   color: #f00;
+}
+
+.message--success {
+   background-color: #efe;
+   color: #0f0;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Selector Intent</h2>
+                <p>It is important when writing CSS that we scope our selectors correctly. Selector Intent is the process of deciding and defining what you want to style and how you will go about selecting it.</p>
+                <p>For example, you want to style your website's main navigation menu. The following selector would possibly be an unwise choice:</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+header ul { }
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The selector's intent is to style any &lt;ul&gt; element inside any &lt;header&gt; element. Our intent was to style only the main navigation of the website. Potentially, you can have any number of header elements on a page and in-turn they can house any number of possible &lt;ul&gt; elements, so a selector like this runs the risk of applying very specific styling to a very wide number of elements.</p>
+                <p>A better approach would be an a selector that is selecting the right thing for the right reason:</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.site-nav { }
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Naming</h2>
+                <p>It's better to strive for reusable, recyclable classes rather than writing for specific use cases when considering naming.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Runs the risk of becoming out of date; hard to maintain */
+.blue {
+   color: blue;
+}
+
+/* Depends on location to render correctly */
+.header span {
+   color: blue;
+}
+
+/* Too specific */
+.header-color {
+   color: blue;
+}
+
+/* Portable and easily maintained - much better */
+.highlight-color {
+   color: blue;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Nesting</h2>
+                <p>Nesting in CSS is something you should actively try to avoid wherever possible. Whenever declaring your styles, use the least number of selectors required to style an element. Nesting can also lead to location dependent and potentially inefficient code.</p>
+                <!-- Code example -->
+                <div class="code" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Element with class of '.bar' anywhere inside element with class '.foo' */
+.foo .bar { }
+
+/* Element with class of '.module' directly inside '.module-title' element */
+.module > .module-title { }
+
+/* Any 'li' element anywhere inside an 'ul' element within 'nav' element */
+nav ul li { }
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='css.html'>CSS</a></li>
+                    <li><!-- https://cssguidelin.es/ --></li>
+                    <li><!-- http://blog.teamtreehouse.com/clean-up-your-code-with-modular-css --></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - JavaScript Service Worker</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Service Worker</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>A service worker is a script - a file containining JavaScript code - that stands between your website and the network. They provide a cached version of the site when no network connectivity is available, and this also has benefits when using slow or low connectivity. Service worker scripts run in a separate thread in the browser from the pages they control and do not have access to the DOM of those pages. JavaScript code within a service worker must not block. You need to use asynchronous APIs. For example, you cannot use localStorage in a service worker as this is a synchronous API.</p>
+                <p>This is a foundation of Google's Progressive Web App (PWA) standard that provides potential performance improvements by leveraging the cache for almost instant page loads.</p>
+                <p>Using a Service worker you can easily set an app to use cached assets first, providing an experience even when offline, before then getting more data from the network. This is commonly known as Offline First. It is also important to note that service worker scripts run on a separate thread in the browser from the pages they control.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Browser Support</h2>
+                <p>Service workers are considered 'cutting edge' features and are not supported on all browsers. Only Chrome, Firefox, and Opera have full support for service workers and their browser caching. Microsoft Edge from version 17 and later now also provide support for Service workers.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Offline Support</h2>
+                <p>To provide offline support we need to take care of two aspects:</p>
+                <p>Caching of HTML, JavaScript, CSS stylesheets, and assets such as images.</p>
+                <p>Storing data used by an application on the client side.</p>
+                <p>Service Workers were introduced to replace AppCache. They provide a flexible solution for offline support and give control over outgoing requests, allowing a script to intercept them and return the necessary responses. The app code can itself then check if an asset is saved in the cache and request it from the server only if it's needed.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>HTTPS</h2>
+                <p>Service workers can be used to hijack connections, so for security, you can only register for service workers on pages served over HTTPS. This ensures that we can be confident the service worker the browser receives hasn't been tampered with during it's journey through the network.</p>
+                <p>GitHub pages are served over HTTPS, so they can be excellent for creating demo applications.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Getting Started</h2>
+                <p>To begin, you first need to register for a service worker. In this example, /my-app/sw.js is the location of the service worker script and it controls pages whose URL begins with /my-app/.</p>
+                <p>This registration is done from outside the service worker, by another page or script on your website. For example, if your website has a global main.js script included on every HTML page, your service work would be registered from there.</p>
+                <p>When you register a service worker, you (optionally) also tell it what scope it should apply itself to. You can instruct it to only handle parts of your website ('/my-app/'), or you can register it for your whole website ('/'). This path needs to be written relative to the origin, not your app's root directory. In this example, the worker is at https://github.io/my-app/sw.js and the app's root is https://github.io/my-app/ but the path needs to be written as /my-app/sw.js, not /sw.js</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: src&#x2F;main.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register('/my-app/sw.js', {scope: '/my-app/'})
+   .then(function(reg) {
+      // Registration worked
+      console.log('Registration worked.', reg);
+   }).catch(function(error) {
+      // Registration failed
+      console.log('Registration failed', err);
+   });
+} else {
+   console.log('Service worker is not supported in this browser.');
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The Service worker has been registered using a file called 'sw.js'. A better name maybe something like 'register-service-worker.js' to avoid the use of abbreviations, but we'll keep it simple for the examples. This is the file that is used to setup the service worker.</p>
+                <p>After your service worker is registered, the browser will attempt to install then activate the service worker for your page/website.</p>
+                <p>The if statement performs a feature detection test to make sure service workers are supported before trying to register one.</p>
+                <p>The serviceWorker.register function is used to register the service worker for the website. This is just a JavaScript file residing inside our app.</p>
+                <p>The scope parameter is optional, and can be used to specify the subset of the content you want the service worker to control. In this example, we have specified '/my-app', which means all content under the app's origin. If this is left out, it will default to this value anyway.</p>
+                <p>A .then() promise function is used to chain a success case onto our promise structure. When the promise resolves successfully, the code inside it executes. If the promise is rejected, the .catch() function is executed.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Events</h2>
+                <p>There are three types of event which comprises the service worker lifecycle:</p>
+                <p>Install - fired after the worker has been registered and the script has been downloaded by the browser.</p>
+                <p>Activate - fired after installation once the service worker becomes active. The latest service worker won't become active until the old one has been 'released'.</p>
+                <p>Fetch - fired whenever a network request is made to a URL within a given service worker's scope.</p>
+                <p>If we wanted to make our application available offline, we might use these lifecycle events.</p>
+            </section>
+            <section class="pad-btm">
+                <p>We can create a service worker file - named as sw.js in the earlier example - with an install hook:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: src&#x2F;my-app&#x2F;sw.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+const CACHED_RESOURCES = [
+   'index.html',
+   'static/main.css',
+   'static/logo.svg',
+   'static/main.js'
+];
+const CACHE_VERSION = 'cache-v2';
+
+self.addEventListener('install', event => {
+   const cachePromise = caches.open(CACHE_VERSION)
+   .then(cache => cache.addAll(CACHED_RESOURCES));
+
+   event.waitUntil(cachePromise);
+});
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>When this server worker is installed, it opens a cache ('cache-v2' in this example) and saves all the listed resources in the cache.</p>
+                <p>At this point you should be able to inspect the 'cache-v2' created in the browser's Cache Storage using the browser inspector.</p>
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='javascript.html'>JavaScript</a></li>
+                    <li><!-- https://medium.com/dazn-tech/offline-with-service-workers-ead6997f6c1b --></li>
+                    <li><!-- https://www.sitepoint.com/offline-web-apps-service-workers-pouchdb/ --></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

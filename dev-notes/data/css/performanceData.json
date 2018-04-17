@@ -1,0 +1,215 @@
+{
+  "page": {
+    "pagetitle": "CSS Performance",
+    "pageheading": "CSS Performance",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='css.html'>CSS</a>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "CSS is not the largest asset to consider during development, but it is one of the first the browser discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed, so it's always worthwhile to consider performance to make your stylesheets as lean as possible."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Shallow Selectors",
+        "copy": [
+          "Used correctly, shallow selectors can reduce kilobytes off the file size of your CSS stylesheets. As well as keeping your CSS tidy, the browser will also render the elements targeted by shallow selectors faster. Browsers read selectors from right to left. The deeper the selectors are, the longer it takes for the browser to render or re-render those elements.",
+          "Ideally you want selectors to be as shallow as possible, but sometimes you will need to add additional specificity to elements."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* Deep selector example */",
+          "nav ul li.nav-item",
+          "",
+          "/* Shallow selector example */",
+          ".nav-item"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Shorthand Properties",
+        "copy": [
+          "Using shorthand CSS properties will speed up your website, increased component flexibility and is convenient. Often longhand properties are used needlessly when a shorthand property is more suitable.",
+          "Here is an example of a longhand property:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "font-size: 1.5rem;",
+          "line-height: 1.618;",
+          "font-family: 'Arial', 'Helvetica', sans-serif;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "That's plenty of CSS, but let's use a shorthand property to tidy things up:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "font: 1.5rem/1.618 'Arial', 'Helvetica', sans-serif;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Another example showing the background properties simplified to a single declaration:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* Multiple properties */",
+          "background-color: #000;",
+          "background-image: url(images/bg.gif);",
+          "background-repeat: no-repeat;",
+          "background-position: left top;",
+          "",
+          "/* Single declaration */",
+          "background: #000 url(images/bg.gif) no-repeat left top;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "With borders, the width, colour, and style can be simplified into one declaration."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* Multiple properties */",
+          "border-width: 1px;",
+          "border-style: solid;",
+          "border-color: #000;",
+          "",
+          "/* Single declaration */",
+          "border: 1px solid #000;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Shorthand versions of margin and padding values work in the same way. Note that the values are in a clockwise order beginning at the top, right, bottom, and left."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* Multiple properties */",
+          "margin-top: 10px;",
+          "margin-right: 5px;",
+          "margin-bottom: 10px;",
+          "margin-left: 5px;",
+          "",
+          "/* Single declaration */",
+          "margin: 10px 5px 10px 5px;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "With padding and margin, the shorthand properties can be reduced further:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "/* All four sides */",
+          "margin: 10px 5px 10px 5px;",
+          "",
+          "/* Top/Bottom has margin of 10px, Left/Right margin of 5px",
+          "margin: 10px 5px;",
+          "",
+          "/* Top has margin of 10px, left/right has 5px margin and bottom has 3px margin */",
+          "margin: 10px 5px 3px;",
+          "",
+          "/* Margin equal across all sides */",
+          "margin: 10px;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "If you need to override a value further down in the cascade you would use a more specific property instead."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "h1 {",
+          "   font: 1.5rem/1.618 'Arial', 'Helvetica', sans-serif;",
+          "}",
+          "",
+          "@media (min-width: 60rem) {",
+          "   h1 {",
+          "      font-size: 2rem;    /* Specific font-size property */",
+          "   }",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Preload",
+        "copy": [
+          "The preload resource hint can give browsers a head start loading your CSS stylesheets. The preload resource hint tells the browser to initiate an early fetch for an asset. This can be set as an attribute value within the &lt;link&gt; tag within your HTML, or as an HTTP header in your server configuration.",
+          "This is not supported on IE (Internet Explorer), but is supported within Edge (version 17 and later), Firefox (version 59 and later), Chrome, and Safari (version 11.1 and later).",
+          "Using the as attribute also allows the browser to prioritise resource loading more accurately, apply the correct content security policy to the resource, and set the correct Accept request headers for it."
+
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;link rel='preload' href='css/stylesheet.css' as='style' /&gt;",
+          "",
+          "/* Example for JavaScript */",
+          "&lt;link rel='preload' href='scripts/myscript.js' as='script' /&gt;"
+        ]
+      }
+    ]
+  }
+}

@@ -6,7 +6,9 @@
       {
         "label": "LINKS",
         "links": [
-          "<a href='../../index.html'>Home</a>"
+          "<a href='../../index.html'>Home</a>",
+          "<a href='css-performance.html'>Performance</a>",
+          "<a href='css-guidelines.html'>Guidelines</a>"
         ]
       },
       {
