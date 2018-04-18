@@ -42,6 +42,21 @@
       },
       {
         "label": "SECTION",
+        "showheading": true,
+        "heading": "Test directory",
+        "copy": [
+          "By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ mkdir test"
+        ]
+      },
+      {
+        "label": "SECTION",
         "showheading": false,
         "heading": null,
         "copy": [
@@ -59,6 +74,84 @@
           "   assert.equal(true, true);",
           "})"
         ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "By default, Mocha will look for test files within the test directory folder that has been created within the root of the project folder. This is fine, however, we would like to place test files in the same directory/folder as the JavaScript code being tested. In React, this would be the components directory.",
+          "We will still have a 'test' directory/folder within the root of your project folder, but we will have two files - setup.js and mocha.opts.",
+          "The test files will be named with the prefix '.spec.js' and be placed in the same directory as the component files as the example below demonstrates.",
+          "This will be the file structure of our project folder:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "dist/",
+          "src/",
+          "   components/",
+          "      1-atoms/",
+          "         input/",
+          "            Input.js",
+          "            Input.spec.js",
+          "   img/",
+          "   scss/",
+          "index.js",
+          "test/",
+          "   mocha.opts",
+          "   setup.js",
+          ".gitignore",
+          "index.html",
+          "package.json",
+          "webpack.config.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The mocha.opts file will look like this:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: test/mocha.opts",
+        "code": [
+          "test/setup.js",
+          "src/**/*.spec.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The setup.js code will look like this:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: test/setup.js",
+        "code": [
+          "const chai = require('chai');"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Now when you run the test script using the NPM command within the package.json file, Mocha will run the tests within the components directory. In this example, the Input.spec.js file will run and test the Input.js React component module."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
       },
       {
         "label": "SECTION",
@@ -80,21 +173,6 @@
         "label": "SECTION",
         "showheading": true,
         "heading": "Writing Tests",
-        "copy": [
-          "By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder."
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": true,
-        "rel": null,
-        "datatitle": null,
-        "code": [
-          "$ mkdir test"
-        ]
-      },
-      {
-        "label": "SECTION",
-        "showheading": false,
-        "heading": null,
         "copy": [
           "Within the test directory create a file named appTest.js that will contain our tests.",
           "We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module."
@@ -150,6 +228,23 @@
         "code": [
           "\"scripts\": {",
           "   \"test\": \"mocha\"",
+          "},"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Should you want to hide NPM output if the test fails, you can add a 'true' flag to the command."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "\"scripts\": {",
+          "   \"test\": \"mocha || true\"",
           "},"
         ]
       },

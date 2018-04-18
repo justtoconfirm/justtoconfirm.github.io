@@ -46,6 +46,20 @@ $ npm install mocha --save-dev
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
+                <h2>Test directory</h2>
+                <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ mkdir test
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
                 <p>You can use the built-in Node.js assert module to test if true is equal to true. This will be our initial test, and should pass. This example is using the ES6 arrow function.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: test&#x2F;test.js">
@@ -64,6 +78,68 @@ it('should return true', () => {
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
+                <p>By default, Mocha will look for test files within the test directory folder that has been created within the root of the project folder. This is fine, however, we would like to place test files in the same directory/folder as the JavaScript code being tested. In React, this would be the components directory.</p>
+                <p>We will still have a 'test' directory/folder within the root of your project folder, but we will have two files - setup.js and mocha.opts.</p>
+                <p>The test files will be named with the prefix '.spec.js' and be placed in the same directory as the component files as the example below demonstrates.</p>
+                <p>This will be the file structure of our project folder:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+dist/
+src/
+   components/
+      1-atoms/
+         input/
+            Input.js
+            Input.spec.js
+   img/
+   scss/
+index.js
+test/
+   mocha.opts
+   setup.js
+.gitignore
+index.html
+package.json
+webpack.config.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The mocha.opts file will look like this:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+test/setup.js
+src/**/*.spec.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The setup.js code will look like this:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: test&#x2F;setup.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+const chai = require('chai');
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Now when you run the test script using the NPM command within the package.json file, Mocha will run the tests within the components directory. In this example, the Input.spec.js file will run and test the Input.js React component module.</p>
+            </section>
+            <section class="pad-btm">
                 <h2>Chai</h2>
                 <p>Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.</p>
                 <p>Chai can be installed as a devDependency using the following terminal command:</p>
@@ -80,19 +156,6 @@ $ npm install chai --save-dev
             </section>
             <section class="pad-btm">
                 <h2>Writing Tests</h2>
-                <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
-                <!-- Code example -->
-                <div class="code" rel="" data-title="">
-                    <pre>
-                        <code>
-<!-- Leave space here -->
-$ mkdir test
-                        </code>
-                    </pre>
-                </div>
-                <!-- / Code example -->
-            </section>
-            <section class="pad-btm">
                 <p>Within the test directory create a file named appTest.js that will contain our tests.</p>
                 <p>We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module.</p>
                 <!-- Code example -->
@@ -143,6 +206,21 @@ module.exports = function() {
 <!-- Leave space here -->
 "scripts": {
    "test": "mocha"
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Should you want to hide NPM output if the test fails, you can add a 'true' flag to the command.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+"scripts": {
+   "test": "mocha || true"
 },
                         </code>
                     </pre>
