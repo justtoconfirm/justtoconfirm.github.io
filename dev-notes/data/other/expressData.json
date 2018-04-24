@@ -1,0 +1,188 @@
+{
+  "page": {
+    "pagetitle": "Express.js",
+    "pageheading": "Express.js",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<!-- https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/ -->",
+          "<!-- https://github.com/callicoder/node-easy-notes-app -->",
+          "<!-- https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2 -->",
+          "<!-- https://scotch.io/courses/create-a-crud-app-with-node-and-mongodb/getting-started -->",
+          "<!-- https://medium.com/javascript-scene/introduction-to-node-express-90c431f9e6fd -->",
+          "<!-- https://github.com/motdotla/dotenv -->",
+          "<!-- https://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs -->"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Express is a web framework for Node.js. It is built on top of the Node.js http module, and adds support for routing and middleware.",
+          "Express versions 2.x and 3.x are no longer maintained. The current Express version 4.x should be used for any new projects."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Install",
+        "copy": [
+          "NPM (Node Package Manager) is required before you can install Express.js. By default NPM version 5.0 and later adds the module to the dependencies list in the package.json file. Earlier versions of NPM need to have the --save option.",
+          "You will also need a package.json file within your project.",
+          "Open the terminal and enter the following command to install Express as a dependency within your project:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "# Create a package.json file quickly",
+          "$ npm init -y",
+          "",
+          "$ npm install express --save"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Server: Hello World",
+        "copy": [
+          "The 'Hello World' example is the simplest Express app you can build. The app starts a server and listens on port 3000 for any connections. The app responds with 'Hello World' for requests to the root URL (/) or route. For any other path, it will respond with a 404 Not Found.",
+          "This server is powered by RunKit which provides a Node enviornment within your browser.",
+          "Here the example is using ES6 JavaScript syntax. ES5 syntax can also be used."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "const express = require('express')",
+          "// Create the Express app",
+          "const app = express()",
+          "",
+          "// ES6 arrow function",
+          "app.get('/', (req, res) => res.send('Hello World'))",
+          "",
+          "app.listen(3000, () => console.log('Example app listening on port 3000'))"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Run the app with the following command then load <a href='http://localhost:3000/' target='_blank'>http://localhost:3000/</a> in the browser to see the output:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ node app.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Routing",
+        "copy": [
+          "Routing refers to how an application responds to a request to a particular endpoint (URI/path) and a specific HTTP request method (GET/POST).",
+          "The following examples illustrate defining simple routes within the app.js file created earlier.",
+          "You will have to restart the server each time a change has been made."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "// ES5 syntax",
+          "app.get('/', function (req, res) {",
+          "   res.send('Hello World')",
+          "})",
+          "",
+          "// ES6 syntax",
+          "app.get('/', (req, res) => res.send('Hello World'))",
+          "",
+          "// http://localhost:3000/about",
+          "app.get('/about', (req, res) => res.send('This is the about page'))"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "To define routes with router parameters, simply specify the route parameters in the path of the route. The two examples below show 'books' and 'flights'.",
+          "This will return a JSON object with key/value pairs within the browser."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "// http://localhost:3000/users/34/books/8989",
+          "app.get('/users/:userId/books/:bookId', (req, res) => res.send(req.params))",
+          "",
+          "// http://localhost:3000/flights/LAX-SFO",
+          "app.get('/flights/:from-:to', (req, res) => res.send(req.params))"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Nodemon",
+        "copy": [
+          "You can install the Nodemon package as a devDependency. It's a simple package that automatically restarts your server when files change."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install nodemon --save-dev"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Once Nodemon has been installed, update the package.json file:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "\"scripts\": {",
+          "   \"test\": \"echo \"Error: no test specified\" && exit 1\",",
+          "   \"dev\": \"nodemon app.js\"",
+          "},"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Run Nodemon:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm run dev"
+        ]
+      }
+    ]
+  }
+}

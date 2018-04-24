@@ -1,0 +1,210 @@
+{
+  "page": {
+    "pagetitle": "Node.js",
+    "pageheading": "Node.js",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<!-- https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2 -->",
+          "<!-- https://codeburst.io/the-only-nodejs-introduction-youll-ever-need-d969a47ef219 -->",
+          "<!-- https://codeburst.io/how-to-create-and-publish-your-first-node-js-module-444e7585b738 -->",
+          "<!-- https://codeburst.io/build-a-simple-weather-app-with-node-js-in-just-16-lines-of-code-32261690901d -->",
+          "<!-- https://medium.com/@adnanrahic/hello-world-app-with-node-js-and-express-c1eb7cfa8a30 -->",
+          "<!-- https://codeburst.io/building-a-budget-manager-with-vue-js-and-node-js-part-i-f3d7311822a8 -->",
+          "<!-- https://arm.ag/microservices-made-easy-with-node-js-f41bb2be2d3c -->",
+          "<!-- https://codeburst.io/hitchhikers-guide-to-back-end-development-with-examples-3f97c70e0073 -->",
+          "<!-- https://medium.com/@jeffandersen/building-a-node-js-rest-api-with-express-46b0901f29b6 -->",
+          "<!-- https://codeburst.io/building-appointment-scheduler-app-in-react-and-nodejs-f163c4eaab6b -->"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Node.js is a JavaScript run-time environment. This includes everything you need to execute a program written in JavaScript. This extends JavaScript from something you can only run in the browser to something you could run on your machine as a standalone application. This provides JavaScript with the capability to do things other scripting langages like Python can do.",
+          "Node.js runs on the V8 JavaScript runtime engine. This engine is open-source, written in C++, and takes your JavaScript code and converts it into machine code, which is faster. Machine code is low level which the computer can run without the need to interpret it first.",
+          "I/O refers to input/output. It can be anything ranging from reading/writing local files, to making an HTTP request to an API - simply a way for one program to interact with another. I/O takes time and blocks other functions. By being non-blocking, the I/O can initiate a data request without waiting for the response from another request. Both requests can be initiated in parallel. This non-blocking I/O eliminates the need for multi-threading since the server can handle multiple requests at the same time.",
+          "Node.js can be downloaded and installed from here: <a href='https://nodejs.org/en/' target='_blank'>https://nodejs.org/en/</a>",
+          "Once installed you can confirm the version of Node.js installed from within your terminal:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ node --version"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "By adding the following to your package.json file (which is optional), you can specify the minimum version of Node that your package requires to ensure your library will work for your users."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "\"engines\": {",
+          "   \"node\": \"&gt;=4.2.4\"",
+          "},"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "NPM (Node Package Manager)",
+        "copy": [
+          "NPM (Node Package Manager) contains a number of packages built by a community of developers that are used to solve many different problems. These packages can be used in your apps to make your development faster and more efficient.",
+          "When Node.js has been installed, you will have access to NPM. NPM often comes with Node.js, but it is often an old version as Node's release cycle is often behind NPM's, so NPM may need to be updated.",
+          "You can open the terminal and confirm the version of NPM you have installed:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm --version"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "If you want to begin installing packages and dependencies into your project using NPM, you will need to create a package.json file.",
+          "The package.json file will need to have the entry point to be the name of your main JavaScript file. The default is usually index.js",
+          "Within your project dirctory/folder, run the following command using your terminal to create a package.json file:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm init"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "When an NPM package is installed it is placed into the node_modules folder/directory. The node_modules directory should not be committed when using Git/GitHub version control into your respository, but instead should be listed within a .gitignore file. If you are installing packages used for development, they can be installed as a devDependency. Packages used only in the development phase need to be installed as a devDependency, otherwise the package can be installed as a dependency. A package installed as a dependency is a package that is needed by the application to work, such as React or Redux. A devDependency package is needed only during development, such as build tools like Gulp and Webpack.",
+          "To install an NPM package, open your terminal and run the following command:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ npm install &lt;package-name&gt;",
+          "",
+          "# Install package globally",
+          "$ npm install $lt;package-name&gt; --g",
+          "",
+          "# Install package as a devDependency",
+          "$ npm install &lt;package-name&gt; --save-dev",
+          "",
+          "# Install package as a dependency",
+          "$ npm install &lt;package-name&gt; --save"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Node Modules",
+        "copy": [
+          "A Node module is a reusable block of code. You can write your own module and use it in various applications. Node.js also has a set of built-in modules which you can use.",
+          "Node/NPM modules are just regular JavaScript files. They must follow the CommonJS module spec. UMD is also permitted to be used and is compatible with CommonJS.",
+          "The exports keyword is used to make properties and methods in the module available outside of the module file.",
+          "A simple module file may look like this:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: index.js",
+        "code": [
+          "'use strict';",
+          "",
+          "/**",
+          "* Adds commas to a number",
+          "* @param {number} number",
+          "* @param {string} locale",
+          "* @return {string}",
+          "*/",
+          "",
+          "module.exports = function(number, locale) {",
+          "   return number.toLocaleString(locale);",
+          "};"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Requiring a module in Node.js isn't that complicated. It can simply be done like this:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "const config = require('/path/to/file');"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Hello World",
+        "copy": [
+          "Writing 'Hello World' is pretty simple when using Node.js. Begin by opening a file named app.js and adding the following code:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: app.js",
+        "code": [
+          "console.log('Hello World');"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "If you have Node.js installed, open your terminal, change the directory to the folder where the file is located and run the following command:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ node app.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Testing",
+        "copy": [
+          "Node has a built-in assert module for testing expressions. This is similar to Chai.",
+          "See the <a href='tdd.html'>TDD (Test Driven Development)</a> documentation.",
+          "In this example, we are including the module using the require function."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "const assert = require('assert');"
+        ]
+      }
+    ]
+  }
+}

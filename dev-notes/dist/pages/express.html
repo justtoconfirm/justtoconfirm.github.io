@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Express.js</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Express.js</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>Introduction</h2>
+                <p>Express is a web framework for Node.js. It is built on top of the Node.js http module, and adds support for routing and middleware.</p>
+                <p>Express versions 2.x and 3.x are no longer maintained. The current Express version 4.x should be used for any new projects.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Install</h2>
+                <p>NPM (Node Package Manager) is required before you can install Express.js. By default NPM version 5.0 and later adds the module to the dependencies list in the package.json file. Earlier versions of NPM need to have the --save option.</p>
+                <p>You will also need a package.json file within your project.</p>
+                <p>Open the terminal and enter the following command to install Express as a dependency within your project:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+# Create a package.json file quickly
+$ npm init -y
+
+$ npm install express --save
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Server: Hello World</h2>
+                <p>The 'Hello World' example is the simplest Express app you can build. The app starts a server and listens on port 3000 for any connections. The app responds with 'Hello World' for requests to the root URL (/) or route. For any other path, it will respond with a 404 Not Found.</p>
+                <p>This server is powered by RunKit which provides a Node enviornment within your browser.</p>
+                <p>Here the example is using ES6 JavaScript syntax. ES5 syntax can also be used.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+const express = require('express')
+// Create the Express app
+const app = express()
+
+// ES6 arrow function
+app.get('/', (req, res) => res.send('Hello World'))
+
+app.listen(3000, () => console.log('Example app listening on port 3000'))
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Run the app with the following command then load <a href='http://localhost:3000/' target='_blank'>http://localhost:3000/</a> in the browser to see the output:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ node app.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Routing</h2>
+                <p>Routing refers to how an application responds to a request to a particular endpoint (URI/path) and a specific HTTP request method (GET/POST).</p>
+                <p>The following examples illustrate defining simple routes within the app.js file created earlier.</p>
+                <p>You will have to restart the server each time a change has been made.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// ES5 syntax
+app.get('/', function (req, res) {
+   res.send('Hello World')
+})
+
+// ES6 syntax
+app.get('/', (req, res) => res.send('Hello World'))
+
+// http://localhost:3000/about
+app.get('/about', (req, res) => res.send('This is the about page'))
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>To define routes with router parameters, simply specify the route parameters in the path of the route. The two examples below show 'books' and 'flights'.</p>
+                <p>This will return a JSON object with key/value pairs within the browser.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: app.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// http://localhost:3000/users/34/books/8989
+app.get('/users/:userId/books/:bookId', (req, res) => res.send(req.params))
+
+// http://localhost:3000/flights/LAX-SFO
+app.get('/flights/:from-:to', (req, res) => res.send(req.params))
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Nodemon</h2>
+                <p>You can install the Nodemon package as a devDependency. It's a simple package that automatically restarts your server when files change.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm install nodemon --save-dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Once Nodemon has been installed, update the package.json file:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+"scripts": {
+   "test": "echo "Error: no test specified" && exit 1",
+   "dev": "nodemon app.js"
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Run Nodemon:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ npm run dev
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><!-- https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/ --></li>
+                    <li><!-- https://github.com/callicoder/node-easy-notes-app --></li>
+                    <li><!-- https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2 --></li>
+                    <li><!-- https://scotch.io/courses/create-a-crud-app-with-node-and-mongodb/getting-started --></li>
+                    <li><!-- https://medium.com/javascript-scene/introduction-to-node-express-90c431f9e6fd --></li>
+                    <li><!-- https://github.com/motdotla/dotenv --></li>
+                    <li><!-- https://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs --></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
