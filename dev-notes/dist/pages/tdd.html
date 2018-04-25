@@ -228,6 +228,21 @@ module.exports = function() {
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
+                <p>To run test files that maybe within subdirectories, the following should be used within the package.json file and is recommended:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+"scripts": {
+   "test": "mocha --recursive"
+},
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
                 <p>The test can now be run from with the terminal using the following command:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -235,6 +250,60 @@ module.exports = function() {
                         <code>
 <!-- Leave space here -->
 $ npm run test
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>ES6 with Mocha</h2>
+                <p>You may want to use ES6 JavaScript syntax within your test files. You will need to make a few amendments and have Babel setup within your build/testing process.</p>
+                <p>Begin by updating the mocha.opts file within the test directory to allow ES6 syntax to be used:</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+--require babel-register
+
+test/setup.js
+src/**/*.spec.js
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>Next, update the package.json file:</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+"babel": {
+   "presets": ["env"]
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>The test files can now be updated to use ES6 JavaScript syntax such as import statements.</p>
+                <!-- Code example -->
+                <div class="code" rel="js" data-title="JavaScript: src&#x2F;components&#x2F;1-atoms&#x2F;input&#x2F;Input.spec.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import React from 'react'
+import { assert } from 'chai'
+
+describe('Input', function() {
+   it('test test', function() {
+      // assert function from Chai
+      assert.equal(true);
+   });
+})
                         </code>
                     </pre>
                 </div>

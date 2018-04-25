@@ -253,6 +253,23 @@
         "showheading": false,
         "heading": null,
         "copy": [
+          "To run test files that maybe within subdirectories, the following should be used within the package.json file and is recommended:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "\"scripts\": {",
+          "   \"test\": \"mocha --recursive\"",
+          "},"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
           "The test can now be run from with the terminal using the following command:"
         ],
         "label": "CODE/MARKUP",
@@ -261,6 +278,65 @@
         "datatitle": null,
         "code": [
           "$ npm run test"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "ES6 with Mocha",
+        "copy": [
+          "You may want to use ES6 JavaScript syntax within your test files. You will need to make a few amendments and have Babel setup within your build/testing process.",
+          "Begin by updating the mocha.opts file within the test directory to allow ES6 syntax to be used:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: test/mocha.opts",
+        "code": [
+          "--require babel-register",
+          "",
+          "test/setup.js",
+          "src/**/*.spec.js"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Next, update the package.json file:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "\"babel\": {",
+          "   \"presets\": [\"env\"]",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The test files can now be updated to use ES6 JavaScript syntax such as import statements."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: src/components/1-atoms/input/Input.spec.js",
+        "code": [
+          "import React from 'react'",
+          "import { assert } from 'chai'",
+          "",
+          "describe('Input', function() {",
+          "   it('test test', function() {",
+          "      // assert function from Chai",
+          "      assert.equal(true);",  
+          "   });",
+          "})"
         ]
       }
     ]
