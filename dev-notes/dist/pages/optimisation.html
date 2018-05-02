@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Optimisation, Security &amp; Errors</title>
+    <link rel="stylesheet" href="../css/foundation.min.css" />
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1>Optimisation, Security &amp; Errors</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="pad-btm">
+            </section>
+            <section class="pad-btm">
+                <h2>External Anchors</h2>
+                <p>Often when we want a link to open in a new tab/window within the browser, we often use the target attribute. However, simply doing this can lead to a potentially serious vulnerability.</p>
+                <p>The page opens in a new tab/window, but for a small time, the page or link that has been opened, can potentially have control of the first page (page with the initial link). For example, you have 'Page A' with a link to 'Page B'. The link is clicked and opens 'Page B' within a new tab/window. 'Page B', for a moment, can potentially control 'Page A' using JavaScript.</p>
+                <p>This vulnerability is known as 'reverse tabnabbing', and could lead an attacker to download something to your device, intercept data being sent, change cookies, or redirect to any page they wanted.</p>
+                <p>The reason this occurs is because it can grant access to the window.opener object of the previous page (where the link is located) and can allow some JavaScript to be executed on the opening page, such as using the window.opener.location object, to redirect the user to a phishing or malicious page. Thankfully, the origin security model of the web prevents it reading your page, but some legacy APIs mean it can navigate your page to a different URL using window.opener.location = newURL.</p>
+                <p>Due to the synchronous cross-window access the DOM gives us via window.opener, windows launched using _blank within the target attribute, end up in the same process and thread. This is also true for iFrames and windows opened via window.open. the 'noopener' tag prevents window.opener, so there's no cross-window access. This also has a minor performance benefit.</p>
+                <p><ul class='list'><li>noopener - Instructs the browser to open the link without granting the new browsing context access to the document that opened it, by not setting the window.opener property on the opened window, this returns null.</li><li>noreferrer - Prevents the browser, when navigating to another page, from sending the page address or any other value, as a referrer via the Referer: HTTP header.</li></ul></p>
+                <p>This is something that can easily be fixed by adding the 'rel' attribute to your links that use the 'target' attribute:</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!-- Typical link --&gt;
+&lt;a href='#' target='_blank'>Open new tab&lt;/a&gt;
+
+&lt;!-- More Secure --&gt;
+&lt;a href='#' target='_blank' rel='noopener'>Open new tab&lt;/a&gt;
+
+&lt;!-- Support for Firefox and browsers not supporting noopener --&gt;
+&lt;a href='#' target='_blank' rel='noopener noreferrer'>Open new tab&lt;/a&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>It is worth noting that Edge doesn't support window.opener for _blank links, so this fix is not necessarily needed for the Edge browser.</p>
+                <p>WordPress now automatically adds the 'rel' attribute to links that use the 'target' attribute to open new pages/links in new tabs or windows.</p>
+                <p>The fix will potentially affect referrer tracking and some affiliate links. Lost referrer tracking should only be an issue if you have a non-secure http connection. The 'noopener noreferrer' tag should not impact HTTPS transfers (i.e. form your https site to another https site).</p>
+                <p>There are a few things you can do to disable the 'noopener noreferrer' issues:</p>
+                <p><ul class='list'><li>Avoid using the 'target' attribute on your links. Google recommends you don't use this code in your links if you can avoid it, but for SEO this is often used to boost 'time on page' stats and bounce rate.</li><li>Upgrade your website to HTTPS and only link to sites using HTTPS. All your affiliate links should be HTTPS anyway, and you don't want to run a tracking campaign using HTTP.</li></ul></p>
+            </section>
+            <section class="pad-btm">
+                <h2>CSS Performance</h2>
+                <p>Should you want to improve your CSS performance and optimise your code, visit the following pages:</p>
+                <p><ul class'list'><li><a href='css-guidelines.html'>CSS Guidelines</a></li><li><a href='css-performance.html'>CSS Performance</a></li></ul></p>
+            </section>
+            <section class="pad-btm">
+                <h2>HTTPS</h2>
+                <p>HTTP means HyperText Transfer Protocol. It is the underlying protocol used by the World Wide Web to define how messages are formatted and transmitted.</p>
+                <p>HTTP Secure (HTTPS) is an extension of the HyperText Transfer Protocol (HTTP) used for secure communications over a computer network. In HTTPS, the communication protocol is encrypted by Transport Layer Security (TLS), or by it's predecessor, Secure Sockets Layer (SSL). TLS and SSL are used to transport data safely. HTTPS is also sometimes referred to as HTTP over TLS (Transport Layer Security).</p>
+                <p>When using HTTP, everything sent between you and a web server is sent in plain text, it is not encrypted and can be intercepted by third parties. HTTPS encrypts this data for security and privacy. This is why HTTPS is used by many sites that require data security such as online shopping and online banking.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+http://www.unsecure.com
+
+https://www.secure.com
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>HTTPS requires the use of an SSL (Secure Sockets Layer) certificate. This is used to create the secure encrypted connection between the web server and the web browser.</p>
+                <p><ul class='list'><li>Purchase an SSL certificate and a dedicated IP address from your hosting company</li><li>Install and configure the SSL certificate</li><li>Configure any hard internal links within your website from HTTP to HTTPS</li><li>Update any JavaScript code libraries and plugins</li><li>Redirect external links to HTTPS</li><li>Update the htaccess file and server configuration</li><li>Implement 301 redirects on a page-by-page basis</li><li>Set up an HTTPS site in Google Search Console and Google Analytics</li></ul></p>
+                <p>HTTPS is not going to prevent your website from being hacked, but it will provide the website with the minimum level of security that most visitors now expect.</p>
+            </section>
+            <section class="pad-btm">
+                <p>Google recommends a number of things that can be done when using HTTPS and to be considered when thinking about SEO (Search Engine Optimisation):</p>
+                <p><ul class='list'><li>Don't block your HTTPS site from crawling using a robots.txt file</li><li>Allow indexing of your pages by search engines where possible. Avoid the noindex robots meta tag.</li></ul></p>
+                <p>Google also lists HTTPS as a ranking factor in it's search results, with HTTPS websites being ranked higher in search results than those using HTTP.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Errors</h2>
+                <p>The browser console will often return any errors that may occur in your web page or application. Here is a list of common errors and error codes you may come across:</p>
+            </section>
+            <section class="pad-btm">
+                <h2>404</h2>
+                <p>The HTTP 404, 404 Not Found, and 404 (pronounced as 'four oh four') error message is an HTTP (HyperText Transfer Protocol) standard response code. This indicates that the client was able to communicate with a given server, but the server could not find what was requested.</p>
+                <p>The last '4' in '404' indicates the specific error in the group of '40x', which also includes '400: Bad Request' and '401: Unauthorized'.</p>
+                <p>This error simply means that the asset (image, page) cannot be found. This could be due to the asset being missing, or perhaps the path/link to the asset or page is incorrect.</p>
+                <p>Often the 404 Not Found error will appear when you are searching for a web page you we're trying to reach. This error is then returned because the page cannot be found on the server. It is a client-side error meaning that either the page has been removed/moved, and the URL was not changed or updated. The error can also appear if you enter the incorrect URL.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Minification</h2>
+                <p>Minification is the process of removing all unnecessary characters, including comments and whitespace, from source code without changing it's functionality. This is common in both JavaScript and CSS as it helps to reduce the file size and improve page performance.</p>
+                <p>The code is stripped of data that isn't required in order for the file to be executed. This is performed after the code has been written, but before being deployed. Using the minified file in production results in faster response times as less data needs to be processed for each request. This leads to performance gains without compromising the user's experience.</p>
+                <p>This process of minification creates a file which is optimised, but harder to read. This often removes whitespace and comments, and shortening of variable names or functions to be more concise. This process only needs to be performed when the source code changes.</p>
+                <p>You may see a number of files with the prefix of '.min' suggesting that these files have been minified.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;link rel='stylesheet' href='style/styles.min.css' /&gt;
+
+&lt;script src='scripts/file.min.js'&gt;&lt;/script&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>We can use a number of tools to automate the creation of minified files/assets during the development build process:</p>
+                <p><ul class='list'><li>Gulp</li><li>Grunt</li><li>Webpack</li></ul></p>
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+
+            <div>
+                <ul class="no-list">
+                    <li><a href='../../index.html'>Home</a></li>
+                    <li><!-- https://mathiasbynens.github.io/rel-noopener/ --></li>
+                    <li><!-- https://www.searchcandy.uk/seo/does-adding-relnoopener-noreferrer-to-a-link-affect-seo/ --></li>
+                    <li><!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types --></li>
+                    <li><!-- https://github.com/asciidoctor/asciidoctor/issues/2071 --></li>
+                    <li><!-- https://support.performancefoundry.com/article/186-noopener-noreferrer-on-my-links --></li>
+                    <li><!-- https://washamdev.com/why-rel-noopener-noreferrer-in-wordpress-links/ --></li>
+                    <li><!-- https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ --></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-6 columns">
+	
+			<ul class="no-list">
+				<li><a href="../../index.html">Home</a></li>
+				<li><a href="html.html">HTML</a></li>
+				<li><a href="css.html">CSS</a></li>
+				<li><a href="javascript.html">JavaScript</a></li>
+				<li><a href="php.html">PHP</a></li>
+				<li><a href="reactjs.html">React.js</a></li>
+				<li><a href="vuejs.html">Vue.js</a></li>
+				<li><a href="api.html">API</a></li>
+			</ul>
+
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

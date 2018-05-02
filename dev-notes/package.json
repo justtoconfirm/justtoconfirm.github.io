@@ -32,6 +32,7 @@
     "build-tdd": "mustache -p views/partials/footer.mustache data/other/tddData.json views/templates/pageTemplate.mustache > dist/pages/tdd.html",
     "build-bem": "mustache -p views/partials/footer.mustache data/other/bemData.json views/templates/pageTemplate.mustache > dist/pages/bem.html",
     "build-node": "mustache -p views/partials/footer.mustache data/other/nodeData.json views/templates/pageTemplate.mustache > dist/pages/node.html",
+    "build-optimisation": "mustache -p views/partials/footer.mustache data/other/optimisationData.json views/templates/pageTemplate.mustache > dist/pages/optimisation.html",
     "build-express": "mustache -p views/partials/footer.mustache data/other/expressData.json views/templates/pageTemplate.mustache > dist/pages/express.html",
     "build-redux": "mustache -p views/partials/footer.mustache data/other/reduxData.json views/templates/pageTemplate.mustache > dist/pages/redux.html",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
