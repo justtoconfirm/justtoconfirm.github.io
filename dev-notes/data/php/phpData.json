@@ -8,7 +8,8 @@
         "links": [
           "<a href='../../index.html'>Home</a>",
           "<a href='php-variables.html'>Variables</a>",
-          "<a href='php-functions.html'>Functions</a>"
+          "<a href='php-functions.html'>Functions</a>",
+          "<a href='php-crud.html'>CRUD</a>"
         ]
       },
       {

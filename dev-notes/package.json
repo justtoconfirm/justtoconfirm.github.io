@@ -16,6 +16,7 @@
     "build-php": "mustache -p views/partials/footer.mustache data/php/phpData.json views/templates/pageTemplate.mustache > dist/pages/php.html",
     "build-php-variables": "mustache -p views/partials/footer.mustache data/php/variablesData.json views/templates/pageTemplate.mustache > dist/pages/php-variables.html",
     "build-php-functions": "mustache -p views/partials/footer.mustache data/php/functionsData.json views/templates/pageTemplate.mustache > dist/pages/php-functions.html",
+    "build-php-crud": "mustache -p views/partials/footer.mustache data/php/crudData.json views/templates/pageTemplate.mustache > dist/pages/php-crud.html",    
     "build-vuejs": "mustache -p views/partials/footer.mustache data/vuejs/vuejsData.json views/templates/pageTemplate.mustache > dist/pages/vuejs.html",
     "build-vuejs-install": "mustache -p views/partials/footer.mustache data/vuejs/installData.json views/templates/pageTemplate.mustache > dist/pages/vuejs-install.html",
     "build-vuejs-component": "mustache -p views/partials/footer.mustache data/vuejs/componentData.json views/templates/pageTemplate.mustache > dist/pages/vuejs-component.html",

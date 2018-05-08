@@ -13,7 +13,8 @@
           "<!-- https://github.com/asciidoctor/asciidoctor/issues/2071 -->",
           "<!-- https://support.performancefoundry.com/article/186-noopener-noreferrer-on-my-links -->",
           "<!-- https://washamdev.com/why-rel-noopener-noreferrer-in-wordpress-links/ -->",
-          "<!-- https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ -->"
+          "<!-- https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ -->",
+          "<!-- https://www.creativebloq.com/web-design/website-security-tips-protect-your-site-7122853 -->"
         ]
       },
       {
@@ -180,6 +181,59 @@
         "copy": [
           "We can use a number of tools to automate the creation of minified files/assets during the development build process:",
           "<ul class='list'><li>Gulp</li><li>Grunt</li><li>Webpack</li></ul>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "SQL Injection",
+        "copy": [
+          "SQL injection attacks are when an attacker uses a web form field or URL parameter to gain access to or to gain access to your database. Without security, it is very easy to use SQL to change tables, delete data, and get information from your database. You can prevent this by always using parameterised queries."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "// SQL query vulnerable to SQL injection",
+          "\"SELECT * FROM table WHERE column = '\" + parameter + \"';\"",
+          "",
+          "/*", 
+          "SQL injection",
+          "URL parameter changed to pass in 'or '1'='1",
+          "additional query can be added to the end of the SQL statement",
+          "since '1' is equal to '1'",
+          "*/",
+          "\"SELECT * FROM table WHERE column = '' OR '1'='1';\""
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "You could fix this query by explicitly parameterising it. For example, if you we're to use MySQLi in PHP, this should become:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "php",
+        "datatitle": "PHP",
+        "code": [
+          "$stmt = $pdo->prepare('SELECT * FROM table WHERE column = :value');",
+          "$stmt->execute(array('value' => $parameter));"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Error messages",
+        "copy": [
+          "Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
