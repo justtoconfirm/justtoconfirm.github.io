@@ -14,7 +14,11 @@
           "<!-- https://support.performancefoundry.com/article/186-noopener-noreferrer-on-my-links -->",
           "<!-- https://washamdev.com/why-rel-noopener-noreferrer-in-wordpress-links/ -->",
           "<!-- https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ -->",
-          "<!-- https://www.creativebloq.com/web-design/website-security-tips-protect-your-site-7122853 -->"
+          "<!-- https://www.creativebloq.com/web-design/website-security-tips-protect-your-site-7122853 -->",
+          "<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500 -->",
+          "<!-- https://www.acunetix.com/websitesecurity/csrf-attacks/ -->",
+          "<!-- https://developer.chrome.com/devtools -->",
+          "<!-- https://developers.google.com/web/tools/chrome-devtools/ui#command-menu -->"
         ]
       },
       {
@@ -83,7 +87,8 @@
         "copy": [
           "HTTP means HyperText Transfer Protocol. It is the underlying protocol used by the World Wide Web to define how messages are formatted and transmitted.",
           "HTTP Secure (HTTPS) is an extension of the HyperText Transfer Protocol (HTTP) used for secure communications over a computer network. In HTTPS, the communication protocol is encrypted by Transport Layer Security (TLS), or by it's predecessor, Secure Sockets Layer (SSL). TLS and SSL are used to transport data safely. HTTPS is also sometimes referred to as HTTP over TLS (Transport Layer Security).",
-          "When using HTTP, everything sent between you and a web server is sent in plain text, it is not encrypted and can be intercepted by third parties. HTTPS encrypts this data for security and privacy. This is why HTTPS is used by many sites that require data security such as online shopping and online banking."
+          "When using HTTP, everything sent between you and a web server is sent in plain text, it is not encrypted and can be intercepted by third parties. HTTPS encrypts this data for security and privacy. This is why HTTPS is used by many sites that require data security such as online shopping and online banking.",
+          "Often within the browser address bar, a small 'padlock' icon will be visible if HTTPS is being used."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
@@ -128,7 +133,20 @@
       {
         "label": "SECTION",
         "showheading": true,
-        "heading": "Errors",
+        "heading": "Error messages",
+        "copy": [
+          "Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Errors & Reponses",
         "copy": [
           "The browser console will often return any errors that may occur in your web page or application. Here is a list of common errors and error codes you may come across:"
         ],
@@ -157,6 +175,40 @@
       {
         "label": "SECTION",
         "showheading": true,
+        "heading": "500",
+        "copy": [
+          "The 500 Internal Server Error is a very general HTTP status code that means something has gone wrong on the website's server (server-side error) but the server could not be more specific on what the exact problem is. This is often a 'catch-all' generic error response. Essentially, the server has encountered an unexpected condition that has prevented it from fulfilling the request. This is a common issue/error during online checkout processes such as when making online purchases.",
+          "This type of error can sometimes be caused due to a syntax error in a .htaccess file on the server. The server logs may indicate what has caused the error to occur and may contain more details about the request to prevent the error from happening again in the future.",
+          "This error maybe temporary, a page refresh or trying the URL once more, may often resolve this issue."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "500 Internal Server Error"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "503",
+        "copy": [
+          "The 503 Service Unavailable HTTP server error response code indicates that the server is not ready to handle the request.",
+          "Common causes are a server down for maintenance or an overloaded server. The response should be used for temporary conditions and the Retry-After HTTP header should, if possible, contain the estimated time for the recovery of the service.",
+          "A user-friendly page explaining the problem should be sent."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "503 Service Unavailable"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
         "heading": "Minification",
         "copy": [
           "Minification is the process of removing all unnecessary characters, including comments and whitespace, from source code without changing it's functionality. This is common in both JavaScript and CSS as it helps to reduce the file size and improve page performance.",
@@ -181,6 +233,26 @@
         "copy": [
           "We can use a number of tools to automate the creation of minified files/assets during the development build process:",
           "<ul class='list'><li>Gulp</li><li>Grunt</li><li>Webpack</li></ul>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Unused CSS & JavaScript",
+        "copy": [
+          "Within the Chrome DevTools (developer tool) from Chrome 59 and above, you can find unused CSS and JavaScript code with the new Coverage tool.",
+          "To check your version of Chrome, enter the following into your Chrome browser address bar: <a href='chrome://settings/help'>chrome://settings/help</a>",
+          "Open the inspector in Chrome and select the menu option (three dots in the top-right corner). Within this menu, select More tools > Coverage. You will need to click the 'record' button to capture coverage of the page.",
+          "Once this has been done, a list of CSS and JavaScript files used throughout the page will be listed confirming how much code is being used. Clicking the file itself will show the code.",
+          "You can also open this tool through the DevTools Command Menu - CMD + SHIFT + P (Mac) or CTRL + SHIFT + P (Windows/Linux) and start typing: Coverage",
+          "Following the command, select 'Show Coverage'",
+          "You can also use the Command Menu to open files within Chrome DevTools using the command: CMD + O (Mac) or CTRL + O (Windows/Linux)",
+          "This is such a useful tool to reduce the size of your pages by removing code that is no-longer required."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,
@@ -231,9 +303,11 @@
       {
         "label": "SECTION",
         "showheading": true,
-        "heading": "Error messages",
+        "heading": "CSRF",
         "copy": [
-          "Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need."
+          "Cross-site request forgery (CSRF), sometimes known as one-click attack, session riding, or XSRF, is a type of malicious exploit of a website" ,
+          "This type of attack forces an end user to execute unwanted actions on a web application in which they are currently authenticated.",
+          "Let's take a contact form on a website. This does not require any user privileges to submit the form. The problems arise when a user with additional privileges would be performing actions not accessible to everyone. This is when CSRF attacks are utilised."
         ],
         "label": "CODE/MARKUP",
         "showmarkup": false,

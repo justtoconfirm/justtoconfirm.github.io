@@ -12,7 +12,8 @@
           "<a href='js-array.html'>Array</a>",
           "<a href='js-objects.html'>Objects</a>",
           "<a href='js-xhr.html'>XMLHttpRequest</a>",
-          "<a href='js-serviceworker.html'>Service Workers</a>"
+          "<a href='js-serviceworker.html'>Service Workers</a>",
+          "<a href='js-modules.html'>Modules</a>"
         ]
       },
       {

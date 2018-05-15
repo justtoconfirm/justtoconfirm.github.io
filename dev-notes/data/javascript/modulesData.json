@@ -1,0 +1,343 @@
+{
+  "page": {
+    "pagetitle": "JavaScript Modules",
+    "pageheading": "Modules",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='javascript.html'>JavaScript</a>",
+          "<!-- https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc -->",
+          "<!-- https://stackoverflow.com/questions/19610586/javascript-wrapping-code-inside-anonymous-function -->",
+          "<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import -->",
+          "<!-- https://www.sitepoint.com/understanding-es6-modules/ -->"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "What is a Module?",
+        "copy": [
+          "Modules are simply blocks of code that are self-contained and with distinct functionality. Modules can be moved and reused without disrupting the system as a whole.",
+          "Using a module allows us to avoid namespace pollution by creating a private space for our properties (variables). In JavaScript, variables outside the scope of a function are global, meaning everyone can access them. This is known as 'namespace pollution', where completely unrelated code shares global variables. This is best avoided where possible.",
+          "Modules allow for resusability which is a major benefit if you want to reuse code elsewhere that has common functionality.",
+          "Modules usually apply 'strict', so you don't need to include this within your JavaScript code."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Module Pattern",
+        "copy": [
+          "The module pattern is used to mimic the concept of classes, since JavaScript doesn't natively support classes. In JavaScript we create a single object that contains properties and methods. We often use functions to create the object as this is the only way to create new scope.",
+          "In this first example, we will use an anonymous function that is immediately executed (often called IIFE). This creates it's own environment, or 'closure' which allows us to hide properties (variables) within from the global namespace. With this approach, you can use local properties (variables) inside this function without accidentally overwriting existing global variables. Within our anonymous function, we can still however access global variables."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: anonymousClosure.js",
+        "code": [
+          "var global = 'Hello, I am a global variable';",
+          "",
+          "(function () {",
+          "",
+          "   // We keep these properties private inside the closure scope",
+          "   var myGrades = [93, 95, 88, 0, 55, 91];",
+          "",
+          "   var average = function() {",
+          "",    
+          "      var total = myGrades.reduce(function(accumulator, item) {",
+          "         return accumulator + item",
+          "      }, 0);",
+          "",
+          "      return 'Your average grade: ' + total / myGrades.length + '.';",
+          "   }",
+          "",
+          "   var failing = function() {",
+          "",    
+          "      var failingGrades = myGrades.filter(function(item) {",
+          "         return item < 70;",
+          "      });",
+          "",
+          "      return 'You failed: ' + failingGrades.length + ' times.';",
+          "   }",
+          "",
+          "   // 'You failed: 2 times.'",
+          "   console.log(failing());",
+          "",
+          "   // Output the global variable",
+          "   console.log(global);",
+          "",
+          "}());"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Global Import",
+        "copy": [
+          "A popular approach used by libraries such as jQuery, is to use a global import. This is similar to an anonymous closure, except we pass in globals as parameters into the function.",
+          "We begin with a simple immediately invoked function expression (IIFE) that is executed immediately and is essentially an anonymous function. We can then pass jQuery to the function's first argument. Naming the parameter within the function as '$' defines the symbol inside the function. Within the function itself, jQuery has been impoted and you can use the '$' because you've defined it locally within the function."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "(function($) {",
+          "",
+          "   // you can use $ here to refer to jQuery",
+          "",
+          "}(jQuery));"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "CommonJS",
+        "copy": [
+          "A CommonJS module is essentially a reusable piece of JavaScript which exports specific objects making them available for other modules using 'require'. If you've used Node.js, you'll be familiar with this format.",
+          "When Node.js was released, CommonJS was adopted, which meant the Node Package Manager (NPM) could be developed.",
+          "With CommonJS, each JavaScript file stores modules in it's own unique module context. In this scope, we use the 'module.exports' (rather than 'export' in ES6 modules) object to expose/export modules, and require to import them.",
+          "Let's create a very simple module:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: myModule.js",
+        "code": [
+          "function myModule() {",
+          "   this.hello = function() {",
+          "      return 'hello';",
+          "   }",
+          "",
+          "   this.goodbye = function() {",
+          "      return 'goodbye';",
+          "   }",
+          "}",
+          "",
+          "module.exports = myModule;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Using module.exports allows the module to be exported. This lets the CommonJS module system know what we want to expose so that other files can consume it.",
+          "To use the module and import it, we use 'require':"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: require.js",
+        "code": [
+          "var myModule = require('myModule');",
+          "",
+          "var myModuleInstance = new MyModule();",
+          "myModuleInstance.hello();   // hello",
+          "myModuleInstance.goodbye();   // goodbye"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "ES6 Modules",
+        "copy": [
+          "ES6 modules are only practical from Node.js v10 (behind a flag in Node.js 9.8.0) and above. For new projects, ES6 modules provide an alternative to CommonJS.",
+          "Node.js will only permit ES6 modules in files with extension .mjs files with a .js extension will default to CommonJS.",
+          "ES6 modules are supported in Chrome (v63+), Safari 11+, and Edge 16+. Firefox support will arrive in version 60 (it's behind an about:config flag in v58+). If a browser does not support ES6 syntax, you can use Babel to convert ES6 syntax to ES5 syntax to be used in older browser versions.",
+          "Let's create a really simple ES6 module with the CommonJS syntax added to show the comparison:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: helloModule.js",
+        "code": [
+          "// ES6 syntax",
+          "export const hello = 'Hello World';",
+          "",
+          "// CommonJS syntax",
+          "module.exports = 'Hello World';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can now import the simple helloModule.js module:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: hello.js",
+        "code": [
+          "// ES6 syntax",
+          "import { hello } from './helloModule.js';",
+          "",
+          "// CommonJS syntax",
+          "const hello = require('./helloModule.js');",
+          "",
+          "console.log(hello);   // Hello World"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Should you want to export a module, you can follow this example showing the Input component in React being exported:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "export default Input;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is an example showing how React is imported into a React component. This refers to the default export from the module."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "import React from 'react';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Given an object or value named 'myExport' which has been exported from the module 'my-module' either implicitly (because the entire module is exported), or explicitly (using the export statement), this inserts 'myExport' into the current scope."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "import { myExport } from '/modules/my-module.js';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "You can rename an export when importing it by providing it with an alias. This can be used to insert a shorter name into the current scope."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "import { myReallyLongExportName } as shortName from '/modules/my-module.js';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Multiple items can be imported at one time:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript",
+        "code": [
+          "import { assert, expect } from 'chai';"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Webpack",
+        "copy": [
+          "With multiple modules, it is often best to use a module bundler such as Webpack to bundle all modules into a single JavaScript file for use in your application.",
+          "Documentation can be found <a href='webpack.html'>here</a>."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "NPM & node_modules",
+        "copy": [
+          "NPM (Node Package Manager) installs packages locally into a project. These packages are stored within the node_modules folder. From there, the package code can be included into your project. Using Webpack allows you to include modules contained within these packages into your project using CommonJS. Should you want to use ES6 syntax, Babel is possibly the tool to use.",
+          "Packages contain multiple modules. Meaning, packages to do something, export the function as a module. This module is then imported into another module for use.",
+          "Remember to add the 'node_modules' directory to your .gitignore file to avoid it being included in version control (Git/GitHub)."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Example: AJAX Module",
+        "copy": [
+          "In this example, we will be importing a secondary module to assist in processing an AJAX JSON request.",
+          "We begin by creating the module:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: modules/file.js",
+        "code": [
+          "function getJSON(url, callback) {",
+          "   let xhr = new XMLHttpRequest();",
+          "   xhr.onload = function() {",
+          "      callback(this.responseText)",
+          "   };",
+          "   xhr.open('GET', url, true);",
+          "   xhr.send();",
+          "}",
+          "",
+          "export function getUsefulContents(url, callback) {",
+          "   getJSON(url, data => callback(JSON.parse(data)));",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can then use this module:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "js",
+        "datatitle": "JavaScript: main.js",
+        "code": [
+          "import { getUsefulContents } from '/modules/file.js';",
+          "",
+          "getUsefulContent('http://www.example.com', data => {",
+          "   doSomethingUseful(data);",
+          "});"
+        ]
+      }
+    ]
+  }
+}

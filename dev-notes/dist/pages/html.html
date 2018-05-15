@@ -71,6 +71,49 @@
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
+                <h2>Headings</h2>
+                <p>Headings are defined with the &lt;h1&gt; to &lt;h6&gt; tags. &lt;h1&gt; defines the most important heading, &lt;h6&gt; defines the least important heading.</p>
+                <p>&lt;h1&gt; should always be the first heading on any page, followed by &lt;h2&gt;, &lt;h3&gt; etc. Search engines use the headings to index the structure and content of your web pages. Headings are important in showing the document structure. Headings should only be used for headings and not to make text large or bold.</p>
+                <p>Browsers automatically add some margin before and after a heading.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>Links</h2>
+                <p>The following examples demonstrate how to apply a link to HTML.</p>
+                <p>Further details can also be found <a href='optimisation.html'>here</a>.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;a href='https://www.google.com'&gt;Google&lt;/a&gt;
+&lt;a href='page2.html'&gt;Link to page2&lt;/a&gt;
+
+&lt;!-- Open in a new tab/window --&gt;
+&lt;a href='#' target='_blank'&gt;Open in a new tab/window&lt;/a&gt;
+
+&lt;!-- Open in a new tab/window with added security --&gt;
+&lt;a href='#' target='_blank' rel='noopener noreferrer'&gt;Link&lt;/a&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
                 <h2>HTML Elements &amp; Tags</h2>
                 <p>HTML tags are element names surrounded by brackets. Tags normally come in pairs, like &lt;p&gt; and &lt;/p&gt;. The first tag is called the start/opening tag, and the end tag is called the end/closing tag.</p>
                 <p>An HTML element usually consists of a start tag and end tag, with the content inserted between. The HTML element is everything from the start tag to the end tag.</p>
@@ -141,6 +184,48 @@
                         <code>
 <!-- Leave space here -->
 &lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+
+&lt;!-- The page is in the British style of English --&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-GB'</span>&gt;
+&lt;!-- The page is in the US style of English --&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-US'</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>File Paths</h2>
+                <p>A file path describes the location of a file. File paths are used when linking to an external files such as: pages, images, stylesheets, and scripts.</p>
+                <p>An absolute path is usually a web address/URL. A relative path points to a file relative to the current page.</p>
+                <p>It is best practice to use relative file paths where possible. Your pages will not be bound to your current base URL and all links will work on your local environment as well as current or future public domains.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!-- Absolute path: URL --&gt;
+&lt;img src='https://www.website.com/images/picture.jpg' alt='Mountain' /&gt;
+
+&lt;!-- Relative path --&gt;
+&lt;img src='/images/picture.jpg' alt='Mountain' /&gt;
+
+&lt;!-- Points to folder located one level above current folder --&gt;
+&lt;img src='../images/picture.jpg' alt='Mountain' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>HTML Entities</h2>
+                <p>Some characters are reserved in HTML. For example, if you use the less than (&lt;) or greater than (&gt;) signs in your text, the browser may mistake them for HTML tags. Character entities are used to display reserver characters in HTML. These are sometimes known as special characters.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&entity_name;   // e.g. &amp;lt;
                         </code>
                     </pre>
                 </div>
@@ -154,6 +239,7 @@
             <div>
                 <ul class="no-list">
                     <li><a href='../../index.html'>Home</a></li>
+                    <li><a href='html-metatag.html'>Metatag</a></li>
                 </ul>
             </div>
 

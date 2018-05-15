@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build-html": "mustache -p views/partials/footer.mustache data/html/htmlData.json views/templates/pageTemplate.mustache > dist/pages/html.html",
+    "build-html-metatag": "mustache -p views/partials/footer.mustache data/html/metatagData.json views/templates/pageTemplate.mustache > dist/pages/html-metatag.html",
     "build-css": "mustache -p views/partials/footer.mustache data/css/cssData.json views/templates/pageTemplate.mustache > dist/pages/css.html",
     "build-css-performance": "mustache -p views/partials/footer.mustache data/css/performanceData.json views/templates/pageTemplate.mustache > dist/pages/css-performance.html",
     "build-css-guidelines": "mustache -p views/partials/footer.mustache data/css/guidelinesData.json views/templates/pageTemplate.mustache > dist/pages/css-guidelines.html",
@@ -13,6 +14,7 @@
     "build-js-objects": "mustache -p views/partials/footer.mustache data/javascript/objectsData.json views/templates/pageTemplate.mustache > dist/pages/js-objects.html",
     "build-js-xhr": "mustache -p views/partials/footer.mustache data/javascript/xhrData.json views/templates/pageTemplate.mustache > dist/pages/js-xhr.html",
     "build-js-serviceworker": "mustache -p views/partials/footer.mustache data/javascript/serviceworkerData.json views/templates/pageTemplate.mustache > dist/pages/js-serviceworker.html",
+    "build-js-modules": "mustache -p views/partials/footer.mustache data/javascript/modulesData.json views/templates/pageTemplate.mustache > dist/pages/js-modules.html",
     "build-php": "mustache -p views/partials/footer.mustache data/php/phpData.json views/templates/pageTemplate.mustache > dist/pages/php.html",
     "build-php-variables": "mustache -p views/partials/footer.mustache data/php/variablesData.json views/templates/pageTemplate.mustache > dist/pages/php-variables.html",
     "build-php-functions": "mustache -p views/partials/footer.mustache data/php/functionsData.json views/templates/pageTemplate.mustache > dist/pages/php-functions.html",

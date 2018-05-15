@@ -68,6 +68,7 @@
                 <p>HTTP means HyperText Transfer Protocol. It is the underlying protocol used by the World Wide Web to define how messages are formatted and transmitted.</p>
                 <p>HTTP Secure (HTTPS) is an extension of the HyperText Transfer Protocol (HTTP) used for secure communications over a computer network. In HTTPS, the communication protocol is encrypted by Transport Layer Security (TLS), or by it's predecessor, Secure Sockets Layer (SSL). TLS and SSL are used to transport data safely. HTTPS is also sometimes referred to as HTTP over TLS (Transport Layer Security).</p>
                 <p>When using HTTP, everything sent between you and a web server is sent in plain text, it is not encrypted and can be intercepted by third parties. HTTPS encrypts this data for security and privacy. This is why HTTPS is used by many sites that require data security such as online shopping and online banking.</p>
+                <p>Often within the browser address bar, a small 'padlock' icon will be visible if HTTPS is being used.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
                     <pre>
@@ -92,7 +93,11 @@ https://www.secure.com
                 <p>Google also lists HTTPS as a ranking factor in it's search results, with HTTPS websites being ranked higher in search results than those using HTTP.</p>
             </section>
             <section class="pad-btm">
-                <h2>Errors</h2>
+                <h2>Error messages</h2>
+                <p>Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>Errors &amp; Reponses</h2>
                 <p>The browser console will often return any errors that may occur in your web page or application. Here is a list of common errors and error codes you may come across:</p>
             </section>
             <section class="pad-btm">
@@ -101,6 +106,38 @@ https://www.secure.com
                 <p>The last '4' in '404' indicates the specific error in the group of '40x', which also includes '400: Bad Request' and '401: Unauthorized'.</p>
                 <p>This error simply means that the asset (image, page) cannot be found. This could be due to the asset being missing, or perhaps the path/link to the asset or page is incorrect.</p>
                 <p>Often the 404 Not Found error will appear when you are searching for a web page you we're trying to reach. This error is then returned because the page cannot be found on the server. It is a client-side error meaning that either the page has been removed/moved, and the URL was not changed or updated. The error can also appear if you enter the incorrect URL.</p>
+            </section>
+            <section class="pad-btm">
+                <h2>500</h2>
+                <p>The 500 Internal Server Error is a very general HTTP status code that means something has gone wrong on the website's server (server-side error) but the server could not be more specific on what the exact problem is. This is often a 'catch-all' generic error response. Essentially, the server has encountered an unexpected condition that has prevented it from fulfilling the request. This is a common issue/error during online checkout processes such as when making online purchases.</p>
+                <p>This type of error can sometimes be caused due to a syntax error in a .htaccess file on the server. The server logs may indicate what has caused the error to occur and may contain more details about the request to prevent the error from happening again in the future.</p>
+                <p>This error maybe temporary, a page refresh or trying the URL once more, may often resolve this issue.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+500 Internal Server Error
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <h2>503</h2>
+                <p>The 503 Service Unavailable HTTP server error response code indicates that the server is not ready to handle the request.</p>
+                <p>Common causes are a server down for maintenance or an overloaded server. The response should be used for temporary conditions and the Retry-After HTTP header should, if possible, contain the estimated time for the recovery of the service.</p>
+                <p>A user-friendly page explaining the problem should be sent.</p>
+                <!-- Code example -->
+                <div class="code" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+503 Service Unavailable
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
             <section class="pad-btm">
                 <h2>Minification</h2>
@@ -124,6 +161,17 @@ https://www.secure.com
             <section class="pad-btm">
                 <p>We can use a number of tools to automate the creation of minified files/assets during the development build process:</p>
                 <p><ul class='list'><li>Gulp</li><li>Grunt</li><li>Webpack</li></ul></p>
+            </section>
+            <section class="pad-btm">
+                <h2>Unused CSS &amp; JavaScript</h2>
+                <p>Within the Chrome DevTools (developer tool) from Chrome 59 and above, you can find unused CSS and JavaScript code with the new Coverage tool.</p>
+                <p>To check your version of Chrome, enter the following into your Chrome browser address bar: <a href='chrome://settings/help'>chrome://settings/help</a></p>
+                <p>Open the inspector in Chrome and select the menu option (three dots in the top-right corner). Within this menu, select More tools > Coverage. You will need to click the 'record' button to capture coverage of the page.</p>
+                <p>Once this has been done, a list of CSS and JavaScript files used throughout the page will be listed confirming how much code is being used. Clicking the file itself will show the code.</p>
+                <p>You can also open this tool through the DevTools Command Menu - CMD + SHIFT + P (Mac) or CTRL + SHIFT + P (Windows/Linux) and start typing: Coverage</p>
+                <p>Following the command, select 'Show Coverage'</p>
+                <p>You can also use the Command Menu to open files within Chrome DevTools using the command: CMD + O (Mac) or CTRL + O (Windows/Linux)</p>
+                <p>This is such a useful tool to reduce the size of your pages by removing code that is no-longer required.</p>
             </section>
             <section class="pad-btm">
                 <h2>SQL Injection</h2>
@@ -163,8 +211,10 @@ $stmt->execute(array('value' => $parameter));
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Error messages</h2>
-                <p>Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need.</p>
+                <h2>CSRF</h2>
+                <p>Cross-site request forgery (CSRF), sometimes known as one-click attack, session riding, or XSRF, is a type of malicious exploit of a website</p>
+                <p>This type of attack forces an end user to execute unwanted actions on a web application in which they are currently authenticated.</p>
+                <p>Let's take a contact form on a website. This does not require any user privileges to submit the form. The problems arise when a user with additional privileges would be performing actions not accessible to everyone. This is when CSRF attacks are utilised.</p>
             </section>
 
         </div>
@@ -182,6 +232,10 @@ $stmt->execute(array('value' => $parameter));
                     <li><!-- https://washamdev.com/why-rel-noopener-noreferrer-in-wordpress-links/ --></li>
                     <li><!-- https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ --></li>
                     <li><!-- https://www.creativebloq.com/web-design/website-security-tips-protect-your-site-7122853 --></li>
+                    <li><!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500 --></li>
+                    <li><!-- https://www.acunetix.com/websitesecurity/csrf-attacks/ --></li>
+                    <li><!-- https://developer.chrome.com/devtools --></li>
+                    <li><!-- https://developers.google.com/web/tools/chrome-devtools/ui#command-menu --></li>
                 </ul>
             </div>
 

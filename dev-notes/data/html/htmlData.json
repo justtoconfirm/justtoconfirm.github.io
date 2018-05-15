@@ -6,7 +6,8 @@
       {
         "label": "LINKS",
         "links": [
-          "<a href='../../index.html'>Home</a>"
+          "<a href='../../index.html'>Home</a>",
+          "<a href='html-metatag.html'>Metatag</a>"
         ]
       },
       {
@@ -55,6 +56,51 @@
           "<span class='comment'>&lt;!-- Do not display this",
           "&lt;p&gt;A very simple paragraph.&lt;/p&gt;",
           "--&gt;</span>"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Headings",
+        "copy": [
+          "Headings are defined with the &lt;h1&gt; to &lt;h6&gt; tags. &lt;h1&gt; defines the most important heading, &lt;h6&gt; defines the least important heading.",
+          "&lt;h1&gt; should always be the first heading on any page, followed by &lt;h2&gt;, &lt;h3&gt; etc. Search engines use the headings to index the structure and content of your web pages. Headings are important in showing the document structure. Headings should only be used for headings and not to make text large or bold.",
+          "Browsers automatically add some margin before and after a heading."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;h1&gt;Heading 1&lt;/h1&gt;",
+          "&lt;h2&gt;Heading 2&lt;/h2&gt;",
+          "&lt;h3&gt;Heading 3&lt;/h3&gt;",
+          "&lt;h4&gt;Heading 4&lt;/h4&gt;",
+          "&lt;h5&gt;Heading 5&lt;/h5&gt;",
+          "&lt;h6&gt;Heading 6&lt;/h6&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Links",
+        "copy": [
+          "The following examples demonstrate how to apply a link to HTML.",
+          "Further details can also be found <a href='optimisation.html'>here</a>."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;a href='https://www.google.com'&gt;Google&lt;/a&gt;",
+          "&lt;a href='page2.html'&gt;Link to page2&lt;/a&gt;",
+          "",
+          "&lt;!-- Open in a new tab/window --&gt;",
+          "&lt;a href='#' target='_blank'&gt;Open in a new tab/window&lt;/a&gt;",
+          "",
+          "&lt;!-- Open in a new tab/window with added security --&gt;",
+          "&lt;a href='#' target='_blank' rel='noopener noreferrer'&gt;Link&lt;/a&gt;"
         ]
       },
       {
@@ -135,7 +181,51 @@
         "rel": "html",
         "datatitle": "HTML",
         "code": [
-          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;"
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;",
+          "",
+          "&lt;!-- The page is in the British style of English --&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-GB'</span>&gt;",
+          "&lt;!-- The page is in the US style of English --&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-US'</span>&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "File Paths",
+        "copy": [
+          "A file path describes the location of a file. File paths are used when linking to an external files such as: pages, images, stylesheets, and scripts.",
+          "An absolute path is usually a web address/URL. A relative path points to a file relative to the current page.",
+          "It is best practice to use relative file paths where possible. Your pages will not be bound to your current base URL and all links will work on your local environment as well as current or future public domains."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;!-- Absolute path: URL --&gt;",
+          "&lt;img src='https://www.website.com/images/picture.jpg' alt='Mountain' /&gt;",
+          "",
+          "&lt;!-- Relative path --&gt;",
+          "&lt;img src='/images/picture.jpg' alt='Mountain' /&gt;",
+          "",
+          "&lt;!-- Points to folder located one level above current folder --&gt;",
+          "&lt;img src='../images/picture.jpg' alt='Mountain' /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "HTML Entities",
+        "copy": [
+          "Some characters are reserved in HTML. For example, if you use the less than (&lt;) or greater than (&gt;) signs in your text, the browser may mistake them for HTML tags. Character entities are used to display reserver characters in HTML. These are sometimes known as special characters."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&entity_name;   // e.g. &amp;lt;"
         ]
       }
     ]
