@@ -1,0 +1,99 @@
+{
+  "page": {
+    "pagetitle": "CSS Grid",
+    "pageheading": "CSS Grid",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<a href='css.html'>CSS</a>",
+          "<!-- https://www.smashingmagazine.com/2018/05/future-of-web-design/ -->"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "There are several ways to make CSS Grid reponsive. One of the most popular ways is to use the fr unit. The fr unit is a flexible length that represents a fraction. When you use the fr unit, browsers divide the open space and allocate the areas to columns based on the fr multiple. This means that to create four columns of equal size, you would write 1fr four times."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          ".grid {",
+          "    display: grid;",
+          "    grid-template-columns: 1fr 1fr 1fr 1fr;",
+          "    grid-column-gap: 20px;",
+          "}"
+        ]
+      },
+
+
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Let's do some calculations to show how this works. First, let's assume the total space available for the grid is 1260px. Before allocating width to each column, the CSS Grid needs to know how much space is available (or leftover). The Grid subtracts grip-gap from 1260px. Since each gap is 20px, we're left with 1200px for the available space.",
+          "(1260 - (20 * 3) = 1200)",
+          "Next, it adds up the four fr unit multiples, so the browser divides 1200px by four, each column becomes 300px and we have four equal columns.",
+          "(1200px / 4 = 300px)",
+          "However, grids created with the fr unit are not always equal. When you use the fr unit, it is a fraction of the available (or leftover) space. If an element within one of the columns, such as an image, is wider than the column width created using the fr unit (in this example 300px), the calculation will need to be done differently.",
+          "For example, after splitting 1200px into four and allocation 300px to each of the 1fr columns, the first column contains an image that is 1000px. Since 1000px is larger than the column width of 300px, the browser will choose to allocate 1000px to the first column instead. Therefore, the columns are no-longer equal. This means we need to recalculate the leftover available space.",
+          "The new leftover space is 1260px - 1000px - 20px * 3 = 200px. This 200px is divided by three according to the amount of leftover fractions. Each fraction is then 66px.",
+          "If you want the fr unit to create equal-width columns everytime, you need to force it with minmax(0, 1fr). You will also need to set the image's max-width property to 100% also.",
+          "Let's create a full example:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "css",
+        "datatitle": "CSS",
+        "code": [
+          "body {",
+          "   padding: 3em;",
+          "}",
+          "",
+          ".grid {",
+          "   display: grid;", 
+          "   grid-template-columns: repeat(4, minmax(0,1fr));",
+          "   grid-gap: 1em;", 
+          "}",
+          "",
+          ".grid-item {",
+          "   background-color: orange;",
+          "}",
+          "",
+          "img {",
+          "   display: block;",
+          "   max-width: 100%;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "And now for the HTML:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;div class='grid'&gt;",
+          "   &lt;div class='grid-item'&gt;",
+          "      &lt;img src='image1.jpg' alt='Image example' /&gt;",
+          "   &lt;/div&gt;",
+          "   &lt;div class='grid-item'&gt;&lt;/div&gt;",
+          "   &lt;div class='grid-item'&gt;&lt;/div&gt;",
+          "   &lt;div class='grid-item'&gt;&lt;/div&gt;",
+          "&lt;/div&gt;"
+        ]
+      }
+    ]
+  }
+}
