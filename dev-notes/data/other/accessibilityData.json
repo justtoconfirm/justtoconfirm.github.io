@@ -12,6 +12,19 @@
       {
         "label": "SECTION",
         "showheading": true,
+        "heading": "WCAG 2.0 Level A",
+        "copy": [
+          "Please find the WCAG 2.0 Level A accessibility guidelines below."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
         "heading": "HTML alt attribute",
         "copy": [
           "The HTML alt (alternative) attribute provides alternative information for an image, if the image cannot be displayed or be seen. This attribute is required for the &lt;img&gt; element. Adding the alt attribute will provide a clear text alternative of the image for screen reader users and users who are unable to see the image (such as a broken image). For screen readers it is recommended to limit the text within the alt attribute to no more than 150 characters.",
@@ -30,6 +43,63 @@
           "",
           "&lt;!-- Image for decoration --&gt;",
           "&lt;img src='spacer.jpg' alt='' /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Label",
+        "copy": [
+          "The label element should contain the for attribute. The attribute value should match the id attribute of the input element within a form. The placeholder attribute should not be used as an alternative to the label element within a form.",
+          "The aria-label attribute does the same job as the label element and can be used where it is not practical to have an actual label. This approach is generally well supported by screen readers and other assistive technologies and can also be used to identify form controls."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;label for='firstname'&gt;First name:&lt;/label&gt;",
+          "&lt;input type='text' id='firstname' /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In this example, the 'X' is used to close a dialog box. Using the aria-label attribute helps to clarify this without the need for a label."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;button aria-label='Close dialog'&gt;X&lt;/button&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The aria-label attribute can also be used to help distinguish things:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "HTML",
+        "code": [
+          "&lt;div role='navigation' aria-label='Primary navigation'&gt;", 
+          "   &lt;ul&gt;",
+          "      &lt;li&gt; ...a list of links here ... &lt;/li&gt;", 
+          "   &lt;/ul&gt;",
+          "&lt;/div&gt;",
+          "",
+          "&lt;div role='navigation' aria-label='Secondary navigation'&gt;",
+          "   &lt;ul&gt;",
+          "      &lt;li&gt; ...a list of links here ... &lt;/li&gt;",
+          "   &lt;/ul&gt;",
+          "&lt;/div&gt;"
         ]
       }
     ]
