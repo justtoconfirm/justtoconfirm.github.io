@@ -93,6 +93,100 @@ https://www.secure.com
                 <p>Google also lists HTTPS as a ranking factor in it's search results, with HTTPS websites being ranked higher in search results than those using HTTP.</p>
             </section>
             <section class="pad-btm">
+                <h2>Render Blocking</h2>
+                <p>CSS is treated as a render blocking resource. This delays a webpage from being visible in a timely manner and delays the page from rendering. The webpage cannot render until all the CSS files are downloaded and parsed. The bigger your CSS, or the more CSS files you have, the longer the page takes to load and the slower your website will be.</p>
+                <p>This is sometimes referred to as the Critical Rendering Path, or 'the things a browser has to do before showing your web page'.</p>
+            </section>
+            <section class="pad-btm">
+                <p>Each CSS file your page uses adds additional time to your webpage loading by requiring an additional file to be called. Combine CSS files into one single file will resolve this issue.</p>
+                <p>To combine CSS, you must copy the CSS from one CSS file and paste it into another. You must also remove the call for the original CSS file within your HTML.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!-- Multiple CSS files --&gt;
+&lt;link rel='stylesheet' href='styles/one.css' /&gt;
+&lt;link rel='stylesheet' href='styles/two.css' /&gt;
+&lt;link rel='stylesheet' href='styles/three.css' /&gt;
+
+&lt;!-- Combined single CSS file --&gt;
+&lt;link rel='stylesheet' href='styles/main.css' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>When including CSS within your HTML, properly label conditional CSS to avoid render blocking. When CSS is not labeled correctly, the browser defaults to loading all CSS before rendering the webpage. By adding the correct label to CSS files being called, the browser then knows that not all CSS is required to begin the page rendering.</p>
+                <p>When we include a CSS within the HTML, everything included within the CSS code is loaded by the browser prior to rendering anything at all on your webpage. The more CSS you have, the longer the time it will take to render.</p>
+                <p>By using the media attribute we can specify if the browser needs to render the CSS on the page load. The example below has a CSS file using the media attribute of 'print'. Modern browsers will know that this CSS file is not required to render the page. As a result, the browser will place a lower priority to that CSS file. The browser will still download it, but will do so in a manner that does not block rendering.</p>
+                <p>When we set a width as the media attribute, modern browsers will understand that this CSS is used in some situations and not used in others, so browsers can choose not to load this CSS file prior to rendering the page if it's not needed.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!-- CSS file --&gt;
+&lt;link rel='stylesheet' href='styles/main.css' /&gt;
+
+&lt;!-- CSS not loaded before rendering, only for printing --&gt;
+&lt;link rel='stylesheet' href='styles/print.css' media='print' /&gt;
+&lt;!-- CSS used when a page is certain width --&gt;
+&lt;link rel='stylesheet' href='styles/other.css' media='(min-width: 40em)' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>When using CSS, try to avoid using @import to call CSS as it adds to the time it takes to load the CSS before your page can load. Any @import used within your CSS calls should be removed and replaced. Rather than using the import method, it is better to just keep the additional CSS within one file.</p>
+                <p>CSS imports look like this and will usually be near the top of the file:</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+@import url('styles/style.css');
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>External blocking scripts force the browser to wait for the JavaScript to be fetched, which may add one or more network roundtrips before the page can be rendered. If the external scripts are small, you can inline their contents directly into the HTML document to avoid the network request latency.</p>
+                <p>Inlining the script within the HTML eliminates the external request for a JavaScript file and allows the browser to deliver a faster time to first render. Inlining however increases the size of the HTML document and the same JavaScript code may need to be inlined across multiple pages. You should only inline small scripts to deliver best performance.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;script type='text/javascript'&gt;
+   /* contents of a small JavaScript file */
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
+                <p>By default, JavaScript blocks DOM construction and thus delays the time to first render. To prevent JavaScript from blocking the parser you can use the HTML async attribute on external scripts. Asynchronous JavaScript scripts are not guaranteed to execute in a specified order and should not use document.write . Scripts that depend on execution order or need to access or modify the DOM/CSS of the page, may need to be rewritten to account for these constraints.</p>
+                <p>The loading and execution of scripts that are not necessary for the initial page render may be deferred until after the initial render when the page has finished loading. Doing so can help improve performance.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;script src='scripts/myscript.js' async&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="pad-btm">
                 <h2>Error messages</h2>
                 <p>Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need.</p>
             </section>
@@ -236,6 +330,7 @@ $stmt->execute(array('value' => $parameter));
                     <li><!-- https://www.acunetix.com/websitesecurity/csrf-attacks/ --></li>
                     <li><!-- https://developer.chrome.com/devtools --></li>
                     <li><!-- https://developers.google.com/web/tools/chrome-devtools/ui#command-menu --></li>
+                    <li><!-- https://varvy.com/pagespeed/render-blocking-css.html --></li>
                 </ul>
             </div>
 
