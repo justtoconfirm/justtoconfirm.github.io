@@ -25,7 +25,26 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2>HTML alt attribute</h2>
+                <p>The HTML alt (alternative) attribute provides alternative information for an image, if the image cannot be displayed or be seen. This attribute is required for the &lt;img&gt; element. Adding the alt attribute will provide a clear text alternative of the image for screen reader users and users who are unable to see the image (such as a broken image). For screen readers it is recommended to limit the text within the alt attribute to no more than 150 characters.</p>
+                <p>WCAG 2.0 Guideline 1.1.1 - "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose."</p>
+                <p>Images used as links should have an alt attribute with text describing the destination of the link, not the image itself. Images used for decoration (do not convey content), should have an empty (null) alt tag. Screen readers will simply skip over images with empty alt tags. Examples include:</p>
+                <p><ul class='list'><li>Spacers</li><li>Icons</li><li>Decorative images</li><li>CAPTCHA images</li></ul></p>
+                <p>Adding text to an alt attribute on a decorative image - such as an icon image - would add 'audible clutter' to screen reader output. It is often better that decorative images be applied as background images using CSS.</p>
+                <p>When adding text to the alt attribute, it is best to avoid phrases such as "image of ..." or "graphic of ..." to describe the image. It is usually apparent to the user that it is an image. For instance, if we had an image of Barack Obama, we would likely set the alt text as "Barack Obama" and not "Barack Obama, the president of the United States", as this would likely add extra information not presented directly in the image.</p>
+                <!-- Code example -->
+                <div class="code" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;img src='smiley.jpg' alt='Smiley face' /&gt;
+
+&lt;!-- Image for decoration --&gt;
+&lt;img src='spacer.jpg' alt='' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
             </section>
 
         </div>
