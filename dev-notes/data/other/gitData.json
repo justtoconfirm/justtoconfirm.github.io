@@ -1,0 +1,141 @@
+{
+  "page": {
+    "pagetitle": "Git",
+    "pageheading": "Git",
+    "content": [
+      {
+        "label": "LINKS",
+        "links": [
+          "<a href='../../index.html'>Home</a>",
+          "<!-- https://medium.freecodecamp.org/git-cheat-sheet-and-best-practices-c6ce5321f52 -->",
+          "<!-- https://www.netguru.co/codestories/5-git-commands-i-wish-i-knew-about-when-i-started-coding -->",
+          "<!-- https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html -->"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Status",
+        "copy": [
+          "If you would like to see what files have been changed and what has been tracked, you can use the git status command."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ git status"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Branches",
+        "copy": [
+          "Git commands for branches:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "# List all branches on your local machine",
+          "$ git branch",
+          "",
+          "# Switch to an existing branch",
+          "$ git checkout &lt;branchname&gt;",
+          "# Create a new branch and switch to it",
+          "$ git checkout -b &lt;branchname&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Pull",
+        "copy": [
+          "If you're working on a project with multiple developers, you may find yourself in a position where a repo, possibly on GitHub, was updated but you don't have the latest changes locally. You need to use Git to pull the latest and most recent changes from the remote branch to your local:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ git pull origin &lt;branchname&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Delete Branch",
+        "copy": [
+          "Once you no-longer require a feature branch within your repository, use the following Git command to delete it. You will also need to possibly delete the branch on your remote repository."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ git branch -d &lt;branchname&gt;",
+          "",
+          "# Delete branch on your remote repository",
+          "$ git push origin :&lt;branchname&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Commit changes",
+        "copy": [
+          "Once you have completed your work and are ready to commit your changes, you can use the following commands below.",
+          "Before you commit any changes, make sure you are working on the correct branch."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "# Add all files that you have been working on",
+          "$ git add *",
+          "# OR, add a specific file",
+          "$ git add &lt;filename&gt;",
+          "",
+          "# Add commit message",
+          "$ git commit -m \"Commit message\"",
+          "",
+          "# Push changes to the branch of your remote repository",
+          "$ git push origin &lt;branchname&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Merge",
+        "copy": [
+          "To merge a different branch into your active branch:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ git merge &lt;branchname&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Merge Conflicts",
+        "copy": [
+          "When merging branches, merge conflicts can occur. Once these conflicts have been resolved, you will need to mark the changed file:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": null,
+        "datatitle": null,
+        "code": [
+          "$ git add &lt;filename&gt;"
+        ]
+      }
+    ]
+  }
+}

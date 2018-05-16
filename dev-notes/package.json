@@ -32,6 +32,7 @@
     "build-api": "mustache -p views/partials/footer.mustache data/other/apiData.json views/templates/pageTemplate.mustache > dist/pages/api.html",
     "build-accessibility": "mustache -p views/partials/footer.mustache data/other/accessibilityData.json views/templates/pageTemplate.mustache > dist/pages/accessibility.html",
     "build-rwd": "mustache -p views/partials/footer.mustache data/other/rwdData.json views/templates/pageTemplate.mustache > dist/pages/rwd.html",
+    "build-git": "mustache -p views/partials/footer.mustache data/other/gitData.json views/templates/pageTemplate.mustache > dist/pages/git.html",    
     "build-webpack": "mustache -p views/partials/footer.mustache data/other/webpackData.json views/templates/pageTemplate.mustache > dist/pages/webpack.html",
     "build-tdd": "mustache -p views/partials/footer.mustache data/other/tddData.json views/templates/pageTemplate.mustache > dist/pages/tdd.html",
     "build-bem": "mustache -p views/partials/footer.mustache data/other/bemData.json views/templates/pageTemplate.mustache > dist/pages/bem.html",
