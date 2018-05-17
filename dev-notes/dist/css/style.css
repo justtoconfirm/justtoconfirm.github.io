@@ -2,10 +2,6 @@ h2 {
   font-size: 20px;
 }
 
-p {
-  font-size: 14px;
-}
-
 .pad-btm {
   padding-bottom: 15px;
 }
@@ -127,4 +123,8 @@ a:hover {
 
 .no-list {
   list-style-type: none;
+}
+
+p {
+  font-size: 14px;
 }
