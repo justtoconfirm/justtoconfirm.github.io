@@ -1,5 +1,4 @@
 // Utility
-@import 'util/base';
 @import 'util/padding';
 
 // Mixins
@@ -8,7 +7,10 @@
 // Components
 @import 'components/code';
 
-// Quarks
+// Quarks - style elements
+@import 'quarks/heading';
 @import 'quarks/link';
 @import 'quarks/list';
 @import 'quarks/paragraph';
+
+// Atomic - use classes

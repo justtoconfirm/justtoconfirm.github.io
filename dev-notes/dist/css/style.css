@@ -1,7 +1,3 @@
-h2 {
-  font-size: 20px;
-}
-
 .pad-btm {
   padding-bottom: 15px;
 }
@@ -103,6 +99,10 @@ pre code .tag {
 	background-color: #42b983;
 }
 */
+
+h2 {
+  font-size: 20px;
+}
 
 a {
   text-decoration: none;
