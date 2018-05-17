@@ -120,3 +120,11 @@ pre code .tag {
 	background-color: #42b983;
 }
 */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
