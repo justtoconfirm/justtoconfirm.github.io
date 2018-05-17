@@ -2,6 +2,7 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
+    "build-all": "npm-run-all -p build-html build-html-metatag build-css build-css-grid build-css-performance build-css-guidelines build-js build-js-array build-js-variables build-js-functions build-js-objects build-js-xhr build-js-serviceworker build-js-modules build-php build-php-variables build-php-functions build-php-crud build-vuejs build-vuejs-install build-vuejs-component build-reactjs build-reactjs-install build-reactjs-element build-reactjs-component build-reactjs-props build-reactjs-state build-reactjs-form build-api build-accessibility build-rwd build-git build-webpack build-tdd build-bem build-node build-optimisation build-express build-redux compile-scss",
     "build-html": "mustache -p views/partials/footer.mustache data/html/htmlData.json views/templates/pageTemplate.mustache > dist/pages/html.html",
     "build-html-metatag": "mustache -p views/partials/footer.mustache data/html/metatagData.json views/templates/pageTemplate.mustache > dist/pages/html-metatag.html",
     "build-css": "mustache -p views/partials/footer.mustache data/css/cssData.json views/templates/pageTemplate.mustache > dist/pages/css.html",
@@ -33,7 +34,7 @@
     "build-api": "mustache -p views/partials/footer.mustache data/other/apiData.json views/templates/pageTemplate.mustache > dist/pages/api.html",
     "build-accessibility": "mustache -p views/partials/footer.mustache data/other/accessibilityData.json views/templates/pageTemplate.mustache > dist/pages/accessibility.html",
     "build-rwd": "mustache -p views/partials/footer.mustache data/other/rwdData.json views/templates/pageTemplate.mustache > dist/pages/rwd.html",
-    "build-git": "mustache -p views/partials/footer.mustache data/other/gitData.json views/templates/pageTemplate.mustache > dist/pages/git.html",    
+    "build-git": "mustache -p views/partials/footer.mustache data/other/gitData.json views/templates/pageTemplate.mustache > dist/pages/git.html",
     "build-webpack": "mustache -p views/partials/footer.mustache data/other/webpackData.json views/templates/pageTemplate.mustache > dist/pages/webpack.html",
     "build-tdd": "mustache -p views/partials/footer.mustache data/other/tddData.json views/templates/pageTemplate.mustache > dist/pages/tdd.html",
     "build-bem": "mustache -p views/partials/footer.mustache data/other/bemData.json views/templates/pageTemplate.mustache > dist/pages/bem.html",
@@ -52,6 +53,7 @@
     "cssbeautify-cli": "^0.5.3",
     "minifier": "^0.8.1",
     "mustache": "^2.3.0",
-    "node-sass": "^4.5.3"
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.3"
   }
 }
