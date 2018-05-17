@@ -1,0 +1,7 @@
+@mixin codebar($rel, $color, $text-color: #fff) {
+	.code[rel=#{$rel}]::before {
+    	background-color: #{$color};
+    	color: $text-color;
+    	font-size: 14px;
+  	}  
+}

@@ -53,19 +53,11 @@ pre {
 }
 */
 
-@mixin code-description($rel, $color){
-	.code[rel=#{$rel}]::before {
-    	background-color: #{$color};
-    	color: #fff;
-    	font-size: 14px;
-  	}  
-}
-
 // Calling the mixin
-@include code-description('js', #ff9800);
-@include code-description('html', #1779ba);
-@include code-description('css', #f5da55);
-@include code-description('php', #42b983);
+@include codebar('js', #ff9800);
+@include codebar('html', #1779ba);
+@include codebar('css', #f5da55);
+@include codebar('php', #42b983);
 
 
 

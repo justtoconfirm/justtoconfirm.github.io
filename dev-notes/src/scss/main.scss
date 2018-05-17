@@ -3,8 +3,11 @@
 @import 'util/list';
 @import 'util/padding';
 
+// Mixins
+@import 'mixins/codebar';
+
 // Components
 @import 'components/code';
 
-// Atomic design
+// Quarks
 @import 'quarks/links';
