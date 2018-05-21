@@ -8,8 +8,7 @@
 
 // Quarks
 @import '1-quarks/body';
-@import '1-quarks/heading';			
-@import '1-quarks/link';			
+@import '1-quarks/heading';						
 @import '1-quarks/paragraph';
 @import '1-quarks/pre';
 @import '1-quarks/section';					
@@ -20,3 +19,20 @@
 
 // Molecules
 @import '3-molecules/code';
+
+// SHAME
+.card {
+	// Add shadow to create card effect
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin: 10px 0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-title {
+	text-align: center;
+	padding: 10px 0;
+}
