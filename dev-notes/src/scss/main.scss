@@ -9,17 +9,18 @@
 @import 'mixins/font';
 @import 'mixins/rem';
 
-// Components
+// Components - needs moving to be an molecule as a collection of atoms.
+// Atoms could include pre and code elements
 @import 'components/code';
 
 // Quarks - style elements
 @import '1-quarks/heading';			// done
-@import '1-quarks/link';
+@import '1-quarks/link';			// done
 @import '1-quarks/list';
 @import '1-quarks/paragraph';
 
 // Atomic
-@import '2-atoms/heading';
+@import '2-atoms/heading';			// done
 
 // https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
 // Atomic - use classes

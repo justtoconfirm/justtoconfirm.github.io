@@ -128,13 +128,13 @@ ul li {
 }
 
 p {
-  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   font-size: 0.875rem;
+  color: #34495e;
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
   line-height: 1.6em;
   -moz-osx-font-smoothing: grayscale;
-  color: #34495e;
-  font-weight: 300;
 }
 
 .page-heading,
