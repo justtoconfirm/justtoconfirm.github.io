@@ -2,6 +2,10 @@
   padding-bottom: 15px;
 }
 
+.no-padding-left {
+  padding-left: 0;
+}
+
 pre {
   background-color: #000;
   color: #fff;
@@ -166,10 +170,6 @@ p {
   -moz-osx-font-smoothing: grayscale;
   color: #34495e;
   font-weight: 300;
-}
-
-.no-padding-left {
-  padding-left: 0;
 }
 
 @font-face {
