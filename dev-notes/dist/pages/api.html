@@ -41,7 +41,7 @@
                 <p>REST determines what the API looks like. It stands for Representational State Transfer. It is a set of rules that developers follow when they create their APIs. The terms REST and RESTful APIs are simply referring to a set of standards that confirm to a specific architectural style. One of these rules states that you should be able to get a piece of data (called a resource) when you link to a specific URL. A request is made to the API and a response is returned.</p>
                 <p>The endpoint (or route) is the URL of the API you are requesting. The starting point of an APIs endpoint is called the root-endpoint. Here are a few examples:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -63,7 +63,7 @@ https://api.twitter.com
                 <p>The GitHub API documentation can be found <a href='https://developer.github.com/v3/' target='_blank'>here</a></p>
                 <p>The documentation for the API tells you to use the following path:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -77,7 +77,7 @@ https://api.twitter.com
                 <p>Any colons (:) on a path denotes a variable. You should replace the variable value with an actual value when you send the request. In this example you should replace the variable value with a username of a GitHub user.</p>
                 <p>Using my GitHub account as an example, the :username variable will be replaced with justtoconfirm. The endpoint to get all repositories for my GitHub account would be this:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -96,7 +96,7 @@ https://api.github.com/users/<span class='keyword'>justtoconfirm</span>/repos
                 <p>When you try to get a list of a GitHub user's repositories, you can add parameters to your request to modify the results returned to you.</p>
                 <p>If you'd like to get a list of the repositories that recently had commits that were pushed, you can set the value of sort to pushed:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -115,7 +115,7 @@ https://api.github.com/users/justtoconfirm/repos?<span class='name'>sort</span>=
                 <p>The method is the type of request you send to the server. You can choose from: POST (Create), GET (Read), PUT/PATCH (Update), and DELETE (Delete) - CRUD. A GET request was used earlier to return details about GitHub repositories. If we wanted to create a new GitHub repository, a POST request would be needed. The API documentation should let you know what request method to use for each request.</p>
                 <p>These request methods provide meaning for the request you're making.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -140,7 +140,7 @@ https://api.github.com/users/justtoconfirm/repos?<span class='name'>sort</span>=
                 <p>Developers update their APIs from time to time. Sometimes the developer will change the API so much, that the version will be updated. If this happens, and your application breaks, it's usually because you've written code for an older API, but your request points to the newer API.</p>
                 <p>Some APIs will display the version number to the endpoint to make it easier to confirm the version being used.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->

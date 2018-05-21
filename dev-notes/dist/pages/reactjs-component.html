@@ -35,7 +35,7 @@
                 <p>React components can be created using JavaScript functions. This is the simplest way to write a React component and is called a 'functional component' because they are functions. ES6 JavaScript classes can also be used to create React components. ES6 Arrow functions can also be used. We do not need a return statement when using ES6 Arrow functions. Classes have some additional features over functions when creating a component, but either can be used.</p>
                 <p>Component names should always start with an uppercase letter.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -62,7 +62,7 @@
             <section>
                 <p>In our React application - my-app - we have an App.js file within the src/ directory containing a component. The example below shows how the component has been created using a JavaScript ES6 class:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;App.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;App.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -90,7 +90,7 @@
                 <p><ul class='list'><li>We call React.render with the &lt;Welcome name='Dan' age='32' /&gt; element.</li><li>React calls the Welcome component with the {name: 'Dan', age: '32'} as the props (within the props object).</li><li>Our Welcome component returns &lt;h1&gt;Hello, Dan 32&lt;/h1&gt; element as a result.</li><li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan 32&lt;/h1&gt;</li></ul></p>
                 <p><!-- https://medium.com/@justtoconfirm/react-2d6bba32e764 --></p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -119,7 +119,7 @@ Component has an uppercase name
             <section>
                 <p>This is a simplified example:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -145,7 +145,7 @@ Component has an uppercase name
                 <p>Components can refer to other components in their output. We can reuse components and also use components within another component if we need to. In React applications a button, form, dialog and screen are all commonly expressed as components. It's better to split components into smaller components so they can be reused.</p>
                 <p>We can create an App component that renders the Welcome component multiple times. Typically, new React apps have a single App component at the very top.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -186,7 +186,7 @@ Component has an uppercase name
             <section>
                 <p>As described in the code comments, if we do not wrap an element around the Welcome components in the App component, a syntax error will be displayed in the browser and terminal. Therefore, we wrap these components within an empty &lt;div&gt; element. The syntax error example can be seen below.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -202,7 +202,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 <p><!-- https://reactjs.org/docs/components-and-props.html --></p>
                 <p>We can begin by creating a simple comment component.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -261,7 +261,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 <p>Let's extract a few components from the rather large comment component.</p>
                 <p>The Avatar doesn't need to know that its being rendered inside a comment component, so the prop name is the now more generic user rather than author. By removing this component from inside the comment component, we can still reuse it anywhere we choose.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -342,7 +342,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 <p>Begin by creating a new folder/directory named 'components' within the src/ directory of our React project. Because we are using Babel and Webpack, we can remove the semi-colons that are used to end statements within the JavaScript code.</p>
                 <p>Below we are recreating the same component multiple times to show how it can be done. You can of course use a class, however to keep things simple, we are just using functions initially.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;components&#x2F;Welcome.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;components&#x2F;Welcome.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -380,7 +380,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 <p>Now that the component has been created and exported, we can import it so it can be used. Open up the index.js file in the src/ directory and import the Welcome component we have just created. Once again we have removed the semi-colon at the end of the statement as we do not need this when writing ES6.</p>
                 <p>The first few lines of index.js should now look like this:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -396,7 +396,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
             <section>
                 <p>And now we just want to render the Welcome component. This is the full code:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -417,7 +417,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
             <section>
                 <p>It is worth noting that props are read-only. Whether you declare a component as a function or a class, it must never modify its own props. Such functions are called 'pure' because they do no attempt to change their inputs and always returns the same result for the same input. All React components must act like pure functions with respect to their props.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->

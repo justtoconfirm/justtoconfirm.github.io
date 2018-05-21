@@ -40,7 +40,7 @@
                 <p>Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file.</p>
                 <p>Should you want to use Redux with React, use NPM to install react-redux as a dependency also. The react-redux module makes the connection between React and Redux.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -59,7 +59,7 @@ $ npm install react-redux --save
                 <p>The store cannot be directly modified. The only way to do so is through the use of reducers.</p>
                 <p>Redux has a createStore method to create a new store. Within the index.js file of your React application, add the following import statement to create the store:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -73,7 +73,7 @@ import { createStore } from 'redux'
                 <p>Now that the store has been created, we need to let our application know that the store exists. The react-redux library contains the Provider method. The Provider is wrapped around our App component to provide us with access to the Store throughout our entire application. It is a React component given to use by the react-redux library and is used to provide the store to it's child components.</p>
                 <p>Let's update the index.js file to include the Provider:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -97,7 +97,7 @@ ReactDOM.render (
             <section>
                 <p>Next, we will create the store itself using the createStore method that has been imported into the index.js file. A reducer will be passed into this method, but for now we will leave this empty. Within this method, you may optionally specify a second argument that sets the initial state of the store.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -124,7 +124,7 @@ ReactDOM.render (
             <section>
                 <p>The Provider is given the store as a prop:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -153,7 +153,7 @@ ReactDOM.render (
                 <p>The reducer is used to update the state. It should always be a pure function, so given a set of inputs, it should always return the same output.</p>
                 <p>Let's create an empty function. This will be our reducer. The reducer will also be added as an argument of the createStore method.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -183,7 +183,7 @@ ReactDOM.render (
             <section>
                 <p>The reducer can now be updated to include two arguments. The first argument, state is the current data held in the store. This is returned by the function. The second argument of action is also added.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -213,7 +213,7 @@ ReactDOM.render (
             <section>
                 <p>The data kept in the Redux store can be accessed directly, but can only be updated via the supplied reducer. The state argument in the reducer contains the current data held in the store. The store currently has no data, so is undefined or null. To remedy this, just assign a default value to the state to make it an empty array.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -230,7 +230,7 @@ const reducer = function(state=[], action) {
                 <p>Now that the reducer has been created, let's add some test data. We will also add a console.log to print out the current state in the console to confirm the store has some initial data.</p>
                 <p>If you view the console, the contents of the store will be output.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->

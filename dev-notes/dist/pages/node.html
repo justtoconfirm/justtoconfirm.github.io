@@ -37,7 +37,7 @@
                 <p>Node.js can be downloaded and installed from here: <a href='https://nodejs.org/en/' target='_blank'>https://nodejs.org/en/</a></p>
                 <p>Once installed you can confirm the version of Node.js installed from within your terminal:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -50,7 +50,7 @@ $ node --version
             <section>
                 <p>By adding the following to your package.json file (which is optional), you can specify the minimum version of Node that your package requires to ensure your library will work for your users.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -68,7 +68,7 @@ $ node --version
                 <p>When Node.js has been installed, you will have access to NPM. NPM often comes with Node.js, but it is often an old version as Node's release cycle is often behind NPM's, so NPM may need to be updated.</p>
                 <p>You can open the terminal and confirm the version of NPM you have installed:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -83,7 +83,7 @@ $ npm --version
                 <p>The package.json file will need to have the entry point to be the name of your main JavaScript file. The default is usually index.js</p>
                 <p>Within your project dirctory/folder, run the following command using your terminal to create a package.json file:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -97,7 +97,7 @@ $ npm init
                 <p>When an NPM package is installed it is placed into the node_modules folder/directory. The node_modules directory should not be committed when using Git/GitHub version control into your respository, but instead should be listed within a .gitignore file. If you are installing packages used for development, they can be installed as a devDependency. Packages used only in the development phase need to be installed as a devDependency, otherwise the package can be installed as a dependency. A package installed as a dependency is a package that is needed by the application to work, such as React or Redux. A devDependency package is needed only during development, such as build tools like Gulp and Webpack.</p>
                 <p>To install an NPM package, open your terminal and run the following command:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -123,7 +123,7 @@ $ npm install &lt;package-name&gt; --save
                 <p>The exports keyword is used to make properties and methods in the module available outside of the module file.</p>
                 <p>A simple module file may look like this:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: index.js">
+                <div class="code-block" rel="js" data-title="JavaScript: index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -147,7 +147,7 @@ module.exports = function(number, locale) {
             <section>
                 <p>Requiring a module in Node.js isn't that complicated. It can simply be done like this:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -161,7 +161,7 @@ const config = require('/path/to/file');
                 <h2 class="section-heading section-heading__border-btm">Hello World</h2>
                 <p>Writing 'Hello World' is pretty simple when using Node.js. Begin by opening a file named app.js and adding the following code:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: app.js">
+                <div class="code-block" rel="js" data-title="JavaScript: app.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -174,7 +174,7 @@ console.log('Hello World');
             <section>
                 <p>If you have Node.js installed, open your terminal, change the directory to the folder where the file is located and run the following command:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -190,7 +190,7 @@ $ node app.js
                 <p>See the <a href='tdd.html'>TDD (Test Driven Development)</a> documentation.</p>
                 <p>In this example, we are including the module using the require function.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->

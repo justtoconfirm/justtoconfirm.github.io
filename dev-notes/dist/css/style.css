@@ -1,70 +1,7 @@
-pre {
-  background-color: #000;
-  color: #fff;
-  margin-top: 0;
-  padding: 0 25px;
-  tab-size: 2;
-}
-
-pre code {
-  font-size: 14px;
-  whites-space: pre-wrap;
-}
-
-pre code .comment {
-  color: #9fa6ad;
-}
-
-pre code .keyword {
-  color: #ff9800;
-}
-
-pre code .name {
-  color: #dfc48c;
-}
-
-pre code .value {
-  color: #cd6a51;
-}
-
-pre code .return {
-  color: #add8e6;
-}
-
-pre code .tag {
-  color: #e96900;
-}
-
-.code:before {
-  content: attr(data-title);
-  display: block;
-  padding: 10px 0;
-  text-indent: 15px;
-  width: 100%;
-}
-
-.code[rel=js]::before {
-  background-color: #ff9800;
-  color: #fff;
-  font-size: 14px;
-}
-
-.code[rel=html]::before {
-  background-color: #1779ba;
-  color: #fff;
-  font-size: 14px;
-}
-
-.code[rel=css]::before {
-  background-color: #f5da55;
-  color: #fff;
-  font-size: 14px;
-}
-
-.code[rel=php]::before {
-  background-color: #42b983;
-  color: #fff;
-  font-size: 14px;
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("../font/SourceSansPro-Regular.eot");
+  src: url("../font/SourceSansPro-Regular.eot?#iefix") format("embedded-opentype"), url("../font/SourceSansPro-Regular.woff2") format("woff2"), url("../font/SourceSansPro-Regular.woff") format("woff"), url("../font/SourceSansPro-Regular.ttf") format("truetype"), url("../font/SourceSansPro-Regular.svgSourceSansPro-Regular") format("svg");
 }
 
 h1 {
@@ -93,6 +30,14 @@ p {
   font-weight: 300;
   line-height: 1.6em;
   -moz-osx-font-smoothing: grayscale;
+}
+
+pre {
+  background-color: #000;
+  color: #fff;
+  margin-top: 0;
+  padding: 0 25px;
+  tab-size: 2;
 }
 
 section {
@@ -127,8 +72,63 @@ section {
   padding-left: 0;
 }
 
-@font-face {
-  font-family: "SourceSansPro-Regular";
-  src: url("../font/SourceSansPro-Regular.eot");
-  src: url("../font/SourceSansPro-Regular.eot?#iefix") format("embedded-opentype"), url("../font/SourceSansPro-Regular.woff2") format("woff2"), url("../font/SourceSansPro-Regular.woff") format("woff"), url("../font/SourceSansPro-Regular.ttf") format("truetype"), url("../font/SourceSansPro-Regular.svgSourceSansPro-Regular") format("svg");
+.code-block[rel=js]::before {
+  background-color: #ff9800;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=html]::before {
+  background-color: #1779ba;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=css]::before {
+  background-color: #f5da55;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=php]::before {
+  background-color: #42b983;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block {
+  font-size: 14px;
+  whites-space: pre-wrap;
+}
+
+.code-block:before {
+  content: attr(data-title);
+  display: block;
+  padding: 10px 0;
+  text-indent: 15px;
+  width: 100%;
+}
+
+.code-block .comment {
+  color: #9fa6ad;
+}
+
+.code-block .keyword {
+  color: #ff9800;
+}
+
+.code-block .name {
+  color: #dfc48c;
+}
+
+.code-block .return {
+  color: #add8e6;
+}
+
+.code-block .tag {
+  color: #e96900;
+}
+
+.code-block .value {
+  color: #cd6a51;
 }

@@ -41,7 +41,7 @@
                 <h2 class="section-heading section-heading__border-btm">Alphabetical Properties</h2>
                 <p>By alphabetizing your CSS properties you are creating consistency that will help you to reduce time you spend searching for specific properties. This may not be a solution for all projects, but may help with organisation of your code.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -67,7 +67,7 @@
                 <p>The best advice for writing CSS it to follow the DRY (Don't repeat yourself) methodology. Essentially this is to avoid writing the same bits of code over and over again.</p>
                 <p>One way to keep things DRY in CSS is to group things together.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -95,7 +95,7 @@
                 <p>The !important declaration is almost always a bad thing to use within your CSS. It is generally misused to override CSS declarations to apply new styling. Often it is used to combat specificity problems as a result of poorly architected CSS, to force styling to be applied. Proactive use of !important is when it is used before you encounter any specificity problems; when it is used as a guatantee rather than as a fix. Therefore !important should be used to always ensure something is styled a certain way and don't get accidentally overridden by something more specific.</p>
                 <p>In this example, two helper (or utility) classes are very specific in their intentions. You would only use them should you want something to be rendered at 50% width or not rendered at all. If you don't require this behaviour, you wouldn't use either class.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -116,7 +116,7 @@
                 <p>CSS should be written across multiple lines. This reduces the chance of merge conflicts when using version control - something like Git - because each piece of functionality exists on it's own line. Code can be compared more easily as one line of code only ever carries one change.</p>
                 <p>If a CSS selector has only the one declaration, then this will still conform to this guideline.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -142,7 +142,7 @@
                 <p>As a rule, it is unwise to bind your CSS and your JavaScript onto the same class in your HTML. This means you cannot remove one without removing the other. It is much cleaner and much more maintainable to bind your JavaScript onto specific classes.</p>
                 <p>Typically, these are classes that are prepended with js-, for example. This means we can have once class for the CSS styling and one class with the JavaScript behaviour.</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -156,7 +156,7 @@
                 <h2 class="section-heading section-heading__border-btm">Alignment</h2>
                 <p>Attempt to align common and related identical strings in declarations.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -175,7 +175,7 @@
                 <p>The single reponsibility principle is a paradigm that states that all pieces of code - in CSS, the classes - should focus on doing one thing and one thing only. In CSS, our classes should be small and focus on providing very specific and limited functionality.</p>
                 <p>In this next example, our CSS classes handle quite a lot: layout, structure, and styling. This also includes a lot of repetition between classes.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -206,7 +206,7 @@
             <section>
                 <p>We can break these classes into smaller classes creating general abstraction:</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -240,7 +240,7 @@
                 <p>It is important when writing CSS that we scope our selectors correctly. Selector Intent is the process of deciding and defining what you want to style and how you will go about selecting it.</p>
                 <p>For example, you want to style your website's main navigation menu. The following selector would possibly be an unwise choice:</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -254,7 +254,7 @@ header ul { }
                 <p>The selector's intent is to style any &lt;ul&gt; element inside any &lt;header&gt; element. Our intent was to style only the main navigation of the website. Potentially, you can have any number of header elements on a page and in-turn they can house any number of possible &lt;ul&gt; elements, so a selector like this runs the risk of applying very specific styling to a very wide number of elements.</p>
                 <p>A better approach would be an a selector that is selecting the right thing for the right reason:</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -268,7 +268,7 @@ header ul { }
                 <h2 class="section-heading section-heading__border-btm">Naming</h2>
                 <p>It's better to strive for reusable, recyclable classes rather than writing for specific use cases when considering naming.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -300,7 +300,7 @@ header ul { }
                 <h2 class="section-heading section-heading__border-btm">Nesting</h2>
                 <p>Nesting in CSS is something you should actively try to avoid wherever possible. Whenever declaring your styles, use the least number of selectors required to style an element. Nesting can also lead to location dependent and potentially inefficient code.</p>
                 <!-- Code example -->
-                <div class="code" rel="css" data-title="CSS">
+                <div class="code-block" rel="css" data-title="CSS">
                     <pre>
                         <code>
 <!-- Leave space here -->

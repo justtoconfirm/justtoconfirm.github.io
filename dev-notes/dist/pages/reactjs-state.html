@@ -46,7 +46,7 @@
                 <p><li>Delete the remaining empty function declaration.</li></ul></p>
                 <p>Let's create a Stateless component using a class:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -81,7 +81,7 @@
                 <p>It is important to remember that you should never change this.state directly, but use this.setState instead. The only place where you can assign this.state is the constructor.</p>
                 <p>When you setState, it updates the state object and then re-renders the component. Think search bars, for example. The user will type in the data and this will update what they see.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -99,7 +99,7 @@
                 <p>Let's look at the constructor method of our component. This is where state gets it's initial data. The initial data can be hard coded or you can pass in the data from props. You can't change props - as previously mentioned - but you may want to do stuff to the data that the component receives. That's where state comes in, as state is changeable. The component is initialised and state.count is set to 0.</p>
                 <p>It is worth noting that you should always call super( ) if you have a constructor, otherwise an error will appear.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -117,7 +117,7 @@
             <section>
                 <p>In this example we are passing props to the base constructor.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -132,7 +132,7 @@
             <section>
                 <p>Within our component we have a render method. We update the render method to create a button. When the button is clicked, a method (updateCount) will be called. We will use an ES6 arrow function so the method will have access to the instance's state. The button will also display the count showing the number of times the button has been clicked. This will use whatever this.state.count is at the time of rendering.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -151,7 +151,7 @@
             <section>
                 <p>We also need the updateCount method to change the state and keep a track of the total number of clicks. setState runs asynchronously, it needs to take a callback function rather than updating the state directly. We also have access to prevState within the callback that contains the previous state. setState updates the state object and re-renders the component automatically.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript">
+                <div class="code-block" rel="js" data-title="JavaScript">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -175,7 +175,7 @@
                 <p><li>setState triggers a call to render.</li></p>
                 <p><li>The component renders with 'Clicked 1 times' as the button text.</li></ul></p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
                     <pre>
                         <code>
 <!-- Leave space here -->

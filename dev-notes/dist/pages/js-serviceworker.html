@@ -57,7 +57,7 @@
                 <p>This registration is done from outside the service worker, by another page or script on your website. For example, if your website has a global main.js script included on every HTML page, your service work would be registered from there.</p>
                 <p>When you register a service worker, you (optionally) also tell it what scope it should apply itself to. You can instruct it to only handle parts of your website ('/my-app/'), or you can register it for your whole website ('/'). This path needs to be written relative to the origin, not your app's root directory. In this example, the worker is at https://github.io/my-app/sw.js and the app's root is https://github.io/my-app/ but the path needs to be written as /my-app/sw.js, not /sw.js</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;main.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;main.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -97,7 +97,7 @@ if ('serviceWorker' in navigator) {
             <section>
                 <p>We can create a service worker file - named as sw.js in the earlier example - with an install hook:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;my-app&#x2F;sw.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;my-app&#x2F;sw.js">
                     <pre>
                         <code>
 <!-- Leave space here -->

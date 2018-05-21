@@ -1,31 +1,22 @@
-// https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
-
 // Variables
 @import 'variables/color';
 
 // Mixins
-@import 'mixins/codebar';
+@import 'mixins/code';
 @import 'mixins/font';
 @import 'mixins/rem';
 
-// Components - needs moving to be an molecule as a collection of atoms.
-// Atoms could include pre and code elements
-@import 'components/code';
-
-// Quarks - style elements
-@import '1-quarks/heading';			// done
-@import '1-quarks/link';			// done
+// Quarks
+@import '1-quarks/body';
+@import '1-quarks/heading';			
+@import '1-quarks/link';			
 @import '1-quarks/paragraph';
-@import '1-quarks/section';			// done		
+@import '1-quarks/pre';
+@import '1-quarks/section';					
 
-// Atoms - style with classes
-@import '2-atoms/heading';			// done
-@import '2-atoms/list';				// done
+// Atoms
+@import '2-atoms/heading';			
+@import '2-atoms/list';				
 
-
-
-
-
-
-
-@include font-face('SourceSansPro-Regular');
+// Molecules
+@import '3-molecules/code';

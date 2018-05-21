@@ -40,7 +40,7 @@
                 <p>Alternatives to Mocha include: Jest, Jasmine, AVA, and Tape. Mocha does not have an assertion library, a tool used to verify that things are correct, but assertion libraries such as Expect or Chai can be used with Mocha.</p>
                 <p>Using NPM (Node Package Manager), Mocha can be installed using the terminal. The NPM package should be installed as a devDependency.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -54,7 +54,7 @@ $ npm install mocha --save-dev
                 <h2 class="section-heading section-heading__border-btm">Test directory</h2>
                 <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -67,7 +67,7 @@ $ mkdir test
             <section>
                 <p>You can use the built-in Node.js assert module to test if true is equal to true. This will be our initial test, and should pass. This example is using the ES6 arrow function.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: test&#x2F;test.js">
+                <div class="code-block" rel="js" data-title="JavaScript: test&#x2F;test.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -88,7 +88,7 @@ it('should return true', () => {
                 <p>The test files will be named with the prefix '.spec.js' and be placed in the same directory as the component files as the example below demonstrates.</p>
                 <p>This will be the file structure of our project folder:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -117,7 +117,7 @@ webpack.config.js
             <section>
                 <p>The mocha.opts file will look like this:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
+                <div class="code-block" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -131,7 +131,7 @@ src/**/*.spec.js
             <section>
                 <p>The setup.js code will look like this:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: test&#x2F;setup.js">
+                <div class="code-block" rel="js" data-title="JavaScript: test&#x2F;setup.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -149,7 +149,7 @@ const chai = require('chai');
                 <p>Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.</p>
                 <p>Chai can be installed as a devDependency using the following terminal command:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -164,7 +164,7 @@ $ npm install chai --save-dev
                 <p>Within the test directory create a file named appTest.js that will contain our tests.</p>
                 <p>We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: test&#x2F;app.js">
+                <div class="code-block" rel="js" data-title="JavaScript: test&#x2F;app.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -188,7 +188,7 @@ describe('App', function() {
                 <p>Create a file named app.js in the root directory of your project, this will be our module we are testing.</p>
                 <p>We'll now write the app.js module code. When the test is run, 'hello' should be returned and the test will now pass.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: app.js">
+                <div class="code-block" rel="js" data-title="JavaScript: app.js">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -205,7 +205,7 @@ module.exports = function() {
                 <h2 class="section-heading section-heading__border-btm">Running Tests</h2>
                 <p>Once the test has been written, we can use NPM (Node Package Manager) to run the test. Open the package.json file and add the following:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -220,7 +220,7 @@ module.exports = function() {
             <section>
                 <p>Should you want to hide NPM output if the test fails, you can add a 'true' flag to the command.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -235,7 +235,7 @@ module.exports = function() {
             <section>
                 <p>To run test files that maybe within subdirectories, the following should be used within the package.json file and is recommended:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -250,7 +250,7 @@ module.exports = function() {
             <section>
                 <p>The test can now be run from with the terminal using the following command:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -265,7 +265,7 @@ $ npm run test
                 <p>You may want to use ES6 JavaScript syntax within your test files. You will need to make a few amendments and have Babel setup within your build/testing process.</p>
                 <p>Begin by updating the mocha.opts file within the test directory to allow ES6 syntax to be used:</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
+                <div class="code-block" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -281,7 +281,7 @@ src/**/*.spec.js
             <section>
                 <p>Next, update the package.json file:</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -296,7 +296,7 @@ src/**/*.spec.js
             <section>
                 <p>The test files can now be updated to use ES6 JavaScript syntax such as import statements.</p>
                 <!-- Code example -->
-                <div class="code" rel="js" data-title="JavaScript: src&#x2F;components&#x2F;1-atoms&#x2F;input&#x2F;Input.spec.js">
+                <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;components&#x2F;1-atoms&#x2F;input&#x2F;Input.spec.js">
                     <pre>
                         <code>
 <!-- Leave space here -->

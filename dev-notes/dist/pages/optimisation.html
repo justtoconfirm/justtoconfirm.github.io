@@ -39,7 +39,7 @@
                 <p><ul class='list'><li>noopener - Instructs the browser to open the link without granting the new browsing context access to the document that opened it, by not setting the window.opener property on the opened window, this returns null.</li><li>noreferrer - Prevents the browser, when navigating to another page, from sending the page address or any other value, as a referrer via the Referer: HTTP header.</li></ul></p>
                 <p>This is something that can easily be fixed by adding the 'rel' attribute to your links that use the 'target' attribute:</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -75,7 +75,7 @@
                 <p>When using HTTP, everything sent between you and a web server is sent in plain text, it is not encrypted and can be intercepted by third parties. HTTPS encrypts this data for security and privacy. This is why HTTPS is used by many sites that require data security such as online shopping and online banking.</p>
                 <p>Often within the browser address bar, a small 'padlock' icon will be visible if HTTPS is being used.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -106,7 +106,7 @@ https://www.secure.com
                 <p>Each CSS file your page uses adds additional time to your webpage loading by requiring an additional file to be called. Combine CSS files into one single file will resolve this issue.</p>
                 <p>To combine CSS, you must copy the CSS from one CSS file and paste it into another. You must also remove the call for the original CSS file within your HTML.</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -128,7 +128,7 @@ https://www.secure.com
                 <p>By using the media attribute we can specify if the browser needs to render the CSS on the page load. The example below has a CSS file using the media attribute of 'print'. Modern browsers will know that this CSS file is not required to render the page. As a result, the browser will place a lower priority to that CSS file. The browser will still download it, but will do so in a manner that does not block rendering.</p>
                 <p>When we set a width as the media attribute, modern browsers will understand that this CSS is used in some situations and not used in others, so browsers can choose not to load this CSS file prior to rendering the page if it's not needed.</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -148,7 +148,7 @@ https://www.secure.com
                 <p>When using CSS, try to avoid using @import to call CSS as it adds to the time it takes to load the CSS before your page can load. Any @import used within your CSS calls should be removed and replaced. Rather than using the import method, it is better to just keep the additional CSS within one file.</p>
                 <p>CSS imports look like this and will usually be near the top of the file:</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -162,7 +162,7 @@ https://www.secure.com
                 <p>External blocking scripts force the browser to wait for the JavaScript to be fetched, which may add one or more network roundtrips before the page can be rendered. If the external scripts are small, you can inline their contents directly into the HTML document to avoid the network request latency.</p>
                 <p>Inlining the script within the HTML eliminates the external request for a JavaScript file and allows the browser to deliver a faster time to first render. Inlining however increases the size of the HTML document and the same JavaScript code may need to be inlined across multiple pages. You should only inline small scripts to deliver best performance.</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -181,7 +181,7 @@ https://www.secure.com
                 <p>By default, JavaScript blocks DOM construction and thus delays the time to first render. To prevent JavaScript from blocking the parser you can use the HTML async attribute on external scripts. Asynchronous JavaScript scripts are not guaranteed to execute in a specified order and should not use document.write . Scripts that depend on execution order or need to access or modify the DOM/CSS of the page, may need to be rewritten to account for these constraints.</p>
                 <p>The loading and execution of scripts that are not necessary for the initial page render may be deferred until after the initial render when the page has finished loading. Doing so can help improve performance.</p>
                 <!-- Code example -->
-                <div class="code" rel="html" data-title="HTML">
+                <div class="code-block" rel="html" data-title="HTML">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -212,7 +212,7 @@ https://www.secure.com
                 <p>This type of error can sometimes be caused due to a syntax error in a .htaccess file on the server. The server logs may indicate what has caused the error to occur and may contain more details about the request to prevent the error from happening again in the future.</p>
                 <p>This error maybe temporary, a page refresh or trying the URL once more, may often resolve this issue.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -228,7 +228,7 @@ https://www.secure.com
                 <p>Common causes are a server down for maintenance or an overloaded server. The response should be used for temporary conditions and the Retry-After HTTP header should, if possible, contain the estimated time for the recovery of the service.</p>
                 <p>A user-friendly page explaining the problem should be sent.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -245,7 +245,7 @@ https://www.secure.com
                 <p>This process of minification creates a file which is optimised, but harder to read. This often removes whitespace and comments, and shortening of variable names or functions to be more concise. This process only needs to be performed when the source code changes.</p>
                 <p>You may see a number of files with the prefix of '.min' suggesting that these files have been minified.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -276,7 +276,7 @@ https://www.secure.com
                 <h2 class="section-heading section-heading__border-btm">SQL Injection</h2>
                 <p>SQL injection attacks are when an attacker uses a web form field or URL parameter to gain access to or to gain access to your database. Without security, it is very easy to use SQL to change tables, delete data, and get information from your database. You can prevent this by always using parameterised queries.</p>
                 <!-- Code example -->
-                <div class="code" rel="" data-title="">
+                <div class="code-block" rel="" data-title="">
                     <pre>
                         <code>
 <!-- Leave space here -->
@@ -298,7 +298,7 @@ since '1' is equal to '1'
             <section>
                 <p>You could fix this query by explicitly parameterising it. For example, if you we're to use MySQLi in PHP, this should become:</p>
                 <!-- Code example -->
-                <div class="code" rel="php" data-title="PHP">
+                <div class="code-block" rel="php" data-title="PHP">
                     <pre>
                         <code>
 <!-- Leave space here -->
