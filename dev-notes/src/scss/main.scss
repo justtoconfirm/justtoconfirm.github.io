@@ -4,6 +4,7 @@
 // Mixins
 @import 'mixins/codebar';
 @import 'mixins/font';
+@import 'mixins/rem';
 
 // Components
 @import 'components/code';
@@ -16,5 +17,9 @@
 
 // https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
 // Atomic - use classes
+
+body {
+	font-size: 16px;
+}
 
 @include font-face('SourceSansPro-Regular');

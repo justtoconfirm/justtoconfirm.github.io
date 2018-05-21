@@ -1,0 +1,8 @@
+// Mixin to apply rem font sizes
+// @param $size: Font size in pixels.
+// @param $base [optional]: The base font size. Is 16px if not value is provided
+
+@mixin rem( $size, $base: 16 ) {
+    font-size: $size * 1px;     // Pixel fallback for older browsers
+    font-size: ( $size / $base ) * 1rem;    // rem
+}
