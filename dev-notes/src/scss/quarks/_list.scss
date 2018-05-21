@@ -14,9 +14,15 @@ Remove this code once .list class has been removed from the HTML
 ul {
 	font-size: 14px;	// Perhaps remove font size
 	padding: 15px 0 15px 12px;		// revise, could use remove padding-left class to align with content
+	font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
 
 	li {
 		line-height: 20px;			// revise
+		font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+		font-size: 14px;
+		-moz-osx-font-smoothing: grayscale;
+		color: #34495e;
+		font-weight: 300;
 	}
 }
 

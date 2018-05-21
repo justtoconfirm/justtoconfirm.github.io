@@ -143,10 +143,16 @@ Remove this code once .list class has been removed from the HTML
 ul {
   font-size: 14px;
   padding: 15px 0 15px 12px;
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
 }
 
 ul li {
   line-height: 20px;
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+  font-weight: 300;
 }
 
 .no-list {
