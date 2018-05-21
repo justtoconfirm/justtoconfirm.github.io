@@ -15,3 +15,26 @@
 
 // https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
 // Atomic - use classes
+
+// Font Test
+// Mixin to apply @font-face
+// @param $font-family: Name of the font file without the file extension
+// @param $font-style [optional]: Defines how the font should be styled [ normal | italic | oblique ]
+// @param $font-weight [optional]: Defines the boldness of the font [ normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 ]
+// font-style and font-weight properties will not be included if no value is provided - value is null be default
+
+@mixin font-face( $font-family, $font-style: null, $font-weight: null ) {
+	@font-face {
+            font-family: $font-family;
+            src: url( '../font/#{$font-family}.eot' );    // IE9 Compatibility modes
+            src: url( '../font/#{$font-family}.eot?#iefix' ) format( 'embedded-opentype' ),    // IE6-IE8
+                 url( '../font/#{$font-family}.woff2' ) format( 'woff2' ),    // Super modern browsers
+                 url( '../font/#{$font-family}.woff' ) format( 'woff' ),    // Modern browsers
+                 url( '../font/#{$font-family}.ttf' ) format( 'truetype' ),    // Safari, Android, iOS
+                 url( '../font/#{$font-family}.svg#{$font-family}' ) format( 'svg' );    // Legacy iOS
+            font-style: $font-style;      // Not included unless value provided 
+            font-weight: $font-weight;      // Not included unless value provided		
+	}
+}
+
+@include font-face('SourceSansPro-Regular');

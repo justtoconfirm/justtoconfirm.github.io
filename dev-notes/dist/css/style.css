@@ -100,8 +100,23 @@ pre code .tag {
 }
 */
 
+h1,
 h2 {
   font-size: 20px;
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+  color: #2c3e50;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: 200;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 200;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 }
 
 a {
@@ -139,5 +154,16 @@ ul li {
 }
 
 p {
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
+  line-height: 1.6em;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("../font/SourceSansPro-Regular.eot");
+  src: url("../font/SourceSansPro-Regular.eot?#iefix") format("embedded-opentype"), url("../font/SourceSansPro-Regular.woff2") format("woff2"), url("../font/SourceSansPro-Regular.woff") format("woff"), url("../font/SourceSansPro-Regular.ttf") format("truetype"), url("../font/SourceSansPro-Regular.svgSourceSansPro-Regular") format("svg");
 }
