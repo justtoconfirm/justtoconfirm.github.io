@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>Node.js</h1>
+            <h1 class="page-heading">Node.js</h1>
 
         </div>
     </div>
@@ -30,7 +30,7 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Node.js is a JavaScript run-time environment. This includes everything you need to execute a program written in JavaScript. This extends JavaScript from something you can only run in the browser to something you could run on your machine as a standalone application. This provides JavaScript with the capability to do things other scripting langages like Python can do.</p>
                 <p>Node.js runs on the V8 JavaScript runtime engine. This engine is open-source, written in C++, and takes your JavaScript code and converts it into machine code, which is faster. Machine code is low level which the computer can run without the need to interpret it first.</p>
                 <p>I/O refers to input/output. It can be anything ranging from reading/writing local files, to making an HTTP request to an API - simply a way for one program to interact with another. I/O takes time and blocks other functions. By being non-blocking, the I/O can initiate a data request without waiting for the response from another request. Both requests can be initiated in parallel. This non-blocking I/O eliminates the need for multi-threading since the server can handle multiple requests at the same time.</p>
@@ -63,7 +63,7 @@ $ node --version
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>NPM (Node Package Manager)</h2>
+                <h2 class="section-heading section-heading__border-btm">NPM (Node Package Manager)</h2>
                 <p>NPM (Node Package Manager) contains a number of packages built by a community of developers that are used to solve many different problems. These packages can be used in your apps to make your development faster and more efficient.</p>
                 <p>When Node.js has been installed, you will have access to NPM. NPM often comes with Node.js, but it is often an old version as Node's release cycle is often behind NPM's, so NPM may need to be updated.</p>
                 <p>You can open the terminal and confirm the version of NPM you have installed:</p>
@@ -117,7 +117,7 @@ $ npm install &lt;package-name&gt; --save
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Node Modules</h2>
+                <h2 class="section-heading section-heading__border-btm">Node Modules</h2>
                 <p>A Node module is a reusable block of code. You can write your own module and use it in various applications. Node.js also has a set of built-in modules which you can use.</p>
                 <p>Node/NPM modules are just regular JavaScript files. They must follow the CommonJS module spec. UMD is also permitted to be used and is compatible with CommonJS.</p>
                 <p>The exports keyword is used to make properties and methods in the module available outside of the module file.</p>
@@ -158,7 +158,7 @@ const config = require('/path/to/file');
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Hello World</h2>
+                <h2 class="section-heading section-heading__border-btm">Hello World</h2>
                 <p>Writing 'Hello World' is pretty simple when using Node.js. Begin by opening a file named app.js and adding the following code:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: app.js">
@@ -185,7 +185,7 @@ $ node app.js
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Testing</h2>
+                <h2 class="section-heading section-heading__border-btm">Testing</h2>
                 <p>Node has a built-in assert module for testing expressions. This is similar to Chai.</p>
                 <p>See the <a href='tdd.html'>TDD (Test Driven Development)</a> documentation.</p>
                 <p>In this example, we are including the module using the require function.</p>

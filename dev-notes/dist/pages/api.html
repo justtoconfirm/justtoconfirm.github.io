@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>API</h1>
+            <h1 class="page-heading">API</h1>
 
         </div>
     </div>
@@ -30,14 +30,14 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction to APIs</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction to APIs</h2>
                 <p>API is the acronym for Application Programming Interface. It allows two applications to talk to each other.</p>
                 <p>Each time you use an application like Facebook or Twitter, send an instant message, or check the weather on your phone or desktop, you're using an API. Third party APIs allow you to use a third-party platform, such as Twitter or Facebook, to use some of the platform's functionality in your own applications or webpages. The Twitter API, for example, can be used to display recent Tweets on your web page.</p>
                 <p>An API is basically an object that contains properties to store data the API uses, and methods to provide functionality the API makes available.</p>
                 <p>We often use HTTP requests to interact with an API.</p>
             </section>
             <section class="pad-btm">
-                <h2>REST &amp; RESTful APIs</h2>
+                <h2 class="section-heading section-heading__border-btm">REST &amp; RESTful APIs</h2>
                 <p>REST determines what the API looks like. It stands for Representational State Transfer. It is a set of rules that developers follow when they create their APIs. The terms REST and RESTful APIs are simply referring to a set of standards that confirm to a specific architectural style. One of these rules states that you should be able to get a piece of data (called a resource) when you link to a specific URL. A request is made to the API and a response is returned.</p>
                 <p>The endpoint (or route) is the URL of the API you are requesting. The starting point of an APIs endpoint is called the root-endpoint. Here are a few examples:</p>
                 <!-- Code example -->
@@ -130,13 +130,13 @@ https://api.github.com/users/justtoconfirm/repos?<span class='name'>sort</span>=
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Authentication</h2>
+                <h2 class="section-heading section-heading__border-btm">Authentication</h2>
                 <p>When sending a POST request through to GitHub's API, authentication is required because you're not authorised to perform the POST request. Developers put measures in place to ensure you perform actions only when you're authorised to do so. Since POST, PUT, PATCH and DELETE requests alter the database, developers will almost always put them behind an authentication wall. In some cases, GET requests may also require authentication.</p>
                 <p>Authentication can either be done using a username and password - this is called basic authentication - or with a secret token. The secret token method, such as oAuth, lets you authenticate yourself with social media networks like GitHub, Google, Twitter and Facebook.</p>
                 <p>Basic authentication takes the username and password from the client, combine both into a single value, and passes to the server within a HTTP header request. When the server receives this authorisation header, it compares it to stored credentials and if the username and password are a match, the server fulfils the request from the client. If not, a 401 status code is returned to the client confirming that the authentication has failed.</p>
             </section>
             <section class="pad-btm">
-                <h2>API Updates</h2>
+                <h2 class="section-heading section-heading__border-btm">API Updates</h2>
                 <p>Developers update their APIs from time to time. Sometimes the developer will change the API so much, that the version will be updated. If this happens, and your application breaks, it's usually because you've written code for an older API, but your request points to the newer API.</p>
                 <p>Some APIs will display the version number to the endpoint to make it easier to confirm the version being used.</p>
                 <!-- Code example -->

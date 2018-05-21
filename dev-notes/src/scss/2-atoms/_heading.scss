@@ -1,0 +1,19 @@
+%heading-styling {
+	color: $heading;
+	font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+	font-weight: 200;
+}
+
+.page-heading {
+	@extend %heading-styling;
+}
+
+.section-heading {
+	@extend %heading-styling;
+
+	// Border added below the section-heading
+	&__border-btm {
+		border-bottom: 1px solid $heading-border;
+		padding-bottom: 10px;
+	}
+}

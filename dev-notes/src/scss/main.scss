@@ -1,3 +1,6 @@
+// Variables
+@import 'variables/color';
+
 // Utility
 @import 'util/padding';
 
@@ -10,10 +13,13 @@
 @import 'components/code';
 
 // Quarks - style elements
-@import 'quarks/heading';
-@import 'quarks/link';
-@import 'quarks/list';
-@import 'quarks/paragraph';
+@import '1-quarks/heading';			// done
+@import '1-quarks/link';
+@import '1-quarks/list';
+@import '1-quarks/paragraph';
+
+// Atomic
+@import '2-atoms/heading';
 
 // https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
 // Atomic - use classes

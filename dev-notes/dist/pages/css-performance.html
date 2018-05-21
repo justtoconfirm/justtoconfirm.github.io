@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>CSS Performance</h1>
+            <h1 class="page-heading">CSS Performance</h1>
 
         </div>
     </div>
@@ -30,11 +30,11 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>CSS is not the largest asset to consider during development, but it is one of the first the browser discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed, so it's always worthwhile to consider performance to make your stylesheets as lean as possible.</p>
             </section>
             <section class="pad-btm">
-                <h2>Shallow Selectors</h2>
+                <h2 class="section-heading section-heading__border-btm">Shallow Selectors</h2>
                 <p>Used correctly, shallow selectors can reduce kilobytes off the file size of your CSS stylesheets. As well as keeping your CSS tidy, the browser will also render the elements targeted by shallow selectors faster. Browsers read selectors from right to left. The deeper the selectors are, the longer it takes for the browser to render or re-render those elements.</p>
                 <p>Ideally you want selectors to be as shallow as possible, but sometimes you will need to add additional specificity to elements.</p>
                 <!-- Code example -->
@@ -53,7 +53,7 @@ nav ul li.nav-item
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Shorthand Properties</h2>
+                <h2 class="section-heading section-heading__border-btm">Shorthand Properties</h2>
                 <p>Using shorthand CSS properties will speed up your website, increased component flexibility and is convenient. Often longhand properties are used needlessly when a shorthand property is more suitable.</p>
                 <p>Here is an example of a longhand property:</p>
                 <!-- Code example -->
@@ -186,7 +186,7 @@ h1 {
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Preload</h2>
+                <h2 class="section-heading section-heading__border-btm">Preload</h2>
                 <p>The preload resource hint can give browsers a head start loading your CSS stylesheets. The preload resource hint tells the browser to initiate an early fetch for an asset. This can be set as an attribute value within the &lt;link&gt; tag within your HTML, or as an HTTP header in your server configuration.</p>
                 <p>This is not supported on IE (Internet Explorer), but is supported within Edge (version 17 and later), Firefox (version 59 and later), Chrome, and Safari (version 11.1 and later).</p>
                 <p>Using the as attribute also allows the browser to prioritise resource loading more accurately, apply the correct content security policy to the resource, and set the correct Accept request headers for it.</p>

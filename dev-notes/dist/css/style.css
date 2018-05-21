@@ -51,13 +51,6 @@ pre code .tag {
   width: 100%;
 }
 
-/*
-%code-description {
-	color: #fff;
-	font-size: 14px;
-}
-*/
-
 .code[rel=js]::before {
   background-color: #ff9800;
   color: #fff;
@@ -82,48 +75,14 @@ pre code .tag {
   font-size: 14px;
 }
 
-/*
-.code[rel="js"]::before {
-	@extend %code-description;
-	background-color: #ff9800;
+h1 {
+  font-size: 30px;
+  font-size: 1.875rem;
 }
 
-.code[rel="html"]::before {
-	@extend %code-description;
-	background-color: #1779ba;
-}
-
-.code[rel="css"]::before {
-	@extend %code-description;
-	background-color: #f5da55;
-}
-
-.code[rel="php"]::before {
-	@extend %code-description;
-	background-color: #42b983;
-}
-*/
-
-h1,
 h2 {
   font-size: 20px;
   font-size: 1.25rem;
-  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
-  color: #2c3e50;
-}
-
-h1 {
-  font-size: 35px;
-  font-size: 2.1875rem;
-  font-weight: 200;
-}
-
-h2 {
-  font-size: 22px;
-  font-size: 1.375rem;
-  font-weight: 200;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
 }
 
 a {
@@ -176,6 +135,18 @@ p {
   -moz-osx-font-smoothing: grayscale;
   color: #34495e;
   font-weight: 300;
+}
+
+.page-heading,
+.section-heading {
+  color: #2c3e50;
+  font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 200;
+}
+
+.section-heading__border-btm {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 }
 
 body {

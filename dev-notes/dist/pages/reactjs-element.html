@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>Elements</h1>
+            <h1 class="page-heading">Elements</h1>
 
         </div>
     </div>
@@ -30,7 +30,7 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Elements are the smallest building blocks of a React application and are used to describe what you want to see on the screen. Unlike browser DOM elements, React elements are objects. Components in React are made up of elements. React DOM takes care of updating the DOM to match the React element.</p>
                 <p>Once you create an element you cannot change its children or attributes, the React element is immutable. The element is a representation of the UI at a certain point in time.</p>
                 <!-- Code example -->
@@ -52,7 +52,7 @@
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Example : Clock</h2>
+                <h2 class="section-heading section-heading__border-btm">Example : Clock</h2>
                 <p>In this next example, we will create a ticking clock. A function will be created containing a new element that will be passed into the ReactDOM.render method. The function will be called every second to update the clock displayed on the page. In practice, most React applications only call ReactDOM.render once.</p>
                 <p>If you inspect the HTML of our simple application, only the time will be updated and the page will remain the same. React DOM compares the element and its children to the previous one - a bit like a single frame in a movie - and only updates the DOM to the necessary state if it needs updating. As the page itself does not need updating, it remains the same and only the clock itself (where the contents have changed) is updated by React DOM.</p>
                 <!-- Code example -->

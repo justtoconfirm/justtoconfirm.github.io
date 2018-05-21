@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>Test Driven Development (TDD)</h1>
+            <h1 class="page-heading">Test Driven Development (TDD)</h1>
 
         </div>
     </div>
@@ -30,12 +30,12 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The tests are written to fail initially, and the developer then writes the code to fulfill the requirements of the test so that they pass.</p>
                 <p><!-- https://www.youtube.com/watch?v=MLTRHc5dk6s --></p>
             </section>
             <section class="pad-btm">
-                <h2>Mocha</h2>
+                <h2 class="section-heading section-heading__border-btm">Mocha</h2>
                 <p>Mocha is a JavaScript test framework that runs using Node.js and within the browser. To install Mocha v3.0.0 or later, you will need NPM (Node Package Manager) v2.14.2 or later. To run Mocha, Node.js version 4 or later is required.</p>
                 <p>Alternatives to Mocha include: Jest, Jasmine, AVA, and Tape. Mocha does not have an assertion library, a tool used to verify that things are correct, but assertion libraries such as Expect or Chai can be used with Mocha.</p>
                 <p>Using NPM (Node Package Manager), Mocha can be installed using the terminal. The NPM package should be installed as a devDependency.</p>
@@ -51,7 +51,7 @@ $ npm install mocha --save-dev
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Test directory</h2>
+                <h2 class="section-heading section-heading__border-btm">Test directory</h2>
                 <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -145,7 +145,7 @@ const chai = require('chai');
                 <p>Now when you run the test script using the NPM command within the package.json file, Mocha will run the tests within the components directory. In this example, the Input.spec.js file will run and test the Input.js React component module.</p>
             </section>
             <section class="pad-btm">
-                <h2>Chai</h2>
+                <h2 class="section-heading section-heading__border-btm">Chai</h2>
                 <p>Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.</p>
                 <p>Chai can be installed as a devDependency using the following terminal command:</p>
                 <!-- Code example -->
@@ -160,7 +160,7 @@ $ npm install chai --save-dev
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Writing Tests</h2>
+                <h2 class="section-heading section-heading__border-btm">Writing Tests</h2>
                 <p>Within the test directory create a file named appTest.js that will contain our tests.</p>
                 <p>We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module.</p>
                 <!-- Code example -->
@@ -202,7 +202,7 @@ module.exports = function() {
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Running Tests</h2>
+                <h2 class="section-heading section-heading__border-btm">Running Tests</h2>
                 <p>Once the test has been written, we can use NPM (Node Package Manager) to run the test. Open the package.json file and add the following:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -261,7 +261,7 @@ $ npm run test
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>ES6 with Mocha</h2>
+                <h2 class="section-heading section-heading__border-btm">ES6 with Mocha</h2>
                 <p>You may want to use ES6 JavaScript syntax within your test files. You will need to make a few amendments and have Babel setup within your build/testing process.</p>
                 <p>Begin by updating the mocha.opts file within the test directory to allow ES6 syntax to be used:</p>
                 <!-- Code example -->

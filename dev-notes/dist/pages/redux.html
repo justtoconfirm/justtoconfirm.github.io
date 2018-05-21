@@ -20,7 +20,7 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1>Redux</h1>
+            <h1 class="page-heading">Redux</h1>
 
         </div>
     </div>
@@ -30,13 +30,13 @@
             <section class="pad-btm">
             </section>
             <section class="pad-btm">
-                <h2>Introduction</h2>
+                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Redux is a JavaScript library to manage the state (or data) of your application, helping you to manage the data you display and how you respond to user actions. It's ideal for Single Page Applications (SPA).</p>
                 <p>Redux is no relation to React. You can use Redux with React, Angular, Ember, jQuery, or vanilla JavaScript.</p>
                 <p>A Google Chrome extension exists for Redux and can be installed from <a href='https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en' target='_blank'>here</a></p>
             </section>
             <section class="pad-btm">
-                <h2>Install Redux</h2>
+                <h2 class="section-heading section-heading__border-btm">Install Redux</h2>
                 <p>Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file.</p>
                 <p>Should you want to use Redux with React, use NPM to install react-redux as a dependency also. The react-redux module makes the connection between React and Redux.</p>
                 <!-- Code example -->
@@ -54,7 +54,7 @@ $ npm install react-redux --save
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Store</h2>
+                <h2 class="section-heading section-heading__border-btm">Store</h2>
                 <p>The store is one big JavaScript object that has key-value pairs. These pairs represent the current state of the application. Unlike state within React that is across different components, we only have one store that provides the application state. Each tme the state updates, the view re-renders.</p>
                 <p>The store cannot be directly modified. The only way to do so is through the use of reducers.</p>
                 <p>Redux has a createStore method to create a new store. Within the index.js file of your React application, add the following import statement to create the store:</p>
@@ -149,7 +149,7 @@ ReactDOM.render (
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Reducers</h2>
+                <h2 class="section-heading section-heading__border-btm">Reducers</h2>
                 <p>The reducer is used to update the state. It should always be a pure function, so given a set of inputs, it should always return the same output.</p>
                 <p>Let's create an empty function. This will be our reducer. The reducer will also be added as an argument of the createStore method.</p>
                 <!-- Code example -->
@@ -226,7 +226,7 @@ const reducer = function(state=[], action) {
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Adding Data</h2>
+                <h2 class="section-heading section-heading__border-btm">Adding Data</h2>
                 <p>Now that the reducer has been created, let's add some test data. We will also add a console.log to print out the current state in the console to confirm the store has some initial data.</p>
                 <p>If you view the console, the contents of the store will be output.</p>
                 <!-- Code example -->
@@ -278,7 +278,7 @@ ReactDOM.render (
                 <!-- / Code example -->
             </section>
             <section class="pad-btm">
-                <h2>Actions</h2>
+                <h2 class="section-heading section-heading__border-btm">Actions</h2>
                 <p>Currently, our reducer does nothing. We need to define actions. Actions are simply JavaScript objects that send information (payloads of information) from your application to the store. They are the only source of information for the store. The state of the store only changes in response to an action.</p>
                 <p>Each action must have a type property that describes what the action intends to do. Actions should be small to represent the minimum amount of information required to transform the application state.</p>
                 <p>An optional payload property can also be included, although this property can be renamed to be something more meaningful, or you can omit it entirely.</p>
