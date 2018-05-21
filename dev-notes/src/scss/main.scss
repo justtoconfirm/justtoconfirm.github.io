@@ -16,6 +16,10 @@
 // https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
 // Atomic - use classes
 
+.no-padding-left {
+	padding-left: 0;
+}
+
 // Font Test
 // Mixin to apply @font-face
 // @param $font-family: Name of the font file without the file extension
