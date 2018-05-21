@@ -27,13 +27,13 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>CSS is not the largest asset to consider during development, but it is one of the first the browser discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed, so it's always worthwhile to consider performance to make your stylesheets as lean as possible.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Shallow Selectors</h2>
                 <p>Used correctly, shallow selectors can reduce kilobytes off the file size of your CSS stylesheets. As well as keeping your CSS tidy, the browser will also render the elements targeted by shallow selectors faster. Browsers read selectors from right to left. The deeper the selectors are, the longer it takes for the browser to render or re-render those elements.</p>
                 <p>Ideally you want selectors to be as shallow as possible, but sometimes you will need to add additional specificity to elements.</p>
@@ -52,7 +52,7 @@ nav ul li.nav-item
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Shorthand Properties</h2>
                 <p>Using shorthand CSS properties will speed up your website, increased component flexibility and is convenient. Often longhand properties are used needlessly when a shorthand property is more suitable.</p>
                 <p>Here is an example of a longhand property:</p>
@@ -69,7 +69,7 @@ font-family: 'Arial', 'Helvetica', sans-serif;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>That's plenty of CSS, but let's use a shorthand property to tidy things up:</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -82,7 +82,7 @@ font: 1.5rem/1.618 'Arial', 'Helvetica', sans-serif;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Another example showing the background properties simplified to a single declaration:</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -102,7 +102,7 @@ background: #000 url(images/bg.gif) no-repeat left top;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>With borders, the width, colour, and style can be simplified into one declaration.</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -121,7 +121,7 @@ border: 1px solid #000;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Shorthand versions of margin and padding values work in the same way. Note that the values are in a clockwise order beginning at the top, right, bottom, and left.</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -141,7 +141,7 @@ margin: 10px 5px 10px 5px;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>With padding and margin, the shorthand properties can be reduced further:</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -164,7 +164,7 @@ margin: 10px;
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>If you need to override a value further down in the cascade you would use a more specific property instead.</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -185,7 +185,7 @@ h1 {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Preload</h2>
                 <p>The preload resource hint can give browsers a head start loading your CSS stylesheets. The preload resource hint tells the browser to initiate an early fetch for an asset. This can be set as an attribute value within the &lt;link&gt; tag within your HTML, or as an HTTP header in your server configuration.</p>
                 <p>This is not supported on IE (Internet Explorer), but is supported within Edge (version 17 and later), Firefox (version 59 and later), Chrome, and Safari (version 11.1 and later).</p>
@@ -210,7 +210,7 @@ h1 {
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><a href='css.html'>CSS</a></li>
                 </ul>
@@ -224,13 +224,13 @@ h1 {
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -240,7 +240,7 @@ h1 {
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

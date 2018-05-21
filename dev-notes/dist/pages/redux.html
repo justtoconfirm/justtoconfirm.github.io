@@ -27,15 +27,15 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Redux is a JavaScript library to manage the state (or data) of your application, helping you to manage the data you display and how you respond to user actions. It's ideal for Single Page Applications (SPA).</p>
                 <p>Redux is no relation to React. You can use Redux with React, Angular, Ember, jQuery, or vanilla JavaScript.</p>
                 <p>A Google Chrome extension exists for Redux and can be installed from <a href='https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en' target='_blank'>here</a></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Install Redux</h2>
                 <p>Redux can be installed using NPM (Node Package Manager). Open the terminal and enter the following command to install Redux as a dependency of your project. You will require a package.json file.</p>
                 <p>Should you want to use Redux with React, use NPM to install react-redux as a dependency also. The react-redux module makes the connection between React and Redux.</p>
@@ -53,7 +53,7 @@ $ npm install react-redux --save
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Store</h2>
                 <p>The store is one big JavaScript object that has key-value pairs. These pairs represent the current state of the application. Unlike state within React that is across different components, we only have one store that provides the application state. Each tme the state updates, the view re-renders.</p>
                 <p>The store cannot be directly modified. The only way to do so is through the use of reducers.</p>
@@ -69,7 +69,7 @@ import { createStore } from 'redux'
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Now that the store has been created, we need to let our application know that the store exists. The react-redux library contains the Provider method. The Provider is wrapped around our App component to provide us with access to the Store throughout our entire application. It is a React component given to use by the react-redux library and is used to provide the store to it's child components.</p>
                 <p>Let's update the index.js file to include the Provider:</p>
                 <!-- Code example -->
@@ -94,7 +94,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Next, we will create the store itself using the createStore method that has been imported into the index.js file. A reducer will be passed into this method, but for now we will leave this empty. Within this method, you may optionally specify a second argument that sets the initial state of the store.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
@@ -121,7 +121,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The Provider is given the store as a prop:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
@@ -148,7 +148,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Reducers</h2>
                 <p>The reducer is used to update the state. It should always be a pure function, so given a set of inputs, it should always return the same output.</p>
                 <p>Let's create an empty function. This will be our reducer. The reducer will also be added as an argument of the createStore method.</p>
@@ -180,7 +180,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The reducer can now be updated to include two arguments. The first argument, state is the current data held in the store. This is returned by the function. The second argument of action is also added.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
@@ -210,7 +210,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The data kept in the Redux store can be accessed directly, but can only be updated via the supplied reducer. The state argument in the reducer contains the current data held in the store. The store currently has no data, so is undefined or null. To remedy this, just assign a default value to the state to make it an empty array.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: src&#x2F;index.js">
@@ -225,7 +225,7 @@ const reducer = function(state=[], action) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Adding Data</h2>
                 <p>Now that the reducer has been created, let's add some test data. We will also add a console.log to print out the current state in the console to confirm the store has some initial data.</p>
                 <p>If you view the console, the contents of the store will be output.</p>
@@ -277,7 +277,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Actions</h2>
                 <p>Currently, our reducer does nothing. We need to define actions. Actions are simply JavaScript objects that send information (payloads of information) from your application to the store. They are the only source of information for the store. The state of the store only changes in response to an action.</p>
                 <p>Each action must have a type property that describes what the action intends to do. Actions should be small to represent the minimum amount of information required to transform the application state.</p>
@@ -290,7 +290,7 @@ ReactDOM.render (
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><!-- https://dev.to/aurelkurtula/introduction-to-redux-1g3 --></li>
                     <li><!-- https://hackernoon.com/redux-step-by-step-a-simple-and-robust-workflow-for-real-life-apps-1fdf7df46092 --></li>
@@ -318,13 +318,13 @@ ReactDOM.render (
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -334,7 +334,7 @@ ReactDOM.render (
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

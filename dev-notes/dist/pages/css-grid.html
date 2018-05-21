@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>There are several ways to make CSS Grid reponsive. One of the most popular ways is to use the fr unit. The fr unit is a flexible length that represents a fraction. When you use the fr unit, browsers divide the open space and allocate the areas to columns based on the fr multiple. This means that to create four columns of equal size, you would write 1fr four times.</p>
                 <!-- Code example -->
                 <div class="code" rel="css" data-title="CSS">
@@ -46,7 +46,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Let's do some calculations to show how this works. First, let's assume the total space available for the grid is 1260px. Before allocating width to each column, the CSS Grid needs to know how much space is available (or leftover). The Grid subtracts grip-gap from 1260px. Since each gap is 20px, we're left with 1200px for the available space.</p>
                 <p>(1260 - (20 * 3) = 1200)</p>
                 <p>Next, it adds up the four fr unit multiples, so the browser divides 1200px by four, each column becomes 300px and we have four equal columns.</p>
@@ -84,7 +84,7 @@ img {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>And now for the HTML:</p>
                 <!-- Code example -->
                 <div class="code" rel="html" data-title="HTML">
@@ -110,7 +110,7 @@ img {
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><a href='css.html'>CSS</a></li>
                     <li><!-- https://www.smashingmagazine.com/2018/05/future-of-web-design/ --></li>
@@ -125,13 +125,13 @@ img {
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -141,7 +141,7 @@ img {
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

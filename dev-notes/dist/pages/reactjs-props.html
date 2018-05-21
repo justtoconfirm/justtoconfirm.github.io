@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called 'props') and return React elements describing what should appear on the screen.</p>
                 <p>The file structure for our simple React project can be found below. We follow the Atomic Design methodology for our file structure.</p>
@@ -55,7 +55,7 @@ src/
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Passing Props</h2>
                 <p>We can pass props between components. Usually in React, props are passed from parent components down into child components.</p>
                 <p>In this next example, we will pass props into the Input component. This will use the index.js file. We are passing props of 'type' and 'placeholder' with values down to the Input component. If the props are not used, the default values in the Input component itself will be used.</p>
@@ -78,7 +78,7 @@ ReactDOM.render (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Spread Attribute</h2>
                 <p>The aim of the spread attribute is to make the passing of props easier between React components.</p>
                 <p>We can firstly create a simple React component for an input field which accepts multiple props.</p>
@@ -101,7 +101,7 @@ export default Input
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>We can simplify the use of props by now applying the spread attributes.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="src&#x2F;components&#x2F;1-atoms&#x2F;input&#x2F;Input.js">
@@ -122,7 +122,7 @@ export default Input
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The Label code has also been provided below. As with the Input field, the values for the props will be passed into the Label and Input components from the FormField component (parent component) initially.</p>
                 <p>Within the Label component you will see the htmlFor attribute. This is simply the 'for' attribute for use of HTML Label elements within forms.</p>
                 <!-- Code example -->
@@ -146,11 +146,11 @@ export default Label
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>In the examples above, you may have noticed the attribute of className. This allows the element to have a class attribute applied. In this example, we are applying the class of 'input' to the Input element to allow CSS styling to be applied.</p>
                 <p>The 'type' prop has the value of 'text'. If no 'type' is passed to the component, the default type of 'text' will be applied, therefore the input field will always be a text input field by default. This is similar to the 'placeholder' prop. This will be empty by default unless a value is passed to the component.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Render Function</h2>
                 <p>We can now create an example showing how we can pass props to components and create a component that will generate a form field using an Input and Label component.</p>
                 <!-- Code example -->
@@ -186,7 +186,7 @@ export default FormField
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Updating the index.js file to render the FormField component on the page. This will render a Label and Input component. We will pass the props when we render the FormField on the page down into the Input and Label components.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="src&#x2F;index.js">
@@ -212,7 +212,7 @@ ReactDOM.render (
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><a href='reactjs.html'>React.js</a></li>
                 </ul>
@@ -226,13 +226,13 @@ ReactDOM.render (
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -242,7 +242,7 @@ ReactDOM.render (
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

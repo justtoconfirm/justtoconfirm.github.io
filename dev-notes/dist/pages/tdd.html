@@ -27,14 +27,14 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Test Driven Development (TDD) is an approach to writing software where you write tests before you write the application code. The tests are written to fail initially, and the developer then writes the code to fulfill the requirements of the test so that they pass.</p>
                 <p><!-- https://www.youtube.com/watch?v=MLTRHc5dk6s --></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Mocha</h2>
                 <p>Mocha is a JavaScript test framework that runs using Node.js and within the browser. To install Mocha v3.0.0 or later, you will need NPM (Node Package Manager) v2.14.2 or later. To run Mocha, Node.js version 4 or later is required.</p>
                 <p>Alternatives to Mocha include: Jest, Jasmine, AVA, and Tape. Mocha does not have an assertion library, a tool used to verify that things are correct, but assertion libraries such as Expect or Chai can be used with Mocha.</p>
@@ -50,7 +50,7 @@ $ npm install mocha --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Test directory</h2>
                 <p>By default, Mocha looks for files to test in a test directory. Within the root directory of your project, create a test directory/folder.</p>
                 <!-- Code example -->
@@ -64,7 +64,7 @@ $ mkdir test
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>You can use the built-in Node.js assert module to test if true is equal to true. This will be our initial test, and should pass. This example is using the ES6 arrow function.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: test&#x2F;test.js">
@@ -82,7 +82,7 @@ it('should return true', () => {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>By default, Mocha will look for test files within the test directory folder that has been created within the root of the project folder. This is fine, however, we would like to place test files in the same directory/folder as the JavaScript code being tested. In React, this would be the components directory.</p>
                 <p>We will still have a 'test' directory/folder within the root of your project folder, but we will have two files - setup.js and mocha.opts.</p>
                 <p>The test files will be named with the prefix '.spec.js' and be placed in the same directory as the component files as the example below demonstrates.</p>
@@ -114,7 +114,7 @@ webpack.config.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The mocha.opts file will look like this:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: test&#x2F;mocha.opts">
@@ -128,7 +128,7 @@ src/**/*.spec.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The setup.js code will look like this:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: test&#x2F;setup.js">
@@ -141,10 +141,10 @@ const chai = require('chai');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Now when you run the test script using the NPM command within the package.json file, Mocha will run the tests within the components directory. In this example, the Input.spec.js file will run and test the Input.js React component module.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Chai</h2>
                 <p>Chai is a Test Driven Development (TDD)/Behaviour Driven Development (BDD) assertion library that can be paired with a JavaScript testing framework such as Mocha. Node also has it's own built-in assertion module named Assert should you not want to use Chai.</p>
                 <p>Chai can be installed as a devDependency using the following terminal command:</p>
@@ -159,7 +159,7 @@ $ npm install chai --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Writing Tests</h2>
                 <p>Within the test directory create a file named appTest.js that will contain our tests.</p>
                 <p>We can now write the test code in test/appTest.js. This should initially fail until we write the app.js module.</p>
@@ -184,7 +184,7 @@ describe('App', function() {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Create a file named app.js in the root directory of your project, this will be our module we are testing.</p>
                 <p>We'll now write the app.js module code. When the test is run, 'hello' should be returned and the test will now pass.</p>
                 <!-- Code example -->
@@ -201,7 +201,7 @@ module.exports = function() {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Running Tests</h2>
                 <p>Once the test has been written, we can use NPM (Node Package Manager) to run the test. Open the package.json file and add the following:</p>
                 <!-- Code example -->
@@ -217,7 +217,7 @@ module.exports = function() {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Should you want to hide NPM output if the test fails, you can add a 'true' flag to the command.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -232,7 +232,7 @@ module.exports = function() {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>To run test files that maybe within subdirectories, the following should be used within the package.json file and is recommended:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -247,7 +247,7 @@ module.exports = function() {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The test can now be run from with the terminal using the following command:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -260,7 +260,7 @@ $ npm run test
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">ES6 with Mocha</h2>
                 <p>You may want to use ES6 JavaScript syntax within your test files. You will need to make a few amendments and have Babel setup within your build/testing process.</p>
                 <p>Begin by updating the mocha.opts file within the test directory to allow ES6 syntax to be used:</p>
@@ -278,7 +278,7 @@ src/**/*.spec.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Next, update the package.json file:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -293,7 +293,7 @@ src/**/*.spec.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The test files can now be updated to use ES6 JavaScript syntax such as import statements.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: src&#x2F;components&#x2F;1-atoms&#x2F;input&#x2F;Input.spec.js">
@@ -320,7 +320,7 @@ describe('Input', function() {
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                 </ul>
             </div>
@@ -333,13 +333,13 @@ describe('Input', function() {
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -349,7 +349,7 @@ describe('Input', function() {
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

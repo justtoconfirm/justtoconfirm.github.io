@@ -1,8 +1,7 @@
+// https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
+
 // Variables
 @import 'variables/color';
-
-// Utility
-@import 'util/padding';
 
 // Mixins
 @import 'mixins/codebar';
@@ -16,17 +15,17 @@
 // Quarks - style elements
 @import '1-quarks/heading';			// done
 @import '1-quarks/link';			// done
-@import '1-quarks/list';
 @import '1-quarks/paragraph';
+@import '1-quarks/section';			// done		
 
-// Atomic
+// Atoms - style with classes
 @import '2-atoms/heading';			// done
+@import '2-atoms/list';				// done
 
-// https://www.smashingmagazine.com/2013/08/other-interface-atomic-design-sass/
-// Atomic - use classes
 
-body {
-	font-size: 16px;
-}
+
+
+
+
 
 @include font-face('SourceSansPro-Regular');

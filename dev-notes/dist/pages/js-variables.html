@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Declaring a variable</h2>
                 <p>A variable is a container for storing a value. To use a variable you first have to create it, or more accurately, this is called declaring a variable.</p>
                 <p>To declare a variable we use the var keyword followed by the variable's name. This name is often called the identifier.</p>
@@ -83,7 +83,7 @@ Error: Uncaught ReferenceError: myAge is not defined
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>When a variable is declared outside of a function, it becomes part of the window object. The window object is supported by all browsers and represents the browser's window.</p>
                 <p>This variable then becomes a global variable and is a property of the window object. By declaring variables globally conflict can occur as other parts of the JavaScript code may use the same variable name elsewhere.</p>
                 <p>It is recommended to avoid polluting the global namespace and avoid having variables declared globally. It is better to declare variables within functions.</p>
@@ -106,7 +106,7 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Once a variable has been declared with a value, the value can be changed/updated by providing a new value.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript">
@@ -122,7 +122,7 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Memory</h2>
                 <p>Each variable that you declare takes up memory. The more variables a browser has to remember, the more memory your script requires to run causing performance to be slow.</p>
                 <p>A variable references a value that is stored in memory. The same value can be used with more than one variable.</p>
@@ -139,7 +139,7 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">The typeof operator</h2>
                 <p>Unlike some other languages, you don't need to specify what data type - numbers, strings, arrays - a variable will contain. This is because JavaScript is a 'loosely typed language'.</p>
                 <p>If you were to declare a variable and give it a value within quotes (double or single), the browser will treat the variable as a string. Without any quotes, the value would be a number.</p>
@@ -173,7 +173,7 @@ The value returns a number as it's not within quotation marks
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><a href='javascript.html'>JavaScript</a></li>
                 </ul>
@@ -187,13 +187,13 @@ The value returns a number as it's not within quotation marks
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -203,7 +203,7 @@ The value returns a number as it's not within quotation marks
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

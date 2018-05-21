@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Node.js is a JavaScript run-time environment. This includes everything you need to execute a program written in JavaScript. This extends JavaScript from something you can only run in the browser to something you could run on your machine as a standalone application. This provides JavaScript with the capability to do things other scripting langages like Python can do.</p>
                 <p>Node.js runs on the V8 JavaScript runtime engine. This engine is open-source, written in C++, and takes your JavaScript code and converts it into machine code, which is faster. Machine code is low level which the computer can run without the need to interpret it first.</p>
@@ -47,7 +47,7 @@ $ node --version
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>By adding the following to your package.json file (which is optional), you can specify the minimum version of Node that your package requires to ensure your library will work for your users.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -62,7 +62,7 @@ $ node --version
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">NPM (Node Package Manager)</h2>
                 <p>NPM (Node Package Manager) contains a number of packages built by a community of developers that are used to solve many different problems. These packages can be used in your apps to make your development faster and more efficient.</p>
                 <p>When Node.js has been installed, you will have access to NPM. NPM often comes with Node.js, but it is often an old version as Node's release cycle is often behind NPM's, so NPM may need to be updated.</p>
@@ -78,7 +78,7 @@ $ npm --version
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>If you want to begin installing packages and dependencies into your project using NPM, you will need to create a package.json file.</p>
                 <p>The package.json file will need to have the entry point to be the name of your main JavaScript file. The default is usually index.js</p>
                 <p>Within your project dirctory/folder, run the following command using your terminal to create a package.json file:</p>
@@ -93,7 +93,7 @@ $ npm init
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>When an NPM package is installed it is placed into the node_modules folder/directory. The node_modules directory should not be committed when using Git/GitHub version control into your respository, but instead should be listed within a .gitignore file. If you are installing packages used for development, they can be installed as a devDependency. Packages used only in the development phase need to be installed as a devDependency, otherwise the package can be installed as a dependency. A package installed as a dependency is a package that is needed by the application to work, such as React or Redux. A devDependency package is needed only during development, such as build tools like Gulp and Webpack.</p>
                 <p>To install an NPM package, open your terminal and run the following command:</p>
                 <!-- Code example -->
@@ -116,7 +116,7 @@ $ npm install &lt;package-name&gt; --save
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Node Modules</h2>
                 <p>A Node module is a reusable block of code. You can write your own module and use it in various applications. Node.js also has a set of built-in modules which you can use.</p>
                 <p>Node/NPM modules are just regular JavaScript files. They must follow the CommonJS module spec. UMD is also permitted to be used and is compatible with CommonJS.</p>
@@ -144,7 +144,7 @@ module.exports = function(number, locale) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Requiring a module in Node.js isn't that complicated. It can simply be done like this:</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript">
@@ -157,7 +157,7 @@ const config = require('/path/to/file');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Hello World</h2>
                 <p>Writing 'Hello World' is pretty simple when using Node.js. Begin by opening a file named app.js and adding the following code:</p>
                 <!-- Code example -->
@@ -171,7 +171,7 @@ console.log('Hello World');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>If you have Node.js installed, open your terminal, change the directory to the folder where the file is located and run the following command:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -184,7 +184,7 @@ $ node app.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Testing</h2>
                 <p>Node has a built-in assert module for testing expressions. This is similar to Chai.</p>
                 <p>See the <a href='tdd.html'>TDD (Test Driven Development)</a> documentation.</p>
@@ -206,7 +206,7 @@ const assert = require('assert');
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><!-- https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2 --></li>
                     <li><!-- https://codeburst.io/the-only-nodejs-introduction-youll-ever-need-d969a47ef219 --></li>
@@ -229,13 +229,13 @@ const assert = require('assert');
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -245,7 +245,7 @@ const assert = require('assert');
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

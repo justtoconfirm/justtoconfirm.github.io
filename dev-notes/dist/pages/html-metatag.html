@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>The head of an HTML document is the part that is not displayed in the web browser when the page is loaded. It contains information such as the page &lt;title&gt; and metadata (data about the document, such as keywords and character encoding).</p>
                 <p>Metadata is the data the describes data. Within HTML, metadata is added to a document using the &lt;meta&gt; tag.</p>
@@ -47,15 +47,15 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Viewport</h2>
                 <p>The viewport meta tag documentation can be found <a href='rwd.html'>here</a>.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Language</h2>
                 <p>To set the language of your HTML document, documentation can be found <a href='html.html'>here</a>.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Title</h2>
                 <p>Not strictly a meta tag, but it is located within the &lt;head&gt; section of your document. The title contains information that is important to SEO. Each page should have a unique title that is used to describe the page.</p>
                 <p>Further details can be found <a href='html.html'>here</a>.</p>
@@ -70,7 +70,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Character Encoding</h2>
                 <p>This meta tag basically specifies what character set your document is written in. UTF-8 (Universal character set Transformation Format 8 bit) is the most common character set used and is a character encoding capable of encoding all possible characters in Unicode. This encoding is variable-length and uses 8-bit code units. UTF-8 also allows us to write text in all kinds of languages and pretty much includes any character from any human language. For example, using character encoding would allow your page to handle English and Japanese.</p>
                 <p>The charset attribute specifies the character encoding for an HTML document. This is an HTML5 attribute, although the previous HTML 4.01 meta tag can still be used if required.</p>
@@ -91,7 +91,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">X-UI-Compatible</h2>
                 <p>The X-UA-Compatible meta tage allows web authors to choose what version of Internet Explorer the page should be rendered as. According to Microsoft, when using the X-UA-Compatible tag, it should be as high as possible in your document &lt;head&gt;</p>
                 <p>Internet Explorer (IE) begins interpreting markup using the latest version. When Internet Explorer encounters the X-UA-Compatible meta tag, it starts over using the designated version's engine.</p>
@@ -110,15 +110,15 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Edge mode tells Internet Explorer (IE) to display content in the highest mode available. With IE9, this is equivalent to IE9 mode. If a future release of IE supported a higher compatibility mode, pages set to edge mode would appear in the highest mode supported by that version. Those same pages would still appear in IE9 mode when viewed within IE9.</p>
                 <p>Using Edge mode will basically use the latest version of IE and not use 'Compatibility mode'.</p>
                 <p>Changing the compatibility mode can affect the way content is displayed.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The http-equiv attribute provides an HTTP header for the information/value of the content attribute. This can be used to simulate an HTTP response header.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Refresh</h2>
                 <p>The refresh meta tag defines a time interval for the document to refresh itself. This value should be used carefully as it takes control of the page away from the user. Using 'refresh' will cause a failure in the W3C's WCAG 2.0 (Web Content Accessibility Guidelines) - Level A. A document must not use 'refresh' because it can prevent control over when the refresh occurs for users with disabilities.</p>
                 <p>The most common use of this tag is to reload the page that contains dynamic content, such as a stock ticker or weather map. Ultimately, there are better ways to refresh page content without needing to actually use a meta tag to refresh the entire page.</p>
@@ -135,7 +135,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Author</h2>
                 <p>Specifying an author is useful as it confirms who has written the page.</p>
                 <p>This is optional and will not affect SEO (Search Engine Optimisation).</p>
@@ -150,7 +150,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Description &amp; Search Engines</h2>
                 <p>Search Engines use the description meta tag on their search results pages. When search results are displayed, often the page title and the content within the description meta tag will be shown.</p>
                 <p>In Google, you may see relevant subpages listed below the main homepage link. These are called sitelinks, and can be configured within Google's webmaster tools. These help to make your site's search results better within Google.</p>
@@ -167,7 +167,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Keywords</h2>
                 <p>The keyword &lt;meta&gt; tag was used to provide keywords for search engines to determine relevance of that page for different search terms. This is no-longer used by search engines as it was misused by spammers using the meta tag to fill the keyword list with hundreds of keywords, causing bias results. This is known as 'keyword stuffing'. Google no-longer uses meta keywords in it's ranking algorithm at all, because of this ease of abuse.</p>
                 <p>This meta tag should no longer be used in your HTML.</p>
@@ -182,7 +182,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Favicon</h2>
                 <p>The favicon is a 16 x 16 pixel icon used in multiple pages. Often you'll see this icon displayed in the browser tab/window containing each page (next to the page title), and next to bookmarked pages.</p>
                 <p>Often the favicon is saved in .ico format (most browsers will also support .gif or .png file formats, but using the .ico format will ensure it works as far back as IE6). The following line of code is then added to the &lt;head&gt; section of your HTML document:</p>
@@ -197,7 +197,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Open Graph (OG) Data</h2>
                 <p>Open Graph (OG) Data is a metadata protocol created by Facebook to provide richer metadata for websites. When using OG, should you post the link to your website to the social network, the link appears along with an image and description. This provides a richer user experience.</p>
                 <p>Twitter has it's own similar proprietary metadata, which has a similar effect when the site's URL is displayed on Twitter.</p>
@@ -225,7 +225,7 @@
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><a href='html.html'>HTML</a></li>
                     <li><!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML --></li>
@@ -241,13 +241,13 @@
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -257,7 +257,7 @@
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

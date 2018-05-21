@@ -27,14 +27,14 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Express is a web framework for Node.js. It is built on top of the Node.js http module, and adds support for routing and middleware.</p>
                 <p>Express versions 2.x and 3.x are no longer maintained. The current Express version 4.x should be used for any new projects.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Install</h2>
                 <p>NPM (Node Package Manager) is required before you can install Express.js. By default NPM version 5.0 and later adds the module to the dependencies list in the package.json file. Earlier versions of NPM need to have the --save option.</p>
                 <p>You will also need a package.json file within your project.</p>
@@ -53,7 +53,7 @@ $ npm install express --save
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Server: Hello World</h2>
                 <p>The 'Hello World' example is the simplest Express app you can build. The app starts a server and listens on port 3000 for any connections. The app responds with 'Hello World' for requests to the root URL (/) or route. For any other path, it will respond with a 404 Not Found.</p>
                 <p>This server is powered by RunKit which provides a Node enviornment within your browser.</p>
@@ -76,7 +76,7 @@ app.listen(3000, () => console.log('Example app listening on port 3000'))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Run the app with the following command then load <a href='http://localhost:3000/' target='_blank'>http://localhost:3000/</a> in the browser to see the output:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -89,7 +89,7 @@ $ node app.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Routing</h2>
                 <p>Routing refers to how an application responds to a request to a particular endpoint (URI/path) and a specific HTTP request method (GET/POST).</p>
                 <p>The following examples illustrate defining simple routes within the app.js file created earlier.</p>
@@ -114,7 +114,7 @@ app.get('/about', (req, res) => res.send('This is the about page'))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>To define routes with router parameters, simply specify the route parameters in the path of the route. The two examples below show 'books' and 'flights'.</p>
                 <p>This will return a JSON object with key/value pairs within the browser.</p>
                 <!-- Code example -->
@@ -132,7 +132,7 @@ app.get('/flights/:from-:to', (req, res) => res.send(req.params))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Nodemon</h2>
                 <p>You can install the Nodemon package as a devDependency. It's a simple package that automatically restarts your server when files change.</p>
                 <!-- Code example -->
@@ -146,7 +146,7 @@ $ npm install nodemon --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Once Nodemon has been installed, update the package.json file:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -162,7 +162,7 @@ $ npm install nodemon --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Run Nodemon:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -181,7 +181,7 @@ $ npm run dev
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><!-- https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/ --></li>
                     <li><!-- https://github.com/callicoder/node-easy-notes-app --></li>
@@ -201,13 +201,13 @@ $ npm run dev
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -217,7 +217,7 @@ $ npm run dev
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

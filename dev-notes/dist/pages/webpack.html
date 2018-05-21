@@ -27,16 +27,16 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Webpack is a module bundler for modern JavaScript applications. This process is called a dependency graph and includes every module your application needs, which is then packaged into one or more bundles. Webpack is also known as a build tool.</p>
                 <p><!-- https://tutorialzine.com/2017/04/learn-webpack-in-15-minutes --></p>
                 <p><!-- https://webpack.js.org/concepts/ --></p>
                 <p><!-- https://medium.com/front-end-hacking/what-are-npm-yarn-babel-and-webpack-and-how-to-properly-use-them-d835a758f987 --></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Install</h2>
                 <p>The easiest way to install Webpack is by using a package manager such as NPM (Node Package Manager) or Yarn. With NPM, you will need to have Node.js installed on your machine and a package.json file created. This document will not describe how to install Node.js or NPM at this time.</p>
                 <p>It is preferred to install Webpack locally (without the -g tag). This will make sure any developer working on your project will have the same version of Webpack.</p>
@@ -58,7 +58,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>webpack</span> <sp
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Once we have Webpack installed within our project directory, it is best to run Webpack using a Node.js script. By calling npm run build from the terminal, we can make Webpack bundle our files (the -p flag/option stands for production and minifies the bundled code). Running npm run watch will start a process that automatically bundles our files when any of them change.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JSON : package.json">
@@ -74,7 +74,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>webpack</span> <sp
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Webpack Config file</h2>
                 <p>The Webpack config file (webpack.config.js) is placed in the root directory of your project.</p>
                 <p>Each dependency is processed and outputted into files called bundles.</p>
@@ -101,7 +101,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Modules</h2>
                 <p><!-- https://webpack.js.org/concepts/modules/ --></p>
                 <p>In modular programming, developers break programs up into chunks of functionality called a module (sometimes also called Components). Webpack supports modules written in a variety of languages and preprocessors using Loaders. Loaders describe to Webpack how to process non-JavaScript modules. By default, Webpack handles JavaScript modules only.</p>
@@ -128,7 +128,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Next, we want to import it into our main JavaScript file - index.js. This is the file that's called in the entry point property within the webpack.config.js file and is our main JavaScript file. Once imported, both JavaScript files will be bundled into the bundle.js file for use within the HTML.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript : my-app&#x2F;js&#x2F;index.js">
@@ -147,7 +147,7 @@ console.log( <span class='value'>'I am the entry point'</span> );
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>You may want to move your module files into a separate directory within the js/ directory to organise your project structure. You will need to update the file paths in the relevant files and the webpack.config.js file if you want to do this. Our file structure in the project should look like this:</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -170,10 +170,10 @@ console.log( <span class='value'>'I am the entry point'</span> );
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Remember, modules are sometimes referred to as Components.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Here is the HTML code that we will use to include our bundle.js file. This will be named index.html and saved within the root of our project folder.</p>
                 <p>The page will be empty, but if you inspect the page using the developer tools and view the console, you will see the console.log output from both JavaScript module files that have been included within bundle.js</p>
                 <!-- Code example -->
@@ -199,7 +199,7 @@ console.log( <span class='value'>'I am the entry point'</span> );
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Loaders</h2>
                 <p><!-- https://webpack.js.org/concepts/loaders/#example --></p>
                 <p>Loaders allow extra functionality and features to be applied to Webpack. Loaders are the node-based utilities built for Webpack to help Webpack to compile and/or transform a given type of resource that can be bundled as a JavaScript module. They are not include with Webpack itself when first installed, but can be added. They are a way to execute tasks during the bundling and pre/post processing. You can use NPM to install Loaders that you may need to use in your Webpack configuration. In other words, Loaders are kind of like 'tasks' to handle front-end build steps. For example, you can use Loaders to compile SCSS files into CSS, transform files in languages such as TypeScript into JavaScript, and even import CSS files directly from your JavaScript modules.</p>
@@ -216,7 +216,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>ts-loader</span> <
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Within our webpack.config.js file we can then instruct Webpack - using a regular expression (RegEx) - to use the css-loader for every .css file and ts-loader for all .ts files.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
@@ -239,7 +239,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">SCSS &amp; Sass</h2>
                 <p>Many projects now use SCSS or Sass. To compile SCSS/Sass code into CSS for use in our application, we can use Webpack and Loaders. In this next example, we will be adding sass-loader to our Webpack configuration.</p>
                 <p><!-- https://medium.com/a-beginners-guide-for-webpack-2/using-sass-9f52e447c5ae --></p>
@@ -257,7 +257,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>style-loader css-l
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Begin by creating a simple style.scss file in the root of our project directory/folder.</p>
                 <p>You will need to import your SCSS code into the main JavaScript file - index.js - so that it can be considered as a dependency by Webpack. The SCSS file itself is currently in the root directory, but should be moved to its own directory/folder.</p>
                 <!-- Code example -->
@@ -280,7 +280,7 @@ console.log( <span class='value'>'I am the entry point'</span> );
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The webpack.config.js file is now updated to chain sass-loader, then css-loader, and then chain their output to style-loader.</p>
                 <p>The rule itself has been updated to handle both our Sass and CSS files. The regular expression now matches any .scss or .css file, which should then be compiled with the chain of loaders specified in the use array. The loaders are chained in reverse order.</p>
                 <p><ul class='list'><li>style-loader - creates style nodes from JS strings</li></p>
@@ -316,7 +316,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>It would be better to compile our SCSS code into CSS using Webpack and then have the CSS be within an external stylesheet and not internal within the HTML code. To do this we will use the ExtractTextPlugin.</p>
                 <p>We begin by opening the terminal and installing the plugin using NPM.</p>
                 <!-- Code example -->
@@ -330,7 +330,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>extract-text-webpa
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Next, we update our Webpack configuration file (webpack.config.js) to use the plugin. This will compile our SCSS/Sass code into CSS and the resulting CSS file will be placed in the dist/ directory and will be named 'bundle.css'.</p>
                 <p>Remove the import statement to the SCSS (style.scss) file in the index.js JavaScript module, and add a link to the dist/bundle.css stylesheet in your index.html HTML page. This will apply the CSS stylesheet styling to your application.</p>
                 <!-- Code example -->
@@ -371,7 +371,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>The file structure should now look like this:</p>
                 <p><!-- https://www.codementor.io/tamizhvendan/beginner-guide-setup-reactjs-environment-npm-babel-6-webpack-du107r9zr --></p>
                 <p><!-- https://reactjs.org/docs/add-react-to-an-existing-app.html --></p>
@@ -399,7 +399,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Revised File Structure</h2>
                 <p>Now that we have got the basic webpack.config.js file working, it's time to make some revisions to tidy-up the file structure of our project. The .gitignore file has been added to ensure we do not commit the node_modules directory when using Git version control.</p>
                 <p>Here is the revised file structure:</p>
@@ -428,7 +428,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Now that the file structure has been revised, we can update the webpack.config.js file also.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript : webpack.config.js">
@@ -468,7 +468,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>We now want to exclude the node_modules directory and minimise the CSS once the SCSS files have been transpiled.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
@@ -502,7 +502,7 @@ const webpack = require('webpack');
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Autoprefixer</h2>
                 <p>We begin by using NPM (Node Package Manager) to install Autoprefixer and postcss-loader as devDependencies.</p>
                 <!-- Code example -->
@@ -517,7 +517,7 @@ $ npm install postcss-loader --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
                     <pre>
@@ -556,7 +556,7 @@ $ npm install postcss-loader --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Your package.json file will also need updating to set the browsers that are to be supported by Autoprefixer.</p>
                 <!-- Code example -->
                 <div class="code" rel="" data-title="">
@@ -572,7 +572,7 @@ $ npm install postcss-loader --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Babel Loader</h2>
                 <p>If we want to use ES6 JavaScript syntax within our application, or JSX while working with React, we can use Babel to translate both into formats that are supported by all browsers. Webpack uses loaders to translate the file before bundling them. For example, we can take a JSX file (not supported by browsers), Webpack will bundle the file (and translate into standard JavaScript when using Babel) and this will output a standard JavaScript file supported by all browsers.</p>
                 <p><!-- https://florianbrinkmann.com/en/4197/webpack-and-babel/ --></p>
@@ -589,7 +589,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>babel-loader babel
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Now that the NPM packages have been installed, we can update our webpack.config.js file to process ES6 JavaScript.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
@@ -639,7 +639,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>babel-loader babel
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Install React</h2>
                 <p>You can install React using NPM. This will install React and ReactDOM as a dependency - as seen when you view the package.json file - so we can work with React using Webpack.</p>
                 <p>The React documentation can be found <a href='reactjs.html' target='_blank'>here</a>.</p>
@@ -654,7 +654,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>react react-dom</s
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>A small change is needed to our webpack.config.js file to use React. Create a components directory within the src directory of your project where any React components can be placed.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
@@ -678,7 +678,7 @@ $ <span class='keyword'>npm install</span> <span class='name'>react react-dom</s
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Images</h2>
                 <p>Begin by using NPM (Node Package Manager) to install file-loader as a devDependency</p>
                 <!-- Code example -->
@@ -692,7 +692,7 @@ $ npm install file-loader --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Update the webpack.config.file to process image files. The image file should be placed within the src directory of your project. When Webpack runs, the image is moved into the dist directory. The name of the image in the dist directory will be renamed with a hash.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
@@ -749,7 +749,7 @@ $ npm install file-loader --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>To avoid the image having a hash, update the webpack.config.js file. This amendment will also place the image within an img folder inside of the dist directory.</p>
                 <!-- Code example -->
                 <div class="code" rel="js" data-title="JavaScript: webpack.config.js">
@@ -774,7 +774,7 @@ $ npm install file-loader --save-dev
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                 </ul>
             </div>
@@ -787,13 +787,13 @@ $ npm install file-loader --save-dev
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -803,7 +803,7 @@ $ npm install file-loader --save-dev
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

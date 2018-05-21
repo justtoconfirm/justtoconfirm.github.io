@@ -27,13 +27,13 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Introduction</h2>
                 <p>Responsive design is an approach to creating websites in which the layout adapts to fit the device's screen.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Viewport</h2>
                 <p>The viewport is the visible area of a web page. This can change based on the type of device being used. The viewport will often be smaller on a mobile phone and tablet, but larger on a desktop screen.</p>
                 <p>Older websites and web pages that are not responsive, having been designed using static/fixed sizes, are often too large to fit within the viewport on small devices. Browsers will often scale the web page down to fit the screen to allow the page to be viewed.</p>
@@ -52,7 +52,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Browser resets</h2>
                 <p>Every browser renders content a little differently, so we can use Reset or Normalize to combat these differences using either of these stylesheets. Reset completely eradicates all styles, while Normalize attempts to add consistency to the browser styling.</p>
                 <p>You may also want to consider resetting the border box - not always included within the reset stylesheets - to make padding consistent and prevent frustration.</p>
@@ -74,7 +74,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Media Queries</h2>
                 <p>The @media rule, introduced in CSS2, has made it possible to define different style rules for different media types. Media queries in CSS3 extended this further to allow style rules to be applied based on the device type.</p>
                 <p>Media queries can be used to check many things, including:</p>
@@ -105,7 +105,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Responsive Images : width</h2>
                 <p>If the width property of an &lt;img&gt; is set to 100%, the image will be responsive and scale up and down. The image can be scaled up to be larger than its original size. If the max-width property is set to 100%, the image will scale down if required, but will never scale up to be larger than its original size.</p>
                 <p>The height set to auto will automatically adjust the height of the &lt;img&gt; element to allow its content to be displayed correctly.</p>
@@ -128,7 +128,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Responsive Images : srcset &amp; sizes</h2>
                 <p>Typically when you use a large image, for a full-width header/banner, the image will generally appear fine on large screen devices such as laptops or desktop, but the problem comes when you start to view the website on a narrow screen device such as on mobile. It is much better to show a cropped version of the image that sets the focus on the important details of the image when viewed on a narrow screen and also for medium width screens such as a tablet. This is commonly known as the art direction problem and involves wanting to change the image displayed to suit different image display sizes.</p>
                 <p>There is also no need to embed such large images on the page if it is being viewed on small devices. This is called the resolution switching problem.</p>
@@ -145,7 +145,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Now that we have an image, we ideally want to display identical content just smaller or larger depending on the device. The standard &lt;img&gt; element traditionally only lets you point the browser to a single source file. We can however use two new attributes - srcset and sizes - to provide multiple additional source images along with hints to help the browser pick the right image based on the device size.</p>
                 <p>Both srcset and sizes attributes are not supported in Internet Explorer (IE) or Edge (13, 14, & 15), but are supported in Chrome, Firefox and Safari.</p>
                 <p>For browsers that do not support the two attributes, the image is fetched from the regular src attribute and displayed.</p>
@@ -180,7 +180,7 @@
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                 </ul>
             </div>
@@ -193,13 +193,13 @@
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -209,7 +209,7 @@
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>

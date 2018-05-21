@@ -74,10 +74,7 @@
           "We are going to create a simple user-defined component. This simple component will be created using a JavaScript function and will allow an attribute to be passed into it using the props (properties) object. In the index.js file, update the code to include the component. Our component will be called 'Welcome'.",
           "Once the component has been created, we want to pass a prop into the component which will allow us to render 'Hello, Dan' on the screen.",
           "To summarise, this is what is occuring:",
-          "<ul class='list'><li>We call React.render with the &lt;Welcome name='Dan' age='32' /&gt; element.</li>",
-          "<li>React calls the Welcome component with the {name: 'Dan', age: '32'} as the props (within the props object).</li>",
-          "<li>Our Welcome component returns &lt;h1&gt;Hello, Dan 32&lt;/h1&gt; element as a result.</li>",
-          "<li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan 32&lt;/h1&gt;</li></ul>",
+          "<ul class='list'><li>We call React.render with the &lt;Welcome name='Dan' age='32' /&gt; element.</li><li>React calls the Welcome component with the {name: 'Dan', age: '32'} as the props (within the props object).</li><li>Our Welcome component returns &lt;h1&gt;Hello, Dan 32&lt;/h1&gt; element as a result.</li><li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan 32&lt;/h1&gt;</li></ul>",
           "<!-- https://medium.com/@justtoconfirm/react-2d6bba32e764 -->"
         ],
         "label": "CODE/MARKUP",

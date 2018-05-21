@@ -27,9 +27,9 @@
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section class="pad-btm">
+            <section>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">External Anchors</h2>
                 <p>Often when we want a link to open in a new tab/window within the browser, we often use the target attribute. However, simply doing this can lead to a potentially serious vulnerability.</p>
                 <p>The page opens in a new tab/window, but for a small time, the page or link that has been opened, can potentially have control of the first page (page with the initial link). For example, you have 'Page A' with a link to 'Page B'. The link is clicked and opens 'Page B' within a new tab/window. 'Page B', for a moment, can potentially control 'Page A' using JavaScript.</p>
@@ -56,19 +56,19 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>It is worth noting that Edge doesn't support window.opener for _blank links, so this fix is not necessarily needed for the Edge browser.</p>
                 <p>WordPress now automatically adds the 'rel' attribute to links that use the 'target' attribute to open new pages/links in new tabs or windows.</p>
                 <p>The fix will potentially affect referrer tracking and some affiliate links. Lost referrer tracking should only be an issue if you have a non-secure http connection. The 'noopener noreferrer' tag should not impact HTTPS transfers (i.e. form your https site to another https site).</p>
                 <p>There are a few things you can do to disable the 'noopener noreferrer' issues:</p>
                 <p><ul class='list'><li>Avoid using the 'target' attribute on your links. Google recommends you don't use this code in your links if you can avoid it, but for SEO this is often used to boost 'time on page' stats and bounce rate.</li><li>Upgrade your website to HTTPS and only link to sites using HTTPS. All your affiliate links should be HTTPS anyway, and you don't want to run a tracking campaign using HTTP.</li></ul></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">CSS Performance</h2>
                 <p>Should you want to improve your CSS performance and optimise your code, visit the following pages:</p>
                 <p><ul class'list'><li><a href='css-guidelines.html'>CSS Guidelines</a></li><li><a href='css-performance.html'>CSS Performance</a></li></ul></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">HTTPS</h2>
                 <p>HTTP means HyperText Transfer Protocol. It is the underlying protocol used by the World Wide Web to define how messages are formatted and transmitted.</p>
                 <p>HTTP Secure (HTTPS) is an extension of the HyperText Transfer Protocol (HTTP) used for secure communications over a computer network. In HTTPS, the communication protocol is encrypted by Transport Layer Security (TLS), or by it's predecessor, Secure Sockets Layer (SSL). TLS and SSL are used to transport data safely. HTTPS is also sometimes referred to as HTTP over TLS (Transport Layer Security).</p>
@@ -87,22 +87,22 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>HTTPS requires the use of an SSL (Secure Sockets Layer) certificate. This is used to create the secure encrypted connection between the web server and the web browser.</p>
                 <p><ul class='list'><li>Purchase an SSL certificate and a dedicated IP address from your hosting company</li><li>Install and configure the SSL certificate</li><li>Configure any hard internal links within your website from HTTP to HTTPS</li><li>Update any JavaScript code libraries and plugins</li><li>Redirect external links to HTTPS</li><li>Update the htaccess file and server configuration</li><li>Implement 301 redirects on a page-by-page basis</li><li>Set up an HTTPS site in Google Search Console and Google Analytics</li></ul></p>
                 <p>HTTPS is not going to prevent your website from being hacked, but it will provide the website with the minimum level of security that most visitors now expect.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Google recommends a number of things that can be done when using HTTPS and to be considered when thinking about SEO (Search Engine Optimisation):</p>
                 <p><ul class='list'><li>Don't block your HTTPS site from crawling using a robots.txt file</li><li>Allow indexing of your pages by search engines where possible. Avoid the noindex robots meta tag.</li></ul></p>
                 <p>Google also lists HTTPS as a ranking factor in it's search results, with HTTPS websites being ranked higher in search results than those using HTTP.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Render Blocking</h2>
                 <p>CSS is treated as a render blocking resource. This delays a webpage from being visible in a timely manner and delays the page from rendering. The webpage cannot render until all the CSS files are downloaded and parsed. The bigger your CSS, or the more CSS files you have, the longer the page takes to load and the slower your website will be.</p>
                 <p>This is sometimes referred to as the Critical Rendering Path, or 'the things a browser has to do before showing your web page'.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>Each CSS file your page uses adds additional time to your webpage loading by requiring an additional file to be called. Combine CSS files into one single file will resolve this issue.</p>
                 <p>To combine CSS, you must copy the CSS from one CSS file and paste it into another. You must also remove the call for the original CSS file within your HTML.</p>
                 <!-- Code example -->
@@ -122,7 +122,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>When including CSS within your HTML, properly label conditional CSS to avoid render blocking. When CSS is not labeled correctly, the browser defaults to loading all CSS before rendering the webpage. By adding the correct label to CSS files being called, the browser then knows that not all CSS is required to begin the page rendering.</p>
                 <p>When we include a CSS within the HTML, everything included within the CSS code is loaded by the browser prior to rendering anything at all on your webpage. The more CSS you have, the longer the time it will take to render.</p>
                 <p>By using the media attribute we can specify if the browser needs to render the CSS on the page load. The example below has a CSS file using the media attribute of 'print'. Modern browsers will know that this CSS file is not required to render the page. As a result, the browser will place a lower priority to that CSS file. The browser will still download it, but will do so in a manner that does not block rendering.</p>
@@ -144,7 +144,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>When using CSS, try to avoid using @import to call CSS as it adds to the time it takes to load the CSS before your page can load. Any @import used within your CSS calls should be removed and replaced. Rather than using the import method, it is better to just keep the additional CSS within one file.</p>
                 <p>CSS imports look like this and will usually be near the top of the file:</p>
                 <!-- Code example -->
@@ -158,7 +158,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>External blocking scripts force the browser to wait for the JavaScript to be fetched, which may add one or more network roundtrips before the page can be rendered. If the external scripts are small, you can inline their contents directly into the HTML document to avoid the network request latency.</p>
                 <p>Inlining the script within the HTML eliminates the external request for a JavaScript file and allows the browser to deliver a faster time to first render. Inlining however increases the size of the HTML document and the same JavaScript code may need to be inlined across multiple pages. You should only inline small scripts to deliver best performance.</p>
                 <!-- Code example -->
@@ -177,7 +177,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>By default, JavaScript blocks DOM construction and thus delays the time to first render. To prevent JavaScript from blocking the parser you can use the HTML async attribute on external scripts. Asynchronous JavaScript scripts are not guaranteed to execute in a specified order and should not use document.write . Scripts that depend on execution order or need to access or modify the DOM/CSS of the page, may need to be rewritten to account for these constraints.</p>
                 <p>The loading and execution of scripts that are not necessary for the initial page render may be deferred until after the initial render when the page has finished loading. Doing so can help improve performance.</p>
                 <!-- Code example -->
@@ -191,22 +191,22 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Error messages</h2>
                 <p>Be careful with how much information you give away in your error messages. Provide only minimal errors to your users, to ensure that you don't leak details (e.g. API keys or database information). Don't provide full exception details, as these can make complex attacks like SQL injection far easier. Keep detailed errors in your server logs and show users only the information they need.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Errors &amp; Reponses</h2>
                 <p>The browser console will often return any errors that may occur in your web page or application. Here is a list of common errors and error codes you may come across:</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">404</h2>
                 <p>The HTTP 404, 404 Not Found, and 404 (pronounced as 'four oh four') error message is an HTTP (HyperText Transfer Protocol) standard response code. This indicates that the client was able to communicate with a given server, but the server could not find what was requested.</p>
                 <p>The last '4' in '404' indicates the specific error in the group of '40x', which also includes '400: Bad Request' and '401: Unauthorized'.</p>
                 <p>This error simply means that the asset (image, page) cannot be found. This could be due to the asset being missing, or perhaps the path/link to the asset or page is incorrect.</p>
                 <p>Often the 404 Not Found error will appear when you are searching for a web page you we're trying to reach. This error is then returned because the page cannot be found on the server. It is a client-side error meaning that either the page has been removed/moved, and the URL was not changed or updated. The error can also appear if you enter the incorrect URL.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">500</h2>
                 <p>The 500 Internal Server Error is a very general HTTP status code that means something has gone wrong on the website's server (server-side error) but the server could not be more specific on what the exact problem is. This is often a 'catch-all' generic error response. Essentially, the server has encountered an unexpected condition that has prevented it from fulfilling the request. This is a common issue/error during online checkout processes such as when making online purchases.</p>
                 <p>This type of error can sometimes be caused due to a syntax error in a .htaccess file on the server. The server logs may indicate what has caused the error to occur and may contain more details about the request to prevent the error from happening again in the future.</p>
@@ -222,7 +222,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">503</h2>
                 <p>The 503 Service Unavailable HTTP server error response code indicates that the server is not ready to handle the request.</p>
                 <p>Common causes are a server down for maintenance or an overloaded server. The response should be used for temporary conditions and the Retry-After HTTP header should, if possible, contain the estimated time for the recovery of the service.</p>
@@ -238,7 +238,7 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Minification</h2>
                 <p>Minification is the process of removing all unnecessary characters, including comments and whitespace, from source code without changing it's functionality. This is common in both JavaScript and CSS as it helps to reduce the file size and improve page performance.</p>
                 <p>The code is stripped of data that isn't required in order for the file to be executed. This is performed after the code has been written, but before being deployed. Using the minified file in production results in faster response times as less data needs to be processed for each request. This leads to performance gains without compromising the user's experience.</p>
@@ -257,11 +257,11 @@ https://www.secure.com
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>We can use a number of tools to automate the creation of minified files/assets during the development build process:</p>
                 <p><ul class='list'><li>Gulp</li><li>Grunt</li><li>Webpack</li></ul></p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">Unused CSS &amp; JavaScript</h2>
                 <p>Within the Chrome DevTools (developer tool) from Chrome 59 and above, you can find unused CSS and JavaScript code with the new Coverage tool.</p>
                 <p>To check your version of Chrome, enter the following into your Chrome browser address bar: <a href='chrome://settings/help'>chrome://settings/help</a></p>
@@ -272,7 +272,7 @@ https://www.secure.com
                 <p>You can also use the Command Menu to open files within Chrome DevTools using the command: CMD + O (Mac) or CTRL + O (Windows/Linux)</p>
                 <p>This is such a useful tool to reduce the size of your pages by removing code that is no-longer required.</p>
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">SQL Injection</h2>
                 <p>SQL injection attacks are when an attacker uses a web form field or URL parameter to gain access to or to gain access to your database. Without security, it is very easy to use SQL to change tables, delete data, and get information from your database. You can prevent this by always using parameterised queries.</p>
                 <!-- Code example -->
@@ -295,7 +295,7 @@ since '1' is equal to '1'
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <p>You could fix this query by explicitly parameterising it. For example, if you we're to use MySQLi in PHP, this should become:</p>
                 <!-- Code example -->
                 <div class="code" rel="php" data-title="PHP">
@@ -309,7 +309,7 @@ $stmt->execute(array('value' => $parameter));
                 </div>
                 <!-- / Code example -->
             </section>
-            <section class="pad-btm">
+            <section>
                 <h2 class="section-heading section-heading__border-btm">CSRF</h2>
                 <p>Cross-site request forgery (CSRF), sometimes known as one-click attack, session riding, or XSRF, is a type of malicious exploit of a website</p>
                 <p>This type of attack forces an end user to execute unwanted actions on a web application in which they are currently authenticated.</p>
@@ -321,7 +321,7 @@ $stmt->execute(array('value' => $parameter));
         <div class="small-12 medium-12 large-3 columns">
 
             <div>
-                <ul class="no-list">
+                <ul class="no-list-style">
                     <li><a href='../../index.html'>Home</a></li>
                     <li><!-- https://mathiasbynens.github.io/rel-noopener/ --></li>
                     <li><!-- https://www.searchcandy.uk/seo/does-adding-relnoopener-noreferrer-to-a-link-affect-seo/ --></li>
@@ -347,13 +347,13 @@ $stmt->execute(array('value' => $parameter));
 <footer>
 	<div class="row">
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li>&copy 2018 JTC</li>
 			</ul>
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="../../index.html">Home</a></li>
 				<li><a href="html.html">HTML</a></li>
 				<li><a href="css.html">CSS</a></li>
@@ -363,7 +363,7 @@ $stmt->execute(array('value' => $parameter));
 		</div>
 
 		<div class="small-12 medium-12 large-4 columns">
-			<ul class="no-list no-padding-left">
+			<ul class="no-list-style">
 				<li><a href="reactjs.html">React.js</a></li>
 				<li><a href="vuejs.html">Vue.js</a></li>
 				<li><a href="api.html">API</a></li>
