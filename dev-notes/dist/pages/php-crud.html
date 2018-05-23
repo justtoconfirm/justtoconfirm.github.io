@@ -21,17 +21,17 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">PHP CRUD</h1>
+            <h1 class="heading">PHP CRUD</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">CRUD (Create, Read, Update, Delete)</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">CRUD (Create, Read, Update, Delete)</h2>
                 <p>We are going to create a small database application using PHP and MySQL. This will be a CRUD application, which stands for Create, Read, Update, Delete.</p>
                 <p>The PHP PDO (PHP Data Objects) method will be used to connect to the MySQL database and we will look at adding entries into the database using HTML forms and prepared statements.</p>
                 <p>Let's begin by creating a simple index page that will be our homepage. This will be a PHP file named index.php</p>
@@ -63,7 +63,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Next, we create the the page that will add a new user to the database. This will be named create.php.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: create.php">
@@ -102,7 +102,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Each label element has a name and an id attribute. Whenever we create forms with HTML, we need to make sure they are accessible for all users. We do this by creating labels and associating each one to a specific input. The id attribute of the input is linked to associated to it's label using the for attribute.</p>
                 <p>The name attribute is how PHP identifies the data of the input. Therefore, both id and name attributes are necessary.</p>
                 <p>We have currently not specified a form action, so pressing the submit button will perform the action on the same page. Since no PHP code has been written yet, the form won't do anything.</p>
@@ -132,7 +132,7 @@ th {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We are now going to create the read.php file that will query the list of users in the database by a parameter (location), and print out the results.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: read.php">
@@ -165,8 +165,8 @@ th {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Setting up the database</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Setting up the database</h2>
                 <p>The front end code has now been written. The database now needs to be created. For this, an SQL (Structured Query Language) statement is used and a PHP installer script.</p>
                 <p>Create a directory called data/ and create a file called init.sql This will be our database initilizing code.</p>
                 <!-- Code example -->
@@ -191,7 +191,7 @@ CREATE TABLE users (
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>SQL is relatively simple. The query creates a database called test, we then make sure we're using this database for the rest of our code. Within the test database a table named users is created.</p>
                 <p><ul class='list'><li>INT - this is an Integer</li><li>AUTO_INCREMENT - this is a number that automatically increases with each entry</li><li>VARCHAR - meaning Variable Character, this is a string that can contain letters and numbers. The number inside is the maximum number of characters allowed.</li><li>TIMESTAMP - this will add the current time and data in the format YYYY-MM-DD HH:MI:SS by default</li></ul></p>
                 <p>We are using PDO (PHP Data Objects) to connect to the database. The other option is to use MySQLi, but PDO allows a connection to be made to multiple databases, MySQLi will only work with MySQL. PDO is now generally the preferred option for new projects.</p>
@@ -219,7 +219,7 @@ try {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The config.php file will also need to be created to configure the database connection. Change the credentials based on your environment setup.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: config.php">
@@ -239,11 +239,11 @@ $options    = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>To run the install, just navigate to your install.php file within your browser. The database and table will then be created.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">PHP</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">PHP</h2>
                 <p>We create a new PDO object that is placed into a variable named $connection</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -256,7 +256,7 @@ $connection = new PDO();
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The PDO object will ask for four parameters:</p>
                 <p><ul class='list'><li>DSN (Data Source Name), indicates the type of database, host name, database name (optional)</li><li>Username to connect to host</li><li>Password to connect to host</li><li>Additional options</li></ul></p>
                 <!-- Code example -->
@@ -270,7 +270,7 @@ $connection = new PDO(DSN, username, password, options);
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>When we fill in all the parameters:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -287,7 +287,7 @@ new PDO("mysql:host=localhost", "root", "root",
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We tidy this up a bit by using values within the variables from the config.php file:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -302,7 +302,7 @@ $connection = new PDO("mysql:host=$host", $username, $password, $options);
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The SQL code created within the init.sql needs to be included. The contents of this file will be placed into a variable using the file_get_contents function and be executed usung the exec function.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -316,7 +316,7 @@ $connection->exec($sql);
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The try/catch block is used to catch any errors and to use exceptions. If something goes wrong, the PDOException error message will be shown.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: install.php">
@@ -339,7 +339,7 @@ try {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Within our PHP files that have forms, we use the isset function to tell the code to only run if the form has been submitted:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -352,7 +352,7 @@ if (isset($_POST['submit'])) { }
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>You'll notice that we have an array with all our submitted values:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -370,8 +370,8 @@ $new_user = array(
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Prepared Statements</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Prepared Statements</h2>
                 <p>Binding parameters is the best way to prevent SQL injection.</p>
                 <p>We can use the regular $_POST variables without further sanitization because we're submitting to the database with prepared statements.</p>
                 <p>The SQL code we're going to execute will look like this: INSERT INTO tablename (n) values (:n)</p>
@@ -386,7 +386,7 @@ INSERT INTO users (firstname, lastname, email, age, location) values (:firstname
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We could write out that code by hand and add each value every time we add a new one, but to keep things simple, we can use sprintf, which allows us to do the following: INSERT INTO x (y) values (:z)</p>
                 <p>This code will print out the exact same thing, without having to write it multiple times.</p>
                 <!-- Code example -->
@@ -405,7 +405,7 @@ $sql = sprintf(
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We can now just prepare and execute the code:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP">
@@ -419,8 +419,8 @@ $statement->execute($new_user);
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Writing the PHP code</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Writing the PHP code</h2>
                 <p>Now we have the initial front end code and MySQL database setup completed, we now need to write some PHP code to allow content to be added to the database and read from the database.</p>
                 <p>In PHP, when you submit a form, all the inputs will be placed into a $_POST array. Therefore, &lt;input type='text' name='firstname'&gt; will translate to $_POST['firstname'] for us to work with.</p>
                 <p>You may notice that in the install.php script, a connection to the database was made using mysql:host=$host in the first DSN parameter. A Database name was not specified as we we're creating the database using the install.php script. Now that the database (named test) has been created, this can be added as the first parameter ($dsn) within the database connection for create.php and read.php</p>
@@ -490,11 +490,11 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The form is ready to send. Fill in the form and submit it to add to the database.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Escaping HTML</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Escaping HTML</h2>
                 <p>Since we are going to print out a $_POST variable to the HTML, we need to properly convert the HTML characters to aid prevention of XSS attacks.</p>
                 <p>Create a new file named common.php This file will be used to store functions for later use. We are going to use a function to escape the HTML.</p>
                 <!-- Code example -->
@@ -512,7 +512,7 @@ function escape($html) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>With this function, we can wrap any variable in the escape() function, and the HTML entities will be protected.</p>
                 <p>Within the create.php file, we need to require the common.php file. Using require, which is similar to include, except we're explicitly stating that the file is necessary for the script to run. We have used this to include our config.php file within our create and read scripts.</p>
                 <!-- Code example -->
@@ -527,7 +527,7 @@ require "common.php";
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Back in the create.php file, an if statement can be added above the form. This will check to see if a $_POST was submitted, and if a $statement was successful. If so, it will print a success message that includes the first name of the successfully added user.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: create.php">
@@ -542,7 +542,7 @@ require "common.php";
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>When getting results, we begin by putting the $_POST into a variable:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: read.php">
@@ -555,7 +555,7 @@ $location = $_POST['location'];
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Prepare, bind, and execute the statement:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: read.php">
@@ -570,7 +570,7 @@ $statement->execute();
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Finally, we fecth the result:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: read.php">
@@ -583,7 +583,7 @@ $result = $statement->fetchAll();
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>And now the final code for the create.php file:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: create.php">
@@ -655,7 +655,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>And now the final code for the read.php file:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: read.php">
@@ -745,8 +745,8 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Templates</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Templates</h2>
                 <p>We want to include the header and footer code as a template we can reuse on every page. We'll be using the PHP include function to pull the code in.</p>
                 <p>There include statements can be included on the index.php, create.php, and read.php files where they need to be rendered.</p>
                 <!-- Code example -->
@@ -761,7 +761,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Create the file header.php. The code below is taken from the PHP pages we have created. This can be added to the template and then simply included. This way, we can keep our code DRY (Don't Repeat Yourself) and avoid repeating ourselves.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: header.php">
@@ -783,7 +783,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The footer code would be like so:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: footer.php">
@@ -797,7 +797,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>As an example, the create.php file can be updated to now include both the header and footer:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="php" data-title="PHP: create.php">

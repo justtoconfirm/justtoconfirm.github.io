@@ -21,17 +21,17 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">State</h1>
+            <h1 class="heading">State</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
                 <p><!-- https://github.com/uberVU/react-guide/blob/master/props-vs-state.md --></p>
                 <p><!-- http://lucybain.com/blog/2016/react-state-vs-pros/ --></p>
                 <p><!-- https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c --></p>
@@ -67,11 +67,11 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Since props are passed into a component, they cannot change. You can think of any React component that only uses props as being 'pure'. The component will always render the same output. Props are a way of passing data into a component (from parent to child), State is reserved for interactivity, that is, data that changes over time.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Overview of State</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Overview of State</h2>
                 <p><!-- https://daveceddia.com/visual-guide-to-state-in-react/ --></p>
                 <p><!-- https://micropyramid.com/blog/understanding-reactjs-component-state-props/ --></p>
                 <p><!-- https://medium.freecodecamp.org/react-props-state-explained-through-darth-vaders-hunt-for-the-rebels-8ee486576492 --></p>
@@ -96,7 +96,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Let's look at the constructor method of our component. This is where state gets it's initial data. The initial data can be hard coded or you can pass in the data from props. You can't change props - as previously mentioned - but you may want to do stuff to the data that the component receives. That's where state comes in, as state is changeable. The component is initialised and state.count is set to 0.</p>
                 <p>It is worth noting that you should always call super( ) if you have a constructor, otherwise an error will appear.</p>
                 <!-- Code example -->
@@ -115,7 +115,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>In this example we are passing props to the base constructor.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -130,7 +130,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Within our component we have a render method. We update the render method to create a button. When the button is clicked, a method (updateCount) will be called. We will use an ES6 arrow function so the method will have access to the instance's state. The button will also display the count showing the number of times the button has been clicked. This will use whatever this.state.count is at the time of rendering.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -149,7 +149,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We also need the updateCount method to change the state and keep a track of the total number of clicks. setState runs asynchronously, it needs to take a callback function rather than updating the state directly. We also have access to prevState within the callback that contains the previous state. setState updates the state object and re-renders the component automatically.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -166,7 +166,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Here is a summary and full code:</p>
                 <p><ul class='list'><li>The component is initialised and state.count is set to 0</li></p>
                 <p><li>The component renders, with 'Clicked 0 times' as button text.</li></p>

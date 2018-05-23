@@ -21,16 +21,16 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Objects</h1>
+            <h1 class="heading">Objects</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>In computer programming, each physical thing in the world can be represented as an object. So if you had one object for a hotal and another for a car, programmers would often say there is one instance of a hotel object and one instance of the car object.</p>
                 <p>Each object can have its own properties, methods and events.</p>
                 <p>Here is an empty object:</p>
@@ -47,27 +47,27 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Not everything in JavaScript is an object. Many things such as: strings, numbers and booleans, are primitives not objects as they do not have properties or methods, unlike objects.</p>
                 <p>Objects group together a set of properties and methods to create a model.</p>
                 <p>Objects in JavaScript can be likened to objects in the real world. A car, as an example of a real world object, has properties used to define it's characteristics such as: name or colour. A car can also have methods such as: accelerate or brake.</p>
                 <p>Properties are similar to variables within an object and methods are similar to functions.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Native objects</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Native objects</h2>
                 <p>Native objects are part of the language specification. They're available to us regardless of the client our JavaScript code is running on. Examples of native objects would be: Array, Date, and Math.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">User objects</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">User objects</h2>
                 <p>User objects - sometimes referred to as contributed objects - are custom objects we define at run time. The two ways to declare our own objects are: Object literals and Constructor notation/functions.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Host objects</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Host objects</h2>
                 <p>Host objects are made available by the client our JavaScript code is running on. Different clients have different host objects that allow us to interact with it.</p>
                 <p>If we're writing code for a browser, for example, the browser will provide us with host objects such as: window, document, location, and history.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Properties</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Properties</h2>
                 <p>Properties are similar to variables within an object. They are used to hold names with values.</p>
                 <p>A car may have common characteristics such as colour, make, model, and engine size that are common with all cars. When we talk about a model, these characteristics are the properties of the car object.</p>
                 <!-- Code example -->
@@ -86,8 +86,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Methods</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Methods</h2>
                 <p>Methods represent what people need to do with objects and can receive or update the values of properties within an object. They are similar to functions.</p>
                 <p>Methods contain the block of code to perform a task. These methods can be called by events.</p>
                 <p>For example, in the hotel object, the makeBooking() method will increase the value of the bookings property and the cancelBooking() method will decrease this value. The checkAvailability() method can be used to return the number of remaining rooms the hotel has available.</p>
@@ -115,8 +115,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Literal notation</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Literal notation</h2>
                 <p>Literal notation is often used when you want to create a single object in JavaScript.</p>
                 <p>In the following example we will use literal notation to create a Hotel object containing a number of properties such as: name, rooms, and booked. This object is declared as a property of the global window object. If you view the window object in the console, the hotel object will be located within.</p>
                 <!-- Code example -->
@@ -134,7 +134,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Properties of an object can be accessed using dot notation, the name of the object followed by a period (known as the member operator) and then the name of the property you wish to use.</p>
                 <p>Within objects, properties are just like variables. The name and number of rooms available within the Hotel object can be retrieved using dot notation.</p>
                 <!-- Code example -->
@@ -149,7 +149,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Within our Hotel object a method will now be created to check the available rooms within our hotel. A method is similar to a function that is within an object. This method uses the keyword of this to indicate that the method is using the properties of the object.</p>
                 <p>The return statement is used to allow the result the method returns to be available outside of the object.</p>
                 <p>We can call the method using dot notation once again.</p>
@@ -179,8 +179,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Constructor notation</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Constructor notation</h2>
                 <p>If you need more that one object, the Constructor notation can be used. This allows a JavaScript function to build a template for creating multiple objects. Instances of this object can then be created using the keyword of new, followed by a call to the function when you need to create a new object.</p>
                 <p>The name of the Constructor function should always begin with an uppercase letter.</p>
                 <p>Let's create a new Hotel object using the Constructor notation.</p>
@@ -210,7 +210,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>An instance of an object will inherit the properties and methods from within the object. Values for each hotel will be passed into the object paremeters - name, rooms, booked - using arguments when the function is called. The keyword of this is used instead of the object's name to indicate that the properties and methods belong to the Hotel object.</p>
                 <p>Let us now create two new Hotels named 'The Grand Hotel' and 'Park Hotel' as instances of our Hotel object.</p>
                 <p>Each time we create a new hotel, the Hotel function is called and the values for each hotel are passed as arguments into the object's parameters. These values are then assigned to the properties of: name, rooms, and booked.</p>
@@ -249,8 +249,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Destructuring objects</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Destructuring objects</h2>
                 <p>Destructuring assignment is a special syntax that allows us to 'unpack' objects into a bunch of variables. Now we can work with variables instead of properties.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">

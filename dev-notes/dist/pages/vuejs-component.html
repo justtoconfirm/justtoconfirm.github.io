@@ -21,22 +21,22 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Component</h1>
+            <h1 class="heading">Component</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Introduction to Components</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction to Components</h2>
                 <p>Components are one of the most powerful features of Vue. They help you extend basic HTML elements to encapsulate reusable code.</p>
                 <p>Components should have the file extension of '.vue' and all filenames should start with an uppercase letter.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">App.vue</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">App.vue</h2>
                 <p>This is the main component of the app - App.vue - and is the first to be rendered. It contains an image and a component called &lt;router-view/&gt;. This is a component of vue-router.</p>
                 <p>This template is used throughout the application. The Vue logo will appear in all templates as it's within this component (template).</p>
                 <!-- Code example -->
@@ -72,7 +72,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The App.vue component is imported into the main.js file to be used within the application.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="JS" data-title="main.js (src&#x2F;main.js)">
@@ -99,7 +99,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The application is rendered within the 'root' element of the index.html page.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="HTML" data-title="index.html">
@@ -123,8 +123,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">New Component</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">New Component</h2>
                 <p>We will now create a new component. Open a new file and add the following code.</p>
                 <p>Components should be placed in the 'components' directory within 'src'.</p>
                 <p>When writing code in Vue.js, two spaces are used for indentation and not tabs. Without correct formatting, es-lint will show errors in the console/terminal.</p>
@@ -155,7 +155,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We are going to add our component to the vue-router so we can view the template. Open the src/router/index.js file and add the new component to the router.</p>
                 <p>Our new component should be visible here: <a href='http://localhost:8080/#/newcomponent' target='_application'>http://localhost:8080/#/newcomponent</a>.</p>
                 <p>So, when reaching http://localhost:8080/#/newcomponent vue-router will render the attached component of the path/login we defined in router/index.js inside the router-view component. Since the App component contains the image of Vue.js logo in this template, we also have it display.</p>
@@ -193,8 +193,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Navigate between views</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Navigate between views</h2>
                 <p>Now that we have created a new component (view), we can use a component of vue-router called router-link, to link them.</p>
                 <p>&lt;router-link&gt; is the component for enabling user navigation in a router-enabled app. The target location is specified with the to prop. It renders as an &lt;a&gt; tag with correct href by default, but can be configured with the tag prop. In addition, the link automatically gets an active CSS class when the target route is active.</p>
                 <!-- Code example -->
@@ -208,7 +208,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The router-link can be added to our component so we can navigate back to the homepage of our application.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="JS" data-title="MyComponent.vue (src&#x2F;components&#x2F;MyComponent.vue)">
@@ -241,8 +241,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Updating HelloWorld</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Updating HelloWorld</h2>
                 <p>Our current HelloWorld component is used as the homepage for our application. We should rename the component (view) to 'Home' to be more in keeping with it's purpose.</p>
                 <p>Locate the existing 'HelloWorld' component and rename the file to be 'Home.vue'. The src/router/index.js file and test/unit/specs/HelloWorld.spec.js file will also need to be updated.</p>
             </section>

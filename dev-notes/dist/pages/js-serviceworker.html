@@ -21,39 +21,39 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Service Worker</h1>
+            <h1 class="heading">Service Worker</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
                 <p>A service worker is a script - a file containining JavaScript code - that stands between your website and the network. They provide a cached version of the site when no network connectivity is available, and this also has benefits when using slow or low connectivity. Service worker scripts run in a separate thread in the browser from the pages they control and do not have access to the DOM of those pages. JavaScript code within a service worker must not block. You need to use asynchronous APIs. For example, you cannot use localStorage in a service worker as this is a synchronous API.</p>
                 <p>This is a foundation of Google's Progressive Web App (PWA) standard that provides potential performance improvements by leveraging the cache for almost instant page loads.</p>
                 <p>Using a Service worker you can easily set an app to use cached assets first, providing an experience even when offline, before then getting more data from the network. This is commonly known as Offline First. It is also important to note that service worker scripts run on a separate thread in the browser from the pages they control.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Browser Support</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Browser Support</h2>
                 <p>Service workers are considered 'cutting edge' features and are not supported on all browsers. Only Chrome, Firefox, and Opera have full support for service workers and their browser caching. Microsoft Edge from version 17 and later now also provide support for Service workers.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Offline Support</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Offline Support</h2>
                 <p>To provide offline support we need to take care of two aspects:</p>
                 <p>Caching of HTML, JavaScript, CSS stylesheets, and assets such as images.</p>
                 <p>Storing data used by an application on the client side.</p>
                 <p>Service Workers were introduced to replace AppCache. They provide a flexible solution for offline support and give control over outgoing requests, allowing a script to intercept them and return the necessary responses. The app code can itself then check if an asset is saved in the cache and request it from the server only if it's needed.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">HTTPS</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTTPS</h2>
                 <p>Service workers can be used to hijack connections, so for security, you can only register for service workers on pages served over HTTPS. This ensures that we can be confident the service worker the browser receives hasn't been tampered with during it's journey through the network.</p>
                 <p>GitHub pages are served over HTTPS, so they can be excellent for creating demo applications.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Getting Started</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Getting Started</h2>
                 <p>To begin, you first need to register for a service worker. In this example, /my-app/sw.js is the location of the service worker script and it controls pages whose URL begins with /my-app/.</p>
                 <p>This registration is done from outside the service worker, by another page or script on your website. For example, if your website has a global main.js script included on every HTML page, your service work would be registered from there.</p>
                 <p>When you register a service worker, you (optionally) also tell it what scope it should apply itself to. You can instruct it to only handle parts of your website ('/my-app/'), or you can register it for your whole website ('/'). This path needs to be written relative to the origin, not your app's root directory. In this example, the worker is at https://github.io/my-app/sw.js and the app's root is https://github.io/my-app/ but the path needs to be written as /my-app/sw.js, not /sw.js</p>
@@ -79,7 +79,7 @@ if ('serviceWorker' in navigator) {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The Service worker has been registered using a file called 'sw.js'. A better name maybe something like 'register-service-worker.js' to avoid the use of abbreviations, but we'll keep it simple for the examples. This is the file that is used to setup the service worker.</p>
                 <p>After your service worker is registered, the browser will attempt to install then activate the service worker for your page/website.</p>
                 <p>The if statement performs a feature detection test to make sure service workers are supported before trying to register one.</p>
@@ -87,15 +87,15 @@ if ('serviceWorker' in navigator) {
                 <p>The scope parameter is optional, and can be used to specify the subset of the content you want the service worker to control. In this example, we have specified '/my-app', which means all content under the app's origin. If this is left out, it will default to this value anyway.</p>
                 <p>A .then() promise function is used to chain a success case onto our promise structure. When the promise resolves successfully, the code inside it executes. If the promise is rejected, the .catch() function is executed.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Events</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Events</h2>
                 <p>There are three types of event which comprises the service worker lifecycle:</p>
                 <p>Install - fired after the worker has been registered and the script has been downloaded by the browser.</p>
                 <p>Activate - fired after installation once the service worker becomes active. The latest service worker won't become active until the old one has been 'released'.</p>
                 <p>Fetch - fired whenever a network request is made to a URL within a given service worker's scope.</p>
                 <p>If we wanted to make our application available offline, we might use these lifecycle events.</p>
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We can create a service worker file - named as sw.js in the earlier example - with an install hook:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript: src&#x2F;my-app&#x2F;sw.js">
@@ -121,7 +121,7 @@ self.addEventListener('install', event => {
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>When this server worker is installed, it opens a cache ('cache-v2' in this example) and saves all the listed resources in the cache.</p>
                 <p>At this point you should be able to inspect the 'cache-v2' created in the browser's Cache Storage using the browser inspector.</p>
             </section>

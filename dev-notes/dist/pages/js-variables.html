@@ -21,17 +21,17 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Variables</h1>
+            <h1 class="heading">Variables</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Declaring a variable</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Declaring a variable</h2>
                 <p>A variable is a container for storing a value. To use a variable you first have to create it, or more accurately, this is called declaring a variable.</p>
                 <p>To declare a variable we use the var keyword followed by the variable's name. This name is often called the identifier.</p>
                 <p>When a variable is declared without any value it is an empty container. This is an undefined variable. When you enter the variable's name in the console, you should get a value of undefined returned.</p>
@@ -84,7 +84,7 @@ Error: Uncaught ReferenceError: myAge is not defined
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>When a variable is declared outside of a function, it becomes part of the window object. The window object is supported by all browsers and represents the browser's window.</p>
                 <p>This variable then becomes a global variable and is a property of the window object. By declaring variables globally conflict can occur as other parts of the JavaScript code may use the same variable name elsewhere.</p>
                 <p>It is recommended to avoid polluting the global namespace and avoid having variables declared globally. It is better to declare variables within functions.</p>
@@ -107,7 +107,7 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Once a variable has been declared with a value, the value can be changed/updated by providing a new value.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -123,8 +123,8 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Memory</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Memory</h2>
                 <p>Each variable that you declare takes up memory. The more variables a browser has to remember, the more memory your script requires to run causing performance to be slow.</p>
                 <p>A variable references a value that is stored in memory. The same value can be used with more than one variable.</p>
                 <!-- Code example -->
@@ -140,8 +140,8 @@ Our myName variable will be located within the window object
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">The typeof operator</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">The typeof operator</h2>
                 <p>Unlike some other languages, you don't need to specify what data type - numbers, strings, arrays - a variable will contain. This is because JavaScript is a 'loosely typed language'.</p>
                 <p>If you were to declare a variable and give it a value within quotes (double or single), the browser will treat the variable as a string. Without any quotes, the value would be a number.</p>
                 <p>We can use the special operator called typeof to return the data type of the variable that you pass into it.</p>

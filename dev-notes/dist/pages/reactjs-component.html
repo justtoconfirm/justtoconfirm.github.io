@@ -21,17 +21,17 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Components</h1>
+            <h1 class="heading">Components</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Creating a Component</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Creating a Component</h2>
                 <p>Components allow you to split the UI (User Interface) into independent, reusable pieces. React components are like JavaScript functions. They accept input - called props (properties) - and return elements that describes what should be on the screen.</p>
                 <p>React components can be created using JavaScript functions. This is the simplest way to write a React component and is called a 'functional component' because they are functions. ES6 JavaScript classes can also be used to create React components. ES6 Arrow functions can also be used. We do not need a return statement when using ES6 Arrow functions. Classes have some additional features over functions when creating a component, but either can be used.</p>
                 <p>Component names should always start with an uppercase letter.</p>
@@ -60,7 +60,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>In our React application - my-app - we have an App.js file within the src/ directory containing a component. The example below shows how the component has been created using a JavaScript ES6 class:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;App.js">
@@ -83,8 +83,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Rendering a Component</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Rendering a Component</h2>
                 <p>We are going to create a simple user-defined component. This simple component will be created using a JavaScript function and will allow an attribute to be passed into it using the props (properties) object. In the index.js file, update the code to include the component. Our component will be called 'Welcome'.</p>
                 <p>Once the component has been created, we want to pass a prop into the component which will allow us to render 'Hello, Dan' on the screen.</p>
                 <p>To summarise, this is what is occuring:</p>
@@ -117,7 +117,7 @@ Component has an uppercase name
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>This is a simplified example:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
@@ -141,8 +141,8 @@ Component has an uppercase name
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Component Structure</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Component Structure</h2>
                 <p>Components can refer to other components in their output. We can reuse components and also use components within another component if we need to. In React applications a button, form, dialog and screen are all commonly expressed as components. It's better to split components into smaller components so they can be reused.</p>
                 <p>We can create an App component that renders the Welcome component multiple times. Typically, new React apps have a single App component at the very top.</p>
                 <!-- Code example -->
@@ -184,7 +184,7 @@ Component has an uppercase name
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>As described in the code comments, if we do not wrap an element around the Welcome components in the App component, a syntax error will be displayed in the browser and terminal. Therefore, we wrap these components within an empty &lt;div&gt; element. The syntax error example can be seen below.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="" data-title="">
@@ -197,8 +197,8 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Extracting Components</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Extracting Components</h2>
                 <p>If part of your UI is used multiple times in other components - Buttons, Panel - or complex enough on its own, it is a good candidate to become a reusable component. As we are using Webpack, we can also place components within individual files to make them easier to locate and maintain.</p>
                 <p><!-- https://reactjs.org/docs/components-and-props.html --></p>
                 <p>We can begin by creating a simple comment component.</p>
@@ -257,7 +257,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>The comment component can be difficult to change due to all the nesting. The component itself accepts author (object), text (string), and date as props. This type of component would be something you would see on a social media website.</p>
                 <p>Let's extract a few components from the rather large comment component.</p>
                 <p>The Avatar doesn't need to know that its being rendered inside a comment component, so the prop name is the now more generic user rather than author. By removing this component from inside the comment component, we can still reuse it anywhere we choose.</p>
@@ -337,8 +337,8 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Individual Files</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Individual Files</h2>
                 <p>As we are using Webpack, we can separate our components into individual files. We currently already do this for the existing App component (my-app/src/App.js).</p>
                 <p>Begin by creating a new folder/directory named 'components' within the src/ directory of our React project. Because we are using Babel and Webpack, we can remove the semi-colons that are used to end statements within the JavaScript code.</p>
                 <p>Below we are recreating the same component multiple times to show how it can be done. You can of course use a class, however to keep things simple, we are just using functions initially.</p>
@@ -377,7 +377,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Now that the component has been created and exported, we can import it so it can be used. Open up the index.js file in the src/ directory and import the Welcome component we have just created. Once again we have removed the semi-colon at the end of the statement as we do not need this when writing ES6.</p>
                 <p>The first few lines of index.js should now look like this:</p>
                 <!-- Code example -->
@@ -394,7 +394,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>And now we just want to render the Welcome component. This is the full code:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
@@ -415,7 +415,7 @@ Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>It is worth noting that props are read-only. Whether you declare a component as a function or a class, it must never modify its own props. Such functions are called 'pure' because they do no attempt to change their inputs and always returns the same result for the same input. All React components must act like pure functions with respect to their props.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">

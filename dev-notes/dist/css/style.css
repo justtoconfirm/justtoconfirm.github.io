@@ -32,20 +32,10 @@ pre {
   tab-size: 2;
 }
 
-section {
-  padding-bottom: 15px;
-}
-
-.page-heading,
-.section-heading {
+.heading {
   color: #2c3e50;
   font-family: "SourceSansPro-Regular", "Helvetica Neue", Arial, sans-serif;
   font-weight: 200;
-}
-
-.section-heading__border-btm {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
 }
 
 .list {
@@ -138,4 +128,12 @@ section {
 .card-title {
   text-align: center;
   padding: 10px 0;
+}
+
+.border-btm {
+  border-bottom: 1px solid #ddd;
+}
+
+.padding-btm {
+  padding-bottom: 10px;
 }

@@ -21,22 +21,22 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Express.js</h1>
+            <h1 class="heading">Express.js</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
                 <p>Express is a web framework for Node.js. It is built on top of the Node.js http module, and adds support for routing and middleware.</p>
                 <p>Express versions 2.x and 3.x are no longer maintained. The current Express version 4.x should be used for any new projects.</p>
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Install</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Install</h2>
                 <p>NPM (Node Package Manager) is required before you can install Express.js. By default NPM version 5.0 and later adds the module to the dependencies list in the package.json file. Earlier versions of NPM need to have the --save option.</p>
                 <p>You will also need a package.json file within your project.</p>
                 <p>Open the terminal and enter the following command to install Express as a dependency within your project:</p>
@@ -54,8 +54,8 @@ $ npm install express --save
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Server: Hello World</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Server: Hello World</h2>
                 <p>The 'Hello World' example is the simplest Express app you can build. The app starts a server and listens on port 3000 for any connections. The app responds with 'Hello World' for requests to the root URL (/) or route. For any other path, it will respond with a 404 Not Found.</p>
                 <p>This server is powered by RunKit which provides a Node enviornment within your browser.</p>
                 <p>Here the example is using ES6 JavaScript syntax. ES5 syntax can also be used.</p>
@@ -77,7 +77,7 @@ app.listen(3000, () => console.log('Example app listening on port 3000'))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Run the app with the following command then load <a href='http://localhost:3000/' target='_blank'>http://localhost:3000/</a> in the browser to see the output:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="" data-title="">
@@ -90,8 +90,8 @@ $ node app.js
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Routing</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Routing</h2>
                 <p>Routing refers to how an application responds to a request to a particular endpoint (URI/path) and a specific HTTP request method (GET/POST).</p>
                 <p>The following examples illustrate defining simple routes within the app.js file created earlier.</p>
                 <p>You will have to restart the server each time a change has been made.</p>
@@ -115,7 +115,7 @@ app.get('/about', (req, res) => res.send('This is the about page'))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>To define routes with router parameters, simply specify the route parameters in the path of the route. The two examples below show 'books' and 'flights'.</p>
                 <p>This will return a JSON object with key/value pairs within the browser.</p>
                 <!-- Code example -->
@@ -133,8 +133,8 @@ app.get('/flights/:from-:to', (req, res) => res.send(req.params))
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Nodemon</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Nodemon</h2>
                 <p>You can install the Nodemon package as a devDependency. It's a simple package that automatically restarts your server when files change.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="" data-title="">
@@ -147,7 +147,7 @@ $ npm install nodemon --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Once Nodemon has been installed, update the package.json file:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="" data-title="">
@@ -163,7 +163,7 @@ $ npm install nodemon --save-dev
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Run Nodemon:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="" data-title="">

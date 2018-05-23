@@ -10,8 +10,7 @@
 @import '1-quarks/body';
 @import '1-quarks/heading';						
 @import '1-quarks/paragraph';
-@import '1-quarks/pre';
-@import '1-quarks/section';					
+@import '1-quarks/pre';					
 
 // Atoms
 @import '2-atoms/heading';			
@@ -35,4 +34,12 @@
 .card-title {
 	text-align: center;
 	padding: 10px 0;
+}
+
+.border-btm {
+	border-bottom: 1px solid $heading-border;
+}
+
+.padding-btm {
+	padding-bottom: 10px;
 }

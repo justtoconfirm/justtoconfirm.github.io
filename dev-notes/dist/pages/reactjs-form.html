@@ -21,17 +21,17 @@
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
 
-            <h1 class="page-heading">Form</h1>
+            <h1 class="heading">Form</h1>
 
         </div>
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-9 columns">
 
-            <section>
+            <section class="padding-btm">
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Introduction</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
                 <p>HTML forms have default form behavior of browsing to a new page when the user submits the form. This will be the same behavior that occurs when using React. In most cases, it maybe convenient to have a JavaScript function that handles the form submission and to allow access to the data that the user has entered into the form. The standard way to do this in React is to use a technique called 'controlled components'. React also has the option to use uncontrolled components that do not require an event handler for every way your data can change.</p>
                 <p>In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt; have their own state that is updated based on user input. In React, we want the component that renders a form to also control the user input. This is a 'controlled component' and is a way of using setState to combine the default state of the HTML form elements and the React state to be a 'single source of truth'.</p>
                 <p>Let's create a simple form component.</p>
@@ -69,7 +69,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>If we change the value in this.state, we can set the value that appears in the input text field. In the previous example, the value was empty ('') so no value appeared. Since the value attribute is set on our form element, the displayed value will always be this.state.value, making the React state the 'source of truth'. Notice that this.state.value is initialized in the constructor, so that the input field starts off with some text in it.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -83,7 +83,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Since handleChange runs on every keystroke to update the React state, the displayed value will update as the user types. We will add an onChange attribute to the input text field. Controlled components will have an associated handler function - such as handleChange - for every state mutation/change. This makes it useful to modify or validate user input.</p>
                 <p>Below, we can find an example of the handleChange handler function, and a further example should how we can enforce that names are written in uppercase letters.</p>
                 <p>React can’t know about users typing in the form elements. Developers need to implement an event handler to capture changes with onChange.</p>
@@ -106,7 +106,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We now need to add the handleChange to the constructor.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -124,7 +124,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Finally, add the onChange attribute to the input text field.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript">
@@ -137,7 +137,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>Here is the full code:</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
@@ -180,7 +180,7 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
+            <section class="padding-btm">
                 <p>We can now also add another function to handle the form submission. An onSubmit attribute will be added to the &lt;form&gt; element and a function named handleSubmit will be added to the component. We need to add a submit button to the form also.</p>
                 <!-- Code example -->
                 <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
@@ -232,8 +232,8 @@
                 </div>
                 <!-- / Code example -->
             </section>
-            <section>
-                <h2 class="section-heading section-heading__border-btm">Uncontrolled Components</h2>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Uncontrolled Components</h2>
                 <p>In most cases, it is recommended to use Controlled Components, as described above, to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.</p>
                 <p><!-- https://reactjs.org/docs/uncontrolled-components.html --></p>
                 <p><!-- https://lorenstewart.me/2016/10/31/react-js-forms-controlled-components/ --></p>
