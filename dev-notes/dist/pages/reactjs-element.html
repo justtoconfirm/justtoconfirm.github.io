@@ -9,11 +9,129 @@
     <title>Dev notes - React.js Elements</title>
     <link rel="stylesheet" href="../css/foundation.min.css" />
     <link rel="stylesheet" href="../css/style.min.css" />
+
+
+<style>
+header {
+    background-color: #000;
+}
+
+.nav {
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -ms-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+  /*background: #28dde0;*/
+  background: #eee;
+  color: white;
+  cursor: pointer;
+  /*font-size: 2rem;*/
+  height: 100vh;
+  /*left: -20rem;*/
+  left: -25rem;
+  padding: 6rem 2rem 2rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 20rem;
+  z-index: 1;
+}
+
+.nav.expanded { left: 0; }
+
+.nav ul {
+  position: absolute;
+  top: 150px;
+  /*top: 50%;*/
+  /*position: relative;
+  top: 100px;*/
+  /*margin-top: 190px;*/
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-toggle {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  height: 2rem;
+  /*left: 2rem;*/
+  /*position: fixed;*/
+  position: relative;
+  /*top: 2rem;*/
+  width: 3.6rem;
+  z-index: 2;
+}
+
+.nav-toggle:hover { opacity: 0.8; }
+
+.nav-toggle .nav-toggle-bar,  .nav-toggle .nav-toggle-bar::after,  .nav-toggle .nav-toggle-bar::before {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  /*background: white;*/
+  background: red;
+  content: '';
+  height: 0.4rem;
+  width: 100%;
+}
+
+.nav-toggle .nav-toggle-bar { margin-top: 0; z-index: 1;}
+
+.nav-toggle .nav-toggle-bar::after { margin-top: 0.8rem; }
+
+.nav-toggle .nav-toggle-bar::before { margin-top: -0.8rem; }
+
+.nav-toggle.expanded .nav-toggle-bar { background: transparent; }
+
+.nav-toggle.expanded .nav-toggle-bar::after, .nav-toggle.expanded .nav-toggle-bar::before {
+  /*background: white;*/
+  background: red;
+  margin-top: 0;
+}
+
+.nav-toggle.expanded .nav-toggle-bar::after {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.nav-toggle.expanded .nav-toggle-bar::before {
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+</style>
+
+
 </head>
 <body>
 
 
 <header>
+
+<div class="nav-toggle">
+    <div class="nav-toggle-bar"></div>
+</div>
+
+<nav class="nav">
+	<ul class="no-list-style menu">
+		<li><a href='../../index.html'>Home</a></li>
+		<li><a href='reactjs.html'>React.js</a></li>
+	</ul>
+</nav>
 
 </header>
 
@@ -82,14 +200,6 @@
         </div>
 
         <div class="small-12 medium-12 large-3 columns">
-
-            <div>
-                <ul class="no-list-style">
-                    <li><a href='../../index.html'>Home</a></li>
-                    <li><a href='reactjs.html'>React.js</a></li>
-                </ul>
-            </div>
-
         </div>
     </div>
 </main>
@@ -104,6 +214,26 @@
 		</div>
 	</div>
 </footer>
+
+<script>
+(function() {
+    // https://www.cssscript.com/basic-hamburger-toggle-menu-css-vanilla-javascript/
+  var hamburger = {
+    navToggle: document.querySelector('.nav-toggle'),
+    nav: document.querySelector('nav'),
+
+    doToggle: function(e) {
+      //e.preventDefault();
+      this.navToggle.classList.toggle('expanded');
+      this.nav.classList.toggle('expanded');
+    }
+  };
+
+  hamburger.navToggle.addEventListener('click', function(e) { hamburger.doToggle(e); });
+  hamburger.nav.addEventListener('click', function(e) { hamburger.doToggle(e); });
+
+}());
+</script>
 
 </body>
 </html>
