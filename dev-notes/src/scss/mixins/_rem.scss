@@ -1,8 +1,30 @@
-// Mixin to apply rem font sizes
-// @param $size: Font size in pixels.
-// @param $base [optional]: The base font size. Is 16px if not value is provided
+//
+//  rem mixin
+//  Apply Browser prefixing to CSS declarations
+//  Values should be provided in pixels without 'px' units
+//  The 'px' fallback is used for older browsers that do not support 'rem'
+//
+//  @param $prop:           	CSS property name
+//  @param $px:             	Unitless pixel value/size: 8 vs 8px
+//  @param $base-font-size:   	Base font size variable value. Default is 16
+//
+//  Example usage:
+//  .selector {
+//      @include rem(padding, 8, 16, 8);
+//      @include rem(margin, 12);
+//  }
+//
+@mixin rem($prop, $px: $base-font-size) {
 
-@mixin rem($size, $base: 16) {
-    font-size: $size * 1px;     // Pixel fallback for older browsers
-    font-size: ($size / $base) * 1rem;    // rem
+	$pxvalues: null;
+    $remvalues: null;
+
+    @each $pxvalue in $px {
+		$pxvalues: append($pxvalues, ($pxvalue) *1px);
+        $remvalues: append($remvalues, ($pxvalue / $base-font-size) *1rem);
+    }
+
+    // Output properties with rem and pixel values
+    #{$prop}: $pxvalues;    // px
+    #{$prop}: $remvalues;   // rem
 }

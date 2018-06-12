@@ -1,4 +1,20 @@
-$heading: #2c3e50 !default;
-$heading-border: #ddd !default;
-$paragraph: #34495e !default;
-$list: #34495e !default;
+// Colour names based on: http://chir.ag/projects/name-that-color/
+
+// White
+$white: #fff !default;
+// Black
+$black: #000 !default;
+
+// Blue
+$denim: #1779ba !default;
+
+// Red
+$mojo: #cc4b37 !default;
+
+// Theme: primary
+$primary-theme-btn-background-color: $denim;	
+$primary-theme-btn-color: $white;
+
+// Theme: alert
+$alert-theme-btn-background-color: $mojo;	
+$alert-theme-btn-color: $white;					

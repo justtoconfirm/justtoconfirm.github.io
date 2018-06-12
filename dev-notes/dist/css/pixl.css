@@ -1,0 +1,184 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/*
+	Remove the margin in all browsers
+*/
+
+body {
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.btn {
+  padding: 12px;
+  padding: 0.75rem;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  border: 1px solid transparent;
+  display: inline-block;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+}
+
+.btn--primary {
+  background-color: #1779ba;
+  color: #fff;
+}
+
+.btn--alert {
+  background-color: #cc4b37;
+  color: #fff;
+}
+
+.bare-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.horizontal-list {
+  padding-left: 0;
+  text-decoration: none;
+}
+
+.horizontal-list li {
+  margin-right: 15px;
+  margin-right: 0.9375rem;
+  display: inline;
+}
+
+.horizontal-list li:last-child {
+  margin-right: 0;
+}
+
+pre {
+  background-color: #000;
+  color: #fff;
+  margin-top: 0;
+  padding: 0 25px;
+  tab-size: 2;
+}
+
+.code-block[rel=js]::before {
+  background-color: #ff9800;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=html]::before {
+  background-color: #1779ba;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=css]::before {
+  background-color: #f5da55;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block[rel=php]::before {
+  background-color: #42b983;
+  color: #fff;
+  font-size: 14px;
+}
+
+.code-block {
+  font-size: 14px;
+  whites-space: pre-wrap;
+}
+
+.code-block:before {
+  content: attr(data-title);
+  display: block;
+  padding: 10px 0;
+  text-indent: 15px;
+  width: 100%;
+}
+
+.code-block .comment {
+  color: #9fa6ad;
+}
+
+.code-block .keyword {
+  color: #ff9800;
+}
+
+.code-block .name {
+  color: #dfc48c;
+}
+
+.code-block .return {
+  color: #add8e6;
+}
+
+.code-block .tag {
+  color: #e96900;
+}
+
+.code-block .value {
+  color: #cd6a51;
+}

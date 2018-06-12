@@ -1,0 +1,15 @@
+//
+//  Opacity mixin
+//  Cross browser opacity with fallback for IE8
+//
+//  @param $opacity:	Opacity
+//
+//  Example usage:
+//  .selector {
+//      @include opacity(0.5);
+//  }
+//
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	filter: alpha(opacity=$opacity * 100);	// IE8 fallback
+}

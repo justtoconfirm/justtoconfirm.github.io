@@ -1,0 +1,16 @@
+html {
+	@include prefix(box-sizing, border-box, webkit moz);
+}
+
+*,
+*:before,
+*:after {
+	@include prefix(box-sizing, inherit, webkit moz);
+}
+
+/*
+	Remove the margin in all browsers
+*/
+body {
+	margin: 0;
+}

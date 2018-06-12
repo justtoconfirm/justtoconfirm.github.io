@@ -42,9 +42,9 @@
     "build-optimisation": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/optimisationData.json views/templates/pageTemplate.mustache > dist/pages/optimisation.html",
     "build-express": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/expressData.json views/templates/pageTemplate.mustache > dist/pages/express.html",
     "build-redux": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/reduxData.json views/templates/pageTemplate.mustache > dist/pages/redux.html",
-    "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/style.css && npm run beautify-css && npm run minify-css",
-    "beautify-css": "beautify-css dist/css/style.css dist/css/style.css",
-    "minify-css": "minify dist/css/style.css"
+    "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
+    "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
+    "minify-css": "minify dist/css/pixl.css"
   },
   "author": "Justtoconfirm",
   "license": "ISC",

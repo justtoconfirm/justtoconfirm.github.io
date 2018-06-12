@@ -1,0 +1,13 @@
+.horizontal-list {
+	padding-left: 0;
+	text-decoration: none;
+
+	li {
+		@include rem(margin-right, 15);
+		display: inline;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}

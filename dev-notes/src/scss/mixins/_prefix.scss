@@ -1,0 +1,25 @@
+//
+//	Prefix mixin
+//	Apply Browser prefixing to CSS declarations
+//
+//	@param $prop:		CSS property name
+//	@param $val:		CSS property value
+//	@param $prefixes:	Browser prefixes to be applied
+//
+//	Example usage:
+//	.selector {
+//		@include prefix(transform, rotate(45deg));
+//		@include prefix(transform, rotate(45deg), webkit ms);
+//	}
+//
+@mixin prefix($prop, $val, $prefixes: webkit moz ms o) {
+	@if $prefixes {
+		// Loop through each prefix listed
+		@each $prefix in $prefixes {
+			// Apply each prefix to the property and value
+			#{'-' + $prefix + '-' + $prop}: #{$val};
+		}
+	}
+	// Output the non-prefixed declaration
+	#{$prop}: #{$val};
+}
