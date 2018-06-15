@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - React.js State</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">State</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
+                <p><!-- https://github.com/uberVU/react-guide/blob/master/props-vs-state.md --></p>
+                <p><!-- http://lucybain.com/blog/2016/react-state-vs-pros/ --></p>
+                <p><!-- https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c --></p>
+                <p><!-- https://hackernoon.com/understanding-state-and-props-in-react-94bc09232b9c --></p>
+                <p>Both props and state are plain JavaScript objects. Props are passed into the component (similar to how arguments are passed to parameters in functions), whereas state holds information about the component (similar to variables declared within a function) and is private within the component itself.</p>
+                <p>By default, components have no state, they are stateless. Any component with props and state is said to be a Stateful Component.</p>
+                <p>State is a feature that is only available to classes. Any component declared using a function will need to be converted to a class. Should your component require no state, then a function can continue to be used.</p>
+                <p>To convert a function to a class:</p>
+                <p><ul class='list'><li>Create an ES6 class, with the same name, that extends React.Component</li></p>
+                <p><li>Add a single empty method called render()</li></p>
+                <p><li>Move the body of the function into the render() method.</li></p>
+                <p><li>Replace props with this.props in the render() body.</li></p>
+                <p><li>Delete the remaining empty function declaration.</li></ul></p>
+                <p>Let's create a Stateless component using a class:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>class</span> <span class='name'>Welcome</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='name'>Component</span> {
+    <span class='keyword'>render</span>() {
+        <span class='return'>return</span> &lt;<span class='keyword'>h1</span>&gt;Hello, {<span class='keyword'>this</span>.<span class='value'>props</span>.<span class='name'>name</span>}&lt;<span class='keyword'>/h1</span>&gt;;
+    }
+}
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    <span class='comment'>{/* The 'name' property is passed into the component */}</span>
+    &lt;<span class='name'>Welcome</span> <span class='name'>name</span>=<span class='value'>'Dan'</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Since props are passed into a component, they cannot change. You can think of any React component that only uses props as being 'pure'. The component will always render the same output. Props are a way of passing data into a component (from parent to child), State is reserved for interactivity, that is, data that changes over time.</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Overview of State</h2>
+                <p><!-- https://daveceddia.com/visual-guide-to-state-in-react/ --></p>
+                <p><!-- https://micropyramid.com/blog/understanding-reactjs-component-state-props/ --></p>
+                <p><!-- https://medium.freecodecamp.org/react-props-state-explained-through-darth-vaders-hunt-for-the-rebels-8ee486576492 --></p>
+                <p><!-- https://stackoverflow.com/questions/27991366/what-is-the-difference-between-state-and-props-in-react --></p>
+                <p><!-- https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf --></p>
+                <p>In React, state is a plain JavaScript object that represents the parts of the application that can change. Each component can maintain its own state, which lives in an object called this.state</p>
+                <p>Props are how components talk to each other. Props flow downwards from the parent component to the child component. This is known as uni-directional flow. When a component receives data directly and it has not come from the parent, this is state.</p>
+                <p>It is important to remember that you should never change this.state directly, but use this.setState instead. The only place where you can assign this.state is the constructor.</p>
+                <p>When you setState, it updates the state object and then re-renders the component. Think search bars, for example. The user will type in the data and this will update what they see.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>// Do not modify state directly, it will not re-render component</span>
+<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>comment</span> = <span class='value'>'Hello'</span>;
+
+<span class='comment'>// Correct</span>
+<span class='keyword'>this</span>.<span class='name'>setState</span>({<span class='name'>comment</span>: <span class='value'>'Hello'</span>});
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Let's look at the constructor method of our component. This is where state gets it's initial data. The initial data can be hard coded or you can pass in the data from props. You can't change props - as previously mentioned - but you may want to do stuff to the data that the component receives. That's where state comes in, as state is changeable. The component is initialised and state.count is set to 0.</p>
+                <p>It is worth noting that you should always call super( ) if you have a constructor, otherwise an error will appear.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>constructor</span> () {
+    <span class='keyword'>super</span>();
+    <span class='keyword'>this</span>.<span class='name'>state</span> = {
+        <span class='name'>count</span>: <span class='value'>0</span>,
+    };
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>In this example we are passing props to the base constructor.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>constructor</span> (<span class='value'>props</span>) {
+    <span class='keyword'>super</span>(<span class='value'>props</span>);
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Within our component we have a render method. We update the render method to create a button. When the button is clicked, a method (updateCount) will be called. We will use an ES6 arrow function so the method will have access to the instance's state. The button will also display the count showing the number of times the button has been clicked. This will use whatever this.state.count is at the time of rendering.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>render</span> () {
+    <span class='return'>return</span> (
+        &lt;<span class='keyword'>button</span> <span class='name'>onClick</span>={() => <span class='keyword'>this</span>.<span class='name'>updateCount</span>()}&gt;
+            Clicked {<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>count</span>} times
+        &lt;<span class='keyword'>/button</span>&gt;
+    );
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>We also need the updateCount method to change the state and keep a track of the total number of clicks. setState runs asynchronously, it needs to take a callback function rather than updating the state directly. We also have access to prevState within the callback that contains the previous state. setState updates the state object and re-renders the component automatically.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='name'>updateCount</span> () {
+    <span class='keyword'>this</span>.<span class='name'>setState</span>((<span class='keyword'>prevState</span>, <span class='value'>props</span>) => {
+        <span class='return'>return</span> { <span class='name'>count</span>: <span class='keyword'>prevState</span>.<span class='name'>count</span> + <span class='value'>1</span> }
+    });
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Here is a summary and full code:</p>
+                <p><ul class='list'><li>The component is initialised and state.count is set to 0</li></p>
+                <p><li>The component renders, with 'Clicked 0 times' as button text.</li></p>
+                <p><li>The use clicks the button.</li></p>
+                <p><li>updateCount is called, bound to this instance of the component.</li></p>
+                <p><li>updateCount calls setState with a call back to increment the counter from the previous state's counter value.</li></p>
+                <p><li>setState triggers a call to render.</li></p>
+                <p><li>The component renders with 'Clicked 1 times' as the button text.</li></ul></p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript : my-app&#x2F;src&#x2F;index.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>import</span> <span class='name'>React</span> <span class='keyword'>from</span> <span class='value'>'react'</span>;
+<span class='keyword'>import</span> <span class='name'>ReactDOM</span> <span class='keyword'>from</span> <span class='value'>'react-dom'</span>;
+
+<span class='keyword'>class</span> <span class='name'>Button</span> <span class='keyword'>extends</span> <span class='name'>React</span>.<span class='keyword'>Component</span> {
+    <span class='name'>constructor</span> () {
+        <span class='keyword'>super</span>();
+        <span class='keyword'>this</span>.<span class='name'>state</span> = {
+            <span class='name'>count</span>: <span class='value'>0</span>,
+         };
+    }
+
+    <span class='name'>updateCount</span> () {
+        <span class='keyword'>this</span>.<span class='name'>setState</span>((<span class='keyword'>prevState</span>, <span class='value'>props</span>) => {
+            <span class='return'>return</span> { <span class='name'>count</span>: <span class='keyword'>prevState</span>.<span class='name'>count</span> + <span class='value'>1</span> }
+        });
+    }
+
+    <span class='name'>render</span> () {
+        <span class='return'>return</span> (
+            &lt;<span class='keyword'>button</span> <span class='name'>onClick</span>={() => <span class='keyword'>this</span>.<span class='name'>updateCount</span>()}&gt;
+                Clicked {<span class='keyword'>this</span>.<span class='name'>state</span>.<span class='name'>count</span>} times
+            &lt;<span class='keyword'>/button</span>&gt;
+        );
+    }
+}
+
+<span class='name'>ReactDOM</span>.<span class='keyword'>render</span> (
+    &lt;<span class='name'>Button</span> /&gt;,
+    <span class='keyword'>document</span>.<span class='name'>getElementById</span>(<span class='value'>'root'</span>)
+);
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

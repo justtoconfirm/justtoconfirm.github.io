@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - JavaScript Array</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">Array</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Create an Array</h2>
+                <p>The JavaScript Array object is a global object that is used to construct arrays; which are high-level, list-like objects. Arrays are used to store multiple values in a single variable.</p>
+                <p>An array can hold many values under a single name that can be accessed using an index number.</p>
+                <p>The typeof operator in JavaScript returns 'object' for arrays. Arrays use numbers (indexes) to access elements. Objects use names (key/value pairs) to access it's 'members'. In JavaScript, it is best to describe arrays as arrays and not objects.</p>
+                <p>An example to create an empty array:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>array</span> = [ ];
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Assign values</h2>
+                <p>Once an array has been created, values (elements) can be assigned. The following example creates an array to list a number of fruits.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Length property</h2>
+                <p>The length property returns the number of elements within the array. This is the length of the array.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];
+
+<span class='name'>fruits</span>.<span class='keyword'>length</span>;    <span class='comment'>// 3</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Accessing Array elements</h2>
+                <p>Each element in an array has an index number. [0] is the first element in an array, [1] is the second, and so on. The first element in an array always starts at 0.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];
+
+<span class='name'>fruits</span>[0];    <span class='comment'>// Apple</span>
+<span class='name'>fruits</span>[1];    <span class='comment'>// Banana</span>
+<span class='name'>fruits</span>[2];    <span class='comment'>// Orange</span>
+
+<span class='comment'>// Return the last element in the array</span>
+<span class='name'>fruits</span>[<span class='name'>fruits</span>.<span class='keyword'>length</span> - <span class='value'>1</span>];
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Adding elements</h2>
+                <p>New elements can be added to the end of an array using the push() method or length property. Here we are using both examples to add 'Lemon' or 'Pear' as a new element into our Array.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];
+
+<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange', 'Lemon']</span>
+<span class='name'>fruits</span>.<span class='keyword'>push</span>( <span class='value'>'Lemon'</span> );
+
+<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange', 'Pear']</span>
+<span class='name'>fruits</span>[<span class='name'>fruits</span>.<span class='keyword'>length</span>] = <span class='value'>'Pear'</span>;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Removing elements</h2>
+                <p>To remove the last element from an array, the pop() method can be used.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Apple'</span>, <span class='value'>'Banana'</span>, <span class='value'>'Orange'</span>];
+
+<span class='name'>fruits</span>.<span class='keyword'>pop</span>();    <span class='comment'>// Remove the last element, returns 'Orange'</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Sorting the Array</h2>
+                <p>To alphabetically sort an array, the sort() method can be used.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='keyword'>var</span> <span class='name'>fruits</span> = [<span class='value'>'Banana'</span>, <span class='value'>'Apple'</span>, <span class='value'>'Orange'</span>];
+
+<span class='comment'>// Returns: ['Apple', 'Banana', 'Orange']</span>
+<span class='name'>fruits</span>.<span class='keyword'>sort</span>();
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

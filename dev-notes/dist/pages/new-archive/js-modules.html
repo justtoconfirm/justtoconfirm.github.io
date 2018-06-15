@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - JavaScript Modules</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">Modules</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">What is a Module?</h2>
+                <p>Modules are simply blocks of code that are self-contained and with distinct functionality. Modules can be moved and reused without disrupting the system as a whole.</p>
+                <p>Using a module allows us to avoid namespace pollution by creating a private space for our properties (variables). In JavaScript, variables outside the scope of a function are global, meaning everyone can access them. This is known as 'namespace pollution', where completely unrelated code shares global variables. This is best avoided where possible.</p>
+                <p>Modules allow for resusability which is a major benefit if you want to reuse code elsewhere that has common functionality.</p>
+                <p>Modules usually apply 'strict', so you don't need to include this within your JavaScript code.</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Module Pattern</h2>
+                <p>The module pattern is used to mimic the concept of classes, since JavaScript doesn't natively support classes. In JavaScript we create a single object that contains properties and methods. We often use functions to create the object as this is the only way to create new scope.</p>
+                <p>In this first example, we will use an anonymous function that is immediately executed (often called IIFE). This creates it's own environment, or 'closure' which allows us to hide properties (variables) within from the global namespace. With this approach, you can use local properties (variables) inside this function without accidentally overwriting existing global variables. Within our anonymous function, we can still however access global variables.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: anonymousClosure.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var global = 'Hello, I am a global variable';
+
+(function () {
+
+   // We keep these properties private inside the closure scope
+   var myGrades = [93, 95, 88, 0, 55, 91];
+
+   var average = function() {
+
+      var total = myGrades.reduce(function(accumulator, item) {
+         return accumulator + item
+      }, 0);
+
+      return 'Your average grade: ' + total / myGrades.length + '.';
+   }
+
+   var failing = function() {
+
+      var failingGrades = myGrades.filter(function(item) {
+         return item < 70;
+      });
+
+      return 'You failed: ' + failingGrades.length + ' times.';
+   }
+
+   // 'You failed: 2 times.'
+   console.log(failing());
+
+   // Output the global variable
+   console.log(global);
+
+}());
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Global Import</h2>
+                <p>A popular approach used by libraries such as jQuery, is to use a global import. This is similar to an anonymous closure, except we pass in globals as parameters into the function.</p>
+                <p>We begin with a simple immediately invoked function expression (IIFE) that is executed immediately and is essentially an anonymous function. We can then pass jQuery to the function's first argument. Naming the parameter within the function as '$' defines the symbol inside the function. Within the function itself, jQuery has been impoted and you can use the '$' because you've defined it locally within the function.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+(function($) {
+
+   // you can use $ here to refer to jQuery
+
+}(jQuery));
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">CommonJS</h2>
+                <p>A CommonJS module is essentially a reusable piece of JavaScript which exports specific objects making them available for other modules using 'require'. If you've used Node.js, you'll be familiar with this format.</p>
+                <p>When Node.js was released, CommonJS was adopted, which meant the Node Package Manager (NPM) could be developed.</p>
+                <p>With CommonJS, each JavaScript file stores modules in it's own unique module context. In this scope, we use the 'module.exports' (rather than 'export' in ES6 modules) object to expose/export modules, and require to import them.</p>
+                <p>Let's create a very simple module:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: myModule.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+function myModule() {
+   this.hello = function() {
+      return 'hello';
+   }
+
+   this.goodbye = function() {
+      return 'goodbye';
+   }
+}
+
+module.exports = myModule;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Using module.exports allows the module to be exported. This lets the CommonJS module system know what we want to expose so that other files can consume it.</p>
+                <p>To use the module and import it, we use 'require':</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: require.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+var myModule = require('myModule');
+
+var myModuleInstance = new MyModule();
+myModuleInstance.hello();   // hello
+myModuleInstance.goodbye();   // goodbye
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">ES6 Modules</h2>
+                <p>ES6 modules are only practical from Node.js v10 (behind a flag in Node.js 9.8.0) and above. For new projects, ES6 modules provide an alternative to CommonJS.</p>
+                <p>Node.js will only permit ES6 modules in files with extension .mjs files with a .js extension will default to CommonJS.</p>
+                <p>ES6 modules are supported in Chrome (v63+), Safari 11+, and Edge 16+. Firefox support will arrive in version 60 (it's behind an about:config flag in v58+). If a browser does not support ES6 syntax, you can use Babel to convert ES6 syntax to ES5 syntax to be used in older browser versions.</p>
+                <p>Let's create a really simple ES6 module with the CommonJS syntax added to show the comparison:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: helloModule.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// ES6 syntax
+export const hello = 'Hello World';
+
+// CommonJS syntax
+module.exports = 'Hello World';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>We can now import the simple helloModule.js module:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: hello.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+// ES6 syntax
+import { hello } from './helloModule.js';
+
+// CommonJS syntax
+const hello = require('./helloModule.js');
+
+console.log(hello);   // Hello World
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Should you want to export a module, you can follow this example showing the Input component in React being exported:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+export default Input;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Here is an example showing how React is imported into a React component. This refers to the default export from the module.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import React from 'react';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Given an object or value named 'myExport' which has been exported from the module 'my-module' either implicitly (because the entire module is exported), or explicitly (using the export statement), this inserts 'myExport' into the current scope.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import { myExport } from '/modules/my-module.js';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>You can rename an export when importing it by providing it with an alias. This can be used to insert a shorter name into the current scope.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import { myReallyLongExportName } as shortName from '/modules/my-module.js';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Multiple items can be imported at one time:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import { assert, expect } from 'chai';
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Webpack</h2>
+                <p>With multiple modules, it is often best to use a module bundler such as Webpack to bundle all modules into a single JavaScript file for use in your application.</p>
+                <p>Documentation can be found <a href='webpack.html'>here</a>.</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">NPM &amp; node_modules</h2>
+                <p>NPM (Node Package Manager) installs packages locally into a project. These packages are stored within the node_modules folder. From there, the package code can be included into your project. Using Webpack allows you to include modules contained within these packages into your project using CommonJS. Should you want to use ES6 syntax, Babel is possibly the tool to use.</p>
+                <p>Packages contain multiple modules. Meaning, packages to do something, export the function as a module. This module is then imported into another module for use.</p>
+                <p>Remember to add the 'node_modules' directory to your .gitignore file to avoid it being included in version control (Git/GitHub).</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Example: AJAX Module</h2>
+                <p>In this example, we will be importing a secondary module to assist in processing an AJAX JSON request.</p>
+                <p>We begin by creating the module:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: modules&#x2F;file.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+function getJSON(url, callback) {
+   let xhr = new XMLHttpRequest();
+   xhr.onload = function() {
+      callback(this.responseText)
+   };
+   xhr.open('GET', url, true);
+   xhr.send();
+}
+
+export function getUsefulContents(url, callback) {
+   getJSON(url, data => callback(JSON.parse(data)));
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>We can then use this module:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="js" data-title="JavaScript: main.js">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+import { getUsefulContents } from '/modules/file.js';
+
+getUsefulContent('http://www.example.com', data => {
+   doSomethingUseful(data);
+});
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

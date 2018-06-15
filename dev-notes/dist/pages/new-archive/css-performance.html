@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - CSS Performance</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">CSS Performance</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
+                <p>CSS is not the largest asset to consider during development, but it is one of the first the browser discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed, so it's always worthwhile to consider performance to make your stylesheets as lean as possible.</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Shallow Selectors</h2>
+                <p>Used correctly, shallow selectors can reduce kilobytes off the file size of your CSS stylesheets. As well as keeping your CSS tidy, the browser will also render the elements targeted by shallow selectors faster. Browsers read selectors from right to left. The deeper the selectors are, the longer it takes for the browser to render or re-render those elements.</p>
+                <p>Ideally you want selectors to be as shallow as possible, but sometimes you will need to add additional specificity to elements.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Deep selector example */
+nav ul li.nav-item
+
+/* Shallow selector example */
+.nav-item
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Shorthand Properties</h2>
+                <p>Using shorthand CSS properties will speed up your website, increased component flexibility and is convenient. Often longhand properties are used needlessly when a shorthand property is more suitable.</p>
+                <p>Here is an example of a longhand property:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+font-size: 1.5rem;
+line-height: 1.618;
+font-family: 'Arial', 'Helvetica', sans-serif;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>That's plenty of CSS, but let's use a shorthand property to tidy things up:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+font: 1.5rem/1.618 'Arial', 'Helvetica', sans-serif;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Another example showing the background properties simplified to a single declaration:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Multiple properties */
+background-color: #000;
+background-image: url(images/bg.gif);
+background-repeat: no-repeat;
+background-position: left top;
+
+/* Single declaration */
+background: #000 url(images/bg.gif) no-repeat left top;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>With borders, the width, colour, and style can be simplified into one declaration.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Multiple properties */
+border-width: 1px;
+border-style: solid;
+border-color: #000;
+
+/* Single declaration */
+border: 1px solid #000;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Shorthand versions of margin and padding values work in the same way. Note that the values are in a clockwise order beginning at the top, right, bottom, and left.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Multiple properties */
+margin-top: 10px;
+margin-right: 5px;
+margin-bottom: 10px;
+margin-left: 5px;
+
+/* Single declaration */
+margin: 10px 5px 10px 5px;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>With padding and margin, the shorthand properties can be reduced further:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* All four sides */
+margin: 10px 5px 10px 5px;
+
+/* Top/Bottom has margin of 10px, Left/Right margin of 5px
+margin: 10px 5px;
+
+/* Top has margin of 10px, left/right has 5px margin and bottom has 3px margin */
+margin: 10px 5px 3px;
+
+/* Margin equal across all sides */
+margin: 10px;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>If you need to override a value further down in the cascade you would use a more specific property instead.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+h1 {
+   font: 1.5rem/1.618 'Arial', 'Helvetica', sans-serif;
+}
+
+@media (min-width: 60rem) {
+   h1 {
+      font-size: 2rem;    /* Specific font-size property */
+   }
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Preload</h2>
+                <p>The preload resource hint can give browsers a head start loading your CSS stylesheets. The preload resource hint tells the browser to initiate an early fetch for an asset. This can be set as an attribute value within the &lt;link&gt; tag within your HTML, or as an HTTP header in your server configuration.</p>
+                <p>This is not supported on IE (Internet Explorer), but is supported within Edge (version 17 and later), Firefox (version 59 and later), Chrome, and Safari (version 11.1 and later).</p>
+                <p>Using the as attribute also allows the browser to prioritise resource loading more accurately, apply the correct content security policy to the resource, and set the correct Accept request headers for it.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;link rel='preload' href='css/stylesheet.css' as='style' /&gt;
+
+/* Example for JavaScript */
+&lt;link rel='preload' href='scripts/myscript.js' as='script' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

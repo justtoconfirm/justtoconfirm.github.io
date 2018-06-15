@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - HTML</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">HTML</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
+                <p>HTML (Hyper Text Markup Language) is the standard markup language and is used to describe the structure of web pages. HTML elements are represented by tags and are the building blocks of HTML pages. Browsers do not display the HTML tags, but use them to render the content of the page.</p>
+                <p>HTML files should have the .html file extension.</p>
+                <p>A very basic HTML document can be found below:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML : index.html">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+&lt;<span class='keyword'>head</span>&gt;
+    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;
+    &lt;<span class='keyword'>title</span>&gt;Page Title&lt;<span class='keyword'>/title</span>&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+&lt;<span class='keyword'>body</span>&gt;
+
+&lt;<span class='keyword'>h1</span>&gt;Heading&lt;<span class='keyword'>/h1</span>&gt;
+&lt;<span class='keyword'>p</span>&gt;A very simple paragraph.&lt;<span class='keyword'>/p</span>&gt;
+
+&lt;<span class='keyword'>/body</span>&gt;
+&lt;<span class='keyword'>/html</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Comments</h2>
+                <p>Comment tags are used to insert comments in your HTML code. Comments are not displayed by the browser, but they can help document your HTML source code. Comments can also be used for debugging because you can comment out HTML code to search for errors.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>&lt;!-- This is a comment in HTML --&gt;</span>
+
+<span class='comment'>&lt;!-- Do not display this
+&lt;p&gt;A very simple paragraph.&lt;/p&gt;
+--&gt;</span>
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Headings</h2>
+                <p>Headings are defined with the &lt;h1&gt; to &lt;h6&gt; tags. &lt;h1&gt; defines the most important heading, &lt;h6&gt; defines the least important heading.</p>
+                <p>&lt;h1&gt; should always be the first heading on any page, followed by &lt;h2&gt;, &lt;h3&gt; etc. Search engines use the headings to index the structure and content of your web pages. Headings are important in showing the document structure. Headings should only be used for headings and not to make text large or bold.</p>
+                <p>Browsers automatically add some margin before and after a heading.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Links</h2>
+                <p>The following examples demonstrate how to apply a link to HTML.</p>
+                <p>Further details can also be found <a href='optimisation.html'>here</a>.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;a href='https://www.google.com'&gt;Google&lt;/a&gt;
+&lt;a href='page2.html'&gt;Link to page2&lt;/a&gt;
+
+&lt;!-- Open in a new tab/window --&gt;
+&lt;a href='#' target='_blank'&gt;Open in a new tab/window&lt;/a&gt;
+
+&lt;!-- Open in a new tab/window with added security --&gt;
+&lt;a href='#' target='_blank' rel='noopener noreferrer'&gt;Link&lt;/a&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTML Elements &amp; Tags</h2>
+                <p>HTML tags are element names surrounded by brackets. Tags normally come in pairs, like &lt;p&gt; and &lt;/p&gt;. The first tag is called the start/opening tag, and the end tag is called the end/closing tag.</p>
+                <p>An HTML element usually consists of a start tag and end tag, with the content inserted between. The HTML element is everything from the start tag to the end tag.</p>
+                <p>HTML elements with no content are called empty element. These elements have no end tag, such as the &lt;br&gt; element.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>tag</span>&gt;Content goes here.&lt;<span class='keyword'>/tag</span>&gt;
+
+&lt;<span class='keyword'>p</span>&gt;A very simple paragraph.&lt;<span class='keyword'>/p</span>&gt;
+
+<span class='comment'>&lt;!-- Empty HTML element --&gt;</span>
+&lt;<span class='keyword'>br</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTML Attributes</h2>
+                <p>Attributes provide additional information about an HTML element. All HTML elements can have attributes and they are always specified in the start/opening tag. You can apply more than one attribute to HTML elements if required.</p>
+                <p>Further information can be found <a href='css.html'>here</a>.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>&lt;!-- Link without the href attribute --&gt;</span>
+&lt;<span class='keyword'>a</span>&gt;Link&lt;<span class='keyword'>/a</span>&gt;
+<span class='comment'>&lt;!-- With href attribute --&gt;</span>
+&lt;<span class='keyword'>a</span> <span class='name'>href</span>=<span class='value'>'https://www.website.com'</span>&gt;Link&lt;<span class='keyword'>/a</span>&gt;
+
+<span class='comment'>&lt;!-- div element without any attributes --&gt;</span>
+&lt;<span class='keyword'>div</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;
+<span class='comment'>&lt;!-- div element with class attribute --&gt;</span>
+&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'bold'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;
+<span class='comment'>&lt;!-- div element with id attribute --&gt;</span>
+&lt;<span class='keyword'>div</span> <span class='name'>id</span>=<span class='value'>'blockOne'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;
+<span class='comment'>&lt;!-- div element with multiple attributes --&gt;</span>
+&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'bold border'</span> <span class='name'>id</span>=<span class='value'>'blockTwo'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>When applying JavaScript to HTML elements, it is recommended to use attributes with a 'js-' prefix. This helps separate CSS styling and JavaScript functionality in HTML.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'>&lt;!-- div element with CSS and JavaScript class attributes --&gt;</span>
+&lt;<span class='keyword'>div</span> <span class='name'>class</span>=<span class='value'>'js-function bold'</span>&gt;Content here&lt;<span class='keyword'>/div</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTML Language</h2>
+                <p>The HTML lang attribute can be used to declare the language of a web page or portion of a web page to assist search engines and browsers. You should declare the primary language for each web page in your HTML code using the lang atribute within the &lt;html&gt; tag. In this example, the language has been set to English.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+
+&lt;!-- The page is in the British style of English --&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-GB'</span>&gt;
+&lt;!-- The page is in the US style of English --&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en-US'</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">File Paths</h2>
+                <p>A file path describes the location of a file. File paths are used when linking to an external files such as: pages, images, stylesheets, and scripts.</p>
+                <p>An absolute path is usually a web address/URL. A relative path points to a file relative to the current page.</p>
+                <p>It is best practice to use relative file paths where possible. Your pages will not be bound to your current base URL and all links will work on your local environment as well as current or future public domains.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!-- Absolute path: URL --&gt;
+&lt;img src='https://www.website.com/images/picture.jpg' alt='Mountain' /&gt;
+
+&lt;!-- Relative path --&gt;
+&lt;img src='/images/picture.jpg' alt='Mountain' /&gt;
+
+&lt;!-- Points to folder located one level above current folder --&gt;
+&lt;img src='../images/picture.jpg' alt='Mountain' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTML Entities</h2>
+                <p>Some characters are reserved in HTML. For example, if you use the less than (&lt;) or greater than (&gt;) signs in your text, the browser may mistake them for HTML tags. Character entities are used to display reserver characters in HTML. These are sometimes known as special characters.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&entity_name;   // e.g. &amp;lt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

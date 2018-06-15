@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - PHP</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">PHP</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction to PHP</h2>
+                <p>PHP (PHP: Hypertext Preprocessor) is an open-source, server-side scripting language for building interactive web pages and applications. Both WordPress and Drupal are written in PHP.</p>
+                <p>PHP files have the file extension .php</p>
+                <p>A PHP script is executed on the server, and plain HTML is returned to the browser. PHP scripts can be placed anywhere within a document and start with &lt;?php before ending with ?&gt;</p>
+                <!-- Code example -->
+                <div class="code-block" rel="php" data-title="PHP">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>?php</span>
+<span class='comment'>// PHP code goes here</span>
+<span class='keyword'>?</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Below we have an example of a simple PHP script. We use the PHP built-in echo function to output 'Hello World' onto a web page.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="php" data-title="PHP : index.php">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;!DOCTYPE html&gt;
+&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;
+&lt;<span class='keyword'>head</span>&gt;
+    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;
+    &lt;<span class='keyword'>title</span>&gt;Page Title&lt;<span class='keyword'>/title</span>&gt;
+&lt;<span class='keyword'>/head</span>&gt;
+&lt;<span class='keyword'>body</span>&gt;
+
+&lt;<span class='keyword'>?php</span>
+<span class='keyword'>echo</span> 'Hello World';
+<span class='keyword'>?</span>&gt;
+
+&lt;<span class='keyword'>/body</span>&gt;
+&lt;<span class='keyword'>/html</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">PHP Local Server</h2>
+                <p>PHP 5.4 and later have a built-in web server that can be used for local PHP development. You will need to open your terminal to run the server.</p>
+                <p>If successful, it should be possible to view your server in the browser at: <a href='http://localhost:8000' target='_blank'>http://localhost:8000</a>. If you have a file named 'hello.php', for example, you would use the URL http://localhost:8000/hello.php</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+<span class='comment'># Example: cd desktop/php-app</span>
+$ <span class='keyword'>cd</span> path/to/your/app
+$ <span class='keyword'>php</span> <span class='name'>-S</span> localhost:8000
+
+<span class='comment'># Typical output if server is running</span>
+PHP 7.1.7 Development Server started at Wed Jan 31 10:42:49 2018
+Listening on http://localhost:8000
+Document root is /Users/dan.jackson/Desktop
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

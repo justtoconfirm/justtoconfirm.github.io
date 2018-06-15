@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - PHP Variables</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">PHP Variables</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Declaring Variables</h2>
+                <p>In PHP, a variable is created (declared) with the $ sign, followed by the name of the variable. You can think of a variable as being a container for storing data. Unlike other programming languages, PHP has no command for declaring a variable, it is created the moment you first assign a value to it.</p>
+                <p>We do not have to tell PHP which data type the variable is as PHP automatically converts the variable to the correct data type based on its value. This is because PHP is a loosely typed language.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="php" data-title="PHP">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>?php</span>
+<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;
+<span class='name'>$number</span> = <span class='value'>34</span>;
+<span class='name'>$boolean</span> = <span class='value'>true</span>;
+<span class='name'>$x</span> = <span class='value'>10.5</span>;
+<span class='keyword'>?</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Output Variables</h2>
+                <p>Once a variable has been declared you can often use the PHP echo statement to output the data onto the screen.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="php" data-title="PHP">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;<span class='keyword'>?php</span>
+<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;
+<span class='keyword'>echo</span> 'Message: <span class='name'>$message</span>';
+<span class='keyword'>?</span>&gt;
+
+<span class='comment'>// Will produce the same output</span>
+&lt;<span class='keyword'>?php</span>
+<span class='name'>$message</span> = <span class='value'>'Hello World'</span>;
+<span class='keyword'>echo</span> 'Message: ' . <span class='name'>$message</span>;
+<span class='keyword'>?</span>&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

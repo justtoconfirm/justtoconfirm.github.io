@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Accessibility</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">Accessibility</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">WCAG 2.0 Level A</h2>
+                <p>Please find the WCAG 2.0 Level A accessibility guidelines below.</p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">HTML alt attribute</h2>
+                <p>The HTML alt (alternative) attribute provides alternative information for an image, if the image cannot be displayed or be seen. This attribute is required for the &lt;img&gt; element. Adding the alt attribute will provide a clear text alternative of the image for screen reader users and users who are unable to see the image (such as a broken image). For screen readers it is recommended to limit the text within the alt attribute to no more than 150 characters.</p>
+                <p>WCAG 2.0 Guideline 1.1.1 - "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose."</p>
+                <p>Images used as links should have an alt attribute with text describing the destination of the link, not the image itself. Images used for decoration (do not convey content), should have an empty (null) alt tag. Screen readers will simply skip over images with empty alt tags. Examples include:</p>
+                <p><ul class='list'><li>Spacers</li><li>Icons</li><li>Decorative images</li><li>CAPTCHA images</li></ul></p>
+                <p>Adding text to an alt attribute on a decorative image - such as an icon image - would add 'audible clutter' to screen reader output. It is often better that decorative images be applied as background images using CSS.</p>
+                <p>When adding text to the alt attribute, it is best to avoid phrases such as "image of ..." or "graphic of ..." to describe the image. It is usually apparent to the user that it is an image. For instance, if we had an image of Barack Obama, we would likely set the alt text as "Barack Obama" and not "Barack Obama, the president of the United States", as this would likely add extra information not presented directly in the image.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;img src='smiley.jpg' alt='Smiley face' /&gt;
+
+&lt;!-- Image for decoration --&gt;
+&lt;img src='spacer.jpg' alt='' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Label</h2>
+                <p>The label element should contain the for attribute. The attribute value should match the id attribute of the input element within a form. The placeholder attribute should not be used as an alternative to the label element within a form.</p>
+                <p>The aria-label attribute does the same job as the label element and can be used where it is not practical to have an actual label. This approach is generally well supported by screen readers and other assistive technologies and can also be used to identify form controls.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;label for='firstname'&gt;First name:&lt;/label&gt;
+&lt;input type='text' id='firstname' /&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>In this example, the 'X' is used to close a dialog box. Using the aria-label attribute helps to clarify this without the need for a label.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;button aria-label='Close dialog'&gt;X&lt;/button&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>The aria-label attribute can also be used to help distinguish things:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;div role='navigation' aria-label='Primary navigation'&gt;
+   &lt;ul&gt;
+      &lt;li&gt; ...a list of links here ... &lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div role='navigation' aria-label='Secondary navigation'&gt;
+   &lt;ul&gt;
+      &lt;li&gt; ...a list of links here ... &lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

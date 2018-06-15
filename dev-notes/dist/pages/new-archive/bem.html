@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - BEM</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">Block Element Modifier (BEM)</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Introduction</h2>
+                <p>BEM (Block Element Modifier) is a front-end development methodology that helps you to create reusable code.</p>
+                <p>Block styles are never dependent on other elements on a page, and composing blocks reduces the amount of CSS code that you will have to maintain.</p>
+                <p><!-- https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/ --></p>
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Block</h2>
+                <p>A block is a standalone entity that has meaning on it's own.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;div class='block'&gt; ... &lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>The CSS can be written like so:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.block {
+   color: #042;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Element</h2>
+                <p>Parts of a block that have no standalone meaning.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;div class='block'&gt;
+    &lt;span class='block__elem'&gt; ... &lt;/span&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>The CSS can be written like so:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.block {
+   color: #042;
+}
+
+.block__elem {
+   color: #042;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Modifier</h2>
+                <p>Modifiers are flags on blocks or elements used to change appearance, behaviour or state. A modifier is an extra class that is added to a block or element. Add modifier classes only to blocks or elements that require modifying and keep the original class.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;div class='block block--shadow'&gt;
+    &lt;span class='block__elem'&gt; ... &lt;/span&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>The CSS can be written like so:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.block {
+   color: #042;
+}
+
+.block__elem {
+   color: #042;
+}
+
+.block--shadow {
+   border-bottom: 1px solid #000;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Example: Form</h2>
+                <p>As an example, a simple HTML form has been created within a block. The form has a number of elements and a number of modifiers.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;form class='form form--xmas-theme'&gt;
+   &lt;input class='form__input' type='text' /&gt;
+   &lt;button class='form__submit form__submit--disabled' type='submit'&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+/* Block */
+.form { }
+
+/* Element */
+.form__input { }
+.form__submit { }
+
+/* Modifier */
+.form--xmas-theme { }
+.form__submit--disabled { }
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Example: Button</h2>
+                <p>Let's look at another example of how we can implement BEM. This example will use buttons. We can have a normal button for usual cases, with a further two states.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;button class='button'&gt;
+   Button
+&lt;/button&gt;
+
+&lt;button class='button button--success'&gt;
+   Success
+&lt;/button&gt;
+
+&lt;button class='button button--error'&gt;
+   Error
+&lt;/button&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.button {
+   display: inline-block;
+   border-radius: 3px;
+   padding: 7px 12px;
+   border: 1px solid #d5d5d5;
+   background-image: linear-gradient(#eee, #ddd);
+   font: 700 13px/18px Helvetica, arial;
+}
+
+.button--success {
+   color: #fff;
+   background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+   border-color: #4a993e;
+}
+
+.button--error {
+   color: #900;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - CSS Grid</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">CSS Grid</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <p>There are several ways to make CSS Grid reponsive. One of the most popular ways is to use the fr unit. The fr unit is a flexible length that represents a fraction. When you use the fr unit, browsers divide the open space and allocate the areas to columns based on the fr multiple. This means that to create four columns of equal size, you would write 1fr four times.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>Let's do some calculations to show how this works. First, let's assume the total space available for the grid is 1260px. Before allocating width to each column, the CSS Grid needs to know how much space is available (or leftover). The Grid subtracts grip-gap from 1260px. Since each gap is 20px, we're left with 1200px for the available space.</p>
+                <p>(1260 - (20 * 3) = 1200)</p>
+                <p>Next, it adds up the four fr unit multiples, so the browser divides 1200px by four, each column becomes 300px and we have four equal columns.</p>
+                <p>(1200px / 4 = 300px)</p>
+                <p>However, grids created with the fr unit are not always equal. When you use the fr unit, it is a fraction of the available (or leftover) space. If an element within one of the columns, such as an image, is wider than the column width created using the fr unit (in this example 300px), the calculation will need to be done differently.</p>
+                <p>For example, after splitting 1200px into four and allocation 300px to each of the 1fr columns, the first column contains an image that is 1000px. Since 1000px is larger than the column width of 300px, the browser will choose to allocate 1000px to the first column instead. Therefore, the columns are no-longer equal. This means we need to recalculate the leftover available space.</p>
+                <p>The new leftover space is 1260px - 1000px - 20px * 3 = 200px. This 200px is divided by three according to the amount of leftover fractions. Each fraction is then 66px.</p>
+                <p>If you want the fr unit to create equal-width columns everytime, you need to force it with minmax(0, 1fr). You will also need to set the image's max-width property to 100% also.</p>
+                <p>Let's create a full example:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="css" data-title="CSS">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+body {
+   padding: 3em;
+}
+
+.grid {
+   display: grid;
+   grid-template-columns: repeat(4, minmax(0,1fr));
+   grid-gap: 1em;
+}
+
+.grid-item {
+   background-color: orange;
+}
+
+img {
+   display: block;
+   max-width: 100%;
+}
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <p>And now for the HTML:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="html" data-title="HTML">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+&lt;div class='grid'&gt;
+   &lt;div class='grid-item'&gt;
+      &lt;img src='image1.jpg' alt='Image example' /&gt;
+   &lt;/div&gt;
+   &lt;div class='grid-item'&gt;&lt;/div&gt;
+   &lt;div class='grid-item'&gt;&lt;/div&gt;
+   &lt;div class='grid-item'&gt;&lt;/div&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>

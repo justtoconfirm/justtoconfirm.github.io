@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Git</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+
+            <h1 class="heading">Git</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-9 columns">
+
+            <section class="padding-btm">
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Status</h2>
+                <p>If you would like to see what files have been changed and what has been tracked, you can use the git status command.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ git status
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Branches</h2>
+                <p>Git commands for branches:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+# List all branches on your local machine
+$ git branch
+
+# Switch to an existing branch
+$ git checkout &lt;branchname&gt;
+# Create a new branch and switch to it
+$ git checkout -b &lt;branchname&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Pull</h2>
+                <p>If you're working on a project with multiple developers, you may find yourself in a position where a repo, possibly on GitHub, was updated but you don't have the latest changes locally. You need to use Git to pull the latest and most recent changes from the remote branch to your local:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ git pull origin &lt;branchname&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Delete Branch</h2>
+                <p>Once you no-longer require a feature branch within your repository, use the following Git command to delete it. You will also need to possibly delete the branch on your remote repository.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ git branch -d &lt;branchname&gt;
+
+# Delete branch on your remote repository
+$ git push origin :&lt;branchname&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Commit changes</h2>
+                <p>Once you have completed your work and are ready to commit your changes, you can use the following commands below.</p>
+                <p>Before you commit any changes, make sure you are working on the correct branch.</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+# Add all files that you have been working on
+$ git add *
+# OR, add a specific file
+$ git add &lt;filename&gt;
+
+# Add commit message
+$ git commit -m "Commit message"
+
+# Push changes to the branch of your remote repository
+$ git push origin &lt;branchname&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Merge</h2>
+                <p>To merge a different branch into your active branch:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ git merge &lt;branchname&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+            <section class="padding-btm">
+                <h2 class="heading padding-btm border-btm">Merge Conflicts</h2>
+                <p>When merging branches, merge conflicts can occur. Once these conflicts have been resolved, you will need to mark the changed file:</p>
+                <!-- Code example -->
+                <div class="code-block" rel="" data-title="">
+                    <pre>
+                        <code>
+<!-- Leave space here -->
+$ git add &lt;filename&gt;
+                        </code>
+                    </pre>
+                </div>
+                <!-- / Code example -->
+            </section>
+
+        </div>
+
+        <div class="small-12 medium-12 large-3 columns">
+            <a href="../../index.html">Home</a>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+	<div class="row">
+		<div class="small-12 medium-12 large-12 columns">
+			<ul class="bare-list">
+				<li>&copy 2018 JTC</li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+<script src="../scripts/main.js"></script>
+
+</body>
+</html>
