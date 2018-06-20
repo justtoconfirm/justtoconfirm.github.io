@@ -1,10 +1,14 @@
 $themes: (
 	'primary': (
 		'btn-background-color': $primary-theme-btn-background-color,
-		'btn-color': $primary-theme-btn-color
+		'btn-color': $primary-theme-btn-color,
+		'panel-background-color': $primary-theme-panel-background-color,
+		'panel-color': $primary-theme-panel-color
 	),
 	'alert': (
 		'btn-background-color': $alert-theme-btn-background-color,
-		'btn-color': $alert-theme-btn-color
+		'btn-color': $alert-theme-btn-color,
+		'panel-background-color': $alert-theme-panel-background-color,
+		'panel-color': $alert-theme-panel-color
 	)
 ) !default;

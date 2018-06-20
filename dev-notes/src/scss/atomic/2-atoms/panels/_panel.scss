@@ -1,0 +1,9 @@
+.panel {
+	@include rem(padding, 15);
+	@include theme {
+		background-color: $panel-background-color;
+		color: $panel-color;
+	}
+	display: block;
+	background-color: $panel-background;
+}

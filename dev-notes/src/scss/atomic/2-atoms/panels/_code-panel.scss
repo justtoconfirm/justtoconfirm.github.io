@@ -1,0 +1,18 @@
+.code-panel {
+
+	&:before {
+		@include rem(padding, 10 0);
+		@include rem(text-indent, 20);
+		color: $code-panel-color;
+		content: attr(data-title);
+		display: inline-block;
+		width: 100%;
+	}
+}
+
+// Loop through the code theme map to generate code-panel heading colours
+@each $name, $code in $languages {
+	.code-panel[rel=#{$name}]::before {
+    	background-color: $code;
+  	}
+}

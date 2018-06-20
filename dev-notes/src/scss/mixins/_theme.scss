@@ -3,8 +3,10 @@
 //  Set the theme for elements
 //
 //  Initialise our variables as 'null' when used outside of the mixin
-$btn-background-color: null;    // Output nothing
-$btn-color: null;               // Output nothing
+$btn-background-color: null;        // Output nothing
+$btn-color: null;                   // Output nothing
+$panel-background-color: null;      // Output nothing
+$panel-color: null;                 // Output nothing
 
 //  @param $themes:    Map of themes to use
 @mixin theme($themes: $themes) {
@@ -15,6 +17,8 @@ $btn-color: null;               // Output nothing
             // Set the theme variables with '!global'
             $btn-background-color: map-get($styles, 'btn-background-color') !global;
             $btn-color: map-get($styles, 'btn-color') !global;
+            $panel-background-color: map-get($styles, 'panel-background-color') !global;
+            $panel-color: map-get($styles, 'panel-color') !global;
 
             // Output user content
             @content;
@@ -22,6 +26,8 @@ $btn-color: null;               // Output nothing
             // Unset the theme variables with '!global'
             $btn-background-color: null !global;
             $btn-color: null !global;
+            $panel-background-color: null !global;
+            $panel-color: null !global;
         }
     }
 }

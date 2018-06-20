@@ -6,11 +6,10 @@ html {
 *:before,
 *:after {
 	@include prefix(box-sizing, inherit, webkit moz);
+	margin: 0;
+    padding: 0;
 }
 
-/*
-	Remove the margin in all browsers
-*/
 body {
 	margin: 0;
 }

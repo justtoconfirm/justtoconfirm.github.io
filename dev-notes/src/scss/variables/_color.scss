@@ -5,16 +5,35 @@ $white: #fff !default;
 // Black
 $black: #000 !default;
 
+// Grey
+$alabaster: #f8f8f8 !default;
+
 // Blue
 $denim: #1779ba !default;
 
 // Red
 $mojo: #cc4b37 !default;
 
+// Panel background
+$panel-background: $alabaster;
+
+// Code background
+$code-background: $alabaster;
+// Code panel colour
+$code-panel-color: $white;
+
+// Code panel heading colours
+$html-background: $denim;
+$css-background: $mojo;
+
 // Theme: primary
 $primary-theme-btn-background-color: $denim;	
 $primary-theme-btn-color: $white;
+$primary-theme-panel-background-color: $denim;	
+$primary-theme-panel-color: $white;
 
 // Theme: alert
 $alert-theme-btn-background-color: $mojo;	
-$alert-theme-btn-color: $white;					
+$alert-theme-btn-color: $white;
+$alert-theme-panel-background-color: $mojo;	
+$alert-theme-panel-color: $white;					
