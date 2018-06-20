@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{page.description}}" />
     <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
     <title>Dev notes - {{page.pagetitle}}</title>
     <link rel="stylesheet" href="../css/pixl.min.css" />
@@ -14,52 +13,47 @@
 {{> header}}
 
 <main>
-    <div class="row">
-        <div class="small-12 medium-12 large-12 columns">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
 
-            <h1 class="heading">{{page.pageheading}}</h1>
+                <h1>{{page.pageheading}}</h1>
 
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="small-12 medium-12 large-9 columns">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
 
-            {{#page.content}}
-            <section class="padding-btm">
-                {{#showheading}}
-                <h2 class="heading padding-btm border-btm">{{heading}}</h2>
-                {{/showheading}}
-                {{#copy}}
-                <p>{{{.}}}</p>
-                {{/copy}}
-                {{#showmarkup}}
-                <!-- Code example -->
-                <div class="code-block" rel="{{rel}}" data-title="{{datatitle}}">
-                    <pre>
+                {{#page.content}}
+                <section class="padding-btm">
+                    {{#showheading}}
+                    <h2>{{heading}}</h2>
+                    {{/showheading}}
+                    {{#copy}}
+                    <p>{{{.}}}</p>
+                    {{/copy}}
+                    {{#showmarkup}}
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="{{rel}}" data-title="{{datatitle}}">
                         <code>
-<!-- Leave space here -->
-{{#code}}
-{{{.}}}
-{{/code}}
+    {{#code}}
+    {{{.}}}
+    {{/code}}
                         </code>
                     </pre>
-                </div>
-                <!-- / Code example -->
-                {{/showmarkup}}  
-            </section>
-            {{/page.content}}
+                    <!-- / Code example -->
+                    {{/showmarkup}}  
+                </section>
+                {{/page.content}}
 
-        </div>
-
-        <div class="small-12 medium-12 large-3 columns">
-            <a href="../../index.html">Home</a>
+            </div>
         </div>
     </div>
 </main>
 
 {{> footer}}
-
-<script src="../scripts/main.js"></script>
 
 </body>
 </html>

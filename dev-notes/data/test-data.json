@@ -1,0 +1,35 @@
+{
+  "page": {
+    "pagetitle": "Test",
+    "pageheading": "Test",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Title",
+        "copy": [
+          "Lorem ipsum"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "test.html",
+        "code": [
+          "&lt;!DOCTYPE html&gt;",
+          "&lt;<span class='keyword'>html</span> <span class='name'>lang</span>=<span class='value'>'en'</span>&gt;",
+          "&lt;<span class='keyword'>head</span>&gt;",
+          "    &lt;<span class='keyword'>meta</span> <span class='name'>charset</span>=<span class='value'>'utf-8'</span> /&gt;",
+          "    &lt;<span class='keyword'>title</span>&gt;Page Title&lt;<span class='keyword'>/title</span>&gt;",
+          "&lt;<span class='keyword'>/head</span>&gt;",
+          "&lt;<span class='keyword'>body</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>h1</span>&gt;Heading&lt;<span class='keyword'>/h1</span>&gt;",
+          "&lt;<span class='keyword'>p</span>&gt;A very simple paragraph.&lt;<span class='keyword'>/p</span>&gt;",
+          "",
+          "&lt;<span class='keyword'>/body</span>&gt;",
+          "&lt;<span class='keyword'>/html</span>&gt;"
+        ]
+      }
+    ]
+  }
+}
