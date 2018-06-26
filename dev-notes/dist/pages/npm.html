@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
-    <title>Dev notes - {{page.pagetitle}}</title>
+    <title>Dev notes - NPM</title>
     <link rel="stylesheet" href="../css/pixl.min.css" />
 </head>
 <body>
 
-{{> header}}
+
+<header>
+
+</header>
 
 <main>
     <div class="wrapper">
@@ -19,7 +22,7 @@
 
                 <p><a href="../../index.html">Home</a></p>
 
-                <h1>{{page.pageheading}}</h1>
+                <h1>NPM (Node Package Manager)</h1>
 
             </div>
         </div>
@@ -28,34 +31,27 @@
         <div class="row">
             <div class="col-12">
 
-                {{#page.content}}
                 <section class="padding-btm">
-                    {{#showheading}}
-                    <h2>{{heading}}</h2>
-                    {{/showheading}}
-                    {{#copy}}
-                    <p>{{{.}}}</p>
-                    {{/copy}}
-                    {{#showmarkup}}
+                    <h2>Introduction to NPM</h2>
+                    <p>NPM (Node Package Manager) is a package manager for Node. Before you can start using NPM, you first have to install Node. To verify that NPM has been installed, open the terminal to confirm the NPM version:</p>
                     <!-- Code example -->
-                    <pre class="code-panel" rel="{{rel}}" data-title="{{datatitle}}">
+                    <pre class="code-panel" rel="html" data-title="">
                         <code>
-    {{#code}}
-    {{{.}}}
-    {{/code}}
+    $ npm --version
                         </code>
                     </pre>
                     <!-- / Code example -->
-                    {{/showmarkup}}  
                 </section>
-                {{/page.content}}
 
             </div>
         </div>
     </div>
 </main>
 
-{{> footer}}
+
+<footer>
+
+</footer>
 
 </body>
 </html>

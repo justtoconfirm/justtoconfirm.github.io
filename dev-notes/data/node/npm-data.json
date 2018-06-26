@@ -1,0 +1,23 @@
+{
+  "page": {
+    "pagetitle": "NPM",
+    "pageheading": "NPM (Node Package Manager)",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction to NPM",
+        "copy": [
+          "NPM (Node Package Manager) is a package manager for Node. Before you can start using NPM, you first have to install Node. To verify that NPM has been installed, open the terminal to confirm the NPM version:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm --version"
+        ]
+      }
+    ]
+  }
+}

@@ -2,11 +2,12 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-html build-html-metatag build-css build-css-grid build-css-performance build-css-guidelines build-js build-js-array build-js-variables build-js-functions build-js-objects build-js-xhr build-js-serviceworker build-js-modules build-php build-php-variables build-php-functions build-php-crud build-vuejs build-vuejs-install build-vuejs-component build-reactjs build-reactjs-install build-reactjs-element build-reactjs-component build-reactjs-props build-reactjs-state build-reactjs-form build-api build-accessibility build-rwd build-git build-webpack build-tdd build-bem build-node build-optimisation build-express build-redux compile-scss",
+    "build-all": "npm-run-all -p build-node build-npm",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
-    "build-test": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/test-data.json views/templates/pageTemplate.mustache > dist/pages/test.html"
+    "build-node": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/node-data.json views/templates/pageTemplate.mustache > dist/pages/node.html",
+    "build-npm": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/npm-data.json views/templates/pageTemplate.mustache > dist/pages/npm.html"
   },
   "author": "Justtoconfirm",
   "license": "ISC",
