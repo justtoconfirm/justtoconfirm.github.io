@@ -17,6 +17,127 @@
         "code": [
           "$ npm --version"
         ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "package.json",
+        "copy": [
+          "A package.json file lists all the packages and dependencies your project requires. There are two basic ways to create a package.json file:",
+          "<ul><li>CLI questionnaire</li><li>Default package.json</li></ul>",
+          "The default package.json can be created using the '-y' or '--yes' flag."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "# CLI questionnaire",
+          "$ npm init",
+          "",
+          "# Default package.json",
+          "$ npm init -y"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Install packages",
+        "copy": [
+          "The install command installs a package, including any packages that it depends on. The packages to be installed will be listed within the package.json file. When the command is used, the installed packages will be installed within a node_modules directory."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm install"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Install new packages",
+        "copy": [
+          "When installing a new NPM package, the following command can be used. The new package will be listed within the package.json file and installed within a local node_modules directory.",
+          "By default, npm install will install all modules listed as dependencies in the package.json file."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm install &lt;package_name_here&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In global mode (ie, with '-g' or '--global' appended to the command), the installed package will be installed as a global package.",
+          "This will allow the package to be used in any location or directory throughout the system."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm install &lt;package&gt; -g"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "devDependency",
+        "copy": [
+          "You will install a package as a devDependency if you want to use a package for developers or during development. Grunt, Gulp, or Webpack are examples of packages that would be installed as a devDependency. When distributing your code to production, these dependencies will not be available.",
+          "The packages installed will be listed as a devDependency within the package.json file."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm install &lt;package_name_here&gt; --save-dev",
+          "",
+          "# Example to install Webpack",
+          "$ npm install webpack --save-dev"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Dependency",
+        "copy": [
+          "You will install a package as a Dependency if you want to use a package for distribution/production. Examples may include: React, Redux or Angular.",
+          "The packages installed will be listed as a dependency within the package.json file."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm install &lt;package_name_here&gt; --save",
+          "",
+          "# Example to install React",
+          "$ npm install react --save"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Listing Packages",
+        "copy": [
+          "This command will print out all versions of packages installed, as well as their dependencies, in a tree structure inside the terminal."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": "true",
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "$ npm ls"
+        ]
       }
     ]
   }
