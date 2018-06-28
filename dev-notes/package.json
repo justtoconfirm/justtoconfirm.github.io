@@ -6,6 +6,7 @@
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
+    "build-css": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/css/css-data.json views/templates/pageTemplate.mustache > dist/pages/css.html",
     "build-node": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/node-data.json views/templates/pageTemplate.mustache > dist/pages/node.html",
     "build-npm": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/npm-data.json views/templates/pageTemplate.mustache > dist/pages/npm.html"
   },

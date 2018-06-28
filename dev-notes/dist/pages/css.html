@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - CSS</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>CSS (Cascading Style Sheets)</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Introduction to CSS</h2>
+                    <p>Before a browser can display the content of a web page, it requires HTML and CSS to be downloaded. Rendering cannot begin until all external stylesheets have been downloaded and parsed. The more round trips this requires, the longer a visitor will have to wait. Using external CSS involves making one or more HTTP requests, so minimising the number of requests, will improve performance and speed up your time to start render. This is the time elapsed between a request being made and the moment the content appears in the browser.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>CSS Syntax</h2>
+                    <p>A CSS rule-set consists of a selector and a declaration block. The selector points to the HTML element to be styled. The declaration block contains one or more declarations separated by semicolons and is surrounded by curly braces. Each declaration includes a CSS property name and a value, separated by a colon.</p>
+                    <p>CSS selectors are used to 'find' or select HTML elements based on their element name, id, class, or attribute.</p>
+                    <p>In this example, the declaration block contains two properties - color and font-size - that are used to style h1 elements (the selector).</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    h1 {
+       color: #000;
+       font-size: 12px;
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Adding CSS to HTML</h2>
+                    <p>When a CSS style sheet has been created, it can be linked to your HTML page(s). Usually CSS style sheets are external, meaning they are separate files with the file extension of '.css'. With external style sheets, the look of an entire web page or website can be changed using a single file.</p>
+                    <p>The &lt;link&gt; element is used to reference an external CSS style sheet in the HTML of a page. This element is placed within the &lt;head&gt; section.</p>
+                    <p>In this example, the 'mystyles.css' stylesheet is placed within a directory named 'styles'.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+       &lt;link rel="stylesheet" href="styles/mystyles.css" /&gt;
+    &lt;/head&gt;
+    ...
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Inlining</h2>
+                    <p>The practice of inlining is used to cut down the amount of data the browser needs to download before it can start rendering a page. When external CSS files are used, they must be downloaded separately after your markup document (HTML) has finished downloading. Inlining - often also referred to as an Internal Style Sheet - can be used to increase the performance of your web page, website or application.</p>
+                    <p>To inline your CSS, simply copy the desired CSS code required and place it within &lt;style&gt; tags within the &lt;head&gt; section of your HTML document.</p>
+                    <p>If you try to inline a large amount of CSS code, you may receive a warning when testing performance indicating that your above-the-fold content is too large. You should only inline the CSS required to render the above-the-fold content. The full stylesheet should be loaded asynchronously so that the page can continue to render while it is being parsed.</p>
+                    <p>It's also best practice to not inline all of your CSS as this will increase the size of the HTML file causing the page to render more slowly.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+    
+    &lt;style&gt;
+    .test {
+       font-weight: bold;
+    }
+    &lt;/style&gt;
+    
+    &lt;/head&gt;
+    ...
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>
