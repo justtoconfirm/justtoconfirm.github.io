@@ -1,0 +1,78 @@
+{
+  "page": {
+    "pagetitle": "Progressive Web App (PWA)",
+    "pageheading": "Progressive Web App (PWA)",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "The web app manifest",
+        "copy": [
+          "The web app manifest, often named manifest.json, is a simple <abbr title=\"JavaScript Object Notation\">JSON</abbr> file that tells the browser about your web application and how it should behave when 'installed' on the device or desktop of the user. Google Chrome requires a manifest to show the 'Add to Home Screen' prompt. The manifests are part of a collection of web technologies called Progressive Web Apps (PWA).",
+          "A typical manifest file will include information about the app including: name, icons it should use, the start <abbr title=\"Uniform Resource Locator\">URL</abbr> it should open when launched, and more.",
+          "To verify your manifest is setup correctly, you can use the Manifest tab in the Application panel of Chrome DevTools (Developer Tools). This provides a human-readable version of many of the properties in the manifest. The Lighthouse auditing tool, within Chrome, can be used to run a suite of audits against a page, including an audit of Progressive Web Apps (PWA).",
+          "Here is an example from Google:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "manifest.json",
+        "code": [
+          "{",
+          "   \"short_name\": \"Maps\",",
+          "   \"name\": \"Google Maps\",",
+          "   \"icons\": [",
+          "      {",
+          "         \"src\": \"/images/icons-192.png\",",
+          "         \"type\": \"image/png\",",
+          "         \"sizes\": \"192x192\"",
+          "      },",
+          "      {",
+          "         \"src\": \"/images/icons-512.png\",",
+          "         \"type\": \"image/png\",",
+          "         \"sizes\": \"512x512\"",
+          "      }",
+          "   ],",
+          "   \"start_url\": \"/maps/?source=pwa\",",
+          "   \"background_color\": \"#3367D6\",",
+          "   \"display\": \"standalone\",",
+          "   \"scope\": \"/maps/\",",
+          "   \"theme_color\": \"#3367D6\",",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Once the manifest has been created, add a link tag to all the pages that encompass your web app:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "&lt;link rel=\"manifest\" href=\"/manifest.json\" /&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Service Workers",
+        "copy": [
+          "Service worker is basically a JavaScript file that the browser runs in the background to assist in developing offline-first web applications. Service workers cannot access a web page directly, has no access to the <abbr title=\"Document Object Model\">DOM</abbr>, and runs on a different thread to the main JavaScript used in your app, so is non-blocking. It is designed to be asynchronous (async), therefore, <abbr title=\"Application Programming Interface\">APIs</abbr> such as <abbr title=\"XMLHttpRequest\">XHR</abbr> and localStorage, that are synchronous, cannot be used inside a service worker.",
+          "Service workers can only be registered on pages served over <abbr title=\"Hypertext Transfer Protocol Secure\">HTTPS</abbr> for security. During development, you can use service worker through localhost.",
+          "Chrome DevTools (Developer Tools) can be used to see service workers from within the Application panel. Normally all windows/tabs opened must be closed to update an existing service worker, but the 'Update on Reload' option can be selected to update service worker each time the page is refreshed. Within Chrome DevTools, the service worker listed may display a 'Push' button to send push notifications, and a 'Sync' button to trigger a background sync event."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          ""
+        ]
+      }
+    ]
+  }
+}

@@ -2,13 +2,12 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-node build-npm",
+    "build-all": "npm-run-all -p build-api build-pwa",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
-    "build-css": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/css/css-data.json views/templates/pageTemplate.mustache > dist/pages/css.html",
-    "build-node": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/node-data.json views/templates/pageTemplate.mustache > dist/pages/node.html",
-    "build-npm": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/node/npm-data.json views/templates/pageTemplate.mustache > dist/pages/npm.html"
+    "build-api": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/api-data.json views/templates/pageTemplate.mustache > dist/pages/api.html",
+    "build-pwa": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/pwa-data.json views/templates/pageTemplate.mustache > dist/pages/pwa.html"
   },
   "author": "Justtoconfirm",
   "license": "ISC",
