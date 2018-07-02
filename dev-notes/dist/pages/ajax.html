@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - AJAX (Asynchronous JavaScript And XML)</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>AJAX (Asynchronous JavaScript And XML)</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Introduction</h2>
+                    <p>AJAX (Asynchronous JavaScript And XML) allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that it's possible to update parts of a web page without reloading the whole page. AJAX also allows data to be requested or received after the page has been loaded, and data to be sent to a server in the background. Making partial updates in this way can be effective in creating fluid user experiences and can decrease the load put on the server.</p>
+                    <p>The XMLHttpRequest browser object is used to request data from a web server. All modern browsers (Chrome, Firefox, Edge, Safari, <abbr title="Internet Explorer 7">IE7</abbr> +) support the XMLHttpRequest object. HTML <abbr title="Document Object Model">DOM</abbr> and JavaScript can then used to display or use this data.</p>
+                    <p>Although AJAX references <abbr title="Extensible Markup Language">XML</abbr> in the name, it is equally common to transport data as plain text or <abbr title="JavaScript Object Notation">JSON</abbr>.</p>
+                    <p>Here is a basic AJAX HTTP request:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://www.example.org/some.file', true);
+    xhr.send();
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Here, we begin by creating an instance of the XMLHttpRequest object to make a HTTP request to the server. The open method is then called, specifying the HTTP request method as the first parameter and the URL as the second parameter.</p>
+                    <p>The first parameter of the call to the open method is the HTTP request method - GET, POST, HEAD, or another method supported by the server. This method should be uppercase as per the HTTP standard, otherwise some browsers may not process the request.</p>
+                    <p>The second parameter is the URL you're sending the request to. Be sure to use the exact domain name on all your pages or you will get a "permission denied" error when you call the open method. As a security feature, you cannot call URLs on a third-party domain.</p>
+                    <p>The third parameter is optional. This sets whether the request is asynchronous. This is set to true by default. If set to true, JavaScript execution will continue and the user can interact with the page while the server response is arriving. This is the 'A' in AJAX.</p>
+                    <p>The send method sends the request to the server.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>AJAX response</h2>
+                    <p>After making a request, you will receive a response back.</p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>

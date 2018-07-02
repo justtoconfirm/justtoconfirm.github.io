@@ -1,0 +1,58 @@
+{
+  "page": {
+    "pagetitle": "AJAX (Asynchronous JavaScript And XML)",
+    "pageheading": "AJAX (Asynchronous JavaScript And XML)",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "AJAX (Asynchronous JavaScript And XML) allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that it's possible to update parts of a web page without reloading the whole page. AJAX also allows data to be requested or received after the page has been loaded, and data to be sent to a server in the background. Making partial updates in this way can be effective in creating fluid user experiences and can decrease the load put on the server.",
+          "The XMLHttpRequest browser object is used to request data from a web server. All modern browsers (Chrome, Firefox, Edge, Safari, <abbr title=\"Internet Explorer 7\">IE7</abbr> +) support the XMLHttpRequest object. HTML <abbr title=\"Document Object Model\">DOM</abbr> and JavaScript can then used to display or use this data.",
+          "Although AJAX references <abbr title=\"Extensible Markup Language\">XML</abbr> in the name, it is equally common to transport data as plain text or <abbr title=\"JavaScript Object Notation\">JSON</abbr>.",
+          "Here is a basic AJAX HTTP request:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "var xhr = new XMLHttpRequest();",
+          "xhr.open('GET', 'http://www.example.org/some.file', true);",
+          "xhr.send();"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here, we begin by creating an instance of the XMLHttpRequest object to make a HTTP request to the server. The open method is then called, specifying the HTTP request method as the first parameter and the URL as the second parameter.",
+          "The first parameter of the call to the open method is the HTTP request method - GET, POST, HEAD, or another method supported by the server. This method should be uppercase as per the HTTP standard, otherwise some browsers may not process the request.",
+          "The second parameter is the URL you're sending the request to. Be sure to use the exact domain name on all your pages or you will get a \"permission denied\" error when you call the open method. As a security feature, you cannot call URLs on a third-party domain.",
+          "The third parameter is optional. This sets whether the request is asynchronous. This is set to true by default. If set to true, JavaScript execution will continue and the user can interact with the page while the server response is arriving. This is the 'A' in AJAX.",
+          "The send method sends the request to the server."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "AJAX response",
+        "copy": [
+          "After making a request, you will receive a response back."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      }
+    ]
+  }
+}
