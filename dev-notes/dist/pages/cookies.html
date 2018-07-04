@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Cookies</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>Cookies</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>What are Cookies?</h2>
+                    <p>Cookies are small text files that are used to store up to 4KB of data, sent from a website and stored locally by the user's browser. Cookies are needed because HTTP is stateless. This means that HTTP itself has no way to keep track of a user's previous activities. Cookies allow a website to store information on a user's machine and later retrieve it. This data is stored in name-value pairs. For example, a website may generate a unique ID number for each visitor and store the ID number on the user's machine using a cookie.</p>
+                    <p>The structure of a cookie is really simple. It's nothing more than several key-value pairs. A cookie can also have an optional expiration date, after which it'll be deleted. If no expiration date is provided, the cookie will last until the session or browser is closed.</p>
+                    <p>JavaScript can create, retrieve, and delete cookies using the document.cookie property. This property will return all cookies in one string, much like: cookie1=value; cookie2=value.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    document.cookie
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Creating a Cookie</h2>
+                    <p>JavaScript can create, read, and delete cookies with the document.cookie property. The example below shows how to create a Cookie using JavaScript. No expiration date has been provided, and by default, the cookie belongs to the current page.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    document.cookie = "username=John Smith";
+    
+    // Setting the cookie to expire
+    document.cookie = "username=John Smith; expires=Wed, 4 Jul 2018 12:00:00 UTC";
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Here is a JavaScript function to create a cookie:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    function createCookie(name, value, days) {
+       if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+       }
+       else var expires = "";
+       document.cookie = name+"="+value+expires+"; path=/";
+    }
+    
+    // Create a cookie with no expiration
+    createCookie('userid', '1234567890');
+    
+    // Create a cookie that expires in 21 days
+    createCookie('username', 'John Smith', 21);
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>

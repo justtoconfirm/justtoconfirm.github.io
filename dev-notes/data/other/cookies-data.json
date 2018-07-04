@@ -1,0 +1,74 @@
+{
+  "page": {
+    "pagetitle": "Cookies",
+    "pageheading": "Cookies",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "What are Cookies?",
+        "copy": [
+          "Cookies are small text files that are used to store up to 4KB of data, sent from a website and stored locally by the user's browser. Cookies are needed because HTTP is stateless. This means that HTTP itself has no way to keep track of a user's previous activities. Cookies allow a website to store information on a user's machine and later retrieve it. This data is stored in name-value pairs. For example, a website may generate a unique ID number for each visitor and store the ID number on the user's machine using a cookie.",
+          "The structure of a cookie is really simple. It's nothing more than several key-value pairs. A cookie can also have an optional expiration date, after which it'll be deleted. If no expiration date is provided, the cookie will last until the session or browser is closed.",
+          "JavaScript can create, retrieve, and delete cookies using the document.cookie property. This property will return all cookies in one string, much like: cookie1=value; cookie2=value."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "document.cookie"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Creating a Cookie",
+        "copy": [
+          "JavaScript can create, read, and delete cookies with the document.cookie property. The example below shows how to create a Cookie using JavaScript. No expiration date has been provided, and by default, the cookie belongs to the current page."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "document.cookie = \"username=John Smith\";",
+          "",
+          "// Setting the cookie to expire",
+          "document.cookie = \"username=John Smith; expires=Wed, 4 Jul 2018 12:00:00 UTC\";"
+        ]
+      },
+
+
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is a JavaScript function to create a cookie:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "function createCookie(name, value, days) {",
+          "   if (days) {",
+          "      var date = new Date();",
+          "      date.setTime(date.getTime()+(days*24*60*60*1000));",
+          "      var expires = \"; expires=\"+date.toGMTString();",
+          "   }",
+          "   else var expires = \"\";",
+          "   document.cookie = name+\"=\"+value+expires+\"; path=/\";",
+          "}",
+          "",
+          "// Create a cookie with no expiration",
+          "createCookie('userid', '1234567890');",
+          "",
+          "// Create a cookie that expires in 21 days",
+          "createCookie('username', 'John Smith', 21);"
+        ]
+      }
+    ]
+  }
+}
