@@ -50,8 +50,6 @@
           "window"
         ]
       },
-
-
       {
         "label": "SECTION",
         "showheading": false,
@@ -86,7 +84,6 @@
           "checkScope();"
         ]
       },
-
       {
         "label": "SECTION",
         "showheading": false,

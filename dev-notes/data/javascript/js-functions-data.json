@@ -1,0 +1,115 @@
+{
+  "page": {
+    "pagetitle": "JavaScript - Functions",
+    "pageheading": "JavaScript - Functions",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Declaring a Function",
+        "copy": [
+          "We can use functions to section off small bits of logic or tasks that we can then call when we need. Functions can help take large problems and break them into small manageable chunks that can be reused.",
+          "To create a function it must first be declared using the function keyword. Declaring the function gives the function a name. The name should describe what the function is to do when it is called. Declaring a function does not execute it, for this to occur, the function needs to be called."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function sayHello() {",
+          "",
+          "    // Code to execute goes here",
+          "    console.log('Hello World');",
+          "",
+          "}",
+          "",
+          "// Call the function to execute it",
+          "sayHello();"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "The Return Statement",
+        "copy": [
+          "The return statement specifies the value to be returned by the function and tells the browser to return the result so it can be made available and used outside of the function. This ends the function execution and specifies a value to be returned to the function caller. This is necessary, as any variable declared inside the function is only available within that function. This is called variable scoping.",
+          "A function immediately stops at the point where return is called.",
+          "A function will now be created that will be used to calculate the area of a rectangle. This function uses the return statement to output the result(s) of the calculation."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function getRectArea(width, height) {",
+          "",
+          "    if (width > 0 && height > 0) {",
+          "        return width * height;",
+          "    }",
+          "",
+          "    return 0;",
+          "",
+          "}",
+          "",
+          "// Expected output: 12",
+          "getRectArea(3, 4);",
+          "",
+          "// Expected output: 0",
+          "getRectArea(-3, 4);"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is an example showing how to stop at the point where return is called:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function counter() {",
+          "",
+          "    for (var count = 1; ; count++) {  // infinite loop",
+          "        console.log(count + 'A'); // until 5",
+          "        if (count === 5) {",        
+          "            return;",
+          "        }",
+          "        console.log(count + 'B');  // until 4",
+          "    }",
+          "",
+          "    console.log(count + 'C');  // never appears",
+          "}",
+          "",
+          "counter();"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Parameters & Arguments",
+        "copy": [
+          "To pass values into a function we can use paremeters and arguments. Values are passed into the function when it is called, as arguments, into the parameters within the parenthesis of the function declaration.",
+          "In the following example, a simple function takes two numbers as arguments and passes them into two parameters. These values are then multiplied together and the result is returned using the return statement."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function multiplyTwoNumbers(a, b) {",
+          "",
+          "    // Returns the total back to the function call",
+          "    return a * b;",
+          "",
+          "}",
+          "",
+          "// Call the function and pass in the two numbers",
+          "multiplyTwoNumbers(4, 2);"
+        ]
+      }
+    ]
+  }
+}
