@@ -1,0 +1,109 @@
+{
+  "page": {
+    "pagetitle": "JavaScript - Variables",
+    "pageheading": "JavaScript - Variables",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Declaring variables",
+        "copy": [
+          "A variable is a container for storing a value and must be declared before it can be used. To declare a variable we use the var keyword followed by the name given to the variable, this is referred to as the identifier. Should a variable be declared without a value, it is an undefined variable and is an empty container. This will return an undefined value.",
+          "JavaScript is an untyped language. This means that a JavaScript variable can hold a value of any data type. Unlike many other languages, you don't need to declare what type of value, it's data type, the variable will hold, as JavaScript handles this automatically during execution of the code.",
+          "var declarations, wherever they occur, are processed before any code is executed. This is called hoisting. Because variable declarations are processed before any code is executed, declaring a variable anywhere within your code is the equivalent to declaring it at the top of your code. This means that a variable can appear to be used before it has been declared. This describes hoisting, as it appears that the variable declaration is moved to the top of the function or global code. For this reason, it is always recommended to always declare variables at the top of their scope, either within the global code, or at the top of your function.",
+          "Values can be assigned to a variable using the assignment operator, represented by the equal symbol. This is referred to as initializing a value."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "var myName = \"Dan\";",
+          "var myAge = 32;",
+          "var isMale = true;",
+          "",
+          "// Undefined variable",
+          "var noValue;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "When a variable is declared outside of a function, it becomes part of the window object and is a global variable, becoming a property of the window object. The window object is supported by all browsers and represents the browser's window. By declaring variables globally, conflict can occur as other parts of the JavaScript code may use the same variable name elsewhere.",
+          "It is recommended to avoid polluting the global namespace and avoid having variables declared globally. This can be achieved by declaring variables within functions.",
+          "You can view the window object by typing window into your browser console. This will output the many methods and properties, including any variables that have been declared, within the console output."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// Declare and initialize a variable",
+          "var myName = \"Dan\";",
+          "",
+          "/*", 
+          "    View the window object in the console",
+          "    Our myName variable will be located within the window object",
+          "*/",
+          "window"
+        ]
+      },
+
+
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is an example showing the difference between global and local scope when declaring variables:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// Global variable",
+          "var x = \"Global\";",
+          "",
+          "function checkScope() {",
+          "    // Local variable",
+          "    var y = \"Local\";",
+          "",
+          "    // Local",
+          "    console.log(y);",
+          "    // Global",
+          "    console.log(x);",
+          "}",
+          "",
+          "// Uncaught ReferenceError: y is not defined",
+          "console.log(y);",
+          "// Global",
+          "console.log(x);",
+          "",
+          "// Call the function",
+          "checkScope();"
+        ]
+      },
+
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Every variable that you declare uses memory. The more variables a browser has to remember, the more memory your script requires to run and this can impact performance. If a variable references a value stored in memory, the same value can be used by more than one variable.",
+          "In the example below, the value of '12345' stored in memory, is being used by two different variables:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "var variableOne = 12345;",
+          "var variableTwo = 12345;"
+        ]
+      }
+    ]
+  }
+}
