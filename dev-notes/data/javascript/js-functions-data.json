@@ -75,7 +75,7 @@
           "    for (var count = 1; ; count++) {  // infinite loop",
           "        console.log(count + 'A'); // until 5",
           "        if (count === 5) {",        
-          "            return;",
+          "            return;   // stop executing when reaching 5",
           "        }",
           "        console.log(count + 'B');  // until 4",
           "    }",
