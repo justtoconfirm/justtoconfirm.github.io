@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - React Props</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>React: Props</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Introduction</h2>
+                    <p>Props is simply shorthand for properties and is how components talk to each other. Props are used to pass data from parent to child or by the component itself. This is referred to as uni-directional data flow. As props do not change, they are immutable.</p>
+                    <p>Passing only props from component to component doesn't make the component interactive, because nothing is there to change the props and as mentioned before, props are immutable. This is where state comes into play, which can be changed.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>Spread Attribute</h2>
+                    <p>The aim of the spread attribute is to make the passing of props easier between React components. We can begin by creating a simple React component for an input field which accepts multiple props.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    
+    function Input ({ type = 'text', placeholder = '' }) {
+       return (
+          &lt;input type={type} placeholder={placeholder} className='input' /&gt;
+       )
+    }
+    
+    export default Input;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>We can then simplify the use of props by now applying spread attributes.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    
+    function Input ({ type = 'text', placeholder = '' }) {
+       return (
+          &lt;input {...{ type, placeholder }} className='input' /&gt;
+       )
+    }
+    
+    export default Input;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>

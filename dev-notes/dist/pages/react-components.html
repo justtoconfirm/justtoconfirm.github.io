@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - React Components</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>React: Components</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <p>The simplest way to define a component is to write a JavaScript function. This type of component is referred to as a "functional component" because they are literally JavaScript functions. This example is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    function Welcome(props) {
+       return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Components can also be written using the ES6 arrow function.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    const Picture = (props) => {
+       return (
+          &lt;div&gt;
+             &lt;img src={props.src} /&gt;
+             {props.children}
+          &lt;/div&gt;
+       )
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>In the previous example you may have noticed props.children being used. This is used to display whatever you include between the opening and closing tags when invoking a component. In the previous example, we created a stateless component that contained an &lt;img&gt; that receives some props and then displays {props.children}. Whenever this component is invoked, {props.children} will also be displayed.</p>
+                    <p>Instead of invoking the component with a self-closing tag &lt;Picture /&gt; if you invoke it with opening and closing tags, you can then place more code between it.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // App.js
+    
+    render() {
+       return (
+          &lt;div className='container'&gt;
+             // Render the Picture component
+             &lt;Picture key={picture.id} src={picture.src}&gt;
+                // What is placed here is passed as props.children
+             &lt;/Picture&gt;
+          &lt;/div&gt;
+       )
+    }
+    
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Some components don't know their children ahead of time. This is especially common for components that represent generic "boxes". It's recommended that such components use the children prop to pass children elements directly into their output. Here is an example to create a panel component:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    function FancyBorder(props) {
+       return (
+          &lt;div className={'fancy-border fancy-border-' + props.color}&gt;
+             {props.children}
+          &lt;/div&gt;
+       )
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>This lets other components pass arbitrary children to them by nesting the JSX:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    function WelcomeDialog() {
+       return (
+          &lt;FancyBorder color="blue"&gt;
+             &lt;h1 className="dialog-title"&gt;
+                Welcome
+             &lt;/h1&gt;
+             &lt;p className="dialog-message"&gt;
+                Thank you for visiting our panel!
+             &lt;/p&gt;
+          &lt;/FancyBorder&gt;
+       );
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>In this example, the code renders "Hello, Dan" on the page.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    
+    function Welcome(props) {
+       return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+    }
+    
+    ReactDOM.render(
+       &lt;Welcome name="Dan" /&gt;,
+       document.getElementById('root');
+    );
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2></h2>
+                    <p>Typically, new React applications have a single App component. For example, we can create an App component that renders the Welcome component multiple times.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    
+    function Welcome(props) {
+       return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+    }
+    
+    function App() {
+       return (
+          &lt;div&gt;
+             &lt;Welcome name="Dan" /&gt;
+             &lt;Welcome name="Matt" /&gt;
+             &lt;Welcome name="Pearl" /&gt;
+          &lt;/div&gt;
+       )
+    }
+    
+    ReactDOM.render(
+       &lt;App /&gt;,
+       document.getElementById('root');
+    );
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Importing Components</h2>
+                    <p>It is often recommended to create a suitable structure for your project and place your components within a unique directory. The components can then be imported when required. In this example, the Input component will be rendered. We are passing data down into the child component using props to generate an input field with the type of "email" and a placeholder text value.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    
+    import Input from './components/input';
+    
+    ReactDOM.render(
+       &lt;Input type="email" placeholder="Email address" /&gt;,
+       document.getElementById('root');
+    );
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Here is the Input component that is imported:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    import React from 'react';
+    
+    function Input ({ type = 'text', placeholder = '' }) {
+       return (
+          &lt;input {...{ type, placeholder }} className='input' /&gt;
+       )
+    }
+    
+    export default Input;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>

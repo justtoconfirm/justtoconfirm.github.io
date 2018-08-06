@@ -1,0 +1,68 @@
+{
+  "page": {
+    "pagetitle": "React Props",
+    "pageheading": "React: Props",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Introduction",
+        "copy": [
+          "Props is simply shorthand for properties and is how components talk to each other. Props are used to pass data from parent to child or by the component itself. This is referred to as uni-directional data flow. As props do not change, they are immutable.",
+          "Passing only props from component to component doesn't make the component interactive, because nothing is there to change the props and as mentioned before, props are immutable. This is where state comes into play, which can be changed."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Spread Attribute",
+        "copy": [
+          "The aim of the spread attribute is to make the passing of props easier between React components. We can begin by creating a simple React component for an input field which accepts multiple props."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Input ({ type = 'text', placeholder = '' }) {",
+          "   return (",
+          "      &lt;input type={type} placeholder={placeholder} className='input' /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Input;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We can then simplify the use of props by now applying spread attributes."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": "",
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Input ({ type = 'text', placeholder = '' }) {",
+          "   return (",
+          "      &lt;input {...{ type, placeholder }} className='input' /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Input;"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "page": {
+    "pagetitle": "React Components",
+    "pageheading": "React: Components",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The simplest way to define a component is to write a JavaScript function. This type of component is referred to as a \"functional component\" because they are literally JavaScript functions. This example is a valid React component because it accepts a single \"props\" (which stands for properties) object argument with data and returns a React element."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function Welcome(props) {",
+          "   return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Components can also be written using the ES6 arrow function."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "const Picture = (props) => {",
+          "   return (",
+          "      &lt;div&gt;",
+          "         &lt;img src={props.src} /&gt;",
+          "         {props.children}",
+          "      &lt;/div&gt;",
+          "   )",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In the previous example you may have noticed props.children being used. This is used to display whatever you include between the opening and closing tags when invoking a component. In the previous example, we created a stateless component that contained an &lt;img&gt; that receives some props and then displays {props.children}. Whenever this component is invoked, {props.children} will also be displayed.",
+          "Instead of invoking the component with a self-closing tag &lt;Picture /&gt; if you invoke it with opening and closing tags, you can then place more code between it."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// App.js",
+          "",
+          "render() {",
+          "   return (",
+          "      &lt;div className='container'&gt;",
+          "         // Render the Picture component",
+          "         &lt;Picture key={picture.id} src={picture.src}&gt;",
+          "            // What is placed here is passed as props.children",
+          "         &lt;/Picture&gt;",
+          "      &lt;/div&gt;",
+          "   )",
+          "}",
+          ""
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Some components don't know their children ahead of time. This is especially common for components that represent generic \"boxes\". It's recommended that such components use the children prop to pass children elements directly into their output. Here is an example to create a panel component:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function FancyBorder(props) {",
+          "   return (",
+          "      &lt;div className={'fancy-border fancy-border-' + props.color}&gt;",
+          "         {props.children}",
+          "      &lt;/div&gt;",
+          "   )",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "This lets other components pass arbitrary children to them by nesting the JSX:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "function WelcomeDialog() {",
+          "   return (",
+          "      &lt;FancyBorder color=\"blue\"&gt;",
+          "         &lt;h1 className=\"dialog-title\"&gt;",
+          "            Welcome",
+          "         &lt;/h1&gt;",
+          "         &lt;p className=\"dialog-message\"&gt;",
+          "            Thank you for visiting our panel!",
+          "         &lt;/p&gt;",
+          "      &lt;/FancyBorder&gt;",
+          "   );",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "In this example, the code renders \"Hello, Dan\" on the page."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "import ReactDOM from 'react-dom';",
+          "",
+          "function Welcome(props) {",
+          "   return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;",
+          "}",
+          "",
+          "ReactDOM.render(",
+          "   &lt;Welcome name=\"Dan\" /&gt;,",
+          "   document.getElementById('root');",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "",
+        "copy": [
+          "Typically, new React applications have a single App component. For example, we can create an App component that renders the Welcome component multiple times."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "import ReactDOM from 'react-dom';",
+          "",
+          "function Welcome(props) {",
+          "   return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;",
+          "}",
+          "",
+          "function App() {",
+          "   return (",
+          "      &lt;div&gt;",
+          "         &lt;Welcome name=\"Dan\" /&gt;",
+          "         &lt;Welcome name=\"Matt\" /&gt;",
+          "         &lt;Welcome name=\"Pearl\" /&gt;",
+          "      &lt;/div&gt;",
+          "   )",
+          "}",
+          "",
+          "ReactDOM.render(",
+          "   &lt;App /&gt;,",
+          "   document.getElementById('root');",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Importing Components",
+        "copy": [
+          "It is often recommended to create a suitable structure for your project and place your components within a unique directory. The components can then be imported when required. In this example, the Input component will be rendered. We are passing data down into the child component using props to generate an input field with the type of \"email\" and a placeholder text value."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "import ReactDOM from 'react-dom';",
+          "",
+          "import Input from './components/input';",
+          "",
+          "ReactDOM.render(",
+          "   &lt;Input type=\"email\" placeholder=\"Email address\" /&gt;,",
+          "   document.getElementById('root');",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is the Input component that is imported:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Input ({ type = 'text', placeholder = '' }) {",
+          "   return (",
+          "      &lt;input {...{ type, placeholder }} className='input' /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Input;"
+        ]
+      }        
+    ]
+  }
+}
