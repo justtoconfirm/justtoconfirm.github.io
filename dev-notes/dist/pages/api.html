@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Application Programming Interface (API)</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>Application Programming Interface (API)</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Introduction</h2>
+                    <p>API is the acronym for Application Programming Interface. It allows two applications to talk to each other. Each time you use an application like Facebook or Twitter, send an instant message, or check the weather on your phone or desktop, you're using an API. Third party APIs allow you to use a third-party platform, such as Twitter or Facebook, to use some of the platform's functionality in your own applications or webpages. The Twitter API, for example, can be used to display recent Tweets on your web page. An API is basically an object that contains properties to store data the API uses, and methods to provide functionality the API makes available.</p>
+                    <p>Web APIs use HTTP requests to communicate to a publicly available URL endpoint containing JSON data. We often use HTTP requests to communicate with an API.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>Connecting to the API</h2>
+                    <p>The Studio Ghibli API was created to help developers learn how to interact with resources using HTTP requests. Since an API can be accessed by many different methods - JavaScript, PHP, Ruby, Python, and so on - the documentation for most APIs doesn't tend to give specific instructions for how to connect. We can see from this documentation that it tells us we can make requests with curl or regular REST calls.</p>
+                    <p>Here is the <a href="https://ghibliapi.herokuapp.com/" target="_blank" rel="noopener noreferrer">API documentation</a>.</p>
+                    <p>On the documentation, scroll to the 'films' section. On the right you'll see GET /films. It will show us the URL of our API endpoint: <a href="https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a>. Clicking on that link will display an array of objects in JSON.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>Retrieving the data with an HTTP request</h2>
+                    <p>Before we try to put anything on the front end of the website, we need to open a connection to the API. We'll open the connection using XMLHttpRequest objects, which is a way to open files and make an HTTP request.</p>
+                    <p>We will create a request variable and assign a new XMLHttpRequest object to it. We'll then open a new connection with the open() method. The arguments within this method will specify the type of request as GET as well as the URL of the API endpoint. The request completes and we can access the data inside the onload function.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // Create a request variable and assign a new XMLHttpRequest object
+    var request = new XMLHttpRequest();
+    
+    // Open a new connection, using GET request on the URL endpoint
+    request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+    
+    request.onload = function() {
+        // Begin accessing JSON data here
+    }
+    
+    // Send the request
+    request.send();
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Working with the JSON response</h2>
+                    <p>Now we've received a response from our HTTP request, we can now work with the data. The response is in JSON, however, we need to convert the JSON into JavaScript objects in order to work with it. We're going to use JSON.parse() to parse the response, and create a data variable that contains the JSON as an array of JavaScript objects. Using forEach(), we'll console log out the title of each film to ensure it's working correctly.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    request.onload = function() {
+        // Begin accessing JSON data
+        var data = JSON.parse(this.response);
+    
+        data.forEach(movie => {
+            // Log each movie's title
+            console.log(movie.title);
+        });
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>The current code is missing logic to deal with errors, such as if the wrong URL is used, or the URL is broken with nothing to display. When an HTTP request is made, the response returns with an HTTP status code. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.</p>
+                    <p>Our earlier code will be wrapped in an if statement, to log out an error if the request fails.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    request.onload = function() {
+        // Begin accessing JSON data
+        var data = JSON.parse(this.response);
+    
+        if (request.status >= 200 && request.status < 400) {
+            data.forEach(movie => {
+                // Log each movie's title
+                console.log(movie.title);
+            });
+        } else {
+            console.log('error');
+        }
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>We've successfully used a GET HTTP request to retieve (or consume) the API endpoint, which consisted of data in JSON format. However, we're still stuck in the console. We now want to display this data on the front end, which we can do by modifying the DOM.</p>
+                    <p>We have used XMLHttpRequest which is a widely supported built-in method for making requests. There is also a newer Fetch API which can be used for the same purpose, which is simpler, but has less browser support.</p>
+                    <p>Let's display the data onto the HTML page. Begin by creating an HTML page with the following code:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    &lt;div id="root"&gt;&lt;/div&gt;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>The JavaScript needs to now be updated:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    const app = document.getElementById('root');
+    const logo = document.createElement('img');
+    logo.src = 'logo.png';
+    
+    const container = document.createElement('div');
+    container.setAttribute('class', 'container');
+    
+    app.appendChild(logo);
+    app.appendChild(container);
+    
+    // Create a request variable and assign a new XMLHttpRequest object
+    var request = new XMLHttpRequest();
+    
+    // Open a new connection, using GET request on the URL endpoint
+    request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+    
+    request.onload = function() {
+        // Begin accessing JSON data
+        var data = JSON.parse(this.response);
+    
+        if (request.status >= 200 && request.status < 400) {
+            data.forEach(movie => {
+                const card = document.createElement('div');
+                card.setAttribute('class', 'card');
+    
+                const h1 = document.createElement('h1');
+                h1.textContent = movie.title;
+    
+                const p = document.createElement('p');
+                movie.description = movie.description.substring(0, 300);
+                p.textContent = `${movie.description}...`;
+    
+                container.appendChild(card);
+                card.appendChild(h1);
+                card.appendChild(p);
+            });
+        } else {
+            const errorMessage = document.createElement('marquee');
+            errorMessage.textContent = `${movie.description}...`;
+            app.appendChild(errorMessage);
+        }
+    }
+    
+    // Send the request
+    request.send();
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>REST (Representational State Transfer)</h2>
+                    <p>REST determines what the API looks like. It stands for Representational State Transfer. It is a set of rules that developers follow when they create their APIs. The terms REST and RESTful APIs are simply referring to a set of standards that conform to a specific architectural style. One of these rules states that you should be able to get a piece of data (called a resource) when you link to a specific URL. A request is made to the API and a response is returned.</p>
+                    <p>The endpoint (or route) is the URL of the API you are requesting. The starting point of an APIs endpoint is called the root-endpoint. Here are a few root-endpoint examples:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // GitHub API root-endpoint
+    https://api.github.com
+    
+    // Twitter API root-endpoint
+    https://api.twitter.com
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2></h2>
+                    <p>When a request to an API is made, the path determines the data (resource) that is returned. You need to view the documentation of the API to understand what paths are available. Let's say you want to get a list of repositories for a certain GitHub user using the GitHub API. The GitHub API documentation can be found <a href="https://developer.github.com/v3/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                    <p>The documentation for the API tells you to use the following path:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    /users/:username</span>/repos
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2></h2>
+                    <p>Any colons (:) on a path denotes a variable. You should replace the variable value with an actual value when you send the request. In this example you should replace the variable value with a username of a GitHub user.</p>
+                    <p>Using my GitHub account as an example, the :username variable will be replaced with justtoconfirm. The endpoint to get all repositories for my GitHub account would be this:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // Replacing the variable with a GitHub account
+    /users/justtoconfirm/repos
+    
+    // The endpoint to get a list of repositories
+    https://api.github.com/users/justtoconfirm/repos
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2></h2>
+                    <p>The final part of an endpoint is the query parameters. Query parameters are not part of the REST architecture, but many APIs use them. They provide you with the option to modify a request with key-value pairs and always begin with a question mark (?). Each parameter pair is then separated with an ampersand (&).</p>
+                    <p>When you try to get a list of a GitHub user's repositories, you can add parameters to your request to modify the results returned to you. If you'd like to get a list of the repositories that recently had commits that were pushed, you can set the value of sort to pushed:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // Example query parameters
+    ?query1=value1&query2=value2
+    
+    // Getting recent pushes to the GitHub repository
+    https://api.github.com/users/justtoconfirm/repos?sort=pushed
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>

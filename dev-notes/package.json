@@ -2,13 +2,14 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-ajax build-cookies build-pwa",
+    "build-all": "npm-run-all -p build-ajax build-api build-cookies build-pwa",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
     "build-js-variables": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/javascript/js-variables-data.json views/templates/pageTemplate.mustache > dist/pages/js-variables.html",
     "build-js-functions": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/javascript/js-functions-data.json views/templates/pageTemplate.mustache > dist/pages/js-functions.html",
     "build-ajax": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/ajax-data.json views/templates/pageTemplate.mustache > dist/pages/ajax.html",
+    "build-api": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/api-data.json views/templates/pageTemplate.mustache > dist/pages/api.html",
     "build-cookies": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/cookies-data.json views/templates/pageTemplate.mustache > dist/pages/cookies.html",
     "build-pwa": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/pwa-data.json views/templates/pageTemplate.mustache > dist/pages/pwa.html"
   },
