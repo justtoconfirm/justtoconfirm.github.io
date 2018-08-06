@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - BEM (Block Element Modifier)</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>BEM (Block Element Modifier)</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Block &amp; Element</h2>
+                    <p>In a BEM project, the interface consists of blocks that can include elements. Blocks are independent components of the page. An element cannot exist outside of the block and can only belong to one block. The block name is always unique and sets the namespace for elements. This provides a visible connection between the block parts. According to BEM methodology, the name of the block is included in the class attribute in HTML.</p>
+                    <p>Here is an example form block. All parts of the form (the form block) that don't make sense on their own are considered elements of the block. So the search box (search) and the button (submit) are elements of the form block. Classes indicate that an element belongs to the block:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    &lt;form class="form" action="/"&gt;
+       &lt;input class="form__search" name="search" /&gt;
+       &lt;input class="form__submit" type="submit" value="Submit" /&gt;
+    &lt;/form&gt;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Note that the block's name is separated from the element's name with a special separator. In the BEM classic naming scheme, two underscores are used as a separator. This helps distinguish blocks from elements. Selector names make it clear that in order to move the form to another project, you need to copy all of its components. This idea of naming of the BEM components is that you can explicitly define the connection between the block and its elements.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>Modifier</h2>
+                    <p>A modifier makes changes to a block and its elements. This defines the look, state, and behavior of a block or element. Adding modifiers is optional, and you can use any number of modifiers. The following example shows a modifier being used to set the theme on two different block elements:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    &lt;div class="box box--primary"&gt; ... &lt;/div&gt;
+    &lt;div class="box box--secondary"&gt; ... &lt;/div&gt;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Let's look at an example of how we can implement BEM. This example will use buttons. We can have a normal button for usual cases, with a further two states, success and error.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="HTML">
+                        <code>
+    &lt;button class="button"&gt;
+       Button
+    &lt;/button&gt;
+    
+    &lt;button class="button button--success"&gt;
+       Success
+    &lt;/button&gt;
+    
+    &lt;button class="button button--error"&gt;
+       Error
+    &lt;/button&gt;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>And the CSS to style the button elements:</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="css" data-title="CSS">
+                        <code>
+    .button {
+       display: inline-block;
+       border-radius: 3px;
+       padding: 7px 12px;
+       border: 1px solid #d5d5d5;
+       background-image: linear-gradient(#eee, #ddd);
+       font: 700 13px/18px Helvetica, arial;
+    }
+    
+    .button--success {
+       color: #fff;
+       background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+       border-color: #4a993e;
+    }
+    
+    .button--error {
+       color: #900;
+    }
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>Avoid the use of ID</h2>
+                    <p>It is recommended to avoid the use of the ID attribute where possible. The ID provides a unique name for an HTML element. If the name is unique, you cannot reuse it within the interface. This prevents you from reusing the code.</p>
+                    <p>A common practice is to use the ID attribute with the &lt;label&gt; tag. If you place the &lt;label&gt; inside a control, it doesn't need an ID.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // Old method
+    &lt;label for="firstName"&gt;First name&lt;/label&gt;
+    &lt;input id="firstName" type="text" /&gt;
+    
+    // New method
+    &lt;label&gt;&lt;input type="text" /&gt;First name&lt;/label&gt;
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <h2>CSS Reset</h2>
+                    <p>CSS reset is a set of global CSS rules created for the whole page. These styles affect the independence of components, making it harder to reuse them. In BEM, 'reset' and 'normalize' are not used for a single block. As a result, the developer has to write styles that override the ones that were just reset.</p>
+                    <p>It is therefore recommended not to use CSS resets when using BEM.</p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>
