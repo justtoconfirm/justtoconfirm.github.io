@@ -20,6 +20,100 @@
       {
         "label": "SECTION",
         "showheading": true,
+        "heading": "Using Props",
+        "copy": [
+          "To demonstrate how to use props, we will now create a simple Button component. Let's begin by creating a simple Button component with no props."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Button () {",
+          "   return (",
+          "      &lt;button /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Button;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We now want to add a number of props. We will begin by adding a type prop with a default value of \"button\". If no value is passed to the component, the button will automatically have the type of \"button\", but we could equally pass in the value of \"submit\", if the button component needed a different type."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Button ({ type = 'button' }) {",
+          "   return (",
+          "      &lt;button type={type} /&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Button;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "We may want each button to have a unique label. For this, we can use the \"children\" prop. This allows us to pass in a value/data into the component that will then be rendered. Let's add a children property and update the button component. We will need to update the component to have an opening and closing tag."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "",
+          "function Button ({ type = 'button', children }) {",
+          "   return (",
+          "      &lt;button type={type}&gt;",
+          "         {children}",
+          "      &lt;/button&gt;",
+          "   )",
+          "}",
+          "",
+          "export default Button;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "As a very simple example, we will simply import the button component and render the component on the page."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import React from 'react';",
+          "import ReactDOM from 'react-dom';",
+          "",
+          "import Button from './components/button';",
+          "",
+          "ReactDOM.render(",
+          "   &lt;Button type=\"submit\"&gt;Submit&lt;/Button&gt;,",
+          "   document.getElementById('root');",
+          ");"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
         "heading": "Spread Attribute",
         "copy": [
           "The aim of the spread attribute is to make the passing of props easier between React components. We can begin by creating a simple React component for an input field which accepts multiple props."
