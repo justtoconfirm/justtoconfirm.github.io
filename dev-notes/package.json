@@ -2,7 +2,7 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-ajax build-api build-bem build-cookies build-pwa build-react-components build-react-props",
+    "build-all": "npm-run-all -p build-ajax build-api build-bem build-cookies build-pwa build-meta build-react-components build-react-props",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
@@ -13,6 +13,7 @@
     "build-bem": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/bem-data.json views/templates/pageTemplate.mustache > dist/pages/bem.html",
     "build-cookies": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/cookies-data.json views/templates/pageTemplate.mustache > dist/pages/cookies.html",
     "build-pwa": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/pwa-data.json views/templates/pageTemplate.mustache > dist/pages/pwa.html",
+    "build-meta": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/meta-data.json views/templates/pageTemplate.mustache > dist/pages/meta.html",
     "build-react-components": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/react/react-components-data.json views/templates/pageTemplate.mustache > dist/pages/react-components.html",
     "build-react-props": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/react/react-props-data.json views/templates/pageTemplate.mustache > dist/pages/react-props.html"
   },
