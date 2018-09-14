@@ -138,7 +138,7 @@
       {
         "label": "SECTION",
         "showheading": true,
-        "heading": "X-UI-Compatible",
+        "heading": "X-UA-Compatible",
         "copy": [
           "The X-UA-Compatible meta tage allows web authors to choose what version of Internet Explorer the page should be rendered as. According to Microsoft, when using the X-UA-Compatible tag, it should be as high as possible in your document &lt;head&gt;",
           "Internet Explorer (IE) begins interpreting markup using the latest version. When Internet Explorer encounters the X-UA-Compatible meta tag, it starts over using the designated version's engine.",
