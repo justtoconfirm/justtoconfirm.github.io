@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/ico" href="../../src/img/favicon/code.ico" />
+    <title>Dev notes - Redux</title>
+    <link rel="stylesheet" href="../css/pixl.min.css" />
+</head>
+<body>
+
+
+<header>
+
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <p><a href="../../index.html">Home</a></p>
+
+                <h1>Redux</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-12">
+
+                <section class="padding-btm">
+                    <h2>Application State</h2>
+                    <p>Application state refers to the data that flows through you application (the information the user consumers). This is also the state that is relevant to more than one component, and is sometimes referred to as global state. Application state is divided into multiple categories of data. Each category is maintained by a reducer. When using Redux, these reducers ultimately get combined into a single object that is accessible throughout the app.</p>
+                    <p>Imagine, if you will, an application that lists audio recordings. The title of the recording is a piece of data. That same piece of data (the title of the recording), can be used in a different component as well. So in this example, all audio data is managed by a specific reducer (perhaps using the name, Audio Reducer), to be accessible to multiple components within the app. This is an example of Application State. The state, or data, is universally accessible to any component throughout the application.</p>
+                    <p><a href="https://codeburst.io/how-to-manage-ui-state-with-redux-24deb6cf0d57" target="_blank">Explaining State in Redux</a></p>
+                </section>
+                <section class="padding-btm">
+                    <h2>Internal Component State</h2>
+                    <p>When you develop an interface by thinking and developing in components, such as when using React, each encapsulated component has access to its own internal state. This internal state isn't accessible anywhere else except for the component itself.</p>
+                    <p>To continue with our Audio example, imaging we have a component that include the controls for any given audio recording. When the component is first displayed, the audio recording is not playing. When the play button is pressed in the component, the audio recording gets played. As a result, the UI for this given component changes to indicate that the recording is being played and the play button turns into a pause button. The state of this encapsulated component (isPlaying: true/false) is only accessible within this component and is used to control the UI. It's not accessible anywhere else.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>UI State</h2>
+                    <p>Now that we understand the two different main types of state that exist within an application, we can now illustrate a subset of application state, UI state.</p>
+                    <p>As an example, a user can click on a hamburger menu icon within a header component. Once clicked, the header component calls an action that causes the left navigation component to open. Because the left navigation component is listening to state changes relevant to the UI state via Redux, it now toggles open. This is an example of UI state that could easily be managed by a special UI reducer.</p>
+                </section>
+                <section class="padding-btm">
+                    <h2>The UI Reducer</h2>
+                    <p>Let's look at an example of a UI state in action, the toggling of a universal modal component. In a component on the page, there is a delete icon. This allows a user to delete an audio recording. When a user clicks the delete icon, a modal is displayed confirming if the user really wants to delete the audio recording. This request is displayed to the user via a reusable modal component which is accessible anywhere in the app. This modal component is embedded within the main shell (main JS file used for the app - app.js, index.js) of the application and it's display is controlled by a state key within the UI Reducer called 'showModal'.</p>
+                    <p>The UI state key 'showModal' is initially set to 'false' because we don't want it to be displayed by default. We're going to toggle this when we want to display the modal to a user.</p>
+                    <p>To display the modal component, an action creator gets called when a user clicks the delete icon. This action creator is called showModal().</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // containers/Drawer/index.js
+    
+    ...
+    
+    deleteAudio=() => {
+       actions.ui.showModal({
+          title   : 'Delete recording?',
+          actions : modalActions
+       });
+    }
+    
+    ...
+    
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>An action gets dispatched to indicate that the modal should be opened. In other words, we're telling the application that the UI state needs to change so that the modal gets displayed.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // actions/actions-ui.js
+    
+    ...
+    
+    // showModal - open the modal
+    export function showModal(obj) {
+       return {
+          type         : constants.SHOW_MODAL,
+          title        : obj.title,
+          modalActions : obj.actions
+       };
+    }
+    
+    ...
+    
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+                <section class="padding-btm">
+                    <p>Our UI reducer that's listening to this specific action does its thing and returns the new state of the application.</p>
+                    <!-- Code example -->
+                    <pre class="code-panel" rel="html" data-title="">
+                        <code>
+    // reducers/reducer-ui.js
+    
+    ...
+    
+    case constants.SHOW_MODAL:
+       return Object.assign({}, state, {
+          showModal    : true,
+          modalActions : action.modalActions,
+          modalTitle   : action.title
+    });
+    
+    ...
+    
+                        </code>
+                    </pre>
+                    <!-- / Code example -->
+                </section>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer>
+
+</footer>
+
+</body>
+</html>
