@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("./font/astloch-v8-latin-regular.eot");
-  src: local("Astloch Regular"), local("Astloch-Regular"), url("./font/astloch-v8/astloch-v8-latin-regular.woff2") format("woff2"), url("./font/astloch-v8/astloch-v8-latin-regular.woff") format("woff"), url("./font/astloch-v8/astloch-v8-latin-regular.ttf") format("truetype"), url("./font/astloch-v8/astloch-v8-latin-regular.eot?#iefix") format("embedded-opentype"), url("./font/astloch-v8/astloch-v8-latin-regular.svg#Astloch") format("svg"); }
+  src: local("Astloch Regular"), local("Astloch-Regular"), url("./font/astloch-v8/astloch-v8-regular.woff2") format("woff2"), url("./font/astloch-v8/astloch-v8-regular.woff") format("woff"), url("./font/astloch-v8/astloch-v8-regular.ttf") format("truetype"), url("./font/astloch-v8/astloch-v8-regular.eot?#iefix") format("embedded-opentype"), url("./font/astloch-v8/astloch-v8-regular.svg#Astloch") format("svg"); }
 
 body {
   font-family: 'Astloch'; }
