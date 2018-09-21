@@ -4,7 +4,7 @@
   "description": "",
   "main": "sw.js",
   "scripts": {
-    "dev": "node-sass --include-path scss main.scss main.css"
+    "dev": "node-sass --include-path scss src/scss/main.scss styles/main.css"
   },
   "keywords": [],
   "author": "",
