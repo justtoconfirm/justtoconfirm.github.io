@@ -1,16 +1,2 @@
-// https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf
-@font-face {
-  font-family: 'Astloch';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Astloch Regular'), local('Astloch-Regular'),
-       url('./font/astloch-v8/astloch-v8-regular.woff2') format('woff2'), // Super Modern Browsers
-       url('./font/astloch-v8/astloch-v8-regular.woff') format('woff'), // Modern Browsers 
-       url('./font/astloch-v8/astloch-v8-regular.ttf') format('truetype'), // Safari, Android, iOS 
-       url('./font/astloch-v8/astloch-v8-regular.eot?#iefix') format('embedded-opentype'), // IE6-IE8
-       url('./font/astloch-v8/astloch-v8-regular.svg#Astloch') format('svg'); // Legacy iOS
-}
-
-body {
-    font-family: 'Astloch';
-}
+// Utilities
+@import 'util/reset';
