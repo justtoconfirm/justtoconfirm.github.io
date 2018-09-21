@@ -4,12 +4,14 @@
   "description": "",
   "main": "sw.js",
   "scripts": {
-    "dev": "node-sass --include-path scss src/scss/main.scss styles/main.css"
+    "dev": "node-sass --include-path scss src/scss/main.scss styles/main.css && npm run minify-css",
+    "minify-css": "minify styles/main.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "minifier": "^0.8.1",
     "node-sass": "^4.9.3"
   }
 }
