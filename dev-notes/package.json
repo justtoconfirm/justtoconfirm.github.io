@@ -2,10 +2,11 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-ajax build-api build-bem build-cookies build-pwa build-meta build-font build-react-components build-react-props build-redux",
+    "build-all": "npm-run-all -p build-css-grid build-ajax build-api build-bem build-cookies build-pwa build-meta build-font build-react-components build-react-props build-redux",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
+    "build-css-grid": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/css/cssgrid-data.json views/templates/pageTemplate.mustache > dist/pages/css-grid.html",
     "build-js-variables": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/javascript/js-variables-data.json views/templates/pageTemplate.mustache > dist/pages/js-variables.html",
     "build-js-functions": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/javascript/js-functions-data.json views/templates/pageTemplate.mustache > dist/pages/js-functions.html",
     "build-ajax": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/ajax-data.json views/templates/pageTemplate.mustache > dist/pages/ajax.html",

@@ -1,0 +1,77 @@
+{
+  "page": {
+    "pagetitle": "CSS Grid",
+    "pageheading": "CSS Grid",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Here is a useful <a href=\"https://medium.freecodecamp.org/learn-css-grid-in-5-minutes-f582e87b1228\" target=\"_blank\" rel=\"noopener noreferrer\">link</a>"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The two core ingredients of a CSS Grid are the wrapper (parent) and the items (children). The wrapper is the actual grid and the items are the content inside the grid. Here is the markup for a wrapper with three items in it:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "&lt;div class=\"wrapper\"&gt;",
+          "    &lt;div&gt;Item 1&lt;/div&gt;",
+          "    &lt;div&gt;Item 2&lt;/div&gt;",
+          "    &lt;div&gt;Item 3&lt;/div&gt;",
+          "&lt;/div&gt;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "To turn our wrapper &lt;/div&gt; into a grid, we simply give it a display of grid. This won't do anything as yet, as we haven't defined how we want our grid to appear. This example will simply stack the &lt;div&gt; elements on top of each other."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          ".wrapper {",
+          "    display: grid;",
+          "}"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "To make it two-dimensional, we'll need to define the columns and rows. Let's create a three column grid with two rows. This will require six &lt;div&gt; elements and not the three we have in the earlier example. We'll use the grid-template-row and grid-template-column properties.",
+          "As we've written three values for grid-template-columns, we'll get three columns. As we have two values for the grid-template-rows property, we will get two rows. The values, in pixels, dictate how wide we want each of our columns to be (100px) and how tall we want each of our rows to be (50px). This will create a simple grid layout."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          ".wrapper {",
+          "    display: grid;",
+          "    grid-template-columns: 100px 100px 100px;",
+          "    grid-template-rows: 50px 50px;",
+          "}"
+        ]
+      }
+    ]
+  }
+}
