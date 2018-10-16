@@ -5,6 +5,19 @@
     "content": [
       {
         "label": "SECTION",
+        "showheading": true,
+        "heading": "Browser support",
+        "copy": [
+          "Browser support for CSS Grid can be detailed using <a href=\"https://caniuse.com/#feat=css-grid\" target=\"_blank\" rel=\"noopener noreferrer\">Caniuse</a>."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
         "showheading": false,
         "heading": null,
         "copy": [
@@ -18,8 +31,8 @@
       },
       {
         "label": "SECTION",
-        "showheading": false,
-        "heading": null,
+        "showheading": true,
+        "heading": "Introduction to CSS Grid",
         "copy": [
           "The two core ingredients of a CSS Grid are the wrapper (parent) and the items (children). The wrapper is the actual grid and the items are the content inside the grid. Here is the markup for a wrapper with three items in it:"
         ],
