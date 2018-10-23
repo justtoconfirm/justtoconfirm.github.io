@@ -2,7 +2,7 @@
   "name": "dev-notes",
   "version": "1.0.0",
   "scripts": {
-    "build-all": "npm-run-all -p build-css-grid build-ajax build-api build-bem build-cookies build-pwa build-meta build-font build-react-components build-react-props build-redux",
+    "build-all": "npm-run-all -p build-css-grid build-ajax build-api build-bem build-cookies build-pwa build-meta build-font build-react-components build-react-props build-redux build-testing",
     "compile-scss": "node-sass --include-path scss src/scss/main.scss dist/css/pixl.css && npm run beautify-css && npm run minify-css",
     "beautify-css": "beautify-css dist/css/pixl.css dist/css/pixl.css",
     "minify-css": "minify dist/css/pixl.css",
@@ -18,7 +18,8 @@
     "build-font": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/font-data.json views/templates/pageTemplate.mustache > dist/pages/font.html",
     "build-react-components": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/react/react-components-data.json views/templates/pageTemplate.mustache > dist/pages/react-components.html",
     "build-react-props": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/react/react-props-data.json views/templates/pageTemplate.mustache > dist/pages/react-props.html",
-    "build-redux": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/redux-data.json views/templates/pageTemplate.mustache > dist/pages/redux.html"
+    "build-redux": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/redux-data.json views/templates/pageTemplate.mustache > dist/pages/redux.html",
+    "build-testing": "mustache -p views/partials/header.mustache -p views/partials/footer.mustache data/other/testing-data.json views/templates/pageTemplate.mustache > dist/pages/testing.html"
   },
   "author": "Justtoconfirm",
   "license": "ISC",

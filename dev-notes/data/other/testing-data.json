@@ -1,0 +1,88 @@
+{
+  "page": {
+    "pagetitle": "Testing",
+    "pageheading": "Testing",
+    "content": [
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Unit tests",
+        "copy": [
+          "Unstructured code is a precursor to bugs and issues further down the road, making your code hard to understand and difficult to test. With pieces of code directly relying on each other, tests must run on all of the code at once. This makes it difficult to see exactly what works. Each part of the application should be broken up into its own concern. For example, a login form may comprise database queries, authentication/form validation, UI elements such as buttons and input fields, and routing. Each one of these is a great candidate for having it's own class, function, or component. The foundation of a solid codebase is a good set of unit tests.",
+          "By creating and running unit tests as we change files, we can be sure that nothing has accidentally broken the expected functionality of each piece of code. As our code is modular, these pieces can be dropped into other projects where needed. As tests are already written, we can be sure that this particular unit is free of any issues from the start.",
+          "There are plenty of tools to help write unit tests. Examples include: Jest, Jasmine, Mocha, and AVA.",
+          "Within unit tests, you will often find a 'describe' block which denotes what piece of code is under test. Inside this block is a number of tests that set up a scenario and compare our expected result with the actual result. If they don't match, the test will fail and we can investigate further. Here is an example of a common test structure:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "describe(\"DateLocale\", function() {",
+          "   test(\"provides the day in the correct language\", function() {",
+          "      var date = new DateLocale(\"en\");",
+          "      date.setDate(new Date(1525132800000));",
+          "      expect(date.getDay()).toBe(\"Tuesday\");",
+          "   });",
+          "});"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Integration tests",
+        "copy": [
+          "Once code is within separate components or modules, we need to then test that they can work together. For example, if the authentication layer doesn't understand what gets returned from the database preventing users from being able to log in, then this becomes an issue. This type of tests is known as 'integration tests'. They check how one part of the application works with another. While unit tests are deliberately isolated from one another, integration tests encourage communication between these two parties. As with unit tests, the goal of an integration test is to check the end result was the intended one. In our login example, the test may check to see if the 'last logged in' timestamp was updated in the database.",
+          "Since more is being dealt with at one time, integration tests are typically slower than unit tests and as such, there are fewer of them, and they are run less often. Ideally, the tests will only run after a feature has been completed to be sure nothing has changed. The same suites used for unit tests can also be used to write integration tests, but they should be executed separately to keep things running quickly."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "End-to-end tests",
+        "copy": [
+          "The top level of automated testing is known as 'end-to-end' or 'functional' testing. As the name suggests, this level of testing covers all actions a user can take from start to finish. They simulate real scenarios and how a user is likely to interact with the application. The structure of these tests often mirrors the user stories created as part of the development process. To extend an example from earlier, there maybe a test to make sure a user can enter their username and password on a login form.",
+          "As they rely on the UI to run, they need to be updated as the interface changes. These tests will run slowly. This tends to come from running the browser, which is not as fast as the command-line/terminal, but is necessary to emulate the right environment. As such, these tests will be run less frequently than integration tests, usually before pushing a set of changes to production.",
+          "Tools such as Selenium and Puppeteer can help with writing end-to-end tests. They enable browsers to be controlled through code to automate what would otherwise be a repetitive manual process."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Regression",
+        "copy": [
+          "As features are added or changed, tests will need to be re-run. It is important to prioritise those that are likely to be affected by the change. Visual regression tools such as PhantomCSS, can detect when styles have changed. A similar concept exists in Jest for objects or UI components, called snapshot tests. These capture the initial state of each tests - as a screenshot - when anything changes, the test will fail until the change has been confirmed."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Testing culture",
+        "copy": [
+          "Tests can only benefit when used regularly. Continuous Integration (CI) tools automate as many checks as possible before any update lands in the codebase. These can run unit tests, check for coverage, and identify common issues automatically to flag them should issues arise. Code with any issues cannot be added into the project. QA (Quality Assurance) tests, seperate from the development process, can act as a final check to make sure all the required functionality is present and working. If bugs do make it through the various stages of testing and checks, make sure there is a process in place to report them internally and externally.",
+          "As part of the testing culture, every website should be readily accessible to everyone. Tools such as Lighthouse, can create an audit to identify common issues within Google Chrome developer tools. This provides instant feedback on the accessibility of the page being analysed. There is no subtitute, however, for manual testing also."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": null,
+        "datatitle": null,
+        "code": null
+      }
+    ]
+  }
+}
