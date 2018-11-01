@@ -6,73 +6,56 @@
       {
         "label": "SECTION",
         "showheading": true,
-        "heading": "Application State",
+        "heading": "Install Redux",
         "copy": [
-          "Application state refers to the data that flows through you application (the information the user consumers). This is also the state that is relevant to more than one component, and is sometimes referred to as global state. Application state is divided into multiple categories of data. Each category is maintained by a reducer. When using Redux, these reducers ultimately get combined into a single object that is accessible throughout the app.",
-          "Imagine, if you will, an application that lists audio recordings. The title of the recording is a piece of data. That same piece of data (the title of the recording), can be used in a different component as well. So in this example, all audio data is managed by a specific reducer (perhaps using the name, Audio Reducer), to be accessible to multiple components within the app. This is an example of Application State. The state, or data, is universally accessible to any component throughout the application.",
-          "<a href=\"https://codeburst.io/how-to-manage-ui-state-with-redux-24deb6cf0d57\" target=\"_blank\">Explaining State in Redux</a>"
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
-      },
-      {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "Internal Component State",
-        "copy": [
-          "When you develop an interface by thinking and developing in components, such as when using React, each encapsulated component has access to its own internal state. This internal state isn't accessible anywhere else except for the component itself.",
-          "To continue with our Audio example, imaging we have a component that include the controls for any given audio recording. When the component is first displayed, the audio recording is not playing. When the play button is pressed in the component, the audio recording gets played. As a result, the UI for this given component changes to indicate that the recording is being played and the play button turns into a pause button. The state of this encapsulated component (isPlaying: true/false) is only accessible within this component and is used to control the UI. It's not accessible anywhere else."
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
-      },
-      {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "UI State",
-        "copy": [
-          "Now that we understand the two different main types of state that exist within an application, we can now illustrate a subset of application state, UI state.",
-          "As an example, a user can click on a hamburger menu icon within a header component. Once clicked, the header component calls an action that causes the left navigation component to open. Because the left navigation component is listening to state changes relevant to the UI state via Redux, it now toggles open. This is an example of UI state that could easily be managed by a special UI reducer."
-        ],
-        "label": "CODE/MARKUP",
-        "showmarkup": false,
-        "rel": null,
-        "datatitle": null,
-        "code": null
-      },
-      {
-        "label": "SECTION",
-        "showheading": true,
-        "heading": "The UI Reducer",
-        "copy": [
-          "Let's look at an example of a UI state in action, the toggling of a universal modal component. In a component on the page, there is a delete icon. This allows a user to delete an audio recording. When a user clicks the delete icon, a modal is displayed confirming if the user really wants to delete the audio recording. This request is displayed to the user via a reusable modal component which is accessible anywhere in the app. This modal component is embedded within the main shell (main JS file used for the app - app.js, index.js) of the application and it's display is controlled by a state key within the UI Reducer called 'showModal'.",
-          "The UI state key 'showModal' is initially set to 'false' because we don't want it to be displayed by default. We're going to toggle this when we want to display the modal to a user.",
-          "To display the modal component, an action creator gets called when a user clicks the delete icon. This action creator is called showModal()."
+          "To install Redux (when used with React), use NPM (Node Package Manager) to install as dependencies:"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "html",
         "datatitle": null,
         "code": [
-          "// containers/Drawer/index.js",
+          "$ npm install redux",
           "",
-          "...",
+          "# To use Redux with React",
+          "$ npm install react-redux"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "State",
+        "copy": [
+          "In a React component the state holds the data. The component may render such data to the user. The state can change in response to actions and events and using Redux allows the state to be within a single location. This allows the logic for fetching and managing state to live outside of React.",
+          "To implement Redux within a React application, setup three directories in your 'src' directory of your application: ./actions, ./reducers, and ./store.",
+          "A useful link can be found <a href=\"https://www.valentinog.com/blog/react-redux-tutorial-beginners/\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>." 
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": false,
+        "rel": "html",
+        "datatitle": null,
+        "code": null
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Store",
+        "copy": [
+          "The Redux store is like the human brain. It orchestrates all the moving parts in Redux. It is fundamental as the state of the whole application lives inside the store.",
+          "createStore is the function used for creating the Redux store. This takes a reducer as the first argument, which is rootReducer in our case."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// src/js/store/index.js",
+          "import { createStore } from 'redux'",
+          "import rootReducer from '../reducers/index'",
           "",
-          "deleteAudio=() => {",
-          "   actions.ui.showModal({",
-          "      title   : 'Delete recording?',",
-          "      actions : modalActions",
-          "   });",
-          "}",
+          "const store = createStore(rootReducer)",
           "",
-          "...",
-          ""
+          "export default store"          
         ]
       },
       {
@@ -80,28 +63,50 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "An action gets dispatched to indicate that the modal should be opened. In other words, we're telling the application that the UI state needs to change so that the modal gets displayed."
+          "You may also pass an initial state to createStore. This state comes from reducers.",
+          "To connect Redux with React, we're going to use Provider. Provider is a high order component that comes with react-redux. This wraps up your React application and makes it aware of the entire Redux store. The Redux store manages everything. React must use the store for accessing the state and to dispatch actions.",
+          "We can update the index.js file to include the store:"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "html",
         "datatitle": null,
         "code": [
-          "// actions/actions-ui.js",
+          "import React from 'react'",
+          "import ReactDOM from 'react-dom'",
+          "import { Provider } from 'react-redux'",
+          "import store from './store/store'",
+          "import App from './components/App'",
           "",
-          "...",
-          "",
-          "// showModal - open the modal",
-          "export function showModal(obj) {",
-          "   return {",
-          "      type         : constants.SHOW_MODAL,",
-          "      title        : obj.title,",
-          "      modalActions : obj.actions",
-          "   };",
+          "ReactDOM.render (",
+          "   &lt;Provider store={store}&gt;",
+          "      &lt;App /&gt;,",
+          "   &lt;/Provider&gt;,",
+          "   document.getElementById('root')",
+          ")"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Reducers",
+        "copy": [
+          "A reducer is just a JavaScript function that takes two parameters: the current state, and the action. A reducer must be pure meaning that it is a function that returns exactly the same output for the given input. In Redux, reducers produce the state and the state must return entirely from reducers. In our example, we'll create a simple reducer that takes the initial state as the first parameter. As a second parameter, we'll provide an action. As of now, the reducer will do nothing but return the initial state.",
+          "The example reducer below returns an initial state without doing anything else. The reducers will be placed within the 'reducers' directory within 'src'."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// src/reducers/index.js",
+          "const initialState = {",
+          "   articles: []", 
           "}",
           "",
-          "...",
-          ""          
+          "const rootReducer = (state = initialState, action) => state",
+          "",
+          "export default rootReducer"         
         ]
       },
       {
@@ -109,26 +114,148 @@
         "showheading": false,
         "heading": null,
         "copy": [
-          "Our UI reducer that's listening to this specific action does its thing and returns the new state of the application."
+          "We can then update the store to include the reducer and get the initial state:"
         ],
         "label": "CODE/MARKUP",
         "showmarkup": true,
         "rel": "html",
         "datatitle": null,
         "code": [
-          "// reducers/reducer-ui.js",
+          "// src/js/store/index.js",
+          "import { createStore } from 'redux'",
           "",
-          "...",
+          "const store = createStore()",
           "",
-          "case constants.SHOW_MODAL:",
-          "   return Object.assign({}, state, {",
-          "      showModal    : true,",
-          "      modalActions : action.modalActions,",
-          "      modalTitle   : action.title",
-          "});",
+          "export default store"         
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Actions",
+        "copy": [
+          "The only way to change the state is by sending a signal to the store. This signal is an action. 'Dispatching an action' is the proces of sending out a signal. A Redux action is nothing more than a JavaScript object. This is what an action looks like:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "{",
+          "   type: 'ADD_ARTICLE',",
+          "   payload: { name: 'React Redux Tutorial', id: 1 }",
+          "}"        
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Every action needs a type property for describing how the state should change. You can specify a payload also. In the above example, the payload is a new article. A reducer will add the article to the current state later.",
+          "It is best practice to wrap every action within a function. This function is an action creator.",
+          "We begin by creating an actions directory named 'actions' and within this directory, we create a file named 'index.js'. In the following example, the type property is nothing more than a string."
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// src/actions/index.js",
+          "export const addArticle = article => ({",
+          "   type: \"ADD_ARTICLE\",", 
+          "   payload: article",
+          "});"        
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The reducer will use the string to determine how to calculate the next state. It is best to have action types declared as constants to avoid typos and duplicates as this helps avoid errors that will be difficult to debug.",
+          "To do this, create a new directory called 'constants', then create a file named 'action-types.js' within this directory. Add the following code to this newly created file:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// src/constants/action-types.js",
+          "export const ADD_ARTICLE = \"ADD_ARTICLE\";"       
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "Now open the 'index.js' file within the 'actions' directory and update the code:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "// src/actions/index.js",
+          "import { ADD_ARTICLE } from '../constants/action-types';",
           "",
-          "...",
-          ""          
+          "export const addArticle = article => ({",
+          "   type: ADD_ARTICLE,", 
+          "   payload: article",
+          "});"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": true,
+        "heading": "Refactoring the Reducers",
+        "copy": [
+          "The state of the application lives as a single immutable object within the store. As soon as the store receives an action, it triggers a reducer. The reducer then returns the next state.",
+          "The reducer will grow as you app will become bigger. You can split a big reducer into separate functions and combine them within combineReducers.",
+          "Our previous reducer dies nothing other than returning the initial state. Let's fix that. Open up 'src/reducers/index.js' and update the code:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import { ADD_ARTICLE } from \"../constants/action-types\";",
+          "const initialState = {",
+          "   articles: []",
+          "};",
+          "const rootReducer = (state = initialState, action) => {",
+          "   switch (action.type) {",
+          "      case ADD_ARTICLE:",
+          "         return { ...state, articles: state.articles.concat(action.payload) };",
+          "      default:",
+          "         return state;",
+          "   }",
+          "};",
+          "export default rootReducer;"
+        ]
+      },
+      {
+        "label": "SECTION",
+        "showheading": false,
+        "heading": null,
+        "copy": [
+          "The intial state is now left untouched, the resulting state is a copy of the initial state. Now we want to display output within the console.",
+          "Redux itself is a pretty small library (around 2kb). The Redux store exposes a simple API for managing state. The most important methods are:",
+          "<ul><li>getState - for accessing the current state of the application.</li><li>dispatch - for dispatching an action</li><li>subscribe - for listening on state change</li></ul>",
+          "We will use the above methods within the browser console. To do so, we have to export as global variables the store and actions we create. This will allows us to access the methods of the store within the console when they are global variables.",
+          "Open up the 'index.js' file within the 'src' directory and update the following code:"
+        ],
+        "label": "CODE/MARKUP",
+        "showmarkup": true,
+        "rel": "html",
+        "datatitle": null,
+        "code": [
+          "import store from \"../js/store/index\";",
+          "import { addArticle } from \"../js/actions/index\";",
+          "",
+          "window.store = store;",
+          "window.addArticle = addArticle;"
         ]
       }
     ]
