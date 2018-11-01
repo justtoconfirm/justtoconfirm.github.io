@@ -1,13 +1,13 @@
-html {
-	@include prefix(box-sizing, border-box, webkit moz);
-}
-
 *,
 *:before,
 *:after {
-	@include prefix(box-sizing, inherit, webkit moz);
-	margin: 0;
+    @include prefix(box-sizing, inherit, webkit moz);
+    margin: 0;
     padding: 0;
+}
+
+html {
+	@include prefix(box-sizing, border-box, webkit moz);
 }
 
 body {

@@ -1,8 +1,10 @@
 code {
 	@include rem(padding, 20 0);
-	background-color: $code-background;
+	background-color: #000;
+    color: #fff;
 	display: block;
 	font-family: monospace;
+    font-size: 15px;
 	overflow-x: auto;
 	white-space: pre-wrap;
 }
