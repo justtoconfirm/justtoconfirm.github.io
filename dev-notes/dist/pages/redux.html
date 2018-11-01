@@ -60,9 +60,8 @@
                         <code>
     // src/js/store/index.js
     import { createStore } from 'redux'
-    import rootReducer from '../reducers/index'
     
-    const store = createStore(rootReducer)
+    const store = createStore()
     
     export default store
                         </code>
@@ -118,8 +117,9 @@
                         <code>
     // src/js/store/index.js
     import { createStore } from 'redux'
+    import rootReducer from '../reducers/index'
     
-    const store = createStore()
+    const store = createStore(rootReducer)
     
     export default store
                         </code>
