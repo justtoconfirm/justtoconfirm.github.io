@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Developer Notes - JavaScript Basics</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+<p><a href="index.html">Home</a></p>
+
+<h1>JavaScript Basics</h1>
+
+<h2>Comments</h2>
+
+<p>JavaScript supports two types of comments, the single-line comment and block comment.</p>
+
+<pre>
+    <code>
+// This is a single-line comment
+
+/*
+ * This is a multi-line comment
+ * over multiple lines.
+ */
+    </code>
+</pre>
+
+<h2>Variables</h2>
+
+<p>A variable allows bits of information (data) to be stored within your script. Before you can use a variable, you need to declare (create) it. To declare a variable you need to use the <strong>var</strong> keyword. The JavaScript interpreter knows that this keyword is used to create a variable. In order to use the variable, you must give it a name. This is sometimes called an identifier. If a variable name is more than one word, it is usually written in camelCase. In this example, the variable is called quantity.</p>
+
+<pre>
+    <code>
+var quantity;
+    </code>
+</pre>
+
+<p>Once you have created a variable, you can tell it the information you would like it to store. Programmers say that you assign a value to the variable. We use the assignment operator - the equal sign that follows the name of the variable - to assign a value. Until a value has been assigned to a variable, the value is undefined.</p>
+
+<pre>
+    <code>
+var quantity = 3;
+    </code>
+</pre>
+
+<h2>Array</h2>
+
+<p>An array is a variable that stores multiple values. You should consider using an array whenever you are working with a list or a set of values that are related to each other. Arrays are especially helpful when you do not know how many items a list will contain. For example, an array can be suited to storing the individual items on a shopping list because it is a list of related items.</p>
+
+<p>To create an array, you create a variable using the <strong>var</strong> keyword followed by the name of the array. The values are assigned to the array inside a pair of square brackets, with each value being separated by a comma. The values in the array do not need to be the same data type, so you can store strings, numbers, and booleans all in the same array. This technique for creating an array is known as an array literal and is the preffered method for creating an array.</p>
+
+<pre>
+    <code>
+var colours = ['white', 'black', 'blue'];
+
+colours;       // (3) ["white", "orange", "blue"]
+    </code>
+</pre>
+
+<p>Values in an array are accessed as if they are in a numbered list. Each item in the array is automatically given a number called an index. This can be used to access specific items in the array. Index values start at 0 (not 1), so the first value/item in the array has an index of 0, the second has an index of 1, and so on.</p>
+
+<p>To access the third item within the array, the array name is specified along with the index number of the item to be accessed. So if we want to access the third item in our array - which is 'blue' - we use index 2. Here you can see we have a new variable called itemThree. It's value is set to be the third colour from the colours array:</p>
+
+<pre>
+    <code>
+var colours = ['white', 'black', 'blue']; 
+var itemThree = colours[2];                
+    </code>
+</pre>
+
+<p>Each array has a property called length. This holds the number of items within the array. Let's create a new variable that will store the length of the array. This should return '3':</p>
+
+<pre>
+    <code>
+var colours = ['white', 'black', 'blue']; 
+var itemThree = colours[2];         
+var totalItems = colours.length;    
+
+itemThree;      // blue
+totalItems;     // 3
+    </code>
+</pre>
+
+<p>Now if we want to update a value in the array, for example to change the colour 'black' to 'orange', we can do it this way:</p>
+
+<pre>
+    <code>
+var colours = ['white', 'black', 'blue']; 
+colours[1] = 'orange';
+    </code>
+</pre>
+
+<h2>Functions</h2>
+
+<p>Functions consist of a series of statements that have been grouped together because they perform a specific task. A method is the same as a function, except methods are created inside (and are part of) objects. If different parts of a script repeat the same task, you can reuse the function rather than repeating the same set of statements.</p>
+
+<p>When naming a function, the name should describe the task it is performing. When you want to use the function, it is known as calling the function. The steps that the function needs to follow in order to perform its task are packaged within a code block. A code block consists of one or more statements contained within curly braces.</p>
+
+<p>To create (declare) a function, you must give it a name (identifier) followed by paranthesis and then write the statements inside the curly braces of the code block. This is known as a function declaration. We declare the function using the function keyword. Having declared the function, you can then execute it. This is known as 'calling the function'. You can call the same function as many times as you like within the same JavaScript file.</p>
+
+<pre>
+    <code>
+// Declare the function
+function sayHello() {
+    console.log('Hello World');
+}
+
+// Calling the function
+sayHello();
+    </code>
+</pre>
+
+<p>Sometimes you will see a function called before it is declared. This still works because the JavaScript interpreter runs through the script before executing each statement, so it will know that a function declaration appears later in the script.</p>
+
+<p>Functions sometimes need information that is specific to perform its task. In such cases, when declaring the function you give it parameters inside the function. The parameters act like variables. When you call a function that has parameters, you specify the values it should use in the parenthesis that follow the name. The value you pass into the function parameters are called arguments.</p>
+
+<p>In the following example, width and height are parameters. When the function is called, the value or '3' and '5' are the arguments passed into these parameters.</p>
+
+<pre>
+    <code>
+// Declare function with parameters
+function getArea(width, height) {
+    return width * height;
+}
+
+// Calling the function with arguments
+getArea(3, 5);
+    </code>
+</pre>
+
+</body>
+</html>
