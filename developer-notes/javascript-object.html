@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <title>Developer Notes - JavaScript Object</title>
+
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 <body>
 
@@ -81,9 +84,9 @@ elName.textContent = hotel.name;
 
 <p>The Document Object Model (DOM) is needed to access and update the contents of a web page. All three sets of built-in objects each offer a different range of tools that help you to write scripts for web pages.</p>
 
-<h3>Browser Object Model</h3>
+<h3>Browser Object Model (BOM)</h3>
 
-<p>The Browser Object Model creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. The child objects of the window object, represents other browser features.</p>
+<p>The Browser Object Model (BOM) creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. The child objects of the window object, represents other browser features.</p>
 
 <pre>
     <code>
@@ -109,6 +112,55 @@ window.print();
 <pre>
     <code>
 window.screen.width;
+    </code>
+</pre>
+
+<h3>Document Object Model (DOM)</h3>
+
+<p>The Document Object Model (DOM) creates a model of the current web page. The topmost object is the document object which represents the page as a whole. Its child objects represent other items on the page, such as: &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;.</p>
+
+<p>The document object's getElementById() method gets an element by value of its id attribute.</p>
+
+<pre>
+    <code>
+document.getElementById('one');
+    </code>
+</pre>
+
+<p>The document object's lastModified property will tell you the date that the page was last updated.</p>
+
+<pre>
+    <code>
+document.lastModified;
+    </code>
+</pre>
+
+<h3>Global JavaScript Objects</h3>
+
+<p>The global objects do not form a single model. They are a group of individual object that relate to different parts of the JavaScript language. The names of the global objects usually start with uppercase letters such as: String and Date objects. The following objects represent basic data types:</p>
+
+<ul>
+    <li>String - For working with string values.</li>
+    <li>Number - For working with numeric values.</li>
+    <li>Boolean - For working with boolean values.</li>
+    <li>Date - To represent and handle dates.</li>
+    <li>Math - For working with numbers and calculations.</li>
+    <li>Regex - For matching patterns within strings of text.</li>
+</ul>
+
+<p>The String object's toUpperCase() method makes all letters in the following variable uppercase.</p>
+
+<pre>
+    <code>
+hotel.toUpperCase();
+    </code>
+</pre>
+
+<p>The Math object's PI property will return the value of pi:</p>
+
+<pre>
+    <code>
+Math.PI;
     </code>
 </pre>
 
