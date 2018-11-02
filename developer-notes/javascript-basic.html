@@ -13,6 +13,20 @@
 
 <h1>JavaScript Basics</h1>
 
+<h2>JavaScript &amp; HTML</h2>
+
+<p>When a browser comes across a &lt;script&gt; element, it stops to load the script and then checks to see if it needs to do anything. It is often recommended to place the &lt;script&gt; element just before the closing &lt;/body&gt; element within a HTML document.</p>
+
+<pre>
+    <code>
+&lt;body&gt;
+
+&lt;script src="js/my-script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code>
+</pre>
+
 <h2>Comments</h2>
 
 <p>JavaScript supports two types of comments, the single-line comment and block comment.</p>
@@ -43,6 +57,45 @@ var quantity;
 <pre>
     <code>
 var quantity = 3;
+    </code>
+</pre>
+
+<h2>Variable Scope</h2>
+
+<p>The location where you declare a variable will affect where it can be used within your code. If you declare it within a function, it can only be used within that function. This is known as the variable's scope. A variable created inside a function is called a local variable or function-level variable. It is said to have local scope and it cannot be accessed outside of the function. The JavaScript interpreter creates local variables when the function is called, and removes them as soon as the function has finished its task.</p>
+
+<p>If you create a variable outside of a function, then it can be used anywhere within the script. This is called a global variable and has global scope. Global variables are stored in memory for as long as the web page is loaded into the browser. This means that they take up more memory than local variables and increases the risk of naming conflicts with other variables used. For this reason, you should use local variables wherever possible. Should you forget to declare a variable using the var keyword, the variable will work, but this too will be treated as a global variable and is considered bad practice.</p>
+
+<p>Many sites may use scripts written by multiple developers. Using global variables can cause naming collisions as different scripts can use variables with the same name. Therefore, this is the reason to use local variables where possible.</p>
+
+<pre>
+    <code>
+// Local scope
+function getArea(width, height) {
+    var area = width * height;
+    return area;
+}
+
+// Global scope
+var wallSize = getArea(3, 2);
+    </code>
+</pre>
+
+<h2>Variables &amp; Memory</h2>
+
+<p>Global variables use more memory. The browser has to remember them for as long as the web page using them is loaded. Local variables are only remembered during the period of time that a function is being executed. Each variable that you declare takes up memory. The more variables a browser has to remember, the more memory your script requires to run. Scripts that require a lot of memory can perform slower, which in turn makes your web page take longer to respond to the user.</p>
+
+<p>A variable actually references a value that is stored in memory. The same value can be used by more than one variable.</p>
+
+<pre>
+    <code>
+// Unique variable values in memory
+var width = 15;
+var height = 30;
+
+// The same value of 'true' in memory
+var isBox = true;
+var isSquare = true;
     </code>
 </pre>
 

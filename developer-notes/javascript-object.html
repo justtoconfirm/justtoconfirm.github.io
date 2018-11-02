@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Developer Notes - JavaScript Object</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+<p><a href="index.html">Home</a></p>
+
+<h1>JavaScript Object</h1>
+
+<p>Objects group together a set of variables and functions to create a model of something you would recognise from the real world. In an object, variables and functions take on new names. If a variable is part of an object, it is called a property. If a function is part of an object, it is called a method.</p>
+
+<p>Properties tell us about the object. If the object were a hotel, the properties may tell us the name of the hotel or the number of rooms. Each individual hotel may have a different name and different number of rooms, so the objects would have different property values.</p>
+
+<p>Methods represent tasks that are associated with the object. For example, in a hotel, you can check how many rooms are available by subtracting the number of booked rooms from the total number of rooms. A method can be used to calculate this.</p>
+
+<p>Like variables and functions, properties and methods have a name and a value. When in an object, the name of a property or method is called a key. An object cannot have a two keys with the same name. This is because the keys are used to access their corresponding values. The value of a property can be a: string, number, boolean, array, or another object. The value of a method is always a function.</p>
+
+<p>We will now create an object using literal notation. This is the easiest and most popular way to create objects. This object will be stored in a variable called 'hotel'. This would be referred to as the hotel object.</p>
+
+<pre>
+    <code>
+var hotel = {
+    name: 'Quay',
+    rooms: 40,
+    booked: 25,
+    gym: true,
+    roomType: ['twin', 'double', 'suite'],
+
+    checkAvailability: function() {
+        return this.rooms - this.booked;
+    }
+}
+    </code>
+</pre>
+
+<p>In the checkAvailability() method, the this keyword is used to indicate that it is using the rooms and booked properties of this object.</p>
+
+<h2>Accessing an Object</h2>
+
+<p>You can access the properties or methods of an object using dot notation. You can also access properties using square brackets, but not methods. To access a property or method of an object, you use the name of the object, followed by a period, and then the name of the property or method you want to access. This is known as dot notation. The period (.) is known as the member operator. The property or method on the right is a member of the object on its left.</p>
+
+<pre>
+    <code>
+// Dot notation
+var hotelName = hotel.name;
+var roomsAvailable = hotel.checkAvailability();
+
+// Using square brackets
+var hotelName = hotel['name'];
+    </code>
+</pre>
+
+<p>We could output a property to our HTML web page using the following code:</p>
+
+<pre>
+    <code>
+var elName = document.getElementById('hotelName');
+elName.textContent = hotel.name;
+    </code>
+</pre>
+
+<h2>Built-in Objects</h2>
+
+<p>Browsers come with a set of built-in objects that represent things like the browser window and the current web page shown within that window. These built-in objects act like a toolkit for creating interactive web pages. The objects you create will usually be specifically written to suit your needs. They model the data used within, or contain functionality needed by, your script. Whereas, the built-in objects contain functionality commonly needed by many scripts. As soon as a web page has loaded in the browser, these objects are available to use in your scripts.</p>
+
+<p>These built-in objects help you get a wide range of information such as the width of the browser window, the content of the main heading in the page, or the length of text a user entered into a form field. You access their properties or methods using dot notation, just like you would access the properties or methods of an object you had written yourself.</p>
+
+<p>An object model is a group of objects, each if which represent related things from the real world. Together they form a model of something larger. Examples include: Browser Object Model (BOM), Document Object Model (DOM), and Global JavaScript Objects. Here is a more detailed explination of each one:</p>
+
+<ul>
+    <li>Browser Object Model - Contains objects that represent the current browser window or tab. It contains objects that model things like browser history and the device's screen.</li>
+    <li>Document Object Model - Uses objects to create a representation of the current page. It creates a new object for each element within the page.</li>
+    <li>Global JavaScript Objects - Represents things that JavaScript needs to create a model of. For example, an object is available for dealing only with dates and times.</li>
+</ul>
+
+<p>The Document Object Model (DOM) is needed to access and update the contents of a web page. All three sets of built-in objects each offer a different range of tools that help you to write scripts for web pages.</p>
+
+<h3>Browser Object Model</h3>
+
+<p>The Browser Object Model creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. The child objects of the window object, represents other browser features.</p>
+
+<pre>
+    <code>
+Window   - Current browser window or tab
+    Document    - Current web page
+    History     - Pages in the browser history
+    Location    - URL of the current page
+    Navigator   - Information about the browser
+    Screen      - Device's display information
+    </code>
+</pre>
+
+<p>The window object's print() method will cause the browser's print dialog box to be shown.</p>
+
+<pre>
+    <code>
+window.print();
+    </code>
+</pre>
+
+<p>The screen object's width property will let you find the width of the device's screen in pixels.</p>
+
+<pre>
+    <code>
+window.screen.width;
+    </code>
+</pre>
+
+</body>
+</html>
