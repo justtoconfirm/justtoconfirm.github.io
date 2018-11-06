@@ -13,22 +13,23 @@
 </head>
 <body>
 
-<p><a href="index.html">Home</a></p>
+<main role="main">
+    <p><a href="index.html">Home</a></p>
 
-<h1>JavaScript Object</h1>
+    <h1>JavaScript Object</h1>
 
-<p>Objects group together a set of variables and functions to create a model of something you would recognise from the real world. In an object, variables and functions take on new names. If a variable is part of an object, it is called a property. If a function is part of an object, it is called a method.</p>
+    <p>Objects group together a set of variables and functions to create a model of something you would recognise from the real world. In an object, variables and functions take on new names. If a variable is part of an object, it is called a property. If a function is part of an object, it is called a method.</p>
 
-<p>Properties tell us about the object. If the object were a hotel, the properties may tell us the name of the hotel or the number of rooms. Each individual hotel may have a different name and different number of rooms, so the objects would have different property values.</p>
+    <p>Properties tell us about the object. If the object were a hotel, the properties may tell us the name of the hotel or the number of rooms. Each individual hotel may have a different name and different number of rooms, so the objects would have different property values.</p>
 
-<p>Methods represent tasks that are associated with the object. For example, in a hotel, you can check how many rooms are available by subtracting the number of booked rooms from the total number of rooms. A method can be used to calculate this.</p>
+    <p>Methods represent tasks that are associated with the object. For example, in a hotel, you can check how many rooms are available by subtracting the number of booked rooms from the total number of rooms. A method can be used to calculate this.</p>
 
-<p>Like variables and functions, properties and methods have a name and a value. When in an object, the name of a property or method is called a key. An object cannot have a two keys with the same name. This is because the keys are used to access their corresponding values. The value of a property can be a: string, number, boolean, array, or another object. The value of a method is always a function.</p>
+    <p>Like variables and functions, properties and methods have a name and a value. When in an object, the name of a property or method is called a key. An object cannot have a two keys with the same name. This is because the keys are used to access their corresponding values. The value of a property can be a: string, number, boolean, array, or another object. The value of a method is always a function.</p>
 
-<p>We will now create an object using literal notation. This is the easiest and most popular way to create objects. This object will be stored in a variable called 'hotel'. This would be referred to as the hotel object.</p>
+    <p>We will now create an object using literal notation. This is the easiest and most popular way to create objects. This object will be stored in a variable called 'hotel'. This would be referred to as the hotel object.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 var hotel = {
     name: 'Quay',
     rooms: 40,
@@ -40,130 +41,132 @@ var hotel = {
         return this.rooms - this.booked;
     }
 }
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>In the checkAvailability() method, the this keyword is used to indicate that it is using the rooms and booked properties of this object.</p>
+    <p>In the checkAvailability() method, the this keyword is used to indicate that it is using the rooms and booked properties of this object.</p>
 
-<h2>Accessing an Object</h2>
+    <h2>Accessing an Object</h2>
 
-<p>You can access the properties or methods of an object using dot notation. You can also access properties using square brackets, but not methods. To access a property or method of an object, you use the name of the object, followed by a period, and then the name of the property or method you want to access. This is known as dot notation. The period (.) is known as the member operator. The property or method on the right is a member of the object on its left.</p>
+    <p>You can access the properties or methods of an object using dot notation. You can also access properties using square brackets, but not methods. To access a property or method of an object, you use the name of the object, followed by a period, and then the name of the property or method you want to access. This is known as dot notation. The period (.) is known as the member operator. The property or method on the right is a member of the object on its left.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 // Dot notation
 var hotelName = hotel.name;
 var roomsAvailable = hotel.checkAvailability();
 
 // Using square brackets
 var hotelName = hotel['name'];
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>We could output a property to our HTML web page using the following code:</p>
+    <p>We could output a property to our HTML web page using the following code:</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 var elName = document.getElementById('hotelName');
 elName.textContent = hotel.name;
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<h2>Built-in Objects</h2>
+    <h2>Built-in Objects</h2>
 
-<p>Browsers come with a set of built-in objects that represent things like the browser window and the current web page shown within that window. These built-in objects act like a toolkit for creating interactive web pages. The objects you create will usually be specifically written to suit your needs. They model the data used within, or contain functionality needed by, your script. Whereas, the built-in objects contain functionality commonly needed by many scripts. As soon as a web page has loaded in the browser, these objects are available to use in your scripts.</p>
+    <p>Browsers come with a set of built-in objects that represent things like the browser window and the current web page shown within that window. These built-in objects act like a toolkit for creating interactive web pages. The objects you create will usually be specifically written to suit your needs. They model the data used within, or contain functionality needed by, your script. Whereas, the built-in objects contain functionality commonly needed by many scripts. As soon as a web page has loaded in the browser, these objects are available to use in your scripts.</p>
 
-<p>These built-in objects help you get a wide range of information such as the width of the browser window, the content of the main heading in the page, or the length of text a user entered into a form field. You access their properties or methods using dot notation, just like you would access the properties or methods of an object you had written yourself.</p>
+    <p>These built-in objects help you get a wide range of information such as the width of the browser window, the content of the main heading in the page, or the length of text a user entered into a form field. You access their properties or methods using dot notation, just like you would access the properties or methods of an object you had written yourself.</p>
 
-<p>An object model is a group of objects, each if which represent related things from the real world. Together they form a model of something larger. Examples include: Browser Object Model (BOM), Document Object Model (DOM), and Global JavaScript Objects. Here is a more detailed explination of each one:</p>
+    <p>An object model is a group of objects, each if which represent related things from the real world. Together they form a model of something larger. Examples include: Browser Object Model (BOM), Document Object Model (DOM), and Global JavaScript Objects. Here is a more detailed explination of each one:</p>
 
-<ul>
-    <li>Browser Object Model - Contains objects that represent the current browser window or tab. It contains objects that model things like browser history and the device's screen.</li>
-    <li>Document Object Model - Uses objects to create a representation of the current page. It creates a new object for each element within the page.</li>
-    <li>Global JavaScript Objects - Represents things that JavaScript needs to create a model of. For example, an object is available for dealing only with dates and times.</li>
-</ul>
+    <ul>
+        <li>Browser Object Model - Contains objects that represent the current browser window or tab. It contains objects that model things like browser history and the device's screen.</li>
+        <li>Document Object Model - Uses objects to create a representation of the current page. It creates a new object for each element within the page.</li>
+        <li>Global JavaScript Objects - Represents things that JavaScript needs to create a model of. For example, an object is available for dealing only with dates and times.</li>
+    </ul>
 
-<p>The Document Object Model (DOM) is needed to access and update the contents of a web page. All three sets of built-in objects each offer a different range of tools that help you to write scripts for web pages.</p>
+    <p>The Document Object Model (DOM) is needed to access and update the contents of a web page. All three sets of built-in objects each offer a different range of tools that help you to write scripts for web pages.</p>
 
-<h3>Browser Object Model (BOM)</h3>
+    <h3>Browser Object Model (BOM)</h3>
 
-<p>The Browser Object Model (BOM) creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. The child objects of the window object, represents other browser features.</p>
+    <p>The Browser Object Model (BOM) creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. The child objects of the window object, represents other browser features.</p>
 
-<pre>
-    <code>
-Window   - Current browser window or tab
+    <pre>
+        <code>
+Window /  - Current browser window or tab
     Document    - Current web page
     History     - Pages in the browser history
     Location    - URL of the current page
     Navigator   - Information about the browser
     Screen      - Device's display information
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>The window object's print() method will cause the browser's print dialog box to be shown.</p>
+    <p>The window object's print() method will cause the browser's print dialog box to be shown.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 window.print();
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>The screen object's width property will let you find the width of the device's screen in pixels.</p>
+    <p>The screen object's width property will let you find the width of the device's screen in pixels.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 window.screen.width;
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<h3>Document Object Model (DOM)</h3>
+    <h3>Document Object Model (DOM)</h3>
 
-<p>The Document Object Model (DOM) creates a model of the current web page. The topmost object is the document object which represents the page as a whole. Its child objects represent other items on the page, such as: &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;.</p>
+    <p>The Document Object Model (DOM) creates a model of the current web page. The topmost object is the document object which represents the page as a whole. Its child objects represent other items on the page, such as: &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;.</p>
 
-<p>The document object's getElementById() method gets an element by value of its id attribute.</p>
+    <p>The document object's getElementById() method gets an element by value of its id attribute.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 document.getElementById('one');
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>The document object's lastModified property will tell you the date that the page was last updated.</p>
+    <p>The document object's lastModified property will tell you the date that the page was last updated.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 document.lastModified;
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<h3>Global JavaScript Objects</h3>
+    <h3>Global JavaScript Objects</h3>
 
-<p>The global objects do not form a single model. They are a group of individual object that relate to different parts of the JavaScript language. The names of the global objects usually start with uppercase letters such as: String and Date objects. The following objects represent basic data types:</p>
+    <p>The global objects do not form a single model. They are a group of individual object that relate to different parts of the JavaScript language. The names of the global objects usually start with uppercase letters such as: String and Date objects. The following objects represent basic data types:</p>
 
-<ul>
-    <li>String - For working with string values.</li>
-    <li>Number - For working with numeric values.</li>
-    <li>Boolean - For working with boolean values.</li>
-    <li>Date - To represent and handle dates.</li>
-    <li>Math - For working with numbers and calculations.</li>
-    <li>Regex - For matching patterns within strings of text.</li>
-</ul>
+    <ul>
+        <li>String - For working with string values.</li>
+        <li>Number - For working with numeric values.</li>
+        <li>Boolean - For working with boolean values.</li>
+        <li>Date - To represent and handle dates.</li>
+        <li>Math - For working with numbers and calculations.</li>
+        <li>Regex - For matching patterns within strings of text.</li>
+    </ul>
 
-<p>The String object's toUpperCase() method makes all letters in the following variable uppercase.</p>
+    <p>The String object's toUpperCase() method makes all letters in the following variable uppercase.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 hotel.toUpperCase();
-    </code>
-</pre>
+        </code>
+    </pre>
 
-<p>The Math object's PI property will return the value of pi:</p>
+    <p>The Math object's PI property will return the value of pi:</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 Math.PI;
-    </code>
-</pre>
+        </code>
+    </pre>
+
+</main>
 
 </body>
 </html>
