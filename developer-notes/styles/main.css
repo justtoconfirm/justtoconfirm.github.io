@@ -33,6 +33,7 @@ body {
 
 pre {
     background-color: #eee;
+    border-left: 5px solid #3d7e9a;
     padding-left: 20px;
 }
 
