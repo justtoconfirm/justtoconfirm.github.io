@@ -33,6 +33,19 @@
         </code>
     </pre>
 
+    <p>The HTML &lt;script&gt; element is used to embed or reference executable code, typically JavaScript code. In HTML5, the type attribute is not required, but in HTML4 it will need to be applied.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+<span class="token-punctuation">&lt;!-- HTML5 --&gt;</span>
+&lt;<span class="token-tag">script</span> <span class="token-attr-name">src</span>="<span class="token-attr-value">js/my-script.js</span>"&gt;&lt;<span class="token-tag">/script</span>&gt;
+
+<span class="token-punctuation">&lt;!-- HTML4 --&gt;</span>
+&lt;<span class="token-tag">script</span> <span class="token-attr-name">type</span>="<span class="token-attr-value">text/javascript</span>" <span class="token-attr-name">src</span>="<span class="token-attr-value">js/my-script.js</span>"&gt;&lt;<span class="token-tag">/script</span>&gt;
+        </code>
+    </pre>
+
     <h2>Comments</h2>
 
     <p>JavaScript supports two types of comments, the single-line comment and block comment.</p>
@@ -52,6 +65,8 @@
     <h2>Variables</h2>
 
     <p>A variable allows bits of information (data) to be stored within your script. Before you can use a variable, you need to declare (create) it. To declare a variable you need to use the <strong>var</strong> keyword. The JavaScript interpreter knows that this keyword is used to create a variable. In order to use the variable, you must give it a name. This is sometimes called an identifier. If a variable name is more than one word, it is usually written in camelCase. In this example, the variable is called quantity.</p>
+    
+    <p>A variable is a container for storing a value and must be declared before it can be used. JavaScript is an untyped language meaning that a JavaScript variable can hold a value of any data type. Unlike many other programming languages, you do not need to declare the data type the variable will hold as JavaScript handles this automatically during the execution of the code.</p>
 
     <pre>
         <code>
@@ -60,7 +75,7 @@
         </code>
     </pre>
 
-    <p>Once you have created a variable, you can tell it the information you would like it to store. Programmers say that you assign a value to the variable. We use the assignment operator - the equal sign that follows the name of the variable - to assign a value. Until a value has been assigned to a variable, the value is undefined.</p>
+    <p>Once you have created a variable, you can tell it the information you would like it to store. Programmers say that you assign a value to the variable. We use the assignment operator - the equal sign that follows the name of the variable - to assign a value. Until a value has been assigned to a variable, the value is undefined, an empty container.</p>
 
     <pre>
         <code>
@@ -73,9 +88,11 @@
 
     <p>The location where you declare a variable will affect where it can be used within your code. If you declare it within a function, it can only be used within that function. This is known as the variable's scope. A variable created inside a function is called a local variable or function-level variable. It is said to have local scope and it cannot be accessed outside of the function. The JavaScript interpreter creates local variables when the function is called, and removes them as soon as the function has finished its task.</p>
 
-    <p>If you create a variable outside of a function, then it can be used anywhere within the script. This is called a global variable and has global scope. Global variables are stored in memory for as long as the web page is loaded into the browser. This means that they take up more memory than local variables and increases the risk of naming conflicts with other variables used. For this reason, you should use local variables wherever possible. Should you forget to declare a variable using the var keyword, the variable will work, but this too will be treated as a global variable and is considered bad practice.</p>
+    <p>If you create a variable outside of a function, then it can be used anywhere within the script. This is called a global variable and has global scope. Global variables are stored in memory and become a property of the window object for as long as the web page is loaded into the browser. The window object is supported by all browsers and represents the browser's window. This however means that they take up more memory than local variables and increases the risk of naming conflicts with other variables used. For this reason, you should use local variables wherever possible. Should you forget to declare a variable using the var keyword, the variable will work, but this too will be treated as a global variable and is considered bad practice as this pollutes the global namespace.</p>
 
-    <p>Many sites may use scripts written by multiple developers. Using global variables can cause naming collisions as different scripts can use variables with the same name. Therefore, this is the reason to use local variables where possible.</p>
+    <p>Many sites may use scripts written by multiple developers. Using global variables can cause naming collisions as different scripts can use variables with the same name. Therefore, it is best practice to use local variables where possible.</p>
+
+    <p>Variable declarations, wherever they occur, are processed before any code is executed. This is called hoisting. Because of this, declaring a variable anywhere within your code is the equivalent to declaring it at the top of your code. This means that a variable can appear to be used before it has been declared. For this reason, it is always recommended to always declare variables at the top of their scope, either within the global code or at the top of a function.</p>
 
     <pre>
         <code>
