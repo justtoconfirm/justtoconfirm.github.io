@@ -37,7 +37,9 @@ pre {
     padding-left: 20px;
 }
 
-.token-tag {
+.token-tag,
+.token-number-value,
+.token-string-value {
     color: #905;
 }
 
@@ -45,7 +47,8 @@ pre {
     color: #690;
 }
 
-.token-attr-value {
+.token-attr-value,
+.token-keyword {
     color: #07a;
 }
 
