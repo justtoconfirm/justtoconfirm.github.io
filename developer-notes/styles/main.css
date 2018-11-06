@@ -31,6 +31,20 @@ body {
     font-size: 1.6rem; /* 16px */
 }
 
+.header__item--links {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.header__link {
+    display: inline;
+    margin-right: 10px;
+}
+
+.header__link:last-child {
+    margin-right: 0;
+}
+
 pre {
     background-color: #eee;
     border-left: 5px solid #3d7e9a;
