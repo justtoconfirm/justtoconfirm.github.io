@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - HTML5</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<main role="main">
+    <p><a href="index.html">Home</a></p>
+
+    <h1>HTML5</h1>
+
+    <p>HTML5 is the latest version of Hypertext Markup Language (HTML), the code that describes web pages.</p>
+
+    <h2>&lt;nav&gt;</h2>
+
+    <p>The HTML &lt;nav&gt; element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.</p>
+
+    <p>It is not necessary for all links to be contained within a &lt;nav&gt; element. &lt;nav&gt; is intended only for a major block of navigation links. Typically links within the &lt;footer&gt; element often has a list of links. These links do not need to be within a &lt;nav&gt; element.</p>
+
+    <pre>
+        <code>
+&lt;<span class="token-tag">nav</span> <span class="token-attr-name">class</span>="<span class="token-attr-value">menu</span>"&gt;
+    &lt;<span class="token-tag">ul</span>&gt;
+        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Home&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;About&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Contact&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+    &lt;<span class="token-tag">/ul</span>&gt;
+&lt;<span class="token-tag">/nav</span>&gt;
+        </code>
+    </pre>
+
+    <p>A document may have more than one &lt;nav&gt; element. For example, one for site navigation and another for inter-page navigation. The aria-labelledby attribute can be used in such cases to promote accessibility and to identify each navigation.</p>
+
+    <pre>
+        <code>
+&lt;<span class="token-tag">header</span>&gt;
+    &lt;<span class="token-tag">nav</span> <span class="token-attr-name">aria-labelledby</span>="<span class="token-attr-value">primary-navigation</span>"&gt;
+        &lt;<span class="token-tag">ul</span>&gt;
+            &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Home&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+            &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;About&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+            &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Contact&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+        &lt;<span class="token-tag">/ul</span>&gt;
+    &lt;<span class="token-tag">/nav</span>&gt;
+&lt;<span class="token-tag">/header</span>&gt;
+
+<span class="token-punctuation">&lt;!-- Page content --&gt;</span>
+
+&lt;<span class="token-tag">footer</span>&gt;
+    &lt;<span class="token-tag">nav</span> <span class="token-attr-name">aria-labelledby</span>="<span class="token-attr-value">footer-navigation</span>"&gt;
+        &lt;<span class="token-tag">ul</span>&gt;
+            &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Privacy Policy&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+            &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Terms of Service&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
+        &lt;<span class="token-tag">/ul</span>&gt;
+    &lt;<span class="token-tag">/nav</span>&gt;
+&lt;<span class="token-tag">/footer</span>&gt;
+        </code>
+    </pre>
+
+    <h2>&lt;main&gt;</h2>
+
+    <p>The HTML &lt;main&gt; element represents the dominant content of the &lt;body&gt; of a HTML document. The document must not have more than one &lt;main&gt; element. The content of a &lt;main&gt; element should be unique to the document. Content that is repeated, such as sidebars, navigation links, copyright information, site logos, and search forms should not be included unless the search form is the main function of the page.</p>
+
+    <p>The &lt;main&gt; element is widely supported by browsers. For Internet Explorer 11 (IE11) and below, it is suggested that an <abbr title="Accessible Rich Internet Applications">ARIA</abbr> role attribute of "main" is added to the &lt;main&gt; element to ensure it is accessible. Screen readers will be able to then understand the semantic meaning of the &lt;main&gt; element once the role attribute is added.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;<span class="token-tag">main</span> <span class="token-attr-name">role</span>="<span class="token-attr-value">main</span>"&gt;
+    <span class="token-punctuation">&lt;! -- Content here --&gt;</span>
+&lt;<span class="token-tag">/main</span>&gt;
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
