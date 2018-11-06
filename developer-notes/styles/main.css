@@ -1,14 +1,15 @@
 @font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400; 
-  src:  local('Nunito Regular'), local('Nunito-Regular'),
-        url('../fonts/nunito-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-        url('../fonts/nunito-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
-        url('../fonts/nunito-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-        url('../fonts/nunito-v9-latin-regular.eot'), /* IE9 Compat Modes */
-        url('../fonts/nunito-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-        url('../fonts/nunito-v9-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400; 
+    font-display: fallback;
+    src: local('Nunito Regular'), local('Nunito-Regular'),
+         url('../fonts/nunito-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/nunito-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/nunito-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/nunito-v9-latin-regular.eot'), /* IE9 Compat Modes */
+         url('../fonts/nunito-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/nunito-v9-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
 }
 
 html {
@@ -23,8 +24,8 @@ html {
 }
 
 body {
-    font-family: 'Nunito';
-    font-size: 1.6rem;      /* 16px */
+    font-family: 'Nunito', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1.6rem; /* 16px */
 }
 
 .no-bullet-list {
