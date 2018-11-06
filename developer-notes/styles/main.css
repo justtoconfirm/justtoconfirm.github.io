@@ -37,6 +37,22 @@ pre {
     padding-left: 20px;
 }
 
+.token-tag {
+    color: #905;
+}
+
+.token-attr-name {
+    color: #690;
+}
+
+.token-attr-value {
+    color: #07a;
+}
+
+.token-punctuation {
+    color: #999;
+}
+
 .no-bullet-list {
     list-style-type: none;
     padding-left: 0;
