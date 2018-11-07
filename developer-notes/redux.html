@@ -25,26 +25,125 @@
 <main role="main" id="main">
     <h1>Redux</h1>
 
-    <!--
-    <p>HTML5 is the latest version of Hypertext Markup Language (HTML), the code that describes web pages.</p>
+    <h2>Install Redux</h2>
 
-    <h2>&lt;nav&gt;</h2>
-
-    <p>The HTML &lt;nav&gt; element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.</p>
-
-    <p>It is not necessary for all links to be contained within a &lt;nav&gt; element. &lt;nav&gt; is intended only for a major block of navigation links. Typically links within the &lt;footer&gt; element often has a list of links. These links do not need to be within a &lt;nav&gt; element.</p>
+    <p>To install Redux, to be used with React, use NPM (Node Package Manager) to install as a dependency. You will also need to install the react-redux package to allow Redux to work with React.</p>
 
     <pre>
         <code>
-&lt;<span class="token-tag">nav</span> <span class="token-attr-name">class</span>="<span class="token-attr-value">menu</span>"&gt;
-    &lt;<span class="token-tag">ul</span>&gt;
-        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Home&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
-        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;About&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
-        &lt;<span class="token-tag">li</span>&gt;&lt;<span class="token-tag">a</span> <span class="token-attr-name">href</span>="<span class="token-attr-value">#</span>"&gt;Contact&lt;<span class="token-tag">/a</span>&gt;&lt;<span class="token-tag">/li</span>&gt;
-    &lt;<span class="token-tag">/ul</span>&gt;
-&lt;<span class="token-tag">/nav</span>&gt;
+<!-- leave this line empty -->
+$ npm install redux --save
+$ npm install react-redux --save
         </code>
-    </pre>-->
+    </pre>
+
+    <h2>Store</h2>
+
+    <p>The state of the whole application lives inside the store. To create a the store, we use the createStore() function. We must first import createStore() from the Redux library. It is often recommended to place the store in its own directory within your application. Here we find the initial store that has been created:</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/store/index.js
+
+import { createStore } from 'redux';
+
+const store = createStore();
+
+export default store;
+        </code>
+    </pre>
+
+    <h2>Connect Redux &amp; React</h2>
+
+    <p>To connect Redux with React, we're going to use the Provider high order component that comes with the react-redux library. This wraps up your React application and makes the application and all its components aware of the Redux store. React uses the store for accessing the state and to dispatch actions.</p>
+
+    <p>Within your React application, you will likely have a main JavaScript file. For the purpose of this example, our file will be called 'index.js'. We are going to use the Provider component to connect to the store.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store/index';
+import App from './components/App';
+
+ReactDOM.render (
+    &lt;Provider store={store}&gt;
+        &lt;App /&gt;,
+    &lt;/Provider&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <h2>Reducers</h2>
+
+    <p>Reducers specify how the application's state changes in response to actions sent to the store. A reducer is simply a JavaScript function that takes two parameters, the current state and the action. The example below shows a super simple reducer. This file has been saved within a new directory created named 'reducers'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/reducers/index.js
+
+const rootReducer = (state, action) => state;
+
+export default rootReducer;
+        </code>
+    </pre>
+
+    <p>In the example above, we are creating a simple function, the Reducer written using ES6 syntax, and including the parameters of 'state' and 'action'. This is then returning the state and the reducer is the exported. If we were to write this using ES5 syntax, it would look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/reducers/index.js
+
+function rootReducer(state, action) {
+    return state;
+}
+
+export default rootReducer;
+        </code>
+    </pre>
+
+    <p>Our current reducer does nothing. In this updated code, we shall return the initial state without doing anything further.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/reducers/index.js
+
+const initialState = {
+
+}
+
+const rootReducer = (state = initialState, action) => state;
+
+export default rootReducer;
+        </code>
+    </pre>
+
+    <p>We can then update the store to include the reducer and get the initial state.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/store/index.js
+
+import { createStore } from 'redux';
+import rootReducer from '../reducers/index';
+
+const store = createStore(rootReducer);
+
+export default store;
+        </code>
+    </pre>
+
+    <p>As your application grows and becomes more complex, you'll want to split your Reducer functions into separate functions, each managing independent parts of the state. The combineReducers() helper function included within the Redux library can be used to do this.</p>
 </main>
 
 </body>
