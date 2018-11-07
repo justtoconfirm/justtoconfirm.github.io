@@ -40,8 +40,8 @@
     <pre>
         <code>
 <!-- leave this line empty -->
-$ npm install redux --save
-$ npm install react-redux --save
+$ <span class="token-keyword">npm</span> install redux --save
+$ <span class="token-keyword">npm</span> install react-redux --save
         </code>
     </pre>
 
@@ -52,13 +52,13 @@ $ npm install react-redux --save
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/store/index.js
+<span class="token-punctuation">// src/store/index.js</span>
 
-import { createStore } from 'redux';
+<span class="token-keyword">import</span> { createStore } from 'redux';
 
-const store = createStore();
+<span class="token-keyword">const</span> store = createStore();
 
-export default store;
+<span class="token-keyword">export</span> default store;
         </code>
     </pre>
 
@@ -71,18 +71,18 @@ export default store;
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/index.js
+<span class="token-punctuation">// src/index.js</span>
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from './store/index';
-import App from './components/App';
+<span class="token-keyword">import</span> React from 'react';
+<span class="token-keyword">import</span> ReactDOM from 'react-dom';
+<span class="token-keyword">import</span> { Provider } from 'react-redux';
+<span class="token-keyword">import</span> store from './store/index';
+<span class="token-keyword">import</span> App from './components/App';
 
 ReactDOM.render (
-    &lt;Provider store={store}&gt;
-        &lt;App /&gt;,
-    &lt;/Provider&gt;,
+    &lt;<span class="token-tag">Provider</span> store={store}&gt;
+        &lt;<span class="token-tag">App</span> /&gt;,
+    &lt;<span class="token-tag">/Provider</span>&gt;,
     document.getElementById('root')
 );
         </code>
@@ -95,11 +95,11 @@ ReactDOM.render (
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/reducers/index.js
+<span class="token-punctuation">// src/reducers/index.js</span>
 
-const rootReducer = (state, action) => state;
+<span class="token-keyword">const</span> rootReducer = (state, action) => state;
 
-export default rootReducer;
+<span class="token-keyword">export</span> default rootReducer;
         </code>
     </pre>
 
@@ -108,13 +108,13 @@ export default rootReducer;
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/reducers/index.js
+<span class="token-punctuation">// src/reducers/index.js</span>
 
-function rootReducer(state, action) {
+<span class="token-keyword">function</span> rootReducer(state, action) {
     return state;
 }
 
-export default rootReducer;
+<span class="token-keyword">export</span> default rootReducer;
         </code>
     </pre>
 
@@ -123,15 +123,15 @@ export default rootReducer;
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/reducers/index.js
+<span class="token-punctuation">// src/reducers/index.js</span>
 
-const initialState = {
-
+<span class="token-keyword">const</span> initialState = {
+    <span class="token-punctuation">// Code not added</span>
 }
 
-const rootReducer = (state = initialState, action) => state;
+<span class="token-keyword">const</span> rootReducer = (state = initialState, action) => state;
 
-export default rootReducer;
+<span class="token-keyword">export</span> default rootReducer;
         </code>
     </pre>
 
@@ -140,14 +140,14 @@ export default rootReducer;
     <pre>
         <code>
 <!-- leave this line empty -->
-// src/store/index.js
+<span class="token-punctuation">// src/store/index.js</span>
 
-import { createStore } from 'redux';
-import rootReducer from '../reducers/index';
+<span class="token-keyword">import</span> { createStore } from 'redux';
+<span class="token-keyword">import</span> rootReducer from '../reducers/index';
 
-const store = createStore(rootReducer);
+<span class="token-keyword">const</span> store = createStore(rootReducer);
 
-export default store;
+<span class="token-keyword">export</span> default store;
         </code>
     </pre>
 
