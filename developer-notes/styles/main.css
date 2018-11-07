@@ -45,6 +45,28 @@ body {
     margin-right: 0;
 }
 
+.header__link a {
+    text-decoration: none;
+    position: relative;
+}
+
+.header__link a:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #3d7e9a;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.header__link a:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
 pre {
     background-color: #eee;
     border-left: 5px solid #3d7e9a;
