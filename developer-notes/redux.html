@@ -7,6 +7,14 @@
 
     <title>Developer Notes - Redux</title>
 
+    <!-- https://grokonez.com/frontend/redux/redux-combinereducers-example -->
+    <!-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e -->
+    <!-- https://www.saltycrane.com/blog/2018/04/what-does-redux-combinereducers-do/ -->
+    <!-- https://flaviocopes.com/redux/#what-is-a-reducer -->
+    <!-- https://www.fullstackreact.com/30-days-of-react/day-20/ -->
+    <!-- https://blog.isquaredsoftware.com/2016/10/idiomatic-redux-why-use-action-creators/ -->
+    <!-- https://daveceddia.com/redux-action-creators/ -->
+
     <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -60,10 +68,12 @@ $ <span class="token-keyword">npm</span> install react-redux --save
 <!-- leave this line empty -->
 src /
     actions /
+    constants/
+        action-types.js
     reducers /
         index.js
-        reducer-apple.js
-        reducer-orange.js
+        reducer-one.js
+        reducer-two.js
     store /
         index.js
         </code>
@@ -114,7 +124,18 @@ ReactDOM.render (
 
     <h2>Reducers</h2>
 
-    <p>Reducers specify how the application's state changes in response to actions sent to the store. A reducer is simply a JavaScript function that takes two parameters, the current state and the action. The example below shows a super simple reducer. This file has been saved within a new directory created named 'reducers'.</p>
+    <p>Reducers specify how the application's state changes in response to actions sent to the store. A reducer is simply a JavaScript function that takes two parameters, the current state and the action.</p>
+
+    <p>In Redux, the logic for state changes is done using Reducers. Simply put, the reducer returns a completely new state that substitutes the previous one, as this example shows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(currentState, action) => newState;
+        </code>
+    </pre>
+
+    <p>The example below shows a super simple reducer. This file has been saved within a new directory created named 'reducers'.</p>
 
     <pre>
         <code>
@@ -178,6 +199,8 @@ ReactDOM.render (
         </code>
     </pre>
 
+    <h3>Combine Multiple Reducers</h3>
+
     <p>As your application grows and becomes more complex, you'll want to split your reducer functions into separate functions, each managing independent parts of the state. The combineReducers() helper function included within the Redux library can be used to do this. Splitting your reducers into separate functions using the combineReducers() helper function is a good practice to follow.</p>
 
     <p>Let's imagine that we have created two reducers. We must have a rootReducer that is a combination of all the reducers of our application. We can update our 'index.js' file within our 'reducers' directory to apply the combineReducers() helper function from the Redux library. This will first need to be imported.</p>
@@ -188,12 +211,12 @@ ReactDOM.render (
 <span class="token-punctuation">// src/reducers/index.js</span>
 
 import { combineReducers } from 'redux';
-import appleReducer from './reducer-apple';
-import orangeReducer from './reducer-orange';
+import oneReducer from './reducer-one';
+import twoReducer from './reducer-two';
 
 <span class="token-keyword">const</span> rootReducer = combineReducers({
-    apples: appleReducer,
-    oranges: orangeReducer
+    ones: oneReducer,
+    twos: twoReducer
 });
 
 <span class="token-keyword">export</span> default rootReducer;
@@ -201,31 +224,106 @@ import orangeReducer from './reducer-orange';
     </pre>
 
     <p>And here are the two example reducers that are being used:</p>
-    <!-- https://grokonez.com/frontend/redux/redux-combinereducers-example -->
-    <!-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e -->
-    <!-- https://www.saltycrane.com/blog/2018/04/what-does-redux-combinereducers-do/ -->
 
     <pre>
         <code>
 <!-- leave this line empty -->
-<span class="token-punctuation">// src/reducers/reducer-apple.js</span>
+<span class="token-punctuation">// src/reducers/reducer-one.js</span>
 
-<span class="token-keyword">const</span> appleReducer = (state, action) => state;
+<span class="token-keyword">const</span> oneReducer = (state, action) => state;
 
-<span class="token-keyword">export</span> default appleReducer;
+<span class="token-keyword">export</span> default oneReducer;
         </code>
     </pre>
 
     <pre>
         <code>
 <!-- leave this line empty -->
-<span class="token-punctuation">// src/reducers/reducer-orange.js</span>
+<span class="token-punctuation">// src/reducers/reducer-two.js</span>
 
-<span class="token-keyword">const</span> orangeReducer = (state, action) => state;
+<span class="token-keyword">const</span> twoReducer = (state, action) => state;
 
-<span class="token-keyword">export</span> default orangeReducer;
+<span class="token-keyword">export</span> default twoReducer;
         </code>
     </pre>
+
+    <h2>Actions</h2>
+
+    <p>Actions are plain JavaScript objects. They are the payloads (messages) of information that we send (i.e. dispatch) from your application to your store. They are the only source of information for our central Redux store.</p> 
+
+    <p>You send actions to the Redux store using store.dispatch().</p>
+
+    <p>Within our React application, we have created an 'actions' directory for our actions.</p>
+
+    <p>Actions must have a type property that indicates the type of action being performed. The type property is a string that simply describes the type of an action.</p>
+
+    <p>in Redux, we know that actions are plain objects just like this one:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    type: 'ADD_TODO'
+}
+        </code>
+    </pre>
+
+    <p>An action usually represents some kind of event - like the beginning of an API call, or a user logging in.</p>
+
+    <h3>Action creators</h3>
+
+    <p>When an action is wrapped within a function, is is referred to as an action creator (a function that creates actions). This is a plain function that returns the action object. If an action is extremely simple - just a type property and nothing more - it may not be worth using an action creator. If the action increases in complexity, then it maybe suitable to use. The benefit of using an action creator is that it allows the action to be reused simply and easily.</p>
+
+    <p>Action creators makes actions portable and easy to test.</p>
+
+    <p>Examples of simple action creators, in both ES5 and ES6 syntax, can be found below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5 syntax
+function userLoggedIn() {
+    return {
+        type: 'ADD_TODO'
+    };
+}
+
+// ES6 syntax
+const userLoggedIn = () => ({
+    type: 'ADD_TODO'
+})
+        </code>
+    </pre>
+
+    <h3>String constants</h3>
+
+    <p>Types should typically be defined as string constants. Once your application is large enough, you may want to move them into a separate module. Begin by creating a 'constants' directory within the 'src' directory of your application. Within this directory, create a file named 'action-types.js'. This is where we will define our string constants. As an example, we will create a string constant for 'ADD_TODO'. We use the 'export' keyword as we want to export the string constant elsewhere within our application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/constants/action-types.js
+
+export const ADD_TODO = 'ADD_TODO';
+        </code>
+    </pre>
+
+    <p>Now, within our actions file, we can import the string constant we have just created. You will need to remove the 'ADD_TODO' string value from the type property within the action also. The actions will be placed within the 'action' directory of our application. Here is an example of how a basic action should now look:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { ADD_TODO } from '../constants/action-types';
+
+// No action creator function needed
+
+{
+    type: ADD_TODO
+}
+        </code>
+    </pre>
+
+    <p>Other than type, the structure of an action object is really up to you.</p>
 </main>
 
 </body>
