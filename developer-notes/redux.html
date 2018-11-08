@@ -129,11 +129,11 @@ ReactDOM.render (
 
     <p>You send actions to the Redux store using store.dispatch().</p>
 
+    <p>Remember, actions only describe what happened, they don't describe how the application's state changes. Reducers are used to specify how the state changes in response to the actions that are sent to the store.</p>
+
     <p>Within our React application, we have created an 'actions' directory for our actions.</p>
 
-    <p>Actions must have a type property that indicates the type of action being performed. The type property is a string that simply describes the type of an action.</p>
-
-    <p>in Redux, we know that actions are plain objects just like the one below. This object has a single, required property, of 'type':</p>
+    <p>Actions must have a type property that indicates the type of action being performed. The type property is a string that simply describes the type of an action. In Redux, we know that actions are plain objects just like the one below. This object has a single required property of 'type':</p>
 
     <pre>
         <code>
