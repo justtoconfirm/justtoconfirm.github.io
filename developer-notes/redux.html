@@ -45,6 +45,12 @@ $ <span class="token-keyword">npm</span> install react-redux --save
         </code>
     </pre>
 
+    <h2>What is State&#63;</h2>
+
+    <p>At the heart of every React component is its 'state', an object that determines how that component should render and behave. The state is what allows you to create components that are dynamic and interactive. Using Redux allows the state to be within the store and not within individual React components.</p> 
+
+    <p>In nature, the state of water can change based on the temperature value changing. If water is placed in a freezer the temperature value will decrease and the state of water will be solid. If the temperature increases, the state will change to being a gas. This is a simplified example of what we mean when we refer to state.</p>
+
     <h2>Store</h2>
 
     <p>The state of the whole application lives inside the store. To create the store, we use the createStore() function. We must first import createStore() from the Redux library. It is often recommended to place the store in its own directory within your application. Here we find the initial store that has been created:</p> 
@@ -111,8 +117,11 @@ ReactDOM.render (
 <span class="token-punctuation">// src/reducers/index.js</span>
 
 <span class="token-keyword">function</span> rootReducer(state, action) {
+    
+    <span class="token-punctuation">// Do stuff here</span>
+    
     return state;
-}
+};
 
 <span class="token-keyword">export</span> default rootReducer;
         </code>
@@ -151,7 +160,54 @@ ReactDOM.render (
         </code>
     </pre>
 
-    <p>As your application grows and becomes more complex, you'll want to split your Reducer functions into separate functions, each managing independent parts of the state. The combineReducers() helper function included within the Redux library can be used to do this.</p>
+    <p>As your application grows and becomes more complex, you'll want to split your reducer functions into separate functions, each managing independent parts of the state. The combineReducers() helper function included within the Redux library can be used to do this. Splitting your reducers into separate functions using the combineReducers() helper function is a good practice to follow.</p>
+
+    <p>Let's imagine that we have created two reducers. We must have a rootReducer that is a combination of all the reducers of our application. We can update our 'index.js' file within our 'reducers' directory to apply the combineReducers() helper function from the Redux library. This will first need to be imported.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+<span class="token-punctuation">// src/reducers/index.js</span>
+
+import { combineReducers } from 'redux';
+import appleReducer from './reducer-apple';
+import orangeReducer from './reducer-orange';
+
+<span class="token-keyword">const</span> rootReducer = combineReducers({
+    apples: appleReducer,
+    oranges: orangeReducer
+});
+
+<span class="token-keyword">export</span> default rootReducer;
+        </code>
+    </pre>
+
+    <p>And here are the two example reducers that are being used:</p>
+    <!-- https://grokonez.com/frontend/redux/redux-combinereducers-example -->
+    <!-- https://hackernoon.com/a-basic-react-redux-introductory-tutorial-adcc681eeb5e -->
+    <!-- https://www.saltycrane.com/blog/2018/04/what-does-redux-combinereducers-do/ -->
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+<span class="token-punctuation">// src/reducers/reducer-apple.js</span>
+
+<span class="token-keyword">const</span> appleReducer = (state, action) => state;
+
+<span class="token-keyword">export</span> default appleReducer;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+<span class="token-punctuation">// src/reducers/reducer-orange.js</span>
+
+<span class="token-keyword">const</span> orangeReducer = (state, action) => state;
+
+<span class="token-keyword">export</span> default orangeReducer;
+        </code>
+    </pre>
 </main>
 
 </body>
