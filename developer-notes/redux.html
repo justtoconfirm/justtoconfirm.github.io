@@ -127,7 +127,7 @@ ReactDOM.render (
 
     <p>Actions are plain JavaScript objects. They are the payloads (messages) of information that we send (i.e. dispatch) from your application to your store. They are the only source of information for our central Redux store.</p> 
 
-    <p>You send actions to the Redux store using store.dispatch().</p>
+    <p>You send actions to the Redux store using the dispatch() function. This function can be accessed directly from the store as store.dispatch(), but more likely you'll access it using a helper function such as the connect() function found within the react-redux library.</p>
 
     <p>Remember, actions only describe what happened, they don't describe how the application's state changes. Reducers are used to specify how the state changes in response to the actions that are sent to the store.</p>
 
