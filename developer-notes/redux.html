@@ -51,6 +51,24 @@ $ <span class="token-keyword">npm</span> install react-redux --save
 
     <p>In nature, the state of water can change based on the temperature value changing. If water is placed in a freezer the temperature value will decrease and the state of water will be solid. If the temperature increases, the state will change to being a gas. This is a simplified example of what we mean when we refer to state.</p>
 
+    <h2>File Structure</h2>
+
+    <p>When setting up Redux within a React project, we will create a number of directories for our Redux code within our application 'src' directory. This is how the file structure will look:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+src /
+    actions /
+    reducers /
+        index.js
+        reducer-apple.js
+        reducer-orange.js
+    store /
+        index.js
+        </code>
+    </pre>
+
     <h2>Store</h2>
 
     <p>The state of the whole application lives inside the store. To create the store, we use the createStore() function. We must first import createStore() from the Redux library. It is often recommended to place the store in its own directory within your application. Here we find the initial store that has been created:</p> 
