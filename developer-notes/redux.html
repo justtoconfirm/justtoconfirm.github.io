@@ -123,6 +123,119 @@ ReactDOM.render (
         </code>
     </pre>
 
+    <h2>Actions</h2>
+
+    <p>Actions are plain JavaScript objects. They are the payloads (messages) of information that we send (i.e. dispatch) from your application to your store. They are the only source of information for our central Redux store.</p> 
+
+    <p>You send actions to the Redux store using store.dispatch().</p>
+
+    <p>Within our React application, we have created an 'actions' directory for our actions.</p>
+
+    <p>Actions must have a type property that indicates the type of action being performed. The type property is a string that simply describes the type of an action.</p>
+
+    <p>in Redux, we know that actions are plain objects just like the one below. This object has a single, required property, of 'type':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    type: 'ADD_TODO'
+}
+        </code>
+    </pre>
+
+    <p>An action usually represents some kind of event - like the beginning of an API call, or a user logging in.</p>
+
+    <h3>Action creators</h3>
+
+    <p>When an action is wrapped within a function, is is referred to as an action creator (a function that creates actions). This is a plain function that returns the action object. If an action is extremely simple - just a type property and nothing more - it may not be worth using an action creator. If the action increases in complexity, then it maybe suitable to use. The benefit of using an action creator is that it allows the action to be reused simply and easily.</p>
+
+    <p>Action creators makes actions portable and easy to test.</p>
+
+    <p>Examples of simple action creators, in both ES5 and ES6 syntax, can be found below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5 syntax
+function userLoggedIn() {
+    return {
+        type: 'ADD_TODO'
+    };
+}
+
+// ES6 syntax
+const userLoggedIn = () => ({
+    type: 'ADD_TODO'
+})
+        </code>
+    </pre>
+
+    <h3>String constants</h3>
+
+    <p>Types should typically be defined as string constants. Once your application is large enough, you may want to move them into a separate module. Begin by creating a 'constants' directory within the 'src' directory of your application. Within this directory, create a file named 'action-types.js'. This is where we will define our string constants. As an example, we will create a string constant for 'ADD_TODO'. We use the 'export' keyword as we want to export the string constant elsewhere within our application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/constants/action-types.js
+
+export const ADD_TODO = 'ADD_TODO';
+        </code>
+    </pre>
+
+    <p>Should you have multiple constants, you can follow this example using an object:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/constants/action-types.js
+
+export const MultipleActions = {
+    ADD_TODO: 'ADD_TODO',
+    DELETE_TODO: 'DELETE_TODO',
+    SHOW_ALL: 'SHOW_ALL'
+};
+        </code>
+    </pre>   
+
+    <p>Now, within our actions file, we can import the string constant we have just created. You will need to remove the 'ADD_TODO' string value from the type property within the action also. The actions will be placed within the 'action' directory of our application. Here is an example of how a basic action should now look:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { ADD_TODO } from '../constants/action-types';
+
+// No action creator function needed
+
+{
+    type: ADD_TODO
+}
+        </code>
+    </pre>
+
+    <h3>Example Todo action</h3>
+
+    <p>Let's create a simple action creator for our 'ADD_TODO' action. You may notice that we have also included a 'text' property along with the required 'type' property. This example is written using ES5 syntax, but feel free to use ES6 if you prefer.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/actions/todo.js
+
+import { ADD_TODO } from '../constants/action-types';
+
+export function addTodo(text) {
+    return {
+        type: ADD_TODO,
+        text
+    }
+}
+        </code>
+    </pre>
+
+    <p>Other than type, the structure of an action object is really up to you. When actions have been created, we can then define some reducers to specify how the state updates when you dispatch these actions.</p>
+
     <h2>Reducers</h2>
 
     <p>Reducers specify how the application's state changes in response to actions sent to the store. A reducer is simply a JavaScript function that takes two parameters, the current state and the action.</p>
@@ -247,84 +360,6 @@ import twoReducer from './reducer-two';
 <span class="token-keyword">export</span> default twoReducer;
         </code>
     </pre>
-
-    <h2>Actions</h2>
-
-    <p>Actions are plain JavaScript objects. They are the payloads (messages) of information that we send (i.e. dispatch) from your application to your store. They are the only source of information for our central Redux store.</p> 
-
-    <p>You send actions to the Redux store using store.dispatch().</p>
-
-    <p>Within our React application, we have created an 'actions' directory for our actions.</p>
-
-    <p>Actions must have a type property that indicates the type of action being performed. The type property is a string that simply describes the type of an action.</p>
-
-    <p>in Redux, we know that actions are plain objects just like this one:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-{
-    type: 'ADD_TODO'
-}
-        </code>
-    </pre>
-
-    <p>An action usually represents some kind of event - like the beginning of an API call, or a user logging in.</p>
-
-    <h3>Action creators</h3>
-
-    <p>When an action is wrapped within a function, is is referred to as an action creator (a function that creates actions). This is a plain function that returns the action object. If an action is extremely simple - just a type property and nothing more - it may not be worth using an action creator. If the action increases in complexity, then it maybe suitable to use. The benefit of using an action creator is that it allows the action to be reused simply and easily.</p>
-
-    <p>Action creators makes actions portable and easy to test.</p>
-
-    <p>Examples of simple action creators, in both ES5 and ES6 syntax, can be found below:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-// ES5 syntax
-function userLoggedIn() {
-    return {
-        type: 'ADD_TODO'
-    };
-}
-
-// ES6 syntax
-const userLoggedIn = () => ({
-    type: 'ADD_TODO'
-})
-        </code>
-    </pre>
-
-    <h3>String constants</h3>
-
-    <p>Types should typically be defined as string constants. Once your application is large enough, you may want to move them into a separate module. Begin by creating a 'constants' directory within the 'src' directory of your application. Within this directory, create a file named 'action-types.js'. This is where we will define our string constants. As an example, we will create a string constant for 'ADD_TODO'. We use the 'export' keyword as we want to export the string constant elsewhere within our application.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-// src/constants/action-types.js
-
-export const ADD_TODO = 'ADD_TODO';
-        </code>
-    </pre>
-
-    <p>Now, within our actions file, we can import the string constant we have just created. You will need to remove the 'ADD_TODO' string value from the type property within the action also. The actions will be placed within the 'action' directory of our application. Here is an example of how a basic action should now look:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-import { ADD_TODO } from '../constants/action-types';
-
-// No action creator function needed
-
-{
-    type: ADD_TODO
-}
-        </code>
-    </pre>
-
-    <p>Other than type, the structure of an action object is really up to you.</p>
 </main>
 
 </body>
