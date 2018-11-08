@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- https://www.codecademy.com/articles/react-setup-i -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -33,16 +35,49 @@
 <main role="main" id="main">
     <h1>React</h1>
 
-    <!--<h2>JavaScript &amp; HTML</h2>-->
+    <h2>Install React using NPM</h2>
 
-    <!--<p>When a browser comes across a &lt;script&gt; element, it stops to load the script and then checks to see if it needs to do anything. It is often recommended to place the &lt;script&gt; element just before the closing &lt;/body&gt; element within a HTML document.</p>-->
+    <p>You can use NPM (Node Package Manager) to install React. Installing Node (Node.js) will also install NPM and you will require a package.json file to be created within your project directory to allow NPM packages to be installed.</p>
+
+    <p>We shall begin by opening the terminal to create a directory and to create a package.json file. Our directory will be named 'react-project'.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
+# Create the project directory
 
+$ mkdir react-project
+$ cd react-project
+
+# Create the package.json file
+
+$ npm init -y
         </code>
     </pre>
+
+    <p>Next we will install React as a dependency of our project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react --save
+        </code>
+    </pre>
+
+    <p>If you look in the package.json file, you can see there's an object named dependencies. This will now have 'react' listed as a dependency. This indicates that your project is 'dependent' on having React installed.</p>
+    
+    <p>As we are using NPM to install packages and libraries into for use in our application, you may also notice a new directory of 'node_modules' in your project folder. This is the directory where NPM modules are saved. If you open node_modules, you should see a folder named 'react' which contains the React code.</p>
+
+    <p>To complete the initial installation, we will also use NPM to install react-dom. Once again, this will be installed as a dependency and the code can be located within the node_modules directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react-dom --save
+        </code>
+    </pre>
+
+    <p>If you are using version control, such as Git, it maybe worthwhile creating a .gitignore file within the root directory of your repository to avoid the node_modules directory from being committed.</p>    
 </main>
 
 </body>
