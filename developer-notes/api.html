@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - API & HTTP Requests</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/ -->
+<!-- https://medium.freecodecamp.org/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>API &amp; HTTP Requests</h1>
+
+    <p>An API (Application Programming Interface) is a set of rules that allows programs to talk to each other. Developers create the APU on the server and allows the client to talk to it.</p>
+
+    <p>REST (Representative State Transfer) determines what the API looks like. It is a set of rules that developers follow when they create their API. One of these rules states that you should be able to get a piece of data, called a resource, when you link to a specific URL.</p>
+
+    <p>Each URL is called a request. The data sent back to you is called a response.</p>
+
+    <h2>Anatomy of a Request</h2>
+
+    <p>A request is made up of four things:</p>
+
+    <ul>
+        <li>The endpoint</li>
+        <li>The method (HTTP)</li>
+        <li>The headers</li>
+        <li>The data (or body)</li>
+    </ul>
+
+    <h2>The endpoint</h2>
+
+    <p>The endpoint, or route, is the URL you are requesting. The root-endpoint is the starting point of the API you're requesting. For example, the root-endpoint of GitHub's API is:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+https://api.github.com
+        </code>
+    </pre>
+
+    <h3>Paths</h3>
+
+    <p>The path determines the resource you're requesting. To understand what paths are available to you, you need to look through the API documentation. For example, using the GitHub API, let's say you want to get a list of repositories for a specific GitHub user. The <a href="https://developer.github.com/v3/repos/#list-user-repositories" target="_blank" rel="noopener noreferrer">GitHub Developer documentation</a> tells you to use the following path to do so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET /users/:username/repos
+        </code>
+    </pre>
+
+    <p>Any colons (:) within a path denotes a variable. In our example from the GitHub documentation, the variable is ':username'. You should replace these values with actual values when you send your request. In this case, you should replace ':username' with the actual username of the user you're searching for. If I'm searching for my GitHub account, I'll replace ':username' with 'justtoconfirm'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET /users/justtoconfirm/repos
+        </code>
+    </pre>
+
+    <p>The path is then added to the end of the root-endpoint to make the request. This can be placed in the browser address bar to return the response.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+https://api.github.com/users/justtoconfirm/repos
+        </code>
+    </pre>
+
+    <h3>Query parameters</h3>
+
+    <p>The final part of an endpoint is query parameters. Technically, query parameters are not part of the REST architecture, but many APIs use them. Query parameters give you the option to modify your request with key-value pairs and they always begin with a question mark (&#63;). Each parameter pair is then separated with an ampersand (&#38;). Within the GitHub documentation the query parameters will be listed under the 'Parameter' section of the documentation.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+?query1=value1&query2=value2
+        </code>
+    </pre>
+
+    <p>If you would like to get a list of the repositories that I pushed to recently, you can set the 'sort' query parameter to be the value of 'pushed'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+https://api.github.com/users/justtoconfirm/repos?sort=pushed
+        </code>
+    </pre>
+
+    <h2>The Method (HTTP method)</h2>
+
+    <p>The method is the type of request that you send to the server. You can choose from these five types:</p>
+
+    <ul>
+        <li>GET - Used to get a resource from a server. The server will look for the data you requested and send it back to you. In other words, a 'GET' request performs a 'READ' operation. This is the default request method.</li>
+        <li>POST - Used to create a new resource on the server. The server will create a new entry in the database. In other words, a 'POST' request performs a 'CREATE' operation.</li>
+        <li>PUT/PATCH - Used to update a resource on a server. The server updates an entry in the database and tells you whether the update is successful. In other words, this request performs an 'UPDATE' operation.</li>
+        <li>DELETE - Used to delete a resource from a server. The server will delete an entry in the database. In other words, it performs a 'DELETE' operation.</li>
+    </ul>
+
+    <p>These methods provide meaning for the request you're making. They are used to perform CREATE, READ, UPDATE, and DELETE (CRUD) actions.</p>
+
+    <p>The API documentation will let you know what request method to use for each request. For example, to get a list of a user's repositories using the GitHub APU, you need a GET request:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET /users/:username/repos
+        </code>
+    </pre>
+
+    <p>To create a new GitHub repository (repo), you will need a POST request. Since POST, PUT/PATCH, and DELETE requests alter the database, developers almost always put them behind authentication. In some cases, a GET request may also require authentication. There are two main way to authenticate:</p>
+
+    <ul>
+        <li>With a username and password - basic authentication.</li>
+        <li>With a token.</li>
+    </ul>
+
+    <p>oAuth is a token method that lets you authenticate yourself using websites and services such as GitHub, Google, Twitter, and Facebook.</p>
+
+    <p>If you try to send a POST request through GitHub's API without authentication, you will get a message returned saying 'Requires authentication'. You need to be authorized to perform this type of request.</p>
+
+    <h2>Headers</h2>
+
+    <p>Headers are used to provide information to both the client and server. It can be used for many purposes, including authentication and providing information about the body content.</p>
+
+    <p>HTTP Headers are property-value pairs that are separated by a colon.</p>
+
+    <p>The Content-Type header tells the client what the content type of the returned content actually is. In POST or PUT requests, the client tells the server what type of data is actually being sent.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Content-Type: text/html; charset=utf-8
+        </code>
+    </pre>
+
+    <p>To view the request or response HTTP headers in Google Chrome:</p>
+
+    <ul>
+        <li>Visit a URL.</li>
+        <li>Open the Chrome Developer Tools.</li>
+        <li>Select the 'Network' tab.</li>
+        <li>Reload the page.</li>
+        <li>Select any HTTP request on the left panel and the HTTP headers will be displayed on the right panel.</li>
+    </ul>
+
+    <h2>The Data (Body)</h2>
+
+    <p>The body of a request - sometimes called 'data' or 'message' - contains information you want to be sent to the server. This is only used with POST, PUT/PATCH, or DELETE request.</p>
+
+    <p>If you know how to spin up a server, you can make an API and test your own data.</p>
+
+    <h2>JSON</h2>
+
+    <p>JSON (JavaScript Object Notation) is a common format for sending and requesting data through a REST API. The response that GitHub returns is formatted as JSON.</p>
+
+    <p>A JSON object looks like a JavaScript object. Each property and value in JSON must be wrapped with double quotation marks.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "property1": "value1",
+    "property2": "value2"
+}
+        </code>
+    </pre>
+
+    <h2>HTTP Status Codes &amp; Error Messages</h2>
+
+    <p>Error messages, such as 'Requires authentication' and 'Problems parsing JSON' only appear when something is wrong with your request. HTTP status codes let you tell the status of the response quickly. In general, the following rules apply:</p>
+
+    <ul>
+        <li>200 - The request is successful.</li>
+        <li>300 - The request is redirected to another URL.</li>
+        <li>400 - An error that originates from the client has occurred.</li>
+        <li>500 - An error that originates from the server has occurred.</li>
+    </ul>
+
+    <p>For example, if you make a POST request without providing a username or password, you may get a 401 status code (Unauthorized) returned. If your request is invalid because your data is wrong or missing, you usually get a 400 status code (Bad Request).</p>
+</main>
+
+</body>
+</html>
