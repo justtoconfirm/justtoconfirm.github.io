@@ -16,6 +16,9 @@
 <!-- https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/ -->
 <!-- https://medium.freecodecamp.org/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa -->
 <!-- https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/ -->
+<!-- https://codeburst.io/javascript-the-difference-between-foreach-and-for-in-992db038e4c2 -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest -->
+<!-- https://developers.google.com/web/updates/2015/03/introduction-to-fetch -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -226,7 +229,9 @@ Content-Type: text/html; charset=utf-8
 
     <h2>Retrieving data with HTTP requests</h2>
 
-    <p>Let's open a connection to the API. We'll do so using the XMLHttpRequest obect, which is a way to open files and make an HTTP request. We'll create a request variable and assign a new XMLHttpRequest object to it. We will then open a new connection with the open() method. In the arguments, the request type of GET will be specified as well as the URL of the API endpoint. When the request completes, we can then access the data inside from inside the onload function.</p>
+    <p>Let's open a connection to the API. We'll do so using the XMLHttpRequest (XHR) object, which is a way to open files and make an HTTP request. We'll create a request variable and assign a new XMLHttpRequest object to it. We will then open a new connection with the open() method. In the arguments, the request type of GET will be specified as well as the URL of the API endpoint. When the request completes, we can then access the data inside from inside the onload function.</p>
+
+    <p>Once a HTTP request has been made, the object will contain useful information such as the response body and the HTTP status of the result.</p>
 
     <pre>
         <code>
@@ -246,7 +251,27 @@ request.send();
         </code>
     </pre>
 
-    <p>XMLHttpRequest is a widely supported built-in method for making HTTP requests. There is also a newer Fetch API which can be used for the same purpose, which is simpler but has less browser support.</p>
+    <h3>XMLHttpRequest (XHR)</h3>
+
+    <p>XMLHttpRequest is a widely supported built-in method for making HTTP requests. It is used to interact with servers and can be used to retrieve data from a URL without having to do a full page refresh. This enables a web page to update just parts of a page without having to do a full page refresh. XMLHttpRequest (XHR) is used heavily in AJAX. There is also a newer Fetch API which can be used for the same purpose, which is simpler but has less browser support.</p>
+
+    <p>Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML, and supports protocols other than HTTP (including file and ftp).</p>
+
+    <p>Here is a simplified example using XMLHttpRequest:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function reqListener() {
+    console.log(this.responseText);
+}
+
+var request = new XMLHttpRequest();
+request.addEventListener('load', reqListener);
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.send();
+        </code>
+    </pre>
 
     <h3>Working with JSON</h3>
 
@@ -260,6 +285,7 @@ request.send();
 // Begin accessing the JSON data here
 var data = JSON.parse(this.response);
 
+// Using the forEach() method 
 data.forEach(movie => {
     // Log each movie's title
     console.log(movie.title); 
@@ -268,6 +294,10 @@ data.forEach(movie => {
     </pre>
 
     <p>When inspecting the HTML within the developer tools console, you should now see the titles of 20 Ghibli films.</p>
+
+    <p>We are using the forEach() method to loop through the response. When using this method, we simply have to specify a callback function. The method itself has good browser support including support for IE10 and IE11. It should be possible to also use a for loop if you would prefer.</p>
+
+    <p><a href="https://caniuse.com/#search=forEach" target="_blank" rel="noopener noreferrer">https://caniuse.com/#search=forEach</a></p>
 
     <p>If we wanted to get the movie title and movie description, we can modify the code slightly:</p>
 
@@ -334,7 +364,152 @@ request.send();
     <p>We have now successfully used a GET HTTP request to retrieve, or consume, the API endpoint which consisted of data in JSON format. We are still using the console, but we want to display the data on the front-end of the website. We can do this by modifying the DOM (Document Object Model).</p>
 
     <h2>Displaying the data</h2>
-    <!-- https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/ -->
+
+    <p>We're now going to display the data from our API within a HTML webpage. Begin by creating a new HTML document and adding the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;API example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;script src="js/script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>And now we can update the JavaScript to output the list of movies:</p>
+
+    <pre>
+        <code>
+// js/script.js
+
+const app = document.getElementById('root');
+
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
+
+app.appendChild(container);
+
+var request = new XMLHttpRequest();
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.onload = function () {
+
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
+    
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
+            const card = document.createElement('div');
+            card.setAttribute('class', 'card');
+
+            const h1 = document.createElement('h1');
+            h1.textContent = movie.title;
+
+            const p = document.createElement('p');
+            movie.description = movie.description.substring(0, 300);
+            p.textContent = `${movie.description}...`;
+
+            container.appendChild(card);
+            card.appendChild(h1);
+            card.appendChild(p);
+        });
+    } else {
+        const errorMessage = document.createElement('div');
+        errorMessage.textContent = `Gah, it's not working!`;
+        app.appendChild(errorMessage);
+    }
+}
+
+request.send();
+        </code>
+    </pre>
+
+    <h2>Fetch API</h2>
+
+    <p>The Fetch API allows you to make network requests similar to the XMLHttpRequest (XHR) object. The main difference is that the Fetch API uses Promises, which enables a simpler and cleaner API and avoiding callbacks or having to use the complex API of XHR.</p>
+
+    <p>An XMLHttpRequest would need two listeners to be set to handle the success and error cases and a call to open() and send(), as this example below shows:</p>
+
+    <pre>
+        <code>
+function reqListener() {
+    var data = JSON.parse(this.responseText);
+    console.log(data);
+}
+
+function reqError(err) {
+    console.log('Fetch Error', err);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.onerror = reqError;
+oReq.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+oReq.send();
+        </code>
+    </pre>
+
+    <p>Our Fetch API request looks like this:</p>
+
+    <pre>
+        <code>
+fetch('https://ghibliapi.herokuapp.com/films').then(
+    function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status code: ' + response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(data) {
+            console.log(data);
+        });
+    }
+).catch(function(err) {
+    console.log('Fetch Error', err);
+});
+        </code>
+    </pre>
+
+    <p>We may want to also view other metadata like headers when we make a request. When we make a fetch request, the response will be given a response.type of 'basic', 'cors' or 'opaque'. These types indicate where the resource has come from and can be used to inform you how to treat the response object. When a request is made for a resource on the same origin, the response will have a 'basic' type. If a request is made for a resource on another origin, the type maybe 'cors'. This type of response restricts the headers you can view to 'Cache-Control', 'Content-Language', 'Content-Type', 'Expires', 'Last-Modified', and 'Pragma'.</p>
+
+    <pre>
+        <code>
+fetch('https://ghibliapi.herokuapp.com/films').then(
+    function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status code: ' + response.status);
+            return;
+        }
+
+        // Examine the text in the response
+        response.json().then(function(data) {
+            console.log(data);
+
+            // Headers
+            console.log(response.headers.get('Content-Type'));  // application/json; charset=utf-8
+            console.log(response.headers.get('Date'));  // null
+
+            console.log(response.status);       // 200
+            console.log(response.statusText);   // ok
+            console.log(response.type);         // cors
+            console.log(response.url);          // https://ghibliapi.herokuapp.com/films
+        });
+    }
+).catch(function(err) {
+    console.log('Fetch Error', err);
+});
+        </code>
+    </pre>
 </main>
 
 </body>
