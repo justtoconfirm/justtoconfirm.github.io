@@ -19,6 +19,7 @@
 <!-- https://codeburst.io/javascript-the-difference-between-foreach-and-for-in-992db038e4c2 -->
 <!-- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest -->
 <!-- https://developers.google.com/web/updates/2015/03/introduction-to-fetch -->
+<!-- https://codeburst.io/what-are-webhooks-b04ec2bf9ca2 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -272,6 +273,16 @@ request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
 request.send();
         </code>
     </pre>
+
+    <h3>Polling</h3>
+
+    <p>Polling is the process of sending a request at a predetermined frequency and waiting for the endpoint to respond. If the endpoint doesn't respond, there are no new events to share.</p>
+
+    <h3>Webhooks (HTTP push API)</h3>
+
+    <p>Similar to polling, webhooks - also called HTTP push API - provides your application with a way of consuming new event data from an endpoint. However, instead of sending repeated requests for new events, you provide your endpoint with a URL which your application monitors. Whenever a new event occurs, it posts the event data to your specified URL, updating your application in real-time.</p>
+
+    <p>Webhooks only transfer data when there is new data to send.</p>
 
     <h3>Working with JSON</h3>
 
