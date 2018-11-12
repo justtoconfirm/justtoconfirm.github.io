@@ -15,6 +15,7 @@
 
 <!-- https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/ -->
 <!-- https://medium.freecodecamp.org/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa -->
+<!-- https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -36,11 +37,17 @@
 <main role="main" id="main">
     <h1>API &amp; HTTP Requests</h1>
 
-    <p>An API (Application Programming Interface) is a set of rules that allows programs to talk to each other. Developers create the APU on the server and allows the client to talk to it.</p>
+    <p>API stands for Application Programming Interface, which can be defined as a set of methods/rules of communication between various software components. In other words, an API allows software to talk to other software applications/programs. A big part of working with JavaScript is knowing how to connect to APIs. Web APIs allow a web server to interact with third-party software. For example, a web server using a HTTP requests can communicate publicly within an available URL endpoint containing JSON data.</p>
 
-    <p>REST (Representative State Transfer) determines what the API looks like. It is a set of rules that developers follow when they create their API. One of these rules states that you should be able to get a piece of data, called a resource, when you link to a specific URL.</p>
+    <p>You maybe familiar with the concept of a CRUD (Create, Read, Update, Delete) app. Any programming language can be used to make a CRUD app. A web API uses HTTP requests that correspond to the CRUD verbs - POST, GET, PUT/PATCH, and DELETE.</p>
+
+    <p>REST (Representative State Transfer) determines what the API looks like. It is a set of rules that developers follow when they create their API. One of these rules states that you should be able to get a piece of data, called a resource, when you link to a specific URL. REST and RESTful APIs simply refer to a set of standards that conform to a specific architectural style. </p>
 
     <p>Each URL is called a request. The data sent back to you is called a response.</p>
+
+    <p>The documentation for most APIs doesn't tend to give specific instructions for how to connect since APIs can be accessed by many different methods and languages - JavaScript, PHP, Python, Ruby, and so on.</p>
+
+    <p>In our examples, we make reference to the GitHub API, but also the Studio Ghibli API which is a perfect API to use for testing. It can be located <a href="https://ghibliapi.herokuapp.com/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
     <h2>Anatomy of a Request</h2>
 
@@ -55,7 +62,18 @@
 
     <h2>The endpoint</h2>
 
-    <p>The endpoint, or route, is the URL you are requesting. The root-endpoint is the starting point of the API you're requesting. For example, the root-endpoint of GitHub's API is:</p>
+    <p>The endpoint, or route, is the URL you are requesting. To obtain the API endpoint, first read the API documentation and locate a GET request. Using the Studio Ghibli API, the 'films' section of the documentation will show the following:</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET /films
+        </code>
+    </pre>
+
+    <p>This will shows us the URL of our API endpoint, <a href="https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a>. Clicking on that link will display an array of objects in JSON. If you do not have an extension for your browser to view JSON files, you may need to add one.</p>
+
+    <p>The root-endpoint is the starting point of the API you're requesting. For example, the root-endpoint of GitHub's API is:</p>
 
     <pre>
         <code>
@@ -205,6 +223,118 @@ Content-Type: text/html; charset=utf-8
     </ul>
 
     <p>For example, if you make a POST request without providing a username or password, you may get a 401 status code (Unauthorized) returned. If your request is invalid because your data is wrong or missing, you usually get a 400 status code (Bad Request).</p>
+
+    <h2>Retrieving data with HTTP requests</h2>
+
+    <p>Let's open a connection to the API. We'll do so using the XMLHttpRequest obect, which is a way to open files and make an HTTP request. We'll create a request variable and assign a new XMLHttpRequest object to it. We will then open a new connection with the open() method. In the arguments, the request type of GET will be specified as well as the URL of the API endpoint. When the request completes, we can then access the data inside from inside the onload function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Create a request variable and assign a new XMLHttpRequest object to it
+var request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Begin accessing JSON data here
+}
+
+// Send the request
+request.send();
+        </code>
+    </pre>
+
+    <p>XMLHttpRequest is a widely supported built-in method for making HTTP requests. There is also a newer Fetch API which can be used for the same purpose, which is simpler but has less browser support.</p>
+
+    <h3>Working with JSON</h3>
+
+    <p>Now a response has been received from our HTTP request, we can now work with it. The response is returned in JSON, so we will need to convert the JSON into JavaScript objects in order to work with it. We are going to use JSON.parse() to parse the response and create a data variable that contains all the JSON as an array of JavaScript objects. Using forEach(), we can then console log out the title of each filem to ensure it's working as expected.</p>
+
+    <p>Place the following code inside the onload() function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Begin accessing the JSON data here
+var data = JSON.parse(this.response);
+
+data.forEach(movie => {
+    // Log each movie's title
+    console.log(movie.title); 
+});
+        </code>
+    </pre>
+
+    <p>When inspecting the HTML within the developer tools console, you should now see the titles of 20 Ghibli films.</p>
+
+    <p>If we wanted to get the movie title and movie description, we can modify the code slightly:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+data.forEach(movie => {
+    // Log each movie's title and description
+    console.log(movie.title); 
+    console.log(movie.description);
+});
+        </code>
+    </pre>
+
+    <p>We now need to deal with errors. If a wrong URL is used, or the URL is broken when an HTTP request is made, we need to deal with this. When an HTTP request is made, the response returns with HTTP status codes. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Begin accessing the JSON data here
+var data = JSON.parse(this.response);
+
+if (request.status >= 200 && request.status < 400) {
+    data.forEach(movie => {
+        // Log each movie's title
+        console.log(movie.title); 
+    });
+} else {
+    console.log('Error');
+}
+        </code>
+    </pre>
+
+    <p>Now let's show the whole code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Create a request variable and assign a new XMLHttpRequest object to it
+var request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Begin accessing the JSON data here
+    var data = JSON.parse(this.response);
+
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
+            // Log each movie's title
+            console.log(movie.title); 
+        });
+    } else {
+        console.log('Error');
+    }
+}
+
+// Send the request
+request.send();
+        </code>
+    </pre>
+
+    <p>We have now successfully used a GET HTTP request to retrieve, or consume, the API endpoint which consisted of data in JSON format. We are still using the console, but we want to display the data on the front-end of the website. We can do this by modifying the DOM (Document Object Model).</p>
+
+    <h2>Displaying the data</h2>
+    <!-- https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/ -->
 </main>
 
 </body>
