@@ -39,15 +39,15 @@
 
     <p>You can use NPM (Node Package Manager) to install React. Installing Node (Node.js) will also install NPM and you will require a package.json file to be created within your project directory to allow NPM packages to be installed.</p>
 
-    <p>We shall begin by opening the terminal to create a directory and to create a package.json file. Our directory will be named 'react-project'.</p>
+    <p>We shall begin by opening the terminal to create a directory and to create a package.json file. Our directory will be named 'my-app'.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
 # Create the project directory
 
-$ mkdir react-project
-$ cd react-project
+$ mkdir my-app
+$ cd my-app
 
 # Create the package.json file
 
@@ -77,7 +77,227 @@ $ npm install react-dom --save
         </code>
     </pre>
 
-    <p>If you are using version control, such as Git, it maybe worthwhile creating a .gitignore file within the root directory of your repository to avoid the node_modules directory from being committed.</p>    
+    <p>If you are using version control, such as Git, it maybe worthwhile creating a .gitignore file within the root directory of your repository to avoid the node_modules directory from being committed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+node_modules/
+        </code>
+    </pre>
+
+    <h2>Install React using Create React App</h2>
+
+    <p>Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses Babel and Webpack. Using Babel allows the use of ES6 JavaScript syntax. Create React App is a node module created by Facebook and it really speeds up the generation of the boilerplate code for your application.</p>
+
+    <p>Once you have Node and NPM (Node Package Manager) installed, you can use the create-react-app module. In some examples, you may notice that the 'npm' command has been replaced by 'npx'. This is a package runner tool that comes with NPM version 5.2 and above.</p>
+
+    <p>We first must install the create-react-app module. This can be done globally within the terminal to create the create-react-app command line interface (CLI):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install create-react-app -g
+        </code>
+    </pre>
+
+    <p>To optimise you application for production, you'll need to have Node >= 6 and NPM >= 5.2 installed on your machine.</p>
+
+    <p>To create a project, run:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm create-react-app my-app
+$ cd my-app
+$ npm start
+        </code>
+    </pre>
+
+    <p>This will start your react application. This should begin the development server and will auto-open a tab in your browser that points to <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">http://localhost:3000/</a>.</p>
+
+    <h2>The root attribute</h2>
+
+    <p>Within the root of your newly created application directory, we are going to begin by creating a simple HTML document. This is where our React application will be rendered. The "root" attribute, also called the root DOM node, is managed by the React DOM library and this is the element that is used to render the application with the HTML. This attribute does not have to be named 'root', but for simplicity we will continue to use the name.</p>
+
+    <p>Create a simple HTML document in the root of the project directory named 'index.html'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;title&gt;React app&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- This is where the app will render --&gt;
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h3>Including the JavaScript file(s)</h3>
+
+    <p>Usually when building an application in React, we use a module bundler such as Webpack. This allows multiple JavaScript files to be bundled for use in a browser. You will need to include the JavaScript file that contains the JavaScript code for your React application into your HTML document. Let's assume this file is named 'main.js'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- This is where the app will render --&gt;
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;script src="scripts/main.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Our project file structure should now look something like this (Webpack and other config files not included to retain simplicity):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app/
+    .gitignore
+    index.html
+    node_modules/
+        react/
+        react-dom/
+    scripts/
+        main.js
+    package.json
+        </code>
+    </pre>
+
+    <h2>Hello World</h2>
+
+    <p>The smallest React example we can create is to display a heading saying 'Hello, world!' on the page. We first need to import the React and ReactDOM libraries. We will use the 'main.js' file initially.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+        </code>
+    </pre>
+
+    <p>Once the two libraries have been imported, we can then use the render() method provided by the react-dom library to render the heading onto the page within the 'root' element found within the HTML document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <p>This code can be amended further to import the react-dom render() method without the need to reference the ReactDOM library.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import { render } from 'react-dom';
+
+render(
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <h2>Simple React Component</h2>
+
+    <p>The simplest way to define a React component is to write a JavaScript function. This type of component is called a functional component in React because they are functions.</p>
+
+    <p>Component names should always start with an uppercase letter. We can now take the code example we have just created and define a simple React component, named 'Welcome', using a JavaScript function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import { render } from 'react-dom';
+
+// Component
+function Welcome() {
+    return &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+}
+
+render(
+    &lt;Welcome /&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <p>The prop (properties) object can now be used to pass a value into our newly created Welcome component which will allow us to render 'Hello, Dan!' onto the page. The attribute values are passed into the props object within the component.</p>
+
+    <p>To get the value of 'name' that has been passed into the component as a prop, we simply need to reference the props object - which is named 'props' in our example and found as a parameter within the function - followed by the object key 'name'. Therefore {props.name} will output the value 'Dan'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import { render } from 'react-dom';
+
+// Component
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}!&lt;/h1&gt;;
+}
+
+render(
+    &lt;Welcome name='Dan' /&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <p>We have seen how we can create a very simple React component using a JavaScript function. This function is written using ES5 syntax, however, we can also write functions using the ES6 syntax. These functions are known as 'arrow' or 'fat arrow' functions and have no return statement.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/main.js
+
+import React from 'react';
+import { render } from 'react-dom';
+
+// Component (ES6)
+const Welcome = (props) =>
+    &lt;h1&gt;Hello, {props.name}!&lt;/h1&gt;
+
+render(
+    &lt;Welcome name='Dan' /&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <p>You can only render a single component within the render() method. Therefore, to add further React components, we will need to make some changes.</p>
 </main>
 
 </body>
