@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - GraphQL</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://graphql.org/graphql-js/ -->
+<!-- https://graphql.org/graphql-js/graphql-clients/ -->
+<!-- https://scotch.io/tutorials/a-practical-graphql-getting-started-guide-with-nodejs -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>GraphQL</h1>
+
+    <p>GraphQL is a query language for APIs created by Facebook. Once a GraphQL service is running (typically at a URL on a web service/server), it can be sent GraphQL queries to validate and execute.</p> 
+
+    <p>One of the primary challenges with traditional REST calls is the inability of the client to request a customised set of data. In most cases, once the client requests information from the server, it either gets all or none of the fields.</p>
+
+    <p>As your application increases in size, the number of endpoints to work with, or maintain, grows. Therefore, clients often need to ask for data from different endpoints. GraphQL APIs are organised in terms of types and fields, not endpoints. You can access the full capabilities of your data from a single endpoint.</p>
+
+    <p>When building a GraphQL server, it is only necessary to have one URL for all data. Therefore, a client can request a set of data by sending a query string describing what they want, to the server.</p>
+
+    <p>A simple server can be created using Express and express-graphql, a HTTP server middleware.</p>
+
+    <h2>A Simple Query</h2>
+
+    <p>Before getting started, you should have Node version 6 installed. We will be implenting the GraphQL specification designed for running GraphQL in a Node.js environment - named GraphQL.js.</p>
+
+    <p>Begin by creating a new project directory with a package.json file. We will then use NPM (Node Package Manager) to install GraphQL as a dependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir graphql-project
+$ cd graphql-project
+
+$ npm init -y
+$ npm install graphql --save
+        </code>
+    </pre>
+
+    <p>Within our project directory we will create a JavaScript file named 'server.js'. Within this file we can write code that will handle GraphQL queries. We first need a schema that defines the Query type. We will also need a function called a "resolver" which is the API root for each API endpoint.</p>
+
+    <p>This example will simply return "Hello, world!".</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// server.js
+
+var { graphql, buildSchema } = require('graphql');
+
+// Initialize a GraphQL schema
+var schema = buildSchema(`
+    type Query {
+        hello: String
+    }
+`);
+
+// The root provides a resolver function for each API endpoint
+var root = {
+    hello: () => {
+        return 'Hello, world!';
+    },
+};
+
+// Run the GraphQL query '{ hello }' and print out the response
+graphql(schema, '{ hello }', root).then((response) => {
+    console.log(response);
+});
+        </code>
+    </pre>
+
+    <p>When you run this code, you should see the GraphQL response printed in the terminal. We have just run a GraphQL query.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{ data: { hello: 'Hello, world!' }}
+        </code>
+    </pre>
+
+    <p>For practical applications, you'll probably want to run GraphQL queries from an API server rather than executing GraphQL with a command-line tool.</p>
+
+    <p>To run our query, enter the following terminal command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node server.js
+        </code>
+    </pre>
+
+    <h3>Schema</h3>
+
+    <p>In GraphQL, the Schema manages queries and mutations, defining what is allowed to be executed on the GraphQL server. A schema defines a GraphQL APIs type system and describes the possible data (objects, fields, relationships) that a client can access. Calls made from the client are validated and executed against the schema. This resides on the GraphQL API server.</p>
+
+    <p>The most basic components of a GraphQL schema are object types, which represent a kind of object you can fetch from your service and what fields it has. In the GraphQL schema language, we might represent it like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+type User {
+    id: ID!
+    name: String!
+    age: Int
+}
+        </code>
+    </pre>
+
+    <p>The exclamation (!) means that the 'id' and 'name' must be provided. The 'age' variable, in this example, is optional.</p>
+
+    <p>We are using the buildSchema function which builds a Schema object from GraphQL schema language.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var schema = buildSchema(`
+    type Query {
+        hello: String
+    }
+`);
+        </code>
+    </pre>
+
+    <h3>Types</h3>
+
+    <p>Inside the buildSchema function, we can define different types. You may notice that in most cases, the type is 'Query'. This is an object holding the functions that will be mapped to GraphQL queries used to fetch data. This is the equivalent to making a 'GET' request in REST.</p>
+
+    <p>If the type is set to 'Mutation', it holds functions that will be mapped to mutations that are used to create, update, or delete data. This is the equivalent of 'POST', 'UPDATE', and 'DELETE' in REST.</p>
+</main>
+
+</body>
+</html>
