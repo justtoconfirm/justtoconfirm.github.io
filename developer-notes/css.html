@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Syntax -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -37,6 +39,24 @@
 
     <p>The selector points to the HTML element you want to style. The declaration block contains one or more declarations (statements) separated by semicolons. Each declaration includes a CSS property name and a property value, separated by a colon. The declaration block is surrounded by curly braces.</p>
 
+    <p>At its most basic level, CSS consists of two building blocks:</p>
+
+    <ul>
+        <li>Properties - Human-readable identifiers that indicate which stylistic feature you want to change (e.g. font, width, background colour).</li>
+        <li>Values - Each specified property is given a value, which indicates how you want to change those stylistic features.</li>
+    </ul>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+selector {
+    property: value;
+}
+        </code>
+    </pre>
+
+    <p>A property paired with a value is called a CSS declaration. CSS declarations are placed within curly braces. This is referred to as the CSS Declaration Block. The declaration block is paired with a selector to produce CSS Rulesets (sometimes known as CSS Rules).</p>
+
     <p>In the following example all &lt;p&gt; elements will be centrally-aligned with a colour applied. The &lt;p&gt; element is the selector and within the declaration block, you will find the declarations of 'color' and 'text-align' properties with their associated values.</p>
 
     <pre>
@@ -48,6 +68,8 @@ p {
 }
         </code>
     </pre>
+
+    <p>Should any properties or values not be recognised, the browser will simply ignore them.</p>
 
     <h2>Adding CSS to HTML</h2>
 
@@ -73,6 +95,17 @@ p {
         </code>
     </pre>
 
+    <h2>Comments</h2>
+
+    <p>Comments in CSS begin with /* and end with */</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* This is a comment in CSS */
+        </code>
+    </pre>
+
     <h2>CSS Box Model</h2>
 
     <p>All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of: margin, border, padding, and the actual content.</p>
@@ -85,6 +118,146 @@ p {
     </ul>
 
     <p>The box model allows us to add a border around elements and to define space between elements.</p>
+
+    <h2>Selecting Elements</h2>
+
+    <p>An explination as to how we can use CSS to select HTML elements. Here is a simple HTML structure to demonstrate.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="container"&gt;
+    &lt;!-- Child element(s) --&gt;
+    &lt;p&gt;Paragraph one.&lt;/p&gt;
+    &lt;p&gt;Paragraph two.&lt;/p&gt;
+
+    &lt;div class="container-summary"&gt;
+        &lt;!-- Grandchild elements(s) --&gt;
+        &lt;p&gt;Paragraph three.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Child element(s) --&gt;
+    &lt;p&gt;Paragraph four.&lt;/p&gt;
+    &lt;p&gt;Paragraph five.&lt;/p&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <h3>Space</h3>
+
+    <p>This is called a descendent selector. In this example, it will target all &lt;p&gt; tags within the container &lt;div class="container"&gt; and set the font-weight to be bold.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container p {
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <h3>The Child Combinator (&gt;)</h3>
+
+    <p>The child combinator (&gt;), will only target direct children of a particular element. Only elements that are nested directly within the &lt;div class="container"&gt; element, and not any paragraphs nested further within - such as within &lt;div class="container-summary"&gt; (a grandchild element) - will have the styling applied.</p>
+
+    <p>Styling will only be applied to child elements and not grandchild elements of the parent.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container > p {
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <h3>Adjacent Sibling Combinator (+)</h3>
+
+    <p>Combines two sequences of simple selectors having the same parent and the second one must come immediately after the first. It will only select the first element that is immediately preceded by the former selector. In our example, it will target only 'Paragraph four.' because the &lt;p&gt; element comes just after the &lt;div class="container-summary"&gt; element in our HTML.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container-summary + p {
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <h3>~ Sign</h3>
+
+    <p>Select all elements that preceded the former selector. Therefore, we can use this selector to target all &lt;p&gt; elements that come after the &lt;div class="container-summary"&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container-summary ~ p {
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <h2>Shorthand Properties</h2>
+
+    <p>Some properties such as font, background, padding, border, and margin are called shorthand properties. This is because they allow you to set several property values in a single line using one property. This saves you time and makes your code smaller.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+padding: 10px 15px 15px 5px;
+        </code>
+    </pre>
+
+    <p>The above shorthand does the same as the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 15px;
+padding-left: 5px;
+        </code>
+    </pre>
+
+    <h2>Links</h2>
+
+    <p>Links can be styled with any CSS property (e.g. color, font-family, background, etc.). In addition, links can be styled differently depending on what state they are in. The four links states are:</p>
+
+    <ul>
+        <li>a:link - a normal, unvisited link.</li>
+        <li>a:visited - a link the user has visited.</li>
+        <li>a:hover - a link when the user mouses over it.</li>
+        <li>a:active - a link the moment it is clicked.</li>
+    </ul>
+
+    <p>When setting the style for link states, there are some order rules:</p>
+
+    <ul>
+        <li>a:hover MUST come after a:link and a:visited</li>
+        <li>a:active MUST come after a:hover</li>
+    </ul>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+a:link {
+    color: #ff00ff;
+}
+
+a:visited {
+    color: #00ff00;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    color: #0000ff;
+}
+        </code>
+    </pre>
 
     <h2>Text Colour</h2>
 
