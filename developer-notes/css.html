@@ -14,6 +14,7 @@
 <body>
 
 <!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Syntax -->
+<!-- https://www.sitepoint.com/optimizing-css-performance/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -92,6 +93,15 @@ p {
     &lt;!-- CSS stylesheets --&gt;
     &lt;link rel="stylesheet" href="styles/style.css" /&gt;
 &lt;/head&gt;
+        </code>
+    </pre>
+
+    <p>Should you see an external CSS stylesheet with the filename that contains 'min', this is likely to be a minified file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="stylesheet" href="styles/style.min.css" /&gt;
         </code>
     </pre>
 
@@ -193,6 +203,19 @@ p {
 <!-- leave this line empty -->
 .container-summary ~ p {
     font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <h3>Universal Selectors</h3>
+
+    <p>Universal selectors like *, [disabled] and [type="text"], check every element in the DOM for a match. This can be very expensive for the browser. This is often used for box-sizing and other globals.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+* {
+    box-sizing: border-box;
 }
         </code>
     </pre>
@@ -345,6 +368,49 @@ p {
 p {
     visibility: hidden;
 }
+        </code>
+    </pre>
+
+    <h2>CSS Performance</h2>
+
+    <p>Loading a CSS file blocks the page rendering, so this should be considered if you have a large stylesheet or multiple stylesheets. Using Google page analysis tools, you may often see suggestions such as 'inline critical CSS' or 'reduce render-blocking stylesheets'. CSS performance can therefore be improved with the following steps:</p>
+
+    <ul>
+        <li>Extract the styles used to render elements above the folder and add those to a &lt;style&gt; element in the HTML &lt;head&gt;.</li>
+        <li>Load the main CSS file asynchronously using JavaScript, perhaps after the page has loaded.</li>
+    </ul>
+
+    <h3>Progressive Rendering</h3>
+
+    <p>Rather than using a single site-wide CSS stylesheet, progressive rendering is a technique that defines individual stylesheets for separate components. Each is loaded immediately before a component is referenced in the HTML.</p>
+
+    <p>Each &lt;link&gt; still blocks rendering, but for a shorter time because the file is smaller. The page becomes usable sooner, because each component renders in sequence.</p>
+
+    <p>Progressive rendering could benefit large sites where individual pages are constructured from a selection of different components.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;head&gt;
+    &lt;!-- core styles used across components --&gt;
+    &lt;link rel="stylesheet" href="base.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- header component --&gt;
+    &lt;link rel="stylesheet" href="header.css" /&gt;
+    &lt;header&gt; ... &lt;/header&gt;
+
+    &lt;!-- primary content --&gt;
+    &lt;link rel="stylesheet" href="content.css" /&gt;
+    &lt;main&gt;
+            &lt;!-- form styling --&gt;
+            &lt;form&gt; ... &lt;/form&gt;
+    &lt;/main&gt;
+
+    &lt;!-- footer component --&gt;
+    &lt;link rel="stylesheet" href="footer.css" /&gt;
+    &lt;footer&gt; ... &lt;/footer&gt;
+&lt;/body&gt;
         </code>
     </pre>
 </main>
