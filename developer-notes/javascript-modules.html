@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Modules</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc -->
+<!-- https://www.sitepoint.com/understanding-module-exports-exports-node-js/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Modules</h1>
+
+    <p>A JavaScript modules is a self-contained, related unit of code with distinct functionality, allowing them to be added or removed as necessary without disrupting the system as a whole. This can be interpreted as moving all related functions into a file.</p>
+
+    <p>Be definition, a module is self-contained. A well-designed module aims to lessen the dependencies on parts of the codebase as much as possible. Updating a single modules is much easier when the module is decoupled from other pieces of code.</p>
+
+    <h2>Module Pattern</h2>
+
+    <p>The module pattern is used to mimic the concept of classes. JavaScript does not natively support classes. This allows us to store both public and private methods and variables inside a single object. This is similar to how classes are used in programming languages such as Java or Python. That allows us to create a public facing API for methods that we want to expose to the world, while still encapsulating the private variables or methods within the function.</p>
+
+    <p>This can be achieved through the use of an <a href="javascript-functions.html">anonymous function</a>. In JavaScript, functions are the way to create a new scope.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // The variables are private
+    var myGrades = [93, 95, 88, 0, 55, 91];
+
+    var average = function() {
+        var total = myGrades.reduce(function(accumulator, item) {
+            return accumulator + item
+        }, 0);
+
+        return 'Your average grade is ' + total / myGrades.length + '.';
+    }
+
+    var failing = function() {
+        var failingGrades = myGrades.filter(function(item) {
+            return item < 70;
+        });
+
+        return 'You failed ' + failingGrades.length + ' times.';
+    }
+
+    console.log(failing());     // You failed 2 times
+}());
+        </code>
+    </pre>
+
+    <p>What's nice about this approach is that you can use local variables inside this function without accidentally overwriting existing global variables, yet still access the global variables, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var global = 'Hello, I am a global variable';
+
+(function() {
+    // The variables are private
+    var myGrades = [93, 95, 88, 0, 55, 91];
+
+    var average = function() {
+        var total = myGrades.reduce(function(accumulator, item) {
+            return accumulator + item
+        }, 0);
+
+        return 'Your average grade is ' + total / myGrades.length + '.';
+    }
+
+    var failing = function() {
+        var failingGrades = myGrades.filter(function(item) {
+            return item < 70;
+        });
+
+        return 'You failed ' + failingGrades.length + ' times.';
+    }
+
+    console.log(failing());     // You failed 2 times
+    console.log(global);        // Hello, I am a global variable
+}());
+        </code>
+    </pre>
+
+    <h2>CommonJS</h2>
+
+    <p>CommonJS is a group that designs and implements JavaScript APIs for declaring modules. A CommonJS module is essentially a reusable piece of JavaScript which exports specific objects, making them available for other modules to 'require'. If you've used Node.js, you'll be very familiar with this format.</p>
+
+    <p>CommonJS takes a server-first approach. It will synchronously load modules one by one. As long as the script to load the module is running, it blocks the browser from running anything else until it finishes loading. If we want to load modules asynchronously, we can use AMD (Asynchronous Module Definition).</p>
+
+    <ul>
+        <li>Synchronous - statements are executed in sequence, so each statement in your code is executed one after the other.</li>
+        <li>Asynchronous - Takes statements outside of the main program flow, allowing code to be executed immediately without waiting.</li>
+    </ul>
+
+    <p>When you define a CommonJS module, it may look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function myModule() {
+    this.hello = function() {
+        return 'Hello, World!';
+    }
+
+    this.goodbye = function() {
+        return 'Goodbye';
+    }
+}
+
+// Export the module
+module.exports = myModule;
+        </code>
+    </pre>
+
+    <p>We place a reference to our function into module.exports. This lets the CommonJS module system know that we want to expose our module so that other files can consume/require it. When someone wants to use myModule, they can require it in their file like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Require the module
+var myModule = require('myModule');
+
+// Create new instance of the module
+var myModuleInstance = new myModule();
+
+// Call the hello() method from the myModule module - 'Hello, World!'
+myModuleInstance.hello();
+// Call the goodbye() method from the myModule module - 'Goodbye'
+myModuleInstance.goodbye();
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Functions</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- http://gregfranko.com/blog/i-love-my-iife/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Functions</h1>
+
+    <h2>IIFE - Immediately Invoked Function Expression</h2>
+
+    <p>An IIFE, or Immediately Invoked Function Expression, is a common JavaScript design pattern used by most popular libraries (jQuery, Backbone.js, Modernizr, etc) to place all library code inside of a local scope. In other words, it protects the module's scope from the environment in which it is placed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // This is an IIFE
+}());
+        </code>
+    </pre>
+
+    <p>The IIFE is an anonymous function (it has no name attached to it) that is wrapped inside a set of parenthesis. It is called (invoked) immediately via the ( ) at the very end. By wrapping the anonymous function inside of parenthesis, the JavaScript parser knows to treat it as a function expression instead of a function declaration. A function expression can be called (invoked) immediately by using a set of parenthesis, but a function declaration cannot.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var test = function() {
+    // This is a function expression
+};
+
+function test() {
+    // This is a function declaration
+};
+        </code>
+    </pre>
+
+    <p>Remember, you can't have unnamed function declarations in JavaScript.</p>
+
+    <p>Since our anonymous function within our IIFE is a function expression and is not being assigned to a global variable, no global property is being created. All of the properties created inside of the function expression are scoped locally to the expression itself.</p>
+
+    <h3>Reduce scope lookups</h3>
+
+    <p>A small performance benefit of using an IIFE is the ability to pass commonly used global objects - window, document, jQuery, etc - to an IIFE's anonymous function and then reference these global objects within the IIFE via a local scope.</p>
+
+    <p>JavaScript first looks for a property in the local scope and then it goes all the way up the chain to the global scope. Being able to place global objects in the local scope provides faster internal lookup speeds and performance.</p>
+
+    <p>In the example below, we are passing window, document, and jQuery global objects into the anonymous function within the IIFE as arguments. We can then reference all three objects in the local scope within the function.</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Anonymous function has three parameters
+(function(window, document, $) {
+    // Now we can reference them in a local scope
+}(window, document, window.jQuery));
+        </code>
+    </pre>
+
+    <h3>Minification Optimisation</h3>
+
+    <p>Using an IIFE also helps with minification optimisation. Since we are able to pass global objects into the anonymous function as local parameters, a minifier is able to reduce the name of each global object to a one letter word (as long as you don't already have a variable of the same name).</p>
+
+    <p>When using jQuery, you can freely use the $ without being concerned about conflicts with other libraries, sinch the global jQuery object is passed into the function and then scoped to the $ as a local parameter.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Anonymous function has three parameters
+(function(w, d, $) {
+    // Now we can reference them in a local scope
+}(window, document, window.jQuery));
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
