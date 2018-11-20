@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Events</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://idratherbewriting.com/events-and-listeners-javascript/ -->
+<!-- https://flaviocopes.com/javascript-events/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Events</h1>
+
+    <p>Although you can call functions when your page loads, many times you'll want to call functions when a user clicks a link, enters a form, scrolls, moves the mouse over an object, or does something else. These actions are called events. You can call specific functions when the user performs an event. These functions "listen" for an event and then initiate the function.</p>
+
+    <h2>Common Event Listeners</h2>
+
+    <p>The following are common events:</p>
+
+    <ul>
+        <li>onload - when the page loads.</li>
+        <li>onclick - when the user clicks something.</li>
+        <li>onmouseover - when a user moves the mouse cursor over something.</li>
+        <li>onfocus - the cursor is placed in a form field.</li>
+        <li>onblur - when the user leaves a form field.</li>
+    </ul>
+
+    <h2>Event Listeners</h2>
+
+    <p>A common way to intergrate an event listener is by identifying the element and adding the event listener as a method. The general format for doing this is as follows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+myelement.onclick = function() {
+    // Run your event handler code
+};
+        </code>
+    </pre>
+
+    <p>As a further example, should you have a specific ID that uniquely identifies an element, you can associate an event with that ID.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myElement = document.getElementById("myBox");
+
+myElement.onclick = function() {
+    alert("Hello, World!");
+};
+        </code>
+    </pre>
+
+    <p>You can also add event listeners using a method called addEventListener. This is the modern way and allows you to add as many handlers as we need. This method is not supported in Internet Explorer (IE) 8, so if you use this method, you need to add some conditional functions to check for browser functionality before running the function, should you want to support IE8.</p>
+
+    <p>jQuery and some other JavaScript libraries, automatically include checking for cross-browser functionality. IE8 and below used its own attachEvent() API.</p>
+
+    <p>The format for adding events using this method is as follows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.addEventListener('click', myfunction);
+
+// ES6 example
+window.addEventListener(load, () => {
+    // Window loaded
+})
+        </code>
+    </pre>
+
+    <p>As a further example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const link = document.getElementById('myLink');
+
+link.addEventListener('click', event => {
+    // Link clicked
+});
+        </code>
+    </pre>
+
+    <p>In the above format, you start by adding the method to the document object. Within the parenthesis, we the list the event listener, without the 'on', so 'onclick' becomes 'click'. We then add the function to run, with the function being declared elsewhere.</p>
+
+    <h3>prepareEventHandlers() function</h3>
+
+    <p>If your event handler refers to a specific element on the page, and you call your script before the element loads, the script won't work because the element isn't available at the time the script runs. If you need your script to run earlier, before the element loads, you can use the prepareEventHandlers function. This loads when the page loads.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Declare the function
+function prepareEventHandlers() {
+    var myElement = document.getElementById("myBox");
+
+    myElement.onclick = function() {
+        alert("Hello, World!");
+    };
+};
+        </code>
+    </pre>
+
+    <p>Now call the prepareEventHandlers function when the window loads:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.onload = function() {
+    prepareEventHandlers();
+}
+        </code>
+    </pre>
+
+    <p>Note, you can call the window.onload function only once per page.</p>
+
+    <h2>Timers</h2>
+
+    <p>You can add events that have a time delay. For example, you may want a pop-up message to appear after the user has been on the page for 10 seconds. The setTimeout() method can be used for this.</p>
+
+    <p>For example, let's say you have a simple message:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function welcomeVisitor() {
+    alert("Welcome to the website");
+}
+        </code>
+    </pre>
+
+    <p>You don't want this message to appear until the user has been on the page for a while. The call to the function can be delayed by using the setTimeOut method. This has two parameters. The first allows you to call a function, and the second refers to the timer (time). In this example, the function will not be called for 8000 milliseconds.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+setTimeout(welcomeVisitor, 8000);
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
