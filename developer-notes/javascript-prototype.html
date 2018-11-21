@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Prototype</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Prototype</h1>
+
+    <p>JavaScript is a prototype-based language, meaning object properties and methods can be shared through objects that have the ability to be cloned and extended. This is known as prototypical inheritance and differs from class inheritance. Among popular object-oriented programming languages, JavaScript is relatively unique, as other languages such as PHP, Python, and Java, are class-based languages, which instead define classes as blueprints for objects.</p>
+
+    <p>We will learn how prototypes can be used to extend objects.</p>
+
+    <p>Every object in JavaScript has an internal property called prototype. Prototype is an internal property that cannot be accessed directly in code.</p>
+
+    <p>We can demonstate this by creating a new, empty object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var x = {};
+
+// We can also use an object constructor
+var x = new Object();
+        </code>
+    </pre>
+
+    <p>To find the prototype of this newly created object, we will use the getPrototypeOf() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Object.getPrototypeOf(x);
+        </code>
+    </pre>
+
+    <p>The output will consist of several built-in properties and methods.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+{constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+        </code>
+    </pre>
+
+    <p>It is important that every object in JavaScript has a prototype as it creates a way for any two or more objects to be linked. Objects that you create have a prototype as do built-in objects such as Date and Array. A reference to this internal property from one object to another via the prototype property.</p>
+</main>
+
+</body>
+</html>

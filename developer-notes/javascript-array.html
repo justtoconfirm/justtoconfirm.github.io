@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Array</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.digitalocean.com/community/tutorials/how-to-use-array-methods-in-javascript-iteration-methods -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Array</h1>
+
+    <p>In JavaScript, the array data type consists of a list of elements. There are many useful built-in methods available for developers to work with arrays. Methods that modify the original array are known as mutator methods and methods that return a new value or representation are known as accessor methods. A third class of array methods, known as iteration methods, which are methods that operate on every item in an array, one at a time, also exist. These methods are closely associated with loops.</p>
+
+    <p>Array methods are properly written out as Array.prototype.method(), as Array.prototype refers to the Array object itself.</p>
+
+    <p>We will use the following Array for all of our examples:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var fish = [ "piranha", "barracuda", "cod", "eel" ];
+        </code>
+    </pre>
+
+    <h2>Iteration Methods</h2>
+
+    <p>Our examples may use the arrow function syntax.</p>
+
+    <h3>forEach()</h3>
+
+    <p>The forEach() method calls a function for each element in an array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+fish.forEach(individualFish => {
+   console.log(individualFish); 
+});
+        </code>
+    </pre>
+
+    <p>Once we call this function, we'll receive the following output:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+piranha
+barracuda
+cod
+eel
+        </code>
+    </pre>
+
+    <p>Another way to do this is using the for loop and testing it against the length property of the array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Loop through the length of the array
+for (var i = 0; i < fish.length; i++) {
+    console.log(fish[i]);
+}
+        </code>
+    </pre>
+
+    <h3>filter()</h3>
+
+    <p>The filter() method creates a new array with the elements that pass the result of a given test. We could use filter() to return a new array containing only the items in a list that start with a specific letter. We can utilize string indexing to call the first item (or letter) in each string item of the array.</p>
+
+    <p>We are testing which items in the array have a "p" at the 0 index (the first letter), and assigned the result into a new variable. filter() is an iteration method and does not mutate the original array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Filter all fish that start with "p" into a new list
+var filteredList = fish.filter(creature => {
+   return creature[0] === "p"; 
+});
+
+filteredList;       // ["piranha"]
+        </code>
+    </pre>
+
+    <h3>find()</h3>
+
+    <p>The find() method returns the first value in an array that passed a given test.</p>
+
+    <p>As an example, we will create an array of cars. We will then use the find() method to test if any of the cars in the array are from Germany.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var cars = [ "Volvo", "Vauxhall", "BMW", "Fiat", "Audi", "Mercedes-Benz" ];
+
+// Check if a given value is a German car
+const isGerman = german => {
+    return [ "Mercedes-Benz", "Audi", "BMW" ].includes(german);
+}
+
+cars.find(isGerman);        // "BMW"
+        </code>
+    </pre>
+
+    <p>Since "BMW" was the first entry in the array to satisfy the test in the isGerman() function, it is the first value to be returned.</p>
+
+    <h3>findIndex()</h3>
+
+    <p>The findIndex() method returns the first index in an array that passes given test.</p>
+
+    <p>We can use the same code as before, but find the index number instead of the value of the first match. If the test is not satisfied, findIndex() will return -1.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+cars.findIndex(isGerman);       // 2
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
