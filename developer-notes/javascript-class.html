@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Class</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.digitalocean.com/community/tutorials/understanding-classes-in-javascript -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Class</h1>
+
+    <p>Until recently, developers used constructor functions to mimic an object-oriented design pattern in JavaScript. The language specification ES6 introduced classes to the JavaScript language. Classes in JavaScript do not actually offer additional functionality, thet are often described as providing "syntactical sugar" in that they offer a cleaner and more elegant syntax.</p>
+
+    <p>Every JavaScript object has a hidden internal property called prototype. This can be used to extend object properties and methods.</p>
+
+    <h2>Classes are Functions</h2>
+
+    <p>A JavaScript class is a type of function. Classes are declared with the class keyword.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initializing a function with a function expression
+const x = function() {}
+
+// Initializing a class with a class expression
+const y = class {}
+        </code>
+    </pre>
+
+    <p>We can access the prototype of an object using the Object.getPrototypeOf() method. This can be used on both the function and class. Lets use that method on the class we just created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Object.getPrototypeOf(y);
+        </code>
+    </pre>
+
+    <p>This is the output:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+f () { [ native code] }
+        </code>
+    </pre>
+
+    <p>The code declared with function and class both return a function prototype. With prototypes, any function can become a constructor instance using the new keyword.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const x = function() {}
+
+// Initialize a constructor from a function
+const constructorFromFunction = new x();
+
+console.log(constructorFromFunction);
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+x {}
+constructor: f ()
+        </code>
+    </pre>
+
+    <p>This applies to classes also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const y = class {}
+
+// Initialize a constructor from a class
+const constructorFromFunction = new y();
+
+console.log(constructorFromFunction);
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+y {}
+constructor: class
+        </code>
+    </pre>
+
+    <p>Both of these prototype constructor examples are otherwise empty.</p>
+
+    <h2>Defining a Class</h2>
+
+    <p>A constructor function is initialized with a number of parameters. In this example, the parameters are name and level. These parameters would be assigned as properties of this, referring to the function itself. The first letter of the function identifier (name) would be capitalized by convention.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initializing a constructor function
+function Hero(name, level) {
+    this.name = name;
+    this.level = level;
+}
+        </code>
+    </pre>
+
+    <p>When we translate this to the class syntax, it is structured very similarly.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initializing a class definition
+class Hero {
+    constructor(name, level) {
+        this.name = name;
+        this.level = level;
+    }
+}
+        </code>
+    </pre>
+
+    <p>The constructor function acts as an object blueprint. The class assigns the properties inside a constructor() method, the only real difference between using a class and a function.</p>
+
+    <h2>Defining Methods</h2>
+
+    <p>A common practice with constructor functions is to assign methods directly to the prototype instead of in the initialization.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function Hero(name, level) {
+    this.name = name;
+    this.level = level;
+}
+
+// Adding a method to the constructor
+Hero.prototype.greet = function() {
+    return `${this.name} says hello.`;
+}
+        </code>
+    </pre>
+
+    <p>With classes this syntax is simplified and the method can be added directly to the class. We can use method definition shorthand introduced in ES6, to make defining a method really easy.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Hero {
+    constructor(name, level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    // Adding a method to the constructor
+    greet() {
+        return `${this.name} says hello.`;
+    }
+}
+        </code>
+    </pre>
+
+    <p>Let's create a new instance of Hero using the new keyword. We will assign some values also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const hero1 = new Hero('Varg', 1);
+        </code>
+    </pre>
+
+    <p>If we print out information about our new object using console.log(hero1), we can see more details about what is happening with the class initialization.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+Hero {name: "Varg", level: 1}
+__proto__:
+    &gt; constructor: class Hero
+    &gt; greet: f greet()
+        </code>
+    </pre>
+
+    <p>We can see from the output that the constructor() and greet() functions were applied to the __proto__ (prototype) of hero1, and not directly as a method on the hero1 object. While this is clear when we use a constructor function to create an object, it is not always obvious when creating a class due to the simpler syntax used.</p>
+
+    <h2>Extending a Class</h2>
+
+    <p>Unlike literal objects, constructor functions and classes can be extended into new objects. This prevents repetition of code for objects that are similar but need some additional or specific features.</p>
+
+    <p>New constructor functions can be created from the parent using the call() method. In this example below, we will create a specific character class called Mage. We will be extending the properties from the Hero class to it using the call() method and adding an additional property of 'spell'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function Hero(name, level) {
+    this.name = name;
+    this.level = level;
+}
+
+// Adding a method to the constructor
+Hero.prototype.greet = function() {
+    return `${this.name} says hello.`;
+}
+
+// Creating a new constructor extended from the parent - 'Hero'
+function Mage(name, level, spell) {
+
+    // Chain constructor to Hero using the call method
+    Hero.call(this, name, level);
+
+    // Add new property to this function
+    this.spell = spell;
+}
+        </code>
+    </pre>
+
+    <p>At this point, we can create a new instance of Mage using the same properties as Hero along with the new property, spell, we have added.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const hero2 = new Mage('Lejon', 2, 'Sleeping Spell');
+        </code>
+    </pre>
+
+    <p>Sending hero2 to the console, we can see we have created a new Mage based off the constructor.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+Mage {name: "Lejon", level: 2, spell: "Sleeping Spell"}
+__proto__:
+    &lt; constructor: f Mage(name, level, spell)
+        </code>
+    </pre>
+
+    <p>With ES6 classes, the super keyword is used in place of the call() method to access functions within the parent object. We will use extends to refer to the parent class.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initializing a class
+class Hero {
+    constructor(name, level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    // Adding a method to the constructor
+    greet() {
+        return `${this.name} says hello.`;
+    }
+}
+
+// Creating a new class from the parent
+class Mage extends Hero {
+    constructor(name, level, spell) {
+        // Chain constructor with super
+        super(name, level);
+
+        // Add a new property
+        this.spell = spell;
+    }
+}
+        </code>
+    </pre>
+
+    <p>We create a new Mage instance in the same manner as we did when we were using the constructor function. When we print hero2 to the console, the output should appear as so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Output
+Mage {name: "Lejon", level: 2, spell: "Sleeping Spell"}
+__proto__: Hero
+    &lt; constructor: class Mage
+        </code>
+    </pre>
+
+    <p>The output is nearly exactly the same, except that in the class construction, the prototype is linked to the parent, in this case Hero.</p>
+
+    <p>Although the syntax is quite different, the underlying result is nearly the same between both methods. Classes given us a more concise way of creating object blueprints and constructor functions describe more accurately what is happening under the hood. Both classes and constructors imitate and object-oriented inheritance model to JavaScript which is a prototype-based inheritance language.</p>
+
+    <p>Being familiar with classes is extremely helpful, as popular JavaScript libraries such as <a href="react.html">React</a> make frequent use of the class syntax.</p>
+
+    <p>We have created documentation relating to <a href="javascript-object.html">JavaScript Objects</a>.</p>
+</main>
+
+</body>
+</html>
