@@ -44,7 +44,15 @@
 <main role="main" id="main">
     <h1>Redux</h1>
 
-    <p>Redux is a library for managing state within applications. Redux itself is a pretty small library (around 2KB). The Redux store exposes a simple API for managing the state of an application. Redux has the following methods:</p>
+    <p>Redux is a library for managing state within applications. Redux itself is a pretty small library (around 2KB). The Redux store exposes a simple API for managing the state of an application.</p>
+
+    <p>Redux is used to store state across your application. Any DOM manipulation, such as an accordion opening and closing, form input (which always needs state), or other interactions/interactive UI elements, that would normally be implemented through the use of jQuery or vanilla JavaScript, can use Redux. For example, should you have an accordion/modal which opens and needs to remain open until the user closes it (or closes the browser), Redux can be used to store the state of the accordion/modal to remain open. If it is closed, the state will be updated.</p>
+
+    <p>State within components that do not use Redux will not be persistent and will return back to the default state should you leave the page. This maybe more suitable for something like an accordion where you may want it to be opened initially but default back to a closed state when you return to the page.</p>
+
+    <p>Using state within components usually requires the use of a class component in React.</p>
+
+    <p>Redux has the following methods:</p>
 
     <ul>
         <li>getState() - for accessing the current state of the application.</li>
