@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Atomic Design</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.creativebloq.com/web-design/10-reasons-you-should-be-using-atomic-design-61620771 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Atomic Design</h1>
+
+    <p>If you design a site according to the principles of atomic design, you can incorporate all your atoms and molecules into your styleguide.</p>
+
+    <p>Interfaces can be made up of many components. We can break entire interfaces down into fundamental building blocks and work up from there. This is the basic concept of Atomic design. Atomic design is simply a methodology for creating design systems. There are five distinct levels in atomic design:</p>
+
+    <ul>
+        <li>Atoms</li>
+        <li>Molecules</li>
+        <li>Organisms</li>
+        <li>Templates</li>
+        <li>Pages</li>
+    </ul>
+
+    <h2>Atoms</h2>
+
+    <p>Atoms are the basic building blocks, such as HTML tags, form labels, an input, or a button.</p>
+
+    <h2>Molecules</h2>
+
+    <p>When we start combining atoms together, we can begin to create molecules. For example, a form label, input or button aren't too useful by themselves. When we combine all three atoms together as a form, they become a molecule and can actually do something together.</p>
+
+    <h2>Organisms</h2>
+
+    <p>Molecules give us some building blocks to work with. We can now combine them together to create organisms. Organisms are groups of molecules joined together to form a relatively complex, distinct section of an interface.</p>
+
+    <p>For example, a masthead organism may consist of components like a logo, primary navigation, search form, and list of social media channels.</p>
+
+    <p>Building up from molecules to organisms encourages creating standalone, portable, reusable components.</p>
+
+    <h2>Templates</h2>
+
+    <p>Templates mostly consist of organisms stitched together to form pages. It's here that we start to see the design come together and start seeing the layout in action. Templates are where we can start to see the final design in place. Usually, templates begin their life as HTML wireframes.</p>
+
+    <h2>Pages</h2>
+
+    <p>Pages are specific instances of templates where placeholder content is replaced with real representative content to give an accurate depiction of what the user will ultimately see.</p>
+</main>
+
+</body>
+</html>

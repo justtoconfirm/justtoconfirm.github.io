@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - BEM</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.smashingmagazine.com/2018/06/bem-for-beginners/ -->
+<!-- http://getbem.com/naming/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>BEM (Block Element Modifier)</h1>
+
+    <h2>Block &amp; Element</h2>
+
+    <h3>What is a Block&#63;</h3>
+
+    <p>Encapsulates a standalone entity that has meaning on its own. Any <abbr title="Document Object Model">DOM</abbr> node can be a block if it accepts a class name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="block"&gt; ... &lt;/div&gt;
+        </code>
+    </pre>
+
+    <h3>What is an Element&#63;</h3>
+
+    <p>Parts of a block that have no standalone meaning are known as elements. Any element is semantically tied to its block. CSS classes for elements are formed as block names plus two underscores followed by the name of the element.</p>
+
+    <p>As out block has the class 'block', the element will have the class name of 'block__elem'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Block --&gt;
+&lt;div class="block"&gt;
+
+    &lt;!-- Element --&gt;
+    &lt;div class="block__elem"&gt; ... &lt;/div&gt;
+
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <h3>Adding a Modifier</h3>
+
+    <p>We can change the appearance or our blocks or elements using modifiers. Our blocks and elements will have styling that can be shared but modifiers allow the default behavior, appearance, or state to be changed (modified).</p>
+
+    <p>CSS class names for modifiers are formed from the block's or element's name, followed by two dashes, such as:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* Block */
+.block--mod {}
+.block--theme-xmas {}
+
+/* Element */
+.block__elem-mod {}
+.block__elem-shadow {}
+        </code>
+    </pre>
+
+    <p>Modifier is an extra class name which you can add to a block/element DOM node. Add modifier classes only to blocks or elements they modify, and keep the original class.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Block --&gt;
+&lt;div class="block block--mod"&gt;
+
+    &lt;!-- Element --&gt;
+    &lt;div class="block__elem block__elem--mod"&gt; ... &lt;/div&gt;
+
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>We have documented further details about modifiers below.</p>
+
+    <h3>An Example of BEM</h3>
+
+    <p>To see the full power of BEM naming, consider this form example. According to the BEM methodology, the form is implemented using the form block. In HTML, the block name is included in the class attribute.</p>
+
+    <p>All the parts the make the form (the form block) that don't make sense on their own, are considered the elements of the form block. For instance, the search box and the submit button, are elements of the form block and the classes indicate that an element belongs to the block.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;form class="form" action="/"&gt;
+    &lt;input class="form__search" type="text" name="search" /&gt;
+    &lt;input class="form__submit" type="submit" /&gt;
+&lt;/form&gt;
+        </code>
+    </pre>
+
+    <p>Note that the block's name is separated from the element's name with a special separator - two underscores.</p>
+
+    <p>Selector names make it clear that in order to move the form to another project, you will need to copy all of it's components:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.form__search {}
+.form__submit {}
+        </code>
+    </pre>
+
+    <p>Using blocks and elements for class names solves an important problem, it helps us to rid the use of nested selectors. All selectors in a BEM project have the same weight. To use the same form in another project, you can just copy its layout and styles.</p>
+
+    <h2>Modifier</h2>
+
+    <p>A modifier defines the look, state, and behavior of a block or an element. Adding modifiers is optional.</p>
+
+    <p>A modifier contains only additional styles that change the original block implementation in some way. This allows you to set the appearance of a universal block only once and add only those features that differ from the original block code into the modifier styles.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.form {
+    /* Universal block styling */
+}
+
+.form--theme-xmas {
+    /* Added styling */
+}
+        </code>
+    </pre>
+
+    <p>This is why a modifier should always be on the same <abbr title="Document Object Model">DOM</abbr> node with the block and the element it is associated with.</p>
+
+    <p>Lets add a few modifier classes to our previous form example.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;form class="form form--theme-xmas" action="/"&gt;
+    &lt;input class="form__search" type="text" name="search" /&gt;
+    &lt;input class="form__submit form__submit--disabled" type="submit" /&gt;
+&lt;/form&gt;
+        </code>
+    </pre>
+
+    <p>Our CSS selectors would look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.form {}
+.form--theme-xmas {}
+.form__search {}
+.form__submit {}
+.form__submit--disabled {}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
