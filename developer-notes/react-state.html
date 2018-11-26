@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React State</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/get-pro-with-react-setstate-in-10-minutes-d38251d1c781 -->
+<!-- https://daveceddia.com/open-modal-in-react/ -->
+<!-- https://reactjs.org/docs/handling-events.html -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: State</h1>
+
+    <p>React components let you split the user interface (UI) into independent, reusable pieces, so you can think about each piece in isolation. Conceptually, components are like JavaScript functions. They accept inputs - called "props" - and return React elements describing what should appear on screen.</p>
+
+    <p>At the heart of every React component is its "state", an object that determines how that component renders and behaves. This allows you to create components that are dynamic and interactive.</p>
+
+    <p>Application UI can be dynamic and change over time. This is why state was created. State allows React components to change in response to user actions, network responses, and anything else which may occur.</p>
+
+    <p>Local state is only available to React components that are defined as classes.</p>
+
+    <p>The React library also includes the setState API method. This allows the user to define and manipulate state.</p>
+
+    <h2>setState()</h2>
+
+    <p>There are a number of things to consider when using the setState() method in React.</p>
+
+    <h3>Do not modify state directly</h3>
+
+    <p>State is unique to your component. Every component has its own state where it can store and retrieve data.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Bad
+this.state.fullName = 'Dan';
+
+// Good
+this.setState({
+    fullName: 'Dan'
+});
+        </code>
+    </pre>
+
+    <h3>React Components must be a class</h3>
+
+    <p>React lets you define components as classes or functions. Components defined as classes allow state to use local state. To define a React component class, you need to extend React.Component. The only method you must defined in a React.Component subclass is called render(). All other methods are optional.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+class MyClass extends React.Component {
+    render() {
+
+    }
+}
+        </code>
+    </pre>
+
+    <p>Creating a class component can also be done like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class MyClass extends Component {
+    render() {
+
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Class Constructor</h2>
+
+    <p>A class constructor can be added to assign the initial state. The constructor method is a special method for creating and initializing an object created with a class. There can only be one special method with the name "constructor" in a class. A SyntaxError will be thrown if the class contains more than one.</p>
+
+    <p>A constructor can use the super keyword to call the constructor of the super class.</p>
+
+    <p>You should not call setState() in the constructor(). Instead, if your React component needs to use local state, assign the initial state to this.state directly in the constructor.</p>
+
+    <p>Constructor is the only place where you should assign this.state directly. In all other methods, you need to use this.setState() instead.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class MyClass extends Component {
+    // We don't call this.setState() here
+    constructor() {
+        this.state = {
+
+        }
+    }
+
+    render() {
+
+    }
+}
+        </code>
+    </pre>
+
+    <p>When implementing the constructor for a React.Component subclass, you should call super(props) before any other statement, otherwise this.props will be undefined in the constructor. This can lead to bugs.</p>
+
+    <p>Note how we pass props to the base constructor. Class components should always call the base constructor with props.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class MyClass extends Component {
+    // We don't call this.setState() here
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    render() {
+
+    }
+}
+        </code>
+    </pre>
+
+    <p>Lets create an example showing how we can use state to toggle a class attribute of 'toggled' on a button element each time it is clicked.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class ToggleButton extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            condition: false
+        }
+
+        // This binding is necessary to make 'this' work in the callback
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick() {
+        this.setState({
+            condition: !this.state.condition
+        })
+    }
+
+    render() {
+        return (
+            &lt;button className={ this.state.condition ? "button toggled" : "button" } onClick={ this.handleClick }&gt;Click Me&lt;/button&gt;
+        )
+    }
+}
+
+export default ToggleButton;
+        </code>
+    </pre>
+
+    <p>We are exporting this component as a JavaScript module.</p>
+</main>
+
+</body>
+</html>
