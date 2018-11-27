@@ -14,6 +14,11 @@
 <body>
 
 <!-- https://hackernoon.com/a-tale-of-webpack-4-and-how-to-finally-configure-it-in-the-right-way-4e94c8e7e5c1 -->
+<!-- https://www.robinwieruch.de/minimal-node-js-babel-setup/ -->
+<!-- https://babeljs.io/en/setup#installation -->
+<!-- https://www.sitepoint.com/beginners-guide-webpack-module-bundling/ -->
+<!-- https://flaviocopes.com/es-modules/ -->
+<!-- https://github.com/webpack-contrib/css-loader -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -114,6 +119,7 @@ my-project/
 
     <pre>
         <code>
+<!-- leave this line empty -->
 // package.json
 
 "scripts": {
@@ -124,6 +130,168 @@ my-project/
     </pre>
 
     <p>Although Webpack 4 itself is mostly zero-configuration, this mostly applies to generaly defaults such as entry and output. A webpack.config.js file can be created to add further configuration.</p>
+
+    <h2>Babel &amp; ES6</h2>
+
+    <p>Modern JavaScript code is mostly written in ES6, however, ES6 is not supported by all browsers. We therefore need to transpile it - a fancy word for turning your ES6 syntax into ES5 for use in all browsers. You can use Babel for this, a tool used to transpile ES6 into ES5 JavaScript.</p>
+
+    <p>We can install a number of NPM (Node Package Manager) modules to use Babel with Webpack.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install babel-core babel-loader babel-preset-env --save-dev
+
+// Alternative install
+$ npm install "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env --save-dev
+        </code>
+    </pre>
+
+    <p>You may receive an error if you use the above modules. For example, babel-loader@8 requires Babel 7.x (the package @babel/core). If you'd like to use Babel 6.x ('babel-core'), you should install 'babel-loader@7'. Use the following modules, and this should fix the issue.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/core --save-dev
+$ npm install @babel/preset-env --save-dev
+        </code>
+    </pre>
+
+    <p>Your package.json file should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  "name": "webpack-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
+        </code>
+    </pre>
+
+    <p>Next, create a .babelrc configuration file. Without this, Babel will not do anything. This needs to be placed within the root of your project directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .babelrc
+        </code>
+    </pre>
+
+    <p>The config file is empty. Open the .babelrc config file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": ["@babel/preset-env"]
+}
+        </code>
+    </pre>
+
+    <p>To apply Babel to Webpack and to further the configuration of Webpack, we need to use create a Webpack config file.</p>
+
+    <h2>Webpack Config</h2>
+
+    <p>The Webpack config file is placed within the root of your project directory and is named webpack.config.js. Although Webpack advertises itself as a zero-configuration platform, it mostly applies to general defaults such as as entry and output.</p>
+
+    <p>Create a webpack.config.js file within your project directory and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+    entry: { main: './src/index.js' },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }   
+};
+        </code>
+    </pre>
+
+    <p>Your ES6 JavaScript will now be transpiled into ES5 syntax.</p>
+
+    <h2>Using ES Modules with Webpack</h2>
+
+    <p>Webpack handles JavaScript by default.</p>
+
+    <p>Using ES <a href="javascript-modules.html">Modules</a>, you can split up your large programs/applications into many small, self-contained modules. Out of the box, Webpack knows how to consume ES modules using import and export statements. ES Modules are supported in Chrome, Safari, Edge, and Firefox (since version 60).</p>
+
+    <p>Note: imports without a relative path, are modules from NPM installed within the /node_modules directory. Your own modules will always need a relative path like './people', and this is how you can tell them apart.</p>
+
+    <p>The process of removing unused imports is known as tree-shaking.</p>
+
+    <h2>Loaders</h2>
+
+    <p>Loaders let you run preprocessors on files as they're imported allowing you to bundle static resources beyond JavaScript. When implementing a loader, you may see the 'rules' property as an array of all of your loaders within the webpack.config.js file. These rules will be applied to every file that matches the 'test' property (a regular expression) of the rule.</p>
+
+    <p>The property rules is an array of all of your loaders. These rules will be applied to every file that matches the test property.</p>
+
+    <p>The property use is an indicator of which loader should be used for matching files.</p>
+
+    <h3>CSS Loader</h3>
+
+    <p>The css-loader interprets imported CSS files. Begin by install the CSS loader as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install css-loader --save-dev
+        </code>
+    </pre>
+
+    <p>Once installed, update your Webpack config file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ['css-loader']
+        }
+    ]
+}   
+        </code>
+    </pre>
+
+    <h2>Code Splitting</h2>
+
+    <p>Code splitting is a feature that allows you to split your code into various bundles which can then be loaded on demand or in parallel. It can be used to achieve smaller bundles and control resource load prioritisation which, if used correctly, can have a major impact on load time.</p>
+
+    <p>So far, we've seen only a single entry point - src/index.js - and a single output bundle - dist/bundle.js. As your application grows, you'll need to split this up so that the entire codebase isn't downloaded at the start. A good approach is to use Code Splitting and Lazy Loading to fetch things on demand as the code paths require them.</p>
 </main>
 
 </body>
