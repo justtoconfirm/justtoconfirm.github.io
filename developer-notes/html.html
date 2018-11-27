@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - HTML</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>HTML</h1>
+
+    <h2>HTML Entities</h2>
+
+    <p>An HTML entity is a piece of text ("string") that begins with an ampersand (&amp;) and ends with a semicolon (;). Entities are frequently used to display reserved characters which would otherwise be interpreted as HTML code, and invisible characters, such as non-breaking spaces. You can use them in place of other characters that are difficult to type with a standard keyboard.</p>
+
+    <p>Some special characters are reserved for use in HTML, meaning that your browser will parse them as HTML code. For example, if you use the less-then (&lt;) sign, the browser interprets any text that follows as a tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+& - &amp;amp; - Interpreted as the beginning of an entity or character reference.
+< - &amp;lt; - Interpreted as the beginning of a tag.
+> - &amp;gt; - Interpreted as the ending of a tag.
+" - &amp;quot; - Interpreted as the beginning and end of an attribute's value.
+        </code>
+    </pre>
+
+    <h2>Opening links in new windows &amp; tabs</h2>
+
+    <p>When opening links in new browser windows/tabs, we should apply the 'rel' attribute as a precaution against reverse tabnabbing.</p>
+
+    <p>When using the target attribute in this way, the page we are linking to gains partial access to the linking page via the window.opener object. The newly opened tab can be used to, say, change the window.opener.location to an unsecured page or execute JavaScript on the opener-page. This is referred to as tabnabbing.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="#" target="_blank" rel="noopener noreferrer"&gt;Link&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>So, we add this to our outgoing links:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+rel="noopener"
+        </code>
+    </pre>
+
+    <p>For Firefox (FF), "noopener" is not supported, so we need to modify this slightly:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+rel="noopener noreferrer"
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Webpack</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://hackernoon.com/a-tale-of-webpack-4-and-how-to-finally-configure-it-in-the-right-way-4e94c8e7e5c1 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Webpack</h1>
+
+    <h2>Setup</h2>
+
+    <p>We are going to begin by creating a project directory through the terminal and adding a package.json file where our dev dependencies will be added. You will need NPM (Node Package Manager) installed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir my-project
+$ cd my-project
+
+# Create the package.json file
+$ npm init
+        </code>
+    </pre>
+
+    <p>Next, we need to install Webpack as a module and webpack-cli to run it from within your terminal. Both modules will be installed as devDependencies.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack webpack-cli --save-dev
+        </code>
+    </pre>
+
+    <p>Once installed, open your package.json file and add a build script. In Wwebpack 4, you will need to ensure that your build script contains a mode flag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// package.json
+
+"scripts": {
+    "dev": "webpack --mode development"
+}
+        </code>
+    </pre>
+
+    <p>The default behaviour for Webpack 4, since it requires very little configuration, is that when you run the build script, Webpack will look for a folder named '.src/' in your project that contains an index.js file. Without this, Webpack will return an error within the terminal.</p>
+
+    <p>Create a directory named 'src' in the root of your project directory that contains a file named index.js. Within this file, add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/index.js
+
+console.log("hello, world");
+        </code>
+    </pre>
+
+    <p>Now, lets open the terminal and run the build script we created earlier.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run dev
+        </code>
+    </pre>
+
+    <p>Running the build script will cause Webpack to bundle the JavaScript file and create a 'dist/' directory in your project. This new directory will contain the bundled file which is named as 'main.js' by default.</p>
+
+    <p>The file structure below does not show the node_modules directory, to keep things simple. As Webpack 4 has no configuration to run initially, you will also not see a webpack.config.js file within our project at this time.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-project/
+    dist/
+        main.js
+    src/
+        index.js
+    package.json
+        </code>
+    </pre>
+
+    <p>Let's add another mode to a new build script within our package.json file.</p>
+
+    <pre>
+        <code>
+// package.json
+
+"scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+}
+        </code>
+    </pre>
+
+    <p>Although Webpack 4 itself is mostly zero-configuration, this mostly applies to generaly defaults such as entry and output. A webpack.config.js file can be created to add further configuration.</p>
+</main>
+
+</body>
+</html>
