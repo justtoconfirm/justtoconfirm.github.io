@@ -327,6 +327,23 @@ module.exports = {
     </pre>
 
     <p>Webpack will now output two bundled files - main.bundle.js and another.bundle.js.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Hash: d5929286f47f8fa32ca6
+Version: webpack 4.26.1
+Time: 799ms
+Built at: 2018-11-27 13:57:34
+          Asset      Size  Chunks             Chunk Names
+another.bundle.js   3.8 KiB   another  [emitted]  another
+main.bundle.js  3.86 KiB    main  [emitted]  main
+Entrypoint main = main.bundle.js
+Entrypoint another = another.bundle.js
+[./src/another.js] 28 bytes {hello} [built]
+[./src/index.js] 85 bytes {main} [built]
+        </code>
+    </pre> 
 </main>
 
 </body>
