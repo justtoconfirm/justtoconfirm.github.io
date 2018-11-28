@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Accessibility</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.codecademy.com/articles/accessibility -->
+<!-- https://a11yproject.com/checklist -->
+<!-- https://contrast-ratio.com/ -->
+<!-- http://web-accessibility.carnegiemuseums.org/foundations/semantic/ -->
+<!-- https://medium.com/@matuzo/writing-css-with-accessibility-in-mind-8514a0007939 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Accessibility</h1>
+
+    <p>Accessibility is the practice of making your websites usable by as many people as possible. We traditionally think of this as being about people with disabilities, but really, it also benefits other groups such as those using mobile devices, or those with slow network connections.</p>
+
+    <h2>Alt text</h2>
+
+    <p>One way to make the elements of your page more comprehensible to screen readers is to provide alt (alternative) text for images. Alt text is provided as an attribute to the &lt;img&gt; element to describe the image to the screen reader. A screen reader will be able to read aloud the description of the image to the user, as opposed to simply informing the user that an image exists on the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="brown-bear.jpg" alt="A brown bear" /&gt;
+        </code>
+    </pre>
+
+    <h2>Links</h2>
+
+    <h3>Descriptive Link Text</h3>
+
+    <p>Use descriptive link text within your links.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Bad --&gt;
+&lt;a href="#"&gt;Click here&lt;/a&gt;
+
+&lt;!-- Good --&gt;
+&lt;a href="#"&gt;Information about accessibility&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>It is worthwhile remembering that the href attribute should not be empty as this then ensures the link will be reachable by keyboard users.</p>
+
+    <h2>Language Attribute</h2>
+
+    <p>Declaring a language attribute on the HTML element enables a screen reader to ready out the text with the correct pronunciation.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html lang="en"&gt;
+
+&lt;html lang="en-GB"&gt;
+        </code>
+    </pre>
+
+    <h2>Headings</h2>
+
+    <p>It is recommended to use one &lt;h1&gt; element per page.</p>
+
+    <p>Heading elements - &lt;h1&gt; to &lt;h6&gt; should be kept in order.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Bad --&gt;
+&lt;h1&gt;A header&lt;/h1&gt;
+&lt;h4&gt;A smaller header&lt;/h4&gt;
+&lt;h2&gt;Another header&lt;/h2&gt;
+
+&lt;!-- Good --&gt;
+&lt;h1&gt;A header&lt;/h1&gt;
+&lt;h2&gt;A smaller header&lt;/h2&gt;
+&lt;h3&gt;Another header&lt;/h3&gt;
+        </code>
+    </pre>
+
+    <h2>Label</h2>
+
+    <p>The HTML &lt;label&gt; element represents a caption for an item in a user interface. The label text is visually associated with its corresponding text input. A screenreader will read out the label when the user is focused on the form input, making it easier for assistive technology users to understand what data should be entered.</p>
+
+    <p>You can click the associated label to focus/activate the input, as well as the input itself.</p>
+
+    <p>To associate the &lt;label&gt; with an &lt;input&gt; element, you need to give the &lt;input&gt; element an id attribute. The &lt;label&gt; then needs a for attribute whose value is the same as the input's id.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;label for="firstName"&gt;First name&lt;/label&gt;
+&lt;input name="firstName" type="text" id="firstName" /&gt;
+        </code>
+    </pre>
+
+    <p>There is another style to consider. You can next the &lt;input&gt; directly inside the &lt;label&gt; element. In this instance, the for/id attributes are not needed as the association is implicit.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;label&gt;First name
+    &lt;input name="firstName" type="text" /&gt;
+&lt;/label&gt;
+        </code>
+    </pre>
+
+    <h2>User Container Elements for Layout</h2>
+
+    <p>Elements like &lt;div&gt; and &lt;span&gt; are for layout. They're semantically meaningless and they don't have keyboard or touch support in any browser. It is recommended to not use a &lt;div&gt; or &lt;span&gt; element for a button when you could use a semantically meaningful &lt;button&gt; element instead.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button&gt;Click Me&lt;/button&gt;
+        </code>
+    </pre>
+
+    <h2>Semanic Tags</h2>
+
+    <p>When you think of styling text on a webpage, you may have noticed some overlap between the following pairs of tags:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;b&gt; &lt;strong&gt;
+&lt;i&gt; &lt;em&gt;
+        </code>
+    </pre>
+
+    <p>When you try using any one of these elements, you'll notice that they have similar styling. Both the &lt;b&gt; and &lt;strong&gt; tags bolden text and the &lt;i&gt; and &lt;em&gt; italicize text. However, there is a fundamental difference between each of the tags in a pair when it comes to accessibility.</p>
+
+    <p>The &lt;b&gt; and &lt;i&gt; elements simply denote how the text should look. The &lt;strong&gt; and &lt;em&gt; elements however, denote how text should be understood. Each one affects how the screen reader interprets them. Text within these elements is read out with a different voice to indicate the emphasis for each. These elements are known as semantic tags.</p>
+
+    <h2>ARIA</h2>
+
+    <p>The difference between HTML5 and ARIA is that ARAI is an add-on of sorts. HTML5 is your actual semantic page code. For example, the &lt;header&gt; HTML5 element is what you'd use for the header of your page, where you mau have your site title, logo, and main navigation.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;header&gt; ... &lt;/header&gt;
+        </code>
+    </pre>
+
+    <p>You can do pretty much the same thing with ARIA, at least as far as assistive technology is concerned.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div role="banner"&gt; ... &lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>The nice thing about the HTML5 element is that its semantic HTML. It provides meaning to the structure of the page, a &lt;div&gt; element does not do this. If a browser doesn't support HTML5, but does support ARIA, we can use both. It maybe odd to use HTML5 if some browsers may not support it, but over time, browsers will support HTML5.</p>
+
+    <p>It is always recommended to avoid using ARIA attributes, if possible.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;header role="banner"&gt; ... &lt;/header&gt;
+        </code>
+    </pre>
+
+    <p>If the page is rendering in an older browser that doesn't know what &lt;header&gt; is, it will still render the element. Browsers render all unknown elements, such as HTML5 elements in older browsers, inline. &lt;header&gt; is a block element in HTML5, so you'll want to use it that way. Give all your HTML5 elements display: block in your CSS stylesheet, to make sure you're covered in older browsers. This can be placed within your reset stylesheet.</p>
+
+    <p>Note: IE11 does not recognise the &lt;main&gt; HTML element. So as described, set this element to have the display property of block, and this element will then no-longer be rendered as inline within IE11.</p>
+
+    <p>HTML5 provides support for ARIA attributes within the specification. Just ensure your HTML DOCTYPE is set to HTML5.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+        </code>
+    </pre>
+
+    <p>Here are some of the HTML elements and their associated ARIA role attributes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;header role="banner"&gt; ... &lt;/header&gt;
+&lt;nav role="navigation"&gt; ... &lt;/nav&gt;
+&lt;footer role="contentinfo"&gt; ... &lt;/footer&gt;
+&lt;aside role="complementary"&gt; ... &lt;/aside&gt;
+
+&lt;!-- No ARIA role equivilent attribute --"&gt;
+&lt;article&gt; ... &lt;/article&gt;
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
