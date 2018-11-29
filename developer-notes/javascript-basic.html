@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- https://medium.com/@mattbasile/matts-lambda-minute-an-intro-to-javascript-variables-objects-and-arrays-93479541c6ad -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -100,6 +102,162 @@
 <span class="token-keyword">var</span> quantity = <span class="token-number-value">3</span>;
         </code>
     </pre>
+
+    <h3>var</h3>
+
+    <p>The var declaration can be used to assign any unique variable a value. However, the usage of var comes with some rules.</p>
+
+    <p>A var is mutable, meaning we can adjust the value of var whenever we'd like. For example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var name = "Dan";
+name = "Matt";
+
+console.log(name);      // Matt
+        </code>
+    </pre>
+
+    <p>This flexibility is great, but can be dangerous. That's because var can be overwritten, as this next example show.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var name = "Dan";
+var name = "Matt";
+
+console.log(name);      // Matt
+        </code>
+    </pre>
+
+    <p>This example might look the same, but notice how we've used the var declaration again to reassign our values. This may not seem like a huge deal, but imagine we've written a program with thousands of lines of code and we then accidentally reuse the same var name. Our whole program may break.</p>
+
+    <p>When we use variables we want them to be associated with a certain aspect of our code. Whether that's a function, a block, or globally, we don't want our variables leaking to other parts of our code.</p>
+
+    <p>var is functioned scoped, meaning their scope is contained to the function that they're declared in.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function name() {
+    var first = "Dan";
+}
+
+console.log(first);     // ReferenceError: first is not defined
+        </code>
+    </pre>
+
+    <p>We are unable to access the variable outside of the function. This is good as we want our function variables to be unique to the functions we declare them in. However, var is not block scoped meaning if a block is invoked, using { }, the var we declare is not limited to the block it's defined in.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var name = "Matt";
+
+if(true) {
+    var name = "Dan";   // Variable reassigned in block
+}
+
+console.log(name);     // Dan
+        </code>
+    </pre>
+
+    <p>Above, we see our global variable reassigned in a block. This is not ideal. If we needed our global variables to remain constant, but everytime a block appeared it got reassigned, it wouldn't be good.</p>
+
+    <h3>let</h3>
+
+    <p>let is similar to var, but it has resolved some of it's issues.</p>
+
+    <p>let is great because its values are mutable and it will not allow us to overwrite it. JavaScript won't run our code if we try to overwrite. This is super useful if we accidentally reuse a variable name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let name = "Dan";
+let name = "Matt";  // Uncaught SyntaxError: Identifier 'name' has already been declared
+        </code>
+    </pre>
+
+    <p>If we want to change the content of a let variable, we can follow this example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let name = "Dan";
+name = "Matt";
+
+console.log(name);      // Matt
+        </code>
+    </pre>
+
+    <p>As long as we don't rewrite the whole variable, we can reassign a value by just targeting the unique variable name.</p>
+
+    <p>Unlike var, let is block scoped. When declared inside a { } it will not leak out. The variable in the block is totally ignored and the global scope only responds to global variables.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let name = "Dan";
+
+if(true) {
+    let name = "Matt";
+}
+
+console.log(name);     // Dan
+        </code>
+    </pre>
+
+    <p>We can show this as a function also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let name = "Dan";
+
+function test() {
+    let name = "Matt";
+}
+
+console.log(name);     // Dan
+        </code>
+    </pre>
+
+    <p>Our variables are stuck to their scope, which is exactly where we want them.</p>
+
+    <h3>const</h3>
+
+    <p>const allows us to assign a value to a variable and keep it constant no matter what. It is not mutable and it cannot be overwritten.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const name = "Dan";
+
+const name = "Matt";    // Uncaught SyntaxError: Identifier 'name' has already been declared
+
+name = "Bob";   // Uncaught TypeError: Assignment to constant variable
+        </code>
+    </pre>
+
+    <p>Once we declare it, its here to stay. const is block scoped, meaning that it is locked to its declared area.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const name = "Dan";
+
+if(true) {
+    const name = "Matt";
+    const nickname = "Big";
+}
+
+console.log(name);      // Dan
+console.log(nickname);      // Uncaught ReferenceError: nickname is not defined
+        </code>
+    </pre>
+
+    <p>This power is great for variables we don't want to disturb and need to remain constant throughout our application. It is often better to declare your variables as const for as long as possible, that way we don't leave variables susceptible to mutability throughout our code. For those moments when we want mutability, we should use let.</p>
 
     <h2>Variable Scope</h2>
 
