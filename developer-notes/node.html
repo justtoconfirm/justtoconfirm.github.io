@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - NodeJS</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://stackify.com/learn-nodejs-tutorials/ -->
+<!-- https://hackernoon.com/how-to-use-nodejs-without-frameworks-and-external-libraries-97eb6acac9e3 -->
+<!-- https://www.tutorialspoint.com/nodejs/index.htm -->
+<!-- https://nodejs.org/en/ -->
+<!-- https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786 -->
+<!-- https://medium.freecodecamp.org/the-definitive-node-js-handbook-6912378afc6e -->
+<!-- https://www.tutorialspoint.com/nodejs/nodejs_restful_api.htm -->
+<!-- https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f47 -->
+<!-- https://hackernoon.com/9-npm-packages-to-explore-in-your-next-node-js-application-2018-ec4aac0ca723 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>NodeJS</h1>
+
+    <p>NodeJS, also known as Node or Node.js, is defined as a dynamic, cross-platform and open-source JavaScript framework or runtime environment that is built on the Google Chrome V8 JavaScript engine. The V8 engine is built in C++. Its job is to convert JavaScript code into machine code. NodeJS, developed by Ryan Dahl in 2009, was initially implemented as a client-side scripting language. Now, it is used to execute JavaScript code and scripts that run server-side to create dynamic web pages/applications.</p>
+
+    <p>The Node run-time environment includes everything you may need to execute a program written in JavaScript.</p>
+
+    <p>Unlike PHP, there is no separation between the web server and code and we do not have to customise large configuration files to get the behaviour we want. With Node, we can create the web server, customise it, and deliver content. All this can be done at code level.</p>
+
+    <p>For example, NodeJS could be combined with a React to build a web application. React and Redux can be used to build the frontend, NodeJS with ExpressJS used for the backend, and MongoDB as the database.</p> 
+
+    <p>To check the version of Node installed, open your terminal.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node --version
+        </code>
+    </pre>
+
+    <p>Create a JavaScript file named main.js on your machine. Within this file, add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log("Hello, World");
+        </code>
+    </pre>
+
+    <p>Now use Node to execute the main.js file to see the result. This should be output within your terminal.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node main.js
+        </code>
+    </pre>
+
+    <h2>NPM &amp; Node Modules</h2>
+
+    <p>NPM stands for Node Package Manager. It is the largest software package library in the world, with over 600,000 packages. The NodeJS installation comes with a Command Line Interface (CLI) for NPM which allows developers to interact with packages locally on their machines.</p>
+
+    <p>The Node Package Manager (NPM) provides two main functionalities:</p>
+
+    <ul>
+        <li>An online repository for Node packages/modules which are searchable.</li>
+        <li>A command line utility that allows Node packages/modules to be installed/managed.</li>
+    </ul>
+
+    <p>NPM came bundled with Node following version 0.6.3 and to verify the vesion of NPM installed, open the terminal to see the result.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm --version
+        </code>
+    </pre>
+
+    <h3>The package.json file</h3>
+
+    <p>Before you can install an NPM package, you may need a package.json file to be created.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm init -y
+        </code>
+    </pre>
+
+    <h3>Installing Packages/Modules</h3>
+
+    <p>The require directive is used to load Node modules. For instance, say we want to install the Express (Express.js) framework module. Express is a web application framework that wraps a NodeJS web server. It offers a simple API, middleware, and routing. Express can be used for building RESTful APIs, serving single page applications (SPA) and serving static content (HTML, images, etc.).</p>
+
+    <p>Express has detailed <a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer">documentation</a> on the main website.</p>
+
+    <p>We first use NPM to install the module:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install express
+        </code>
+    </pre>
+
+    <p>Now, we can use this module in your JavaScript file using the require directive:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var express = require('express');
+        </code>
+    </pre>
+
+    <p>By default, NPM installs any dependency in local mode. Here local mode refers to the package being installed within the node_modules directory. Globally installed packages/dependencies are stored in the system directory.</p>
+
+    <p>If we wanted, as an example, to install Express globally we just need to add a flag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install express -g
+        </code>
+    </pre>
+
+    <p>It is usually recommended, where possible, to avoid installing packages globally. Ideally, we should install Express as a dependency:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install express --save
+        </code>
+    </pre>
+
+    <p>This will then be listed as a dependency within your package.json file and Express will be installed within the node_modules directory within your project folder.</p>
+
+    <h3>NPM tools</h3>
+
+    <p>We can use the terminal to list down all the locally installed modules.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm ls
+        </code>
+    </pre>
+
+    <h2>A Sample NodeJS application</h2>
+
+    <p>The most common NodeJS example of 'Hello World', is a simple web server. To run the following code, create a file named server.js and save the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const http = require('http')
+
+const hostname = '127.0.0.1'
+const port = 3000
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('Hello World\n')
+})
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`)
+})
+        </code>
+    </pre>
+
+    <p>To run this snippet, open your terminal.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node server.js
+        </code>
+    </pre>
+
+    <p>The simple server will be running. Open <a href="http://127.0.0.1:3000" target="_blank" rel="noopener noreferrer">http://127.0.0.1:3000</a> to view the simple 'Hello World' example in your browser.</p>
+
+    <p>To stop the server, use the keyboard shortcut of CTRL + C</p>
+
+    <p>In this example, we are using the http module that Node includes. The createServer() method of http creates a new HTTP server and returns it. The server is set to listen on a specified port and hostname. When the server is ready, the callback function is called, in this case informing us that the server is running.</p> 
+</main>
+
+</body>
+</html>
