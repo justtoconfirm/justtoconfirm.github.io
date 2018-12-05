@@ -16,6 +16,7 @@
 <!-- https://medium.freecodecamp.org/get-pro-with-react-setstate-in-10-minutes-d38251d1c781 -->
 <!-- https://daveceddia.com/open-modal-in-react/ -->
 <!-- https://reactjs.org/docs/handling-events.html -->
+<!-- https://medium.com/@deedee8/what-is-state-in-react-7e4ba938df23 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -39,7 +40,7 @@
 
     <p>React components let you split the user interface (UI) into independent, reusable pieces, so you can think about each piece in isolation. Conceptually, components are like JavaScript functions. They accept inputs - called "props" - and return React elements describing what should appear on screen.</p>
 
-    <p>At the heart of every React component is its "state", an object that determines how that component renders and behaves. This allows you to create components that are dynamic and interactive.</p>
+    <p>At the heart of every React component is its "state", an object that determines how that component renders and behaves. This allows you to create components that are dynamic and interactive. This JavaScript object stores the dynamic data of components and enables a component to keep track of changes between renders. Because state is dynamic, it is reserved for interactivity so its not ideal for static React project.</p>
 
     <p>Application UI can be dynamic and change over time. This is why state was created. State allows React components to change in response to user actions, network responses, and anything else which may occur.</p>
 
@@ -47,7 +48,54 @@
 
     <p>The React library also includes the setState API method. This allows the user to define and manipulate state.</p>
 
+    <p>Components defined as classes have some additional features. Local state is exactly that, a feature available only to classes. State can only be used within a class and usually the only place where you can assign this.state is the constructor.</p>
+
+    <p>Here is a brief introductory example below, we will go through this in more detail throughout the notes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+class Greeting extends React.Component {
+    constructor() {
+        super(); 
+        this.state = {
+            name: 'John Smith'
+        }
+    }
+
+    render() {
+        return &lt;h1&gt;Hello, my name is { this.state.name }&lt;/h1&gt;;
+    }
+}
+        </code>
+    </pre>
+
+    <p>Now you can use state without a constructor by using Property initializers which is a feature introduced recently.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+class Greeting extends React.Component {
+    state = {
+        name: 'John Smith'
+    }
+  
+    render() {
+        return &lt;h1&gt;Hello, my name is { this.state.name }&lt;/h1&gt;;
+    }
+}
+        </code>
+    </pre>
+
+    <p>State is managed from within the component, similar to how variables are declared within a function, they are then local (local state). This means that state cannot be accessed and modified from outside the component and can only be used inside the component.</p>
+
     <h2>setState()</h2>
+
+    <p>The setState() method schedules an update to the component's state object. When the state changes, the component responds by re-rendering.</p>
 
     <p>There are a number of things to consider when using the setState() method in React.</p>
 
@@ -191,6 +239,21 @@ export default ToggleButton;
     </pre>
 
     <p>We are exporting this component as a JavaScript module.</p>
+
+    <h2>Data Flows Down</h2>
+
+    <p>Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn't care whether a component is defined as a function or a class. Local state is not accessible to any component other than the one that owns and sets it. This is why state is often called local or encapsulated.</p>
+
+    <p>A component may choose to pass its state down as props to its child components. In this example, the Component would receive the date in its props:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;Component date={this.state.date} /&gt;
+        </code>
+    </pre>
+
+    <p>State is optional. Since state increases complexity a component without state is preferable. Therefore, you should try to reduce the number of stateful components, if possible.</p>
 </main>
 
 </body>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React Hooks</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://reactjs.org/docs/hooks-intro.html -->
+<!-- https://scotch.io/tutorials/getting-started-with-react-hooks -->
+<!-- https://www.taniarascia.com/crud-app-in-react-with-hooks/ -->
+<!-- https://www.taniarascia.com/getting-started-with-react/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React Hooks</h1>
+
+    <p>Hooks are a new feature within React that lets you use state, lifecycle, and other React features, without the need to write a class. This allows us to add features from React classes to functional components. This doesn't mean we have to stop using classes, it just gives us more ways to code using React. Currently, Hooks is only available in React 16.7.0 alpha, so this is the version of React you will need to install should you want to test Hooks for yourself.</p>
+
+    <p>React can be installed as a dependency using NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react@16.7.0-alpha.2
+        </code>
+    </pre>
+
+    <h3>Current Components</h3>
+
+    <p>Lets demonstrate how components are created currently in React. To begin, a simple functional component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const Example = () => {
+    return &lt;div&gt;I'm a simple component&lt;/div&gt;
+}
+        </code>
+    </pre>
+
+    <p>And now a class component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Example extends Component {
+    render() {
+        return &lt;div&gt;I'm a class component&lt;/div&gt;
+    }
+}
+        </code>
+    </pre>
+
+    <h2>useState()</h2>
+
+    <p>A new function within React, useState(), is the first "Hook". Here is an example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { useState } from 'react';
+
+function Example() {
+    // Declare a new state variable, which we'll call "count"
+    const [count, setCount] = useState(0);
+
+    return (
+        &lt;div&gt;
+            &lt;p&gt;You clicked {count} times&lt;/p&gt;
+            &lt;button onClick={() => setCount(count + 1)}&gt;Click me&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+        </code>
+    </pre>
+
+    <p>This example renders a counter. When you click the button, it increments the value.</p>
+
+    <h2>Multiple State Hooks</h2>
+
+    <p>We can use setState() multiple times in the same function as this next example demonstrates.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { useState } from 'react';
+
+function AllTheThings() {
+    const [count, setCount] = useState(0);
+    const [products, setProducts] = useState([{ name: 'Surfboard', price: 100 }]);
+    const [coupon, setCoupon] = useState(null);
+
+    return &lt;div&gt;{/_ use all those things here _/}&lt;/div&gt;;
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
