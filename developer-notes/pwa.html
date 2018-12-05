@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - PWA</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/ -->
+<!-- https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>PWA (Progressive Web App)</h1>
+
+    <p>When testing on a desktop, using Chrome, you can turn the appropriate flags on that will display the prompt to install the app when you visit the site. For example, enable flags in Chrome by using the URL into Chrome.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+chrome://flags/
+
+chrome://flags/#enable-app-banners
+        </code>
+    </pre>
+
+    <p>The App Banners flag will enable to display of Progressive Web App banners, which prompt a user to add a web add to their shelf.</p>
+
+    <h3>Things to consider</h3>
+
+    <ul>
+        <li>Use &lt;link rel="preload"&gt; to tell your browser to load a resource you know you'll eventually need. This is a <a href="https://w3c.github.io/preload/?utm_source=syndicate&utm_medium=post&utm_campaign=scotch-jun172510" target="_blank" rel="noopener noreferrer">W3C Standard Specification</a>.</li>
+        <li>Use HTTP/2 and server push to "push" assets to the browser without the user having to ask for them.</li>
+        <li>Use code-splitting and lazy-loading for granular loading of application pages/features.</li>
+    </ul>
+</main>
+
+</body>
+</html>
