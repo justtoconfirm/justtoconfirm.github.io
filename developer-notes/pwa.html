@@ -56,6 +56,23 @@ chrome://flags/#enable-app-banners
         <li>Use HTTP/2 and server push to "push" assets to the browser without the user having to ask for them.</li>
         <li>Use code-splitting and lazy-loading for granular loading of application pages/features.</li>
     </ul>
+
+    <h2>Manifest</h2>
+
+    <p>There are two main steps to turning a web app into a Progressive Web App (PWA), adding a Manifest and adding a ServiceWorker. The manifest file is a JSON file that describes our application.</p>
+
+    <p>To include the manifest file in your application, open the HTML document and add the following line of code just before the closing &lt;/head&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="manifest" href="./manifest.json"&gt;
+        </code>
+    </pre>
+
+    <p>This will load the manifest file and identify our site as an application to the browser.</p>
+
+    <p>You will need a ServiceWorker to allow the app to be installed.</p>
 </main>
 
 </body>
