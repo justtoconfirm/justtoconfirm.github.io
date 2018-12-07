@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - PHP Basics</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>PHP Basics</h1>
+
+    <p>PHP (PHP: Hypertext Preprocessor) is an open source, server-side scripting language for making dynamic and interactive web pages. PHP scripts are executed on the server and the result is returned to the browser as plain HTML.</p>
+
+    <p>A PHP file will have the file extension ".php".</p>
+
+    <h2>Basic PHP Syntax</h2>
+
+    <p>A PHP script can be placed anywhere within the document. The script starts with &lt;?php and ends with ?&gt; as this example below demonstrates.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+    // PHP code goes here
+?&gt;
+        </code>
+    </pre>
+
+    <p>If the PHP code is not being placed within a HTML document and is an external file containing just PHP code, then the closing ?&gt; tag is not needed.</p>
+
+    <p>Like JavaScript, PHP statements end with a semicolon ( ; ).</p>
+
+    <h2>Variables</h2>
+
+    <p>Variables are "containers" for storing data/information. In PHP, a variable starts with the $ sign, followed by the name of the variable. Unlike other programming languages, PHP has no command for declaring a variable. It is created the moment you assign a value to it.</p>
+
+    <p>We do not have to tell PHP which data type the variable is. PHP automatically converts the variable to the correct data type based on its value. This is because PHP is a loosely typed language. In other languages such as C, C++, and Java, the developer must declare the name and type of the variable before it can be used.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+$text = "Hello, World";
+$a = 2;
+$b = true;
+
+?&gt;
+        </code>
+    </pre>
+
+    <p>The PHP echo statement is often used to output data to the screen.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+$text = "Hello, World";
+echo "Welcome and $text!";      // Welcome and Hello, World!
+
+?&gt;
+        </code>
+    </pre>
+
+    <p>The following example will produce the same output as the example above:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+$text = "Hello, World";
+echo "Welcome and " . $text . "!";      // Welcome and Hello, World!
+
+?&gt;
+        </code>
+    </pre>
+
+    <p>The following example will output the sum of two variables:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+$x = 5;
+$y = 4;
+echo $x + $y;   // 9
+
+?&gt;
+        </code>
+    </pre>
+
+    <h2>Functions</h2>
+
+    <p>The real power of PHP comes from its functions. Besides the built-in functions in PHP, we can create our own functions.</p>
+
+    <p>A function is a block of statements that can be used repeatedly in a program. It will not be executed immediately on page load, but can be executed by a call to the function.</p>
+
+    <p>A user-defined function declaration starts with the word 'function'. It is recommended to name the function with a name that reflects what the function does.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function functionName() {
+    // Code to be executed
+}
+        </code>
+    </pre>
+
+    <p>We can then call the function, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+functionName();
+        </code>
+    </pre>
+
+    <p>Information can be passed to functions through arguments. An argument is just like a variable. Arguments are specified after the function name, when it is being called, and this can then be passed into the function parameters.</p>
+
+    <p>The following example has a function with one parameter - $fname. When the function is called, we also pass along a name and the name can then be used inside the function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+function sayGreeting($name) {
+    echo "Welcome $name. &lt;br/&gt;";
+}
+
+// Call the function
+sayGreeting("Dan");
+sayGreeting("Matt");
+sayGreeting("Cassie");
+
+?&gt;
+        </code>
+    </pre>
+
+    <p>The following example has a function with two parameters.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;?php
+
+function sayGreeting($name, $surname) {
+    echo "Welcome $name $surname. &lt;br/&gt;";
+}
+
+// Call the function
+sayGreeting("Dan", "Smith");
+sayGreeting("Matt", "Smith");
+sayGreeting("Cassie", "Doe");
+
+?&gt;
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
