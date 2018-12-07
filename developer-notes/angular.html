@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Angular</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://angular.io/guide/quickstart -->
+<!-- https://angular.io/guide/architecture-components -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Angular</h1>
+
+    <h2>Install &amp; Getting Started</h2>
+
+    <p>Before you begin, make sure your development environment includes NodeJS and NPM (Node Package Manager). Angular requires NodeJS version 8.x or 10.x</p>
+
+    <p>We use the Angular CLI (Command Line Interface) to create projects, generate application and library code. We also use Angular CLI for a variety of development tasks such as testing, bundling, and deployment.</p>
+
+    <p>The official Angular documentation recommends installing the Angular CLI globally.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @angular/cli -g
+        </code>
+    </pre>
+
+    <h2>Angular Workspace</h2>
+
+    <p>You develop apps in the context of an Angular workspace. A workspace contains the files for one or more projects. A project is the set of files that comprise an app.</p>
+
+    <p>To create a new workspace and initial app project, run the following command in the terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng new my-app
+        </code>
+    </pre>
+
+    <p>The ng new command prompts you for information about features to include in the initial app project. Angular CLI will install the necessary Angular npm packages and other dependencies. The following workspace will be created:</p>
+
+    <ul>
+        <li>A new workspace, with a root folder named my-app</li>
+        <li>An initial skeleton app project, also called my-app, within the src subfolder</li>
+        <li>An end-to-end test project, within the e2e subfolder</li>
+        <li>Related configuration files</li>
+    </ul>
+
+    <h2>Serve the application</h2>
+
+    <p>Angular includes a server, so apps can easily be build and served locally.</p>
+
+    <ul>
+        <li>Go to the workspace folder, my-app</li>
+        <li>Launch the server by using the CLI command 'ng serve', with the --open option.</li>
+    </ul>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd my-app
+$ ng serve --open
+        </code>
+    </pre>
+
+    <p>This will launch the server, watching your files for any changes, and will rebuild the app as changes are made to those files.</p>
+
+    <p>The --open (or -o) option automatically opens your browser to <a href="http://localhost:4200/" target="_blank" rel="noopener noreferrer">http://localhost:4200/</a>.</p>
+
+    <p>Your app should now be running.</p>
+
+    <h2>Components</h2>
+
+    <p>Components are the fundamental building blocks of Angular applications. They display data on the screen, listen for user input, and take action based on input.</p>
+
+    <p>The Angular CLI created the first Angular component, it is the root component and is named app-root</p>
+
+    <p>When the Angular app first loads the page you see is the application shell. The shell is controlled by an Angular component named AppComponent. Open the project in an IDE and navigate to the src/app directory. You'll find the implementation of the shell AppComponent distrubuted over three files:</p>
+
+    <ul>
+        <li>app.component.ts - The component class code, written in TypeScript</li>
+        <li>app.component.html - The component template, written in HTML</li>
+        <li>app.component.css - The component's private CSS styles</li>
+    </ul>
+
+    <h3>Changing the Application Title</h3>
+
+    <p>Open the component class file - app.component.ts - and change the value of the title property. In this example, let's change it to 'My Angular App'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// app.component.ts
+
+title = 'My Angular App';
+        </code>
+    </pre>
+
+    <p>Here is the initial code in-full:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/app/app.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    title = 'My Angular App';
+}
+        </code>
+    </pre>
+
+    <p>You always import the Component symbol from the Angular core library and annotate the component class with @Component. @Component is a decorator function that specifies the Angular metadata for the component. The metadata for a component tells Angular where to get the major building blocks that it needs to create and present the component and its view. In particular, it associates a template with the component. Together, the component and its template describe the view.</p>
+
+    <p>In Angular, the component plays the part of the controller/viewmodel, and the template represents the view.</p>
+
+    <p>A component controls a patch of screen called a view.</p>
+
+    <p>Open the component template file - app.component.html - delete the default template generated by the Angular CLI and replace it with the following line of HTML:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;h1&gt;{{title}}&lt;/h1&gt;
+        </code>
+    </pre>
+
+    <p>The double curly braces are Angular's interpolation binding syntax. This presents the component's title property value inside the HTML header tag.</p>
+
+    <h3>CSS styling</h3>
+
+    <p>The Angular CLI generates an empty styles.css stylesheet. You can add any application-wide styling here.</p>
+
+    <h3>Generating new Components</h3>
+
+    <p>Using the Angular CLI, we can generate new components. For example, lets create a new component called 'testcomponent'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate component testcomponent
+        </code>
+    </pre>
+
+    <p>Angular CLI will create a new folder, src/app/testcomponent, and generates the three files of TestComponent.</p>
+</main>
+
+</body>
+</html>
