@@ -15,7 +15,12 @@
 
 <!-- https://graphql.org/graphql-js/ -->
 <!-- https://graphql.org/graphql-js/graphql-clients/ -->
+<!-- https://medium.com/codingthesmartway-com-blog/creating-a-graphql-server-with-node-js-and-express-f6dddc5320e1 -->
 <!-- https://scotch.io/tutorials/a-practical-graphql-getting-started-guide-with-nodejs -->
+<!-- https://medium.freecodecamp.org/graphql-zero-to-production-a7c4f786a57b -->
+<!-- https://www.prisma.io/blog/how-to-wrap-a-rest-api-with-graphql-8bf3fb17547d -->
+<!-- https://www.baeldung.com/graphql -->
+<!-- https://www.tutorialspoint.com/graphql/graphql_introduction.htm -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -47,9 +52,43 @@
 
     <p>A simple server can be created using Express and express-graphql, a HTTP server middleware.</p>
 
+    <h3>Summary</h3>
+
+    <ul>
+        <li>GraphQL was created in 2012, introduced in 2015 by Facebook.</li>
+        <li>It was developed as an alternative to the existing REST standard.</li>
+        <li>Reduces multiple calls to the server, unlike REST.</li>
+        <li>REST returns a bunch of data you don't event use, GraphQL reduces this.</li>
+        <li>Ask the servers for exactly what you want, and get exactly that back.</li>
+    </ul>
+
+    <h3>Example</h3>
+
+    <p>Lets consider an object Student with the attributes of 'id', 'firstName', 'lastName', and 'collegeName'. Suppose a mobile application needs to fetch only the 'firstName' and 'id'. If we design a REST endpoint like /api/v1/students, it will end up fetching data for all the fields of the student object. This means data is over fetched by the RESTful service. This problem can be solved using GraphQL.</p>
+
+    <p>Conside the GraphQL query given below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    students {
+        id
+        firstName
+    }
+}
+        </code>
+    </pre>
+
+    <p>This will return values only for the 'id' and 'firstname' fields. The query will not fetch values for other attributes of the student object.</p>
+
+    <p>While typical REST APIs require loading from multiple URLs, GraphQL APIs
+
     <h2>A Simple Query</h2>
 
     <p>Before getting started, you should have Node version 6 installed. We will be implenting the GraphQL specification designed for running GraphQL in a Node.js environment - named GraphQL.js.</p>
+
+    <p>When building a GraphQL server, it is only necessary to have one URL for all data fetching and mutating. A client can request a set of data by sending a query string, describing what they want to the server.</p>
 
     <p>Begin by creating a new project directory with a package.json file. We will then use NPM (Node Package Manager) to install GraphQL as a dependency.</p>
 
