@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Testing & TDD</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://airbnb.io/enzyme/docs/installation/react-16.html -->
+<!-- https://jestjs.io/ -->
+<!-- https://marmelab.com/blog/2015/06/24/jest-in-practice.html -->
+<!-- https://medium.com/wehkamp-techblog/unit-testing-your-react-application-with-jest-and-enzyme-81c5545cee45 -->
+<!-- https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Testing &amp; TDD (Test Driven Development)</h1>
+
+    <h2>Jest</h2>
+
+    <p>Jest is the de facto unit testing framework for React. It is provided and used by Facebook themselves. The main advantage for using Jest is that it has zero configuration. It can be installed quickly (included with CRA - create-react-app) and is simple to use. Place you tests, files with '.js' extension, in a __tests__ folder, or name your test files with a '.spec.js' or '.test.js' extension. Whatever you prefer, Jest will find and run your tests.</p>
+
+    <p>Jest acts as a test runner, assertion library, and mocking library. Jest also provides Snapshot testing. This is the ability to create a rendered 'snapshot' of a component to compare it to a previously saved 'snapshot'. The test will fail if the two do not match. Snapshots will be saved for you beside the test file that created them in an auto-generated __snapshots__ folder.</p>
+
+    <h3>Install Jest</h3>
+
+    <p>Install Jest as a devDependency using NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install jest --save-dev
+        </code>
+    </pre>
+
+    <h2>Enzyme</h2>
+
+    <p>Enzyme is a testing utility created by Airbnb that can be used together with Jest. Enzyme makes it easier to assert, manipulate, and traverse your React components' output. This adds some additional utility methods for rendering a component, find elements, and interacting with elements.</p>
+
+    <p>Jest can be used with other JavaScript applications, but Enzyme only works with React. If Jest is not used, Enzyme must be paired with another test runner.</p>
+
+    <p>Jest can be used without Enzyme to render components and test with snapshots, Enzyme simply adds additional functionality.</p>
+
+    <p>Enzyme is not included with the CRA (create-react-app) tool, so it must be installed in addition.</p>
+
+    <h3>Install Enzyme</h3>
+
+    <p>If you are wanting to use Enzyme with React 16, simply install it as a devDependency with NPM (Node Package Manager). This will install both Enzyme and Enzyme Adapter.</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install enzyme enzyme-adapter-react-16 --save-dev
+        </code>
+    </pre>
+
+    <p>When you try to run tests following installation, an error may occur within the terminal. You may need to configure Enzyme so it can be used with React 16 and Jest.</p>
+
+    <p>In the 'src/js' directory of your application, create a file named 'setupTests.js' and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/setupTests.js
+
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({
+    adapter: new Adapter()
+})
+        </code>
+    </pre>
+
+    <p>Next, update the package.json file to include a reference to the path of this config file when running Jest.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"jest": {
+    "setupTestFrameworkScriptFile": "&lt;rootDir&gt;/src/js/setupTests.js"
+},
+        </code>
+    </pre>
+
+    <p>We should already have a build script within our package.json file to run tests.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "jest"
+},
+        </code>
+    </pre>
+
+    <p>Once everything has been done, the tests can be executed by running the build script in the terminal.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <h2>Mocha</h2>
+
+    <p>Mocha is a JavaScript test framework.</p>
+
+    <h2>Writing Tests</h2>
+
+    <p>Using Jest it is possible to create a test file for a React component in any directory provided that are named as '.spec.js' or '.test.js'. Jest doesn't require a 'test' directory.</p>
+
+    <p>Once a React component has been built, we can write a simple test. As an example, we can create a simple Button component named 'Button.js' and then write a test file named 'Button.test.js'.</p>
+
+    <p>The test code for the Button component may look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe('&lt;Button/&gt;', () => {
+    it('should render without throwing an error', () => {
+        expect(shallow(&lt;Button/&gt;).find('.btn').exists()).toBe(true)
+    })
+})
+        </code>
+    </pre>
+
+    <p>Ideally, this should be placed in the same directory as the Button component itself.</p>
+</main>
+
+</body>
+</html>
