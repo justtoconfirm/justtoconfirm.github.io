@@ -18,6 +18,8 @@
 <!-- https://marmelab.com/blog/2015/06/24/jest-in-practice.html -->
 <!-- https://medium.com/wehkamp-techblog/unit-testing-your-react-application-with-jest-and-enzyme-81c5545cee45 -->
 <!-- https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675 -->
+<!-- https://code.tutsplus.com/articles/the-beginners-guide-to-unit-testing-what-is-unit-testing--wp-25728 -->
+<!-- https://www.guru99.com/unit-testing-guide.html -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -38,6 +40,10 @@
 
 <main role="main" id="main">
     <h1>Testing &amp; TDD (Test Driven Development)</h1>
+
+    <h2>Unit Testing</h2>
+
+    <p>Unit testing is the practice of testing certain functions and areas, or units, of our code. This gives us the ability to verify that our functions work as expected. As you begin to write more and more tests, you end up creating a suite of tests that you can run at any time during development.</p>
 
     <h2>Jest</h2>
 
@@ -128,7 +134,146 @@ $ npm run test
 
     <h2>Mocha</h2>
 
-    <p>Mocha is a JavaScript test framework.</p>
+    <p>Mocha is a JavaScript test framework that runs using NodeJS and from within the browser. Jest and Jasmine are alternatives to Mocha. Unlike Jest, Mocha does not have an assertion library, a tool used to verify that things are correct. Assertion libraries such as Expect or Chai can be used with Mocha.</p>
+
+    <h3>Install Mocha</h3>
+
+    <p>Mocha can be installed using NPM (Node Package Manager). It should be installed as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install mocha --save-dev
+        </code>
+    </pre>
+
+    <p>By default, Mocha looks for a 'test' directory containing test files. You may need to create a directory in the root of your application for Mocha to work correctly.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir test
+        </code>
+    </pre>
+
+    <p>The 'test' directory would where we can place all our test files. However, we may want to place our test files near to our components.</p>
+
+    <p>We can continue to have a 'test' directory within the root of our project, but will contain two config file - setup.js and mocha.opts</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+app /
+    test /
+        mocha.opts
+        setup.js
+        </code>
+    </pre>
+
+    <p>The mocha.opts file will look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+test/setup.js
+src/**/*.spec.js
+        </code>
+    </pre>
+
+    <p>The setup.js file will look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const chai = require('chai');
+        </code>
+    </pre>
+
+    <h3>Chai</h3>
+
+    <p>This is assuming that Chai is to be used as the assertion library and has been installed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install chai --save-dev
+        </code>
+    </pre>
+
+    <p>Node has its own built-in assertion module, named Assert, should you not want to use Chai.</p>
+
+    <p>Any test file created for the React components should have the file extension of '.spec.js'. Using this configuration allows us to place the test file(s) in the same directory as our components.</p>
+
+    <p>An example showing a possible file structure:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+app /
+    src/
+        components/
+            1-atoms/
+                input/
+                    Input.js
+                    Input.spec.js
+    test /
+        mocha.opts
+        setup.js
+        </code>
+    </pre>
+
+    <p>As with Jest, we can run Mocha using a simple build script in package.json.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "mocha"
+},
+        </code>
+    </pre>
+
+    <h3>Mocha &amp; ES6</h3>
+
+    <p>Should you want to use JavaScript ES6 syntax within your test files, when using Mocha, you will need to make a few amendments. Babel will need to be setup within your build process and the mocha.opts file will need to be updated to allow for ES6.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+--require babel-register
+
+test/setup.js
+src/**/*.spec.js
+        </code>
+    </pre>
+
+    <p>Next, update the package.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"babel": {
+    "presets": ["env"]
+}
+        </code>
+    </pre>
+
+    <p>And here is an example test file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { assert } from 'chai'
+
+describe('Input', function() {
+   it('test test', function() {
+      // assert function from Chai
+      assert.equal(true);
+   });
+})
+        </code>
+    </pre>
 
     <h2>Writing Tests</h2>
 
