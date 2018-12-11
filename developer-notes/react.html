@@ -16,6 +16,7 @@
 <!-- https://www.codecademy.com/articles/react-setup-i -->
 <!-- https://codepen.io/_danko/pen/EypdyW -->
 <!-- https://www.taniarascia.com/getting-started-with-react/ -->
+<!-- https://reactjs.org/docs/fragments.html -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -314,6 +315,56 @@ render(
     </pre>
 
     <p>You can only render a single component within the render() method. Therefore, to add further React components, we will need to make some changes.</p>
+
+    <h2>React Fragments</h2>
+
+    <p>A common pattern in React is for a component to return multiple elements. Usually this requires the use of &lt;div&gt; elements to be added.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+render() {
+    return (
+        &lt;div&gt;
+            &lt;Component /&gt;
+            &lt;Component /&gt;
+        &lt;/div&gt;
+    )
+}
+        </code>
+    </pre>
+
+    <p>Using React Fragments lets you group a list of children without adding extra nodes to the DOM, as occurs when we use &lt;div&gt; elements.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+render() {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Component /&gt;
+            &lt;Component /&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+        </code>
+    </pre>
+
+    <p>Using Fragment avoids the &lt;div&gt; element from rendering in the DOM. We can also use the shorted syntax if you prefer.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+render() {
+    return (
+        &lt;&gt;
+            &lt;Component /&gt;
+            &lt;Component /&gt;
+        &lt;&gt;
+    )
+}
+        </code>
+    </pre>
 </main>
 
 </body>

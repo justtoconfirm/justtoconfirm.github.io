@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Events</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8 -->
+<!-- https://medium.freecodecamp.org/javascript-closures-simplified-d0d23fa06ba4 -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures -->
+<!-- https://codeburst.io/understanding-javascript-closures-da6aab330302 -->
+<!-- https://stackoverflow.com/questions/111102/how-do-javascript-closures-work -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Closures</h1>
+
+    <p>A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function's variables - a scope chain. Ths is basically what is created when you declare a function within another function.</p>
+
+    <p>Imagine a Russian doll (Matryoshka), an outer doll wouldn't be able to see the inside of an inner doll. The inner doll can see everything. This is a metaphor for scope.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Global scope
+function outer() {
+    // Closure's outer scope
+    function closure() {
+        // Closure's inner scope
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can conclude that the inner function has three scope chains. The first chain allows the inner function to access its own variables. The second, allows it to access the variables and parameters of the outer function. The third, allows it access to the global scope and global variables.</p>
+
+    <p>Each time we add a function, we're adding a new link to the chain.</p>
+
+    <p>By defining a function within another function, we create a closure.</p>
+
+    <p>Closures have access to its outer function scope even after the outer function has returned. This means a closure can remember and access variables and arguments of its outer function even after the function has finished.</p>
+</main>
+
+</body>
+</html>

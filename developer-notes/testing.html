@@ -20,6 +20,13 @@
 <!-- https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675 -->
 <!-- https://code.tutsplus.com/articles/the-beginners-guide-to-unit-testing-what-is-unit-testing--wp-25728 -->
 <!-- https://www.guru99.com/unit-testing-guide.html -->
+<!-- https://medium.freecodecamp.org/test-driven-development-what-it-is-and-what-it-is-not-41fa6bca02a2 -->
+<!-- https://news.codecademy.com/test-driven-development/ -->
+<!-- https://www.bignerdranch.com/blog/why-do-javascript-test-frameworks-use-describe-and-beforeeach/ -->
+
+<!-- https://medium.com/opendoor-labs/testing-react-components-with-jest-a7e8e4d312d8 -->
+<!-- https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c -->
+<!-- https://flaviocopes.com/jest/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -40,6 +47,144 @@
 
 <main role="main" id="main">
     <h1>Testing &amp; TDD (Test Driven Development)</h1>
+
+    <p>The State of JavaScript 2017 survey states that the two most popular JavaScript testing frameworks are Mocha and Jasmine.</p>
+
+    <h2>Group tests using describe()</h2>
+
+    <p>You can create groups of tests, in a single file, using the describe method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+describe('first set', () => {
+    beforeEach(() => {
+        //do something
+    })
+    afterAll(() => {
+        //do something
+    })
+    test(/*...*/)
+    test(/*...*/)
+})
+
+describe('second set', () => {
+    beforeEach(() => {
+        //do something
+    })
+    beforeAll(() => {
+        //do something
+    })
+    test(/*...*/)
+    test(/*...*/)
+})
+        </code>
+    </pre>
+
+    <p>To perform something before each test runs, use beforeEach().</p>
+
+    <p>Just as you could do with the setup, you can perform something after each test runs using afterEach().</p>
+
+    <h2>Shallow Rendering</h2>
+
+    <p>Enzyme provides the ability the "shallow" render a component, only rendering the content of the tested component and not of any child components. This is useful when testing the component in isolation and to prevent the behaviour of its child components from affecting the test. This is the recommended way to test React components (exceptions, of course, apply).</p>
+
+    <h2>Shapshot testing</h2>
+
+    <p>Jest has a snapshot testing functionality which is useful to make sure the UI does not change unexpectedly. In the first run of a snapshot test, the snapshot is stored with the test. In subsequent runs, Jest is able to compare the newly rendered component to the stored snapshot to alert you to any differences.</p>
+
+    <p>This is a quick and simple way to capture unexpected render output, but reviewers need to be careful to check differences between the old and new snapshots. Typically, we have one snapshot test for every component to ensure that it renders as expected.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { shallow } from 'enzyme';
+import Button from './Button';
+
+describe('Button', () => {
+    it('renders correctly', () => {
+        const wrapper = shallow(&lt;Button /&gt;);
+        expect(wrapper).toMatchSnapshot();
+        // On the first run of this test, Jest will generate a snapshot file automatically
+    });
+});
+        </code>
+    </pre>
+
+    <p>We use the enzyme-to-json package as the snapshot serializer in our Jest config. This automatically converts the shallow render into a much more human-readable format for snapshot file(s) and removes extra from the Enzyme shallow wrapper that we don't care about.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install enzyme-to-json --save-dev
+        </code>
+    </pre>
+
+    <p>Example origin snapshot:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+exports[`BaseButton renders correctly 1`] = `
+ShallowWrapper {
+    "complexSelector": ComplexSelector {
+        "buildPredicate": [Function],
+        "childrenOfNode": [Function],
+        "findWhereUnwrapped": [Function],
+    },
+    "length": 1,
+    "node": &lt;div&gt;
+    // ...
+    &lt;/div&gt;,
+    "nodes": Array [
+        // ...
+    ],
+    // and so on
+}
+`
+        </code>
+    </pre>
+
+    <p>Example serialized snapshot using enzyme-to-json:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+exports[`BaseButton renders correctly 1`] = `
+&lt;div&gt;
+    &lt;button&gt;
+        Click me
+    &lt;/button&gt;
+&lt;/div&gt;
+`
+        </code>
+    </pre>
+
+    <h2>Jest Mocks</h2>
+
+    <p>The goal for mocking is to replace something we don't control with something we do.</p>
+
+    <p>For JavaScript, there are great mocking libraries available like Sinon, Jest also provides mocking out of the box.</p>
+
+    <p>The simplest way to create a Mock Function instance is with jest.fn().</p>
+
+    <h2>TDD (Test Driven Development)</h2>
+
+    <p>Test-driven development (TDD) is an approach to programming that encourages developers to write tests of their code before actually writing the code itself.</p>
+
+    <ul>
+        <li>Write only enough of a unit test to fail.</li>
+        <li>Write only enough production code to make the failing unit test pass.</li>
+    </ul>
+
+    <p>The process of TDD can often be summarised like this:</p>
+
+    <ul>
+        <li>Write a test</li>
+        <li>Run the test, this should fail</li>
+        <li>Change the code to make it correct and the test should pass - refactor</li>
+        <li>Repeat the process</li>
+    </ul>
 
     <h2>Unit Testing</h2>
 
