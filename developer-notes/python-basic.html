@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Python Basics</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://pythonbasics.org/functions/ -->
+<!-- https://www.w3schools.com/python/python_classes.asp -->
+<!-- https://docs.python-guide.org/dev/virtualenvs/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Python Basics</h1>
+
+    <p>Python is a general-purpose, interpreted, object-oriented, high-level programming language created by Guido van Rossum. Python is processed at runtime by the interpreter, you do not need to compile your program before executing it. This is similar to PHP.</p>
+
+    <p>Python is an object oriented programming language. Almost everything in Python is an object, with properties and methods.</p>
+
+    <p>To check the version of Python installed, open the terminal and enter the command below.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ python --version
+        </code>
+    </pre>
+
+    <p>Let us write a simple Python program in a script. Python files have the extension '.py'. Type the following code in a file and name it as 'test.py'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+print "Hello, World"
+        </code>
+    </pre>
+
+    <p>Now, in the terminal, run the program.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ python test.py
+        </code>
+    </pre>
+
+    <h2>Install &amp; Setup</h2>
+
+    <p>It is recommended that you install the latest Python 3.x version (Python 3). You may also need pip installed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ pip --version
+        </code>
+    </pre>
+
+    <p>Pipenv is a dependency manager for Python projects, similar to how NPM (Node Package Manager) works with NodeJS. While pip can install Python packages, Pipenv is recommended as its a higher-level tool that simplifies dependency management.</p>
+
+    <p>We use pip to install Pipenv.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ pip install --user pipenv
+        </code>
+    </pre>
+
+    <h2>Variables</h2>
+
+    <p>Python supports different types of variables (datatypes). You do not need to specify the datatype of a variable, you can simply assign any value to a variable. Python will determine the datatype based on the value you assign to the variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+x = 3               # A whole number
+y = 3.14            # A floating number
+name = "Python"     # A string
+
+print(x)
+print(y)
+print(name)
+
+combine = name + " " + name
+print(combine)
+        </code>
+    </pre>
+
+    <p>By convention variables are often camel cased, meaning the first letter is small and the next words are uppercase.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+daysInYear = 365
+daysInMonth = 30
+numberOfFiles = 5
+        </code>
+    </pre>
+
+    <h2>Functions</h2>
+
+    <p>To group sets of code you can use functions. Functions are small parts of repeatable code. They can be seen as executable code blocks and can be used more than once.</p>
+
+    <p>To declare a function in Python, the def keyword is used.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+def currentYear():
+    print('2018')
+
+// Call the function
+currentYear()
+        </code>
+    </pre>
+
+    <p>In this example below, we have a function and parameters x and y. In this example we also use the print() function. The output is passed to the print() function using the return keyword.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+def multiplyTwoNumbers(x, y):
+    return x * y
+
+// Call the function
+print(multiplyTwoNumber(3, 4))
+        </code>
+    </pre>
+
+    <p>Functions can return variables. Sometimes a function makes a calculation of has some output. This can be given to the program with a return statement.</p>
+
+    <h2>Lists</h2>
+
+    <p>List can be seen as a collection that can hold many variables. They resemble physical lists and contain a number of items. They are similar to Arrays in other programming languages.</p>
+
+    <p>Here we are creating an empty list. To define an empty list you should use brackets. Brackets is what tells Python that the object is a list.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+list = []
+        </code>
+    </pre>
+
+    <p>To access an item in a list, add the id (index) between the brackets, such as list[0], list[1], and so on. Python starts counting at zero, that means the first element in the list has an index of zero.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Get the first item from the list
+print(rating[0])
+        </code>
+    </pre>
+
+    <p>If we wanted to get the third item in the list, we would use the index of 2.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Get the third item from the list
+print(rating[2])
+        </code>
+    </pre>
+
+    <p>Here the list contains numerical values:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+ratings = [ 3, 4, 6, 3, 4, 6, 5 ]
+
+// Output the list
+print(ratings)
+        </code>
+    </pre>
+
+    <p>You can interact with the list using a for loop.</p>
+</main>
+
+</body>
+</html>
