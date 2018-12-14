@@ -33,6 +33,85 @@
 <main role="main" id="main">
     <h1>HTML</h1>
 
+    <h2>Simple HTML Template</h2>
+
+    <p>Here is a simple HTML template. Save the file as index.html when creating a new project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Page content here --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h2>Comments</h2>
+
+    <p>The comment tag is used to insert comments into the HTML source code. Comments are not displayed in the browser. Comments can be used to explain your code or used for debugging.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- This is a comment in HTML --&gt;
+        </code>
+    </pre>
+
+    <h2>&lt;!DOCTYPE&gt; Declaration</h2>
+
+    <p>The &lt;!DOCTYPE&gt; declaration must be the very first thing in your HTML document, before the &lt;html&gt; tag. This is not an HTML tag, but an instruction to the web browser about the version of HTML being used.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+        </code>
+    </pre>
+
+    <h2>Title</h2>
+
+    <p>The &lt;title&gt; element defines the title of the document and is a requirement in all HTML documents.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;title&gt;Page Title&lt;/title&gt;
+        </code>
+    </pre>
+
+    <h2>Paragraphs</h2>
+
+    <p>The HTML &lt;p&gt; element defines a paragraph.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;
+        </code>
+    </pre>
+
+    <h2>Abbreviations</h2>
+
+    <p>The &lt;abbr&gt; tag defines an abbreviation or an acronym. They are both shortened versions of something else.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+The &lt;abbr title="World Health Organisation"&gt;WHO&lt;/abbr&gt; was founded in 1948.
+        </code>
+    </pre>
+
     <h2>HTML Entities</h2>
 
     <p>An HTML entity is a piece of text ("string") that begins with an ampersand (&amp;) and ends with a semicolon (;). Entities are frequently used to display reserved characters which would otherwise be interpreted as HTML code, and invisible characters, such as non-breaking spaces. You can use them in place of other characters that are difficult to type with a standard keyboard.</p>
@@ -49,7 +128,29 @@
         </code>
     </pre>
 
-    <h2>Opening links in new windows &amp; tabs</h2>
+    <h2>Links</h2>
+
+    <p>Links are found in nearly all web pages. Links allow users to click their way from page to page. HTML links are hyperlinks. You can click on a link and jump to another document.</p>
+
+    <p>In HTML, links are defined with the &lt;a&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="url"&gt;link text&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>The href attribute specifies the destination address/URL of the link. The link text is the visible part/label on the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="https://www.google.co.uk"&gt;Go to Google&lt;/a&gt;
+        </code>
+    </pre>
+
+    <h3>Opening links in new windows &amp; tabs</h3>
 
     <p>When opening links in new browser windows/tabs, we should apply the 'rel' attribute as a precaution against reverse tabnabbing.</p>
 
