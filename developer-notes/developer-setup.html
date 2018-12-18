@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Developer Setup</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/ -->
+<!-- https://gist.github.com/pksunkara/988716 -->
+<!-- https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup -->
+<!-- https://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line -->
+<!-- https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/ -->
+<!-- https://mediatemple.net/community/products/grid/204644730/using-an-ssh-config-file -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Developer Setup</h1>
+
+    <h2>Terminal Colours: Git Branch</h2>
+
+    <p>Often it can be nice to set the colour scheme for your terminal. When working with Git, it can also be useful to show what Git branch your on. If not already created, begin by creating a .bash_profile dotfile in your home directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .bash_profile
+        </code>
+    </pre>
+
+    <p>The bash_profile is a configuration file for bash shell. When bash is invoked as an interactive login shell it first reads and executes cmmands from the .bash_profile dotfile.</p>
+
+    <p>When you open terminal, in Mac OS, it automatically prompts you with a bash shell. Bash is a unix based shell and is an acronym for Bourne-again shell.</p>
+
+    <p>Open the newly created .bash_profile dotfile and add the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\$(parse_git_branch)\[\033[m\]\$ "
+        </code>
+    </pre>
+
+    <p>You may need to close and reopen the terminal for this to take effect.</p>
+
+    <p>When entering commands into the terminal, many examples will include a leading $ at the start. This is a common convention used to denote what follows as a command to be run. The command does not require $ to be added to the start of a command.</p>
+
+    <h2>Terminal commands</h2>
+
+    <p>Here is a list and descriptions for key terminal commands:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ pwd - print working directory, the current location (working directory)
+
+$ cd - change directory (without directory, takes you to home directory (~))
+$ cd Documents - change directory to the 'Documents' directory
+$ cd .. - from my Documents directory, take me up to my home directory
+
+$ mkdir - make a new directory
+$ mkdir myApp - make a new directory named 'MyApp'
+
+$ touch - make a new empty file
+$ touch MyApp - make a new empty file named 'MyApp'
+
+$ cp - copy a file
+$ mv - move a file
+$ rm - remove a file or directory
+
+$ clear - clear terminal
+        </code>
+    </pre>
+
+    <h2>Setup GitHub</h2>
+
+    <p>The first thing you should do with Git is to set your global configuration. We can do this by running a lot of small commands which update the Git configuration file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git config --global user.name "First Last"
+        </code>
+    </pre>
+
+    <p>Or, we can just create the Git configuration file within the home directory and input it all ourselves.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .gitconfig
+        </code>
+    </pre>
+
+    <p>Here I'll input my name, email, GitHub username and some aliases to be able to type less and do more. This will connect Git to the Mac OS Keychain so I don't have to type my username and password every time I want to push to GitHub.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+[user]
+    name = First Last
+    email = email@email.com
+[github]
+    user = username
+[alias]
+    a = add
+    ca = commit -a
+    cam = commit -am
+    s = status
+    pom = push origin master
+    pog = push origin gh-pages
+    puom = pull origin master
+    puog = pull origin gh-pages
+    cob = checkout -b
+[credential]
+    helper = osxkeychain
+        </code>
+    </pre>
+
+    <p>With the above aliases, I can run 'git s' instead of 'git status', for example.</p>
+
+    <h2>Keychain</h2>
+
+    <p>The Keychain in Mac OS is Apple's password management system. A keychain can store all your passwords for applications, servers, and websites. It was introduced in Mac OS 8.6 and has been included in all subsequent versions.</p>
+</main>
+
+</body>
+</html>
