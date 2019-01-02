@@ -19,6 +19,10 @@
 <!-- https://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line -->
 <!-- https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/ -->
 <!-- https://mediatemple.net/community/products/grid/204644730/using-an-ssh-config-file -->
+<!-- https://natelandau.com/my-mac-osx-bash_profile/ -->
+<!-- https://medium.com/@tzhenghao/a-guide-to-building-a-great-bashrc-23c52e466b1c -->
+<!-- https://www.applegazette.com/mac/pro-terminal-commands-editing-bash_profile/ -->
+<!-- https://blog.macsales.com/39362-tech-101-introduction-to-the-macs-terminal-app-part-two -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -39,6 +43,63 @@
 
 <main role="main" id="main">
     <h1>Developer Setup</h1>
+
+    <h2>Bash Profile</h2>
+
+    <p>The .bash_profile is a file that is hidden on Mac OS (formally OS X) and loaded before the Terminal loads your shell environment. It contains all the startup configuration and preferences for your command line interface. Within it, you can change your terminal prompt, change the colours of the text, add aliases to functions, and much more.</p>
+
+    <p>This file is often called a 'dot file' because of the '.' at the beginning of its name. You can view all invisible files in the Terminal by typing:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ls -al
+        </code>
+    </pre>
+
+    <h2>Setting Prompt</h2>
+
+    <p>One of the first customisations of the Bash shell is usually performed to change the default shell prompt to something more personal. The command to insert is:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+PS1=""
+        </code>
+    </pre>
+
+    <p>Between the quotes is where the customised prompt will be placed.</p> 
+
+    <h2>Setting Alias</h2>
+
+    <p>You can set an alias to make commands shorter for frequently used functions.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+alias q='exit'
+alias pd='pwd'
+
+alias root='cd /'
+alias home='cd ~'
+alias dtop='cd ~/desktop'
+
+# Example project directories
+alias jsprojects='cd ~/projects/jsprojects'
+
+# Example Git
+alias g='git'
+alias gs='git status'
+alias com='git commit -m'
+alias clone='git clone'
+alias st='git stash'
+alias add='git add .'
+        </code>
+    </pre>
+
+    <h2>PATH</h2>
+
+    <p>The PATH is an environmental variable that tells your shell where to look to execute files.</p>
 
     <h2>Terminal Colours: Git Branch</h2>
 
@@ -72,6 +133,26 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\$(parse_git
     <p>You may need to close and reopen the terminal for this to take effect.</p>
 
     <p>When entering commands into the terminal, many examples will include a leading $ at the start. This is a common convention used to denote what follows as a command to be run. The command does not require $ to be added to the start of a command.</p>
+
+    <h2>Editing .bash_profile using nano</h2>
+
+    <p>To edit .bash_profile using nano, invoke the following command in the Terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ nano ~/.bash_profile
+        </code>
+    </pre>
+
+    <p>Any changes you make to the .bash_profile will be applied next time you launch the terminal. If you want to apply them immediately, run the command below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ source ~/.bash_profile
+        </code>
+    </pre>
 
     <h2>Terminal commands</h2>
 

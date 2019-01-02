@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - jQuery</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>jQuery</h1>
+
+    <p>jQuery is a lightweight JavaScript library. It takes a lot of common tasks that require many lines of JavaScript code, and wraps them into methods that you can call with a single line of code. jQuery also simplifies a lot of advanced features of JavaScript, like AJAX calls and DOM manipulation. In addition, jQuery plugins are available for additional functionality.</p>
+
+    <p>With jQuery you select (query) HTML elements and perform 'actions' on them.</p>
+
+    <h2>Setup</h2>
+
+    <p>jQuery can be downloaded from the official <a href="https://jquery.com/" target="_blank" rel="noopener noreferrer">jQuery website</a>.</p>
+
+    <p>There are two versions of jQuery available:</p>
+
+    <ul>
+        <li>Production - this is for you web page/website, its been minified and compressed.</li>
+        <li>Development - this is for testing and development, its uncompressed and readable code.</li>
+    </ul>
+
+    <p>The jQuery library is a single JavaScript file that is referenced in your HTML. I usually download the jQuery library and place the &lt;script&gt; tag before the closing &lt;body&gt; element within the HTML code to include the library.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="js/jquery.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+        </code>
+    </pre>
+
+    <p>Any jQuery plugins that are then used need to be included below the jQuery script element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="js/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery-plugin.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+        </code>
+    </pre>
+
+    <p>You may also see when using the production version of the library, the jQuery includes the version number and has a slightly different file name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="js/jquery-3.3.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery-plugin.min.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+        </code>
+    </pre>
+
+    <p>If you don't want to download and host jQuery yourself, you can include it from a CDN (Content Delivery Network). Both Google and Microsoft host jQuery. Examples can be found on <a href="https://code.jquery.com/" target="_blank" rel="noopener noreferrer">https://code.jquery.com/</a>.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+        </code>
+    </pre>
+
+    <h2>Document Ready</h2>
+
+    <p>jQuery methods are often placed inside a document ready event. This is to prevent any jQuery code from running before the document is finished loading (is ready). It is good practice to wait for the document to be fully loaded and ready before working with it. This also allows you to have your JavaScript code before the &lt;body&gt; element of your document, in the &lt;head&gt; section.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$(document).ready(function() {
+    // jQuery methods go here ...
+});
+        </code>
+    </pre>
+
+    <p>The jQuery team have also created a shorter method for the document ready event:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$(function() {
+    // jQuery methods go here ...
+});
+        </code>
+    </pre>
+
+    <p>Here are some examples of actions that can fail if methods are run before the document is fully loaded:</p>
+
+    <ul>
+        <li>Trying to hide an element that is not yet created.</li>
+        <li>Trying to get the size of an image that is not yet loaded.</li>
+    </ul>
+
+    <h2>The jQuery Syntax</h2>
+
+    <p>The jQuery syntax is ideal for selecting HTML elements and performing some action on the element(s).</p>
+
+    <ul>
+        <li>The $ sign to define/access the jQuery library.</li>
+        <li>A (selector) to "query" (find) HTML element(s).</li>
+        <li>A jQuery action() to be performed on the element(s).</li>
+    </ul>
+
+    <p>Here are a few examples:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$(this).hide();         // Hides the current element
+
+$("p").hide();          // Hides all &lt;p&gt; elements
+
+$(".myclass").hide();   // Hides all elements with the class 'myclass'
+
+$("#mytest").hide();    // Hides the element with the id of 'mytest'
+        </code>
+    </pre>
+
+    <h2>jQuery Selectors</h2>
+
+    <p>jQuery selectors allow you to select and manipulate HTML element(s). They are used to "find" (select) HTML elements based on their name, id, class, type, or attributes. All selectors in jQuery start with the dollar sign ($) followed by parenthesis.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$()
+        </code>
+    </pre>
+
+    <p>The jQuery element selector selects elements based on the name of the element. You can select all &lt;p&gt; elements on a page like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$("p")
+        </code>
+    </pre>
+
+    <p>In this example, when a user clicks on a button, all &lt;p&gt; elements will be hidden:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$(document).ready(function() {
+    $("button").click(function() {
+        $("p").hide();
+    });
+});
+        </code>
+    </pre>
+
+    <h2>jQuery Events</h2>
+
+    <p>jQuery is tailor-made to respond to events in an HTML page. The actions that a web page can respond to are called events. An event represents the precise moment when something happens. Examples include:</p>
+
+    <ul>
+        <li>Moving the mouse cursor over an element.</li>
+        <li>Selecting a radio button.</li>
+        <li>Clicking on an element.</li>
+    </ul>
+
+    <p>In jQuery, most <abbr title="Document Object Model">DOM</abbr> events have an equivalent jQuery method. To assign a click event to all paragraphs on a page, you can do this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$("p").click();
+        </code>
+    </pre>
+
+    <p>The next step is to define what should happen when the event fires. You must pass a function to the event.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$("p").click(function() {
+    // An action goes here ...
+});
+        </code>
+    </pre>
+
+    <h2>jQuery noConflict()</h2>
+
+    <p>jQuery uses the dollar sign ($) as a shortcut for jQuery. There are many other JavaScript frameworks and libraries that may also use the $ sign as a shortcut. If two or more frameworks and libraries are using the same shortcut, one of them may stop working. the jQuery team have implemented the noConflict() method to prevent this.</p>
+
+    <p>This method releases the hold on the $ shortcut that jQuery has, so other scripts and libraries/frameworks can use it. This still allows jQuery to be used by writing the full name of 'jQuery' instead of the shortcut ($).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$.noConflict();
+jQuery(document).ready(function() {
+    jQuery("button").click(function() {
+        jQuery("p").hide();
+    });
+});
+        </code>
+    </pre>
+
+    <p>Your own shortcut can also be created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var jq = $.noConflict();
+jq(document).ready(function() {
+    jq("button").click(function() {
+        jq("p").hide();
+    });
+});
+        </code>
+    </pre>
+
+    <p>If you have a block of code that you don't want to change, you can pass the $ sign in as a parameter to the ready method. This allows you access to jQuery inside the function. Outside the function, you would still need to use 'jQuery'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$.noConflict();
+jQuery(document).ready(function($) {
+    $("button").click(function() {
+        $("p").hide();
+    });
+});
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
