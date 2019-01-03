@@ -15,6 +15,8 @@
 
 <!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Syntax -->
 <!-- https://www.sitepoint.com/optimizing-css-performance/ -->
+<!-- https://www.creativebloq.com/features/10-amazing-new-css-techniques -->
+<!-- https://www.fifteendesign.co.uk/blog/an-introduction-to-css-flex-and-browser-compatibility-part-1/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -413,6 +415,23 @@ p {
 &lt;/body&gt;
         </code>
     </pre>
+
+    <h2>Feature Query</h2>
+
+    <p>CSS has developed a way for you to test for browser support of new CSS features, with Feature Queries. A Feature Query behaves in much the same way as a Media Query, except that instead of asking the browser something about the device being used to view the site, a Feature Query asks the browser if it supports a particular CSS feature. This makes it easier to use new features in a safe, progressively enhanced way.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    /* CSS rules for browsers that support grid layout */
+}
+        </code>
+    </pre>
+
+    <p>Browser support for Feature Queries is good, but not supported in Internet Explorer 11 (IE11) and below. As long as you test for support and then write the code for supporting browsers, you can overwrite anything you need for older browsers.</p>
+
+    <p>Anything new that comes into CSS you can use Feature Queries to test for and allows us to use new features much more quickly.</p>
 </main>
 
 </body>

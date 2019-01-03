@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - iFrame</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://benohead.com/cross-document-communication-with-iframes/ -->
+<!-- https://stackoverflow.com/questions/40866219/how-to-resolve-iframe-cross-domain-issue -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
+<!-- https://medium.com/@siddhartha.ng/disable-cross-origin-on-chrome-for-localhost-c644b131db19 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>iFrame</h1>
+
+    <p>The first step in using an iFrame is of course to define an iFrame element within your HTML code. This will define where in the DOM the external resource will be taken over.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;iframe id="iframe1"&gt;&lt;/iframe&gt;
+        </code>
+    </pre>
+
+    <p>To deal with browsers that do not support the &lt;iframe&gt; element, add text between the opening &lt;iframe&gt; element and the closing &lt;/iframe&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;iframe id="iframe1"&gt;The iFrame does not work here!&lt;/iframe&gt;
+        </code>
+    </pre>
+
+    <p>The &lt;iframe&gt; tag specifies an inline frame (iFrame). An inline frame is used to embed another document within the current HTML document.</p>
+
+    <p>You can also include a src attribute to specify the document you want to embed. Please keep in mind that things are relatively easy when working with iFrames with content loaded from the same host/domain.</p>
+
+    <p>Each embedded browsing context has its own session history and document. The topmost browsing context - the one with no parent - is usually the browser window, represented by the window object.</p>
+
+    <p>Every iFrame in a page requires increased memory and resources as each browsing context is a complete document environment.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;iframe id="iframe1" src="https://www.w3schools.com"&gt;&lt;/iframe&gt;
+        </code>
+    </pre>
+
+    <p>You may need to also set the character encoding within your HTML document for the iFrame to work and run on a local server.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;iFrame&lt;/title&gt;
+&lt;/head&gt;
+        </code>
+    </pre>
+
+    <p>Running a local Python server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ python -m SimpleHTTPServer 8000
+        </code>
+    </pre>
+
+    <p>In the example provided by MDN (Mozilla Developer Network), may of the properties are added within the HTML itself. W3Schools also recommends styling the iFrame using CSS.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;iframe 
+    id="iframe1"
+    title="Inline Frame Example"
+    width="300"
+    height="200" 
+    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"&gt;
+&lt;/iframe&gt;
+        </code>
+    </pre>
+
+    <p>Adding a frameborder attribute to the iFrame will remove the border if the value is set to '0'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;iframe 
+    id="iframe1" 
+    src="https://www.w3schools.com"
+    frameborder="0"&gt;
+&lt;/iframe&gt;
+        </code>
+    </pre>
+
+    <p>The height of the iFrame is set in pixles and the default is 150px. The width of the iFrame is also in pixels with the default being 300px.</p>
+
+    <p>You may need to set the html and body elements within your HTML to be 100% height using CSS. This is the code I have used previously:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;iFrame Test&lt;/title&gt;
+
+&lt;style&gt;
+html, body {
+    height: 100%;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;iframe 
+    id="iframe1" 
+    frameborder="0"
+    src="https://www.crunch.co.uk"
+    height="100%"
+    width="100%">
+    The iFrame does not work here!
+&lt;/iframe&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>We don't necessarily have to use the src attribute within the HTML. We can use the id attribute and JavaScript to set the URL in the src property and styling using the style property.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var iframe1 = document.getElementById('iframe1');
+iframe1.style.height = '200px';
+iframe1.style.width = '400px';
+iframe1.src = 'iframe.html';
+        </code>
+    </pre>
+
+    <p>Before you can access the contents of the iFrame, you will have to wait for the iFrame content to be loaded, just like you would wait for the page content to be fully loaded before accessing and manipulating it. This is done by defining an onload callback on the iFrame.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+iframe1.onload = function() {
+    // Your code here
+}
+        </code>
+    </pre>
+
+    <h2>Accessing the iFrame content</h2>
+
+    <p>Once the iFrame content is loaded, you can access it using the contentDocument property of the iFrame object or by using the document property of the contentWindow property of the iFrame.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var frameDocument = iframe1.contentDocument ? iframe1.contentDocument : iframe1.contentWindow.document;
+var title = frameDocument.getElementsByTagName("h1")[0];
+alert(title.textContent);
+        </code>
+    </pre>
+
+    <h2>Accessing the parent document</h2>
+
+    <p>Now that you can load content in the iFrame, you may need to access the parent document from the iFrame itself. We can use the document property of the parent object to do this (currently ignoring cross-domain issues).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var title = parent.document.getElementsByTagName("h1")[0];
+alert(title.textContent);
+        </code>
+    </pre>
+
+    <p>Simlarly, you can call a JavaScript function defined in the parent window by using the window property of the parent object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+parent.window.showDialog2();
+        </code>
+    </pre>
+
+    <h2>Same Origin Policy</h2>
+
+    <p>The Same Origin Policy is an important concept when using JavaScript to interact with iFrames. This is basically a security policy enforced by your browser that prevents documents from different domains having access to each other's properties and methods.</p>
+
+    <p>Two documents have the same origin if thet have the same URI scheme/protocol (http, https ...), the same host/domain (e.g. google.com), and the same port number (e.g. 80 or 443).</p>
+
+    <ul>
+        <li>http://google.com and https://google.com do <strong>NOT</strong> have the same origin since they have different URL schemes of http and https.</li>
+        <li>http://benohead.com and http://benohead.com:8080 do <strong>NOT</strong> have the same origin since they have different port numbers.</li>
+        <li>Subdomains also count as different domains/hosts, so http://kanban.benohead.com and http://benohead.com do <strong>NOT</strong> have the same origin.</li>
+    </ul>
+
+    <p>Depending on your browser, http://benohead.com and http://benohead.com:80 maybe considered the same origin.</p>
+
+    <h2>Limitiations of iFrames</h2>
+
+    <p>A page inside an iFrame is not allowed access to the DOM of its parent or to modify the DOM of its parent and vice-versa, unless both have the same origin.</p>
+
+    <h2>CORS (Cross-Origin Resource Sharing)</h2>
+
+    <p>You may need control/access over the domain you want to embed to remove/amend its CORS (Cross-Origin Resource Sharing) policy. This is to avoid anyone hijacking any site.</p>
+
+    <p>CORS is a mechanism implemented as an extension of HTTP using additional headers in the HTTP requests and responses. In most cases, enabling CORS means that an extra HTTP request is send from the browser to the server. CORS is supported by most modern browsers but JSONP (JSON with Padding) works better with older browsers.</p>
+
+    <p>In order to allow CORS requests, you only have to configure the server to add the following header to its response:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Access-Control-Allow-Origin: *
+        </code>
+    </pre>
+
+    <p>For testing purposes, a Google Chrome plugin can be used. This will allow CORS to be temporarily suspended for local testing/development. The <a href="https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe" target="_blank" rel="noopener noreferrer">Ignore X-Frame headers</a> Chrome plugin can be installed from the Google Chrome store.</p>
+</main>
+
+</body>
+</html>
