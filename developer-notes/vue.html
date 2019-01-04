@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Vue</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.com/codingthesmartway-com-blog/vue-js-2-quickstart-tutorial-2017-246195cfbdd2 -->
+<!-- https://scotch.io/tutorials/build-a-to-do-app-with-vue-js-2 -->
+<!-- https://sabe.io/tutorials/getting-started-with-vue-js -->
+<!-- https://www.netguru.com/blog/why-is-vue.js-growing-so-fast-4-reasons-behind-the-frameworks-success -->
+<!-- https://medium.freecodecamp.org/the-vue-handbook-a-thorough-introduction-to-vue-js-1e86835d8446 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Vue</h1>
+
+    <p>Vue is a JavaScript framework for building user interfaces. Vue was created by Even You and originally released in February 2014. Vue itself is lightweight, weighing around 20KB in size.</p>
+
+    <p>A JavaScript framework helps us to create modern applications. Vue is called a progressive framework. This means that it adapts to the needs of the developer.</p>
+
+    <h2>Compatibility</h2>
+
+    <p>Vue does not support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8.</p>
+
+    <h2>Install</h2>
+
+    <p>NPM (Node Package Manager) is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundles such as Webpack or Browserify.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Install latest stable version
+$ npm install vue
+        </code>
+    </pre>
+
+    <p>Installing Vue CLI will install Vue by default so the above step is not required.</p>
+
+    <p>You can also install Vue using the Vue CLI (Command Line Interface), which is available as an NPM package. Make sure Node and NPM are installed, and use NPM to install Vue CLI globally on your local system:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install vue-cli -g
+        </code>
+    </pre>
+
+    <p><strong>Update:</strong> The package name for Vue CLI has changed from vue-cli (1.x or 2.x) to @vue/cli (3.x). You will need to uninstall the previous versions with NPM or Yarn.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm uninstall vue-cli -g
+
+# OR
+$ yarn global remove vue-cli
+        </code>
+    </pre>
+
+    <p>Vue CLI requires Node version 8.9 or above (8.11.0+ recommended). The new way to install Vue CLI is as follows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @vue/cli -g
+
+# OR
+$ yarn global add @vue/cli
+        </code>
+    </pre>
+
+    <p>You can check that you have the right version of Vue (3.x) installed with this command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ vue --version
+        </code>
+    </pre>
+
+    <p>Having installed the client successfully, the vue command becomes available. The following command will tell vue to initiate a project and use the webpack template. We are also giving the project the name vueapp01. The project is created in the folder named 'vueapp01'.</p>
+
+    <p>We will also change into the directory once the folder has been created.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ vue init webpack vueapp01
+
+# Change into the directory
+$ cd vueapp01
+        </code>
+    </pre>
+
+    <p>Start installing the dependencies using NPM.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install
+        </code>
+    </pre>
+
+    <p>After having completed the installation of the packages, you can start the web server in development mode using NPM.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run dev
+        </code>
+    </pre>
+
+    <p>This will start the server on port 8080 and the application output is displayed within the browser at <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">http://localhost:8080</a></p>
+
+    <p>Later, if you want to build for production you can use the following command. In this case, a dist folder is created containing the files needed for productive development.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run build
+        </code>
+    </pre>
+
+    <h2>Creating a Project - Vue CLI</h2>
+
+    <p>Once Vue CLI (3.x) has been installed, you can create a new project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ vue create hello-world
+        </code>
+    </pre>
+
+    <p>You can also create and manage projects using a GUI (Graphical User Interface). This will guide you through the project creation process from within the browser. Vue has efficient state management (Vuex) and routing (Vue Router).</p>
+
+    <h3>Summary of Installation</h3>
+
+    <p>Here is a summary of installing Vue (version 3.x) using Vue CLI. You will need Node version 8.9 or later to install the later versions of Vue and you can use NVM (Node Version Manager) to switch versions if needed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Install Vue CLI globally
+$ npm install @vue/cli -g
+
+# Check version of Vue installed
+$ vue --version
+
+# Create Vue project directory
+$ vue create my-app
+$ cd my-app
+
+# Start server
+$ npm run serve
+        </code>
+    </pre>
+
+    <p>Once the server starts, the application can be viewed in the browser at: <a href="http://localhost:8081/" target="_blank" rel="noopener noreferrer">http://localhost:8081/</a></p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ vue ui
+        </code>
+    </pre>
+
+    <h2>Declarative Rendering</h2>
+
+    <p>At the core of Vue is a system that enables us to declaratively render data to the DOM using straightforward template syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div id="app"&gt;
+    {{ message }}
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue!'
+    }
+})
+        </code>
+    </pre>
+
+    <p>In this example, the data and the DOM are now linked and everything is reactive. Open your browser's JavaScript console and set app.message to a different value. You should see the rendered example above update accordingly.</p>
+
+    <h2>Main App Component</h2>
+
+    <p>Vue CLI already generates a main component that can be found in src/App.vue. Every Vue application needs to have a top level component that serves as the framework for the entire application.</p>
+
+    <p>Vue CLI will also create a component during the setup that can be found in src/components/HelloWorld.vue</p>
+
+    <p>Here is the structure of the 'src' directory:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+vue-project/
+    src/
+        App.vue
+        assets /
+            logo.png
+        components /
+            HelloWorld.vue
+        main.js
+        </code>
+    </pre>
+
+    <p>You may also notice that in the 'public' directory, an index.html file can be found. This will serve as the root directory for your project. This is what the code looks like:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width,initial-scale=1.0"&gt;
+    &lt;link rel="icon" href="&lt;%= BASE_URL %&gt;favicon.ico"&gt;
+    &lt;title&gt;vue-project&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;noscript&gt;
+        &lt;strong&gt;We're sorry but vue-project doesn't work properly without JavaScript enabled. Please enable it to continue.&lt;/strong&gt;
+    &lt;/noscript&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+    &lt;!-- built files will be auto injected --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h2>Routing</h2>
+
+    <p>Routing is what handles navigation through the app as you would with a normal website. For example, going from the homepage to the about page, you can consider each page to be a different route.</p>
+
+    <p>Vue needs to know what you would like displayed at these routes. It needs a router to do this. Vue does not natively support routing on its own, you can however use <a href="https://router.vuejs.org/guide/#javascript" target="_blank" rel="noopener noreferrer">Vue Router</a>.</p>
+</main>
+
+</body>
+</html>
