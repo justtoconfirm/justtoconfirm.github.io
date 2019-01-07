@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - CSS Grid</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout -->
+<!-- https://learncssgrid.com/ -->
+<!-- https://medium.com/@js_tut/css-grid-the-swiss-army-knife-for-cutting-website-and-application-layouts-c1bd7a6b4e56 -->
+<!-- https://medium.freecodecamp.org/learn-css-grid-in-5-minutes-f582e87b1228 -->
+<!-- https://medium.com/deemaze-software/css-grid-layout-crossed-sections-fca9e956e725 -->
+<!-- https://medium.com/deemaze-software/css-grid-responsive-layouts-and-components-eee1badd5a2f -->
+<!-- https://www.sitepoint.com/easy-responsive-modern-css-grid-layout/ -->
+
+<!-- https://www.smashingmagazine.com/2009/04/progressive-enhancement-what-it-is-and-how-to-use-it/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>CSS Grid</h1>
+
+    <p>CSS Grid Layout introduces a two-dimensional grid system to CSS. Grids can be used to layout major page areas or small UI (User Interface) elements. It is the most powerful layout system available in CSS. It is a two-dimensional system, meaning it can handle both columns and rows, unlike Flexbox, which is largely a one-dimensional system.</p>
+
+    <p>CSS Grid was added to most modern browsers (Except IE11) in 2017. It allows us to create grid structures in CSS and not HTML. The latest versions of Chrome, Firefox, Edge, Opera, and Safari have support for CSS Grid as they are evergreen browsers meaning thet automatically update themselves without prompting the user.</p>
+
+    <p>To ensure your layout works in every browser, you can start with a default float-based fallback then use progressive enhancement techniques to apply a modern Grid layout. Those with older browsers will not receive an identical expericne, but it will be good enough.</p>
+
+    <p>You can check the browser support for CSS Grid using <a href="https://caniuse.com/#feat=css-grid" target="_blank" rel="noopener noreferrer">caniuse.com</a>.</p>
+
+    <p>A grid is an intersecting set of horizontal and vertical lines, one set defining columns, the other defining rows.</p>
+
+    <h2>Progressive Enhancement</h2>
+
+    <p>Progressive Enhancement (PE) is the principle of starting with a rock-solid foundation and then adding enhancements. PE differs from Graceful Degredation (GD) in that GD is the journey from complexity to simplicity, whereas PE is the journey from simplicity to complexity. With PE, you always have a strong foundation to fall back on as complexity is introduced to the project.</p>
+
+    <ul>
+        <li>The first layer is clean, semantic HTML.</li>
+        <li>The second layer is CSS.</li>
+        <li>The third layer is JavaScript.</li>
+    </ul>
+
+    <p>When adding the CSS Grid layout on top of your fallback layout, you don't need to override any tags or use completely seperate CSS styles. In a browser that does not support CSS Grid, the grid properties you add will simply be ignored. You can also check feature support in CSS using the @supports rule. This allows us to override fallback styles where necessary while older browsers ignore the @supports block.</p>
+
+    <p>If you're using floats for laying out elements, keep in mind that grid items take precedence over float. If you add the float CSS property to an element which is also a grid element, the float will be ignored in favor of grid.</p>
+
+    <h2>Grid Container</h2>
+
+    <p>As soon as we create a grid container, all direct children of that element will become grid items. We create a grid container by setting the display property.</p>
+
+    <p>The two core ingredients of a CSS Grid are the wrapper (parent) and the items (children). The wrapper is the actual grid and the items are the content inside the grid.</p>
+
+    <p>To turn our wrapper div into a grid, we simply give it a display of grid:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+}
+        </code>
+    </pre>
+
+    <p>The HTML structure can the be created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="wrapper"&gt;
+    &lt;div&gt;One&lt;/div&gt;
+    &lt;div&gt;Two&lt;/div&gt;
+    &lt;div&gt;Three&lt;/div&gt;
+    &lt;div&gt;Four&lt;/div&gt;
+    &lt;div&gt;Five&lt;/div&gt;
+    &lt;div&gt;Six&lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>Grid items are placed in rows by default and span the full width of the grid container. As we haven't defined how we want our grid to look like, it'll simply stack the three &lt;div&gt; elements on top of each other.</p>
+
+    <h3>Example</h3>
+
+    <div class="wrapper">
+        <div class="item">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+    </div>
+
+    <h2>Columns &amp; Rows</h2>
+
+    <p>To make the Grid two-dimensional, we will need to define the colums and rows. We can use the grid-template-row and grid-template-column properties to do this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="wrapper wrapper--two-row">
+        <div class="item">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+    </div>
+
+    <p>As we've written three values for the grid-template-columns, we'll get three columns. As we've got two values for the grid-template-rows property, we will get two rows.</p>
+
+    <p>The values dictate how wide we want our columns to be (100px) and how tall we want our rows to be (50px).</p>
+
+    <h2>Placing Items</h2>
+
+    <p>We can create a 3x3 grid using the same markup as before. When using the markup you will only see a 3x2 (3 columns, 2 rows) grid on the page, because we only have six items to fill the grid, so we don't need another row. If we had seven, eight, or nine items, then the third row would be filled as well.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+}
+        </code>
+    </pre>
+
+    <p>As an example, this would show a third row, with each item being 100px (comments have been added to help visualise this):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="wrapper"&gt;
+    &lt;!-- Row one --&gt;
+    &lt;div&gt;One&lt;/div&gt;
+    &lt;div&gt;Two&lt;/div&gt;
+    &lt;div&gt;Three&lt;/div&gt;
+    
+    &lt;!-- Row two --&gt;
+    &lt;div&gt;Four&lt;/div&gt;
+    &lt;div&gt;Five&lt;/div&gt;
+    &lt;div&gt;Six&lt;/div&gt;
+    
+    &lt;!-- Row three --&gt;
+    &lt;div&gt;Seven&lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="wrapper wrapper--three-row">
+        <div class="item">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+        <div class="item">Seven</div>
+    </div>
+
+    <p>To position and resize the items, we'll target them and use the grid-column and grid-row properties:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.item1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+        </code>
+    </pre>
+
+    <p>What we're saying here is that we want the element with the class of item1, to start on the first grid line and end on the fourth line. In other words, it'll take up the entire row. It maybe confusing to think we have 4 column lines but only 3 columns, but the first column line is on the left side of the first column, so there are four in total, like a border.</p>
+
+    <p>You may see this syntax in a simplified way:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.item1 {
+    grid-column: 1 / 4;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="wrapper wrapper--three-row">
+        <div class="item item--full-width">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+        <div class="item">Seven</div>
+    </div>
+
+    <p>The fr unit indicates the fraction of the remaining space that the item occupies. You can combine it with other units such as % and px. This is great news, as you no longer have to make calculations with percentages while considering the number of columns, amount of margin between items, and further considerations. It simply adjusts to the overall space you have left and to the spacing you set between the items.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+}
+        </code>
+    </pre>
+
+    <p>Or as a simplified syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <p>As you can see in the example, the central column using the fr unit will stretch to fit any unused space that is not being used by the other two columns.</p>
+
+    <div class="wrapper wrapper--fraction">
+        <div class="item">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+        <div class="item">Seven</div>
+    </div>
+
+    <h2>Gaps between Rows &amp; Columns</h2>
+
+    <p>Suppose we want to set a gap between rows and columns within our grid. We can use the grid-gap property to do this. In this example, the gap will be set at 25px.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: grid;
+    grid-gap: 25px;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="wrapper wrapper--three-row wrapper--grid-gap">
+        <div class="item">One</div>
+        <div class="item">Two</div>
+        <div class="item">Three</div>
+        <div class="item">Four</div>
+        <div class="item">Five</div>
+        <div class="item">Six</div>
+        <div class="item">Seven</div>
+    </div>
+
+    <h2>Responsive Grid</h2>
+
+    <p>Instead of specifying a finite number of columns, we can define sizing properties for the tracks and let the grid calculate how many fit the available space.</p>
+</main>
+
+</body>
+</html>
