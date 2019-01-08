@@ -13,6 +13,12 @@
 </head>
 <body>
 
+<!-- https://css-tricks.com/continuous-integration-continuous-deployment/ -->
+<!-- https://techbeacon.com/running-gauntlet-setting-your-first-deployment-pipeline -->
+<!-- https://www.guru99.com/smoke-testing.html -->
+<!-- https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/ -->
+<!-- https://circleci.com/blog/what-is-continuous-integration/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -32,6 +38,72 @@
 
 <main role="main" id="main">
     <h1>CI &amp; CD</h1>
+
+    <h2>Continuous Integration (CI)</h2>
+
+    <p>Build servers are also called Continuous Integration (CI) servers. <a href="https://jenkins.io/" target="_blank" rel="noopener noreferrer">Jenkins</a> and <a href="https://www.gocd.org/" target="_blank" rel="noopener noreferrer">GoCD</a> are two examples of CI servers you can use. Once you've got a build server set up, you can set up your first build.</p>
+
+    <p>Start simple. A build consists of:</p>
+
+    <ul>
+        <li>A link to your application's source code (such as on GitHub).</li>
+        <li>A command to build the application (such as a mvn package or Grunt build).</li>
+    </ul>
+
+    <p>Set it up to run every time a change is checked into source control. In this way, every change to your code base will go through this process.</p>
+
+    <h2>Deployment Pipelines</h2>
+
+    <p>A deployment pipeline defines all steps necessary to go from your codebase to production. Automating these steps is crucial to having fast deployments. Often, deployment pipelines may also include manual steps, like a product owner/manager signing off on a new release.</p>
+
+    <p>The deployment pipeline is a way to deal with breaking your build into stages.</p>
+
+    <p>Deployment pipelines have to be easy to follow and replicate. This allows you to push new changes regularly. Once a pipeline is setup and automated, you are in a position to ship small changes quickly.</p>
+
+    <p>The real power of a deployment pipeline lies in it's ability to link your tests suite to your deployment. Imagine a button at the end of your deployment pipeline. When the app has passed all the tests, the button is enabled. At that point, all you need to do is push that button to deploy the changes to production.</p>
+
+    <p>Automating production deployment can be complicated. It's often useful to start with a deployment to a testing environment. On your CI server, add a build that will run a script to deploy your application to a testing or staging environment. Link it to your test builds so that it only runs if all the tests pass. If your deployment process doesn't cause too much downtime, you can make this step run automatically so that your testing environment is always up to date.</p>
+
+    <h3>Smoke Test</h3>
+
+    <p>A smoke test is basically just a sanity check to see if the software functions on the most basic level. If your smoke test fails, it means there is no point in running your other functional tests. Smoke tests may address basic questions like "does the program run?", "Does clicking the main button do anything?", or "Does the user interface open?".</p>
+
+    <p>They are a minimal set of tests run on each build. It is also the process where the build id deployed to a testing/QA environment and is verified to ensure the stability of the application. This is also called "Build Verification Testing" or "Confidence Testing". It is a mini and rapid regression test of major functionality, and shows the product is ready for testing.</p>
+
+    <p>Here is where smoke test fits within the testing pipeline:</p>
+
+    <ul>
+        <li>Code</li>
+        <li>Unit Testing</li>
+        <li>Integration Testing</li>
+        <li>Sanity Testing</li>
+        <li>Smoke Testing</li>
+        <li>Functional Testing</li>
+    </ul>
+
+    <p>It is often defined as a type of software testing that determines whether the deployed build is stable or not and serves as confirmation whether the QA team can proceed with further testing.</p>
+
+    <p>The main aim of smoke testing is to detect early major issues.</p>
+
+    <h3>Automated Tests</h3>
+
+    <p>Automated tests are what gives a deployment pipeline its real value. Set up a separate build for each of your test suites. For example, you may have one build for your unit tests, another for your intergration tests, and another for your functional test suite. The builds can then be linked to one another so that each is triggered by the one before it. Unit tests should be run first, as they are the fastest.</p>
+
+    <p>If your code passes, run the next suite. In this way, your unit tests can tell you very quickly if there's a problem rather than waiting for your slower functional tests to fail. Should your code change cause any of your unit tests to fail, the change doesn't go any further. If all tests pass, it makes it's way out the other end and the code change is the ready for production.</p>
+
+    <p>Automated tests are designed to catch known bugs. The job of these tests is to prove that a change is not ready for production.</p>
+
+    <p>Having tests that show the health of your application is invaluable. Anyone in the team can look at the CI server and see whether the build is red, green, or running. When something goes wrong, your team will know about it faster to fix the issue.</p>
+
+    <h2>Continuous Deployment (CD)</h2>
+
+    <p>Continuous Deployment (CD) is a strategy for software releases wherein any code commit that passes the automated testing phase is automatically released into the production environment. Whenever the main development branch in your repository passes all the tests, you should push your code at least into a staging environment or in the best case, production.</p>
+
+    <p>You can run tests against the staging system to make sure it works in a production-like environment.</p>
+
+    <p>Continuous Integration (CI) is the first, but very important, step in CD.</p>
+
+    <p>Automated tests can only show their true power when you run them continuously and for every change.</p>
 
     <pre>
         <code>

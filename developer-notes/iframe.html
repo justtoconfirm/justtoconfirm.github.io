@@ -17,6 +17,18 @@
 <!-- https://stackoverflow.com/questions/40866219/how-to-resolve-iframe-cross-domain-issue -->
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
 <!-- https://medium.com/@siddhartha.ng/disable-cross-origin-on-chrome-for-localhost-c644b131db19 -->
+<!-- https://blog.teamtreehouse.com/cross-domain-messaging-with-postmessage -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage -->
+<!-- https://stackoverflow.com/questions/8822907/html5-cross-browser-iframe-postmessage-child-to-parent -->
+<!-- https://gist.github.com/pbojinov/8965299 -->
+<!-- https://www.cybelesoft.com/blog/cross-domain-messages-using-javascript/?cn-reloaded=1 -->
+<!-- https://javascript.info/cross-window-communication -->
+<!-- https://stackoverflow.com/questions/3800309/using-postmessage-to-refresh-iframes-parent-document -->
+<!-- https://robertnyman.com/html5/postMessage/postMessage.html -->
+<!-- https://medium.com/@Farzad_YZ/cross-domain-iframe-parent-communication-403912fff692 -->
+<!-- https://www.redelegant.com/blog/cross-origin-communication-iframe-parent-website/ -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentWindow -->
+<!-- https://www.htmlgoodies.com/beyond/webmaster/display-cross-domain-data-using-postmessage.html -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -246,6 +258,93 @@ Access-Control-Allow-Origin: *
     </pre>
 
     <p>For testing purposes, a Google Chrome plugin can be used. This will allow CORS to be temporarily suspended for local testing/development. The <a href="https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe" target="_blank" rel="noopener noreferrer">Ignore X-Frame headers</a> Chrome plugin can be installed from the Google Chrome store.</p>
+
+    <h2>Passing Messages between iFrame &amp; Parent</h2>
+
+    <p>Often you want to pass messages between the iFrame and parent and also from parent into the iFrame.</p>
+
+    <p>The 'content' attribute of Window objects is deprecated.  Please use 'window.top' instead. One of the little known HTML5 APIs is the window.postMessage API. window.postMessage allows for sending data messages between two windows/frames across domains. It is supported in IE8+, Opera, Safari, and Chrome.</p>
+
+    <p>Details of the postMessage API can be found on <a href="https://caniuse.com/#search=postMessage" target="_blank" rel="noopener noreferrer">caniuse</a>.</p>
+
+    <p>The contentWindow property returns the Window object of an &lt;iframe&gt; element. You can use this Window object to access the iframe's document and it's internal <abbr title="Document Object Model">DOM</abbr>.</p>
+
+    <!-- EXAMPLE: iframe.html -->
+    <!-- https://blog.teamtreehouse.com/cross-domain-messaging-with-postmessage -->
+    <!-- Passing message from HTML into iFrame -->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>iFrame</title>
+</head>
+<body>
+
+I am iFrame!
+
+<div id="message"></div>
+
+<script>
+window.onload = function() {
+    var messageEl = document.getElementById('message');
+
+    function receiveMessage(e) {
+        //if (e.origin !== "http://127.0.0.1:8000/Desktop/iframe-poc/index.html") return;
+
+        messageEl.innerHTML = "Message Received: " + e.data;
+    }
+
+    window.addEventListener('message', receiveMessage);
+}
+</script>
+-->
+
+<!-- EXAMPLE: index.html -->
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Parent</title>
+
+<style>
+html, body {
+    height: 100%;
+}
+</style>
+
+</head>
+<body>
+
+<iframe 
+    id="iframe1"
+    title="Inline Frame Example"
+    width="100%"
+    height="100%" 
+    frameborder="1"
+    src="http://127.0.0.1:8000/Desktop/iframe-poc/iframe.html">
+    This browser does not support iFrames
+</iframe>
+
+<script>
+window.onload = function() {
+    var receiver = document.getElementById('iframe1').contentWindow;
+
+    function sendMessage() {
+
+        receiver.postMessage('Hello World!', '*');
+    }
+
+    sendMessage();
+}
+</script>
+
+</body>
+</html>
+-->
+
 </main>
 
 </body>
