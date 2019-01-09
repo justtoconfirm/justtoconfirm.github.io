@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - CSS Animation</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>CSS Animation</h1>
+
+    <p>CSS animations allow animation of most HTML elements without using JavaScript and make it possible to transition from one CSS style configuration to another. Animations consist of two components, a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation's style.</p>
+
+    <p>To create a CSS animation sequence, you style the element you want to animate with the animation property. This lets you configure the timing, duration, and other details of how the animation sequence should progress.</p>
+
+    <p>The actual appearance of the animation is done using the @keyframes at-rule.</p>
+
+    <p>This simple example styles the &lt;div&gt; element so that the element slides in from off the right edge of the browser window. Animations like this can sometimes cause the page to become wider than the browser window. To avoid this problem, put the element to be animated inside a container and set overflow: hidden on the container.</p>
+
+    <p>We can begin by creating the HTML &lt;div&gt; element:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="box box--slide"&gt;I can slide&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>Next, we add the CSS to provide the animation.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.box {
+    background-color: #3d7e9a;
+    color: #fff;
+}
+
+.box--slide {
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%; 
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="box box--slide">I can slide</div>
+
+    <p>Should we want to animation to repeat itself, simply use the animation-iteration-count property to indicate how many times to repeat the animation. In this case, let's use infinite to have the animation repeat indefinitely.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.box--slide {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+}
+        </code>
+    </pre>
+
+    <p>Having made it repeat, it's very odd to have it jump back to the start each time it begins the animation. What we really want is for it to move back and forth across the screen. This can be accomplished by setting the animation-direction property to alternate.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.box--slide {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+        </code>
+    </pre>
+
+    <p>Of course we can also use shorthand for this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.box--slide {
+    animation: 3s infinite alternative slidein;
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

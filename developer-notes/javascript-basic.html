@@ -14,6 +14,9 @@
 <body>
 
 <!-- https://medium.com/@mattbasile/matts-lambda-minute-an-intro-to-javascript-variables-objects-and-arrays-93479541c6ad -->
+<!-- https://stackoverflow.com/questions/588040/window-onload-vs-document-onload -->
+<!-- https://www.techiediaries.com/javascript/document-ready-vs-window-onload-vs-window-load/ -->
+<!-- https://www.tutorialspoint.com/What-is-the-difference-between-window-onload-and-document-onload-in-Javascript -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -396,6 +399,95 @@ getArea(3, 5);
     </pre>
 
     <p>Detailed documentation relating to <a href="javascript-functions.html">JavaScript Functions</a></p>
+
+    <h2>Loop</h2>
+
+    <p>Loops can be used to execute a block of code a number of times. Loops are handy if you want to run the same code over and over again, each time with and different value.</p>
+
+    <h3>For Loop</h3>
+
+    <p>For loops are used to loop through a block of code a number of times. The for loop has the following syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+for (i = 0; i < 5; i++) {
+    console.log('Count: ' + i);
+}
+        </code>
+    </pre>
+
+    <p>This will output the following in the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+        </code>
+    </pre>
+
+    <p>The for loop is the most compact form of looping. It includes the following parts:</p>
+
+    <ul>
+        <li>The <strong>loop initialization</strong>, where we initialize our counter to a starting value. This statement is executed before the loop begins. <strong>(i = 0;)</strong></li>
+        <li>The <strong>test statement</strong> which will test if a given condition is true or not. If the condition is true, then the code inside the loop will be executed. <strong>(i < 5;)</strong></li>
+        <li>The <strong>iteration statement</strong> where you can increase or decrease the counter. <strong>(i++)</strong></li>
+    </ul>
+
+    <p>All three parts are separated by semicolons.</p>
+
+    <h3>While Loop</h3>
+
+    <p>The while loop loops through a block of code for a long as a specified condition is true.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var i = 0;
+
+while (i < 3) {
+    i++;
+}
+
+console.log(i);     // Expected outcome: 3
+        </code>
+    </pre>
+
+    <h2>window.onload</h2>
+
+    <p>By default, it is fired when the entire page loads, including its content (images, CSS, scripts, etc.). In some browsers, it now takes over the role of document.onload and fires when the <abbr title="Document Object Model">DOM</abbr> is ready as well. This is one of the most common event developers check for before running their JavaScript, to check whether the page has completely loaded.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.onload = function() {
+    alert('Hello World');
+}
+        </code>
+    </pre>
+
+    <p>You can see the Window object by opening the console in devTools and typing 'window'.</p>
+
+    <h2>document.onload</h2>
+
+    <p>This is called when the DOM is ready which can be prior to images and other external content being loaded. In jQuery, we can use the ready function to handle the checking of the document being ready, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$(document).ready(function() {
+    // Code here 
+});
+
+$(function() {
+    // Code here
+});
+        </code>
+    </pre>
 </main>
 
 </body>

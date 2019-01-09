@@ -108,6 +108,29 @@ pre {
     grid-column: 1 / 4;
 }
 
+/* CSS Animation Examples */
+.box {
+    background-color: #3d7e9a;
+    color: #fff;
+}
+
+.box--slide {
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%; 
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
 .token-tag,
 .token-number-value,
 .token-string-value {

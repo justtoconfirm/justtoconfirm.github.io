@@ -29,6 +29,7 @@
 <!-- https://www.redelegant.com/blog/cross-origin-communication-iframe-parent-website/ -->
 <!-- https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentWindow -->
 <!-- https://www.htmlgoodies.com/beyond/webmaster/display-cross-domain-data-using-postmessage.html -->
+<!-- https://blog.teamtreehouse.com/cross-domain-messaging-with-postmessage -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -269,82 +270,204 @@ Access-Control-Allow-Origin: *
 
     <p>The contentWindow property returns the Window object of an &lt;iframe&gt; element. You can use this Window object to access the iframe's document and it's internal <abbr title="Document Object Model">DOM</abbr>.</p>
 
-    <!-- EXAMPLE: iframe.html -->
-    <!-- https://blog.teamtreehouse.com/cross-domain-messaging-with-postmessage -->
-    <!-- Passing message from HTML into iFrame -->
+    <h3>Sending message to the iFrame</h3>
 
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>iFrame</title>
-</head>
-<body>
+    <p>Here, we have an example of how to send a simple message from the parent web page into the iFrame. We begin with the parent HTML document.</p>
 
-I am iFrame!
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Parent&lt;/title&gt;
 
-<div id="message"></div>
-
-<script>
-window.onload = function() {
-    var messageEl = document.getElementById('message');
-
-    function receiveMessage(e) {
-        //if (e.origin !== "http://127.0.0.1:8000/Desktop/iframe-poc/index.html") return;
-
-        messageEl.innerHTML = "Message Received: " + e.data;
-    }
-
-    window.addEventListener('message', receiveMessage);
-}
-</script>
--->
-
-<!-- EXAMPLE: index.html -->
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Parent</title>
-
-<style>
+&lt;style&gt;
 html, body {
     height: 100%;
 }
-</style>
+&lt;/style&gt;
 
-</head>
-<body>
+&lt;/head&gt;
+&lt;body&gt;
 
-<iframe 
+&lt;iframe 
     id="iframe1"
     title="Inline Frame Example"
     width="100%"
     height="100%" 
     frameborder="1"
-    src="http://127.0.0.1:8000/Desktop/iframe-poc/iframe.html">
+    src="http://127.0.0.1:8000/Desktop/iframe-poc/iframe.html"&gt;
     This browser does not support iFrames
-</iframe>
+&lt;/iframe&gt;
 
-<script>
+&lt;script&gt;
 window.onload = function() {
     var receiver = document.getElementById('iframe1').contentWindow;
 
     function sendMessage() {
-
         receiver.postMessage('Hello World!', '*');
     }
 
     sendMessage();
 }
-</script>
+&lt;/script&gt;
 
-</body>
-</html>
--->
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
 
+    <p>We can then create the iFrame that will receive the message from the parent.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;iFrame&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+I am an iFrame!
+
+&lt;div id="message">&lt;/div&gt;
+
+&lt;script&gt;
+window.onload = function() {
+    var messageEl = document.getElementById('message');
+
+    function receiveMessage(e) {
+        messageEl.innerHTML = "Message Received: " + e.data;
+    }
+
+    window.addEventListener('message', receiveMessage);
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h3>Sending message to the iFrame</h3>
+
+    <p>As with sending a message from the parent into the iFrame, we can also send messages to the parent from the iFrame itself. The code below will detail this.</p>
+
+    <p>We can begin by creating the parent HTML page once again, with a few changes to the JavaScript. This will receive the message we send from the iFrame.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Parent&lt;/title&gt;
+
+&lt;style&gt;
+html, body {
+    height: 100%;
+}
+&lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;iframe 
+    id="iframe1"
+    title="Inline Frame Example"
+    width="100%"
+    height="100%" 
+    frameborder="1"
+    src="http://127.0.0.1:8000/Desktop/iframe-poc/iframe.html"&gt;
+    This browser does not support iFrames
+&lt;/iframe&gt;
+
+&lt;!-- Where our message will appear --&gt;
+&lt;div id="message"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+window.onload = function() {
+    var messageEl = document.getElementById('message');
+
+    function receiveMessage(e) {
+        messageEl.innerHTML = "Message Received: " + e.data;
+    }
+
+    window.addEventListener('message', receiveMessage);
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>We can then update the iFrame code to send the message to our parent.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;iFrame&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+I am an iFrame!
+
+&lt;script&gt;
+window.onload = function() {
+    var sendMessage = function(msg) {
+        window.parent.postMessage(msg, '*');
+    }
+
+    // Call the function and pass the message
+    sendMessage('Hello You!');
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>the postMessage method in our example above has the following format:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.patent.postMessage(msg, '*');
+        </code>
+    </pre>
+
+    <p>The 'msg' is the data we are sending and the '*' is the targetOrigin. The data being sent can be any object. IE (Internet Explorer) supports only strings, so we should JSON.stringify complex opjects to support that browser.</p>
+
+    <p>The targetOrigin is a safety measure, so that only a window from the given origin will get the message. By using '*' we are opening this to any origin and not doing any check, which is ok for testing, but will need to be changed for production. Remember, if the target window comes from another origin, we can't read it's location. Specifying targetOrigin ensures that the window only receives the data if it's still at the site. This is good when data is sensitive.</p>
+
+    <p>As explained above, to check the origin of the message received, we can use the following code (with example URL):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.addEventListener('message', function(event) {
+    if (event.origin != 'http://javascript.info') {
+        // Something from an unknown domain, let's ignore it
+        return;
+    }
+
+    // Show message as alert
+    alert('Message received: ' + event.data);
+});
+        </code>
+    </pre>
 </main>
 
 </body>
