@@ -488,6 +488,77 @@ $(function() {
 });
         </code>
     </pre>
+
+    <h2>JSON</h2>
+
+    <h3>JSON.stringify()</h3>
+
+    <p>A common use of <abbr title="JavaScript Object Notation">JSON</abbr> is to exchange data to/from a web server. When sending data to a web server, the data has to be a string. This method will convert a JavaScript object or value to a <abbr title="JavaScript Object Notation">JSON</abbr> string. You can convert a JavaScript/<abbr title="JavaScript Object Notation">JSON</abbr> object inot a string with JSON.stringify().</p>
+
+    <p>This method is used to convert objects into <abbr title="JavaScript Object Notation">JSON</abbr>. We can use JSON.parse to convert JSON back into an object.</p>
+
+    <p>Imaging we have this JavaScript object:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+        </code>
+    </pre>
+
+    <p>Use the function to convert it into a string.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = { 
+    name: "John", 
+    age: 30, 
+    city: "New York" 
+};
+var myJSON = JSON.stringify(obj);
+
+// We've got a string!
+alert(typeof myJSON);
+
+document.getElementById("demo").innerHTML = myJSON;
+        </code>
+    </pre>
+
+    <p>myJSON is now a string and ready to be sent to a server.</p>
+
+    <p>The same process can be applied to a JavaScript array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = [ "John", "Peter", "Sally", "Jane" ];
+var myJSON = JSON.stringify(arr);
+document.getElementById("demo").innerHTML = myJSON;
+        </code>
+    </pre>
+
+    <p>In JSON, date objects are not allowed, The JSON.stringify() method will convert any dates into strings.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = { 
+    name: "John",
+    today: new Date(), 
+    age: 30, 
+    city: "New York" 
+};
+var myJSON = JSON.stringify(obj);
+document.getElementById("demo").innerHTML = myJSON;
+        </code>
+    </pre>
+
+    <p>The JSON.stringify() method is included in all major browsers and in the latest JavaScript (ECMAScript) standard.</p>
 </main>
 
 </body>
