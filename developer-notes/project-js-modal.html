@@ -14,8 +14,12 @@
 <body>
 
 <!-- https://sabe.io/tutorials/how-to-create-modal-popup-box -->
+
 <!-- https://scotch.io/tutorials/building-your-own-javascript-modal-plugin -->
+
 <!-- https://hackernoon.com/the-ultimate-guide-for-creating-a-simple-modal-component-in-vanilla-javascript-react-angular-8733e2859b42 -->
+
+<!-- https://stackoverflow.com/questions/881515/how-do-i-declare-a-namespace-in-javascript -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -36,6 +40,23 @@
 
 <main role="main" id="main">
     <h1>Project: JavaScript Modal</h1>
+
+<!--
+var el = {
+    body: document.getElementById('container'),
+    demo: document.getElementById('Demo')
+
+};
+
+console.log(el.body);
+console.log(el.demo);
+-->
+
+<!--
+https://clubmate.fi/self-referencing-object-literal-in-javascript/
+https://stackoverflow.com/questions/16790296/create-javascript-object-with-event-handler
+https://codeburst.io/various-ways-to-create-javascript-object-9563c6887a47
+-->
 
 <!--
 <!DOCTYPE html>
@@ -126,14 +147,404 @@ window.addEventListener('click', windowOnClick);
 </html>
 -->
 
+<!--
+var modal = {
+    modalEl: document.querySelector('.modal'),
+    trigger: document.querySelector('.trigger'),
+    closeButton: document.querySelector('.close-button'),
+
+    toggleModal: function() {
+        this.modalEl.classList.toggle('show-modal');
+    },
+
+    windowOnClick: function(event) {
+        if (event.target === modalEl) {
+            toggleModal();
+        }
+    }
+};
+-->
     <h2>HTML Markup</h2>
+
+    <p>Let's begin by creating the basic HTML structure for our modal. We are using a class with a 'js-' prefix to separate the CSS styling of the button provided by the 'button' class and the JavaScript functionality that is attached using the 'js-open-model' class.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
 
+    &lt;title&gt;Modal&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="styles/main.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="button js-open-modal"&gt;Modal&lt;/button&gt;
+
+&lt;div class="modal"&gt;
+    &lt;div class="modal__content"&gt;
+        &lt;span class="close-button js-close-modal"&gt;&amp;times;&lt;/span&gt;
+        &lt;p&gt;Hello, I am a modal&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="scripts/modal.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
         </code>
     </pre>
+
+    <h2>CSS Styling</h2>
+
+    <p>Now that the HTML structure has been created, we can add the CSS styling.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* styles/main.css */
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+        </code>
+    </pre>
+
+    <h2>Adding the JavaScript</h2>
+
+    <p>The final part of our modal is to include the JavaScript code. This will allow our modal to appear and be hidden when needed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// scripts/modal.js
+
+var modal = document.querySelector('.modal');
+var trigger = document.querySelector('.js-open-modal');
+var closeButton = document.querySelector('.js-close-button');
+
+function toggleModal() {
+    modal.classList.toggle('show-modal');
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+trigger.addEventListener('click', toggleModal);
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
+        </code>
+    </pre>
+
+    <h2>Extending this Further</h2>
+
+    <p>Our first order of business is going to be to create an IIFE (Immediately Invoked Functional Expression) to create a closure we can work within. Closures can be leveraged to create a private scope where you have control over what data you make available.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    var privateVar = "You can't access me in the console"; 
+}());
+        </code>
+    </pre>
+
+    <p>We want to add a constructor method for our plugin and expose it as public. Our IIFE is called globally, so our this keyword is pointing at the window. Let's attach our constructor to the global scope using this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // Define our constructor
+    this.Modal = function() {
+        // Empty function
+    }
+}());
+        </code>
+    </pre>
+
+    <p>Pointing our Modal variable at a function creates a functional object which can be instantiated with the new keyword.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myModal = new Modal();
+        </code>
+    </pre>
+
+    <p>This creates a new instance of our object. At this stage, our object doesn't do much. First, we are going to create global element references. These are important as they allow us to reference pieces of the Modal from anywhere within our plugin.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // Define our constructor
+    this.Modal = function() {
+
+        // Create global element references
+        this.closeButton = null;
+        this.modal = null;
+        this.overlay = null;
+
+    }
+}());
+
+// Create new instance of the Modal
+var myModal = new Modal();
+        </code>
+    </pre>
+
+    <p>If we now run this code in the console, we can see the global elements being output.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+myModal
+{...}
+    closeButton: null
+    modal: null
+    overlay: null
+        </code>
+    </pre>
+
+    <p>Next, we will add a default options object. If a user doesn't provide any options, we will use these by default. If users do provide options, we will override them.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // Define our constructor
+    this.Modal = function() {
+
+        // Create global element references
+        this.closeButton = null;
+        this.modal = null;
+        this.overlay = null;
+
+        // Default option defaults object
+        var defaults = {
+            className: 'fade-and-drop',
+            closeButton: true,
+            content: "",
+            maxWidth: 600,
+            minWidth: 280,
+            overlay: true
+        }
+    }
+}());
+
+// Create new instance of the Modal
+var myModal = new Modal();
+        </code>
+    </pre>
+
+    <p>To check if an option has been provided by the user, we use to arguments object. This is an object inside every function, that contains an array of everything passed to it via arguments. Because we are only expecting one argument, we check to make sure arguments[0] exists and is an object. If the condition passes, we then merge the two objects using a utility method - to be created after.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // Define our constructor
+    this.Modal = function() {
+
+        // Create global element references
+        this.closeButton = null;
+        this.modal = null;
+        this.overlay = null;
+
+        // Default option defaults object
+        var defaults = {
+            className: 'fade-and-drop',
+            closeButton: true,
+            content: "",
+            maxWidth: 600,
+            minWidth: 280,
+            overlay: true
+        }
+
+        // Create options by extending defaults with the passed in arguments
+        if (arguments[0] && typeof arguments[0] === "object") {
+            this.options = extendDefaults(defaults, arguments[0]);
+        }
+    }
+}());
+
+// Create new instance of the Modal
+var myModal = new Modal();
+        </code>
+    </pre>
+
+    <p>And now we will create the extendDefaults utility method. This takes an object, loops through it's properties and it's not an internal property (hasOwnProperty), assigns it to the source object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    // Define our constructor
+    this.Modal = function() {
+
+        // Create global element references
+        this.closeButton = null;
+        this.modal = null;
+        this.overlay = null;
+
+        // Default option defaults object
+        var defaults = {
+            className: 'fade-and-drop',
+            closeButton: true,
+            content: "",
+            maxWidth: 600,
+            minWidth: 280,
+            overlay: true
+        }
+
+        // Create options by extending defaults with the passed in arguments
+        if (arguments[0] && typeof arguments[0] === "object") {
+            this.options = extendDefaults(defaults, arguments[0]);
+        }
+    }
+
+    // Utility method to extend defaults with user options
+    function extendDefaults(source, properties) {
+        var property;
+        for (property in properties) {
+            if (properties.hasOwnProperty(property)) {
+                source[property] = properties[property];
+            }
+        }
+        return source;
+    }
+
+}());
+
+// Create new instance of the Modal
+var myModal = new Modal();
+        </code>
+    </pre>
+
+    <p>We can now configure our plugin wit an options object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Create new instance of the Modal
+var myModal = new Modal({
+    content: 'Hello I am a Modal',
+    maxWidth: 600
+});
+        </code>
+    </pre>
+
+    <p>Now that we have our Modal object, we should look to add a public method. This will allow the modal to open.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+
+    /* Constructor */
+
+    // Define our constructor
+    this.Modal = function() {
+
+        // Create global element references
+        this.closeButton = null;
+        this.modal = null;
+        this.overlay = null;
+
+        // Default option defaults object
+        var defaults = {
+            className: 'fade-and-drop',
+            closeButton: true,
+            content: "",
+            maxWidth: 600,
+            minWidth: 280,
+            overlay: true
+        }
+
+        // Create options by extending defaults with the passed in arguments
+        if (arguments[0] && typeof arguments[0] === "object") {
+            this.options = extendDefaults(defaults, arguments[0]);
+        }
+    }
+
+    /* Public Methods */
+
+    Modal.prototype.open = function() {
+        // Open code goes here
+    }
+
+    /* Private Methods */
+
+    // Utility method to extend defaults with user options
+    function extendDefaults(source, properties) {
+        var property;
+        for (property in properties) {
+            if (properties.hasOwnProperty(property)) {
+                source[property] = properties[property];
+            }
+        }
+        return source;
+    }
+
+}());
+
+// Create new instance of the Modal
+var myModal = new Modal({
+    content: 'Hello I am a Modal',
+    maxWidth: 600
+});
+        </code>
+    </pre>
+
+    <p>In order to expose a public method we attach it to our Modal object's prototype. When you add methods to the object's prototype, each new instance shares the same method rather than creating new methods for each instance.</p>
 </main>
 
 </body>
