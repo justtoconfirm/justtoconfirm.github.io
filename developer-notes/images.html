@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Images</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Images</h1>
+
+    <p>In HTML, images are defined with the &lt;img&gt; element. This element is empty (meaning that it has no text content or closing tag) and contains only attributes with no closing tag. The src attribute specifies the URL (web address) of the image.</p>
+
+    <p>Elements such as &lt;img&gt; and &lt;video&gt; are sometimes referred to as replaced elements. This is because the element's content and size are defined by an external resource - an image or video file - not by the contents of the element itself.</p>
+
+    <p>The alt attribute provides an alternative text for an image should the user, for some reason, be unable to view it. The value of the alt attribute should describe the image. If a browser cannot find an image, it will display the value of the alt attribute. This is a required attribute. A web page wil not validate correctly without it.</p>
+
+    <p>The alt attribute helps users who are visually impaired to use a screen reader that will read the web out to them. Having alt text available to describe images is useful to most users.</p>
+
+    <h3>Decorative images &amp; alt</h3>
+
+    <p>If the image you are using decoration/decorative images, then you should use CSS background images, but if you must use HTML, add a blank alt="". This will avoid a screen reader having to waste time reading the image if it's not part of the content.</p>
+
+    <p>Further details can be found on the <a href="accessibility.html">accessibility</a> documentation.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="images/bg-decoration.jpg" alt="" /&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="images/flowers-chania.jpg" alt="Flowers in Chania" /&gt;
+        </code>
+    </pre>
+
+    <p>The width and height attributes always define the width and height of an image in pixles. Google recommends always setting the height and width of an image and to always specify the same height and width as the actual image so the browser doesn't have to do any modifications such as resizing.</p>
+
+    <p>If no dimensions are specified, or the dimensions don't match those of the actual image, the browser will require a reflow and repaint once the image(s) are downloaded. The height and width should therefore be specified in the HTML attributes or in CSS.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="images/flowers-chania.jpg" width="128" height="128" alt="Flowers in Chania" /&gt;
+        </code>
+    </pre>
+
+    <p>Search engines also read image filenames and count them towards SEO. Therefore, give your images descriptive filenames, dinosaur.jpg is better than img835.jpg. It is recommended to always keep the images on the same server as your HTML.</p>
+
+    <p>Pointing your src attribute to an image hosted elsewhere that you don't have permission to link to or use is called "hotlinking" and is not recommended. This also makes the browser do more work by looking up the IP address from the DNS server.</p>
+
+    <h2>Images as Links</h2>
+
+    <p>To use an image as a link, put the &lt;img&gt; tag inside the &lt;a&gt; tag. The image should be styled to have border: 0 (within the CSS), to prevent IE9 (Internet Explorer 9) and earlier browsers, from displaying a border around the image when the image is a link.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="flower-tutorials.html"&gt;
+    &lt;img src="images/flowers.jpg" class="img" width="128" height="128" alt="Flower Tutorials" /&gt;
+&lt;/a&gt;
+        </code>
+    </pre>
+
+    <h2>&lt;picture&gt;</h2>
+
+    <p>HTML5 introduced the &lt;picture&gt; element to add more flexibility when specifying image resources. The &lt;picture&gt; element contains a number of &lt;source&gt; elements, each referring to different image sources. This way, the browser can choose the image that best fits the current view/device.</p>
+
+    <p>You should always specify an &lt;img&gt; element as the last child element of the &lt;picture&gt; element. The &lt;img&gt; element is used by browsers that do not support the &lt;picture&gt; element, or if none of the &lt;source&gt; tags match.</p>
+
+    <p>Here is the current support for the &lt;picture&gt; element according to <a href="https://caniuse.com/#feat=picture" target="_blank" rel="noopener noreferrer">caniuse.com</a></p>
+</main>
+
+</body>
+</html>

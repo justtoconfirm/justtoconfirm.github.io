@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - WebSockets</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API -->
+<!-- https://blog.teamtreehouse.com/an-introduction-to-websockets -->
+<!-- https://itnext.io/building-a-node-js-websocket-chat-app-with-socket-io-and-react-473a0686d1e1 -->
+<!-- https://socket.io/ -->
+
+<!-- https://blog.bitsrc.io/a-beginners-guide-to-server-side-web-development-with-node-js-17385da09f93 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>WebSockets</h1>
+
+    <p>The WebSocket API is an advanced technology that makes it possible to open a two-way interactive communication session between the user's browser and a server. With this API, you can send messages to a server and receive event-driven responses without having to poll the server for a reply.</p>
+
+    <p>The web was built around the idea that a client's job is to request data from a server and the server is there to fulfill those requests. With the introduction of AJAX around 2005 caused developers to start to explore the possibilities of making connections between a client and server bidirectional.</p>
+
+    <p>To overcome the limitations of HTTP, different strategies were devised to allow servers to push data to the client. One such strategy was long-polling. This involves keeping an HTTP connection open until the server has data to push down to the client. The problem with this solution is that every time you make an HTTP request, a bunch of headers and cookie data (often not always needed to fulfil the client's request) is transferred to the server. This can increase the amount of data that needs to be transferred, which increases latency (the delay before a transfer of data begins following an instruction for the data to be transferred). If your building something like a browser-based game, reducing latency is key to keeping things running smoothly. WebSockets help to provide a solution to this problem.</p>
+
+    <p>HTTP is a stateless protocol, thus the overhead of a HTTP header is added to every single message, which can get quite large in size. This will especially make an impact for frequent messages with a relatively small payload, such as in a chat app.</p>
+
+    <p>WebSockets provide a persistent connection between a client and server that both parties can use to start sending data at any time.</p>
+
+    <p>Support for WebSockets in modern browsers is pretty good, according to <a href="https://caniuse.com/#feat=websockets" target="_blank" rel="noopener noreferrer">caniuse.com</a>.</p>
+
+    <p>WebSockets can be very beneficial for building realtime communications or data streaming applications on the web, such as chat apps.</p>
+
+    <p>The client establishes a WebSocket connection through a process known as the WebSocket handshake. This process starts with the client sending a regular HTTP request to the server. An Upgrade header is included in this request that informs the server that the client wishes to establish a WebSocket connection.</p>
+
+    <p>WebSocket URLs use the ws scheme. There is also wss for secure WebSocket connections which is the equivalent of HTTPS.</p>
+
+    <p>Here is a simplified example of the initial request headers:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET ws://websocket.example.com/ HTTP/1.1
+Origin: http://example.com
+Connection: Upgrade
+Host: websocket.example.com
+Upgrade: websocket
+        </code>
+    </pre>
+
+    <p>If the server supports the WebSocket protocol, it agrees to the upgrade and communicates through an Upgrade header in the response, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+HTTP/1.1 101 WebSocket Protocol Handshake
+Date: Fri, 11 Jan 2019 10:07:34 GMT
+Connection: Upgrade
+Upgrade: WebSocket
+        </code>
+    </pre>
+
+    <p>Now that the handshake is complete, the initial HTTP connection is replaced by a WebSocket connection that uses the same underlying <abbr title="Transmission Control Protocol (TCP) and the Internet Protocol (IP)">TCP/IP</abbr> connection. At this point, either party (client or server) can start sending data.</p>
+
+    <p>WebSockets can transfer as much data as you like without incurring the overhead associated with traditional HTTP requests.</p>
+
+    <p>Data is transferred through a WebSocket as messages, each of which consists of one or more frames containing data you are sending (the payload).</p>
+
+    <h2>Creating WebSocket connections</h2>
+
+    <p>Creating WebSocket connections is really simple. All you have to do is call the WebSocket constructor and pass in the URL of your server.</p>
+
+    <p>As you can see in this example, we are using the ws scheme and not the wss scheme for secure WebSocket connections.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Create a new WebSocket
+var socket = new WebSocket('ws://echo.websocket.org');
+        </code>
+    </pre>
+
+    <p>Once the connection has been established, the open event will be fired on your WebSocket instance. If it doesn't work, try changing the scheme from 'ws' to 'wss'.</p>
+
+    <p>We now want to show a message in the console to show that a connection has been established.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Show a connected message when the WebSocket is opened
+socket.onopen = function(event) {
+    console.log('Connected to: ' + event.currentTarget.url);
+};
+        </code>
+    </pre>
+
+    <p>We also want to log any errors to the console.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Handle any errors that occur
+socket.onerror = function(error) {
+    console.log('WebSocket Error: ' + error);
+};
+        </code>
+    </pre>
+
+    <h2>Sending Messages</h2>
+
+    <p>To send a message through the WebSocket connection, you call the send() method on your WebSocket instance, passing in the data you want to transfer.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+socket.send(data);
+        </code>
+    </pre>
+
+    <h2>Close Connections</h2>
+
+    <p>Once you're done with your WebSocket, you can terminate the connection using the close() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+socket.close();
+        </code>
+    </pre>
+
+    <p>After the connection has been closed, the browser will fire a close event. Attaching an event listener to the close event allows you to perform any clean up that you might need to do.</p>
+
+    <h2>Monitoring WebSocket Traffic</h2>
+
+    <p>The developer tools (DevTools) in Chrome include a feature for monitoring traffic through a WebSocket. You can access this tool by following these steps:</p>
+
+    <ul>
+        <li>Open up the Developer Tools.</li>
+        <li>Switch to the 'Network' tab.</li>
+        <li>Click on the entry for your WebSocket connection, ours should be named 'echo.websocket.org'.</li>
+        <li>Switch to the 'Frames' tab.</li>
+    </ul>
+
+    <p>This tool will show you a summary of all the data sent through the connection.</p>
+
+    <h2>WebSockets on the Server</h2>
+
+    <p>We have mainly focussed on using WebSockets from a client-side perspective. If you're looking to build your own WebSocket server, there are plenty of libraries out there that can help. One of the most popular is Socket.IO, a Node.js library that provides cross-browser fallbacks.</p>
+
+    <p>Socket.IO consists of:</p>
+
+    <ul>
+        <li>A Node.js server.</li>
+        <li>A JavaScript client library for the browser, which can also be run from Node.js.</li>
+    </ul>
+
+    <p>Socket.IO is not a WebSocket implementation. It uses WebSocket as a transport when possible, but adds some metadata to each packet. This is why a WebSocket client will not be able to successfully connect to a Socket.IO server and a Socket.IO client is unable to connect to a WebSocker server.</p>
+</main>
+
+</body>
+</html>
