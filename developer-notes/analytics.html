@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Analytics &amp; Marketing</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.jeffalytics.com/google-tag-manager-tutorial/ -->
+<!-- https://vwo.com/ab-testing/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Analytics</h1>
+
+    <h2>What is Analytics&#63;</h2>
+
+    <p>Web analytics is the collection, reporting, and analysis of website data. The focus is on identifying measures based on your organisational and user goals and using the data to determine the success or failure of those goals. This helps to drive strategy and improve the user experience.</p>
+
+    <h2>Google Analytics</h2>
+
+    <p>Google Analytics is a web analytics service offered by Google and launched in November 2005, that tracks and reports website traffic. This is currently a platform inside the Google Marketing Platform brand.</p>
+
+    <h2>Google Tag Manager (GTM)</h2>
+
+    <p>Google Tag Manager (GTM) allows you to manage your tags without editing your code. GTM gives you the ability to add and update your own tags for conversion tracking, site analytics, and more.</p>
+
+    <p>Tracking pixels are little bits of code that collect information about your website users. These pixels are often referred to as "tags". GTM allows you to manage all your tracking tags in one place and install tags without manually editing your website code.</p>
+
+    <p>Tracking code can also cause problems in the area of web development. Typically web developers are tasked with adding new tracking tags to a website. Installing tracking codes can be tedious and problematic. new tracking scrips have to be tested and verified. Tracking codes are also notorious for breaking websites.</p>
+
+    <p>Tag templates are ready-made tracking scripts with minimal input needed. They are optimised for speed, cross-browser compatibility, and are verified by Google. You can install these templates without touching any code. Most of them can be connected to your website by simply inputting vendor genrated tracking IDs - such as Twitter pixel ID, or Google Analytics ID. When vendors update their tracking code, your template will automatically update with little maintenence work required. There are over 90 tag templates available in GTM.</p>
+
+    <p>The only major marketing platform that doesn't have a GTM template is Facebook.</p>
+
+    <p>If your website is fairly simple and perhaps using Google Analytics tracking code, you probably don't need GTM. If you only have one tracking tag, again, you don't need tag manager.</p>
+
+    <p>In GTM we use tags (also known as analytics or marketing scripts) that use triggers (known as rules), to activate your tracking tags. We can use variables, also known as macros.</p>
+
+    <h3>GTM - Tag Templates</h3>
+
+    <p>Tag templates in GTM replace the JavaScript code snippets you otherwise add to your site manually. Each tag template requires input to locate the system you're connecting with your tags. For example, to use the Google Analytics template, you need to input your property Tracking ID.</p>
+
+    <p>Each tag template provided in GTM has a unique input that connects it with your account on the corresponding vendor's platform. For tag templates, you usually only need to put in one unique value and set a trigger. This means that you don't have to edit or adjust the tracking code within your tags. Tags templates do most of the hard work for you, but you still need to set up triggers to make your tracking tags work.</p>
+
+    <h3>Triggers in GTM</h3>
+
+    <p>A trigger is a set of rules that tells your tag when to start firing. The most basic trigger in GTM is the all pages trigger. This tells your tag to fire on every page when the page loads. This trigger is typically used with the Google Analytics tag.</p>
+
+    <p>GTM has triggers for scroll depth, button clicks, custom events, and more.</p>
+
+    <h3>Variables in GTM</h3>
+
+    <p>Following tags and triggers, the third part of GTM is variables. Variables are what make the values you track dynamic. Variables are critical if you want to scale your tag management.</p>
+
+    <h2>A/B Testing</h2>
+
+    <p>A/B testing (sometimes called split testing) is used to compare two versions of a web page to see which one performs better. You compare two web pages by showing the two varients (often called 'A' and 'B'), to similar visitors are the same time. The one that gives a better conversion rate wins.</p>
+
+    <p>Every business website wants visitors converting from just visitors to something else. The rate at which a website is able to do this is its "conversion rate". Measuring the performance of variation (A or B) means measuring the rate at which it converts visitors to goal achievers.</p>
+
+    <h2>Conversion Rate Optimization (CRO)</h2>
+
+    <p>In Internet marketing, Conversion Optimization, or Conversion Rate Optimization (CRO) is a system for increasing the percentage of visitors to a website that convert into customers, or more generally, take a desired action on a webpage.</p>  
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
