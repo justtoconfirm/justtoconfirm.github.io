@@ -14,6 +14,8 @@
 <body>
 
 <!-- https://medium.freecodecamp.org/an-introduction-to-object-oriented-programming-in-javascript-8900124e316a -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Window/parent -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -137,6 +139,37 @@ window.print();
         <code>
 <!-- leave this line empty -->
 window.screen.width;
+        </code>
+    </pre>
+
+    <p>The window.parent property is a reference to the parent of the current window. If a window does not have a parent, it's parent property is a reference to itself. When a window is loaded in an &lt;iframe&gt; or &lt;object&gt;, it's parent is the window with the element embedding the window.</p>
+
+    <p>Documentation relating to <a href="iframe.html">iFrames</a> can be found within the developer-notes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.parent;
+        </code>
+    </pre>
+
+    <p>Let us check to see if we are within an iFrame:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+if (window.parent != window.top) {
+    // We're deeper than one down
+}
+        </code>
+    </pre>
+
+    <p>We can return a reference to the top-level window, also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window.top;
         </code>
     </pre>
 

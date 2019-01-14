@@ -15,6 +15,7 @@
 
 <!-- https://www.jeffalytics.com/google-tag-manager-tutorial/ -->
 <!-- https://vwo.com/ab-testing/ -->
+<!-- https://www.hotjar.com/getstarted -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -94,12 +95,28 @@
 
     <p>Hotjar is a powerful tool that reveals online behavior of users. It combines Analysis and Feedback tools and gives you the 'big picture' of how to improve your site's user experience and performance/conversion rates.</p>
 
+    <p>The Hotjar tracking code is a code snippet that needs to be installed on your site for you to be able to use Hotjar. Amongst other things, it allows you to record visitors and collect heatmap data.</p>
+
+    <p>Documentation provided by Hotjar suggests that the tracking code should be placed anywhere between &lt;head&gt; and &lt;/head&gt;.</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
-
+&lt;!-- Hotjar Tracking Code --&gt;
+&lt;script type="text/javascript"&gt;
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:123456,hjsv:5};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+&lt;/script&gt;
         </code>
     </pre>
+
+    <p>When you add a new site, each site gets its own unique Hotjar tracking code, which you simply install on the site it corresponds to.</p>
 </main>
 
 </body>
