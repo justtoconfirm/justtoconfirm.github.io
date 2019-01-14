@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - SEO</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.mtu.edu/umc/services/digital/seo/ -->
+<!-- https://support.google.com/webmasters/answer/7451184?hl=en -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Search Engine Optimization (SEO)</h1>
+
+    <p>Search Engine Optimization (SEO) is the process of affecting the online visibility of a website or a web page in a web search engine's unpaid results. This is often referred to as "natural" or "organic" results. It is the process of maximizing the number of visitors to a particular website by ensuring that the site appears high on the list of results returned by the search engine.</p>
+
+    <p>The majority of web traffic is driven by the major commercial search engines, such as Google and Bing.</p>
+
+    <h2>Index</h2>
+
+    <p>Google stores all web pages that is knows about in it's index. The index entry for each page describes the content and location (URL) of that page. To index is when Google fetches a page, reads it, and adds it to the index.</p>
+
+    <h2>Crawl</h2>
+
+    <p>The process of looking for new or updated web pages. Google discovers URLs by following links, reading sitemaps, and other means. Google crawls the web, looking for new pages, then indexes them.</p>
+
+    <h2>Crawler</h2>
+
+    <p>Automated software that crawls (fetches) pages from the web and indexes them.</p>
+
+    <h2>Page Load Speed</h2>
+
+    <p>Both Google and Bing take page-loading speed into account in their website ranking algorithm. If your page takes a while to load, this will increase your bounce rate (The percentage of visitors to a particular website who navigate away from the site after viewing only one page) and reduce the number of pages viewed, which could hurt your SEO ranking.</p>
+
+    <h2>Unique Page Titles</h2>
+
+    <p>A &lt;title&gt; tag tells both users and search engines what topic of a particular page is. The &lt;title&gt; tag should be placed within the &lt;head&gt; element of the HTML document. You should create a unique title for each page on your site.</p>
+
+    <h2>Description meta tag</h2>
+
+    <p>A page's description meta tag gives Google and other search engines a summary of what the page is about. A page's title may be a few words or a phrase, whereas a page's description meta tag might be a sentence or two, or even a short paragraph.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;meta name="description" content="Development notes provides a large selection of dev notes" /&gt;
+        </code>
+    </pre>
+
+    <p>Description meta tags are important because Google might use them as snippets for your pages. Google may choose to use a relevant section of your page's visible text if it does a good job of matching up with a user's query. Adding description meta tags to each of your pages is always a good practice in case Google cannot find a good selection of text to use in the snippet.</p>
+
+    <h2>Combat comment spam</h2>
+
+    <p>Setting the value of the "rel" attribute of a link to "nofollow" will tell Google that certain links on your site shouldn't be followed or pass your page's reputation to the pages linked to. For example, this would be useful if public comments are available on your website. Adding Nofollowing to any user-added links a post may contain will ensure you're not giving your page's reputation to a spammy website.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="http://www.example.com" rel="nofollow"&gt;Text Link&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>Further details can be located on our <a href="html.html">HTML</a> documentation.</p>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - RWD</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.w3schools.com/html/html_responsive.asp -->
+<!-- https://www.smashingmagazine.com/2011/01/guidelines-for-responsive-web-design/ -->
+<!-- https://mayvendev.com/blog/mobilefirst -->
+<!-- https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag -->
+<!-- https://www.smashingmagazine.com/2009/04/progressive-enhancement-what-it-is-and-how-to-use-it/ -->
+<!-- https://medium.freecodecamp.org/what-is-progressive-enhancement-and-why-it-matters-e80c7aaf834a -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Responsive Web Design (RWD)</h1>
+
+    <p>Responsive Web Design (RWD) is the approach that suggests that design and development should respond to the user's behaviour and environment based on screen size, platform, and orientation. The practice consists of a mix of flexible grids, layouts, images and the intelligent use of CSS media queries. If the user were to switch from a mobile device to a tablet, the website should automatically switch to accommodate for resolution, image size and scripting abilities.</p>
+
+    <p>CSS Media Queries are supported in Internet Explorer (IE) 9+, Firefox 3.5+, Safari 3+, and Opera 7+.</p> 
+
+    <h2>Mobile First</h2>
+
+    <p>Historically, most web designers/developers have approached the desktop side of any project first. Even with the introduction of RWD, many developers still began with a "full size" desktop site and worked down in size. Mobile first is the consideration to think about mobile first and work up to larger desktop versions.</p>
+
+    <h2>Viewport</h2>
+
+    <p>The browser's viewport is the area of the window in which web content can be seen. This is often not the same size as the rendered page, in which case the browser provides scrollbars for the user to scroll around and access all the content.</p>
+
+    <p>Narrow screen devices, such as mobile, render pages in a virtual window or viewport, which is usually wider than the screen and then shrinks the rendered result down so it can be seen all at once. Users can then pan and zoom to see different areas of the page. For example, if a mobile screen has a width of 640px, pages maybe rendered with a virtual viewport of 980px and then it will be shrunk down to fit into the 640px space. This is done as many pages may not be mobile optimized, so may break when rendered at a small viewport width. This virtual viewport is a way to make a non-mobile-optimised site look good on narrow screen devices.</p>
+
+    <p>This mechanism is not so good for pages that are optimised for narrow screens using media queries, if the virtual viewport is 980px, for example, media queries that kick in at 640px or 480px or less, will never be used. This limits their effectiveness of such responsive design techniques. To mitigate this problem, Apple introduced the "viewport meta tag" in Safari iOS to let web developers control the viewport's size and scale. This is now supported by many modern web browsers, although it is not part of any web standard.</p>
+
+    <p>A typical mobile-optimized site contains something like the following meta tag:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        </code>
+    </pre>
+
+    <p>The width property controls the size of the viewport. It can be set to a specific number of pixels, like width=600, or to the special value device-width, which is the width of the screen in CSS pixels at a scale of 100%.</p>
+
+    <p>The initial-scale property controls the zoom level when the page is first loaded. The maximum-scale, minimum-scale, and user-scalable properties control how users are allowed to zoom the page in or out.</p>
+</main>
+
+</body>
+</html>

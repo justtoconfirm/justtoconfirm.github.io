@@ -33,15 +33,337 @@
 
 <!-- $ npm xmas -->
 
+<!-- Functional Programming (FP) -->
+
+<!--
+Mocha as a testing structure
+Chai to provide assertions functions
+We generate and compare snapshots of components and data structures using Jest via Chai
+Sinon provides us with spies and stubs
+Enzyme to easily assert, manipulate, and traverse our components.
+-->
+
+<!--
+(function(crunchSS, $){
+
+    var fieldErrors = [],
+        errorMessage;
+    
+    function checkPhone($phoneNumber) {
+
+        if ( $phoneNumber && /[0-9]/.test( $phoneNumber ) ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /** TEST EXAMPLE IN JASMINE **/
+    expect checkPhone(hel1) to be false
+
+    /**
+     * Validate the form fields against the rules in the html
+     */
+    crunchSS.validate = function ($container, $form) {
+
+        // Last Name, First Name
+        var $nameField = $form.find('input[name=name]'),
+            $firstNameField = $container.find('input[name=firstName]'),
+            $lastNameField = $container.find('input[name=lastName]');
+
+        if ( $firstNameField.length !== 0 && $firstNameField.val().length !== 0 ) {
+            var firstNameValue = $firstNameField.val();
+        }
+
+        if ( $lastNameField.length !== 0 && $lastNameField.val().length !== 0 ) {
+            var lastNameValue = $lastNameField.val();
+        }
+
+
+        if ( $nameField.length !== 0 && ( typeof firstNameValue !== 'undefined' || typeof lastNameValue !== 'undefined' ) ) {
+            var nameValue = firstNameValue + ' ' + lastNameValue;
+            $nameField.val(nameValue);
+        }
+
+        // Use of Integers in text only fields (First and last name)
+        $container.find('input[name=firstName], input[name=lastName]').each(function () {
+
+            /** NEW CODE **/
+            $val = $(this).val();
+            $testPass = checkPhone($val);
+
+            if (!$testPass) {
+                var fieldName = $(this).attr('name');
+                crunchSS.addFieldError(fieldName, 'Please enter text only.');
+            }
+            /** / NEW CODE **/
+
+        });
+
+        // Min Chars
+        $container.find('input[minlength], textarea[minlength]').each(function () {
+
+            if ($(this).val().length < $(this).attr('minlength')) {
+
+                var nameAttr = $(this).attr('name');
+                var nameDataAttr = $(this).data('field-name');
+
+                if ( typeof nameDataAttr !== typeof undefined && nameDataAttr !== false ) {
+                    var fieldName = nameDataAttr;
+                } else {
+                    var fieldName = nameAttr;
+                }
+
+                crunchSS.addFieldError(fieldName, 'Please enter ' + $(this).attr('minlength') + ' characters or more.');
+            }
+
+        });
+
+        // Max Chars
+        $container.find('input[maxlength], textarea[maxlength]').each(function () {
+
+            if ($(this).val().length > $(this).attr('maxlength')) {
+
+                var nameAttr = $(this).attr('name');
+                var nameDataAttr = $(this).data('field-name');
+
+                if ( typeof nameDataAttr !== typeof undefined && nameDataAttr !== false ) {
+                    var fieldName = nameDataAttr;
+                } else {
+                    var fieldName = nameAttr;
+                }
+
+                crunchSS.addFieldError(fieldName, 'Please enter less than ' + $(this).attr('maxlength') + ' characters.');
+            }
+
+        });
+
+
+        // Required Fields
+        $container.find('.required').each(function () {
+            if ($.trim($(this).val()) === '') {
+
+                var nameAttr = $(this).attr('name');
+                var nameDataAttr = $(this).data('field-name');
+
+                if ( typeof nameDataAttr !== typeof undefined && nameDataAttr !== false ) {
+                    var fieldName = nameDataAttr;
+                } else {
+                    var fieldName = nameAttr;
+                }
+
+                crunchSS.addFieldError(fieldName, 'Please fill out this field');
+            }
+
+        });
+
+        // Required Fields
+        $container.find('.required-select').each(function () {
+            if ($.trim($(this).val()) === '') {
+                var fieldName = $(this).attr('name');
+                crunchSS.addFieldError(fieldName, 'Please make a selection');
+            }
+
+        });
+
+        // Required Radio Buttons
+        var inputNames = []; // stores required input names
+        // Combine all radios with same name and check if current is checked
+        $container.find('.js-input-radio.required').each(function() {
+            var thisName = $(this).attr('name');
+            if ($.inArray(thisName, inputNames) === -1) {
+                inputNames.push(thisName);
+                if ($('input[name="'+thisName+'"]:checked').length <= 0) {
+                    crunchSS.addFieldError(thisName, 'Please choose an option');
+                }
+            }
+        });
+
+        // Required checkboxes
+        $container.find('.js-input-checkbox.required').each(function() {
+            var thisName = $(this).attr('name');
+            var errorMessage = thisName === 'policyAccepted' ? 'Please confirm that you agree with the above to continue' : 'Please tick this checkbox';
+            if ( !$(this).is(':checked') ) {
+                crunchSS.addFieldError(thisName, errorMessage);
+            }
+        });
+
+        // Email
+        var $emailField = $container.find('input[name=email], input[type=email]');
+        if ($emailField.length && $emailField.val().length && !/(.+)@(.+){2,}\.(.+){2,}/.test($emailField.val())) {
+            var fieldName = $emailField.attr('name');
+            this.addFieldError(fieldName, 'Please enter a valid email address');
+        }
+
+        // Phone
+        $container.find('input[name=phone], input[type=tel]').each(function () {
+
+            if ( $(this).val().length && !/.*([1-9][0-9]*[1-9]?.*){3,}.*/.test( $(this).val() ) ) {
+                var fieldName = $(this).attr('name');
+                crunchSS.addFieldError(fieldName, 'Please enter a valid phone number');
+            }
+
+        });
+
+        // Number Only
+        $container.find('input[data-field-type=number]').each(function () {
+
+            if ( $(this).val().length && !/^[0-9]*$/.test( $(this).val() ) ) {
+                
+                var nameAttr = $(this).attr('name');
+                var nameDataAttr = $(this).data('field-name');
+
+                if ( typeof nameDataAttr !== typeof undefined && nameDataAttr !== false ) {
+                    var fieldName = nameDataAttr;
+                } else {
+                    var fieldName = nameAttr;
+                }
+
+                crunchSS.addFieldError(fieldName, 'Please enter numbers only');
+            }
+
+        });
+
+        // Date
+        var $dateField = $container.find('input[data-type="date"]');
+        if ($dateField.length && $dateField.val().length && !/(^[0-9]{2,2}\-[0-9]{2,2}\-[0-9]{4,4})/.test($dateField.val())) {
+            var fieldName = $dateField.attr('name');
+            this.addFieldError(fieldName, 'Please enter a valid date');
+        }
+
+        $container.find('input[name=postcode]').each(function () {
+            var postcodevalue = $(this).val().toUpperCase();
+            $(this).val(postcodevalue);
+
+            if ( $(this).val().length && !/^([A-Za-z][A-Za-z0-9]?[A-Z0-9]?[A-Za-z0-9]?(\s||){1,2}[0-9][A-Za-z0-9]{2})$/.test( postcodevalue ) ) {
+                var fieldName = $(this).attr('name');
+                crunchSS.addFieldError(fieldName, 'Please enter a valid post code');
+            }
+        });
+
+    };
+
+    /**
+     * Render the form error messages
+     */
+    crunchSS.handleErrors = function ($container) {
+
+        $.each(fieldErrors, function () {
+
+            var $field = $container.find('input[name=' + this.field + '], textarea[name=' + this.field + '], select[name=' + this.field + '], input[data-field-name=' + this.field + ']');
+            var $richSelectField = $field.parents('.js-rich-select-field');
+
+            if ( $field.parents('.options-container').length ) {
+                $field.parents('.options-container').addClass('error').next('.error-message').html(this.message);
+
+            } else {
+                $field.addClass('error').parent().find('.error-message').html(this.message);
+            }
+
+            if ( $field.parents('.segmented-control').length ) {
+                $field.parents('.segmented-control').next('.error-message').html(this.message);
+            } else {
+                $field.addClass('error').parent().find('.error-message').html(this.message);
+            }
+
+            if ( $field.parents('.checkbox-radio-container').length ) {
+                $field.parents('.checkbox-radio-container').next('.error-message').html(this.message);
+            } else {
+                $field.addClass('error').parent().find('.error-message').html(this.message);
+            }
+
+            if ( $richSelectField.length ) {
+                $richSelectField.find('.error-message').html(this.message);
+                $richSelectField.addClass('error');
+            }
+
+            // This is a special case because select2 creates new elements to mimic the dropdown
+            if ( this.field === 'industry' ) {
+                var $selectDropdown = $container.find('.select2-selection');
+                $selectDropdown.addClass('error');
+            }
+
+        });
+
+        if (this.errorMessage) {
+            $container.find('.general-error.error-message').text(this.errorMessage).show();
+        }
+
+        // Scroll to first error
+        CrunchSS.scrollCheck($container.find('.error').first());
+
+    };
+
+    /**
+     * Add a field error to the stack
+     * @param fieldName
+     * @param fieldResponse
+     */
+    crunchSS.addFieldError = function(fieldName, fieldResponse) {
+        fieldErrors.push({field: fieldName, message: fieldResponse});
+    };
+
+    /**
+     * Do any errors exist
+     * @returns {boolean}
+     */
+    crunchSS.hasErrors = function() {
+        return ((fieldErrors.length > 0) || (errorMessage));
+    };
+
+    /**
+     * Reset the form error state
+     */
+    crunchSS.resetErrors = function ($container) {
+
+        fieldErrors.length = 0;
+        $container.find('.error-message').empty();
+        $container.find('.error').removeClass('error');
+        errorMessage = null;
+
+    };
+
+    crunchSS.initValidate = function ($container, $form) {
+
+        /**
+            Pre ES6 alternative to default function options
+        */
+        $container = typeof $container !== 'undefined' ? $container : $(document);
+        $form = typeof $form !== 'undefined' ? $form : $(document);
+
+        crunchSS.resetErrors($container);
+
+        crunchSS.validate($container, $form);
+
+        if ( crunchSS.hasErrors() ) {
+            crunchSS.handleErrors($container);
+            return;
+        }
+
+    };
+
+    CrunchSS.validateForm = {
+        validate: crunchSS.initValidate,
+        addFieldError: crunchSS.addFieldError,
+        hasErrors: crunchSS.hasErrors
+    };
+
+})(window.CrunchSS = window.CrunchSS || {}, jQuery);
+-->
+
+<!-- https://css-tricks.com/form-validation-part-1-constraint-validation-html/ -->
+
 <main role="main">
     <ul class="no-bullet-list">
         <li><a href="developer-setup.html">Developer Setup</a></li>
         <li><a href="ci-cd.html">CI &amp; CD</a></li>
         <li><a href="html.html">HTML</a></li>
         <li><a href="html5.html">HTML5</a></li>
+        <li><a href="font.html">Font &amp; Webfont</a></li>
         <li><a href="images.html">Images</a></li>
         <li><a href="bem.html">BEM (Block Element Modifier)</a></li>
         <li><a href="atomic-design.html">Atomic Design</a></li>
+        <li><a href="rwd.html">Responsive Web Design (RWD)</a></li>
         <li><a href="css.html">CSS</a></li>
         <li><a href="css-grid.html">CSS Grid</a></li>
         <li><a href="css-animation.html">CSS Animation</a></li>
@@ -55,6 +377,9 @@
         <li><a href="javascript-prototype.html">JavaScript Prototype</a></li>
         <li><a href="javascript-class.html">JavaScript Class</a></li>
         <li><a href="javascript-modules.html">JavaScript Modules</a></li>
+        <li><a href="javascript-async-defer.html">JavaScript Async &amp; Defer</a></li>
+        <li><a href="regex.html">Regex</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
         <li><a href="jquery.html">jQuery</a></li>
         <li><a href="node.html">NodeJS</a></li>
         <li><a href="php-basic.html">PHP Basics</a></li>
@@ -76,6 +401,7 @@
         <li><a href="analytics.html">Analytics &amp; Marketing</a></li>
         <li><a href="iframe.html">iFrame</a></li>
         <li><a href="agile.html">Agile Methodology &amp; Development</a></li>
+        <li><a href="seo.html">Search Engine Optimization (SEO)</a></li>
         <li><a href="websockets.html">Websockets</a></li>
     </ul>
 
@@ -93,12 +419,10 @@
         <li>SGDD (Styleguide Driven Development)</li>
         <li>Git &amp; Version Control</li>
         <li>Flexbox</li>
-        <li>Font &amp; Webfont</li>
         <li>JavaScript Promises</li>
         <li>Express</li>
         <li>MongoDB</li>
         <li>NextJS</li>
-        <li>Regex</li>
         <li>Lazy Loading</li>
         <li>Build Scripts</li>
         <li>Gulp</li>
@@ -117,7 +441,7 @@
         <li>CI/CD & automation - To learn how to have a pipeline that goes from pushing a commit to Git to updating a develop and test environment.</li>
         <li>Testing - The difference between unit, integration, regression, and end-to-end (e2e) tests.</li>
         <li>CSS & JavaScript animation.</li>
-        <li>Build a JavaScript search field with autopopulation.</li>
+        <li>Build a JavaScript search field with autopopulate.</li>
         <li>Drag and drop, scroll, and window in JavaScript.</li>
         <li>Databases - understanding MySQL and NoSQL in more detail.</li>
     </ul>

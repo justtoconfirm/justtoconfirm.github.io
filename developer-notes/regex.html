@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Regex</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.computerhope.com/jargon/r/regex.htm -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Regex</h1>
+
+    <p>Regex, or Regular expression, is a string of text that allows you to create patterns that help, match, locate, and manage text. If you need to work with text or need to parse large amounts of data, Regex is ideal.</p>
+
+    <p>In JavaScript, regular expressions are also objects. These patterns are used with the exec and test methods of RegExp, and with the match, replace, search, and split methods of String.</p>
+
+    <h2>Regular Expression Literal</h2>
+
+    <p>A Regular expression literal consists of a pattern enclosed between slashes. They provide compilation of the Regex when the script is loaded. This can improve performance if the expression remains constant.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var regex = /ab+c/;
+        </code>
+    </pre>
+
+    <p>We can also call the constructor function of the RegExp object, as follows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var regex = new RegExp('ab+c');
+        </code>
+    </pre>
+
+    <p>Use this method if you know the pattern will be changing, or if you don't know the pattern and are getting it from another source, such as user input.</p>
+
+    <h2>Writing a Regex pattern</h2>
+
+    <p>A Regex pattern is composed of simple characters, such as /abc/, or a combination of simple and special characters, such as /ab*c/.</p>
+
+    <p>Simple patterns are constructed of characters for which you want to find a direct match. For example, pattern /abc/ matches characters in a combination within a string only when 'abc' occur together in that order. Such a match would succeed in the strings: "Hi, do you know your abc's?". There is no match with the string "Grab crab" because while it contains 'ab c', it does not contain the exact substring of 'abc'.</p>
+
+    <p>In the following example, the script uses the exec method to find a match in a string.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myRegex = /d(b+)d/g;
+var myArray = myRegex.exec('cdbbdbsbz');
+        </code>
+    </pre>
+
+    <p>Regex can be used to verify form input. It can also be used for "search-and-replace" functionality performed on text.</p>
+</main>
+
+</body>
+</html>

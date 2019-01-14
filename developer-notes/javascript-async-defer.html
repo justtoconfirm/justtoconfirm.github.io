@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript Async &amp; Defer</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://flaviocopes.com/javascript-async-defer/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Async &amp; Defer</h1>
+
+    <p>When loading a script on an HTML page, you need to be careful not to harm the loading performance of the page. Whenever the HTML parser finds the &lt;script&gt; element, a request will be made to fetch the script and the script is then executed. Once this process is done, the parsing can resume and the rest of the HTML can be analyzed. This can impact the loading time of the page.</p>
+
+    <p>If the script takes a little longer to load than expected, for example if the network is a bit slow or the page is being viewed on a mobile device with a slow connection, the visitor will likely see an empty page until the script is loaded and then executed.</p>
+
+    <p>It is best to place any &lt;script&gt; tags at the bottom of your HTML page, just before the closing &lt;/body&gt; element. Doing so, the script is loaded and executed after all the page is already parsed and loaded. If the &lt;script&gt; tag were to be placed inside the &lt;head&gt; section of the HTML document, this would cause the page to remain blank until the script has been parsed and executed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="myscript.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Both async and defer are boolean attributes. Their usage is similar.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Async
+&lt;script src="myscript.js" async&gt;&lt;/script&gt;
+
+// Defer
+&lt;script src="myscript.js" defer&gt;&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>If you specify both, <a href="https://caniuse.com/#feat=script-async" target="_blank" rel="noopener noreferrer">async</a> takes precedence on modern browsers. Older browsers that support <a href="https://caniuse.com/#feat=script-defer" target="_blank" rel="noopener noreferrer">defer</a> but not async, will fallback to defer.</p>
+
+    <p>If the &lt;script&gt; elements are needed in the &lt;head&gt; section of your HTML, these attributes are ideal to use.</p>
+
+    <p>The best thing to do to speed up your page loading, is to place your &lt;script&gt; elements in the &lt;head&gt; and add a defer attribute to your &lt;script&gt; tag. This is the scenario that triggers the faster domInteractive event. Unless you are fine with delaying the first render of the page, make sure that when the page is parsed, the JavaScript you want is already executed.</p>
+</main>
+
+</body>
+</html>
