@@ -108,6 +108,36 @@ pre {
     grid-column: 1 / 4;
 }
 
+/* Flexbox Examples */
+.flexbox-wrapper {
+    display: flex;
+}
+
+.flexbox-item {
+    background-color: #3d7e9a;
+    color: #fff;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+}
+
+.flexbox-row {
+    flex-direction: row;
+}
+
+.flexbox-col {
+    flex-direction: column;
+}
+
+.flexbox-wrap {
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
 /* CSS Animation Examples */
 .box {
     background-color: #3d7e9a;

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Flexbox</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412 -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox -->
+<!-- https://www.w3schools.com/css/css3_flexbox.asp -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Flexbox</h1>
+
+    <p>CSS has always been used to design the layout and look of web pages by producing complicated multi-column layouts. First we used tables, floats, positioning, and inline-block. All these techniques left out major functionality, such as vertical centering. To solve these issues, new responsive layout models became available natively in the browser. Flexbox and CSS Grid are two examples of these models that are widely supported across multiple browsers. These not only allow us to create layouts that were only possible previously when using JavaScript, but also help to make the code easier to maintain and understand.</p>
+
+    <p>The Flexible Box Module, usually referred to as flexbox, is a one-dimensional layout modal. Flexbox makes it easier to design flexible responsive layout structures without using float or positioning. The flexbox properties are supported in all modern browsers (Internet Explorer 11 and above). When we describe flexbox as being one dimensional we are describing the fact that flexbox deals with layout in one dimension at a time - either as a row or as a column. This can be contrasted with the two-dimensional model of the <a href="css-grid.html">CSS Grid Layout</a>, which controls columns and rows together.</p>
+
+    <p>You can check the browser support for Flexbox using <a href="https://caniuse.com/#feat=flexbox" target="_blank" rel="noopener norefferer">caniuse.com</a>.</p>
+
+    <h3>Flexbox v CSS Grid</h3>
+
+    <p>The core difference between CSS Grid and Flexbox, is the CSS Grid's approach is layout-first, while Flexbox' approach is content-first. If you only need to define a layout as a row or column, then Flexbox is probably the solution you need. If you want to define a grid and fit content into it in two dimensions, the CSS Grid is the preferred method.</p>
+
+    <h2>Parent Element - Container</h2>
+
+    <p>An area of a document laid out using flexbox is called a flex container. To create a flex container, we set the value of the area's container's display property to flex or inline-flex. As soon as we do this the children of that container become flex items. The result of this is that your items will all line up in a row, using the size of the content as their size in the main axis.</p>
+
+    <p>We start by defining a parent element, the container. This container (flex container), becomes flexible by setting the display property to flex. We need to write the HTML to begin.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="wrapper"&gt;
+    &lt;div&gt;One&lt;/div&gt;
+    &lt;div&gt;Two&lt;/div&gt;
+    &lt;div&gt;Three&lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>Once the HTML has been created, we can then set the CSS property.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: flex;
+}
+        </code>
+    </pre>
+
+    <p>When working with Flexbox, you need to think in terms of two axes, the main axis and the cross axis. The main axis is defined by the flex-direction property. The cross axis runs perpendicular to it. Everything we do with Flexbox refers back to these axis.</p>
+
+    <p>The main axis is defined by the flex-direction property. This has four possible values:</p>
+
+    <ul>
+        <li>row</li>
+        <li>row-reverse</li>
+        <li>column</li>
+        <li>column-reverse</li>
+    </ul>
+
+    <p>Should you choose row or row-reverse, your main axis will run along the row in the inline direction.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="flexbox-wrapper flexbox-row">
+        <div class="flexbox-item">One</div>
+        <div class="flexbox-item">Two</div>
+        <div class="flexbox-item">Three</div>
+    </div>
+
+    <p>Choosing column or column-reverse and your main axis will run from the top of the page to the bottom, in the block direction.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="flexbox-wrapper flexbox-col">
+        <div class="flexbox-item">One</div>
+        <div class="flexbox-item">Two</div>
+        <div class="flexbox-item">Three</div>
+    </div>
+
+    <p>The cross axis runs perpendicular to the main axis, therefore if your flex-direction (main axis) is set to row or row-reverse, the cross axis tuns down the columns. If your main axis is column or column-reverse, then the cross axis runs along the rows.</p>
+
+    <h2>Flex Wrap</h2>
+
+    <p>If there are more items that can fit in the container, they will not wrap but will instead overflow. To cause wrapping behaviour, add the flex-wrap property with the value of wrap. Set it to nowrap, which is also the initial value, and they will instead shrink to fit the container. Using nowrap would cause an overflow if the items were not able to shrink, or could not shrink small enough to fit.</p>
+
+    <p>The flex-wrap property with the wrap value specifies that the flex items will wrap if necessary.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="flexbox-wrapper flexbox-row flexbox-wrap">
+        <div class="flexbox-item">One</div>
+        <div class="flexbox-item">Two</div>
+        <div class="flexbox-item">Three</div>
+        <div class="flexbox-item">Four</div>
+        <div class="flexbox-item">Five</div>
+        <div class="flexbox-item">Six</div>
+        <div class="flexbox-item">Seven</div>
+        <div class="flexbox-item">Eight</div>
+        <div class="flexbox-item">Nine</div>
+    </div>
+
+    <h2>Align Content</h2>
+
+    <p>The justify-content property is used to align the flex items.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="flexbox-wrapper justify-center">
+        <div class="flexbox-item">One</div>
+        <div class="flexbox-item">Two</div>
+        <div class="flexbox-item">Three</div>
+    </div>
+
+    <p>If you want to align the flex items at the end of the container (right), then use the flex-end value. to align at the start of the flex container (left and the default value), use flex-start.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Align left (default)
+.wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+// Align right
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
