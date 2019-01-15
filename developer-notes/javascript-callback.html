@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -33,10 +35,93 @@
 <main role="main" id="main">
     <h1>JavaScript Callback</h1>
 
+    <p>A callback is a function that is to be executed after another function has finished executing - hence the name 'call back'. In JavaScript, functions are objects. Because of this, functions can take functions as arguments and can be returned by other functions. Functions that do this are called higher-order functions. Any function that is passed as an argument is called a callback function.</p>
+
+    <p>JavaScript is an event driven language. This means that instead of waiting for a response before moving on, JavaScript will keep executing while listening for other events.</p>
+
+    <p>As a simple example, the function first is executed first and function second is executed after. This is a really easy to follow example.</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
+function first() {
+    console.log(1);
+}
 
+function second() {
+    console.log(2);
+}
+
+first();        // 1
+second();       // 2
+        </code>
+    </pre>
+
+    <p>What if the first function contains some sort of code that can't be executed immediately, such as an API request where we have to send the request then wait for a response. This is not that JavaScript won't execute the functions in the order we want, it's just JavaScript didn't wait for a response from the first function before moving onto the second function.</p>
+
+    <p>Let's use an example with setTimeout() to demonstrate this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function first() {
+    // Simulate a code delay such as an API request
+    setTimeout( function() {
+        console.log(1);
+    }, 500 );
+}
+
+function second() {
+    console.log(2);
+}
+
+first();
+second();
+        </code>
+    </pre>
+
+    <p>The output by running this code will be:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+2
+1
+        </code>
+    </pre>
+
+    <p>Callbacks are a way to make sure certain code doesn't execute until other code has already finished.</p>
+
+    <h2>Create a Callback</h2>
+
+    <p>Begin by creating a simple function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function myFunc(message) {
+    console.log(message);
+}
+
+myFunc('Hello World');  // Call function
+        </code>
+    </pre>
+
+    <p>Now, let's add in our callback. Add a parameter called callback into the function. This needs to be the last parameter and for our example, will be called 'callback' to keep things simple.</p>
+
+    <p>When we call our function, we need to pass a function (the callback function) as an argument into the 'callback' parameter. We should get two logs output in the console. The callback() method in the first function calls the function being passed as an argument into the 'callback' parameter.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function myFunc(message, callback) {
+    console.log(message);
+    callback();
+}
+
+myFunc('Hello World', function() {
+    console.log('I have send a message!');
+});
         </code>
     </pre>
 </main>
