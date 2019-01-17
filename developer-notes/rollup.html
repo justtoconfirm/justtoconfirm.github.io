@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Rollup</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://rollupjs.org/guide/en -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Rollup</h1>
+
+    <p>Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger, such as a library or application. It uses a standardized format for code modules, instead of the idiosyncratic solutions such as CommonJS and AMD. ES modules let you freely and seamlessly combine the most useful individual functions, which will eventually be possible natively everywhere.</p>
+
+    <p>Developing software is usually easier if you break your project into smaller separate pieces. Historically, JavaScript has not included this capablity as a core feature in the language. This finally changes with the ES6 revision of JavaScript, which includes a syntax for importing and exporting functions and data so they can be shared between separate scripts. The specification is now fixed, but it is only implemented in modern browses and is not finalised in NodeJS. Rollup allows you to write your code using the new module system that will compile back down to existing supported formats, such as CommonJS modules, AMD modules, and IIFE-style scripts. This means you can begin to write future-proof code.</p>
+
+    <h2>Install</h2>
+
+    <p>Rollup can be installed globally using NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install rollup --global
+        </code>
+    </pre>
+
+    <p>Should you not want to install it globally, you can create a package.json file and install Rollup as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Create the package.json file
+$ npm init --y
+
+# Install Rollup as a devDependency
+$ npm install rollup --save-dev
+        </code>
+    </pre>
+
+    <p>You will need a build script within the package.json to run the Rollup commands, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "rollup": "rollup main.js --file bundle.js --format iife"
+},
+        </code>
+    </pre>
+
+    <p>Of, if Rollup is installed globally, you can run it within the command line interface (CLI).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Compile to a &lt;script&gt; containing a self-executing function - IIFE
+$ rollup main.js --file bundle.js --format iife
+        </code>
+    </pre>
+
+    <p>These commands assume the entry point to your application is named main.js and that you'd like all imports compiled into a single file named bundle.js. You need to have a main.js file available for Rollup to work, somewhere in your project directory.</p>
+
+    <p>Let's create a very simple main.js file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// main.js
+
+console.log('Hello');
+        </code>
+    </pre>
+
+    <p>When we run Rollup, this will create a bundle.js file from our simple JavaScript code.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// bundle.js
+
+(function () {
+    'use strict';
+
+    console.log('Hello');
+
+}());
+        </code>
+    </pre>
+
+    <p>If we wanted to compile to a CommonJS module - 'cjs' - we would use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ rollup main.js --file bundle.js --format cjs
+        </code>
+    </pre>
+
+    <p>And for both browsers and NodeJS, we can use the UMD format, which requires a bundle name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ rollup main.js --file bundle.js --format umd --name "myBundle"
+        </code>
+    </pre>
+
+    <p>Rollup should typically be used from the command line. You can provide an optional Rollup configuration file to simplify command line usage and enable advanced functionality.</p>
+
+    <h2>Tree-Shaking</h2>
+
+    <p>In addition to enabling the use of ES modules, Rollup analyzes the code you are importing and will exclude anything that isn't actually being used.</p>
+
+    <p>For example, with CommonJS, the entire tool or library must be imported.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Import the entire utils object with CommonJS
+const utils = require('./utils');
+        </code>
+    </pre>
+
+    <p>But with ES modules, instead of importing the whole utils object, we can just import the one function, ajax, we need:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Import the ajax function with an ES6 import statement
+import { ajax } from './utils';
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
