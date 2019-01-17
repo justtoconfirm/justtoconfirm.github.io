@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Headless CMS</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.cmswire.com/web-cms/13-headless-cmss-to-put-on-your-radar/ -->
+<!-- https://blog.daftcode.pl/wordpress-as-a-headless-cms-b4144c626695 -->
+<!-- https://www.smashingmagazine.com/2018/10/headless-wordpress-decoupled/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Headless CMS</h1>
+
+    <p>A headless content management system (CMS) is a backend only content management system built from the ground up as a content repository. The content is accessible via a RESTful API. A Headless Architecture is a phrase used in development to describe an approach which splits the code base between server side (RESTful APIs and web services) which defines data and business logic, from client side code, such as the frontend and JavaScript.</p>
+
+    <p>To summarise, a headless CMS is like a traditional CMS but without any way to present the content being created and stored within it. It simply allows for the creation, reading, updating, and deletion (CRUD) of content.</p>
+
+    <p>The lack of a front-end means that developers can use any front-end technology they wish to present the content. Many headless CMSs have been purpose built for IoT (Internet of Things) applications.</p>
+
+    <p>Using a headless CMS should mean that our front-end will consume the API of the CMS via <a href="ajax.html">AJAX</a> requests. The simplest way of doing AJAX in JavaScript is using the <a href="api.html">XMLHttpRequest</a> object or the Fetch API.</p>
+
+    <h3>Decoupling WordPress</h3>
+
+    <p>Ever since REST API was bundled in the WordPress core, from version 4.7 back in December 2016, developers can experiment and use it in a decoupled way. WordPress does not follow the traditional Model-View-Controller (MVC) design pattern, instead it is written in a procedural way, using function-based code. WordPress core developers used a system of hooks which allowed other developers to modify or extend certain functionalities.</p>
+
+    <p>The WordPress REST API allows you to interact with your WordPress installation by sending and receiving JSON objects.</p>
+
+    <p>You can examine the built-in endpoints by going to the /wp-json/ route.</p>
+</main>
+
+</body>
+</html>

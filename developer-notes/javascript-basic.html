@@ -18,6 +18,8 @@
 <!-- https://www.techiediaries.com/javascript/document-ready-vs-window-onload-vs-window-load/ -->
 <!-- https://www.tutorialspoint.com/What-is-the-difference-between-window-onload-and-document-onload-in-Javascript -->
 
+<!-- https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -561,6 +563,39 @@ document.getElementById("demo").innerHTML = myJSON;
     </pre>
 
     <p>The JSON.stringify() method is included in all major browsers and in the latest JavaScript (ECMAScript) standard.</p>
+
+    <h2>Checking JavaScript Availability</h2>
+
+    <p>It shouldn't be assumed that JavaScript is always available. We can place a class of no-js on the &lt;html&gt; element like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html class="no-js"&gt;
+        </code>
+    </pre>
+
+    <p>We can use an inline script in the &lt;head&gt; before any style sheets are requested that removes the no-js class from the &lt;html&gt; element if JavaScript is on:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script&gt;
+document.documentElement.classList.remove("no-js");
+&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>When JavaScript is unavailable, we can use CSS to provide styling. This is often perfect for Lazy Loading implementations that make use of JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.no-js .hidden {
+    display: none;
+}
+        </code>
+    </pre>
 </main>
 
 </body>

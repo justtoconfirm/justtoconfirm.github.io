@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Frontend Security</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://web-design-weekly.com/2014/07/09/front-end-security-thing-concerned/ -->
+<!-- https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/ -->
+<!-- https://www.pcworld.com/article/2079921/mozilla-advises-webmasters-to-implement-xframeoptions-security-header.html -->
+<!-- http://html5sec.org/ -->
+<!-- https://medium.com/@baphemot/understanding-react-frontend-security-4963d35feea7 -->
+<!-- https://www.shopify.co.uk/partners/blog/web-security-2018 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Frontend Security</h1>
+
+    <h2>Client XSS</h2>
+
+    <p>On the front end, a Cross-Site Scripting (XSS) vulnerability happens when dynamic data is sent to a user without being validated for malicious content. For example, it would be like sending JavaScript code that can be executed within a form or sent as a post/tweet.</p>
+
+    <p>XSS allows malicious code to be executed.</p>
+
+    <p>Most often, XSS vulnerabilities occur when websites or applications don't remove executable code from input fields that their users have access to.</p>
+
+    <p>Reflected XSS occurs when executable code is injected in an HTTP response. The injected script is not stored on the server, but instead impacts users who are lured into opening a malicious link. When this happens, the injected code travels to the vulnerable application and reflects the attack back to the user's browser. The browser then executes the code because it appears to have come from a trusted server. By using strict input validation, this issue can be avoided.</p>
+
+    <h2>Cross-site request forgery  (CSRF)</h2>
+
+    <p>CSRF (also referred to as XSRF) is when an attacker uses an HTTP request to access user information from another site on which they are authenticated. An example of CSRF might be changing the login credentials, or making a purchase. A server simply sees the request and performs it. Tokens can be used to resolve this issue as tokens are difficult to spoof, can be sent with the request and validated by the site, which prevents attempts at CSRF. You can also validate origin headers submitted with requests.</p>
+
+    <h2>SQL Injection</h2>
+
+    <p>SQL injection is a technique that uses code injection to attack database type applications. Malicious SQL queries are inserted via input from the client to the application. An attacker can disrupt a database, disclose or corrupt data, and many more potential issues. Prepared statements with variable binding can be used to prevent SQL injection. This allows databases to distinguish between data and code, regardless of the input submitted. Whitelisting can be used that specifies what input should look like and doesn't allow input that does not match a specified pattern.</p>
+
+    <h2>iFrames</h2>
+
+    <p>It is important to remember that displaying content inside of an iFrame means you're trusting that content not to be vulnerable or malicious. iFrames and XSS attacks usually go hand in hand. If the content inside of the iFrame is coming from your domain, its important to make sure that the iFramed content is secure and not vulnerable to an attack.</p>
+
+    <p>It's important to make sure that sensitive pages in your site or application don't allow for use inside of an iFrame. This can be achieved by using the X-Frame-Options http response header.</p>
+
+    <p>The X-Frame-Options is an HTTP response header that allows you to define if and how their websites can be loaded into frame elements on other sites. It comes with three options: ALLOW, DENY, and SAMEORIGIN. The latter meaning a page can only be framed by other pages with the same origin - the same domain, URI scheme and port.</p>
+
+    <h2>Cookies</h2>
+
+    <p>It is very easy to set a cookie without relying on a server. When working with cookies, it is important to remember that they can be vulnerable to XSS and CORS exploits. Cookies are also not encrypted by default (plain text), meaning that they should not be used to store sensitive details such as passwords.</p>
+</main>
+
+</body>
+</html>
