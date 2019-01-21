@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Developer Notes - React &amp; API</title>
+    <title>Developer Notes - React: APIs & Data</title>
 
     <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
     <link rel="stylesheet" href="styles/main.css" />
@@ -16,6 +16,11 @@
 <!-- https://www.robinwieruch.de/react-fetching-data/ -->
 <!-- https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2 -->
 <!-- https://reactjs.org/docs/faq-ajax.html -->
+<!-- https://css-tricks.com/using-data-in-react-with-the-fetch-api-and-axios/ -->
+<!-- https://stackoverflow.com/questions/48703276/react-js-get-data-from-api-and-send-to-child-component -->
+<!-- https://daveceddia.com/ajax-requests-in-react/ -->
+<!-- https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/ -->
+<!-- https://code.tutsplus.com/tutorials/fetching-data-in-your-react-application--cms-30670 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -37,9 +42,71 @@
 <main role="main" id="main">
     <h1>React: APIs &amp; Data</h1>
 
+    <p>React's ES6 class components have lifecycle methods. The render() lifecycle method is mandatory to output a React element. When fetching data, the componentDidMount() lifecycle method is the best place to fetch data. React is flexible enough to choose your own solution to fetch data. For the sake of simplicity, the <a href="api.html">Fetch API</a> that is native to the browser can be used. Fetch API uses JavaScript promises to resolve the asynchronous response.</p>
+
+    <p>In React, there are several lifecycle methods. We'll be using three of these lifecycle methods: Constructor, componentDidMount(), and Render. Lifecycle methods including "Will" are called before something happens, those including "Did" are called after something happens.</p> 
+
+    <p>When data is received successfully from an API endpoint, it will be stored in the local state with the this.setState() method. React Hooks can also be used to fetch data.</p>
+
+    <p>It is worth remembering that React simply renders components using data from only two placed: props and state. To use data from a server, you need to get that data into your components' props or state.</p>
+
+    <p>We can begin by creating a simple class component in React.</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            // Code omitted for now
+        };
+    }
+
+    render() {
+        return (
+            // Code omitted for now
+        );
+    }
+}
+
+export default App;
+        </code>
+    </pre>
+
+    <p>We can add the componentDidMount() method into our React component class also. This method will be executed when the component "mounts" (is added to the DOM) for the first time. This method is only executed once during the component's life.</p>
+
+    <p>By the time componentDidMount() is called, the component has been rendered once. In practice, this method is the best place to put calls to fetch data. Data will not be loaded until after the initial render.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            // Code omitted for now
+        };
+    }
+
+    componentDidMount() {
+        // Code omitted for now
+    }
+
+    render() {
+        return (
+            // Code omitted for now
+        );
+    }
+}
+
+export default App;
         </code>
     </pre>
 </main>
