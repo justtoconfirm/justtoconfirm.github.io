@@ -200,12 +200,60 @@ $ touch .babelrc
         <code>
 <!-- leave this line empty -->
 {
-    "presets": ["@babel/preset-env"]
+    "presets": [ "@babel/preset-env" ]
 }
         </code>
     </pre>
 
     <p>To apply Babel to Webpack and to further the configuration of Webpack, we need to use create a Webpack config file.</p>
+
+    <p>When working with React, we may need to install a further package using NPM. We need to install the @babel/preset-react package as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-react --save-dev
+        </code>
+    </pre>
+
+    <p>The .babelrc config file needs to also be updated:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ "@babel/preset-env", "@babel/preset-react" ]
+}
+        </code>
+    </pre>
+
+    <p>Your package.json file should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  "name": "webpack-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
+        </code>
+    </pre>
 
     <h2>Webpack Config</h2>
 
