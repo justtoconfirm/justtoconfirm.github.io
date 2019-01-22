@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript HOF</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.sitepoint.com/higher-order-functions-javascript/ -->
+<!-- http://www.zsoltnagy.eu/higher-order-functions-in-javascript/ -->
+<!-- https://blog.bitsrc.io/understanding-higher-order-functions-in-javascript-75461803bad -->
+<!-- https://www.quora.com/What-is-a-simple-explanation-of-higher-order-functions-and-callbacks-in-JavaScript -->
+<!-- https://www.lullabot.com/articles/higher-order-functions-in-javascript -->
+<!-- https://derickbailey.com/2015/10/21/fun-with-higher-order-functions-in-javascript/ -->
+<!-- https://blog.northcoders.com/higher-order-functions-reduce-part-1 -->
+<!-- https://developer.ibm.com/node/2016/01/11/higher-order-functions-in-es6easy-as-a-b-c/ -->
+<!-- https://www.codementor.io/ajinkyax/functional-programming-with-javascript-es6-j4ysxgvpj -->
+<!-- http://crookedcode.com/tag/higher-order-functions/ -->
+<!-- https://www.geeksforgeeks.org/higher-order-functions-currying/ -->
+<!-- https://flaviocopes.com/javascript-functional-programming/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript Higher Order Functions (HOF)</h1>
+
+    <p>If you've done much JavaScript programming, you've probably come across functions that use a <a href="javascript-callback.html">callback</a>. A callback is a function that gets executed at the end of an operation once all the of the other operations have been completed. Usually this callback function is passed in as the last argument in the function. In other words, a callback is simply a function that is passed to another function as an argument, that can then be used (executed) inside that other function.</p> 
+
+    <p>Higher order functions (HOF) are functions that accept function arguments or return a function. In JavaScript, we think and code in terms of functions.</p>
+
+    <p>To fully understand this concept, it maybe useful to understand what Functional Programming is and the concept of First-Class Functions.</p>
+
+    <p>setTimeout and addEventListener are higher order functions because they have function arguments.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.querySelector('.js-submit').addEventListener('click', submitCallback);
+        </code>
+    </pre>
+
+    <p>JavaScript treats functions as first-class citizens. That's because in JavaScript, or any other functional programming language, functions are objects. In JavaScript functions are special types of objects, they are Function objects.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function greeting() {
+    console.log('Hello World');
+}
+
+// Invoking the function
+greeting();     // Prints 'Hello World'
+        </code>
+    </pre>
+
+    <p>To prove functions are objects in JavaScript, we could do something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Add properties to functions like we do with objects
+greeting.lang = 'English';
+
+// Prints 'English'
+console.log(greeting.lang);
+        </code>
+    </pre>
+
+    <p>This is not best practice. Ideally you should use an object.</p>
+
+    <p>Let's create another very simple function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function double (n) {
+    return n * 2;
+}
+
+console.log(double(3));
+        </code>
+    </pre>
+
+    <p>Now we can checkout some examples.</p>
+
+    <h2>Returns a Function</h2>
+
+    <p>If a function returns another function, then we have ourselves a HOF. Here, 'getFunction' returns another function, therefore it is a HOF.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function getFunction() {
+    return function() {
+        console.log('Whoop!');
+    }
+}
+
+var party = getFunction();
+party();    // 'Whoop!'
+        </code>
+    </pre>
+
+    <h2>Takes a Function as an Argument</h2>
+
+    <p>Another way that a function can be a HOF is if it takes a function as an argument.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function sayHello() {
+    return 'Hello';
+}
+
+function callArgument(func) {
+    return func();
+}
+
+callArgument(sayHello);     // Will return 'Hello'
+        </code>
+    </pre>
+
+    <p>We can do both of these solutions when dealing with HOF. This example function not only takes a function as an argument but also returns one.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function sayHello() {
+    console.log('Hello');
+}
+
+function mimic(func) {
+    return function() {
+        return func();
+    }
+}
+
+var sayHelloCopy = mimic(sayHello);
+
+sayHello();         // 'hello'
+sayHelloCopy();     // 'hello'
+        </code>
+    </pre>
+
+    <p>Here is a breakdown of the above example:</p>
+
+    <ul>
+        <li>The 'mimic' function takes the 'sayHello' function as an argument.</li>
+        <li>It returns a function and stores it in the 'sayHelloCopy' variable.</li>
+        <li>'sayHelloCopy' when called, calls the 'sayHello' function and returns the result.</li>
+    </ul>
+</main>
+
+</body>
+</html>
