@@ -15,6 +15,8 @@
 
 <!-- https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/ -->
 <!-- https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications -->
+<!-- https://medium.freecodecamp.org/how-to-make-your-app-work-offline-with-the-power-of-javascript-685d968bcfbb -->
+<!-- https://medium.com/@amberleyjohanna/seriously-though-what-is-a-progressive-web-app-56130600a093 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -36,6 +38,14 @@
 <main role="main" id="main">
     <h1>PWA (Progressive Web App)</h1>
 
+    <p>The three baseline criteria a website or application must fulfill in order to qualify as a PWA are:</p>
+
+    <ul>
+        <li>You need to be running under HTTPS</li>
+        <li>You need a Web App Manifest (Manifest file)</li>
+        <li>You need a Service Worker</li>
+    </ul>
+
     <p>When testing on a desktop, using Chrome, you can turn the appropriate flags on that will display the prompt to install the app when you visit the site. For example, enable flags in Chrome by using the URL into Chrome.</p>
 
     <pre>
@@ -47,7 +57,7 @@ chrome://flags/#enable-app-banners
         </code>
     </pre>
 
-    <p>The App Banners flag will enable to display of Progressive Web App banners, which prompt a user to add a web add to their shelf.</p>
+    <p>The App Banners flag will enable to display of Progressive Web App banners, which prompt a user to add a web app to their shelf.</p>
 
     <h3>Things to consider</h3>
 
@@ -56,6 +66,8 @@ chrome://flags/#enable-app-banners
         <li>Use HTTP/2 and server push to "push" assets to the browser without the user having to ask for them.</li>
         <li>Use code-splitting and lazy-loading for granular loading of application pages/features.</li>
     </ul>
+
+    <p>Luckily we don't need to build native apps to achive an offline experience anymore. We can create an offline website with the power of JavaScript thanks to the new Service Workers and Cache API features.</p>
 
     <h2>Manifest</h2>
 
@@ -73,6 +85,45 @@ chrome://flags/#enable-app-banners
     <p>This will load the manifest file and identify our site as an application to the browser.</p>
 
     <p>You will need a ServiceWorker to allow the app to be installed.</p>
+
+    <h2>What is a Service Worker (SW)&#63;</h2>
+
+    <p>Service workers is JavaScript code that runs in the background of your website or application, even when the page is closed. For offline uses, the service worker can be used to store network requests or images in the browser cache. The caching is the 'magic', you can come back after 3 weeks, 1 month, 1 year, without a connection and still access all the content.</p>
+
+    <p>The code of your service worker needs to be in a separate JavaScript file, for example service-worker.js</p>
+
+    <p>The Service Worker lifecycle is:</p>
+
+    <ul>
+        <li>Registration</li>
+        <li>Installation</li>
+        <li>Activation</li>
+    </ul>
+
+    <p>Service Workers work in all modern browsers except IE (Internet Explorer) and https must be enabled. Service Workers run in the context of web workers which means no <abbr title="Document Object Model">DOM</abbr> and runs outside of the main JavaScript thread.</p>
+
+    <p>To be able to work, Service Workers must be registered within your application, then installed. You should also check if Service Workers are compatible with your client.</p>
+
+    <h3>Register a Service Worker</h3>
+
+    <p>If available, register your Service Worker file. It will return a promise so you can handle errors.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// main.js
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+        console.log('Registration successful, scope is:', registration.scope);
+    })
+    .catch(function(error) {
+        console.log('Service worker registration failed, error:', error);
+    });
+}
+        </code>
+    </pre>
 </main>
 
 </body>
