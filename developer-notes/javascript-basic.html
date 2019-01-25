@@ -40,6 +40,27 @@
 <main role="main" id="main">
     <h1>JavaScript Basics</h1>
 
+    <p>JavaScript files usually have the file extension of .js</p>
+
+    <p>The <abbr title="Document Object Model">DOM</abbr> Parser takes HTML code and creates a structured page that we see visually. JavaScript engines such as SpiderMonkey, V8, and Nitro, takes the JavaScript syntax and converts it into readable code. This is client side, the files are downloaded and then processed on the client. The JIT (Just In Time) compiler, like Google's V8 engine, is what converts the JavaScript code into machine language.</p>
+
+    <p>JavaScript has a console within the browser inspector Developer tools (DevTools). Commands entered are passed to the JIT compiler, compiled, run, and the output is returned back to the console.</p>
+
+    <h2>Strict mode</h2>
+
+    <p>Strict mode can be applied on entire scripts using the strict statement. This needs to be placed before any other statement, usually the first line in a JavaScript file. Strict mode is only enabled in scripts where it's defined. This is not shared between different script files. This was introduced in ECMAScript 5 (ES5) and is supported in browsers from: IE10, Firefox version 4, Chrome version 13, Safari version 5.1, and Opera version 12.</p>
+
+    <p>All code writted inside ES2015 (ES6) modules and classes is strict by default.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"use strict";
+        </code>
+    </pre>
+
+    <p>With strict mode, for example, you cannot use undeclared variables. A variable would always need to have a keyword, such as var, or an error will be thrown. Strict mode basically catches things that are most likely valid but could cause errors.</p>
+
     <h2>JavaScript &amp; HTML</h2>
 
     <p>When a browser comes across a &lt;script&gt; element, it stops to load the script and then checks to see if it needs to do anything. It is often recommended to place the &lt;script&gt; element just before the closing &lt;/body&gt; element within a HTML document.</p>
@@ -47,6 +68,8 @@
     <p>A request is often sent to a server, which then returns some HTML. The browser parses the markup and discovers the necessary code (CSS and JavaScript) and resources (images, fonts, etc.) to compose the page. Once complete, the browser has to download and process these files. If we want our JavaScript to be fast, we have to download it and process it quickly.</p>
 
     <p>Should a &lt;script&gt; element be required to be in the &lt;head&gt; section of the HTML document, apply the async attribute.</p>
+
+    <p>Scripts with the async attribute are executed asynchronously. The script is executed as soon as it is downloaded without blocking the browser. Scripts with the defer attribute are executed in order of how they are added to the HTML, but this also does not block the browser. Defer scripts are only executed after the entire document has been loaded. 90% of browsers support the use of async, while 92% support the use of defer.</p>
 
     <pre>
         <code>
@@ -85,6 +108,27 @@
  * This is a multi-line comment
  * over multiple lines.
  */</span>
+        </code>
+    </pre>
+
+    <h2>Escape Characters</h2>
+
+    <p>Escaping characters means that we do something to them to make sure they are recognised as text and not part of the code. In JavaScript, we do this by adding a backslash just before the character.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var message = 'I\'ve got no right to do this.';
+console.log(message);       // I've got no right to do this.
+        </code>
+    </pre>
+
+    <p>Without the escape character an error will appear within the console.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Uncaught SyntaxError: Unexpected identifier
         </code>
     </pre>
 
@@ -266,7 +310,7 @@ console.log(nickname);      // Uncaught ReferenceError: nickname is not defined
 
     <p>This power is great for variables we don't want to disturb and need to remain constant throughout our application. It is often better to declare your variables as const for as long as possible, that way we don't leave variables susceptible to mutability throughout our code. For those moments when we want mutability, we should use let.</p>
 
-    <h2>Variable Scope</h2>
+    <h3>Variable Scope</h3>
 
     <p>The location where you declare a variable will affect where it can be used within your code. If you declare it within a function, it can only be used within that function. This is known as the variable's scope. A variable created inside a function is called a local variable or function-level variable. It is said to have local scope and it cannot be accessed outside of the function. The JavaScript interpreter creates local variables when the function is called, and removes them as soon as the function has finished its task.</p>
 
@@ -290,7 +334,7 @@ var wallSize = getArea(3, 2);
         </code>
     </pre>
 
-    <h2>Variables &amp; Memory</h2>
+    <h3>Variables &amp; Memory</h3>
 
     <p>Global variables use more memory. The browser has to remember them for as long as the web page using them is loaded. Local variables are only remembered during the period of time that a function is being executed. Each variable that you declare takes up memory. The more variables a browser has to remember, the more memory your script requires to run. Scripts that require a lot of memory can perform slower, which in turn makes your web page take longer to respond to the user.</p>
 

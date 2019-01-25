@@ -42,6 +42,26 @@
 
     <p>The selector points to the HTML element you want to style. The declaration block contains one or more declarations (statements) separated by semicolons. Each declaration includes a CSS property name and a property value, separated by a colon. The declaration block is surrounded by curly braces.</p>
 
+    <p>CSS should be written across multiple lines. This reduces the chance of merge conflicts when using version control, because each CSS declaration exists on it's own line. Code can therefore be compared more easily as a single line only ever carries one change. If a CSS selector only has one declaration, then this will still confirm to this practice.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* Multiple declarations on single lines */
+.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(/img/sprite.svg);
+}
+
+/* Acceptable CSS as single declaration */
+.icon--home { background-position: 0 0; }
+.icon--person { background-position: -16px 0; }
+.icon--files { background-position: -16px -16px; }
+        </code>
+    </pre>
+
     <p>At its most basic level, CSS consists of two building blocks:</p>
 
     <ul>
@@ -432,6 +452,184 @@ p {
     <p>Browser support for Feature Queries is good, but not supported in Internet Explorer 11 (IE11) and below. As long as you test for support and then write the code for supporting browsers, you can overwrite anything you need for older browsers.</p>
 
     <p>Anything new that comes into CSS you can use Feature Queries to test for and allows us to use new features much more quickly.</p>
+
+    <h2>CSS Reset</h2>
+
+    <p>A CSS Reset allows you to start with a clean code base, making it easier to style your website with more predictable outcomes. A CSS Reset resets or overrides the default styles of the browser. You can write your own, or use an existing CSS reset that maybe available.</p>
+
+    <h2>DRY - Don't Repeat Yourself</h2>
+
+    <p>CSS is best written when it follows the DRY (Don't Repeat Yourself) principle. This helps us to avoid writing the same bits of code over and over again. One way to keep our CSS DRY is to group things together.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* This is not DRY CSS */
+.menu li {
+    color: red;
+}
+
+.menu li a {
+    color: red;
+}
+
+/* This is DRY CSS */
+.main li,
+.main li a {
+    color: red;
+}
+        </code>
+    </pre>
+
+    <h2>!important Declaration</h2>
+
+    <p>The !important declaration is almost always a bad thing to use within your CSS. It is generally misused to override CSS declarations to apply new styling. Often it is used to combat specificity problems as a result of poorly architected CSS, to force styling to be applied. Proactive use of !important is when it is used before you encounter any specificity problems; when it is used as a guatantee rather than as a fix. Therefore !important should be used to always ensure something is styled a certain way and don't get accidentally overridden by something more specific.</p>
+
+    <p>In this example, two helper (or utility) CSS classes are very specific in their intentions. You would only use them should you want something to be rendered at 50% width or not rendered at all. If you don't require this behaviour, you wouldn't use either class.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.one-half {
+    width: 50% !important;
+}
+
+.hidden {
+    display: none !important;
+}
+        </code>
+    </pre>
+
+    <h2>Selector Intent</h2>
+
+    <p>It is important when writing CSS that we scope our selectors correctly. Selector Intent is the process of deciding and defining what you want to style and how you will go about selecting it.</p>
+
+    <p>For example, you want to style your website's main navigation menu. The following selector would possibly be an unwise choice:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+header ul { }
+        </code>
+    </pre>
+
+    <p>The selector's intent is to style any &lt;ul&gt; element inside any &lt;header&gt; element. Our intent was to style only the main navigation of the website. Potentially, you can have any number of header elements on a page and in-turn they can house any number of possible &lt;ul&gt; elements, so a selector like this runs the risk of applying very specific styling to a very wide number of elements.</p>
+
+    <p>A better approach would be an a selector that is selecting the right thing for the right reason:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.site-nav { }
+        </code>
+    </pre>
+
+    <h2>Naming Conventions</h2>
+
+    <p>It's better to strive for reusable, recyclable CSS classes rather than writing for specific use cases when considering naming.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* Runs the risk of becoming out of date; hard to maintain */
+.blue {
+    color: blue;
+}
+
+/* Depends on location to render correctly */
+.header span {
+    color: blue;
+}
+
+/* Too specific */
+.header-color {
+    color: blue;
+}
+
+/* Portable and easily maintained - much better */
+.highlight-color {
+    color: blue;
+}
+        </code>
+    </pre>
+
+    <h2>Single Responsibility Principle</h2>
+
+    <p>The single reponsibility principle is a paradigm that states that all pieces of code - in CSS, the classes - should focus on doing one thing and one thing only. In CSS, our classes should be small and focus on providing very specific and limited functionality.</p>
+
+    <p>In this next example, our CSS classes handle quite a lot: layout, structure, and styling. This also includes a lot of repetition between classes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.error-message {
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #f00;
+    border-bottom: 1px solid #f00;
+    background-color: #fee;
+    color: #f00;
+    font-weight: bold;
+}
+
+.success-message {
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #0f0;
+    border-bottom: 1px solid #0f0;
+    background-color: #efe;
+    color: #0f0;
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
+    <p>We can break these classes into smaller classes creating general abstraction:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.box {
+    display: block;
+    padding: 10px;
+}
+
+.message {
+    border-style: solid;
+    border-width: 1px 0;
+    font-weight: bold;
+}
+
+.message--error {
+    background-color: #fee;
+    color: #f00;
+}
+
+.message--success {
+    background-color: #efe;
+    color: #0f0;
+}
+        </code>
+    </pre>
+
+    <h2>CSS Performance</h2>
+
+    <p>CSS is not the largest asset to consider during development, but it is one of the first the browser discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed, so it's always worthwhile to consider the performance of your CSS to make your stylesheets as lean as possible.</p>
+
+    <h2>Shallow Selectors</h2>
+
+    <p>Used correctly, shallow selectors can reduce kilobytes off the file size of your CSS stylesheets. As well as keeping your CSS tidy, the browser will also render the elements targeted by shallow selectors faster. Browsers read selectors from right to left. The deeper the selectors are, the longer it takes for the browser to render or re-render those elements.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* Deep selector example */
+nav ul li.nav-item { }
+
+/* Shallow selector example */
+.nav-item { }
+        </code>
+    </pre>
 </main>
 
 </body>

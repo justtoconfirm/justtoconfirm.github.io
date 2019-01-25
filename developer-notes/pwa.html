@@ -14,9 +14,12 @@
 <body>
 
 <!-- https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/ -->
+<!-- https://developers.google.com/web/fundamentals/web-app-manifest/ -->
+<!-- https://developers.google.com/web/fundamentals/primers/service-workers/ -->
 <!-- https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications -->
 <!-- https://medium.freecodecamp.org/how-to-make-your-app-work-offline-with-the-power-of-javascript-685d968bcfbb -->
 <!-- https://medium.com/@amberleyjohanna/seriously-though-what-is-a-progressive-web-app-56130600a093 -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -37,6 +40,12 @@
 
 <main role="main" id="main">
     <h1>PWA (Progressive Web App)</h1>
+
+    <p>A PWA (Progressive Web App) is a web application that can be "installed" on your system. It works offline when you don't have an internet connection, leveraging data cached during your last interactions with the app.</p>
+
+    <p>Webapps that become PWA's reduce the time it takes for your app to load and it'll provide a better experience for your users. Using HTTPS provides better security and having a cache-first service worker allows your app to work offline, if the user has already loaded the data. Using HTTP/2 can also aid security and increase performance.</p>
+
+    <p>If you want to add HTTPS to your server the you'll need to get a TLS certificate set up.</p>
 
     <p>The three baseline criteria a website or application must fulfill in order to qualify as a PWA are:</p>
 
@@ -59,6 +68,12 @@ chrome://flags/#enable-app-banners
 
     <p>The App Banners flag will enable to display of Progressive Web App banners, which prompt a user to add a web app to their shelf.</p>
 
+    <p>Click the blue "Relaunch Now" button at the bottom of your browser after enabling these flags. You should now see an installation prompt at the top of the page.</p>
+
+    <p>You can use Chrome's Developer Tools Network tab to toggle "Offline" and reload the application. You'll notice it still loads the data rather than saying it can't reach the server.</p>
+
+    <p>If you're going to build a PWA and leverage service workers, you should become familiar with the Chrome Developer Tools (DevTools), Application tab. This tab provides the ability to manipulate service workers so thay upload on reload. You should check the 'Upload on reload' checkbox. If this is not checked, developing a PWA will become frustrating as everything will be cached in your browser and when you update files in your editor, they won't be reloaded in your browser.</p>
+
     <h3>Things to consider</h3>
 
     <ul>
@@ -71,7 +86,38 @@ chrome://flags/#enable-app-banners
 
     <h2>Manifest</h2>
 
-    <p>There are two main steps to turning a web app into a Progressive Web App (PWA), adding a Manifest and adding a ServiceWorker. The manifest file is a JSON file that describes our application.</p>
+    <p>There are two main steps to turning a web app into a Progressive Web App (PWA), adding a Manifest and adding a ServiceWorker. The manifest file is a JSON file that describes our application. The manifest file is also used to describe how your web application should behave when 'installed' on the user's mobile device or desktop. Having a manifest is required by Chrome to show the Add to Home Screen prompt.</p>
+
+    <p>A typical manifest file includes information about the app name, icons is should use, the start_url it should start when launched, and much more.</p>
+
+    <p>Here is an example manifest.json file from the Google Development guides:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "short_name": "Maps",
+    "name": "Google Maps",
+    "icons": [
+        {
+            "src": "/images/icons-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/images/icons-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/maps/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/maps/",
+    "theme_color": "#3367D6"
+}
+        </code>
+    </pre>
 
     <p>To include the manifest file in your application, open the HTML document and add the following line of code just before the closing &lt;/head&gt; element.</p>
 
@@ -84,11 +130,53 @@ chrome://flags/#enable-app-banners
 
     <p>This will load the manifest file and identify our site as an application to the browser.</p>
 
+    <h3>short_name</h3>
+
+    <p>You must provide at least the short_name or name property. If both are provided, short_name is used on the user's home screen, or locations where space is limited, and name is used in the app install prompt.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"short_name": "Maps",
+"name": "Google Maps"
+        </code>
+    </pre>
+
+    <h3>start_url</h3>
+
+    <p>The start_url tells the browser where your application should start when it is launched. This prevents the app from starting on whatever page the user was on when they added your app to their home screen. This should direct the user straight into your app rather than a product landing page. Think about what the user will want to do once they open your app.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"start_url": "/?utm_source=a2hs"
+        </code>
+    </pre>
+
+    <p>Add a query string to the end of the start_url to track how often your installed app is launched.</p>
+
+    <h3>display</h3>
+
+    <p>You can customise what browser UI is shown when your app is launched. For example, you can hide the address bar and browser chrome. In order to show the Add to Home Screen Prompt, display must be set to standalone.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"display": "standalone"
+        </code>
+    </pre>
+
     <p>You will need a ServiceWorker to allow the app to be installed.</p>
 
     <h2>What is a Service Worker (SW)&#63;</h2>
 
-    <p>Service workers is JavaScript code that runs in the background of your website or application, even when the page is closed. For offline uses, the service worker can be used to store network requests or images in the browser cache. The caching is the 'magic', you can come back after 3 weeks, 1 month, 1 year, without a connection and still access all the content.</p>
+    <p>Service workers is JavaScript code that runs in the background of your website or application, even when the page is closed. This opens the doors to features that don't need a web page or user interaction. For offline uses, the service worker can be used to store network requests or images in the browser cache. The caching is the 'magic', you can come back after 3 weeks, 1 month, 1 year, without a connection and still access all the content.</p>
+
+    <p>They make heavy use of promises as generally they will wait for responses to come through after which they will respond with a success or failure action.</p>
+
+    <p>Service workers are JavaScript workers, so it can't access the <abbr title="Document Object Model">DOM</abbr> directly (has no access). Service workers also run on a different thread to the main JavaScript that powers your app, so it's not blocking. It is designed to be fully async, meaning APIs such as synchronous XHR and localStorage cannot be used inside a service worker.</p>
+
+    <p>Rich offline experiences, push notifactions and other functionality that would normally require a native application, are coming to the web. Service workers provide the technical foundation that all these features rely on. This is such an exciting API in that it allows you to support offline experiences. Before service workers, the AppCache API was used to give users an offline experience on the web.</p>
 
     <p>The code of your service worker needs to be in a separate JavaScript file, for example service-worker.js</p>
 
@@ -100,7 +188,9 @@ chrome://flags/#enable-app-banners
         <li>Activation</li>
     </ul>
 
-    <p>Service Workers work in all modern browsers except IE (Internet Explorer) and https must be enabled. Service Workers run in the context of web workers which means no <abbr title="Document Object Model">DOM</abbr> and runs outside of the main JavaScript thread.</p>
+    <p>Service Workers work in all modern browsers except IE (Internet Explorer) and HTTPS must be enabled. Service Workers run in the context of web workers which means no <abbr title="Document Object Model">DOM</abbr> and runs outside of the main JavaScript thread.</p>
+
+    <p>Service workers only run over HTTPS for security reasons. Having modified network requests, wide open to man in the middle attacks would be really bad.</p>
 
     <p>To be able to work, Service Workers must be registered within your application, then installed. You should also check if Service Workers are compatible with your client.</p>
 

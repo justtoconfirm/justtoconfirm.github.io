@@ -40,7 +40,7 @@
 <main role="main" id="main">
     <h1>Responsive Web Design (RWD)</h1>
 
-    <p>Responsive Web Design (RWD) is the approach that suggests that design and development should respond to the user's behaviour and environment based on screen size, platform, and orientation. The practice consists of a mix of flexible grids, layouts, images and the intelligent use of CSS media queries. If the user were to switch from a mobile device to a tablet, the website should automatically switch to accommodate for resolution, image size and scripting abilities.</p>
+    <p>Responsive Web Design (RWD) is the approach that suggests that design and development should respond to the user's behaviour and environment based on screen size, platform, and orientation. Responsive design is an approach to creating websites in which the layout adapts to fit the device's screen. The practice consists of a mix of flexible grids, layouts, images and the intelligent use of CSS media queries. If the user were to switch from a mobile device to a tablet, the website should automatically switch to accommodate for resolution, image size and scripting abilities.</p>
 
     <p>CSS Media Queries are supported in Internet Explorer (IE) 9+, Firefox 3.5+, Safari 3+, and Opera 7+.</p> 
 
@@ -50,13 +50,15 @@
 
     <h2>Viewport</h2>
 
-    <p>The browser's viewport is the area of the window in which web content can be seen. This is often not the same size as the rendered page, in which case the browser provides scrollbars for the user to scroll around and access all the content.</p>
+    <p>The browser's viewport is the visible area of the window in which web content can be seen. This is often not the same size as the rendered page, in which case the browser provides scrollbars for the user to scroll around and access all the content.</p>
+
+    <p>Older websites and web pages that are not responsive, having been designed using static/fixed sizes, are often too large to fit within the viewport on small devices. Browsers will often scale the web page down to fit the screen to allow the page to be viewed.</p>
 
     <p>Narrow screen devices, such as mobile, render pages in a virtual window or viewport, which is usually wider than the screen and then shrinks the rendered result down so it can be seen all at once. Users can then pan and zoom to see different areas of the page. For example, if a mobile screen has a width of 640px, pages maybe rendered with a virtual viewport of 980px and then it will be shrunk down to fit into the 640px space. This is done as many pages may not be mobile optimized, so may break when rendered at a small viewport width. This virtual viewport is a way to make a non-mobile-optimised site look good on narrow screen devices.</p>
 
     <p>This mechanism is not so good for pages that are optimised for narrow screens using media queries, if the virtual viewport is 980px, for example, media queries that kick in at 640px or 480px or less, will never be used. This limits their effectiveness of such responsive design techniques. To mitigate this problem, Apple introduced the "viewport meta tag" in Safari iOS to let web developers control the viewport's size and scale. This is now supported by many modern web browsers, although it is not part of any web standard.</p>
 
-    <p>A typical mobile-optimized site contains something like the following meta tag:</p>
+    <p>A typical mobile-optimized site contains something like the following meta tag that was introduced in HTML5:</p>
 
     <pre>
         <code>
@@ -65,9 +67,70 @@
         </code>
     </pre>
 
+    <p>This meta tag gives the browser instructions on how to control the dimensions and scaling of a web page.</p>
+
     <p>The width property controls the size of the viewport. It can be set to a specific number of pixels, like width=600, or to the special value device-width, which is the width of the screen in CSS pixels at a scale of 100%.</p>
 
     <p>The initial-scale property controls the zoom level when the page is first loaded. The maximum-scale, minimum-scale, and user-scalable properties control how users are allowed to zoom the page in or out.</p>
+
+    <h2>Media Queries</h2>
+
+    <p>The @media rule, introduced in CSS2 and supported in IE9 (Internet Explorer) and above, has made it possible to define different style rules for different media types. Media queries in CSS3 extended this further to allow style rules to be applied based on the device type.</p>
+
+    <p>Media queries can be used to check many things, including:</p>
+
+    <ul>
+        <li>Width and height of the viewport or device</li>
+        <li>Orientation - landscape or portrait</li>
+        <li>Resolution</li>
+    </ul>
+
+    <p>CSS3 supports all of the same media types as CSS2, such as screen and print, but now includes new media features including:</p>
+
+    <ul>
+        <li>max-width</li>
+        <li>device-width</li>
+        <li>orientation</li>
+        <li>color</li>
+    </ul>
+
+    <p>The new features are ignored by older browsers that do not support CSS3.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* Syntax */
+@media not | only mediatype and (expressions) {
+    /* CSS code here */
+}
+
+/* CSS3 Example */
+@media only screen and (max-width: 500px) {
+    body {
+        background-color: #1779ba;
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Reset</h2>
+
+    <p>Every browser renders content a little differently, so we can use a reset such as Reset or Normalize to combat these differences using either of these stylesheets. Reset completely eradicates all styles, while Normalize attempts to add consistency to the browser styling.</p>
+
+    <p>You may also want to consider resetting the border box - not always included within the reset stylesheets - to make padding consistent and prevent frustration.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+        </code>
+    </pre>
 </main>
 
 </body>
