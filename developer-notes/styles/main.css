@@ -31,6 +31,10 @@ body {
     font-size: 1.6rem; /* 16px */
 }
 
+main {
+    display: block;
+}
+
 .header__item--links {
     list-style-type: none;
     padding-left: 0;

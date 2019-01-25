@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Bootstrap</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.sitepoint.com/why-i-love-bootstrap-you-should/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Bootstrap</h1>
+
+    <p>Bootstrap is one of the most popular, open-source, front-end frameworks on the web. It was officially released in 2011 and is now one of the most stable and responsive frameworks available.</p>
+
+    <p>The <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a> official site and documentation.</p>
+
+    <p>Bootstrap provides a solid foundation for any website irrespective of project size. It contains Reboot, which is based on Normalize.css, and helps level out browser differences for various page elements.</p>
+
+    <h2>Setup</h2>
+
+    <p>Using BootstrapCDN, provided by StackPath, is a quick and simple way to include Bootstrap into your project. Begin by copying and pasting the following &lt;link&gt; into your &lt;head&gt; before all other stylesheets to load the Bootstrap CSS.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"&gt;
+        </code>
+    </pre>
+
+    <p>Alternatively, you can simply download Bootstrap from the downloads page. At the time of writing, the latest version of Bootstrap is version 4 (4.2.1).</p>
+
+    <p>Many of the components within Bootstrap requires the use of JavaScript to function. Specifically, they require jQuery, Popper.js, and the custom Bootstrap JavaScript plugins.</p>
+
+    <h2>Browser Support</h2>
+
+    <p>Bootstrap supports the latest, stable releases of all major browsers and platforms including Internet Explorer 10/11 and Edge. Autoprefixer is included to handle intended browser support via CSS prefixes which uses Browserslist to manage these browser versions.</p>
+
+    <p>IE9 (Internet Explorer 9) and down is not supported and some CSS3 properties and HTML5 elements are not fully supported in IE10, or may require prefixed properties for full functionality.</p>
+
+    <p>If you requires support for IE8 or IE9, use Bootstrap 3.</p>
+
+    <h2>Grid</h2>
+
+    <p>The Grid within Bootstrap is built with Flexbox and is easy to use, logically dividing the screen into 12 columns. Developers now have the native CSS Grid Layout should they choose to use it for layout building, but the Bootstrap Grid component can still be handy for quick prototyping.</p>
+</main>
+
+</body>
+</html>
