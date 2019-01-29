@@ -19,6 +19,7 @@
 <!-- https://reactjs.org/docs/fragments.html -->
 <!-- https://www.sitepoint.com/react-architecture-best-practices/ -->
 <!-- https://www.sitepoint.com/6-pro-tips-from-react-developers/ -->
+<!-- https://hackernoon.com/reactjs-component-lifecycle-methods-a-deep-dive-38275d9d13c0 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -367,6 +368,21 @@ render() {
 }
         </code>
     </pre>
+
+    <h2>Lifecycle Methods</h2>
+
+    <p>The lifecycle methods are various methods which are invoked at different phases of the lifecycle of a component.</p>
+
+    <p>componentWillMount is executed just before the React component is about to mount on the <abbr title="Document Object Model">DOM</abbr>. After this method, the component will mount. This method is executed once in a lifecycle of a component and before first render. Mounts the component onto the browser. This is a pure method, which means it gives the same output every time the same input is provided.</p>
+
+    <p>componentDidMount is the hook method which is executed after the component did mount on the <abbr title="Document Object Model">DOM</abbr>. This method is executed once in a lifecycle and after the first render. This would be the right method to use to integrate with other JavaScript libraries such as D3 or jQuery that need access to the DOM, as we can now access the DOM.</p>
+
+    <p>As a summary:</p>
+
+    <ul>
+        <li>componentDidMount - this method runs on the page once loaded, is called one time, usually on the page load.</li>
+        <li>componentDidUpdate - everytime the state changes, this method will run.</li>
+    </ul>
 </main>
 
 </body>
