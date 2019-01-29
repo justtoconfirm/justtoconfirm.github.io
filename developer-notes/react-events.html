@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React Events</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://reactjs.org/docs/handling-events.html -->
+<!-- https://blog.logrocket.com/a-guide-to-react-onclick-event-handlers-d411943b14dd -->
+<!-- https://stackoverflow.com/questions/28511207/react-js-onclick-event-handler -->
+<!-- https://medium.freecodecamp.org/the-best-way-to-bind-event-handlers-in-react-282db2cf1530 -->
+<!-- https://alligator.io/react/modal-component/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React Events</h1>
+
+    <p>Handling events with React elements is very similar to handling events on <abbr title="Document Object Model">DOM</abbr> elements. React elements are named using camelCase, rather than lowercase. This means that the onclick event will be written as onClick in React.</p>
+
+    <p>Event handlers are user to determine what action is to be taken whenever an event is fired. This could be a mouse click or a change in a text input, for example.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button onClick={handleClick}&gt;
+    Button
+&lt;/button&gt;
+        </code>
+    </pre>
+
+    <p>In React, you cannot return false to prevent default behaviour, you must call preventDefault as this example demonstrates:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function ActionLink() {
+    function handleClick(e) {
+        e.preventDefault();
+        console.log('The link was clicked');
+    }
+
+    return (
+        &lt;a href="#" onClick={handleClick}&gt;
+            Click me
+        &lt;/a&gt;
+    );
+}
+        </code>
+    </pre>
+
+    <p>When you define a component using an ES6 class, a common pattern is for an event handler to be a method on the class. In JavaScript, class methods are not bound by default, therefore, it's important that we bind functions to the class instance.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+export default class Test extends Component {
+    handleClick(e) {
+        e.preventDefault()
+        console.log(e.target)
+    }
+
+    render() {
+        return (
+            &lt;a href='#' onClick={e => this.handleClick(e)}&gt;click me&lt;/a&gt;
+        )
+    }
+}
+        </code>
+    </pre>
+
+    <p>In the example below, we are using the constructor to bind.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Toggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isToggleOn: true
+        };
+
+        // This binding is necessary to make `this` work in the callback
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.state(state => ({
+            isToggleOn: !state.isToggleOn
+        }));
+    }
+
+    render() {
+        return (
+            &lt;button onClick={this.handleClick}&gt;
+                {this.state.isToggleOn ? 'ON' : 'OFF'}
+            &lt;/button&gt;
+        );
+    }
+}
+
+ReactDOM.render(
+    &lt;Toggle /&gt;,
+    document.getElementById('root')
+);
+        </code>
+    </pre>
+
+    <h2>Custom components &amp; events</h2>
+
+    <p>When it comes to events in React, only <abbr title="Document Object Model">DOM</abbr> elements are allowed to have event handlers. By rendering a DOM element inside the component and passing the onClick prop into it, we can essentially pass through the click event and handle events for custom components.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+class CustomButton extends Component {
+    render() {
+        const { onClick, children } = this.props;
+
+        return (
+            &lt;button type="button" onClick={onClick}&gt;
+                {children}
+            &lt;/button&gt;
+        );
+    }
+}
+
+class ChangeInput extends Component {
+    handleEvent = () => {
+        alert("I was clicked");
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;CustomButton onClick={this.handleEvent}&gt;Click on me&lt;/CustomButton&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+
+export default ChangeInput;
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(&lt;ChangeInput /&gt;, rootElement);
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

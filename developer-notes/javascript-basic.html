@@ -20,6 +20,8 @@
 
 <!-- https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/ -->
 
+<!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -640,6 +642,32 @@ document.documentElement.classList.remove("no-js");
 }
         </code>
     </pre>
+
+    <h2>Template literals</h2>
+
+    <p>' or " denotes a string and ` denotes a template literal (formally template string). Template literals have some abilities that normal strings do not. Basically, they allow embedded expressions. Most importantly, you get interpolation.</p>
+
+    <p>Template literals are enclosed by the back tick (` `) known as a grave accent character instead of single or double quotes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var value = 123;
+console.log('test ${value}')    // test ${value}
+console.log(`test ${value}`)    // test 123
+        </code>
+    </pre>
+
+    <p>They can contain placeholders, indicated by the dollar sign and curly braces. The expression in the placeholders and the text between them get passed to a function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(${expression})
+        </code>
+    </pre>
+
+    <p>They are not supported in all JavaScript engines, so a transpiler like Babel may need to be used.</p>
 </main>
 
 </body>
