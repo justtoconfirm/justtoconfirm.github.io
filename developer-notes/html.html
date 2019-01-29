@@ -56,6 +56,51 @@
         </code>
     </pre>
 
+    <h2>DOM (Document Object Model)</h2>
+
+    <p>The DOM has a tree-like structure. Each element, attribute and piece of text in the markup language becomes a DOM node in the tree structure. The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes and child nodes have siblings.</p>
+
+    <p>Let's assume the following HTML code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;p&gt;
+    Let's use:
+    &lt;span&gt;Cascading&lt;/span&gt;
+    &lt;span&gt;Style&lt;/span&gt;
+    &lt;span&gt;Sheets&lt;/span&gt;
+&lt;/p&gt;
+        </code>
+    </pre>
+
+    <p>In the DOM, the node corresponding to our &lt;p&gt; element is a parent. Its children are a text code and the nodes corresponding to our &lt;span&gt; elements. The SPAN nodes are also parents with text nodes as their children.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+P
+├─ "Let's use:"
+├─ SPAN
+|  └─ "Cascading"
+├─ SPAN
+|  └─ "Style"
+└─ SPAN
+   └─ "Sheets"
+        </code>
+    </pre>
+
+    <p>The browser renders the DOM tree then outputs it in the browser like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Let's use: Cascading Style Sheets
+        </code>
+    </pre>
+
+    <p>Detailed notes relating to the DOM (Document Object Model) can be found in the <a href="javascript-object.html">JavaScript notes</a>.</p>
+
     <h2>Comments</h2>
 
     <p>The comment tag is used to insert comments into the HTML source code. Comments are not displayed in the browser. Comments can be used to explain your code or used for debugging.</p>

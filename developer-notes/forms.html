@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Forms</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Forms</h1>
+
+    <p>The web is based on a very basic client/server architecture. A client (usually a Web browser) sends a request to a server (Apache, Nginx, Internet Information Services - IIS, Tomcat, etc.) using the <abbr title="Hypertext Transfer Protocol">HTTP</abbr> protocol. The server answers the the request using the same protocol and sends the response back to the client.</p>
+
+    <p>An HTML form on the client side is nothing more than a convenient user-friendly way to configure an HTTP request to send data to a server. This enabled the user to provide information to be delivered in the HTTP request.</p>
+
+    <h2>Form Attributes</h2>
+
+    <p>The &lt;form&gt; element defines how the data will be sent. The two most important attributes of the element are action and method.</p>
+
+    <h3>The action attribute</h3>
+
+    <p>This attribute defines where the data gets sent. Its value must be a value URL. If this attribute is not provided, the data will be sent to the URL of the page containing the form.</p>
+
+    <p>It is possible to specify a URL that uses the HTTPS (secure HTTP) protocol. When you do this, the data is encrypted along with the rest of the request, even if the form itself is hosted on an insecure page accessed using HTTP. On the other hand, if the form is hosted on a secure page but you specify an insecure HTTP URL within the action attribute, the data will not be encrypted and the browser may show a security warning to the user to notify them of this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Data sent to absolute URL --&gt;
+&lt;form action="https://secure-form.com"&gt;
+
+&lt;!-- Data sent to different URL on the server - relative URL --&gt;
+&lt;form action="/somewhere_else"&gt;
+        </code>
+    </pre>
+
+    <p>Many older pages use the following notation to indicate that data should be sent to the same page that contains the form. This was required before HTML5 as the action attribute was needed. This is no longer the case.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- HTML4 --&gt;
+&lt;form action="#"&gt;
+
+&lt;!-- HTML5 --&gt;
+&lt;form&gt;
+        </code>
+    </pre>
+
+    <h3>The method attribute</h3>
+
+    <p>This attribute defines how data is sent. The HTTP protocol provides several ways to perform a request. HTML form data can be transmitted via a number of different ones, must common of which are the GET and POST methods.</p>
+
+    <p>When you want to reach a resource on the Web, the browser sends a request to a URL. An HTTP request consists of two parts: a header that contains a set of global metadata about the browser's capabilities and a body that can contain information necessary for the server to process the specific request.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Data sent to absolute URL --&gt;
+&lt;form action="https://secure-form.com" method="post"&gt;
+
+&lt;!-- Data sent to different URL on the server - relative URL --&gt;
+&lt;form action="/somewhere_else" method="post"&gt;
+        </code>
+    </pre>
+
+    <h2>HTTP requests</h2>
+
+    <p>HTTP requests are never displayed to the user. To see HTTP requests you need to use Developer tools in your browser such as the Firefox Network Monitor or Chrome Developer Tools. As an example, open Chrome Developer Tools after submitting your form, the form data will be shown.</p>
+
+    <ul>
+        <li>Press F12 or Inspect your web page to open DevTools.</li>
+        <li>Select the 'Network' tab.</li>
+        <li>Select 'All'.</li>
+        <li>In the 'Name' column select your website e.g. foo.com</li>
+        <li>Select the 'Headers' tab (when it appears).</li>
+    </ul>
+
+    <p>The only thing displayed to the user is the URL called. With a GET request, the user will see the data, with a POST request they won't. We specify GET or POST methods within the 'method' attribute of a &lt;form&gt; element.</p>
+
+    <h3>GET method</h3>
+
+    <p>The GET method is used by the browser to ask the server to send back a given resource. If a form is send using this method the data sent to the server is appended to the URL. Never use the GET method when sending sensitive data such as a password, as you risk displaying it in the URL bar and it becomes very insecure.</p>
+
+    <p>If the GET method is used for a form, you'll see the URL as something like:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+www.foo.com/?say=Hi&to=Mum 
+        </code>
+    </pre>
+
+    <p>This URL will appear in the browser address bar when you submit the form. The data is appended to the URL as a series of name/value pairs. After the URL web address has ended, we include a question mark (&#63;) followed by the name/value pairs, each one separated by an ampersand (&amp;). In the example URL, we are passing two pieces of data to the server:</p>
+
+    <ul>
+        <li>say, which has a value of Hi</li>
+        <li>to, which has a value of Mum</li>
+    </ul>
+
+    <p>The HTTP request looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+GET /?say=Hi&to=Mum HTTP/2.0
+Host: foo.com
+        </code>
+    </pre>
+
+    <h3>POST method</h3>
+
+    <p>The POST method is the method the browser uses to talk to the server. If a form is sent using this method, the data is appended to the body of the HTTP request. When the form is submitted using the POST method, you get no data appended to the URL and the HTTP request looks like the following, with the data included in the request body:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+POST / HTTP/2.0
+Host: foo.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 13
+
+say=Hi&to=Mum
+        </code>
+    </pre>
+
+    <p>The Content-Length header indicates the size of the body and the Content-Type header indicates the type of resource sent to the server.</p>
+
+    <p>If you need to send large amounts of data, the POST method is preferred because some browsers limit the size of URLs. In addition, many servers limit the length of the URLs they accept.</p>
+
+    <h2>The Server</h2>
+
+    <p>Whichever HTTP method you use, the server receives a string that will be parsed in order to get the data as a list of key/value pairs. Many servers are configured with a size limit for files and HTTP requests in order to prevent abuse.</p>
+</main>
+
+</body>
+</html>
