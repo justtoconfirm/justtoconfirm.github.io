@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- https://www.smashingmagazine.com/2019/01/cloud-expert/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -40,6 +42,28 @@
     <h2>The Cloud</h2>
 
     <p>Information and data stored on physical or virtual servers which are maintained and controlled by a cloud computing provider, such as Amazon and their Amazon Web Services (AWS) product. As a personal or business user, you can access your stored information on the 'cloud' via an Internet connection. AWS is a secure cloud services platform offering computing power, database storage, content delivery, and other functionality. Azure is another example of cloud services provided by Microsoft as is the Google Cloud platform.</p>
+
+    <p>When we talk about cloud computing, we really mean the ability to rent a piece of a computer from someone else. This avoids the need to build your own data centers or hire a team of experts to run them. When you rent a part of a computer, you need it to look like a whole computer so you can run any software you want. Providers will give you a virtual machine (VM) - software that makes it look like you're running on your own separate computer.</p>
+
+    <p>Running your own data center would be hard. You would need to keep hardware up to date, hire staff to manage and run it, and consider power consumption.</p>
+
+    <p>Renting shares of servers means I can change how much I'm renting based on use or requirements. I can scale up the order when I'm busy and scale it down when I don't need as much.</p>
+
+    <p>Clouds are also very reliable. Providers talk about "five nines", that means being up 99.999% of the time with just 5.26 minutes of downtime a year. This can be made smaller with services like load balancing and failover.</p>
+
+    <h3>Hosting vs Cloud</h3>
+
+    <p>If you host a personal website on a hosting service, you are unlikely to be able to install new software. For instance if you are using PHP with a MySQL database and want to run your database on PostgreSQL, you're probably going to be out of luck. Runninf other languages such as Python or Go is probably going to be an issue also. This type of hosting is limited and usually has a pre-configured set of things you can do.</p>
+
+    <p>The website itself only runs on one server in one place. The location of the server maybe unknown, but the hosting provider gives you a single server, you type in the URL, and your site appears. Hosting providers keep it simple. Some offer other tech stacks or a little but more configuration, but its always a set package.</p>
+
+    <p>The fundamental difference between a hosting service and a cloud is the virtual machine (VM). A hosting provider just gives me part of an existing operating system (OS), a VM gives me an entire operating system to myself.</p>
+
+    <p>A virtual machine acts just like a real machine. It can run Linux or Windows and it can do anything a normal computer can do. When you have a virtual machine, you have total control. You can run anything you want there. This is really powerful, but before you can do anything useful, you need to access the VM.</p>
+
+    <h3>Load Balancers</h3>
+
+    <p>High availability comes from running multiple instances of your application at the same time. A load balancer is a piece of equipment that will route traffic from your users to one of your instances that is live. It takes requests and sends them to the next healthy server.</p>
 
     <pre>
         <code>
