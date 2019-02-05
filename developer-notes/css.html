@@ -20,6 +20,8 @@
 
 <!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works -->
 
+<!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -445,15 +447,46 @@ p {
     <pre>
         <code>
 <!-- leave this line empty -->
+/* CSS rules for browsers that support grid layout */
 @supports (display: grid) {
-    /* CSS rules for browsers that support grid layout */
+    .item {
+        /* CSS from browsers which do not support grid layout */
+    }
+}
+
+/* Not supported */
+@supports not (display: grid) {
+    .item {
+        /* CSS from browsers which do not support grid layout */
+    }
 }
         </code>
     </pre>
 
-    <p>Browser support for Feature Queries is good, but not supported in Internet Explorer 11 (IE11) and below. As long as you test for support and then write the code for supporting browsers, you can overwrite anything you need for older browsers.</p>
+    <p>Browser support for Feature Queries is good, but not supported in Internet Explorer (IE11) and below. As long as you test for support and then write the code for supporting browsers, you can overwrite anything you need for older browsers.</p>
+
+    <p>It is likely that most modern and new features you want to use are not supported by Internet Explorer (IE) so, at present, you will almost always start by writing CSS for browsers without support then test with a feature query. The feature query should test for support.</p>
+
+    <p>Browsers which support feature queries will return true if they have support and so the code inside the query will be used. This will overwrite the code for older browsers.</p>
 
     <p>Anything new that comes into CSS you can use Feature Queries to test for and allows us to use new features much more quickly.</p>
+
+    <h2>Selector Support</h2>
+
+    <p>Currently Feature queries can only test CSS properties and values. We may want to also test support for selectors. For example, if you visit <strong>about:config</strong> in Firefox and enable the flag <strong>layout.css.supports-selector.enabled</strong>, you can test to see if various selectors are supported. For example, the test for the :has selector:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@support selector(:has) {
+    .item {
+        /* CSS for support of :has */
+    }
+}
+        </code>
+    </pre>
+
+    <p>This is a specification in development currently.</p>
 
     <h2>CSS Reset</h2>
 
@@ -632,6 +665,12 @@ nav ul li.nav-item { }
 .nav-item { }
         </code>
     </pre>
+
+    <h2>CSS Browser Support</h2>
+
+    <p>Even in a world where the majority of browsers are Chromium-based, those browsers are not all running the same version of Chromium as Google Chrome. This means that other Chromium-based browsers might be a few versions behind Google Chrome.</p>
+
+    <p>If you use a CSS property or value that a browser does not understand, the browser will ignore it. If the browser does not understand that line of CSS, it just skips it and gets on with the next thing it understands. Feature queries allow us to directly ask the browser what they support and then act on the response, just like a media query. Feature queries basically test for support of a CSS property and value. The content inside the feature query will only run of the browser responds with true - it supports the feature.</p>
 </main>
 
 </body>

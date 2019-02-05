@@ -15,6 +15,7 @@
 
 <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML -->
 <!-- https://css-tricks.com/lodge/svg/ -->
+<!-- https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -103,6 +104,12 @@
     <h2>SVG - Scalable Vector Graphics</h2>
 
     <p>SVG is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation. The SVG specification is an open standard developed by the World Wide Web Consortium (W3C) since 1999. SVG images and their behaviours are defined in XML text files.</p>
+
+    <h2>Lazy Load Images</h2>
+
+    <p>Lazy loading of images means loading images on websites asynchronously, that is after the above-the-fold content is fully loaded, or conditionally, only when they appear in the browser's viewport. This means that is users don't scroll all the way down, images placed at the bottom of the page won't even be loaded. Many websites use this approach and this is especially noticeable on image-heavy sites. Often you'll see placeholder images quickly filling up with real images for preview.</p>
+
+    <p>Since most lazy loading solutions work by loading images only if the user has scrolled to the location where images would be visible inside the viewport, those images will never be loaded if users never get to that point. This can be ideal for slow-connections as it reduces the need for bandwidth if we don't have to load all the images initially, therefore improving website performance. JavaScript can be used to implement lazy loading within your website.</p>
 </main>
 
 </body>
