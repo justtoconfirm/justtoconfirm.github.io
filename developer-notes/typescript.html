@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - TypeScript</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/learn-typescript-in-5-minutes-13eda868daeb -->
+<!-- https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329 -->
+<!-- https://blog.risingstack.com/building-a-node-js-app-with-typescript-tutorial/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>TypeScript</h1>
+
+    <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. This is aimed at making the language more scalable and reliable. It has been maintained by Microsoft since they created it in 2012 and is open-source. The <a href="angular.html">Angular</a> framework (Angular 2) is now written in TypeScript.</p>
+
+    <p>TypeScript is a typed version of JavaScript. This means we can specify types to different variables at the time of declaration. Typing is very useful as it ensures reliability and scalability. Type checking helps to ensure our code works as expected and this helps when hunting down bugs or errors and the documenting of our code.</p>
+
+    <p>TypeScript allows you to use the latest JavaScript features in your code without having to worry about browser support. Once you've written the code, you can compile it to plain old JavaScript supported by all browsers with ease.</p>
+
+    <p>TypeScript can be installed globally using NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install typescript -g
+        </code>
+    </pre>
+
+    <p>If you don't want to install TypeScript globally, just add it to the dependency of your project and create an NPM script for it.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "tsc": "tsc"
+},
+        </code>
+    </pre>
+
+    <p>This will work as NPM scripts will look for the binary in the ./node_modules/.bin folder and add it to the PATH when running scripts. You can then access tsc using:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run tsc
+        </code>
+    </pre>
+
+    <p>Options can be passed to tsc using this syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run tsc -- --all
+        </code>
+    </pre>
+
+    <p>This will list all the available options for TypeScript.</p>
+
+    <p>Once installed, we can verify it by running the command which will display the version of TypeScript installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ tsc -v
+        </code>
+    </pre>
+
+    <p>Browsers are unable to run TypeScript code, so this is why it needs to be compiled into JavaScript.</p>
+
+    <p>TypeScript files use a .ts file extension. You can write JavaScript code within a TypeScript file and run the TypeScript compiler using the following terminal command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ tsc filename.ts
+        </code>
+    </pre>
+
+    <p>The command above will compile our TypeScript into JavaScript. This will create a JavaScript file with the same filename as our TypeScript file but with a different extension. In this example, we will compile our code to create a file named filename.js</p>
+
+    <p>If you want to compile all the TypeScript files inside any folder, use the command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ tsc *.ts
+        </code>
+    </pre>
+
+    <p>For now, we're just going to write a few lines of plain old JavaScript, as all JavaScript code is valid TypeScript code.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let a = 5;
+let b = 5;
+let c = a + b;
+
+console.log(c);
+        </code>
+    </pre>
+
+    <p>We can create a more detailed code example in TypeScript and show the compiled JavaScript code.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let a: number = 12;
+let b: number = 17;
+
+function showProduct(first: number, second: number): void {
+    console.log("The product is: " + first * second);
+}
+
+showProduct(a, b);
+        </code>
+    </pre>
+
+    <p>And now the compiled JavaScript:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let a = 12;
+let b = 17;
+
+function showProduct(first, second) {
+    console.log("The product is: " + first * second);
+}
+
+showProduct(a, b);
+        </code>
+    </pre>
+
+    <p>In the TypeScript code we have specified the type of variables as numbers. This means that if we later try to set the value of one of these variables to a string like "Apple", TypeScript will show an error that "Apple" is not a number. Your code will still compile to JavaScript, but this error will notify you that you made a mistake and helps to avoid problems at runtime.</p>
+
+    <h2>Type Checking</h2>
+
+    <p>The syntax to assign a type to any variable is to write the name of the variable followed by a : sign, then the name of the type followed by a = sign and the value of the variable.</p>
+
+    <p>There are three different types in TypeScript. The any type, the Built-in types, and the User-defined types.</p>
+
+    <h3>Data type: any</h3>
+
+    <p>The any data type is the superset of all the data types in TypeScript. Giving any variable this type is equivalent to opting out of type checking for a variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let myVariable: any = 'This is a string';
+        </code>
+    </pre>
+
+    <h3>Data type: Built-in</h3>
+
+    <p>These are the types which are built into TypeScript. They include: number, string, boolean, void, null, and undefined.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let num: number = 5;
+let name: string = 'Dan';
+let isPresent: boolean = true;
+        </code>
+    </pre>
+
+    <h3>Data type: User-defined</h3>
+
+    <p>The User-defined types include: enum, class, interface, array, and tuple.</p>
+
+    <h2>Class</h2>
+
+    <p>TypeScript supportes features of object-oriented programming such as classes and interfaces. In object-oriented programming, a class is the template of objects. A class defines how an object would look like in terms of that object's features and functionality. A class also encapsulates data for the object.</p>
+
+    <p>TypeScript has a built-in support for classes which were unsupported in ES5 and earlier versions of JavaScript. This means we can use the class keyword to easily declare one.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Car {
+    // Fields
+    model: String;
+    doors: Number;
+    isElectric: Boolean;
+
+    constructor(model: String, doors: Number, isElectric: Boolean) {
+        this.model = model;
+        this.doors = doors;
+        this.isElectric = isElectric;
+    }
+
+    displayModel(): void {
+        console.log(`This car is a ${this.model}`);
+    }
+}
+        </code>
+    </pre>
+
+    <p>We have declared a Car class along with some of it's properties which we're initalizing in the constructor. We have also included a method which would display some message using its property.</p>
+
+    <p>We can now create a new instance of the class.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const Prius = new Car('Prius', 4, true);
+Prius.displayModel();    // This car is a Prius
+        </code>
+    </pre>
+
+    <p>To create an object of a class, we use the keyword of new and call the constructor of the class and pass it the properties. Now this object, Prius, has its own properties of model, doors, and isElectric. The object can also call the method displayMake, which would have access to the properties of Prius.</p>
+
+    <h2>Configuration</h2>
+
+    <p>You can pass options to the TypeScript compiler by either using the CLI (Command Line Interface) or creating a special file called tsconfig.json. As we may want to use the same settings for different tasks, the tsconfig.json file maybe the preferred option.</p>
+
+    <p>A tsconfig.json file can be created where you can specify all the configuration options for compiling your TypeScript file to JavaScript.</p>
+
+    <p>By using this configuration file, we are telling TypeScript things like the build target (ES5, ES6, ES7, etc.), what module system to expect, where to put the build JavaScript file, or whether it should create source-maps as well.</p>
+
+    <p>Here is an example tsconfig.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true
+    },
+    "files": [
+        "./node_modules/@types/mocha/index.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
+        </code>
+    </pre>
+
+    <p>Once you've added this TypeScript configuration file, you can build your application using the tsc command.</p>
+
+    <h2>Adding ESLint</h2>
+
+    <p>As with most projects, you want to have linters to check for style issues in your code. To use ESLint with TypeScript, you will need to add an extra package. This is a parser, so ESLint can understand TypeScript. This is called: typescript-eslint-parser.</p>
+</main>
+
+</body>
+</html>
