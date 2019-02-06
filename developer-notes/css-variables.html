@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - CSS Variables</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/learn-css-variables-in-5-minutes-80cf63b4025d -->
+<!-- https://codeburst.io/css-variables-explained-with-5-examples-84adaffaa5bd -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>CSS Variables</h1>
+
+    <p>CSS Variables (also known as Custom Properties) brings the power of variables to CSS resulting in less repetition, better readability and more flexibility. Unline variables from CSS preprocessors, CSS variables are part of the <abbr title="Document Object Model">DOM</abbr>.</p>
+
+    <p>Let's look at how we would write CSS normally:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.heading {
+    color: #ff6f69;
+}
+
+.quote {
+    color: #ff6f69;
+}
+        </code>
+    </pre>
+
+    <p>In the example above it's much better to create a variable for the colour than repeating it.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+:root {
+    --red: #ff6f69;
+}
+
+.heading {
+    color: var(--red);
+}
+
+.quote {
+    color: var(--red);
+}
+        </code>
+    </pre>
+
+    <p>Not only will this make your code easier to read but provides more flexibility as well, should you want to change this colour.</p>
+
+    <p>CSS variables have the advantage that they don't require any transpiling to work as their native to the browser, so no need to setup SASS or LESS. This is an advantage because CSS variables have access to the <abbr title="Document Object Model">DOM</abbr> whereas LESS or SASS variables are compiled down to regular CSS. Using preprocessors such as SASS and LESS can extra complexity to our processes.</p>
+
+    <p>Another advantage of living in the DOM is that you can access the variables using JavaScript and even update them. This is ideal if you want to provide your users with the ability to change your website, such as adjusting the font size.</p>
+
+    <p>This method of mixin CSS variables with JavaScript is ideal should you want to create themes that can be switched.</p>
+
+    <h2>Browser Support</h2>
+
+    <p>At the time of writing, 77 percent of global website traffic supports CSS variables. Internet Explorer (IE) is the main browser that does not provide support as this page from <a href="https://caniuse.com/#feat=css-variables" target="_blank" rel="noopener noreferrer">caniuse</a> details.</p>
+
+    <p>You may need to provide a fallback for IE should you want to use CSS variables.</p>
+
+    <h2>Declare a Variable</h2>
+
+    <p>To declare a variable you must first decide what scope the variable should live in. If you want it to be available globally, define it on the :root psuedo class. It matches the root element in your document tree, usually the &lt;html&gt; element. As variables are inherited, this will make your variable available throughout your application as all your DOM elements are descendants of the &lt;html&gt; element.</p>
+
+    <p>The standard cascade rules also apply to the CSS variables. So, if a custom property is declared multiple times, the lowermost definition in the CSS file overwrites the ones above it.</p>
+
+    <p>You declare a variable in the same way as you'd set any CSS property. The variable, however, must start with two dashes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+:root {
+    --main-color: #ff6f69;
+}
+        </code>
+    </pre>
+
+    <p>To access a variable you need to use the var() function and pass in the name of the variable you want to use as the parameter.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.element {
+    color: var(--main-color);
+}
+        </code>
+    </pre>
+
+    <h3>Local Variables</h3>
+
+    <p>You can also create local variables which are accessible only to the element it's declared at and to its children. This makes sense if you know that a variable will only be used in a specific part(s) of your application.</p>
+
+    <p>For example, you may have an alert box that uses a colour that isn't being used elsewhere within your application. In that case, it may make sense to avoid placing it in the global scope.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.alert {
+    --alert-color: #ff6f69;
+}
+        </code>
+    </pre>
+
+    <p>This variable can now be used by its children.</p>
+    
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.alert p {
+    color: var(--alert-color);
+    border: 1px solid var(--alert-color);
+}
+        </code>
+    </pre>
+
+    <p>If you try to use the alert-color variable elsewhere in your application, it simply won't work. The browser will just ignore that line of CSS.</p>
+
+    <h2>Media Queries with CSS Variables</h2>
+
+    <p>CSS variables can be used within media queries where the variable values can change based upon the width of the screen, as this example demonstrates:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+:root {
+    --main-font-size: 16px;
+}
+
+@media all and (max-width: 600px) {
+    :root {
+        --main-font-size: 12px;
+    }
+}
+        </code>
+    </pre>
+
+    <p>With these simple few lines of code you can update the main font size across your entire application when viewed on small screens.</p>
+</main>
+
+</body>
+</html>
