@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Git & Version Control</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Git &amp; Version Control</h1>
+
+    <p>Git is a distributed version control system. It is by far the most widely used modern version control system in the world today. It is a mature, actively maintained, open-source project originally developed by Linus Torvalds in 2005.</p>
+
+    <h2>Git Commands</h2>
+
+    <p>Here is a list of commonly used Git commands:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git init                                  # Initialize a local Git repository
+$ git clone [SSH/HTTP URL].git              # Create a local copy of a remote repository
+
+$ git pull                                  # Update locate repository to the newest commit
+
+$ git push                                  # Push changes to remote repository (remembered branch)
+$ git push origin [branch name]             # Push changes to remote repository
+
+$ git add *                                 # Add all new files to the staging area
+$ git add [file-name.html]                  # Add a file to the staging area
+
+$ git commit -m "[commit message]"          # Commit changes
+
+$ git rm -r [file-name.html]                # Remove a file (or folder)
+
+$ git status                                # Check status
+
+$ git branch                                # List branches - asterisk denotes current branch
+$ git branch -a                             # List all branches (local and remote)
+$ git branch [branch name]                  # Create a new branch
+$ git branch -d [branch name]               # Delete a branch
+$ git push origin --delete [branch name]    # Delete a remote branch
+
+$ git checkout [branch name]                # Switch to a branch
+$ git checkout -b [branch name]             # Create a new branch and switch to it
+
+$ git merge [branch name]                   # Merge a branch into the active branch
+
+$ git log                                   # View changes
+$ git log --summary                         # View changes (detailed)
+$ git diff [source branch] [target branch]  # Preview changes before merging
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
