@@ -136,6 +136,29 @@ my-project/
 
     <p>Modern JavaScript code is mostly written in ES6, however, ES6 is not supported by all browsers. We therefore need to transpile it - a fancy word for turning your ES6 syntax into ES5 for use in all browsers. You can use Babel for this, a tool used to transpile ES6 into ES5 JavaScript.</p>
 
+    <p>You may want to also setup a .browserslistrc file that will include a list of browsers supported by Babel preset-env.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .browserslistrc
+        </code>
+    </pre>
+
+    <p>This file will be setup in the root directory of your project. The file itself will be referenced automatically and can include the setup, as so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+> 1%
+last 2 versions
+not ie < 11
+ie6
+        </code>
+    </pre>
+
+    <p>StandardJS can be used for linting and to prevent the use of trailing commas in JavaScript objects.</p>
+
     <p>We can install a number of NPM (Node Package Manager) modules to use Babel with Webpack.</p>
 
     <pre>
@@ -147,6 +170,8 @@ $ npm install babel-core babel-loader babel-preset-env --save-dev
 $ npm install "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env --save-dev
         </code>
     </pre>
+
+    <p>@babel is the stable/latest released version of Babel. We are also installing preset-env which allows us to target browsers that you want to target.</p>
 
     <p>You may receive an error if you use the above modules. For example, babel-loader@8 requires Babel 7.x (the package @babel/core). If you'd like to use Babel 6.x ('babel-core'), you should install 'babel-loader@7'. Use the following modules, and this should fix the issue.</p>
 
@@ -258,6 +283,29 @@ $ npm install @babel/preset-react --save-dev
     <h2>Webpack Config</h2>
 
     <p>The Webpack config file is placed within the root of your project directory and is named webpack.config.js. Although Webpack advertises itself as a zero-configuration platform, it mostly applies to general defaults such as as entry and output.</p>
+
+    <p>Here is a very basic webpack.config.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\/(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }
+}
+        </code>
+    </pre>
 
     <p>Create a webpack.config.js file within your project directory and add the following code:</p>
 
@@ -393,6 +441,8 @@ Entrypoint another = another.bundle.js
 [./src/index.js] 85 bytes {main} [built]
         </code>
     </pre> 
+
+    <p>The External property within Webpack is used to exclude dependencies from the main bundle. If a package is also installed as a devDependency, it too won't go into the bundle.</p>
 </main>
 
 </body>
