@@ -16,6 +16,8 @@
 <!-- https://angular.io/guide/quickstart -->
 <!-- https://angular.io/guide/architecture-components -->
 <!-- https://blog.angularindepth.com/setting-up-angular-from-scratch-1f518c65d8ab -->
+<!-- https://blog.angularindepth.com/upgrading-a-project-without-cli-to-angular-6-b07b105adc02 -->
+<!-- https://blog.angular-university.io/getting-started-with-angular-setup-a-development-environment-with-yarn-the-angular-cli-setup-an-ide/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -37,7 +39,32 @@
 <main role="main" id="main">
     <h1>Angular</h1>
 
-    <h2>Install &amp; Getting Started</h2>
+    <h2>Setting up Angular from scratch</h2>
+
+    <p>The CLI (Command Line Interface) is a great tool and time save, but at the same time, it hides some of the internals from you. For instances, when you want to setup server-side rendering, you have to actually understand how things are wired together. The CLI also may install packages that you might not need during development. By having all packages installed, it's difficult to learn the minimal dependencies required to setup the simplest of Angular projects.</p>
+
+    <p>You will need Node, NPM (Node Package Manager) and Git setup to implement this stage.</p>
+
+    <h3>Create package.json</h3>
+
+    <p>After we have created a new project folder/directory, we need to create a package.json file. You may also want to initialise Git at this stage of our project setup.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Create a new directory and cd into the folder
+$ mkdir angular-project
+$ cd angular-project
+
+# Initialise Git
+$ git init
+
+# Setup package.json and accept the defaults
+$ npm init -y
+        </code>
+    </pre>
+
+    <h2>Install &amp; Getting Started - CLI</h2>
 
     <p>Before you begin, make sure your development environment includes NodeJS and NPM (Node Package Manager). Angular requires NodeJS version 8.x or 10.x</p>
 
@@ -51,6 +78,28 @@
 $ npm install @angular/cli -g
         </code>
     </pre>
+
+    <p>Once installed, you can confirm the version installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng --version
+        </code>
+    </pre>
+
+    <p>The following packages should be installed globally:</p>
+
+    <ul>
+        <li>Angular CLI</li>
+        <li>@angular-devkit/architect</li>
+        <li>@angular-devkit/core</li>
+        <li>@angular-devkit/schematics</li>
+        <li>@schematics/angular</li>
+        <li>@schematics/update</li>
+        <li>rxjs</li>
+        <li>typescript</li>
+    </ul>
 
     <h2>Angular Workspace</h2>
 
@@ -88,12 +137,17 @@ $ ng new my-app
 <!-- leave this line empty -->
 $ cd my-app
 $ ng serve --open
+
+# Alternative 
+$ ng serve
         </code>
     </pre>
 
     <p>This will launch the server, watching your files for any changes, and will rebuild the app as changes are made to those files.</p>
 
     <p>The --open (or -o) option automatically opens your browser to <a href="http://localhost:4200/" target="_blank" rel="noopener noreferrer">http://localhost:4200/</a>.</p>
+
+    <p>You can alternatively use the serve command without the --open flag.</p>
 
     <p>Your app should now be running.</p>
 
@@ -106,25 +160,94 @@ $ ng serve --open
     <p>When the Angular app first loads the page you see is the application shell. The shell is controlled by an Angular component named AppComponent. Open the project in an IDE and navigate to the src/app directory. You'll find the implementation of the shell AppComponent distrubuted over three files:</p>
 
     <ul>
-        <li>app.component.ts - The component class code, written in TypeScript</li>
-        <li>app.component.html - The component template, written in HTML</li>
-        <li>app.component.css - The component's private CSS styles</li>
+        <li>src/app/app.component.ts - The component class code, written in TypeScript</li>
+        <li>src/app/app.component.html - The component template, written in HTML</li>
+        <li>src/app/app.component.(s)css - The component's private SCSS/CSS styles</li>
     </ul>
 
-    <h3>Changing the Application Title</h3>
-
-    <p>Open the component class file - app.component.ts - and change the value of the title property. In this example, let's change it to 'My Angular App'.</p>
+    <p>Within the src/app/app.component.html template, the content will be rendered as a placeholder. This is how the file will appear:</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
-// app.component.ts
+&lt;!-- src/app/app.component.html --&gt;
 
-title = 'My Angular App';
+&lt;!--The content below is only a placeholder and can be replaced.--&gt;
+&lt;div style="text-align:center"&gt;
+    &lt;h1&gt;Welcome to {{ title }}!&lt;/h1&gt;
+    &lt;img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="&gt;
+&lt;/div&gt;
+&lt;h2&gt;Here are some links to help you start: &lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;h2&gt;&lt;a target="_blank" rel="noopener" href="https://angular.io/tutorial"&gt;Tour of Heroes&lt;/a&gt;&lt;/h2&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h2&gt;&lt;a target="_blank" rel="noopener" href="https://angular.io/cli"&gt;CLI Documentation&lt;/a&gt;&lt;/h2&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;h2&gt;&lt;a target="_blank" rel="noopener" href="https://blog.angular.io/"&gt;Angular blog&lt;/a&gt;&lt;/h2&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
         </code>
     </pre>
 
-    <p>Here is the initial code in-full:</p>
+    <p>We can simply remove this placeholder code and simplify it to this (below), so we can display a simple text message on-screen:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- src/app/app.component.html --&gt;
+
+&lt;h1&gt;{{title}}&lt;/h1&gt;
+        </code>
+    </pre>
+
+    <h3>The Page Title</h3>
+
+    <p>Within the 'src' directory of your newly created Angular application, you'll find an index.html file. This is the main template where the Angular app is rendered. The root element for the Angular app will look something like this inside the &lt;body&gt; element:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;app-root&gt;&lt;/app-root&gt;
+        </code>
+    </pre>
+
+    <p>Inside this file, you can change the page title that is currently defaulted to 'AngularApp'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;AngularApp&lt;/title&gt;
+    &lt;base href="/"&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;app-root&gt;&lt;/app-root&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>So to change the page title within the &lt;title&gt; tag, just update the element:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;title&gt;My Angular App&lt;/title&gt;
+        </code>
+    </pre>
+
+    <h3>app.component.ts code</h3>
+
+    <p>Here is the initial app.component.ts code in-full:</p>
 
     <pre>
         <code>
@@ -139,31 +262,39 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'My Angular App';
+    title = 'angular-app';
 }
         </code>
     </pre>
+
+    <h3>Changing the Application Text</h3>
+
+    <p>Now that we have simplified the template, we can update the text we display on-screen.</p>
+
+    <p>Open the component class file - src/app/app.component.ts - and change the value of the title property. In this example, let's change it to 'Hello World'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/app/app.component.ts
+
+export class AppComponent {
+    title = 'Hello World';
+}
+        </code>
+    </pre>
+
+    <p>The value of the title property will be displayed within the HTML template where the {{title}} expression is placed.</p>
+
+    <p>This will change what is displayed on the page and not what's within the &lt;title&gt; element inside the HTML template.</p>
+
+    <p>The double curly braces are Angular's interpolation binding syntax. This presents the component's title property value inside the HTML header tag.</p>
 
     <p>You always import the Component symbol from the Angular core library and annotate the component class with @Component. @Component is a decorator function that specifies the Angular metadata for the component. The metadata for a component tells Angular where to get the major building blocks that it needs to create and present the component and its view. In particular, it associates a template with the component. Together, the component and its template describe the view.</p>
 
     <p>In Angular, the component plays the part of the controller/viewmodel, and the template represents the view.</p>
 
     <p>A component controls a patch of screen called a view.</p>
-
-    <p>Open the component template file - app.component.html - delete the default template generated by the Angular CLI and replace it with the following line of HTML:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;h1&gt;{{title}}&lt;/h1&gt;
-        </code>
-    </pre>
-
-    <p>The double curly braces are Angular's interpolation binding syntax. This presents the component's title property value inside the HTML header tag.</p>
-
-    <h3>CSS styling</h3>
-
-    <p>The Angular CLI generates an empty styles.css stylesheet. You can add any application-wide styling here.</p>
 
     <h3>Generating new Components</h3>
 
@@ -176,7 +307,92 @@ $ ng generate component testcomponent
         </code>
     </pre>
 
-    <p>Angular CLI will create a new folder, src/app/testcomponent, and generates the three files of TestComponent.</p>
+    <p>Angular CLI will create a new folder, src/app/testcomponent, and generates the three files of TestComponent. These files will are:</p>
+
+    <ul>
+        <li>testcomponent/testcomponent.component.html</li>
+        <li>testcomponent/testcomponent.component.scss</li>
+        <li>testcomponent/testcomponent.component.spec.ts</li>
+        <li>testcomponent/testcomponent.component.ts</li>
+    </ul>
+
+    <p>As most likely discussed previously, you always import the Component symbol from the Angular core library and annotate the component class with @Component. @Component is a decorator function that specifies the Angular metadata for the component. This can be found in the testcomponent.component.ts file. Within this file, we have three generated metadata properties:</p>
+
+    <ul>
+        <li>selector - The component's CSS element selector</li>
+        <li>templateUrl - The location of the component's template file</li>
+        <li>styleUrls - The location of the component's private CSS styles</li>
+    </ul>
+
+    <p>The ngOnInit is a lifecycle hook. Angular calls this shortly after creating a component. It's a good place to put initialization logic.</p>
+
+    <p>You always need to export the component class so you can import it elsewhere.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export class TestcomponentComponent implements OnInit { }
+        </code>
+    </pre>
+
+    <h3>Display the component</h3>
+
+    <p>To display our Testcomponent, we must add it to the template of the shell AppComponent. Within the testcomponent.component.ts file, we have this code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/app/testcomponent/testcomponent.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+    selector: 'app-testcomponent',
+    templateUrl: './testcomponent.component.html',
+    styleUrls: ['./testcomponent.component.scss']
+})
+export class TestcomponentComponent implements OnInit {
+
+    constructor() { }
+
+    ngOnInit() {
+    }
+
+}
+        </code>
+    </pre>
+
+    <p>We use the app-testcomponent selector property value to then import our Testcomponent into our application. Inside the app.component.html file, add the Testcomponent:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- src/app/app.component.html --&gt;
+&lt;!--The content below is only a placeholder and can be replaced.--&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+&lt;app-testcomponent&gt;&lt;/app-testcomponent&gt;
+        </code>
+    </pre>
+
+    <p>The test within the testcomponent.component.html template file will be rendered within our app.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- src/app/testcomponent/testcomponent.component.html --&gt;
+&lt;p&gt;
+    testcomponent works!
+&lt;/p&gt;
+        </code>
+    </pre>
+
+    <h2>Styling</h2>
+
+    <p>When setting up Angular using Angular CLI, should you choose to use SCSS, a styles.scss file will be generated within the 'src' directory of your project. Within this file you can add global SCSS styles or simply import SCSS partials into your project to add styling to your application.</p>
+
+    <p>The Angular CLI generates an empty styles.css stylesheet should you choose to use CSS in-place of SCSS/Sass. You can add any application-wide styling here.</p>
+
+    <p>Learn more about SCSS and Sass using the <a href="sass-scss.html">documentation notes</a> created.</p>
 </main>
 
 </body>
