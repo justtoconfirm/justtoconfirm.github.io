@@ -18,6 +18,8 @@
 <!-- https://blog.angularindepth.com/setting-up-angular-from-scratch-1f518c65d8ab -->
 <!-- https://blog.angularindepth.com/upgrading-a-project-without-cli-to-angular-6-b07b105adc02 -->
 <!-- https://blog.angular-university.io/getting-started-with-angular-setup-a-development-environment-with-yarn-the-angular-cli-setup-an-ide/ -->
+<!-- https://www.sitepoint.com/angular-2-tutorial/ -->
+<!-- https://www.sitepoint.com/ultimate-angular-cli-reference/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -68,7 +70,13 @@ $ npm init -y
 
     <p>Before you begin, make sure your development environment includes NodeJS and NPM (Node Package Manager). Angular requires NodeJS version 8.x or 10.x</p>
 
+    <p>Angular CLI is a command-line interface (CLI) to automate your development workflow.</p>
+
+    <p>Many recommend not using Angular CLI, often called angular-cli, for production applications as it is highly opinionated.</p>
+
     <p>We use the Angular CLI (Command Line Interface) to create projects, generate application and library code. We also use Angular CLI for a variety of development tasks such as testing, bundling, and deployment.</p>
+
+    <p>The Angular CLI development server includes LiveReload support so your browser automatically reloads the application when a source file changes. Angular CLI generates <a href="typescript.html">Typescript</a> files.</p>
 
     <p>The official Angular documentation recommends installing the Angular CLI globally.</p>
 
@@ -79,12 +87,25 @@ $ npm install @angular/cli -g
         </code>
     </pre>
 
+    <p>This will install the ng command globally on your system. The following will be configured for you:</p>
+
+    <ul>
+        <li>NPM (Node Package Manager) dependencies are installed.</li>
+        <li>TypeScript is configured for you.</li>
+        <li>The Karma unit test runner is configured.</li>
+        <li>The Protractor end-to-end test framework is configured.</li>
+        <li>Environment files with default settings are created.</li>
+    </ul>
+
     <p>Once installed, you can confirm the version installed:</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
 $ ng --version
+
+# Alternative
+$ ng version
         </code>
     </pre>
 
@@ -100,6 +121,15 @@ $ ng --version
         <li>rxjs</li>
         <li>typescript</li>
     </ul>
+
+    <p>You can execute the Karma test runner and run all unit tests using the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng test
+        </code>
+    </pre>
 
     <h2>Angular Workspace</h2>
 
@@ -145,11 +175,19 @@ $ ng serve
 
     <p>This will launch the server, watching your files for any changes, and will rebuild the app as changes are made to those files.</p>
 
-    <p>The --open (or -o) option automatically opens your browser to <a href="http://localhost:4200/" target="_blank" rel="noopener noreferrer">http://localhost:4200/</a>.</p>
+    <p>The --open (or -o) option automatically opens your browser to <a href="http://localhost:4200/" target="_blank" rel="noopener noreferrer">http://localhost:4200/</a>. This is a built-in development server on port 4200</p>
 
     <p>You can alternatively use the serve command without the --open flag.</p>
 
-    <p>Your app should now be running.</p>
+    <p>Your app should now be running. Behind the scenes, the following is happening:</p>
+
+    <ul>
+        <li>Angular CLI loads its configuration from .angular-cli.json</li>
+        <li>Angular CLI runs Webpack to build and bundle all JavaScript and CSS code.</li>
+        <li>Angular CLI starts the Webpack dev server to preview the result on localhost:4200</li>
+    </ul>
+
+    <p>The LiveReload support actively watches your 'src' directory for file changes.</p>
 
     <h2>Components</h2>
 
