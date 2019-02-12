@@ -567,6 +567,7 @@ html, body {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-auto-rows: auto;
         grid-gap: 1rem;
+        padding: 10px;
     }
 
     .card {
@@ -575,6 +576,85 @@ html, body {
 }
         </code>
     </pre>
+
+    <h2>Footer</h2>
+
+    <p>It is often tricky to keep the page footer at the bottom of the page, but this can be achieved using CSS Grid. First, we need to set the height on the html and body elements to be 100%. We will also set the min-height on our container to be 100%. In our example, this will be the HTML &lt;main&gt; element we will add.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;header role="banner"&gt;
+    &lt;p&gt;Page Header&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;main role="main"&gt;
+
+    &lt;div class="cards"&gt;
+        &lt;div class="card"&gt;
+            &lt;p&gt;Card&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;p&gt;Card&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;p&gt;Card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;Page Footer&lt;/p&gt;
+&lt;/footer&gt;
+        </code>
+    </pre>
+
+    <p>We can update the CSS like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    display: block;
+    min-height: 100%;
+}
+
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: auto;
+        grid-gap: 1rem;
+        padding: 10px;
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>In examples I have seen, it is also recommended to update the grid-auto-rows property, but this doesn't seem to be needed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-auto-rows: auto 1fr auto;
+        </code>
+    </pre>
+
+    <p>The page footer will now stay at the bottom of the page.
 </main>
 
 </body>
