@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Debugging</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developers.google.com/web/tools/chrome-devtools/javascript/ -->
+<!-- https://javascript.info/debugging-chrome -->
+<!-- https://hackernoon.com/tips-and-tricks-for-debugging-in-chrome-developer-tools-458ade27c7ab -->
+<!-- https://developers.google.com/web/tools/chrome-devtools/network/ -->
+<!-- https://developers.google.com/web/updates/2017/04/devtools-release-notes -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Debugging</h1>
+
+    <p>Debugging is the process of identifying and removing errors from hardware or software. In Chrome we can use Developer Tools (DevTools) to debug issues within our browser.</p>
+
+    <p>In Chrome, the Sources panel in DevTools is where you debug JavaScript.</p>
+
+    <p>A common method for debugging a problem in JavaScript is to insert a lot of console.log() statements into the code in order to inspect values as the script executes.</p>
+
+    <p>Outputting something to the console is often called "Logging".</p>
+
+    <p>You may also want to use console.table() to display data as a table which can greatly improve readability when logging output. This is ideal for arrays.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var rainbowArray = ["red", "orange", "yellow", "green", "blue"];
+console.table(rainbowArray);
+        </code>
+    </pre>
+
+    <p>Breakpoints can also be used as they are quicker that using console.log() and they let you pause your code in the middle of its execution. Using breakpoints allows you to examine all values at that moment in time. They also avoid the need to manually open the source code to insert console.log() statements and reload the page.</p>
+
+    <h2>The "Sources" pane</h2>
+
+    <p>Open your page and turn on the Chrome DevTools using the F12 keyboard shortcut or right click on the page and click the 'Inspect' menu option. When DevTools is showing, select the Sources pane. This will open with nothing showing. The left panel will contain a list of files. Select an HTML (.html) or JavaScript (.js) file in the tree view. The code will be displayed in the central panel (Source Zone).</p>
+
+    <ul>
+        <li>The Resources zone - Lists the HTML, JavaScript, CSS, and other files that are attached to the page. Chrome extensions may also appear here too. This is the left most panel.</li>
+        <li>The Source zone - Shows the source code once a file is selected.</li>
+        <li>Information &amp; control zone - The panel on the right is for debugging. Should include options such as: 'Event Listener Breakpoints'.</li>
+    </ul>
+
+    <p>The Source zone may feature "{ }" on the bottom left hand side. By clicking this, your code will be beutified for HTML, CSS or JavaScript.</p>
+
+    <p>The Console below these panels allow commands to be typed there. Press Enter to execute a command. After a statement is executed, its result is shown below.</p>
+
+    <p>Within the Source zone panel that shows the source code, should you click on one of the line numbers down the left side, a breakpoint will be set. A breakpoint is a point of code where the debugger will automatically pause the JavaScript execution. While the code is paused, we can examine current variables, execute commands in the console etc and anything else we may use to debug your code.</p>
+
+    <p>When we add a breakpoint, it will be listed in the 'Breakpoints' section of the Information and control zone panel (right panel) within the "Sources" pane. This will also allow you to toggle the breakpoints on and off for debugging.</p>
+
+    <p>We can also pause the code using the debugger command.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function hello(name) {
+    let phrase = `Hello, ${name}!`;
+
+    debugger;   // the debugger stops here
+
+    say(phrase);
+}
+        </code>
+    </pre>
+
+    <p>This is very convenient when we are in the code editor and don't want to switch to the browser or set the breakpoints.</p>
+
+    <h2>Pseudo State</h2>
+
+    <p>If you would like to see how a pseudo state looks like on a certain element, right click the element and select 'Force state'. Select the pseudo state (:hover, :active, etc). This is really useful in checking to see what an element's hover or visited state is.</p>
+
+    <h2>Reference the currently selected element</h2>
+
+    <p>Should you want to reference the currently selected element from within the console, type:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$0
+        </code>
+    </pre>
+
+    <p>To get the value of the last operation from the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$_
+        </code>
+    </pre>
+
+    <p>To write commands that span multiple lines in the console: shift + enter</p>
+
+    <p>To capture a screenshot of an element you would like to capture:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Then type: screen - this is the Command Menu
+command + shift + p
+        </code>
+    </pre>
+
+    <p>If you are interested in playing around with experimental Chrome development features, check out: chrome://flags/ It allows you to turn on certain Chrome features.</p>
+
+    <h2>Unused CSS and JavaScript</h2>
+
+    <p>Since Chrome 59, a feature has been enabled in DevTools allowing you to check how much CSS or JavaScript is used in your webpage. Find unused CSS and JavaScript code with the new Coverage tab. When you load or run a page, this tab tells you how much code was used versus how much was loaded. You can reduce the size of your pages by only shipping the code that you need.</p>
+
+    <p>This feature is in the Sources/Coverage tab.</p>
+
+    <p>Clicking on a URL reveals the file in the Sources panel with a breakdown of which lines of code executed. Solid green means the code is executed, red means it did not execute. If the colours are mixed, it means only some of the code executed.</p>
+
+    <ul>
+        <li>Open the Command Menu (CMD + SHIFT + P)</li>
+        <li>Start typing Coverage and select Show Coverage</li>
+    </ul>
+
+    <p>As you interact with the page, the results with change as code is executed.</p>
+</main>
+
+</body>
+</html>
