@@ -41,6 +41,18 @@
 <main role="main" id="main">
     <h1>Angular</h1>
 
+    <p>Angular is an MVC (Module View Controller) JavaScript framework created by Misko Hevery and maintained by Google. The first version of Angular is often referred to as AngularJS, whereas the latest version is known as Angular 2. The two versions are different in their structures and methods.</p>
+
+    <p>It is worth checking to see if you have Node and NPM (Node Package Manager) installed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node --version
+$ npm --version
+        </code>
+    </pre>
+
     <h2>Setting up Angular from scratch</h2>
 
     <p>The CLI (Command Line Interface) is a great tool and time save, but at the same time, it hides some of the internals from you. For instances, when you want to setup server-side rendering, you have to actually understand how things are wired together. The CLI also may install packages that you might not need during development. By having all packages installed, it's difficult to learn the minimal dependencies required to setup the simplest of Angular projects.</p>
@@ -70,7 +82,7 @@ $ npm init -y
 
     <p>Before you begin, make sure your development environment includes NodeJS and NPM (Node Package Manager). Angular requires NodeJS version 8.x or 10.x</p>
 
-    <p>Angular CLI is a command-line interface (CLI) to automate your development workflow.</p>
+    <p>Angular CLI is a command-line interface (CLI) to automate your development workflow. It will generate our components, services, router, and directives.</p>
 
     <p>Many recommend not using Angular CLI, often called angular-cli, for production applications as it is highly opinionated.</p>
 
@@ -152,6 +164,8 @@ $ ng new my-app
         <li>An end-to-end test project, within the e2e subfolder</li>
         <li>Related configuration files</li>
     </ul>
+
+    <p>When working within the Angular application, we usually work within the 'src/app' directory.</p>
 
     <h2>Serve the application</h2>
 

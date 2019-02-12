@@ -22,6 +22,8 @@
 
 <!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
 
+<!-- https://medium.com/@geoffrey.signorato/understand-the-concept-of-css-transitions-in-2-min-d731b8371f7f -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -671,6 +673,91 @@ nav ul li.nav-item { }
     <p>Even in a world where the majority of browsers are Chromium-based, those browsers are not all running the same version of Chromium as Google Chrome. This means that other Chromium-based browsers might be a few versions behind Google Chrome.</p>
 
     <p>If you use a CSS property or value that a browser does not understand, the browser will ignore it. If the browser does not understand that line of CSS, it just skips it and gets on with the next thing it understands. Feature queries allow us to directly ask the browser what they support and then act on the response, just like a media query. Feature queries basically test for support of a CSS property and value. The content inside the feature query will only run of the browser responds with true - it supports the feature.</p>
+
+    <h2>CSS Transition</h2>
+
+    <p>CSS transitions allow you to change property values smoothly from one value to another, over a given duration.</p>
+
+    <p>Browser support:</p>
+
+    <ul>
+        <li>IE10 and above</li>
+        <li>Chrome 26 and above</li>
+        <li>Firefox 16 and above</li>
+        <li>Safari 6.1 and above</li>
+    </ul>
+
+    <p>Imagine you have an image. By default, this image has an opacity of 0.7. When hovering, this image will then have an opacity of 1.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    opacity: 1;
+}
+
+img:hover {
+    opacity: 0.7;
+}
+        </code>
+    </pre>
+
+    <p>CSS transitions will give you the opportunity to do the same with style. We can therefore add a transition to our image.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+img:hover {
+    opacity: 0.7;
+}
+        </code>
+    </pre>
+
+    <p>Transitions will make the transition between two properties smoother. You must always specify the property value at the start and then the finish. You may see this example being used:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    opacity: 1;
+    transition: all .4s;
+}
+        </code>
+    </pre>
+
+    <p>You can write 'all' for all your transitions, but this will impact performance. If you only want the opacity (you only want to apply opacity), don't be lazy, specify it and avoid using 'all'.</p>
+
+    <p>To continue with performance, you can use the will-change CSS property so the browser will know that this element will be subject to opacity changes and will prepare itself to handle it even smoother.</p>
+
+    <p>will-change is intended to be used as a last resort in order to try to deal with existing performance problems. It should not be used to anticipate performance problems. It is also not supported in both IE (Internet Explorer) or Edge.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    opacity: 1;
+    transition: all .4s;
+    will-change: opacity;
+}
+        </code>
+    </pre>
+
+    <p>You can also change the way a transition is animating by changing its curve. You can choose between: ease, linear, ease-in, ease-out, ease-in-out, and cube-bezier.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    opacity: 1;
+    transition: all .4s ease-in-out;
+}
+        </code>
+    </pre>
 </main>
 
 </body>
