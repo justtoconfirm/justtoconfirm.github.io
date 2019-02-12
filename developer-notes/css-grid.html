@@ -312,6 +312,269 @@
     <h2>Responsive Grid</h2>
 
     <p>Instead of specifying a finite number of columns, we can define sizing properties for the tracks and let the grid calculate how many fit the available space.</p>
+
+    <p>As an aside, it's important to know that CSS Grid does not have to be used on an entire page layout. Grids can be used in certain areas of the page if needed. For example, a card layout can utilize CSS Grid even if the rest of the page does not. As long as the grid area is defined and the display:grid property is declared on the wrapper, this approach can be used.</p>
+
+    <p>Let's build a simple card-based structure.</p>
+
+    <p>In some cases it's easy to plan for a set number of cards. Let's begin by creating a wrapper to contain our cards. We will wrap this in a feature query to check that the browser supports CSS Grid.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+    }
+}
+        </code>
+    </pre>
+
+    <p>The HTML should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="cards"&gt;
+    &lt;!-- This is a wrapper for our cards --&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>The actual card styling will be declared within the class of .card</p>
+
+    <p>Let's add some cards. We will begin by adding three four even cards (columns):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>The HTML should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="cards"&gt;
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>This will create four columns (cards) that are horizontal but only reduce in size, they are not fluid and they don't wrap underneath as the screen/viewport reduces.</p>
+
+    <p>The repeat() function has been used. This function takes two arguments, the number of times to repeat and the value to repeat. For example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-template-columns: repeat(4, 200px);
+
+# Computes to:
+grid-template-columns: 200px 200px 200px 200px;
+        </code>
+    </pre>
+
+    <p>We are also using the Fractional unit (fr). This unit of measurement is popular with CSS Grid. 1fr simply takes up 1 part of the available space and helps to simplify space calculations. The example below that we are therefore using simple specifies four columns that will take up the available space within the parent.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-template-columns: repeat(4, 1fr);
+        </code>
+    </pre>
+
+    <p>When grid columns are 1fr 2fr 1fr, two fractional units take up twice the space as one fractional unit.</p>
+
+    <p>In most cases, you may not know the number of cards that are needed, so planning for a set number won't work. We can use the same approach we had before using repeat() but we can use auto-fill. Width declarations are needed in addition to auto-fill. When using px (pixel) values, there maybe space off to the right when there isn't enough space for the card to fit.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-template-columns: repeat(auto-fill, 250px);
+        </code>
+    </pre>
+
+    <p>Let's update our CSS code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 250px);
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>Our CSS Grid is now fluid and the four columns will wrap/stack as the viewport is reduced in width, however, a huge gap/space remains on the right of the last column.</p>
+
+    <p>To resolve this issue, minmax is the perfect solution since a fractional (fr) unit by itself would make the cards full width. Adding minmax to the repeat() method will remove empty space and the cards will appear more fluid.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        </code>
+    </pre>
+
+    <p>Columns will always fit the grid and the cards will be at least 300px. When the minimum space does not perfectly fit the space, this is where the max-width comes into play. When another 300px card won't fit, the other cards will be larger than 300px so they stretch to fill the row with more space. This is what we can use for a three-column layout.</p>
+
+    <p>The minimum width of the card is 300px. When the device is very small, there is a good chance that there isn't the space for two cards in a row. That's when the 1fr comes into play. This is ideal for responsive designs. When 1fr has been declared as the max width, a single card will take up all the available space and they will stack on top of each other. This is ideal for mobile responsive designs without the use of media queries.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>The HTML has been set to use only three columns.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="cards"&gt;
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;p&gt;Card&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>We can now add spacing between our columns and rows. When you see grid-gap, it is shorthand for grid-row-gap and grid-column-gap. The grid-row-gap is the space on the top and bottom of the grid (card), grid-column-gap is the space to the left and right of the grid (card).</p>
+
+    <p>We will set a gutter (gaps/space) to 1rem:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+grid-gap: 1rem;
+        </code>
+    </pre>
+
+    <p>Our CSS code should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 1rem;
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can also use the grid-auto-rows CSS property to specify the size of an implicitly-created grid row track. We will set this to auto, but you can specify a size if you wish.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: auto;
+        grid-gap: 1rem;
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <h3>Example</h3>
+
+    <div class="wrapper wrapper-cards">
+        <div class="item item-card">One</div>
+        <div class="item item-card">Two</div>
+        <div class="item item-card">Three</div>
+        <div class="item item-card">Four</div>
+        <div class="item item-card">Five</div>
+        <div class="item item-card">Six</div>
+    </div>
+
+    <p>Your CSS Grid is now fluid and responsive. Here you can create card components within a three column grid to display your content. If you have six columns, this will give you an even number of columsn as you reduce and increase the viewport size.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+@supports (display: grid) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: auto;
+        grid-gap: 1rem;
+    }
+
+    .card {
+        border: 1px solid #eaeaea;
+    }
+}
+        </code>
+    </pre>
 </main>
 
 </body>

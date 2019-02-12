@@ -102,10 +102,20 @@ pre {
     grid-gap: 25px;
 }
 
+.wrapper-cards {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+}
+
 .item {
     background-color: #3d7e9a;
     border: 1px solid #fff;
     color: #fff;
+}
+
+.item-card {
+    padding: 25px;
 }
 
 .item--full-width {
