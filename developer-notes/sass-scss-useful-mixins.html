@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Sass & SCSS: Useful Mixins</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.developerdrive.com/2018/05/10-best-sass-mixins-for-web-developers/ -->
+<!-- https://medium.com/@justinbrazeau/10-useful-sass-mixins-for-automation-833cdee9d69b -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Sass &amp; SCSS: Useful Mixins</h1>
+
+    <h2>Set a rem font size</h2>
+
+    <p>You may want to set the font size in the &lt;html&gt; and &lt;body&gt; elements if you want to use rem sizing and set a default font size of 16px. This allows the calculations of Rem sizes to be easier, so for example, 1.6rem simply becomes 16px.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;  /* 16px */
+}
+        </code>
+    </pre>
+
+    <p>Rem is similar to em, but instead of being relative to the parent element, it's relative to the font-size set in the &lt;html&gt; element (root). Rem is not supported in IE8 or below, but with a mixin, we can create a fallback to pixels when rem is not supported.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+        </code>
+    </pre>
+
+    <h3>Usage</h3>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.elem {
+    @include font-size(14px);
+}
+        </code>
+    </pre>
+
+    <h3>Output</h3>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.elem {
+    font-size: 14px;    // Overridden if browser supports rem
+    font-size: 0.8rem;
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

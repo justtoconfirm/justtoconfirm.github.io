@@ -16,6 +16,10 @@
 <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML -->
 <!-- http://thesassway.com/editorial/sass-vs-scss-which-syntax-is-better -->
 <!-- http://sassbreak.com/ruby-sass-libsass-differences/ -->
+<!-- https://sass-guidelin.es/ -->
+<!-- http://alwaystwisted.com/articles/2014-03-08-using-sass-33s-at-root-for-piece-of-mind -->
+<!-- http://thesassway.com/advanced/pure-sass-functions -->
+<!-- https://www.smashingmagazine.com/2015/05/extending-in-sass-without-mess/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -102,6 +106,270 @@ $primary-color: #333;
 
 @import 'partials/color';
 @import 'partials/second-partial';  // Another SCSS partial
+        </code>
+    </pre>
+
+    <h2>Placeholders</h2>
+
+    <p>Placeholders are a features that was included in version 3.2 of Sass. The placeholder begins with &#37; symbol. The preprocessor simply skips any placeholders it finds in your code and doesn't include it in the final CSS. Any styles within the placeholder can still be included within selectors elsewhere using the @extend directive.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+%placeholder {
+    background-color: #eaeaea;
+}
+
+.my-element {
+    @extend %placeholder;
+}
+
+.second-element {
+    @extend %placeholder;
+}
+        </code>
+    </pre>
+
+    <p>The CSS output will look like the following - notice how the CSS doesn't include the placeholder itself.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-element,
+.second-element {
+    background-color: #eaeaea;
+}
+        </code>
+    </pre>
+
+    <p>Placeholders can also be dynamically declared, meaning you can do this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+%do-#{$this}
+        </code>
+    </pre>
+
+    <p>The @extend directive in Sass is a powerful directive that facilitates the sharing of rules and relationships between selectors.</p>
+
+    <h2>Parent Selectors</h2>
+
+    <p>Referencing parent selectors by using the ampersand (&amp;) can be a powerful tool, if used correctly. The ampersand character is simply used to reference a parent selector, for example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.example {
+    font-size: 20px;
+    margin-bottom: 10px;
+
+    &--modifier {
+        color: #eaeaea;
+    }
+}
+        </code>
+    </pre>
+
+    <p>Here is how the CSS output would appear:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.example {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.example--modifier {
+    color: #eaeaea;
+}
+        </code>
+    </pre>
+
+    <p>With Sass, all we have to do is nest the next ruleset and attach the &amp; in place of the repeating selector.</p>
+
+    <h2>@at-root directive</h2>
+
+    <p>The @at-root directive works by 'jumping out' of where you nest it in code to be at the top level.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+h1 {
+    font-size: 16px;
+
+    @at-root {
+        header {
+            margin: 0 auto;
+            width: 98%;
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>Which would result in the CSS:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+h1 {
+    font-size: 16px;
+}
+
+header {
+    margin: 0 auto;
+    width: 98%;
+}
+        </code>
+    </pre>
+
+    <p>It is worth noting that whatever is within the @at-root directive will be output after where it's been nested and not before.</p>
+
+    <h2>Mixins</h2>
+
+    <p>A Mixin is a block of code that lets us group CSS declarations we may reuse. Creating a Mixin is very simple, all we have to do is use the @mixin directive followed by the name of the Mixin.</p>
+
+    <p>To use a Mixin we simply use the @include directive followed by the name of the Mixin we want to use.</p>
+
+    <p>We can pass arguments into Mixins like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@mixin block($block) {
+    @if $block {
+        display: block;
+    } @else {
+        display: inline;
+    }
+}
+        </code>
+    </pre>
+
+    <p>Now, when we call the block Mixin, we must pass a truthy argument to the Mixin.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@include block(true);
+        </code>
+    </pre>
+
+    <p>Default arguments can also be used within Mixins:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@mixin block($block: true) {
+    // Code here
+}
+        </code>
+    </pre>
+
+    <h2>Functions</h2>
+
+    <p>Functions are blocks of code that return a single value of any Sass data type. To create a custom function you need two Sass directives, @function and @return. The first creates the function and the second signals the value the function will return.</p>
+
+    <p>Instead of outputting lines of Sass the way mixins do, functions simply return a value. A function is similar to a mixin, however the output from the function is a single value and can be any data type, including: numbers, strings, colours, booleans, or lists.</p>
+
+    <p>Functions help you to write more readable and DRY (Don't Repeat Yourself) Sass by letting you move reusable logic out of specific declarations and mixins. You can use functions when you need to calculate a value that maybe reused elsewhere.</p>
+
+    <p>It is better to create short-names for functions and mixins that you may use often.</p>
+
+    <p>Here is the syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@function function-name($args) {
+    @return value-to-be-returned;
+}
+        </code>
+    </pre>
+
+    <p>Here is a more realistic example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@function add-numbers($num-one, $num-two) {
+    @return $num-one + $num-two;
+}
+        </code>
+    </pre>
+
+    <p>To use the function is fairly simple:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-module {
+    padding: add-numbers(10px, 5px);
+}
+        </code>
+    </pre>
+
+    <p>And here would be the CSS output:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-module {
+    padding: 15px;
+}
+        </code>
+    </pre>
+
+    <p>Ethan Marcotte has suggested a formula for calculating the percent value for a width so you can achieve a fluid layout based on a reference design made using pixels when considering Responsive Web Design (RWD).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+target / context = result
+        </code>
+    </pre>
+
+    <p>Therefore, if you have a container that's 1000px wide and a module that's designed to be 650px wide, this calculation becomes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+650px / 1000px = 65%
+        </code>
+    </pre>
+
+    <p>A function is an ideal approach for calculating this logic within a project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@function calc-percentage($target, $container) {
+    @return ($target / $container) * 100%;
+}
+        </code>
+    </pre>
+
+    <p>So we can now use the function to calculate a fluid width:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-module {
+    width: calc-percentage(650px, 1000px);
+}
+        </code>
+    </pre>
+
+    <p>And the resulting CSS:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-module {
+    width: 65%;
+}
         </code>
     </pre>
 </main>
