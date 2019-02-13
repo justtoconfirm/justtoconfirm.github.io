@@ -39,6 +39,28 @@
 
     <p>An HTML form on the client side is nothing more than a convenient user-friendly way to configure an HTTP request to send data to a server. This enabled the user to provide information to be delivered in the HTTP request.</p>
 
+    <p>Should you want to make your form fields stacked with the &lt;label&gt; above the &lt;input&gt; element of your form, you just need a bit of CSS. The "for" attribute is used to link the label to the form element and should reference the "id" attribute value. The "name" attribute on the &lt;input&gt; element is used to pass the data to the backend/database.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;label for="name"&gt;Name&lt;/label&gt;
+&lt;input type="text" id="name" name="fullname" /&gt;
+        </code>
+    </pre>
+
+    <p>And now the CSS:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+label,
+input {
+    display: block;
+}
+        </code>
+    </pre>
+
     <h2>Search Fields</h2>
 
     <p>Search fields should ideally have a &lt;label&gt; for accessibility requirements. Often search fields do not have a &lt;label&gt; element and therefore rely on the placeholder. This is not ideal from an accessibility point-of-view. Perhaps we should use a &lt;label&gt; element or apply the aria-label attribute to the input field itself so it becomes accessible.</p>
@@ -47,7 +69,7 @@
 
     <h2>Placeholders</h2>
 
-    <p>Placeholders within input fields should not be used as replacements for labels, but should give clear examples of the content to be added to make it clearer. In a name field, a placeholder shoild be something like: 'e.g. John Smith' not 'First name'.</p>
+    <p>Placeholders within input fields should not be used as replacements for labels, but should give clear examples of the content to be added to make it clearer. In a name field, a placeholder should be something like: 'e.g. John Smith' not 'First name'.</p>
 
     <h2>Type Attributes</h2>
 
