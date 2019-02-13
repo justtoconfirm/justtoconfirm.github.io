@@ -15,6 +15,7 @@
 
 <!-- https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f -->
 <!-- https://medium.freecodecamp.org/array-destructuring-in-es6-30e398f21d10 -->
+<!-- https://medium.com/@crunchtech/object-destructuring-best-practice-in-javascript-9c8794699a0d -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -36,14 +37,142 @@
 <main role="main" id="main">
     <h1>JavaScript Destructuring</h1>
 
-    <p>Destructuring in JavaScript is a simplified method of extracting mulitple properties from an array by taking the structure and deconstructuring it down into its own constituent parts.</p>
+    <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.</p>
 
     <p>If you use TypeScript or a modern JavaScript framework such as React, Vue, or Angular, you may already be familiar with destructuring.</p>
+
+    <p>Let's begin by keeping it really simple and look at how to destructure an array.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
+var arr = [1, 2, 3, 4, 5];
 
+// Let's destructure this
+var [a, b] = arr;
+
+// Output the variable values
+console.log(a);     // 1
+console.log(b);     // 2
+        </code>
+    </pre> 
+
+    <p>This was how we previously used to extract data from an array:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = [1, 2, 3, 4, 5];
+
+var a = arr[0];
+var b = arr[1];
+
+// Output the variable values
+console.log(a);     // 1
+console.log(b);     // 2
+        </code>
+    </pre>
+
+    <p><a href="javascript-object.html">Object</a> properties can be accessed by using the dot notation or the bracket notation:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myObj = {
+    foo: 'bar',
+    age: 42
+};
+
+myObj.foo;       // 'bar' accessed through dot notation
+myObj['age'];    // 42 accessed through bracket notation
+        </code>
+    </pre>
+
+    <p>The object destructuring assignment syntax gives us a third way to access object properties.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myObj = {
+    foo: 'bar',
+    age: 42
+};
+
+const { foo } = myObj;          // 'bar'
+const { age } = myObj;          // 42
+
+// Or all in one line
+const { foo, age } = myObj;     // foo === 'bar', age === 42
+        </code>
+    </pre>
+
+    <p>Before ES6, in addition to regular dot notation or bracket notation for object property access, we made use of the getPropValue utility function. It allowed us to pass in an object and a key, before returning the value of that key from the object.</p>
+
+    <p>For example, if the object were:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const obj = {
+    main: {
+        content: {
+            title: 'Old Pier',
+            description: 'Seagulls paradise'
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>We could retrieve the title like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const title = getPropValue(obj, 'main.content.title');      // 'Old Pier'
+        </code>
+    </pre>
+
+    <p>So with ES6 destructuring at the initial one level, we can do the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const obj = {
+    main: 'Brighton seagull'
+}
+
+// Add || {} to avoid failing when destructuring from undefined or null
+const { main } = obj || {}      // 'Brighton seagull'
+        </code>
+    </pre>
+
+    <p>We can begin to take this further and not limit ourselves to a single level of destructuring, but instead we can destructure a nested property.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const obj = {
+    main: {
+        content: {
+            title: 'Old Pier',
+            description: 'A structure that is since no longer used.'
+        }
+    }
+}
+
+const { main: { content: { title }}} = obj || {}
+        </code>
+    </pre>
+
+    <p>So main is within obj, content is within main, and finally title is destructured from content. The value of title is assigned to the variable named title. We don't assign main or content to variables. This all works fine as long as those properties exist in the obj and not of them are undefined or null.</p>
+
+    <p>If a property is null or undefined, you may receive the following error:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+TypeError: Cannot destructure property 'propertyName' of 'undefined' or 'null'
         </code>
     </pre>
 </main>
