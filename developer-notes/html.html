@@ -56,6 +56,70 @@
         </code>
     </pre>
 
+    <h2>Tags &amp; Elements</h2>
+
+    <p>HTML tag is just the opening or closing entity in HTML. For example, &lt;p&gt; is an opening tag and &lt;/p&gt; is the closing tag. These are examples of HTML tags. Tags are used to mark up the start and end of an HTML element.</p>
+
+    <p>HTML elements contain opening, closing tags and often content. In HTML an element represents some kind of structure or semantics.</p>
+
+    <p>This example simply uses a paragraph tag to simply demonstrate this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Opening HTML tag --&gt;
+&lt;p&gt;
+
+&lt;!-- Closing HTML tag --&gt;
+&lt;/p&gt;
+
+&lt;!-- HTML element, it's all together with content --&gt;
+&lt;p&gt;This is content&lt;/p&gt;
+        </code>
+    </pre>
+
+    <p>You can of course get HTML tags which are self-closing and are elements too, such as the &lt;img&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="#" /&gt;
+        </code>
+    </pre>
+
+    <p>When we talk about attributes, they are used to define a property of an element and consist of attribute properties and value pairs. They are added to the element's start (opening) tag and this tag can contain any number of attributes.</p>
+
+    <p>The most popular misuse of the term "tag" is referring to the alt attribute on images as "alt tags". Alt is an attribute, not a tag.</p>
+
+    <p>The example below shows an &lt;img&gt; element with a "src" and "alt" attribute.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img src="#" alt="Empty image example" /&gt;
+        </code>
+    </pre>
+
+    <p>We can use attributes to add classes and id's to HTML elements for CSS and JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;p class="bold"&gt;This is bold text styled using CSS&lt;/p&gt;
+        </code>
+    </pre>
+
+    <p>And this is the CSS:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.bold {
+    font-weight: bold;
+}
+        </code>
+    </pre>
+
     <h2>DOM (Document Object Model)</h2>
 
     <p>The DOM has a tree-like structure. Each element, attribute and piece of text in the markup language becomes a DOM node in the tree structure. The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes and child nodes have siblings.</p>
@@ -176,6 +240,8 @@ The &lt;abbr title="World Health Organisation"&gt;WHO&lt;/abbr&gt; was founded i
 " - &amp;quot; - Interpreted as the beginning and end of an attribute's value.
         </code>
     </pre>
+
+    <p>I often use this reference for <a href="https://brajeshwar.github.io/entities/" target="_blank" rel="noopener noreferrer">HTML special characters</a>.</p>
 
     <h2>Links</h2>
 

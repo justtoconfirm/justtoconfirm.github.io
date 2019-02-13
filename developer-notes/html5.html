@@ -125,15 +125,65 @@
 
     <p>You may need to set the &lt;main&gt; element to be a block element using CSS. This ensures that any browsers that do not support the element will still display it as a block level element.</p>
 
-<pre>
-    <code>
+    <pre>
+        <code>
 <!-- leave this line empty -->
 main {
     display: block;
 }
-    </code>
-</pre>
+        </code>
+    </pre>
 
+    <h2>&lt;section&gt;</h2>
+
+    <p>The HTML &lt;section&gt; element represents a standalone section contained within an HTML document. Typically, but not always, sections have a heading.</p>
+
+    <p>Each &lt;section&gt; should be identified, typically by including a heading (&lt;h1&gt; to &lt;h6&gt; element) as a child of the &lt;section&gt; element.</p>
+
+    <p>Do not use the &lt;section&gt; element as a generic container, this is what the &lt;div&gt; element is for. A section should logically appear in the outline of a document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;section&gt;
+    &lt;h1&gt;Introduction&lt;/h1&gt;
+    &lt;p&gt;Some introductory content ...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+    &lt;h1&gt;Equipment&lt;/h1&gt;
+    &lt;p&gt;Some more content ...&lt;/p&gt;
+&lt;/section&gt;
+        </code>
+    </pre>
+
+    <p>For example, a navigation menu should be wrapped in a &lt;nav&gt; element but a list of search results, could be put inside a &lt;section&gt;.</p>
+
+    <h2>&lt;footer&gt;</h2>
+
+    <p>The HTML &lt;footer&gt; element represents a footer for its nearest sectioned content or root element. A footer typically contains information such as copyright information or links to related documents.</p>
+
+    <p>Information about the author in an &lt;address&gt; element can be included in the &lt;footer&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;footer&gt;
+    &lt;p&gt;Copyright information &amp;copy; 2018&lt;/p&gt;
+&lt;/footer&gt;
+        </code>
+    </pre>
+
+    <p>The VoiceOver screen reader has an issue where the footer landmark role is not announced in the landmark rotor. To address this, add a role attribute to the &lt;footer&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;footer role="contentinfo"&gt;
+    &lt;p&gt;Copyright information &amp;copy; 2018&lt;/p&gt;
+&lt;/footer&gt;
+        </code>
+    </pre>
 </main>
 
 </body>

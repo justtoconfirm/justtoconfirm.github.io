@@ -65,6 +65,26 @@
 
     <p>With strict mode, for example, you cannot use undeclared variables. A variable would always need to have a keyword, such as var, or an error will be thrown. Strict mode basically catches things that are most likely valid but could cause errors.</p>
 
+    <h2>&lt;noscript&gt;</h2>
+
+    <p>The &lt;noscript&gt; tag defines an alternative content for users that have disabled JavaScript in their browsers or have a browser that does not support JavaScript. The &lt;noscript&gt; tag can be used in both the &lt;head&gt; and &lt;body&gt; elements.</p>
+
+    <p>When used inside the &lt;head&gt; element &lt;noscript&gt; must only contain &lt;link&gt;, &lt;style&gt; or &lt;meta&lt; elements.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script&gt;
+document.write("Hello World");
+&lt;/script&gt;
+
+&lt;noscript&gt;
+    &lt;p&gt;Your browser does not support JavaScript&lt;/p&gt;
+&lt;/noscript&gt;
+
+        </code>
+    </pre>
+
     <h2>JavaScript &amp; HTML</h2>
 
     <p>When a browser comes across a &lt;script&gt; element, it stops to load the script and then checks to see if it needs to do anything. It is often recommended to place the &lt;script&gt; element just before the closing &lt;/body&gt; element within a HTML document.</p>
