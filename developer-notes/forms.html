@@ -39,6 +39,20 @@
 
     <p>An HTML form on the client side is nothing more than a convenient user-friendly way to configure an HTTP request to send data to a server. This enabled the user to provide information to be delivered in the HTTP request.</p>
 
+    <h2>Search Fields</h2>
+
+    <p>Search fields should ideally have a &lt;label&gt; for accessibility requirements. Often search fields do not have a &lt;label&gt; element and therefore rely on the placeholder. This is not ideal from an accessibility point-of-view. Perhaps we should use a &lt;label&gt; element or apply the aria-label attribute to the input field itself so it becomes accessible.</p>
+
+    <p>ARIA attributes are best avoided unless you really need to use them.</p>
+
+    <h2>Placeholders</h2>
+
+    <p>Placeholders within input fields should not be used as replacements for labels, but should give clear examples of the content to be added to make it clearer. In a name field, a placeholder shoild be something like: 'e.g. John Smith' not 'First name'.</p>
+
+    <h2>Type Attributes</h2>
+
+    <p>The type attribute added to most form elements (input elements), are encoding patterns for browsers to work out what to do with the input field. It is recommended for phone numbers not to use the 'number' type attribute value.</p>
+
     <h2>Form Attributes</h2>
 
     <p>The &lt;form&gt; element defines how the data will be sent. The two most important attributes of the element are action and method.</p>

@@ -46,6 +46,10 @@
 
     <p>CSS describes how HTML elements are to be displayed/styled and can be used to control the layout or structure of multiple web pages. A CSS rule-set consists of a selector and a declaration block.</p>
 
+    <p>When a browser encounters CSS, it renders what is within the stylesheet, however, if the browser encounters something like a property that it does not understand, it will simply be ignored.</p>
+
+    <p>You can use tools such as <a href=https://www.caniuse.com" target="_blank" rel="noopener noreferrer">caniuse</a> to check the status of features in CSS. A new feature that is not supported by all browsers can be used providing it does not break anything. Browsers that do not provide support will simply ignore the feature and new browsers will benefit from the new feature. Eventually it is hoped that older browsers will catch up and begin supporting newer features therefore we are future proofing our code.</p>
+
     <p>The selector points to the HTML element you want to style. The declaration block contains one or more declarations (statements) separated by semicolons. Each declaration includes a CSS property name and a property value, separated by a colon. The declaration block is surrounded by curly braces.</p>
 
     <p>CSS should be written across multiple lines. This reduces the chance of merge conflicts when using version control, because each CSS declaration exists on it's own line. Code can therefore be compared more easily as a single line only ever carries one change. If a CSS selector only has one declaration, then this will still confirm to this practice.</p>
@@ -442,9 +446,15 @@ p {
         </code>
     </pre>
 
+    <h2>Prefixes</h2>
+
+    <p>Prefixes are no-longer as required as they once were. CSS properties that begin with a dash were considered as prototype properties and were not initially intended for production browser releases but have stuck around. When using tools such as Autoprefixer we have to consider if this is required at all as extra code is generated as a result which can impact performance slightly.</p>
+
     <h2>Feature Query</h2>
 
     <p>CSS has developed a way for you to test for browser support of new CSS features, with Feature Queries. A Feature Query behaves in much the same way as a Media Query, except that instead of asking the browser something about the device being used to view the site, a Feature Query asks the browser if it supports a particular CSS feature. This makes it easier to use new features in a safe, progressively enhanced way.</p>
+
+    <p>This can be used in-place of tools such as Modernizr, but is only supported in the most modern browsers.</p>
 
     <pre>
         <code>

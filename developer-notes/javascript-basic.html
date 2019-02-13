@@ -22,6 +22,7 @@
 
 <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals -->
 <!-- https://medium.com/@crunchtech/object-destructuring-best-practice-in-javascript-9c8794699a0d -->
+<!-- https://medium.com/@abhimanyuchauhan_61309/what-is-this-in-javascript-56e38342a8b1 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -611,6 +612,63 @@ document.getElementById("demo").innerHTML = myJSON;
 
     <p>The JSON.stringify() method is included in all major browsers and in the latest JavaScript (ECMAScript) standard.</p>
 
+    <h2>The "This" keyword</h2>
+
+    <p>One can think of the "this" keyword as a shortcut which refers to the object from where the function was invoked. As "this" refers to an object from where the function was invoked, we can access all the values and properties of the object. Any changes made to "this" will also update the object being referred.</p>
+
+    <p>To summarise, the "this" keyword refers to the object it belongs to.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(this);
+        </code>
+    </pre>
+
+    <p>The above code example, when run inside the DevTools console, will output the following, the window object by default:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+        </code>
+    </pre>
+
+    <p>The above example gives us the window object. This happens because the execution context here is global, meaning it is not blocked by any function or object. Let's look at another example.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var testObject = {
+    value: 'This is an object scope',
+    testFunc: function() {
+        console.log(this);
+    }
+}
+
+testObject.testFunc();
+        </code>
+    </pre>
+
+    <p>As we can see in the above example, the value of this points to the testObject. This is because the value of "this" depends on the objects that invokes it, in this case the testObject.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var testObject = {
+    value: 'This is an object scope',
+    testFunc: function() {
+        console.log(this);
+    }
+}
+
+var delegate = testObject.testFunc;
+delegate();
+        </code>
+    </pre>
+
+    <p>The output has now changes and "this" points to the global window object. This happened because the value of the invoking object changed from the testObject to the global object.</p>
+
     <h2>Checking JavaScript Availability</h2>
 
     <p>It shouldn't be assumed that JavaScript is always available. We can place a class of no-js on the &lt;html&gt; element like so:</p>
@@ -669,6 +727,33 @@ console.log(`test ${value}`)    // test 123
     </pre>
 
     <p>They are not supported in all JavaScript engines, so a transpiler like Babel may need to be used.</p>
+
+    <h2>Create a Timestamp</h2>
+
+    <p>Here is a simple example of how to generate a timestamp.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var timestamp = Math.floor((new Date().getTime()) / 1000);
+
+console.log(timestamp);     // Example: 1550060339
+        </code>
+    </pre>
+
+    <h2>Ternary</h2>
+
+    <p>A ternary is used to shorten the If/Else statement. In this example, the variable result would get the 'cute' value, because the value of animal is 'puppy'. If the animal had another value, result would be 'still fluffy'. You should always expect else conditions, otherwise a syntax error will occur.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var animal = 'puppy';
+var result = (animal === 'puppy') ? 'cute' : 'still fluffy';
+
+console.log(result);    // "cute"
+        </code>
+    </pre>
 </main>
 
 </body>

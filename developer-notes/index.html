@@ -389,6 +389,74 @@ Enzyme to easily assert, manipulate, and traverse our components.
 <!-- React menu/navigation -->
 <!-- https://codepen.io/Lakston/pen/ALvgKB -->
 
+<!--
+TTFB - Backend
+TTFR - Perceived performance
+HTML5 element - Detail - https://caniuse.com/#search=Detail - cannnot use IE/Edge
+https://weblog.west-wind.com/posts/2015/Jan/12/main-HTML5-Tag-not-working-in-Internet-Explorer-91011
+https://medium.muz.li/design-technique-progressive-disclosure-1980def8dc97
+https://www.marcozehe.de/2010/02/10/easy-aria-tip-5-aria-expanded-and-aria-controls/ - hide visually and hide by screenreaders, control via JS.
+-->
+
+<!-- Postels law (Robustness principle) -->
+
+<!--
+Output algorithm
+
+Input mode attribute
+
+http://www.heydonworks.com/
+
+Recommend to not use reset/normalize
+
+https://alistapart.com/article/axiomatic-css-and-lobotomized-owls
+
+'rel' attribute stands for relationship.
+
+https://www.zachleat.com/web/font-checklist/
+
+crossorigin must be added as request, even when self-hosting the font.
+Waterfall chart in networks tab will load sooner.
+Regular is recommended as weight to use, bold and italic to load normally within CSS.
+Woff2 recommended as support for Woff2 meets requirements of support for preload.
+Low cost, big impact.
+
+https://caniuse.com/#feat=woff2
+https://medium.com/minitheory-design/font-support-on-internet-explorer-woff-v-s-woff-2-0-961e20c88d1d
+
+https://github.com/typekit/webfontloader - possibly not worth it, maybe over engineered.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
+https://css-tricks.com/hey-hey-font-display/
+
+system font loads first before the web font.
+
+swap is a good compromise, fallback recommended.
+
+Font Squirrel does subsetting and conversion to woff2.
+
+https://www.typotheque.com/help/webfonts/what_is_font_subsetting - reduce characters that you will use. Two font files can be created, one including full font file, the other the subset.
+
+subset will be preloaded (what you know your going to need), fullversion may include characters such as german names etc, that may have unusual characters.
+
+https://github.com/Munter/subfont
+
+@font-face: subset, fullversion, fallback (system) fonts (e.g Helvetica, verdana etc), font class (serif, sans-serif etc).
+
+<link rel="preload" href="/js..." as="script" />
+<link rel="preload" href="/fonts/font.woff2" as="font" crossorigin />
+Preload is a suggestion to use a file, such as a font, like the src to the file, but is not blocking and can be used without affecting browsers that do not support it, as is HTML feature
+
+Illustrations - SVG
+Photo - WebP (PNG for transparent backgrounds, but large file size, WebP has limited browser support).
+SVG can embed JPEG and then use masking to create transparency.
+Responsive image - srcset attribute.
+
+Variable fonts.
+
+Cloudinary.
+-->
+
 <main role="main">
     <ul class="no-bullet-list">
         <li><a href="developer-setup.html">Developer Setup</a></li>
