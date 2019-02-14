@@ -529,6 +529,95 @@ console.log(i);     // Expected outcome: 3
         </code>
     </pre>
 
+    <h2>DOM Selectors</h2>
+
+    <p><abbr title="Document Object Model">DOM</abbr> Selectors, as the name suggests, is used to select HTML elements within a document using JavaScript. There are five ways in which you can select elements in a DOM using selectors:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+getElementsByTagName();
+getElementsByClassName();
+getElementById();
+querySelector();
+querySelectorAll();
+        </code>
+    </pre>
+
+    <p>These methods are all properties of the document object. In order to use one, we need to prefix those elements with the document object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.getElementsByTagName();
+document.getElementsByClassName();
+document.getElementById();
+document.querySelector();
+document.querySelectorAll();
+        </code>
+    </pre>
+
+    <p>For example, say we want to return all elements in our HTML document that matches the specified tag if &lt;h1&gt;.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.getElementsByTagName('h1');
+        </code>
+    </pre>
+
+    <p>This may return a collection of items matching the tag name of 'h1'. Say we have a &lt;li&gt; item from five on the page, we can use the index to access the specific item we require. So for example, we want to access the second &lt;li&gt; element on the page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.getElementsByTagName('li')[1];
+        </code>
+    </pre>
+
+    <p>Using the querySelector() we can return the first element that matches the CSS selector. If we take the &lt;li&gt; element once again, this will return the very first &lt;li&gt; element on the page that matches the specified CSS selector in the document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.querySelector('li');
+        </code>
+    </pre>
+
+    <p>As with the querySelector() method, you can use querySelectorAll() to return all the elements that match the specified CSS selector in the document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.querySelectorAll('li');
+        </code>
+    </pre>
+
+    <p>You have to use CSS selectors and not normal HTML selectors within the parameters of the methods.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Valid
+document.querySelector('.class-name');
+
+// Will not work
+document.querySelector('class-name');
+        </code>
+    </pre>
+
+    <p>These methods should all work in Internet Explorer 8 (IE8) and above.</p>
+
+    <p>You may also want to use a variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var elem = document.querySelector('.class-name');
+console.log(elem);
+        </code>
+    </pre>
+
     <h2>window.onload</h2>
 
     <p>By default, it is fired when the entire page loads, including its content (images, CSS, scripts, etc.). In some browsers, it now takes over the role of document.onload and fires when the <abbr title="Document Object Model">DOM</abbr> is ready as well. This is one of the most common event developers check for before running their JavaScript, to check whether the page has completely loaded.</p>
@@ -635,6 +724,35 @@ document.getElementById("demo").innerHTML = myJSON;
     <h2>The "This" keyword</h2>
 
     <p>One can think of the "this" keyword as a shortcut which refers to the object from where the function was invoked. As "this" refers to an object from where the function was invoked, we can access all the values and properties of the object. Any changes made to "this" will also update the object being referred.</p>
+
+    <p>As you may know, the environment (or the scope) in which any JavaScript line is being executed is called "The Execution Context". The JavaScript runtime maintains a stack of these execution contexts and the execution context present at the top of this stack is currently being executed. The object that "this" refers to changes every time when the execution context is changed. By default, the execution context is global. If a code is being executed as part of a simple function call then the "this" variable will refer to the global object, in this case, the browser and it's global window object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function foo() {
+    console.log(this === window);
+}
+
+foo();      // true
+        </code>
+    </pre>
+
+    <p>By calling the function, the value of "true" is returned. This proves that "this" refers to the global object, which is the window object in a browser.</p>
+
+    <p>If strict mode is enabled for any function then the value of "this" will be undefined. In strict mode, global object refers to undefined in place of the window object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function foo() {
+    'use strict';
+    console.log(this === window);
+}
+
+foo();      // false
+        </code>
+    </pre>
 
     <p>To summarise, the "this" keyword refers to the object it belongs to.</p>
 
@@ -761,7 +879,37 @@ console.log(timestamp);     // Example: 1550060339
         </code>
     </pre>
 
-    <h2>Ternary</h2>
+    <h2>Ternary Operator</h2>
+
+    <p>Ternary operator has the following syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(condition) ? result if true : result if false
+        </code>
+    </pre>
+
+    <p>The condition is checked first, if it's true, the first result is executed else the second result is executed.</p>
+
+    <p>A ternary operator eliminates the usage of If/Else statements.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Without the ternary operator
+var condition = true;
+
+if (condition) {
+    console.log('True');
+} else {
+    console.log('False');
+}
+
+// With the ternary operator
+console.log(condition ? 'True' : 'False');      // True
+        </code>
+    </pre>
 
     <p>A ternary is used to shorten the If/Else statement. In this example, the variable result would get the 'cute' value, because the value of animal is 'puppy'. If the animal had another value, result would be 'still fluffy'. You should always expect else conditions, otherwise a syntax error will occur.</p>
 
@@ -774,6 +922,38 @@ var result = (animal === 'puppy') ? 'cute' : 'still fluffy';
 console.log(result);    // "cute"
         </code>
     </pre>
+
+    <h2>Code Splitting</h2>
+
+    <p>Code splitting helps you to break up your JavaScript so you only load the code the user needs upfront and lazy-load the rest. This helps avoid shipping monolithic main.js files to your users containing JavaScript for the whole site versus just what the page needs.</p>
+
+    <p>The best approach to introducing code splitting is using dynamic import() syntax. This example uses JavaScript Modules to statically 'import' some code. Because we're not loading this code dynamically, it will end up in our default JavaScript bundle.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { add } from './math';
+console.log(add(30, 15));
+        </code>
+    </pre>
+
+    <p>After switching to dynamic import(), we can lazily pull in the math utilities when they are needed. This could be when the user is about to use a component (when the functionality is needed).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const btn = document.getElementById('load');
+btn.addEventListener('click', () => {
+    import('./math').then(math => {
+        console.log(math.add(30, 15));
+    });
+});
+        </code>
+    </pre>
+
+    <p>When a JavaScript module bundler like <a href="webpack.html">Webpack</a> sees this import() syntax, it starts code splitting your app. This means dynamic code can get pushed out into a separate file that is only loaded when it's needed.</p>
+
+    <p>You should also use compression, minification and other JavaScript optimisation techniques to ship fewer bytes of JavaScript to your users and improve the performance of your application.</p>
 </main>
 
 </body>

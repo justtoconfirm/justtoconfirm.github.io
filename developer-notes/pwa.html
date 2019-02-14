@@ -172,9 +172,15 @@ chrome://flags/#enable-app-banners
 
     <p>Service workers is JavaScript code that runs in the background of your website or application, even when the page is closed. This opens the doors to features that don't need a web page or user interaction. For offline uses, the service worker can be used to store network requests or images in the browser cache. The caching is the 'magic', you can come back after 3 weeks, 1 month, 1 year, without a connection and still access all the content.</p>
 
+    <p>To summarise, it's a script that the browser runs in the background but has no relation with web pages or the DOM (Document Object Model). They are used to provide a rich offline experience to users.</p>
+
+    <p>You can think of a service worker as something that sits between the client and the server. All requests that are made to the server pass through the service worker. It's basically a "middle-man". Since all requests pass through the service worker, it is capable to intercept these requests on the fly.</p>
+
     <p>They make heavy use of promises as generally they will wait for responses to come through after which they will respond with a success or failure action.</p>
 
-    <p>Service workers are JavaScript workers, so it can't access the <abbr title="Document Object Model">DOM</abbr> directly (has no access). Service workers also run on a different thread to the main JavaScript that powers your app, so it's not blocking. It is designed to be fully async, meaning APIs such as synchronous XHR and localStorage cannot be used inside a service worker.</p>
+    <p>Service workers are JavaScript workers, so it can't access the <abbr title="Document Object Model">DOM</abbr> directly (has no access) but can use the postMessage API to provide access. Service workers also run on a different thread to the main JavaScript that powers your app, so it's not blocking. It is designed to be fully async, meaning APIs such as synchronous XHR and localStorage cannot be used inside a service worker.</p>
+
+    <p>It is worth noting that Service workers are not web workers. Web workers are scripts that run on a different thread to perform load intensive calculations so that the main event loop is not blocked. This prevents the UI (User Interface) from becomming slow.</p>
 
     <p>Rich offline experiences, push notifactions and other functionality that would normally require a native application, are coming to the web. Service workers provide the technical foundation that all these features rely on. This is such an exciting API in that it allows you to support offline experiences. Before service workers, the AppCache API was used to give users an offline experience on the web.</p>
 
@@ -214,6 +220,29 @@ if ('serviceWorker' in navigator) {
 }
         </code>
     </pre>
+
+    <p>This example code below was provided from: <a href="https://blog.bitsrc.io/understanding-service-workers-and-caching-strategies-a6c1e1cbde03" target="_blank" rel="noopener noreferrer">https://blog.bitsrc.io/understanding-service-workers-and-caching-strategies-a6c1e1cbde03</a>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            // Registration successful
+            console.log('ServiceWorker registered ${registration.scope}');
+        }, err => {
+            // Registration failed
+            console.log('ServiceWorker registration failed, ${err}');
+        });
+    });
+}
+        </code>
+    </pre>
+
+    <p>In the above code, we first check if the service worker API exists or not. If support exists, we can register the service worker using the register method by providing the path of the service worker file. Once the page is loaded, your servic worker is registered.</p>
+
+    <p>When the service worker is registered, an install event is fired. We can listen for this event in the sw.js file.</p>
 </main>
 
 </body>

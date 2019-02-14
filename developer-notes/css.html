@@ -24,6 +24,9 @@
 
 <!-- https://medium.com/@geoffrey.signorato/understand-the-concept-of-css-transitions-in-2-min-d731b8371f7f -->
 
+<!-- Really useful -->
+<!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -47,6 +50,8 @@
     <p>CSS describes how HTML elements are to be displayed/styled and can be used to control the layout or structure of multiple web pages. A CSS rule-set consists of a selector and a declaration block.</p>
 
     <p>When a browser encounters CSS, it renders what is within the stylesheet, however, if the browser encounters something like a property that it does not understand, it will simply be ignored.</p>
+
+    <p>This design principle of CSS means that you can happily use new features in the knowledge that nothing bad will happen to a browser that doesn't have support. This is the basic idea behind progressive enhancement.</p>
 
     <p>You can use tools such as <a href=https://www.caniuse.com" target="_blank" rel="noopener noreferrer">caniuse</a> to check the status of features in CSS. A new feature that is not supported by all browsers can be used providing it does not break anything. Browsers that do not provide support will simply ignore the feature and new browsers will benefit from the new feature. Eventually it is hoped that older browsers will catch up and begin supporting newer features therefore we are future proofing our code.</p>
 
@@ -454,7 +459,15 @@ p {
 
     <p>CSS has developed a way for you to test for browser support of new CSS features, with Feature Queries. A Feature Query behaves in much the same way as a Media Query, except that instead of asking the browser something about the device being used to view the site, a Feature Query asks the browser if it supports a particular CSS feature. This makes it easier to use new features in a safe, progressively enhanced way.</p>
 
-    <p>This can be used in-place of tools such as Modernizr, but is only supported in the most modern browsers.</p>
+    <p>You don't need to use a feature query to test for every property you want to use, only something which would indicate support for the features you are planning to use.</p>
+
+    <p>You should first write your CSS for browsers which do not support the feature then test for support of the property you want to use. If the browser confirms it has support it will overwrite the fallback code with your new code.</p>
+
+    <p>This is pretty much the same process that you might adopt when using media queries for responsive design following a mobile-first approach. In that approach, you start with your layout for smaller screens then add or overwrite things for larger ones as you move up through your breakpoints.</p>
+
+    <p>This way of working means that you don't need to worry about browsers which do not support Feature Queries. It is likely that the new features we want to use are also not supported in IE (as with support for Feature Queries), so you'll always start by writing your CSS for browsers without the support for the new feature then test with a Feature Query. The Feature Query will test for the support.</p>
+
+    <p>Feature queries can be used in-place of tools such as Modernizr, but is only supported in the most modern browsers.</p>
 
     <pre>
         <code>
