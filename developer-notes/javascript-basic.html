@@ -24,6 +24,9 @@
 <!-- https://medium.com/@crunchtech/object-destructuring-best-practice-in-javascript-9c8794699a0d -->
 <!-- https://medium.com/@abhimanyuchauhan_61309/what-is-this-in-javascript-56e38342a8b1 -->
 
+<!-- https://modernweb.com/45-useful-javascript-tips-tricks-and-best-practices/ -->
+<!-- https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -429,6 +432,111 @@ colours[1] = 'orange';
     </pre>
 
     <p>Link to a more detailed document about <a href="javascript-array.html">JavaScript Arrays</a>.</p>
+
+    <p>If we want to get a random value from an Array, we can use the following example as a guideline:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var items = [12, 548, 'a', 2, 256, 'b', 'c', true];
+var randomItems = items[Math.floor(Math.random() * items.length)];
+
+console.log(randomItems);
+        </code>
+    </pre>
+
+    <h2>Map()</h2>
+
+    <p>Say you have received an array containing multiple objects, each one representing a person. You really need an array containing only the id of each person.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// What you have
+var officers = [
+    { id: 20, name: 'Captain Piett' },
+    { id: 24, name: 'General Veers' },
+    { id: 56, name: 'Admiral Ozzel' },
+    { id: 88, name: 'Commander Jerjerrod' }
+];
+
+// Map
+var officersIds = officers.map(function (officer) {
+    return officer.id
+});
+
+console.log(officersIds);      // [20, 24, 56, 88]
+        </code>
+    </pre>
+
+    <p>There are multiple ways to achieve this, but you can use map() if you want to.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var officersIds = officers.map(function (officer) {
+    return officer.id
+});
+        </code>
+    </pre>
+
+    <p>In ES6 syntax, you can use an arrow function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const officersIds = officers.map(officer => officer.id);
+        </code>
+    </pre>
+
+    <p>Basically, map() takes 2 arguments, a callback and an optional context. The callback runs for each value in the array and returns each new value in the resulting array.</p>
+
+    <h2>Reduce()</h2>
+
+    <p>Just like .map(), .reduce() also runs a callback for each element of an array. The difference here is that reduce passes the result of this callback (the accumulator) from one array to the other.</p>
+
+    <p>Say you have a list of pilots and their years of experience:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var pilots = [
+    {
+        id: 10,
+        name: "Poe Dameron",
+        years: 14,
+    },
+    {
+        id: 2,
+        name: "Temmin 'Snap' Wexley",
+        years: 30,
+    },
+    {
+        id: 41,
+        name: "Tallissan Lintra",
+        years: 16,
+    },
+    {
+        id: 99,
+        name: "Ello Asty",
+        years: 22,
+    }
+];
+        </code>
+    </pre>
+
+    <p>We need to know the total years of experience for all of them. With .reduce(), we can do it like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var totalYears = pilots.reduce(function (accumulator, pilot) {
+    return accumulator + pilot.years;
+}, 0);
+        </code>
+    </pre>
+
+    <p>After running the callback for each element of the array, reduce will return the final value of our accumulator, which is 82.</p>
 
     <h2>Functions</h2>
 
