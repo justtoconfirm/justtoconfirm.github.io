@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Build a Website</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Build a Website</h1>
+
+    <p>In this guide we are going to go through the step-by-step process of building a website.</p>
+
+    <p>We are going to start with the initial <a href="html.html">HTML (Hypertext Markup Language)</a> structure. Open your code editor and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Save this file as index.html Your file needs to have the filetype of .html for it to be saved as a HTML webpage. Open the page within your web browser and you will see that it's empty and has no content.</p>
+
+    <p>Remember to save your code each time you make changes.</p> 
+
+    <h2>Adding a page title</h2>
+
+    <p>We are going to provide our page with a title of 'My Website'. We will use the &lt;title&gt; HTML tag to apply a title to our page. We will need an opening &lt;title&gt; and a closing &lt;/title&gt; tag. Together they create a title element. Between the opening and closing tags, add the page title text.</p>
+
+    <p>Add the &lt;title&gt; element between the opening &lt;head&gt; and closing &lt;/head&gt; tags.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h2>Adding content</h2>
+
+    <p>Our webpage currently has no content. Any content you want to display on the page should be placed between the opening &lt;body&gt; and closing &lt;/body&gt; tags. Let's add some simple text of 'Hello World' to our page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Hello World&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>You may notice that our example uses &lt;p&gt; and &lt;/p&gt; tags. They are used to create paragraphs.</p>
+
+    <h2>&lt;!DOCTYPE&gt;</h2>
+
+    <p>The &lt;!DOCTYPE&gt; declaration must be the very first thing in your HTML document, before the &lt;html&gt; tag. This is not an HTML tag, but an instruction to the web browser about the version of HTML being used.</p>
+
+    <p>We are going to use the HTML5 Doctype for our HTML document. This needs to be placed on the first line of your HTML code, just before the &lt;html&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+        </code>
+    </pre>
+
+    <h2>Semantic Structure</h2>
+
+    <p>We are going to use <a href="html5.html">HTML5</a> tags to ensure our page structure is semantic. Let's begin by adding a &lt;main&gt; tag to our HTML code. This needs to be placed within the &lt;body&gt; section of our code and wrap around any content within the page.</p>
+
+    <p>Spacing has been added but only to demonstrate the changes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+    &lt;title&gt;My Website&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+    
+    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p> We can add an attribute to the &lt;main&gt; element to ensure it is supported in browsers such as Internet Explorer 11 (IE11) and below. HTML attributes are used to define a property of an element. They consist of pairs of properties and values. Attributes should be placed on the opening HTML tag.</p>
+
+    <p>We will add an ARIA (Accessible Ricj Internet Applications) attribute of "role" onto the &lt;main&gt; tag to ensure it is accessible. Screen readers will then be able to understand the semantic meaning of the &lt;main&gt; element once the attribute has been added.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;main role="main"&gt;
+        </code>
+    </pre>
+
+    <h2>Setting the Language</h2>
+
+    <p>Within the &lt;html&gt; tag, we can use the "lang" attribute to set the language for our document. We will be setting the language to English, so we need to use the value "en".</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html lang="en"&gt;
+        </code>
+    </pre>
+
+    <p>This is our HTML code so far:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+
+    &lt;title&gt;My Website&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main role="main"&gt;
+    
+    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h2>Meta Tags</h2>
+
+    <p>Next, we need to add at least one meta tag to our HTML code to set the character encoding for the page. Place the following meta tag just after the opening &lt;head&gt; tag and before the &lt;title&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;meta charset="utf-8 /&gt;
+        </code>
+    </pre>
+
+    <p>Our HTML code should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main role="main"&gt;
+    
+    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h2>Adding Links</h2>
+
+    <p>We want our HTML page to link to other pages within our website or to external websites. Links (sometimes called Hyperlinks) can be used to click to a new page or navigate through a website. In HTML, links are defined with the &lt;a&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="url"&gt;Link text&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>Let's add a link that opens <a href="https://www.google.co.uk">Google</a>. The link should be placed within the &lt;body&gt; section of your code. The "href" attribute is the URL of the website or page you wish to link to navigate to when clicked. The Text between the opening &lt;a&gt; and closing &lt;/a&gt; tags is the text for the link that appears on the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;My Website&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main role="main"&gt;
+    
+    &lt;p&gt;Hello World&lt;/p&gt;
+    &lt;a href="https://www.google.co.uk">Google&lt;/a&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
