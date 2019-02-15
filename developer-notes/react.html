@@ -24,6 +24,8 @@
 <!-- React Checkboxes -->
 <!-- https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e -->
 
+<!-- https://blog.bitsrc.io/achieving-accessibility-in-react-applications-d762f8f2a3e7 -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -386,6 +388,79 @@ render() {
         <li>componentDidMount - this method runs on the page once loaded, is called one time, usually on the page load.</li>
         <li>componentDidUpdate - everytime the state changes, this method will run.</li>
     </ul>
+
+    <h2>Setting Page Titles</h2>
+
+    <p>Setting a page title is a very useful step to making your React application accessible. Its one of the first thing a screen reader will announce and also updates the content showing in the browser tab helping to show the location to the user.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+componentDidMount() {
+    document.title = "This is a page title";
+}
+        </code>
+    </pre>
+
+    <p>There is also a plugin you can use instead, <a href="https://github.com/nfl/react-helmet" target="_blank" rel="noopener noreferrer">react-helmet</a>, where you essentially handle head tags per page/component, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from "react";
+import { Helmet } from "react-helmet";
+
+class Application extends React.Component {
+    render() {
+        return (
+            &lt;div className="application"&gt;
+                &lt;Helmet&gt;
+                    &lt;meta charset="utf-8" /&gt;
+                    &lt;title&gt;My Page Title&lt;/title&gt;
+                    &lt;link rel="canonical" href="http://mysite.com/example" /&gt;
+                &lt;/Helmet&gt;
+            &lt;/div&gt;
+        );
+    }
+};
+        </code>
+    </pre>
+
+    <h2>Accessibility in React</h2>
+
+    <p>We have an <a href="accessibility.html">accessibility</a> section within our development notes.</p>
+
+    <p>Along within installing ESLint, see the <a href="webpack.html">Webpack</a> documentation for this, you can also install the ESLint jsx-a11y plugin for your React projects to display accessibility rules you may miss whilst building your application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install eslint-plugin-jsx-a11y --save-dev
+        </code>
+    </pre>
+
+    <p>You will also need to update your eslintrc file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"plugin": [
+    "jsx-a11y"
+]
+        </code>
+    </pre>
+
+    <p>In the extends section:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"extends": [
+    "plugin: jsx-a11y/recommended"
+]
+        </code>
+    </pre>
+</main>
 </main>
 
 </body>

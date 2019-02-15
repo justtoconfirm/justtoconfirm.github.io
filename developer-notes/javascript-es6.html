@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript ES6 Syntax</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26 -->
+<!-- https://flaviocopes.com/javascript-arrow-functions/ -->
+<!-- https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript ES6 Syntax</h1>
+
+    <h2>Arrow Functions</h2>
+
+    <p>Arrow functions (also called "fat arrow functions") are one of the more popular features of ES6. They introduced a new way of writing concise functions in JavaScript. They utilize a new token, =&gt;, that looks like a "fat arrow". They are anonymous functions and change the way "this" binds in functions. By using arrow functions, we avoid having to type the function keyword, return keyword, and curly brackets.</p>
+
+    <p>You can learn more about <a href="javascript-functions.html">JavaScript Functions</a> elsewhere within the documentation.</p>
+
+    <p>Here is the basic syntax of a function in ES5:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myFunction = function() {
+    // ...
+}
+        </code>
+    </pre>
+
+    <p>And this is how it now appears in ES6 syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myFunction = () => {
+    // ...
+}
+        </code>
+    </pre>
+
+    <p>Here is an example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var multiplyES5 = function(x, y) {
+    return x * y;
+};
+
+// ES6
+const multiplyES6 = (x, y) => { return x * y };
+        </code>
+    </pre>
+
+    <p>If the function body contains just a single statement, you can omit the brackets and write all on a single line.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myFunction = () => doSomething();
+        </code>
+    </pre>
+
+    <p>Parameters are passed in the parenthesis:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myFunction = (param1, param2) => doSomething(param1, param2);
+        </code>
+    </pre>
+
+    <p>If you have one (and just one) parameter, you could omit the parenthesis completely:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const myFunction = param => doSomething(param);
+        </code>
+    </pre>
+
+    <p>Here is a function written in ES5 syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function multiplyByTwo(param) {
+    return param * 2;
+}
+
+multiplyByTwo(4);   // 8
+        </code>
+    </pre>
+
+    <p>Now, here is that same function expressed as an ES6 arrow function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var multiplyByTwo = param => param * 2;
+
+multiplyByTwo(4);   // 8
+        </code>
+    </pre>
+
+    <p>It is much shorter than the ES5 syntax and we are able to omit the curly braces and the return statement.</p>
+
+    <p>Here is an example of the ES6 arrow function used with an if statement:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var feedTheCat = (cat) => {
+    if (cat === 'hungry') {
+        return 'Feed the cat';
+    } else {
+        return 'Do not feed the cat';
+    }
+}
+        </code>
+    </pre>
+
+    <p>If your function is in a block, you must use the explicit return statement.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var addValues = (x, y) => {
+    return x + y;
+}
+        </code>
+    </pre>
+
+    <p>"this" is a concept that can be complicated to grasp as it varies a lot depending on the context and mode of JavaScript (strict mode, or not). When defined as a method of an object in a regular function, "this" refers to the object, so you can do:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const car = {
+    manufacturer: 'Ford',
+    model: 'Fiesta',
+    fullName: function() {
+        return `${this.manufacturer} ${this.model}`
+    }
+}
+        </code>
+    </pre>
+
+    <p>Calling car.fullName() will return "Ford Fiesta". The "this" scope with arrow functions is inherited from the execution context. An arrow function does not bind "this" at all, so its value will be looked up in the call stack. In the code, car.fullName() will not work and will return the string: "undefined undefined".</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const car = {
+    manufacturer: 'Ford',
+    model: 'Fiesta',
+    fullName: () => {
+        return `${this.manufacturer} ${this.model}`     // Won't work: undefined undefined
+    }
+}
+        </code>
+    </pre>
+
+    <p>Due to this, arrow functions are not suited as object methods. They can also not be used as constructors as when instantiating an object, a TypeError will be raised. Regular functions should be used instead.</p>
+
+    <p>Regular functions will also be needed within event handlers.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Don't use this
+const link = document.querySelector('#link')
+link.addEventListener('click', () => {
+    // this === window
+})
+
+// Use this
+const link = document.querySelector('#link')
+link.addEventListener('click', function() {
+    // this === link
+})
+
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

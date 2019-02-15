@@ -21,6 +21,8 @@
 <!-- https://github.com/webpack-contrib/css-loader -->
 <!-- https://medium.freecodecamp.org/how-to-build-modern-applications-with-webpack-c81ccf6dd54f -->
 
+<!-- https://medium.freecodecamp.org/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4 -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -136,6 +138,15 @@ my-project/
 
     <p>Modern JavaScript code is mostly written in ES6, however, ES6 is not supported by all browsers. We therefore need to transpile it - a fancy word for turning your ES6 syntax into ES5 for use in all browsers. You can use Babel for this, a tool used to transpile ES6 into ES5 JavaScript.</p>
 
+    <p>Here are the packages we install for React:</p>
+
+    <ul>
+        <li>@babel/core - The main dependency that includes babel transform script.</li>
+        <li>@babel/preset-env - The default Babel preset used to transform ES6+ into valid ES5 code. Optionally configures browser polyfills automatically.</li>
+        <li>@babel/preset-react - Used for transforming JSX and React class syntax into valid JavaScript code.</li>
+        <li>babel-loader - A webpack loader that hooks Babel into Webpack. We can run Babel from Webpack using this package.</li>
+    </ul>
+
     <p>You may want to also setup a .browserslistrc file that will include a list of browsers supported by Babel preset-env.</p>
 
     <pre>
@@ -247,7 +258,10 @@ $ npm install @babel/preset-react --save-dev
         <code>
 <!-- leave this line empty -->
 {
-    "presets": [ "@babel/preset-env", "@babel/preset-react" ]
+    "presets": [ 
+        "@babel/preset-env", 
+        "@babel/preset-react" 
+    ]
 }
         </code>
     </pre>
@@ -338,6 +352,8 @@ module.exports = {
     </pre>
 
     <p>Your ES6 JavaScript will now be transpiled into ES5 syntax.</p>
+
+    <p>The Webpack config is basically saying that the entry point of our application is from index.js, so pull everything that's needed by that file then put the output of the bundling process into the dist directory named main.js.</p>
 
     <h2>Using ES Modules with Webpack</h2>
 
@@ -443,6 +459,108 @@ Entrypoint another = another.bundle.js
     </pre> 
 
     <p>The External property within Webpack is used to exclude dependencies from the main bundle. If a package is also installed as a devDependency, it too won't go into the bundle.</p>
+
+    <h2>Source Maps</h2>
+
+    <p>Since Webpack bundles the code, source maps are mandatory to get a reference to the original file that raised an error. For example, if you bundle three source files (a.js, b.js, and c.js) into one bundle (bundled.js) and one of these three source files contains an error, the stack trace will simply point to bundle.js. This is a problem if you want to know exactly if a.js, b.js, or c.js is causing the error.</p>
+
+    <p>You can tell Webpack to generate source maps using the devtool property of the configuration.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devtool: 'inline-source-map',
+    // The rest of the config here
+};
+        </code>
+    </pre> 
+
+    <p>Although it will cause a slower build, it has no effect on production. Sourcemaps are only downloaded if you open the browser DevTools (Development Tools).</p>
+
+    <h2>Setup ESLint</h2>
+
+    <p>A Linter is a program that checks our code for any errors or warnings that can cause bugs. JavaScript's linter, ESLint, is a very flexible linting tool that can be configured in many ways.</p>
+
+    <p>First, you will need to install ESLint using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install eslint eslint-loader babel-eslint eslint-config-react eslint-plugin-react --save-dev
+        </code>
+    </pre> 
+
+    <ul>
+        <li>eslint is the core dependency for all functionalities while eslint-loader enables us to hook ESlint into Webpack. Since React uses ES6+ syntax, we will need to use babel-eslint also. This is a parser that enables eslint to lint all valid ES6+ code.</li>
+        <li>eslint-config-react &amp; eslint-plugin-react are both used to enable ESLint to use pre-made rules.</li>
+    </ul>
+
+    <p>We will need to update our Webpack config file to make use of ESLint.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    module: {
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: ['babel-loader', 'eslint-loader']
+        }]
+    },
+};
+        </code>
+    </pre>
+
+    <p>You will then need to create an eslint config file named .eslintrc with this content:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "parser": "babel-eslint",
+    "extends": "react",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>This config is basically ensuring that ESLint is parsed using babel-eslint before it is checked and then also checking all the rules from our React config is passed. This will take global variables from the environment of browser and node, if it's React code, the version if taken from the module itself. That way the user doesn't have to specify the version manually.</p>
+
+    <p>Rather than specifying our own rules manually, we simply extend react rules which were made available by eslint-config-react and eslint-plugin-react.</p>
+
+    <p>If errors are found, you can look at the ESLint documentation for rules. You can also use the following command which can be added as a build script in the package.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "eslint-fix": "eslint --fix \"src/**/*.js\""
+}
+        </code>
+    </pre>
+
+    <p>Then when we run the build script any ESLint errors should be resolved.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run eslint-fix
+        </code>
+    </pre>
 </main>
 
 </body>
