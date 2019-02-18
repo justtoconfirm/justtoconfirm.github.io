@@ -518,6 +518,156 @@ main {
 }
         </code>
     </pre>
+
+    <h2>Adding Links</h2>
+
+    <p>Links - also referred to as 'hyperlinks' - allow users to navigate around your website, to different pages, or away from the page to an external website. Links within HTML are really easy to create. You will need to reopen your index.html page once again.</p>
+
+    <p>Between the opening &lt;body&gt; and closing &lt;/body&gt; tag, we are going to add a link. This will not yet navigate anywhere as yet, but will act as a demonstration of how links work.</p>
+
+    <p>Add the following code to the &lt;body&gt; section of your HTML page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a&gt;This is a link&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>You may want to remove the line of code containing the 'Hello World' text from your HTML code.</p>
+
+    <p>As you can see you a link element is made up of an opening &lt;a&gt; tag, called an anchor tag, a closing &lt;/a&gt; anchor tag and the text of the link between the two. The text is what appears on the page and is displayed to your users.</p>
+
+    <p>As an example, should you want to navigate to Google when you click a link, you simply need to add the 'href' attribute to your link containing the address of the webpage or site you want to link to. It maybe sensible to also update the text within the link to identify where you will navigate your users to if they should click the link on the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="https://www.google.co.uk"&gt;Google&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>But you may just want to navigate through your website from page to page. For this we simply change the value of the 'href' attribute to the name of a page within your website instead of a URL. As an example, we will update our link to open an 'About us' page. This page will have the filename of 'about-us.html' and this is what we shall use.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;a href="about-us.html"&gt;About us&lt;/a&gt;
+        </code>
+    </pre>
+
+    <p>We currently do not have an 'About us' page created, so clicking this link will not work. Here is how your HTML code should look now:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="styles/main.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main role="main"&gt;
+
+&lt;a href="about-us.html"&gt;About us&lt;/a&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>To save time, I have created the 'About us' page by copying our HTML code from index.html and creating a new file named 'about-us.html'. This new file will contain the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;title&gt;My Webpage - About us&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="styles/main.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main role="main"&gt;
+
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>As you can see, the 'index.html' and 'about-us.html' are almost identical. The title is slightly different and so is the link, which allows a user to navigate back to the homepage of your website ('index.html'), but both pages have a similar HTML structure and use the same CSS stylesheet meaning any CSS changes will affect both pages.</p>
+
+    <p>Here is how the file structure should look in your folder/directory:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-website /
+    index.html
+    about-us.html
+    styles/
+        main.css
+        </code>
+    </pre>
+
+    <h3>Styling the links</h3>
+
+    <p>Links can be styled with a variety of CSS selectors and can be styled dependening on what state they are in. The four states of links are:</p>
+
+    <ul>
+        <li>a:link - a normal, unvisited link.</li>
+        <li>a:visited - a link the user has visited.</li>
+        <li>a:hover - a link when the user moves the mouse cursor over it.</li>
+        <li>a:active - a link the moment it is clicked.</li>
+    </ul>
+
+    <p>When setting the style for link states there are some rules to the order within your CSS:</p>
+
+    <ul>
+        <li>a:hover state MUST come after a:link and a:visited</li>
+        <li>a:active state MUST come after a:hover</li>
+    </ul>
+
+    <p>As we are not yet applying CSS classes to our code, therefore we will update our CSS to apply styling to all links within our website. This is not ideal, but it does allow us to demonstrate how we can style the four states of our links.</p>
+
+    <p>Add the following CSS code to your 'main.css' CSS stylesheet:</p>
+
+    <!-- CODE TO BE REVISED -->
+    <pre>
+        <code>
+<!-- leave this line empty -->
+a:link {
+    color: #ff00ff;
+}
+
+a:visited {
+    color: #00ff00;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    color: #0000ff;
+}
+        </code>
+    </pre>
+
+    <p>You should now see the styling of your link change within your HTML page(s).</p>
 </main>
 
 </body>
