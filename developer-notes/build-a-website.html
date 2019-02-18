@@ -345,6 +345,51 @@ my-website /
     </pre>
 
     <p>As we have not added any styling into our CSS stylesheet as yet, when you reload your webpage, nothing will change.</p>
+
+    <p>The CSS syntax often looks like this and is known as a CSS declaration block:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+selector {
+    property: value;
+}
+        </code>
+    </pre>
+
+    <h3>Background colour</h3>
+
+    <p>We can use CSS to set the background colour of your webpage. Begin by opening the 'main.css' CSS stylesheet created earlier, this should be empty and contain no code. Add the following CSS code to set the background colour of the page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+body {
+    background-color: #eaeaea;
+}
+        </code>
+    </pre>
+
+    <p>We are selecting the HTML &lt;body&gt; element using the body selector. This is known as an <strong>element selector</strong> as we are selecting all elements that match &lt;body&gt; within your HTML code. The background colour is set using the CSS background-color <strong>property</strong>. CSS properties need a <strong>value</strong>, so we have given it a value of #eaeaea which is a colour.</p>
+
+    <p>The value of #eaeaea is a Hex code. This is a three byte hexadecimal number (meaning they consist of six digits). Each pair of characters in the Hex code represents the intensity of red, green and blue. Try setting different Hex codes and your background colour will change.</p>
+
+    <p>Here are a few examples:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+White     #fff;
+Black     #000;
+Red       #ff0000;
+Green     #00ff00;
+Blue      #0000ff;
+        </code>
+    </pre>
+
+    <p>If you save your changes and refresh/reload you webpage, you will see that the background colour of the page has changed.</p>
+
+    <p>For now, we are going to keep the background colour of the webpage to be white, so delete all the CSS code you've added in the 'main.css' stylesheet and the default white page background colour will be applied.</p> 
 </main>
 
 </body>
