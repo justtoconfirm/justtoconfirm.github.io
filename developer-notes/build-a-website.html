@@ -363,6 +363,20 @@ selector {
 
     <h3>CSS Box Sizing</h3>
 
+    <p>The CSS box-sizing property allows us to include the padding and border in an element's total width and height. By default, the width and height of an element is calculated like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+width + padding + border = width of an element
+height + padding + border = height of an element
+        </code>
+    </pre>
+
+    <p>This means that when you set the width or height of an element, the element often appears bigger than you have set because the element's border and padding are also added. The box-sizing property allows us to include the padding and border in an element's total width or height.</p>
+
+    <p>We simply need to set the box-sizing property to have the value 'border-box'. This can be applied to the &lt;html&gt; element within our HTML document. We can then use the select all selector (*) to inherit the border-box value from the parent &lt;html&gt; element and apply it to every child element within our HTML code, including any elements that use :before or :after pseudo classes.</p>
+
     <p>Open the 'main.css' stylesheet and add the following CSS code:</p>
 
     <pre>
@@ -380,7 +394,128 @@ html {
         </code>
     </pre>
 
+    <p>Using the select all CSS selector (*) can be useful should you want to apply the same styling to every element, however, this is not always recommended as it can harm performance.</p>
+
+    <h3>&lt;main&gt; element</h3>
+
+    <p>We have a &lt;main&gt; HTML element within our HTML document code. We will need to set this to be a block element. This will ensure that any browser that does not support the element will still display it as a block element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+main {
+    display: block;
+}
+        </code>
+    </pre>
+
     <p>Once again, you shouldn't see any changes to your webpage styling.</p>
+
+    <h3>Setting Text/Font Sizes</h3>
+
+    <p>Begin by adding a new CSS property of font-size to the html selector within your CSS stylesheet:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+        </code>
+    </pre>
+
+    <p>We will be setting our font sizes to use rem (root element) units rather than pixels. Rem units are equal to the computed value of the font-size on the root element. This means that 1rem equals the font size of the &lt;html&gt; element, which for most browsers has a default value of 16px.</p>
+
+    <p>By setting the font-size of the &lt;html&gt; element to be 62.5&#37;, it allows us to easily calculate the rem value compared with using pixels.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+2rem    = 20px
+1.8rem  = 18px
+1.6rem  = 16px
+1.4rem  = 14px
+1.2rem  = 12px
+        </code>
+    </pre>
+
+    <p>Add a body selector to your CSS stylesheet which sets the font-size to be 1.6rem (16px) by default on your page. Your CSS stylesheet should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+main {
+    display: block;
+}
+        </code>
+    </pre>
+
+    <p>If you add a CSS property that the browser does not understand, it will simply ignore it. We can add a fallback for browsers that do not understand rem values but understand px (pixel) values to set our text size.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+        </code>
+    </pre>
+
+    <p>In this example, rem will be used on browsers which support that unit and px will be used on those which do not. According to <a href="https://caniuse.com/#feat=rem" target="_blank" rel="noopener noreferrer">caniuse.com</a>, most modern browsers, including Internet Explorer 11 (IE11) support rem units, however older browsers such as IE6-8 have no support and IE9-10 have partial support.</p>
+
+    <p>So we are adding the fallback to pixel values to support all recent versions of Internet Explorer (IE). If you feel this is not necessary, you can avoid the use of the pixel fallback and use rem units.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+
+main {
+    display: block;
+}
+        </code>
+    </pre>
 </main>
 
 </body>
