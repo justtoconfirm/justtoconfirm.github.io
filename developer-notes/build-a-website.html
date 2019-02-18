@@ -31,11 +31,67 @@
 </header>
 
 <main role="main" id="main">
-    <h1>Build a Website</h1>
+    <h1>Tutorial: Build a Website</h1>
 
-    <p>In this guide we are going to go through the step-by-step process of building a website.</p>
+    <p>The aim of this tutorial is to build a website. You will require one of the following code editors:</p>
 
-    <p>We are going to start with the initial <a href="html.html">HTML (Hypertext Markup Language)</a> structure. Open your code editor and add the following code:</p>
+    <ul>
+        <li><a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer">Sublime</a></li>
+        <li><a href="https://atom.io/" target="_blank" rel="noopener noreferrer">Atom</a></li>
+        <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code (VSC)</a></li>
+    </ul>
+
+    <p>Here is a list of the notes that will help support this tutorial:</p>
+
+    <ul>
+        <li><a href="html.html" target="_blank" rel="noopener noreferrer">HTML</a></li>
+        <li><a href="html5.html" target="_blank" rel="noopener noreferrer">HTML5</a></li>
+        <li><a href="css.html" target="_blank" rel="noopener noreferrer">CSS</a></li>
+    </ul>
+
+    <p>You may want to create a new folder/directory for all your files. In this tutorial, this folder/directory will be named 'my-website'.</p>
+
+    <h2>HTML Structure</h2>
+
+    <p>We shall begin by coding the HTML (Hypertext Markup Language) of our page. Open a new file in your code editor and add the following HTML code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html&gt;
+&lt;head&gt;
+
+    &lt;!-- Empty for now --&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Content goes here --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>You will need to save this file as index.html</p>
+
+    <p>You may want to save this within your folder/directory created named 'my-website'. Here is the structure of your folder/directory:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-website /
+    index.html
+        </code>
+    </pre>
+
+    <p>If you open this HTML file, it should open in a web browser as an empty webpage without any content. Each time you make changes to your HTML code you will need to save the file and refresh the page in the browser to see your changes.</p>
+
+    <h3>Adding a page title</h3>
+
+    <p>Every HTML document should have a page title. The HTML &lt;title&gt; tag is used for declaring the title of the HTML document that is displayed in the browser's title bar and also in bookmarks and search results. The &lt;title&gt; tag is placed between the opening &lt;head&gt; and closing &lt;/head&gt; tags.</p>
+
+    <p>The HTML code has been updated to now include the &lt;title&gt; element for the page title. The page title of 'My Webpage' has been used in this example:</p>
 
     <pre>
         <code>
@@ -43,63 +99,23 @@
 &lt;html&gt;
 &lt;head&gt;
 
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
 &lt;/head&gt;
 &lt;body&gt;
+
+&lt;!-- Content goes here --&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;
         </code>
     </pre>
 
-    <p>Save this file as index.html Your file needs to have the filetype of .html for it to be saved as a HTML webpage. Open the page within your web browser and you will see that it's empty and has no content.</p>
+    <h3>&lt;!DOCTYPE&gt; declaration</h3>
 
-    <p>Remember to save your code each time you make changes.</p> 
+    <p>The &lt;!DOCTYPE&gt; declaration is not an HTML tag; it's an instruction to the web browser confirming the version of HTML the page is written in. You should always add the &lt;!DOCTYPE&gt; declaration to your HTML documents so the browser knows what type of document to expect. This should be on the very first line of your HTML code.</p>
 
-    <h2>Adding a page title</h2>
-
-    <p>We are going to provide our page with a title of 'My Website'. We will use the &lt;title&gt; HTML tag to apply a title to our page. We will need an opening &lt;title&gt; and a closing &lt;/title&gt; tag. Together they create a title element. Between the opening and closing tags, add the page title text.</p>
-
-    <p>Add the &lt;title&gt; element between the opening &lt;head&gt; and closing &lt;/head&gt; tags.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;My Website&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-        </code>
-    </pre>
-
-    <h2>Adding content</h2>
-
-    <p>Our webpage currently has no content. Any content you want to display on the page should be placed between the opening &lt;body&gt; and closing &lt;/body&gt; tags. Let's add some simple text of 'Hello World' to our page.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;My Website&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;Hello World&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-        </code>
-    </pre>
-
-    <p>You may notice that our example uses &lt;p&gt; and &lt;/p&gt; tags. They are used to create paragraphs.</p>
-
-    <h2>&lt;!DOCTYPE&gt;</h2>
-
-    <p>The &lt;!DOCTYPE&gt; declaration must be the very first thing in your HTML document, before the &lt;html&gt; tag. This is not an HTML tag, but an instruction to the web browser about the version of HTML being used.</p>
-
-    <p>We are going to use the HTML5 Doctype for our HTML document. This needs to be placed on the first line of your HTML code, just before the &lt;html&gt; tag.</p>
+    <p>As we are using HTML5, there is only one &lt;!DOCTYPE&gt; we need to add:</p>
 
     <pre>
         <code>
@@ -108,11 +124,7 @@
         </code>
     </pre>
 
-    <h2>Semantic Structure</h2>
-
-    <p>We are going to use <a href="html5.html">HTML5</a> tags to ensure our page structure is semantic. Let's begin by adding a &lt;main&gt; tag to our HTML code. This needs to be placed within the &lt;body&gt; section of our code and wrap around any content within the page.</p>
-
-    <p>Spacing has been added but only to demonstrate the changes.</p>
+    <p>The HTML code should now look like this:</p>
 
     <pre>
         <code>
@@ -121,13 +133,141 @@
 &lt;html&gt;
 &lt;head&gt;
 
-    &lt;title&gt;My Website&lt;/title&gt;
+    &lt;title&gt;My Webpage&lt;/title&gt;
 
 &lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Content goes here --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h3>Attributes</h3>
+
+    <p>All HTML elements can have attributes. Attributes provide additional information about an element and are always specified in the start tag of an element. They usually come in name/value pairs.</p>
+
+    <h3>Setting the Language</h3>
+
+    <p>The "lang" attribute specifies the language of the element's content. Common examples are "en" for English, "es" for Spanish and "fr" for French. This attribute can be used on any HTML element within your document.</p>
+
+    <p>Within the &lt;html&gt; tag, we are going to add the "lang" attribute to set the language for our HTML document to be English.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html lang="en"&gt;
+        </code>
+    </pre>
+
+    <h3>Character Encoding</h3>
+
+    <p>Next, we need to add a &lt;meta&gt; tag to our HTML document to set the character encoding of our document. Often we use UTF-8 (Universal Character Set + Transformation Format - 8 bit) encoding as it is capable of encoding all possible characters (called code points) in Unicode. Basically, it lets you write text in all kind of languages so characters such as accents will appear perfectly fine and the browser will understand them correctly.</p>
+
+    <p>Place the following code just after the opening &lt;head&gt; tag within your HTML:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;meta charset="utf-8" /&gt;
+        </code>
+    </pre>
+
+    <p>Here is our HTML code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Content goes here --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h3>Adding Content</h3>
+
+    <p>Within the HTML code, remove the following HTML code comment:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Content goes here --&gt;
+        </code>
+    </pre>
+
+    <p>Once removed, we will now add simple text that reads 'Hello World' in it's place. This will be displayed on the page so when you open the webpage in your browser 'Hello World' will be visible. We will wrap the text within opening &lt;p&gt; and closing &lt;/p&gt; HTML paragraph tags.</p>
+
+    <p>Any content you want to add to your webpage should be added between the opening &lt;body&gt; and closing &lt;/body&gt; HTML tags.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;p&gt;Hello World&lt;/p&gt;
+        </code>
+    </pre>
+
+    <h3>Viewport Meta Tag</h3>
+
+    <p>A typical mobile-optimized, responsive site contains something like the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        </code>
+    </pre>
+
+    <p>Place this line of code underneath the earlier &lt;meta&gt; tag that was added earlier.</p>
+
+    <p>Here is our initial HTML code structure following the recent changes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <h3>HTML5 &lt;main&gt; element</h3>
+
+    <p>The HTML &lt;main&gt; element represents the main content of the &lt;body&gt; of the HTML document. The content inside the &lt;main&gt; element should be unique to the document and should not contain any content that is repeated across the documents/pages, such as page headers, page footers and navigation. You should only ever have one &lt;main&gt; element within your HTML document.</p>
+
+    <p>Add the &lt;main&gt; element to your HTML document after the opening &lt;body&gt; tag and closing &lt;/body&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
 &lt;body&gt;
 &lt;main&gt;
-    
-    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;p&gt;Hello World&lt;/p&gt;
 
 &lt;/main&gt;
 &lt;/body&gt;
@@ -135,44 +275,15 @@
         </code>
     </pre>
 
-    <p> We can add an attribute to the &lt;main&gt; element to ensure it is supported in browsers such as Internet Explorer 11 (IE11) and below. HTML attributes are used to define a property of an element. They consist of pairs of properties and values. Attributes should be placed on the opening HTML tag.</p>
-
-    <p>We will add an ARIA (Accessible Ricj Internet Applications) attribute of "role" onto the &lt;main&gt; tag to ensure it is accessible. Screen readers will then be able to understand the semantic meaning of the &lt;main&gt; element once the attribute has been added.</p>
+    <p>The &lt;main&gt; element is widely supported in modern browsers. For Internet Explorer 11 (IE11) and below, it's suggested that an ARIA (Accessible Rich Internet Applications) role attribute of "main" is added to the HTML &lt;main&gt; element to ensure accessibility. Screen readers will then be able to understand the semantic meaning of the &lt;main&gt; element once the role attribute is added.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
-&lt;main role="main"&gt;
-        </code>
-    </pre>
-
-    <h2>Setting the Language</h2>
-
-    <p>Within the &lt;html&gt; tag, we can use the "lang" attribute to set the language for our document. We will be setting the language to English, so we need to use the value "en".</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;html lang="en"&gt;
-        </code>
-    </pre>
-
-    <p>This is our HTML code so far:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-
-    &lt;title&gt;My Website&lt;/title&gt;
-
-&lt;/head&gt;
 &lt;body&gt;
 &lt;main role="main"&gt;
-    
-    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;p&gt;Hello World&lt;/p&gt;
 
 &lt;/main&gt;
 &lt;/body&gt;
@@ -180,18 +291,34 @@
         </code>
     </pre>
 
-    <h2>Meta Tags</h2>
+    <h2>Styling with CSS</h2>
 
-    <p>Next, we need to add at least one meta tag to our HTML code to set the character encoding for the page. Place the following meta tag just after the opening &lt;head&gt; tag and before the &lt;title&gt; element.</p>
+    <p>Now our initial HTML page structure has been created, we can begin to apply styling. This is often done through the use of CSS (Cascading Style Sheets). When creating a website, the CSS is often placed in a separate file so we can use the same stylesheet across multiple pages without having to replicate the same code for each page.</p>
+
+    <p>Open an new empty file in your code editor and save it within your project folder/directory as 'main.css'. The file will need to have the file extension of '.css' to be an external stylesheet. Often, this is placed in a sub-directory named 'styles' within your project. Your folder/directory structure may now look like this:</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
-&lt;meta charset="utf-8 /&gt;
+my-website /
+    index.html
+    styles/
+        main.css
         </code>
     </pre>
 
-    <p>Our HTML code should now look like this:</p>
+    <p>Within your HTML code we can now link our HTML to our CSS stylesheet using the &lt;link&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="stylesheet" href="styles/main.css" /&gt;
+        </code>
+    </pre>
+
+    <p>The &lt;link&gt; element has a "rel" relationship attribute set to "stylesheet" and a "href" attribute which is a reference to the location of the external CSS stylesheet you want to use.</p>
+
+    <p>This element must be placed between the opening &lt;head&gt; and closing &lt;/head&gt; tags within your HTML document.</p>
 
     <pre>
         <code>
@@ -200,13 +327,16 @@
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="utf-8" /&gt;
-    &lt;title&gt;My Website&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
 
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="styles/main.css" /&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;main role="main"&gt;
-    
-    &lt;p&gt;Hello World&lt;/p&gt;
+
+&lt;p&gt;Hello World&lt;/p&gt;
 
 &lt;/main&gt;
 &lt;/body&gt;
@@ -214,40 +344,7 @@
         </code>
     </pre>
 
-    <h2>Adding Links</h2>
-
-    <p>We want our HTML page to link to other pages within our website or to external websites. Links (sometimes called Hyperlinks) can be used to click to a new page or navigate through a website. In HTML, links are defined with the &lt;a&gt; tag.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;a href="url"&gt;Link text&lt;/a&gt;
-        </code>
-    </pre>
-
-    <p>Let's add a link that opens <a href="https://www.google.co.uk">Google</a>. The link should be placed within the &lt;body&gt; section of your code. The "href" attribute is the URL of the website or page you wish to link to navigate to when clicked. The Text between the opening &lt;a&gt; and closing &lt;/a&gt; tags is the text for the link that appears on the page.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8" /&gt;
-    &lt;title&gt;My Website&lt;/title&gt;
-
-&lt;/head&gt;
-&lt;body&gt;
-&lt;main role="main"&gt;
-    
-    &lt;p&gt;Hello World&lt;/p&gt;
-    &lt;a href="https://www.google.co.uk">Google&lt;/a&gt;
-
-&lt;/main&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-        </code>
-    </pre>
+    <p>As we have not added any styling into our CSS stylesheet as yet, when you reload your webpage, nothing will change.</p>
 </main>
 
 </body>
