@@ -1062,6 +1062,20 @@ btn.addEventListener('click', () => {
     <p>When a JavaScript module bundler like <a href="webpack.html">Webpack</a> sees this import() syntax, it starts code splitting your app. This means dynamic code can get pushed out into a separate file that is only loaded when it's needed.</p>
 
     <p>You should also use compression, minification and other JavaScript optimisation techniques to ship fewer bytes of JavaScript to your users and improve the performance of your application.</p>
+
+    <h2>Set CSS Outline of Elements</h2>
+
+    <p>Often you may want to see where all the elements of your page appear. Addy Osmani has shared a very handy script that can be executed within the browser console to outline every element on the page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+[].forEach.call($$("*"), function(a) {
+  a.style.outline =
+    "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16);
+});
+        </code>
+    </pre>
 </main>
 
 </body>

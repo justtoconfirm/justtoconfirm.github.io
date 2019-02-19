@@ -26,6 +26,7 @@
 
 <!-- Really useful -->
 <!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
+<!-- https://www.smashingmagazine.com/2018/12/common-css-issues-front-end-projects/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -781,6 +782,39 @@ img {
 }
         </code>
     </pre>
+
+    <h2>Common CSS fixes</h2>
+
+    <p>Here is a collection of common CSS fixes for common CSS issues that may come in useful.</p>
+
+    <h3>Rest the Backgrounds of Elements</h3>
+
+    <p>When adding a button, reset its background or else if will look different across browsers. For example, if you don't reset the background, Chrome will show the button correctly, but Safari may add a default gray background. Resetting the background will solve this issue.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+button {
+    appearance: none;
+    background: transparent;
+}
+        </code>
+    </pre>
+
+    <h3>Setting max-width for Images</h3>
+
+    <p>When adding an image, define max-width: 100%, so that the image resizes when the screen is small, otherwise the browser will show a horizontal scroll bar.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+img {
+    max-width: 100%;
+}
+        </code>
+    </pre>
+
+    <p>Go to the <a href="images.html">images</a> document for more details.</p>
 </main>
 
 </body>

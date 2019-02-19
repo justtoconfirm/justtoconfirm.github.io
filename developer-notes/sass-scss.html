@@ -20,6 +20,7 @@
 <!-- http://alwaystwisted.com/articles/2014-03-08-using-sass-33s-at-root-for-piece-of-mind -->
 <!-- http://thesassway.com/advanced/pure-sass-functions -->
 <!-- https://www.smashingmagazine.com/2015/05/extending-in-sass-without-mess/ -->
+<!-- https://www.creativebloq.com/how-to/how-to-structure-media-queries-in-sass -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -369,6 +370,23 @@ target / context = result
 <!-- leave this line empty -->
 .my-module {
     width: 65%;
+}
+        </code>
+    </pre>
+
+    <h2>Adding Media Queries</h2>
+
+    <p>Within Sass, media queries should be nested within. This results in a self-contained module that can be reused or edited with confidence.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.header {
+    background-color: $black;
+
+    @media only screen and (min-width: 640px) {
+        background-color: $white;
+    }
 }
         </code>
     </pre>
