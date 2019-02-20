@@ -647,7 +647,6 @@ my-website /
 
     <p>Add the following CSS code to your 'main.css' CSS stylesheet:</p>
 
-    <!-- CODE TO BE REVISED -->
     <pre>
         <code>
 <!-- leave this line empty -->
@@ -671,6 +670,89 @@ a:active {
     </pre>
 
     <p>You should now see the styling of your link change within your HTML page(s).</p>
+
+    <h2>Adding &lt;header&gt; and &lt;footer&gt; elements</h2>
+
+    <p>Within our HTML code, we now want to update the code structure on both the index.html and about-us.html pages to include a page header and footer. We will be using the HTML5 &lt;header&gt; and &lt;footer&gt; elements to do this.</p>
+
+    <p>Open both HTML documents in your code editor and add begin by adding the &lt;header&gt; element. This needs to be added after the opening &lt;body&gt; tag but before the opening &lt;main&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;body&gt;
+&lt;header&gt;
+    Page Header
+&lt;/header&gt;
+
+&lt;main role="main"&gt;
+        </code>
+    </pre>
+
+    <p>We need to also add the &lt;footer&gt; element to your HTML code. This can be placed just after the closing &lt;/main&gt; tag but before the closing &lt;/body&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;/main&gt;
+
+&lt;footer&gt;
+    Page Footer
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Your website won't look too impressive at the moment, but we're still building the HTML structure and adding small bits of CSS styling so it's a start.</p>
+
+    <p>You may want to also add a role attribute of "banner" to your &lt;header&gt; element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;body&gt;
+&lt;header role="banner"&gt;
+    Page Header
+&lt;/header&gt;
+
+&lt;main role="main"&gt;
+        </code>
+    </pre>
+
+    <p>This is how your HTML should now look:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="styles/main.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header role="banner"&gt;
+    Page Header
+&lt;/header&gt;
+
+&lt;main role="main"&gt;
+
+&lt;a href="about-us.html"&gt;About us&lt;/a&gt;
+
+&lt;/main&gt;
+
+&lt;footer&gt;
+    Page Footer
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
 </main>
 
 </body>
