@@ -22,6 +22,8 @@
 <!-- https://medium.freecodecamp.org/how-to-build-modern-applications-with-webpack-c81ccf6dd54f -->
 
 <!-- https://medium.freecodecamp.org/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4 -->
+<!-- https://stackoverflow.com/questions/50394789/webpack-4-compile-scss-to-separate-css-file -->
+<!-- https://medium.freecodecamp.org/how-to-conquer-webpack-4-and-build-a-sweet-react-app-236d721e6745 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -456,9 +458,11 @@ Entrypoint another = another.bundle.js
 [./src/another.js] 28 bytes {hello} [built]
 [./src/index.js] 85 bytes {main} [built]
         </code>
-    </pre> 
+    </pre>
 
     <p>The External property within Webpack is used to exclude dependencies from the main bundle. If a package is also installed as a devDependency, it too won't go into the bundle.</p>
+
+    <p>You may want to use a Bundle Analyser tool to check what your bundle contains once Webpack has worked its magic.</p>
 
     <h2>Source Maps</h2>
 

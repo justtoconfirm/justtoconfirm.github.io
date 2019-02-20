@@ -1,0 +1,36 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+
+main {
+    display: block;
+}
+
+a:link {
+    color: #ffa500;
+}
+
+a:visited {
+    color: #ffa500;
+}
+
+a:hover {
+	color: #ff8c00;
+    text-decoration: none;
+}
+
+a:active {
+    color: #ffa500;
+}
