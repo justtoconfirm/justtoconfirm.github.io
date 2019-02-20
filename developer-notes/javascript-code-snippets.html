@@ -63,6 +63,10 @@ checker.onchange = function() {
 </html>
 -->
 
+<!-- https://openclassrooms.com/en/courses/3523231-learn-to-code-with-javascript/3703666-store-data-in-arrays -->
+<!-- https://codeburst.io/all-about-javascript-arrays-in-1-article-39da12170b1c -->
+<!-- https://www.digitalocean.com/community/tutorials/how-to-use-object-methods-in-javascript -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -83,12 +87,178 @@ checker.onchange = function() {
 <main role="main" id="main">
     <h1>JavaScript Code Snippets</h1>
 
-    <p>Here is a collection of really useful code snippets.</p>
+    <p>Here is a collection of really useful code snippets and notes to build up my JavaScript knowledge step-by-step.</p>
+
+    <h2>Date</h2>
+
+    <p>I would like to understand how we handle date using JavaScript. I will need to use the Date() object that is a built-in to JavaScript. Once a Date() object is created, we can use a number of methods to allow you to operate on it.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
+var d = new Date();
+console.log(d);     // Wed Feb 20 2019 16:34:18 GMT+0000 (Greenwich Mean Time)
+        </code>
+    </pre>
 
+    <p>Here are some of the methods that can be used once we have access to the Date object:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+d.getTime();        // 1550680510178
+d.getFullYear();    // 2019
+d.getMonth();       // 0 = January, 1 = February
+        </code>
+    </pre>
+
+    <p>We can use an array containing the names of the months and the getMonth() method will return the month as a name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var d = new Date();
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+console.log(months[d.getMonth()]);      // February
+        </code>
+    </pre>
+
+    <h2>Array</h2>
+
+    <p>A collection of JavaScript array snippets.</p>
+
+    <h3>Create an array and add an element</h3>
+
+    <p>We will create a simple array with some pre-defined items. We add a new item to the end of the array using the push() method. We can then output the entire array or a single item using the console.log function.</p>
+
+    <p>Keyword: <a href="javascript-basic.html">Arrays</a></p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = [1, 2, 3, "Dan", true];
+arr.push("Devnotes");       // Add "Devnotes" at the end of the array
+
+console.log(arr);           // [1, 2, 3, "Dan", true, "Devnotes"]
+console.log(arr[2]);        // 3
+        </code>
+    </pre>
+
+    <p>I can use the length property on the array to count how many items the array contains.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(arr.length);    // 6
+        </code>
+    </pre>
+
+    <h3>Loop through the array</h3>
+
+    <p>Now that the array has been created, I want to loop through the items that the array contains. I'll be using a for loop to do this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = [1, 2, 3, "Dan", true];
+
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+        </code>
+    </pre>
+
+    <p>You may want to use 'let' in-place of 'var' to declare the variable, but for now I'll stick with using 'var'.</p>
+
+    <p>This will give us the output of:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+1
+2
+3
+Dan
+true
+        </code>
+    </pre>
+
+    <h2>Object</h2>
+
+    <p>We are now going to add the array we have created inside an object. The object has been created using object literal notation and the array is a property of this object.</p>
+
+    <p>Keyword: <a href="javascript-object.html">Object</a></p>
+
+    <h3>An array inside an object</h3>
+
+    <p>We can create a simple JavaScript object and add our array as a property into our newly created object. For simplicity, I'm going to call this object 'obj'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = {
+    arr: [1, 2, 3, "Dan", true]
+};
+
+console.log(obj.arr);       // (5) [1, 2, 3, "Dan", true]
+console.log(obj.arr[2]);    // 3
+        </code>
+    </pre>
+
+    <p>Once our object has been created, it will be added to the Window object. In the browser console, type the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+window
+        </code>
+    </pre>
+
+    <p>Within the Window object, locate the 'obj' object we have created. This will contain any properties and methods within our object.</p>
+
+    <p>As an example, I'll just add two more properties to our object as examples.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = {
+    name: "Dan Jackson",
+    city: "Brighton",
+    arr: [1, 2, 3, "Dan", true]
+};
+
+// Output the property values
+console.log(obj.name);          // "Dan Jackson"
+console.log(obj.city);          // "Brighton"
+console.log(obj.arr);           // (5) [1, 2, 3, "Dan", true]
+console.log(obj.arr[2]);        // 3
+console.log(obj.arr.length);    // 5
+        </code>
+    </pre>
+
+    <h3>Adding a method to the object</h3>
+
+    <p>We can create a method named outputArray() within our object to loop through our array now it's within the object. A method is simply a function within an object. When we call the method, the items within the array are logged within the console output.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = {
+    name: "Dan Jackson",
+    city: "Brighton",
+    arr: [1, 2, 3, "Dan", true],
+
+    // Method
+    outputArray: function() {
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+        }
+    }
+};
+
+// Call the method within the object
+obj.outputArray();
         </code>
     </pre>
 </main>
