@@ -482,6 +482,50 @@ module.exports = {
         </code>
     </pre> 
 
+    <p>When we don't use a source map, we can open the browser development tools (Debugger tab), locate our JavaScript files (for our components) and the code displayed will be a mix of Webpack code and code for the component itself, which makes it really hard to debug if an issue occurs.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Button = function Button() {
+  var renderButton = function renderButton() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Button");
+  };
+
+  return renderButton();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Button);
+
+//# sourceURL=webpack:///./src/js/components/1-atoms/button/Button.js?
+        </code>
+    </pre> 
+
+    <p>If we use source mapping, our code to inspect and potentially debug, becomes much easier to understand:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = () => {
+    const renderButton = () =>
+        &lt;button&gt;Button&lt;/button&gt;
+
+    return (
+        renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre> 
+
     <p>Although it will cause a slower build, it has no effect on production. Sourcemaps are only downloaded if you open the browser DevTools (Development Tools).</p>
 
     <h2>Setup ESLint</h2>

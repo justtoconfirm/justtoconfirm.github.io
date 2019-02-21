@@ -66,6 +66,8 @@ checker.onchange = function() {
 <!-- https://openclassrooms.com/en/courses/3523231-learn-to-code-with-javascript/3703666-store-data-in-arrays -->
 <!-- https://codeburst.io/all-about-javascript-arrays-in-1-article-39da12170b1c -->
 <!-- https://www.digitalocean.com/community/tutorials/how-to-use-object-methods-in-javascript -->
+<!-- https://codeburst.io/javascript-what-is-the-return-statement-97d8b11a1a0c -->
+<!-- https://openclassrooms.com/en/courses/3523231-learn-to-code-with-javascript/4379006-use-constructor-functions -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -88,6 +90,156 @@ checker.onchange = function() {
     <h1>JavaScript Code Snippets</h1>
 
     <p>Here is a collection of really useful code snippets and notes to build up my JavaScript knowledge step-by-step.</p>
+
+    <h2>Variables</h2>
+
+    <p>Any variables declared outside of a function are in the global namespace. It's always recommended to have variables declared inside functions to avoid polluting the global namespace and potentially causing conflicts.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var name = "Dan";
+        </code>
+    </pre>
+
+    <p>So if we view the Window object, we should see our variable of 'name' declared globally.</p>
+
+    <h2>Getting elements</h2>
+
+    <p>We want to use JavaScript to get HTML elements within our HTML documents. We have created a very simple HTML document with a few elements:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;body&gt;
+
+&lt;h1 id="heading"&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;This is an introduction to the page we have created.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>I would like to get the &lt;h1&gt; element using JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var heading = document.getElementById('heading');
+console.log(heading);
+        </code>
+    </pre>
+
+    <p>All the properties of the heading element will also be output within the console when this code is run.</p>
+
+    <h2>Random Numbers</h2>
+
+    <p>We can use JavaScript to generate random numbers. Here, we can return a random integer from 0 to 9:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Math.floor(Math.random() * 10);     // 0 to 9
+        </code>
+    </pre>
+
+    <h2>JavaScript Mistakes</h2>
+
+    <p>Mistakes often happen. We do our best to avoid them, and hopefully with these notes we can do just that.</p>
+
+    <p>JavaScript programs may generate unexpected results if a programmer accidentally uses an assignment operator (=), instead of a comparison operator (==) in an if statement.</p>
+
+    <p>This if statement returns false (as expected) because x is not equal to 10:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var x = 0;
+if (x == 10);   // false (this is correct!, 0 and 10 are not the same, is true)
+        </code>
+    </pre>
+
+    <p>This is incorrect, as '0' which is the value of 'x' does not equal '10' so this is wrong. However, we are getting true returned (incorrect) because we are using an assignment operator and not a comparison operator.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var x = 0;
+if (x = 10);   // true (this is wrong! 0 and 10 are not the same, should be false)
+        </code>
+    </pre>
+
+    <h2>Strict</h2>
+
+    <p>When writing JavaScript, often it's not in "strict mode" by default, unless your writing JavaScript in modules, in which case it is. It is a literal expression and is used to indicate your JavaScript code should be executed in "strict mode". With strict mode, you cannot for example, use undeclared variables. It essentially allows you to write cleaner code and catches any errors which may occur.</p>
+
+    <ul>
+        <li>It eliminates some JavaScript silent errors by changing them to throw errors.</li>
+        <li>Fixes mistakes that make it difficult for Javacript engines to perform optimizations.</li>
+        <li>Prohibits some syntax that is likely to be defined in future versions of ECMAScript.</li>
+    </ul>
+
+    <p>This literal expression is declared at the beginning of a script and it has global scope (all code in the script will execute in strict mode).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"use strict";
+
+var message = "Hi, I'm in a strict mode script";
+console.log(message);
+        </code>
+    </pre>
+
+    <p>It's supported in all modern browsers except IE9 (Internet Explorer 9) and below.</p>
+
+    <h2>JavaScript Conditions</h2>
+
+    <p>The if statement can be used to specify a block of JavaScript code to be executed if a condition is true. In this next example, I am setting the variable to be a boolean value of 'true', so the condition is true and therefore the output will be logged in the console.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var passed = true;
+
+if (passed) {
+    console.log('This has passed!');
+}
+        </code>
+    </pre>
+
+    <p>I can use the else statement to specify a block of code to be executed if the condition is false.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var passed = true;
+
+if (passed) {
+    console.log('This has passed!');
+} else {
+    console.log('This has failed!');
+}
+        </code>
+    </pre>
+
+    <p>Finally, we can use the else if statement to execute a block of code if the condition matches something else.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var passed = true;
+
+if (passed) {
+    console.log('This has passed!');
+} else if (passed == false) {
+    console.log('This has failed!');
+} else {
+    console.log('Unknown pass or fail');
+}
+        </code>
+    </pre>
 
     <h2>Date</h2>
 
@@ -112,6 +264,15 @@ d.getMonth();       // 0 = January, 1 = February
         </code>
     </pre>
 
+    <p>In the browser console, you can also do the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+new Date.getDay();
+        </code>
+    </pre>
+
     <p>We can use an array containing the names of the months and the getMonth() method will return the month as a name.</p>
 
     <pre>
@@ -121,6 +282,38 @@ var d = new Date();
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 console.log(months[d.getMonth()]);      // February
+        </code>
+    </pre>
+
+    <p>We can use a switch statement to select one of many code blocks to be executed, similar to a conditional (if/else if/else) statement. I will continue with the data theme here.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+switch (new Date().getDay()) {
+    case 0:
+        day = "Sunday";
+        break;
+    case 1:
+        day = "Monday";
+        break;
+    case 2:
+        day = "Tuesday";
+        break;
+    case 3:
+        day = "Wednesday";
+        break;
+    case 4:
+        day = "Thursday";
+        break;
+    case 5:
+        day = "Friday";
+        break;
+    case 6:
+        day = "Saturday";
+}
+
+console.log("Today is " + day);
         </code>
     </pre>
 
@@ -184,6 +377,180 @@ true
         </code>
     </pre>
 
+    <p>To improve performance (slightly), we can place the length property outside the loop and access it outside which should make the loop run faster and avoid the code having to access the length property of the array each time the loop is iterated. We can also declare the variable of 'i' for the same reason.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = [1, 2, 3, "Dan", true];
+
+var i;
+var len = arr.length;
+for (i = 0; i < len; i++) {
+    console.log(arr[i]);
+}
+        </code>
+    </pre>
+
+    <h2>Reduce DOM access</h2>
+
+    <p>Accessing the HTML <abbr title="Document Object Model">DOM</abbr> is very slow compared with other JavaScript statements. If you expect to access a DOM element multiple times, access it once, then use it as a local variable.</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj;
+
+obj = document.getElementById("demo");
+obj.innerHTML = "Hello";
+        </code>
+    </pre>
+
+    <p>Its always recommended to keep the number of elements in the DOM small as this will improve page loading and speed up rendering (page display). Every attempt to search the DOM will benefit from a smaller DOM.</p>
+
+    <h2>Avoid the use of too many variables</h2>
+
+    <p>Avoid creating new variables if you don't intend to save values. Often we can replace code like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var fullName = firstName + " " + lastName;
+document.getElementById("demo").innerHTML = fullName;
+        </code>
+    </pre>
+
+    <p>With this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.getElementById("demo").innerHTML = firstName + " " + lastName;
+        </code>
+    </pre>
+
+    <p>By putting your scripts at the bottom of the page, it lets the browser also load the page first.</p>
+
+    <h2>Timeout</h2>
+
+    <p>The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds. 1000ms is equal to 1 second. The setTimeout() method is only executed once. If you need to repeat execution, us the setInterval() method.</p>
+
+    <p>I want to create a simple function that will show an alert box after 3000ms (3 seconds).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+setTimeout(function() {
+    alert("Hello World");
+}, 3000);
+        </code>
+    </pre>
+
+    <p>The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds). The setInterval() method will continue calling the function until clearInterval() is called, or the window is closed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Call the myTimer() function every second
+var timer = setInterval(myTimer, 1000);
+
+function myTimer() {
+    var date = new Date();
+    var time = date.toLocaleTimeString();
+    console.log(time);
+
+    // Replace the console.log if you want to display on the page
+    // document.getElementById("demo").innerHTML = time;
+}
+
+// Stop the timer
+function stopTimer() {
+    clearInterval(timer);
+}
+        </code>
+    </pre>
+
+    <h2>Functions</h2>
+
+    <p>To start, I'm going to create a really simple function that when called, logs text into the console.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function myFunc() {
+    console.log('Really simple function');
+}
+
+myFunc();
+        </code>
+    </pre>
+
+    <p>Next, I can change the function to use the return statement. This statement will stop the execution of the function and returns the value from the function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function myFunc() {
+    return Math.PI;     // Return the value of PI
+}
+
+myFunc();
+        </code>
+    </pre>
+
+    <p>Along with stopping the function execution, the return statement also returns a value to the function caller. Since a value is being return to the function called, we can create a variable and set it equal to an invocation of our function.</p>
+
+    <p>We are also passing arguments into a parameter named 'num' within the function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var double = function(num) {
+    return num * 2;
+}
+
+var six = double(3);            // 6
+var twelve = double(six);       // 12
+        </code>
+    </pre>
+
+    <p>Here is a typical function where we can pass in values as arguments into parameters - numOne and numTwo:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function addNumbers(numOne, numTwo) {
+    return numOne + numTwo;
+}
+
+addNumbers(4, 5);
+        </code>
+    </pre>
+
+    <h3>Anonymous Functions</h3>
+
+    <p>An anonymous function is simply a function without a name. We can create an self-executing function, an IIFE (Immediately Invoked Function Expression) that will run without being called.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function() {
+    console.log("I'm an IIFE!!!");
+}());
+        </code>
+    </pre>
+
+    <p>Because this function is anonymous, anything within is not exposed to the global namespace. We can pass arguments into our function using arguments and parameters, such as window and document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(w, d) {
+    console.log(w);     // console log the window object
+}(window, document));
+        </code>
+    </pre>
+
     <h2>Object</h2>
 
     <p>We are now going to add the array we have created inside an object. The object has been created using object literal notation and the array is a property of this object.</p>
@@ -212,6 +579,28 @@ console.log(obj.arr[2]);    // 3
         <code>
 <!-- leave this line empty -->
 window
+        </code>
+    </pre>
+
+    <p>The Window interface represents a window containing a <abbr title="Document Object Model">DOM</abbr> document. A window for a given document can be obtained using the document.defaultView property.</p>
+
+    <p>A global variable, window, representing the window in which the script is running, is exposed to JavaScript code. The Window interface is a suitable place to include these items that need to be globally available.</p>
+
+    <p>In a tabbed browser, each tab is represented by its own Window object. The global window seen by JavaScript code running within a given tab always represents the tab in which the code is running.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.defaultView
+        </code>
+    </pre>
+
+    <p>We can also view the document object in the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document
         </code>
     </pre>
 
@@ -259,6 +648,39 @@ var obj = {
 
 // Call the method within the object
 obj.outputArray();
+        </code>
+    </pre>
+
+    <h2>Enable button with checkbox</h2>
+
+    <p>A typical use of JavaScript on forms may involve the need for a user to select/check a checkbox to enable a 'Submit' button to submit the form. This can be done pretty simply. We begin with the HTML code. This will simply be a button and checkbox.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;form&gt;
+    &lt;input type="checkbox" name="checkform" id="checkform" /&gt;I agree to the terms
+    &lt;button type="submit" id="btn"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+        </code>
+    </pre>
+
+    <p>Next, we add the JavaScript code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var checkbox = document.getElementById('checkform');    // Checkbox
+var button = document.getElementById('btn');            // Button
+
+// Set the button to be disabled by default
+button.disabled = true;
+
+// Function that is executed if the checkbox state changes
+checkbox.onchange = function() {
+    // Keep the button disabled if the checkbox (this) is not checked
+    button.disabled = !this.checked;
+}
         </code>
     </pre>
 </main>

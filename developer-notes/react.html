@@ -426,6 +426,111 @@ class Application extends React.Component {
         </code>
     </pre>
 
+    <p>This can be installed as a Dependency:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react-helmet --save
+        </code>
+    </pre>
+
+    <p>Within the index.js file (the file that is used to render your React application), import react-helmet and apply it to the component. Here is an example of how the page title should be applied:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// index.js
+
+import React from 'react'
+import { render } from 'react-dom'
+import { Helmet } from 'react-helmet'
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import Home from './js/pages/Home'
+import Users from './js/pages/Users'
+import Contact from './js/pages/Contact'
+import Notfound from './js/pages/Notfound'
+
+const routing = (
+    &lt;Router&gt;
+        &lt;React.Fragment&gt;
+            &lt;Helmet&gt;
+                &lt;title&gt;React App&lt;/title&gt;
+            &lt;/Helmet&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/users"&gt;Users&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/contact"&gt;Contact&lt;/Link&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;Switch&gt;
+                &lt;Route exact path="/" component={Home} /&gt;
+                &lt;Route path="/users" component={Users} /&gt;
+                &lt;Route path="/contact" component={Contact} /&gt;
+                &lt;Route component={Notfound} /&gt;
+            &lt;/Switch&gt;
+        &lt;/React.Fragment&gt;
+    &lt;/Router&gt;
+)
+
+render(
+    routing,
+    document.getElementById('root')
+)
+        </code>
+    </pre>
+
+    <p>The &lt;title&gt; element can be removed from the index.html (HTML) file that is used to render your React app as react-helmet will handle the page title.</p>
+
+    <p>Update your components (used for pages) as so to change the title, as this example demonstrates:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// js/pages/Contact.js
+
+import React from 'react'
+import { Helmet } from 'react-helmet'
+
+const Contact = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Helmet&gt;
+                &lt;title&gt;React App - Contact&lt;/title&gt;
+            &lt;/Helmet&gt;
+            &lt;h1&gt;Contact&lt;/h1&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default Contact
+        </code>
+    </pre>
+
+    <p>And here is the homepage that sets the default page title:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// js/pages/Home.js
+
+import React from 'react'
+import { Helmet } from 'react-helmet'
+
+const Home = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Helmet&gt;
+                &lt;title&gt;React App&lt;/title&gt;
+            &lt;/Helmet&gt;
+            &lt;h1&gt;Home&lt;/h1&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default Home
+        </code>
+    </pre>
+
     <h2>Accessibility in React</h2>
 
     <p>We have an <a href="accessibility.html">accessibility</a> section within our development notes.</p>
@@ -460,7 +565,6 @@ $ npm install eslint-plugin-jsx-a11y --save-dev
 ]
         </code>
     </pre>
-</main>
 </main>
 
 </body>

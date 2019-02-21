@@ -537,6 +537,14 @@ fetch('https://ghibliapi.herokuapp.com/films').then(
 });
         </code>
     </pre>
+
+    <h2>HTTP &amp; HTTP Requests</h2>
+
+    <p>HTTP is the HyperText Transfer Protocol. It is the underlying protocol (rules) that determines how messages are formatted as they are transmitted or received across the web. When you type the website URL (Uniform Resource Locator) in the URL bar, the DNS (Domain Name Server) resolves the URL into the appropriate IP address. The browser makes a request, a GET request, to the web server to GET the HTML of the site, the web server will then respond with a message such as "OK" which may have a status code of 200, and will then send the HTML down to the browser where it will be parsed and rendered. The GET request is referred to as an HTTP request. You are making a request to a server to get some data. If data is posted, such as a post added to a social media platform or data added to a database, a POST HTTP request is made.</p>
+
+    <p>An API (Application Programming Interface) generally works by making HTTP requests to specific routes in a URL. Suppose we are making an API to talk to a database containing a list of books. We may be able to view those books at the URL .../books. A POST HTTP request to .../books will create a new book with whatever properties you define (think id, title, ISBN, author, publisher, etc) at the .../books route. We only care that the API exposes the endpoint (access through route) to manipulate the data. If we therefore then wanted to get a a specific book from it's id, we may use a HTTP GET request to the URL .../books/id where the ID is passed in as a known parameter.</p>
+
+    <p>It's important to note that after making an HTTP request, we'll receive a response. We should always receive a status code. Earlier when we discussed the web server responding with "OK" this is known as an HTTP Status Code, more specifically, HTTP 200 OK. The status code just specifies how the operation or action specified at the endpoint completed. HTTP Status codes are sent back by the server. For example, if we make a GET request to search for a book using .../books/id where no such ID exists, then a HTTP 404 Not Found status code will be returned by the server.</p>
 </main>
 
 </body>

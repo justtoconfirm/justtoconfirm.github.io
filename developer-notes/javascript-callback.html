@@ -124,6 +124,23 @@ myFunc('Hello World', function() {
 });
         </code>
     </pre>
+
+    <p>When handling a call asynchronously, we need to know when that call is finished and when we have a response. Generally, we pass in, as an argument to our async method, a callback function. The method will "call back" that function at a later time with a response.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function asyncAddFunction(a, b, callback) {
+    callback(a + b);        // This callback is the one passed into the function call below
+}
+
+asyncAddFunction(2, 4, function(sum) {
+    // Here we have the sun, 2 + 4 = 6
+});
+        </code>
+    </pre>
+
+    <p>Such a function is called a "Higher-Order Function" (HOF), since it takes a function (our callback) as an argument.</p>
 </main>
 
 </body>

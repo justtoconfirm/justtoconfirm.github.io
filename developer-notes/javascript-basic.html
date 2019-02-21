@@ -1076,6 +1076,12 @@ btn.addEventListener('click', () => {
 });
         </code>
     </pre>
+
+    <h2>Blocking &amp; Non-Blocking</h2>
+
+    <p>Suppose we are making a database call to retrieve propertie about a user. This call is going to take time and if the request is "blocking", then it means it will block the execution of our program until the call is complete. This is often how a "synchronous" request is made as it ended up blocking the thread as it blocks a process or thread until that operation is complete, leaving the thread in a "wait state".</p>
+
+    <p>An "asynchronous" operation is non-blocking. It permits the execution of the thread to process regardless of the time it takes for the operation to complete and no part of the thread falls into the "wait state".</p>
 </main>
 
 </body>

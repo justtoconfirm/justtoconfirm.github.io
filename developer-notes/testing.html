@@ -263,6 +263,17 @@ configure({
         </code>
     </pre>
 
+    <p>This has since been deprecated and replaced (now in an array) with this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"jest": {
+    "setupFilesAfterEnv": ["&lt;rootDir&gt;/src/js/setupTests.js"]
+},
+        </code>
+    </pre>
+
     <p>We should already have a build script within our package.json file to run tests.</p>
 
     <pre>
