@@ -13,61 +13,20 @@
 </head>
 <body>
 
-<!-- Checkbox enables button -->
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>My Website</title>
-
-<style>
-.form-label {
-    display: block;
-}
-.form-input {
-    display: block;
-}
-button {
-    display: block;
-}
-</style>
-
-</head>
-<body>
-<main role="main">
-
-<form>
-    <label class="form-label" for="fullname">Name</label>
-    <input class="form-input" type="text" name="fullname" id="fullname" />
-    <label class="form-label" for="email">Email</label>
-    <input class="form-input" type="text" name="email" id="email" />
-    <input type="checkbox" name="checkok" id="checkok" />I agree to the terms
-    <button id="btn">Submit</button>
-</form>
-
-</main>
-
-<script>
-var checker = document.getElementById('checkok');
-var button = document.getElementById('btn');
-
-button.disabled = true;
-
-checker.onchange = function() {
-    button.disabled = !this.checked;
-}
-</script>
-
-</body>
-</html>
--->
-
 <!-- https://openclassrooms.com/en/courses/3523231-learn-to-code-with-javascript/3703666-store-data-in-arrays -->
 <!-- https://codeburst.io/all-about-javascript-arrays-in-1-article-39da12170b1c -->
 <!-- https://www.digitalocean.com/community/tutorials/how-to-use-object-methods-in-javascript -->
 <!-- https://codeburst.io/javascript-what-is-the-return-statement-97d8b11a1a0c -->
 <!-- https://openclassrooms.com/en/courses/3523231-learn-to-code-with-javascript/4379006-use-constructor-functions -->
+<!-- https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced -->
+<!-- https://javascriptweblog.wordpress.com/2010/12/07/namespacing-in-javascript/ -->
+
+<!-- https://ourcodeworld.com/articles/read/37/how-to-create-your-own-javascript-library -->
+<!-- https://code.tutsplus.com/tutorials/build-your-first-javascript-library--net-26796 -->
+<!-- http://dfsq.info/site/read/writing-your-own-jquery -->
+<!-- https://stackoverflow.com/questions/11167317/what-is-the-purpose-of-a-parameter-named-undefined-in-a-javascript-function -->
+
+<!-- https://medium.freecodecamp.org/prototype-in-js-busted-5547ec68872 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -551,6 +510,84 @@ addNumbers(4, 5);
         </code>
     </pre>
 
+    <p>We can add a constructor method to our function. Our IIFE is called globally, so the "this" keyword is used to point at the global window object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(w, d) {
+    
+    // Define a constructor
+    this.Test = function() {
+        // Empty for now
+    }
+
+}(window, document));
+        </code>
+    </pre>
+
+    <p>This creates a functional object which can be instantiated with the "new" keyword. This creates a new instance of our object. At this state, our object doesn't do much.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myTest = new Test();
+        </code>
+    </pre>
+
+    <p>I can possible look to add a public method to our object if we want:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(w, d) {
+    
+    // Define a constructor
+    this.Test = function() {
+        // Empty for now
+    }
+
+    // Public method
+    Test.prototype.log = function() {
+        console.log('Hello World');
+    }
+}(window, document));
+        </code>
+    </pre>
+
+    <p>We can now run the public method:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myTest = new Test();
+myTest.log();       // Hello World
+        </code>
+    </pre>
+
+    <p>I have seen examples of objects created that also set "strict mode" like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(w, d) {
+
+    // Enable strict mode
+    "use strict";
+    
+    // Define a constructor
+    this.Test = function() {
+        // Empty for now
+    }
+
+    // Public method
+    Test.prototype.log = function() {
+        console.log('Hello World');
+    }
+}(window, document));
+        </code>
+    </pre>
+
     <h2>Object</h2>
 
     <p>We are now going to add the array we have created inside an object. The object has been created using object literal notation and the array is a property of this object.</p>
@@ -648,6 +685,30 @@ var obj = {
 
 // Call the method within the object
 obj.outputArray();
+        </code>
+    </pre>
+
+    <h3>The Module Pattern</h3>
+
+    <p>The logic is shielded from the global scope by a function wrapper (usually self-invoking) which returns an object representing the module's public interface. By immediately invoking the function and assigning the result to a namespace variable, we lock up the module's API in the namespace. Any variables not included in the return value will remain forever private, visible only to the public functions that reference them.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var myApp = (function() {
+    var id = 0;
+
+    return {
+        next: function() {
+            return id++;
+        },
+        reset: function() {
+            id = 0;
+        }
+    };
+}());
+
+myApp.next();      // 1
         </code>
     </pre>
 

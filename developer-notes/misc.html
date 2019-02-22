@@ -88,6 +88,45 @@ http://example.com/foo?bar1=aaa&bar2=bbbb
     <h3>Load Balancers</h3>
 
     <p>High availability comes from running multiple instances of your application at the same time. A load balancer is a piece of equipment that will route traffic from your users to one of your instances that is live. It takes requests and sends them to the next healthy server.</p>
+
+    <h2>Stacktrace</h2>
+
+    <p>A stacktrace is a very helpful debugging tool. It shows the call stack, the stack of functions that were called up to that point, at the time an uncaught exception was thrown. An Exception is what the runtime environment uses to tell you that an error has occured.</p>
+
+    <p>In simple terms, a stack trace is a list of the method calls that the application was in the middle of when an Exception was thrown. Here is a very simple stack trace:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Exception in thread "main" java.lang.NullPointerException
+    at com.example.myproject.Book.getTitle(Book.java:16)
+    at com.example.myproject.Author.getBookTitles(Author.java:25)
+    at com.example.myproject.Bootstrap.main(Bootstrap.java:14)
+        </code>
+    </pre>
+
+    <p>This is a very simple stack trace. If we start from the beginning of the list, we can tell where our error happened. What we're looking for is the topmost method call that is part of our application. In this case, its:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+at com.example.myproject.Book.getTitle(Book.java:16)
+        </code>
+    </pre>
+
+    <p>To debug this, we can open Book.java and look at line 16, which is:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+15  public String getTitle() {
+16      System.out.println(title.toString());
+17      return title;
+18  }
+        </code>
+    </pre>
+
+    <p>This would indicate that something (probable title) is null in the above code.</p>
 </main>
 
 </body>
