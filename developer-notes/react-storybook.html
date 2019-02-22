@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Storybook</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!--
+https://blog.bam.tech/developper-news/use-storybook-react-project
+
+Storybooks is an isolated environment where you can design and visualize the different states of your components.
+
+CD into your project and install Storybook:
+
+$ npx -p @storybook/cli sb init
+
+This imports Storybooks along with React into your project file. You will also need the component to be imported also:
+
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import Button from '../components/Button';
+
+storiesOf('Button', module)
+ .add('with label', () => <Button label='Hello Button' />);
+
+ This code will display the <Button> component and the menu item down the left side of storybooks.
+
+ Install storybooks add-on (not pre-installed with storybooks):
+
+ npm install @storybook/addon-knobs --save-dev
+-->
+
+<!-- https://storybook.js.org/basics/guide-react/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Storybook</h1>
+
+    <p>Storybook is a UI development environment and playground for UI components. Storybook runs outside of the main app so users can develop UI components in isolation. Storybook also supports a lot of addons and comes with a flexible API to customise Storybook as desired. A static version of Storybook can also be built and deployed to an HTTP server.</p>
+
+    <h2>Install Storybook</h2>
+
+    <p>To install Storybook for React, use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm i --save-dev @storybook/react
+        </code>
+    </pre>
+
+    <p>Add the following NPM (Node Package Manager) script to your package.json in order to start the storybook.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "scripts": {
+        "storybook": "start-storybook -p 9001 -c .storybook"
+    }
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
