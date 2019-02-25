@@ -20,6 +20,10 @@
 <!-- https://blog.angular-university.io/getting-started-with-angular-setup-a-development-environment-with-yarn-the-angular-cli-setup-an-ide/ -->
 <!-- https://www.sitepoint.com/angular-2-tutorial/ -->
 <!-- https://www.sitepoint.com/ultimate-angular-cli-reference/ -->
+<!-- https://medium.com/all-is-web/angular-5-creating-new-component-c6c5236f8024 -->
+<!-- https://www.techiediaries.com/angular-tutorial-basics/ -->
+<!-- https://www.devglan.com/angular/angular-7-crud-example -->
+<!-- https://blog.angular-university.io/angular-2-firebase/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -43,6 +47,12 @@
 
     <p>Angular is an MVC (Module View Controller) JavaScript framework created by Misko Hevery and maintained by Google. The first version of Angular is often referred to as AngularJS, whereas the latest version is known as Angular 2. The two versions are different in their structures and methods.</p>
 
+    <p>Angular is one of the most popular front-end frameworks for building client-side web applications for mobile and desktop web. It follows a component-based architecture where each component is an isolated and reusable piece of code that controls a part of the app's UI.</p>
+
+    <p>A component in Angular is a <a href="typescript.html">TypeScript</a> class decorated with the @Component decorator. It has an attached template and CSS stylesheet that forms the component's view.</p>
+
+    <p>Even though Angular is a framework for the frontend, you will still need to choose a backend to go with it.</p>
+
     <p>It is worth checking to see if you have Node and NPM (Node Package Manager) installed.</p>
 
     <pre>
@@ -53,9 +63,13 @@ $ npm --version
         </code>
     </pre>
 
+    <h2>Dependency Injection (DI)</h2>
+
+    <p>When working with Angular, you may come across the term Dependency Injection (DI). This is the concept of allowing developers to inject what's called services (singletons that encapsulates unique and reusable functionality within an application) into other components. This encourages re-usability of the code.</p>
+
     <h2>Setting up Angular from scratch</h2>
 
-    <p>The CLI (Command Line Interface) is a great tool and time save, but at the same time, it hides some of the internals from you. For instances, when you want to setup server-side rendering, you have to actually understand how things are wired together. The CLI also may install packages that you might not need during development. By having all packages installed, it's difficult to learn the minimal dependencies required to setup the simplest of Angular projects.</p>
+    <p>The CLI (Command Line Interface) is a great tool and time saver, but at the same time, it hides some of the internals from you. For instances, when you want to setup server-side rendering, you have to actually understand how things are wired together. The CLI also may install packages that you might not need during development. By having all packages installed, it's difficult to learn the minimal dependencies required to setup the simplest of Angular projects.</p>
 
     <p>You will need Node, NPM (Node Package Manager) and Git setup to implement this stage.</p>
 
@@ -193,6 +207,15 @@ $ ng serve
 
     <p>You can alternatively use the serve command without the --open flag.</p>
 
+    <p>You can alsouse different host addresses and ports if you wish:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng serve --host 0.0.0.0 --port 8080
+        </code>
+    </pre>
+
     <p>Your app should now be running. Behind the scenes, the following is happening:</p>
 
     <ul>
@@ -205,7 +228,31 @@ $ ng serve
 
     <h2>Components</h2>
 
-    <p>Components are the fundamental building blocks of Angular applications. They display data on the screen, listen for user input, and take action based on input.</p>
+    <p>Components are the fundamental building blocks of Angular applications. They display data on the screen, listen for user input, and take action based on input. They are the basic building blocks of an Angular application that controls part of the app's UI (User Interface). A component is also encapsulated and reusable.</p>
+
+    <p>You can create a component by creating a TypeScript class and decorating with the @Component decorator available from the Angular core package (@angular/core).</p>
+
+    <p>A component's view is built using a unique HTML template associated with the component's class and a stylesheet that is used to style the HTML view.</p>
+
+    <p>Here is an example Angular component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    title = 'angular7-router-demo';
+}
+        </code>
+    </pre>
+
+    <p>We start by importing Component from the Angular Core package and we can then use it to decorate the TypeScript class.</p>
 
     <p>The Angular CLI created the first Angular component, it is the root component and is named app-root</p>
 
@@ -368,6 +415,49 @@ $ ng generate component testcomponent
         <li>testcomponent/testcomponent.component.ts</li>
     </ul>
 
+    <p>If you view the app.module.ts, you will see that the module file will be updated with the new component created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/app/app.module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { TestComponent } from './testcomponent/testcomponent.component';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        TestComponent
+    ],
+    imports: [
+        BrowserModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+        </code>
+    </pre>
+
+    <p>When we create the component using ng-generate, Angular CLI also imported our new component and added it into the declarations array of our AppModule. This essentially imports our component(s) into our application so we can use them.</p>
+
+    <p>Our components should only focus on displaying the data and passing the data to other components that need it. We should use an API call to fetch data from a remote server. Our components should not do this, but we should use a service/services to do this.</p>
+
+    <p>We can generate a service like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate service test --module=app
+        </code>
+    </pre>
+
+    <p>This would generate a new TestService class.</p>
+
     <p>As most likely discussed previously, you always import the Component symbol from the Angular core library and annotate the component class with @Component. @Component is a decorator function that specifies the Angular metadata for the component. This can be found in the testcomponent.component.ts file. Within this file, we have three generated metadata properties:</p>
 
     <ul>
@@ -442,9 +532,67 @@ export class TestcomponentComponent implements OnInit {
 
     <p>When setting up Angular using Angular CLI, should you choose to use SCSS, a styles.scss file will be generated within the 'src' directory of your project. Within this file you can add global SCSS styles or simply import SCSS partials into your project to add styling to your application.</p>
 
+    <p>Within each component generated you will find a SCSS file. You can add SCSS/CSS code here to add specific styling for the component that will then be transpiled into the main CSS stylesheet.</p>
+
     <p>The Angular CLI generates an empty styles.css stylesheet should you choose to use CSS in-place of SCSS/Sass. You can add any application-wide styling here.</p>
 
     <p>Learn more about SCSS and Sass using the <a href="sass-scss.html">documentation notes</a> created.</p>
+
+    <h2>Services</h2>
+
+    <p>A service is used to encapsulate the business logic that can be repeated in most areas of your code. This helps developers to follow the DRY (Don't Repeat Yourself) principle. Services can be called by components and even other services in the app. It's injected into the component's constructor via Dependency Injection (DI). They help to make the application reusable.</p>
+
+    <p>If you are making HTTP requests to fetch remote resources from a server in your component, you should use a service. If this we're to be done in the component itself, each component would be repeating similar code for getting the same resource. We can simply, therefore, use a service wherever we want to call the fetching logic. This is what's called Separation of Concerns. This states that components are not responsible for doing specific tasks (in this case, fetching data), instead the service can do the task and pass the data back to the components.</p>
+
+    <p>As describe previously, we can create a service like so (in this example, named rest):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate service rest
+        </code>
+    </pre>
+
+    <p>The service can be located at: src/app/rest.service.ts</p>
+
+    <h2>Connect to API</h2>
+    <!-- https://www.djamware.com/post/5b87894280aca74669894414/angular-6-httpclient-consume-restful-api-example -->
+    <!-- https://www.techiediaries.com/angular-by-example-httpclient-get/ -->
+
+    <p>Front end applications, build using frameworks like Angular, communicate with backend servers through <a href="api.html">REST APIs</a> (which are based on the HTTP protocol) using either the XMLHttpRequest interface or the fetch() API.</p>
+
+    <p>We are using Angular version 7 for our examples.</p>
+
+    <p>Angular HttpClient makes use of the XMLHttpRequest object which also supports older browsers. The HttpClient is available from the @angular/common/http package. This module is already included out-of-the-box with Angular (at least from version 6).</p>
+
+    <p>HTTPClient is used to make calls to remote API servers so you don't need external libraries like Axios or the standard Fetch API. This is an Angular service that's from @angular/common/http.</p>
+
+    <p>The first step is to include the HttpClientModule in your main application module (src/app/app.module.ts). We begin by importing it first:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/app/app.module.ts
+
+import { HttpClientModule } from '@angular/common/http';
+        </code>
+    </pre>
+
+    <p>Next, we need to add this to the 'imports' object of our module also:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+imports: [
+    BrowserModule,
+    HttpClientModule
+],
+        </code>
+    </pre>
+
+    <h2>Angular Routing</h2>
+    <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
+    <p>Angular Router is a powerful JavaScript router built and maintained by the Angular core team that can be installed from the @angular/router package. It provides a complete routing library. It is a core part of the Angular platform and enables developers to build Single Page Applications (SPA) with multiple views. This allows navigation between these views.</p>
 </main>
 
 </body>

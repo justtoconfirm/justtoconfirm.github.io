@@ -261,6 +261,34 @@ $ npm ls
         </code>
     </pre>
 
+    <p>Check for outdated packages:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm outdated
+        </code>
+    </pre>
+
+    <p>The install command does not update existing packages since NPM already finds satisfying versions installed on the file system. Instead of the install command, you can use update to freshen already installed packages. When you run update, NPM checks to see if exists newer versions in the repository and installs them, You may need to use the --save or --save-dev flags to ensure the package.json file gets updated also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm update
+        </code>
+    </pre>
+
+    <p>Should we want to update our NPM packages to the latest version, we can use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install package@latest --save
+$ npm install package@latest --save-dev
+        </code>
+    </pre>
+
     <h2>Modules</h2>
 
     <p>When creating you own modules, all you have to do is take care when exporting something. The first approach would be to export a single object:</p>
