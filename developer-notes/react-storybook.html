@@ -62,6 +62,8 @@ storiesOf('Button', module)
 
     <p>Storybook is a UI development environment and playground for UI components. Storybook runs outside of the main app so users can develop UI components in isolation. Storybook also supports a lot of addons and comes with a flexible API to customise Storybook as desired. A static version of Storybook can also be built and deployed to an HTTP server.</p>
 
+    <p>Each story is a single state of your component.</p>
+
     <h2>Install Storybook</h2>
 
     <p>To install Storybook for React, use the following command:</p>
@@ -69,11 +71,11 @@ storiesOf('Button', module)
     <pre>
         <code>
 <!-- leave this line empty -->
-$ npm i --save-dev @storybook/react
+$ npm i @storybook/react --save-dev
         </code>
     </pre>
 
-    <p>Add the following NPM (Node Package Manager) script to your package.json in order to start the storybook.</p>
+    <p>Add the following NPM (Node Package Manager) script to your package.json in order to start the Storybook.</p>
 
     <pre>
         <code>
@@ -83,6 +85,104 @@ $ npm i --save-dev @storybook/react
         "storybook": "start-storybook -p 9001 -c .storybook"
     }
 }
+        </code>
+    </pre>
+
+    <p>We then need to setup the Storybook config file. Create a folder/directory in your project root named '.storybook' and add the following config file named 'config.js':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { configure } from '@storybook/react'
+
+function loadStories() {
+    require('../stories/index.js')
+    // You can require as many stories as you need.
+}
+
+configure(loadStories, module)
+        </code>
+    </pre>
+
+    <p>Next, we need to create the index.js file. This is going to be our intial example story. Create another folder/directory in the root of your project named 'stories' and add the following index.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { Button } from '@storybook/react/demo'
+
+storiesOf('Button', module)
+    .add('with text', () => (
+        &lt;Button&gt;Hello Button&lt;/Button&gt;
+    ))
+    .add('with some emoji', () => (
+        &lt;Button&gt;&lt;span role="img" aria-label="so cool"&gt;😀 😎 👍 💯&lt;/span&gt;&lt;/Button&gt;
+    ))
+        </code>
+    </pre>
+
+    <p>In this example, the button component has two stories, one with text, the other with some emoji.</p>
+
+    <p>To run Storybook, open your terminal and enter the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run storybook
+        </code>
+    </pre>
+
+    <p>This will open Storybook at: <a href="http://localhost:9001" target="_blank" rel="noopener noreferrer">http://localhost:9001</a></p>
+
+    <p>Any changes made in Storybook will automatically be updated since it uses Webpack's hot module reloading.</p>
+
+    <h2>Addons</h2>
+
+    <p>Storybook comes with a variety of "core" addons developed and maintained alongside Storybook. We can add a number of addons by installing them using NPM (Node Package Manager) or Yarn.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @storybook/addons @storybook/addon-actions @storybook/addon-links @storybook/addon-notes --save-dev
+        </code>
+    </pre>
+
+    <p>We then need to create a file called addons.js inside the .storybook config directory. Add the following content inside the addons.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import '@storybook/addon-actions/register';
+import '@storybook/addon-links/register';
+import '@storybook/addon-notes/register';
+        </code>
+    </pre>
+
+    <p>Once done, restart storybook to make Webpack aware of the addons file. This will register all the addons and you'll be able to see the actions and notes panels. Now when you write a story, import it and add some notes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+
+import Button from './Button'
+
+storiesOf('Button', module).add(
+    'with some emoji',
+    () => (
+        () => (
+            &lt;Button onClick={action('clicked')}&gt;
+                &lt;span role="img" aria-label="so cool"&gt;
+                    😀 😎 👍 💯
+                &lt;/span&gt;
+            &lt;/Button&gt;
+            ),
+        { notes: 'A very simple component' }
+    )
+)
         </code>
     </pre>
 </main>
