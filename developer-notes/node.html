@@ -303,6 +303,86 @@ $ npm version major
 
     <p>For example, using 'patch' would increase the version of package.json from 1.0.0 to 1.0.1. This should follow the <a href="https://semver.org/" target="_blank" rel="noopener noreferrer">Semantic versioning</a> model.</p>
 
+    <h2>Setting engines property</h2>
+    <!-- http://www.marcusoft.net/2015/03/packagejson-and-engines-and-enginestrict.html -->
+
+    <p>Within your package.json you may want to specify the recommended versions of Node and NPM (Node Package Manager) to use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"engines": {
+    "node": "^10.0",
+    "npm": "^6.0"
+},
+        </code>
+    </pre>
+
+    <p>This will ensure we get warning or errors displayed in the terminal if we are using the wrong version, or lesser version, of Node and NPM.</p>
+
+    <p>You can also set the "engineStrict" property to be 'true' in your package.json to be sure that your module will definitely not run properly on versions of Node and NPM other than those specified.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"engineStrict": true,
+        </code>
+    </pre>
+
+    <p>This flag is set to 'false' as default, leaving the engines node to be "advisory only".</p>
+
+    <h2>Pre-Commit</h2>
+    <!-- https://www.npmjs.com/package/pre-commit -->
+
+    <p>Within your package.json file, you can add a pre-commit hook installed for git. This will ensure that your NPM test, or other specified scripts, passes before you can commit your changes. This is configured within the package.json file like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"pre-commit": {
+    "run": [
+        "precommit-msg",
+        "test:commit-hook"
+    ]
+},
+        </code>
+    </pre>
+
+    <p>It's advised to install the pre-commit module as a devDependency in your package.json file as you only need it during development.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install pre-commit --save-dev
+        </code>
+    </pre>
+
+    <p>pre-commit will try and run your npm test command. It can also be used to run other build scripts that you've listed before code is committed using git.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "name": "437464d0899504fb6b7b",
+    "version": "0.0.0",
+    "description": "ERROR: No README.md file found!",
+    "main": "index.js",
+    "scripts": {
+        "precommit-msg": "echo 'Running pre-commit checks...' && exit 0",
+        "test": "echo \"Error: I SHOULD FAIL LOLOLOLOLOL \" && exit 1",
+        "foo": "echo \"fooo\" && exit 0",
+        "bar": "echo \"bar\" && exit 0"
+    },
+    "pre-commit": [
+        "precommit-msg",
+        "foo",
+        "bar",
+        "test"
+    ]
+}
+        </code>
+    </pre>
+
     <h2>Modules</h2>
 
     <p>When creating you own modules, all you have to do is take care when exporting something. The first approach would be to export a single object:</p>

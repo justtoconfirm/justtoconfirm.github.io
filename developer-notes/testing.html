@@ -99,6 +99,8 @@ describe('second set', () => {
 
     <p>Jest has a snapshot testing functionality which is useful to make sure the UI does not change unexpectedly. In the first run of a snapshot test, the snapshot is stored with the test. In subsequent runs, Jest is able to compare the newly rendered component to the stored snapshot to alert you to any differences.</p>
 
+    <p>When using a tool like Jest, we can create snapshots to test that the rendered component matches a snapshot on a subsequent run. This is useful for knowing if your component has changed behaviour.</p>
+
     <p>This is a quick and simple way to capture unexpected render output, but reviewers need to be careful to check differences between the old and new snapshots. Typically, we have one snapshot test for every component to ensure that it renders as expected.</p>
 
     <pre>
