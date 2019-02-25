@@ -226,6 +226,8 @@ $ ng serve --host 0.0.0.0 --port 8080
 
     <p>The LiveReload support actively watches your 'src' directory for file changes.</p>
 
+    <p>It's worth considering that the component.ts (TypeScript) files relate to the functionality of a component, the component.html and component.s(css) files are to style and structure the view of the component (what the user sees).</p>
+
     <h2>Components</h2>
 
     <p>Components are the fundamental building blocks of Angular applications. They display data on the screen, listen for user input, and take action based on input. They are the basic building blocks of an Angular application that controls part of the app's UI (User Interface). A component is also encapsulated and reusable.</p>
@@ -555,6 +557,44 @@ $ ng generate service rest
 
     <p>The service can be located at: src/app/rest.service.ts</p>
 
+    <h2>Directives</h2>
+    <!-- https://codeburst.io/a-simple-show-and-hide-password-directive-with-angular-fae7a6bd136 -->
+
+    <p>The three types of directives in Angular 2 are: attribute directives, structural directives, and components. T create a new directive, use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate directive addPassword
+        </code>
+    </pre>
+
+    <p>Our src/app directory should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+src /
+    app /
+        app-password.directive.spec.ts
+        app-password.directive.ts
+        app.component.scss
+        app.component.html
+        app.component.spec.ts
+        app.component.ts
+        app.module.ts
+        </code>
+    </pre>
+
+    <p>If we are creating an attribute directive, we could add it to an input field like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;input type="password" appPassword /&gt;
+        </code>
+    </pre>
+
     <h2>Connect to API</h2>
     <!-- https://www.djamware.com/post/5b87894280aca74669894414/angular-6-httpclient-consume-restful-api-example -->
     <!-- https://www.techiediaries.com/angular-by-example-httpclient-get/ -->
@@ -593,6 +633,8 @@ imports: [
     <h2>Angular Routing</h2>
     <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
     <p>Angular Router is a powerful JavaScript router built and maintained by the Angular core team that can be installed from the @angular/router package. It provides a complete routing library. It is a core part of the Angular platform and enables developers to build Single Page Applications (SPA) with multiple views. This allows navigation between these views.</p>
+
+    <p>When using Angular CLI, it looks like the @angular/router package is installed as a dependency within the package.json file.</p>
 </main>
 
 </body>

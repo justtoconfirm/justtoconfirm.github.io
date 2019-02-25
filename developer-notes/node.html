@@ -289,6 +289,20 @@ $ npm install package@latest --save-dev
         </code>
     </pre>
 
+    <p>To update the version displayed in your package.json file, use the following NPM command:</p>
+    <!-- https://docs.npmjs.com/cli/version.html -->
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm version patch
+$ npm version minor
+$ npm version major
+        </code>
+    </pre>
+
+    <p>For example, using 'patch' would increase the version of package.json from 1.0.0 to 1.0.1. This should follow the <a href="https://semver.org/" target="_blank" rel="noopener noreferrer">Semantic versioning</a> model.</p>
+
     <h2>Modules</h2>
 
     <p>When creating you own modules, all you have to do is take care when exporting something. The first approach would be to export a single object:</p>
