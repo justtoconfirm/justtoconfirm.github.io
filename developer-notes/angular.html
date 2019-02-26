@@ -181,6 +181,8 @@ $ ng new my-app
 
     <p>When working within the Angular application, we usually work within the 'src/app' directory.</p>
 
+    <p>Within your application, the app.module.ts file is referred to as the root module.</p>
+
     <h2>Serve the application</h2>
 
     <p>Angular includes a server, so apps can easily be build and served locally.</p>
@@ -595,11 +597,133 @@ src /
         </code>
     </pre>
 
+    <h2>Service</h2>
+    <!-- https://angular.io/guide/architecture-services -->
+
+    <p>A Service is a broad category encompassing any value, function, or feature that an app needs. It is typically a class with a narrow, well-defined purpose. It should always do something specific and do it well. Angular separates components from services to increase modularity and reusability. Ideally a component's job is to enable the user experience and nothing more.</p>
+
+    <p>Here is an example of a service class that logs to the browser console. Let's create it first:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate service Logger
+        </code>
+    </pre>
+
+    <p>Here is the code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export class Logger {
+    log(msg: any) {
+        console.log(msg);
+    }
+    error(msg: any) {
+        console.error(msg);
+    }
+    warn(msg: any) {
+        console.warn(msg);
+    }
+}
+        </code>
+    </pre>
+
+    <p>When you provide the service at the root level, Angular creates a single, shared instance of the service and injects it into any class that asks for it. This can be found in the service file itself.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@Injectable({
+    providedIn: 'root'
+})
+        </code>
+    </pre>
+
+    <p>Within the root module (app.module.ts), we want to add the service into the @NgModule providers property. This allows the same instance of a service to be available to all components in that NgModule.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { TestComponent } from './test/test.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',                   // Default path (homepage)
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ButtonComponent,
+    InputComponent,
+    AboutComponent,
+    TestComponent,
+    PageNotFoundComponent,
+    HomeComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {
+        enableTracing: true
+      }
+    )
+  ],
+  providers: [
+    Logger
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+        </code>
+    </pre>
+
     <h2>Connect to API</h2>
     <!-- https://www.djamware.com/post/5b87894280aca74669894414/angular-6-httpclient-consume-restful-api-example -->
     <!-- https://www.techiediaries.com/angular-by-example-httpclient-get/ -->
+    <!-- https://www.metaltoad.com/blog/angular-5-making-api-calls-httpclient-service -->
+    <!-- https://blog.angular-university.io/angular-http/ -->
+    <!-- https://www.techiediaries.com/angular-http-client/ -->
+    <!-- https://thinkster.io/tutorials/angular-2-http -->
+    <!-- https://fullstack-developer.academy/caching-http-requests-with-angular/ -->
 
     <p>Front end applications, build using frameworks like Angular, communicate with backend servers through <a href="api.html">REST APIs</a> (which are based on the HTTP protocol) using either the XMLHttpRequest interface or the fetch() API.</p>
+
+    <p>It is recommended that HTTP calls are wrapped within services instead of being used in Components directly. This allows for greater flexibility for your application structure as you can reuse you calls throughout the app.</p>
 
     <p>We are using Angular version 7 for our examples.</p>
 
@@ -629,6 +753,57 @@ imports: [
 ],
         </code>
     </pre>
+
+    <p>We now want to create a service. This service will be called http and should generate the src/app/http.service.spec.ts (for tests) and src/app/http.service.ts files.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate service http
+
+# Shorthand
+$ ng g s http
+        </code>
+    </pre>
+
+    <p>This is our service we create:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class HttpService {
+
+    constructor() { }
+}
+        </code>
+    </pre>
+
+    <p>By making a few changes, we can create a very simple Service:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable()
+export class HttpService {
+
+    constructor(private http: HttpClient) { }
+
+    getProducts() {
+        return this.http.get('/api/products');
+    }
+}
+        </code>
+    </pre>
+
+    <p>Accessing the service from two separate components means that each time we load a component, a request is made to the API. The service can be updated to make sure that the response is cached.</p>
 
     <h2>Angular Routing</h2>
     <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
