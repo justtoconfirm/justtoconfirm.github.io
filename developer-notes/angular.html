@@ -24,6 +24,7 @@
 <!-- https://www.techiediaries.com/angular-tutorial-basics/ -->
 <!-- https://www.devglan.com/angular/angular-7-crud-example -->
 <!-- https://blog.angular-university.io/angular-2-firebase/ -->
+<!-- https://www.toptal.com/angular/angular-5-tutorial -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -229,6 +230,29 @@ $ ng serve --host 0.0.0.0 --port 8080
     <p>The LiveReload support actively watches your 'src' directory for file changes.</p>
 
     <p>It's worth considering that the component.ts (TypeScript) files relate to the functionality of a component, the component.html and component.s(css) files are to style and structure the view of the component (what the user sees).</p>
+
+    <h2>Adding Bootstrap</h2>
+
+    <p>You may wish to include Bootstrap into your Angular application. This can be installed using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install bootstrap
+        </code>
+    </pre>
+
+    <p>After that, Go to the angular.json file in the root of your application and replace the given code with "styles": [] array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"styles": [
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "src/styles.css"
+]
+        </code>
+    </pre>
 
     <h2>Components</h2>
 
@@ -720,8 +744,13 @@ export class AppModule { }
     <!-- https://www.techiediaries.com/angular-http-client/ -->
     <!-- https://thinkster.io/tutorials/angular-2-http -->
     <!-- https://fullstack-developer.academy/caching-http-requests-with-angular/ -->
+    <!-- https://scotch.io/tutorials/angular-2-http-requests-with-observables -->
+    <!-- http://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial -->
+    <!-- https://www.positronx.io/angular-7-httpclient-http-service/ -->
 
     <p>Front end applications, build using frameworks like Angular, communicate with backend servers through <a href="api.html">REST APIs</a> (which are based on the HTTP protocol) using either the XMLHttpRequest interface or the fetch() API.</p>
+
+    <p>You may want to use a fake server for testing your Angular app. Something like the NPM package json-server could be used for this.</p>
 
     <p>It is recommended that HTTP calls are wrapped within services instead of being used in Components directly. This allows for greater flexibility for your application structure as you can reuse you calls throughout the app.</p>
 
@@ -804,6 +833,56 @@ export class HttpService {
     </pre>
 
     <p>Accessing the service from two separate components means that each time we load a component, a request is made to the API. The service can be updated to make sure that the response is cached.</p>
+
+    <h2>Angular &amp; Firebase</h2>
+    <!-- https://medium.com/factory-mind/angular-firebase-typescript-step-by-step-tutorial-2ef887fc7d71 -->
+    <!-- https://www.positronx.io/how-to-connect-firebase-realtime-nosql-cloud-database-with-angular-app-from-scratch/ -->
+
+    <p>Firebase is a real-time NoSQL cloud database from Google that allows you to create faster and quicker web or mobile applications and doesn't require server-side backend programming languages.</p>
+
+    <p>You will need to setup a Firebase account to begin. Once your project is set up, click on your project to see your admin dashboard. Navigate to: Develop/Authentication/Web setup, click the Web setup button and a popup should appear with your Firebase credentials.</p>
+
+    <p>Once the Firebase setup is done, its time to install AngularFire and Firebase from NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install firebase @angular/fire --save
+        </code>
+    </pre>
+
+    <p>Your Firebase credentials should be added to the environment files in your Angular project:</p>
+
+    <ul>
+        <li>src/environments/environment.ts</li>
+        <li>src/environments/environment.prod.ts</li>
+    </ul>
+
+    <p>Within the 'root' module, app.module.ts, we can import the AngularFireModule and environment:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+        </code>
+    </pre>
+
+    <p>You will need to add the AngularFireModule to the imports property also:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@NgModule({
+    imports: [
+        BrowserModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name')
+    ],
+        </code>
+    </pre>
+
+    <p>Now you should be set to use Firebase with your Angular App.</p>
 
     <h2>Angular Routing</h2>
     <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
