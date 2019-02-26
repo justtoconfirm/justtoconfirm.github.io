@@ -632,9 +632,126 @@ imports: [
 
     <h2>Angular Routing</h2>
     <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
+    <!-- https://angular.io/guide/router -->
     <p>Angular Router is a powerful JavaScript router built and maintained by the Angular core team that can be installed from the @angular/router package. It provides a complete routing library. It is a core part of the Angular platform and enables developers to build Single Page Applications (SPA) with multiple views. This allows navigation between these views.</p>
 
     <p>When using Angular CLI, it looks like the @angular/router package is installed as a dependency within the package.json file.</p>
+
+    <p>Begin by creating new components, each one will act as a 'page' template. Here, we shall create a component for the 'About' page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate component About
+        </code>
+    </pre>
+
+    <p>This will generate a component named 'AboutComponent' and app.module.ts will be update automatically to import this into your Angular application.</p>
+
+    <p>We now need to import the @angular/router library package. This is not part of the Angular core itself, as Angular Router is an optional service. At the top of the app.module.ts file, import the package:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { RouterModule, Routes } from '@angular/router';
+        </code>
+    </pre>
+
+    <p>The router has no routes until you configure it. Update the app.module.ts file to look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { AboutComponent } from './about/about.component';
+import { TestComponent } from './test/test.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',     // Default path (homepage)
+    redirectTo: '/about',
+    pathMatch: 'full'
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ButtonComponent,
+    InputComponent,
+    AboutComponent,
+    TestComponent,
+    PageNotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {
+        enableTracing: true
+      }
+    )
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+        </code>
+    </pre>
+
+    <p>Create a number of other components to generate our template page files:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate component Test
+$ ng generate component PageNotFound
+        </code>
+    </pre>
+
+    <p>Within our HTML view (app.component.html), we will use the RouterOutlet directive from the router library to act as a placeholder. This is where we would like the content of the page templates to be displayed when we navigate through the application routes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+        </code>
+    </pre>
+
+    <p>We can also include links on app.component.html so we can navigate to each page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;nav&gt;
+    &lt;a routerLink="/about" routerLinkActive="active"&gt;About&lt;/a&gt;
+    &lt;a routerLink="/test" routerLinkActive="active"&gt;Test&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+        </code>
+    </pre>
 </main>
 
 </body>
