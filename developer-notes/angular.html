@@ -858,6 +858,27 @@ $ npm install firebase @angular/fire --save
         <li>src/environments/environment.prod.ts</li>
     </ul>
 
+    <p>This is how it should appear (details are not true credentials):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/environments/environments.ts
+
+export const environment = {
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyA5J66XXXXXXXXXXXX",
+    authDomain: "applicationname-b005b.firebaseapp.com",
+    databaseURL: "https://applicationname-b005b.firebaseio.com",
+    projectId: "applicationname-b005b",
+    storageBucket: "applicationname-b005b.appspot.com",
+    messagingSenderId: "1234567890"
+  }
+};
+        </code>
+    </pre>
+
     <p>Within the 'root' module, app.module.ts, we can import the AngularFireModule and environment:</p>
 
     <pre>
@@ -869,7 +890,7 @@ import { environment } from '../environments/environment';
         </code>
     </pre>
 
-    <p>You will need to add the AngularFireModule to the imports property also:</p>
+    <p>You will need to add the AngularFireModule to the imports property also (we are using 'my-app-name' as the example here):</p>
 
     <pre>
         <code>
