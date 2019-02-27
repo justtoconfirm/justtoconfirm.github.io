@@ -105,6 +105,8 @@ $ npm init -y
 
     <p>The Angular CLI development server includes LiveReload support so your browser automatically reloads the application when a source file changes. Angular CLI generates <a href="typescript.html">Typescript</a> files.</p>
 
+    <p>Any changes you make to the angular.json file will need a restart of the server to take effect.</p>
+
     <p>The official Angular documentation recommends installing the Angular CLI globally.</p>
 
     <pre>
@@ -837,10 +839,30 @@ export class HttpService {
     <h2>Angular &amp; Firebase</h2>
     <!-- https://medium.com/factory-mind/angular-firebase-typescript-step-by-step-tutorial-2ef887fc7d71 -->
     <!-- https://www.positronx.io/how-to-connect-firebase-realtime-nosql-cloud-database-with-angular-app-from-scratch/ -->
+    <!-- https://www.positronx.io/angular-7-firebase-5-crud-operations-with-reactive-forms/ -->
+    <!-- http://www.codaffection.com/angular-tutorial/angular-7-crud-with-firestore/ -->
 
     <p>Firebase is a real-time NoSQL cloud database from Google that allows you to create faster and quicker web or mobile applications and doesn't require server-side backend programming languages.</p>
 
     <p>You will need to setup a Firebase account to begin. Once your project is set up, click on your project to see your admin dashboard. Navigate to: Develop/Authentication/Web setup, click the Web setup button and a popup should appear with your Firebase credentials.</p>
+
+    <p>Within the Develop section, select 'Database' to create a new database. Set the Security rules to be 'Start in test mode' to have open permissions during testing. This will need to be revised before you put the changes into production. In Firebase, click on the 'Cloud Firebase' button within the 'Database' section and select 'Realtime Database'.</p>
+
+    <p>Don't forget to change your Firebase database rules, go to Database/Rules. Otherwise you won't be able to access the data without authentication.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "rules": {
+        ".read": true,
+        ".write": true
+    }
+}
+        </code>
+    </pre>
+
+    <p>Click the 'Publish' button once changed.</p>
 
     <p>Once the Firebase setup is done, its time to install AngularFire and Firebase from NPM (Node Package Manager).</p>
 
@@ -850,6 +872,8 @@ export class HttpService {
 $ npm install firebase @angular/fire --save
         </code>
     </pre>
+
+    <p>Its worth noting that tutorials may reference angularfire2 when referring to Firebase, but looking at the NPM documentation, this appears to have now been replaced by <a href="https://www.npmjs.com/package/@angular/fire" target="_blank" rel="noopener noreferre">@angular/fire</a></p>
 
     <p>Your Firebase credentials should be added to the environment files in your Angular project:</p>
 
@@ -904,6 +928,214 @@ import { environment } from '../environments/environment';
     </pre>
 
     <p>Now you should be set to use Firebase with your Angular App.</p>
+
+    <p>If a realtime database has been created in Firebase, we need to import AngularFireDatabaseModule into our 'root' main application module (app.module.ts). This will need to be added to the imports array also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+
+import { AppComponent } from './app.component';
+import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { TestComponent } from './test/test.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',                   // Default path (homepage)
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ButtonComponent,
+    InputComponent,
+    AboutComponent,
+    TestComponent,
+    PageNotFoundComponent,
+    HomeComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'angular'),  // 'angular' is the Firebase app name
+    AngularFireDatabaseModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {
+        enableTracing: true
+      }
+    )
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+        </code>
+    </pre>
+
+    <p>This example includes Routing code which we will explain further down the notes.</p>
+
+    <p>Next, create a seperate folder by the name of 'shared' within the the 'src/app' directory of your application. Here we will create crud.service.ts (Service) and student.ts (Interface Class).</p>
+
+    <p>Run the following command to generate student interface class for setting up data types:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd src/app
+$ mkdir shared
+$ cd shared
+
+$ ng generate interface student
+
+# Shorthand
+$ ng g i student
+        </code>
+    </pre>
+
+    <p>Once created, open the student.ts file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export interface Student {
+    $key: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    mobileNumber: Number;
+}
+        </code>
+    </pre>
+
+    <p>Now we need to generate a service for CRUD (Create Read Update Delete) in the same shared directory:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng generate service crud
+
+# Shorthand
+$ ng g s crud
+        </code>
+    </pre>
+
+    <p>This will generate a CRUD service (crud.service.ts). Open the file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { Injectable } from '@angular/core';
+import { Student } from '../shared/student';    // Student data type interface class
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';  // Firebase modules for Database, Data list and Single object
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CrudService {
+
+    studentsRef: AngularFireList<any>;  // Reference to Student data list, its an Observable
+    studentRef: AngularFireObject<any>; // Reference to Student object, its an Observable too
+
+    // Inject AngularFireDatabase Dependency in Constructor
+  constructor(private db: AngularFireDatabase) { }
+
+  // Create Student
+  AddStudent(student: Student) {
+    this.studentsRef.push({
+      firstName: student.firstName,
+      lastName: student.lastName,
+      email: student.email,
+      mobileNumber: student.mobileNumber
+    })
+  }
+
+  // Fetch Single Student Object
+  GetStudent(id: string) {
+    this.studentRef = this.db.object('students-list/' + id);
+    return this.studentRef;
+  }
+
+  // Fetch Students List
+  GetStudentsList() {
+    this.studentsRef = this.db.list('students-list');
+    return this.studentsRef;
+  }  
+
+  // Update Student Object
+  UpdateStudent(student: Student) {
+    this.studentRef.update({
+      firstName: student.firstName,
+      lastName: student.lastName,
+      email: student.email,
+      mobileNumber: student.mobileNumber
+    })
+  }  
+
+  // Delete Student Object
+  DeleteStudent(id: string) { 
+    this.studentRef = this.db.object('students-list/'+id);
+    this.studentRef.remove();
+  }
+}
+        </code>
+    </pre>
+
+    <p>We are now able to write out app logic into our components.</p>
+
+    <!-- https://www.positronx.io/angular-7-firebase-5-crud-operations-with-reactive-forms/ - PART 10 -->
+
+    <p>Open up a component, let's pick our test component (test.component.ts). We are going to import our CRUD service into our component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { CrudService } from '../shared/crud.service';   // CRUD services API
+        </code>
+    </pre>
+
+    <p>This will need to be added to the constructor also:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+constructor(
+    public crudApi: CrudService     // CRUD API services
+){}
+        </code>
+    </pre>
 
     <h2>Angular Routing</h2>
     <!-- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/ -->
