@@ -15,6 +15,7 @@
 
 <!-- http://gregfranko.com/blog/i-love-my-iife/ -->
 <!-- https://toddmotto.com/what-function-window-document-undefined-iife-really-means/ -->
+<!-- https://medium.com/@_jmoller/javascript-functions-794c46e4139c -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -38,9 +39,39 @@
 
     <p>Details relating to <a href="javascript-es6.html">Arrow functions</a> can be found within our documentation.</p>
 
+    <h2>Function Declarations vs Function Expressions</h2>
+
+    <p>There are two ways to define a function in JavaScript: function expressions and function declarations. Function expressions can be both named or unnamed (anonymous).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Named function expression
+var times = function times(a, b) {
+    return a * b;
+}
+
+// Unnamed (Anonymous) function expression
+var times = function(a, b) {
+    return a * b;
+}
+
+// Function declaration
+function foo() {
+    // Function body
+}
+        </code>
+    </pre>
+
+    <p>Remember, you can't have unnamed function declarations in JavaScript.</p>
+
     <h2>IIFE - Immediately Invoked Function Expression</h2>
 
     <p>An IIFE, or Immediately Invoked Function Expression, is a common JavaScript design pattern used by most popular libraries (jQuery, Backbone.js, Modernizr, etc) to place all library code inside of a local scope. In other words, it protects the module's scope from the environment in which it is placed.</p>
+
+    <p>An IIFE is a syntax that makes possible the execution of a function as soon as it is defined.</p>
+
+    <p>The main advantage of implementing this pattern is that IIFE's provide a "safe" environment (scope) for us to declare variables. No matter what variables we declare inside the IIFE, we know for sure that it won't collide with another variable declared in any part of our code. Think of an IIFE as a module that allows you to wrap code for new features to make sure the page works fine with or without it.</p>
 
     <pre>
         <code>
@@ -53,22 +84,25 @@
 
     <p>The IIFE is an anonymous function (it has no name attached to it) that is wrapped inside a set of parenthesis. It is called (invoked) immediately via the ( ) at the very end. By wrapping the anonymous function inside of parenthesis, the JavaScript parser knows to treat it as a function expression instead of a function declaration. A function expression can be called (invoked) immediately by using a set of parenthesis, but a function declaration cannot.</p>
 
+    <p>Since our anonymous function within our IIFE is a function expression and is not being assigned to a global variable, no global property is being created. All of the properties created inside of the function expression are scoped locally to the expression itself.</p>
+
+    <p>We can also pass parameters into immediate functions:</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
-var test = function() {
-    // This is a function expression
-};
+(function(car, brand) {
+    console.log("I just bought a " + car + " " + brand);
+}('Honda', 'Civic'));
 
-function test() {
-    // This is a function declaration
-};
+// If we pass in the Window and Document objects
+(function(w, d) {
+    // This is an IIFE
+}(window, document));
         </code>
     </pre>
 
-    <p>Remember, you can't have unnamed function declarations in JavaScript.</p>
-
-    <p>Since our anonymous function within our IIFE is a function expression and is not being assigned to a global variable, no global property is being created. All of the properties created inside of the function expression are scoped locally to the expression itself.</p>
+    <p>The keyword "this" inside of an IIFE always points to the global object, which in the case of the browser, is the window object.</p>
 
     <h3>Reduce scope lookups</h3>
 
@@ -101,6 +135,105 @@ function test() {
 (function(w, d, $) {
     // Now we can reference them in a local scope
 }(window, document, window.jQuery));
+        </code>
+    </pre>
+
+    <h2>Function Properties - Memoization</h2>
+    <!-- https://www.sitepoint.com/implementing-memoization-in-javascript/ -->
+
+    <p>Programs often waster time calling functions which recalculate the same results over and over again. Memoization is a programming technique which attempts to increase a function's performance by caching its previously computed results. Because JavaScript objects behave like arrays, they are ideal candidates to act as a cache. If the data is present, it can then be returned without executing the entire function. If the data is not cached, then the function is executed and the result is then added to the cache.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var fibonacci = (function() {
+  var memo = {};
+
+  function f(n) {
+    var value;
+
+    if (n in memo) {
+      value = memo[n];
+    } else {
+      if (n === 0 || n === 1)
+        value = n;
+      else
+        value = f(n - 1) + f(n - 2);
+
+      memo[n] = value;
+    }
+
+    return value;
+  }
+
+  return f;
+})();
+        </code>
+    </pre>
+
+    <p>In this example, we are using a self-executing anonymous function that returns an inner function, f(). This is used as the Fibonacci function. When f() is returned, its closure allows it to continue to access the "memo" object which stores all of the previous results. Each time f() is executed, it first checks to see if a result exists for the current value of "n". If it does, then the cached value is returned, otherwise, the code is executed. "memo" is defined outside of f() so that it can retain its value over multiple function calls.</p>
+
+    <p>It's worth noting that by storing old results, memoized functions consume additional memory.</p>
+
+    <h2>Immediate Object Initialization</h2>
+
+    <p>Similar to the IIFE, there is a pattern called immediate object initialization, which consists of building an object literal and initializing it with an init() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+({
+    brand: 'Honda',
+    model: 'Civic',
+    getFullCar: function() {
+        return this.brand + " " + this.model;
+    },
+    init: function() {
+        console.log(this.getFullCar(), "brum brum");
+    }
+}).init();
+        </code>
+    </pre>
+
+    <p>So here we are basically creating a new object and wrapping it around parenthesis. This tells JavaScript to treat the curly braces as an object literal instead of a code block. After the closing parenthesis, we invoke the init() function.</p>
+
+    <h2>Configuration Object Pattern</h2>
+
+    <p>During development, things change. Let's suppose we write a function which accepts two parameters:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function addPerson(first, last) {
+    ...
+}
+        </code>
+    </pre>
+
+    <p>We then need to add a further paremeter to store the birthday and then perhaps the gender:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function addPerson(first, last, gender, birthday) {
+    ...
+}
+        </code>
+    </pre>
+
+    <p>Each time we add a new parameter as things change, we need to change the function code. A better approach is to substitute all the paremeters with only one object called config. This will hold all the properties of the entity person in our case, we can the pass the object into our function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var config = {
+    first: 'Dan',
+    last: 'Jackson',
+    birthday: new Date('Aug 02 1990 03:24:00'),
+    gender: 'Male'
+}
+
+function addPerson(conf);
         </code>
     </pre>
 </main>
