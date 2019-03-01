@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Gatsby</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.gatsbyjs.org/packages/gatsby-cli/ -->
+<!-- https://codeburst.io/build-a-blog-using-gatsby-js-react-8561bfe8fc91 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Gatsby</h1>
+
+    <h2>Install</h2>
+
+    <p>You will need to have Node and NPM (Node Package Manager) installed. We can then install gatsby-cli which will help us to create and build new Gastby sites from the terminal. Open up your terminal and run the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install gatsby-cli -g
+        </code>
+    </pre>
+
+    <p>You can confirm the version of Gatsby installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ gatsby --version
+        </code>
+    </pre>
+
+    <p>Once gatsby-cli is installed, open your terminal and run the following commands:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Create the Gatsby project
+$ gatsby new myblog
+
+$ cd myblog
+$ gatsby develop
+        </code>
+    </pre>
+
+    <p>The gatsby develop command is used to start the local development server. By default, Gatsby uses post 8000</p>
+
+    <p>Open your browser once the server has started, and type: <a href="http://localhost:8000" target="_blank" rel="noopener noreferrer">http://localhost:8000</a>. You should now see the Gatsby index page.</p>
+
+    <h3>GraphQL</h3>
+
+    <p>Gatsby uses <a href="graphql.html">GraphQL</a> for querying the data from the different data resources.</p>
+
+    <p>If you open your browser and enter <a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http://localhost:8000/___graphql</a> you will see a GraphiQL interface.</p>
+
+    <p>If you open the gatsby-config.js file, we can change the title of the blog. By default, it should be 'Gatsby Default Starter', so let's change it to 'My Blog':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+  siteMetadata: {
+    title: `My Blog`,
+    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    author: `@gatsbyjs`,
+  },
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // 'gatsby-plugin-offline',
+  ],
+}
+        </code>
+    </pre>
+
+    <p>Now we have updated the title, we can write some queries by using GraphiQL.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    site {
+        siteMetadata {
+            title
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>If you hit the play button within the GraphiQL interface, you will see the same data, the page title, that was updated in the gatsby.config.js file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  "data": {
+    "site": {
+      "siteMetadata": {
+        "title": "My Blog"
+      }
+    }
+  }
+}
+        </code>
+    </pre>
+
+    <p>Now open the 'src/components/layout.js' file and on line 16 you'll see a StaticQuery which is querying for the title of the site. This data comes back from the query stores inside the data property.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/components/layout.js
+
+/**
+ * Layout component that queries for data
+ * with Gatsby's StaticQuery component
+ *
+ * See: https://www.gatsbyjs.org/docs/static-query/
+ */
+
+import React from "react"
+import PropTypes from "prop-types"
+import { StaticQuery, graphql } from "gatsby"
+
+import Header from "./header"
+import "./layout.css"
+
+const Layout = ({ children }) => (
+  &lt;StaticQuery
+    query={graphql`
+      query SiteTitleQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `}
+    render={data => (
+      &lt;&gt;
+        &lt;Header siteTitle={data.site.siteMetadata.title} /&gt;
+        &lt;div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+            padding: `0px 1.0875rem 1.45rem`,
+            paddingTop: 0,
+          }}
+        &gt;
+          &lt;main&gt;{children}&lt;/main&gt;
+          &lt;footer&gt;
+            &copy; {new Date().getFullYear()}, Built with
+            {` `}
+            &lt;a href="https://www.gatsbyjs.org"&gt;Gatsby&lt;/a&gt;
+          &lt;/footer&gt;
+        &lt;/div&gt;
+      &lt;/&gt;
+    )}
+  /&gt;
+)
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default Layout
+        </code>
+    </pre>
+
+    <h2>Add a new page</h2>
+
+    <p>We can add a new page really easily using Gatsby. Open the 'myblog' project folder in your code editor and create a new empty file. Add the following code to this file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Layout from '../components/layout'
+
+const NewPage = () => (
+    &lt;Layout&gt;
+        &lt;h1&gt;I'm a new page&lt;/h1&gt;
+    &lt;/Layout&gt;
+)
+
+export default NewPage
+        </code>
+    </pre>
+
+    <p>Save this file as 'new.js' within the 'myblog/src/pages' subdirectory.</p>
+
+    <p>In your browser manually type: <a href="http://localhost:8000/new" target="_blank" rel="noopener noreferrer">http://localhost:8000/new</a>, you will now see a 'new' route has been created by Gatsby.</p>
+
+    <h2>Adding Blog posts</h2>
+
+    <p>We are going to now add blog posts to our blog. We will use markdown (md) format to do this.</p>
+
+    <p>Begin by creating a my-firstpost folder inside the pages directory containing a file named 'index.md'. Our post should have a title, description date and image.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+---
+title: "My first Blog post"
+description: This post is related to the gatsbyjs
+date: '2018-09-26'
+image: ''
+---
+
+Don't build a website with last decade's tech. The future of the web is mobile,
+ JavaScript and APIs—the
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+when an unknown printer took a galley of type and scrambled it to make a type s
+pecimen book. It has survived not only five centuries, but also the leap into
+electronic typesetting, remaining essentially unchanged. It was popularised in
+the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+and more recently with desktop publishing software like Aldus PageMaker including
+versions of Lorem Ipsum.
+
+## Why do we use it?
+
+It is a long established fact that a reader will be distracted by the readable
+content of a page when looking at its layout. The point of using Lorem Ipsum
+is that it has a more-or-less normal distribution of letters, as opposed to using
+'Content here, content here', making it look like readable English.
+Many desktop publishing packages and web page editors now use Lorem
+Ipsum as their default model text and a search for 'lorem ipsum' will
+uncover many web sites still in their infancy. Various versions have evolved
+over the years, sometimes by accident, sometimes on purpose
+(injected humor and the like).
+        </code>
+    </pre>
+
+    <p>GraphQL will be used to query this data. We will need to install two plugins that will help us to transform the Markdown data into HTML:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install gatsby-transformer-remark
+$ npm install gatsby-source-filesystem
+        </code>
+    </pre>
+
+    <p>Open the gatsby-config.js file and update the config to include the plugins:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+  siteMetadata: {
+    title: 'My Blog',
+  },
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'gatsby-starter-default',
+        short_name: 'starter',
+        start_url: '/',
+        background_color: '#663399',
+        theme_color: '#663399',
+        display: 'minimal-ui',
+        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-transformer-remark`,
+    'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: "pages",
+      },
+    },
+  ],
+}
+        </code>
+    </pre>
+
+    <p>Restart the server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ gatsby develop
+        </code>
+    </pre>
+
+    <p>Let's query the data using GraphiQL, you should see the same data we have in our blog post markdown file (index.md):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          date
+        }
+        html
+      }
+    }
+  }
+}
+        </code>
+    </pre>
+
+    <p>Open the gatsby-node.js file. We need to add a new field to our query which is a slug field. The onCreateNode API is used to create the new node fields.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const path = require("path")
+const { createFilePath, createFileNode } = require(`gatsby-source-filesystem`);
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+    const { createNodeField } = actions
+    if (node.internal.type === `MarkdownRemark`) {
+        const slug = createFilePath({ node, getNode, basePath: `pages` })
+        createNodeField({
+            node,
+            name: `slug`,
+            value: slug,
+        })
+
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can also update our GraphiQL query:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          date
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}
+        </code>
+    </pre>
+
+    <p>This is the output we should get:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  "data": {
+    "allMarkdownRemark": {
+      "edges": [
+        {
+          "node": {
+            "frontmatter": {
+              "title": "My first Blog post",
+              "description": "This post is related to the gatsbyjs",
+              "date": "2018-09-26"
+            },
+            "fields": {
+              "slug": "/my-firstpost/"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+        </code>
+    </pre>
+
+    <p>We need to tell gatsby to use the particular template for the blog posts so that gatsby reuses this template for every blog post. First, we need to update the gatsby-node.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const path = require("path")
+const { createFilePath, createFileNode } = require(`gatsby-source-filesystem`)
+
+exports.createPages = ({ actions, graphql }) => {
+    const { createPage } = actions
+
+    const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+
+    return new Promise((resolve, reject) => {
+
+        resolve(graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+              fields{
+                  slug
+              }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+                if (result.errors) {
+                    console.log(result.errors)
+                    return reject(result.errors)
+                }
+
+                const blogTemplate = path.resolve('./src/templates/blog-post.js');
+
+                result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+                    createPage({
+                        path: node.fields.slug,
+                        component: blogTemplate,
+                        context: {
+                            slug: node.fields.slug,
+                        }, // additional data can be passed via context
+                    })
+                })
+                return
+            })
+        )
+    })
+}
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+    const { createNodeField } = actions
+    if (node.internal.type === `MarkdownRemark`) {
+        const slug = createFilePath({ node, getNode, basePath: `pages` })
+        createNodeField({
+            node,
+            name: `slug`,
+            value: slug,
+        })
+
+    }
+}
+        </code>
+    </pre>
+
+    <p>Next, we can create a blog post template (templates/blog-post.js):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import Layout from '../components/layout';
+
+function BlogPost() {
+    return (
+        &lt;Layout&gt;
+            &lt;div&gt;
+                hello post
+            &lt;/div&gt;
+        &lt;/Layout&gt;
+    )
+}
+
+export default BlogPost
+        </code>
+    </pre>
+
+    <p>Now delete the .cache folder and run:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ gatsby develop
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
