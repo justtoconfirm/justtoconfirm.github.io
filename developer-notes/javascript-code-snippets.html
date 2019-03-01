@@ -744,6 +744,69 @@ checkbox.onchange = function() {
 }
         </code>
     </pre>
+
+    <h2>Exceptions</h2>
+    <!-- https://www.sitepoint.com/exceptional-exception-handling-in-javascript/ -->
+
+    <p>When a JavaScript statement generates an error, it is said to throw an exception. Instead of proceeding to the next statement, the JavaScript interpreter checks for exception handling code. If there is no exception handler, then the program returns whatever function threw the exception. This is repeated for each function on the call stack until an exception handler is found or until the top level function is reached, causing the program to terminate.</p>
+
+    <h3>SyntaxError</h3>
+
+    <p>A "SyntaxError" is thrown when the rules of the JavaScript language are broken. JavaScript is an interpreted language, syntax errors are therefore not identified until the code is executed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+if (foo) {
+    // SyntaxError caused by missing closing bracket
+
+        </code>
+    </pre>
+
+    <h3>TypeError</h3>
+
+    <p>A "TypeError" exception occurs when a value is not of the expected type. Attempting to call a method that is non-existent in an object is a common cause of this type of exception. The following example creates an empty object named "foo" and then attempts to invoke it's bar() method which is not defined. A "TypeError" exception is thrown.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var foo = {};
+
+foo.bar();  // TypeError as bar() has not been defined.
+        </code>
+    </pre>
+
+    <h3>ReferenceError</h3>
+
+    <p>A "ReferenceError" exception is thrown when a non-existent variable is accessed. These exceptions commonly occur when an existing variable name is misspelled.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function foo() {
+    bar++;      // ReferenceError
+}
+        </code>
+    </pre>
+
+    <p>Now that we know what exceptions are, its time to learn how to stop them from crashing our programs. JavaScript handles exceptions via the "try...catch...finally" statement. This is a generic statement:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+try {
+    // Attempt to execute the code
+} catch (exception) {
+    // Handle the exception
+} finally {
+    // This code always gets executed
+}
+        </code>
+    </pre>
+
+    <p>An example to demonstrate this:</p>
+
+    
 </main>
 
 </body>

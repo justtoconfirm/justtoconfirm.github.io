@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - MongoDB</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://treehouse.github.io/installation-guides/mac/mongo-mac.html -->
+<!-- https://treehouse.github.io/installation-guides/windows/mongo-windows.html -->
+<!-- https://www.npmjs.com/package/mongodb -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>MongoDB</h1>
+
+    <p>MongoDB is a document database which belongs to a family of databases called NoSQL (Not Only SQL). In MongoDB, records are documents which behave a lot like JSON objects in JavaScript. Values in these documents can be looked up by the field's key. This is different to an SQL database like MySQL or PostgreSQL where fields correspond to columns in a table and individual records correspond to rows.</p>
+
+    <p>You can install MongoDB by using Homebrew on Mac:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ brew install mongodb
+        </code>
+    </pre>
+
+    <p>You can install MongoDB using NPM (Node Package Manager), without Homebrew, which will install MongoDB globally. You may need to install other packages to connect to the database itself.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install mongodb -g
+        </code>
+    </pre>
+
+    <p>This will install the MongoDB driver and its dependencies.</p>
+
+    <p>Here is the process you can use to install MongoDB:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir myproject
+$ cd myproject
+
+$ npm init -y
+
+$ npm install mongodb --save
+        </code>
+    </pre>
+
+    <h2>Start a MongoDB Server</h2>
+
+    <p>Here are the instructions to start a MongoDB server:</p>
+
+    <ul>
+        <li>Download the right <a href="https://www.mongodb.com/download-center" target="_blank" rel="noopener noreferrer">MongoDB</a> version</li>
+        <li>Create a database directory (in this case under /data)</li>
+        <li>Install and start a mongod process</li>
+    </ul>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mongod --dbpath=/data
+        </code>
+    </pre>
+
+    <p>You should see the mongod process start up and print some status information.</p>
+
+    <h2>Connect to MongoDB</h2>
+
+    <p>Now that the initial installation of MongoDB is done, create a new app.js file and add the following code to try out some basic CRUD operations using the MongoDB driver.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+ 
+// Connection URL
+const url = 'mongodb://localhost:27017';
+ 
+// Database Name
+const dbName = 'myproject';
+ 
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, client) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+ 
+    const db = client.db(dbName);
+ 
+    insertDocuments(db, function() {
+        client.close();
+    });
+});
+
+const insertDocuments = function(db, callback) {
+    // Get the documents collection
+    const collection = db.collection('documents');
+    // Insert some documents
+    collection.insertMany([
+        {a : 1}, {a : 2}, {a : 3}
+    ], function(err, result) {
+        assert.equal(err, null);
+        assert.equal(3, result.result.n);
+        assert.equal(3, result.ops.length);
+        console.log("Inserted 3 documents into the collection");
+        callback(result);
+    });
+}
+        </code>
+    </pre>
+
+    <p>Run your app from the terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node app.js
+        </code>
+    </pre>
+
+    <p>The application should print 'Connected successfully to server' to the console if it works.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Connected successfully to server
+Inserted 3 documents into the collection
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
