@@ -15,6 +15,7 @@
 
 <!-- https://blog.bitsrc.io/building-a-todo-app-in-react-with-firebase-and-redux-ba3ab53a671b -->
 <!-- https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/ -->
+<!-- https://www.npmjs.com/package/firebase -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -67,14 +68,16 @@ $ yarn add firebase
         </code>
     </pre>
 
+    <p>Once you've installed Firebase, we will create a new file for the Firebase setup. We can use a JavaScript class to encapsulate all Firebase functionalities, realtime database, and authentication as a well-defined API for the rest of the application. You need only instantiate the class once after which it can be used to interact with the Firebase API.</p>
+
     <p>In the home of the Firebase project, you will notice three circular icons. The first two contain code that helps you connect the firebase project to an iOS or Android app. The third one will have code that will help you to connect the Firebase project to a web app (which is what we want). Click on it and copy the: apiKey, authDomain, databaseURL, projectId, storageBucket, and messagingSenderId values. These values are unique for each project.</p>
 
-    <p>Inside your React project directory, go to the src folder and create a new file named firebase.js. Inside this file, we will add the Firebase credentials.</p>
+    <p>Inside your React project directory, go to the src folder and create a new file named firebase.js. We will use this file to add our Firebase credentials.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
-import * as firebase from 'firebase';
+// src/components/Firebase/firebase.js
 
 const config = {
     apiKey: "ENTER YOURS HERE",
@@ -83,13 +86,11 @@ const config = {
     projectId: "ENTER YOURS HERE",
     storageBucket: "ENTER YOURS HERE",
     messagingSenderId: "ENTER YOURS HERE"
-}
-
-firebase.initializeApp(config);
-const databaseRef = firebase.database().ref();
-export const todosRef = databaseRef.child("todos")
+};
         </code>
     </pre>
+
+    <p>You may want to consider having two projects in Firebase, one for development and test data, the other for production and live data.</p>
 </main>
 
 </body>

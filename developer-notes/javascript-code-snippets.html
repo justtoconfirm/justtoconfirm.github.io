@@ -27,6 +27,7 @@
 <!-- https://stackoverflow.com/questions/11167317/what-is-the-purpose-of-a-parameter-named-undefined-in-a-javascript-function -->
 
 <!-- https://medium.freecodecamp.org/prototype-in-js-busted-5547ec68872 -->
+<!-- https://codepen.io/cedricbeau/pen/BzwWJd -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -804,9 +805,31 @@ try {
         </code>
     </pre>
 
-    <p>An example to demonstrate this:</p>
+    <h2>Page Scroll</h2>
 
-    
+    <p>We can use JavaScript to trigger events on the page scroll. We can first call a function using an eventListener. On the scroll, a function is called that will display the current vertical position in pixels on the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function scrollPosition() {
+    var position = document.querySelector('#position');
+    position.innerHTML = window.scrollY + 'px';
+}
+
+// eventListener
+window.addEventListener('scroll', scrollPosition);
+        </code>
+    </pre>
+
+    <p>Here is the HTML:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div&gt;window.scrollY = &lt;span id="position"&gt;0px&lt;/span&gt;&lt;/div&gt;
+        </code>
+    </pre>
 </main>
 
 </body>
