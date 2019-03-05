@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Puppeteer</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developers.google.com/web/tools/puppeteer/ -->
+<!-- https://developers.google.com/web/tools/puppeteer/get-started -->
+<!-- https://developers.google.com/web/updates/2017/04/headless-chrome -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Puppeteer</h1>
+
+    <p>Puppeteer is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools protocol. It can be configured to use full (non-headless) Chrome or Chromium.</p>
+
+    <p>Node v6.4.0 is needed to run Puppeteer, although for async/await, you will need Node v7.6.0 or higher installed.</p>
+
+    <p>Most things that you can do manually in the browser can be done using Puppeteer.</p>
+
+    <p>You may want to create a new directory and a package.json file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir puppeteer
+$ cd puppeteer
+
+$ npm init -y
+        </code>
+    </pre>
+
+    <p>To use Puppeteer in your project, run:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install puppeteer
+
+# Yarn
+$ yarn add puppeteer
+        </code>
+    </pre>
+
+    <p>Since version 1.7.0 the puppeteer-core package can be installed. This is a version of Puppeteer that doesn't download Chromium by default. It is intended to be a lightweight version of Puppeteer for launching an existing browser installation of for connecting to a remote one. Make sure the version of puppeteer-core installed is compatible with the browser you intend to use.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install puppeteer-core
+
+# Yarn
+$ yarn add puppeteer-core
+        </code>
+    </pre>
+
+    <p>When you install Puppeteer, it downloads a recent version of Chromium that is guaranteed to worm with the API.</p>
+
+    <p>When using Puppeteer, you create an instance of Browser, open pages, and then manipulate them with Puppeteer's API. Here is a simple example script, we will name 'example.js':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteer = require('puppeteer');
+
+(async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    await page.screenshot({path: 'example.png'});
+
+    await browser.close();
+})();
+        </code>
+    </pre>
+
+    <p>To run the script, we use Node:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node example.js
+        </code>
+    </pre>
+
+    <p>Puppeteer sets an initial page size to 800px x 600px. This defines the screenshot size. The page can be customised with Page.setViewport()</p>
+
+    <h2>Headless Mode</h2>
+
+    <p>Headless Chrome shipped in Chrome 59 (Windows support since Chrome 60) and is a way to run the Chrome browser in a headless environment. This is essentially running Chrome without Chrome, bringing all the features provided by Chromium and the Blink rendering engine to the command line.</p>
+
+    <p>A headless browser is a great tool for automated testing and server environment where you don't need a visible UI shell.</p>
+
+    <p>Puppeteer launches Chromium in headless mode. To launch a full version of Chromium, set the 'headless' option when launching the browser:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const browser = await puppeteer.launch({headless: false});      // default is true
+        </code>
+    </pre>
+
+    <p>By default, Puppeteer downloads and uses a specific version of Chromium so its API is guaranteed to work out of the box. To use Puppeteer with a different version of Chrome or Chromium, pass in the executable's path when creating the Browser instance:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
