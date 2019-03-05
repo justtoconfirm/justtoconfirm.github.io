@@ -270,6 +270,15 @@ $ npm outdated
         </code>
     </pre>
 
+    <p>To update NPM for example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install npm -g
+        </code>
+    </pre>
+
     <p>The install command does not update existing packages since NPM already finds satisfying versions installed on the file system. Instead of the install command, you can use update to freshen already installed packages. When you run update, NPM checks to see if exists newer versions in the repository and installs them, You may need to use the --save or --save-dev flags to ensure the package.json file gets updated also.</p>
 
     <pre>

@@ -595,6 +595,140 @@ $ npm install eslint-plugin-jsx-a11y --save-dev
     <!-- https://jestjs.io/docs/en/manual-mocks -->
 
     <p>A mock file is used to mock data and are objects used to simulate the behavior of tools. Manual mocks are used to stub out functionality with mock data. For example, instead of accessing a remote resource like a website or database, yoy may want to create a manual mock that allows you to use fake data. This ensures that your tests will be fast and not flaky.</p>
+
+    <h2>React Router</h2>
+    <!-- https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/ -->
+
+    <p>To install React Router, you will need to use the react-router-dom package.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react-router-dom --save
+        </code>
+    </pre>
+
+    <p>React Router makes it possible to navigate from URL to URL on the client-side without making another request to a web server for every route change. The application is only requested once from a web server, after which all routing is done on the client-side.</p>
+
+    <p>Your main file (usually called something like App.js and found in your 'src' directory), will be used to setup React Router. We will implement a Navigation component. This will use the Link component of React Router to enable navigation to different routes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Navigation from '../Navigation';
+
+const App = () => (
+    &lt;Router&gt;
+        &lt;Navigation /&gt;
+    &lt;/Router&gt;
+);
+
+export default App;
+        </code>
+    </pre>
+
+    <p>Next, we can implement the Navigation component. It used the Link component to provide the navigation to different routes.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
+import * as ROUTES from '../../constants/routes';
+
+const Navigation = () => (
+    &lt;div&gt;
+        &lt;Router&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    &lt;Link to={ROUTES.SIGN_IN}&gt;Sign In&lt;/Link&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;Link to={ROUTES.LANDING}&gt;Landing&lt;/Link&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;Link to={ROUTES.HOME}&gt;Home&lt;/Link&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;Link to={ROUTES.ACCOUNT}&gt;Account&lt;/Link&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;Link to={ROUTES.ADMIN}>Admin&lt;/Link&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/Router&gt;
+    &lt;/div&gt;
+);
+
+export default Navigation;
+        </code>
+    </pre>
+
+    <p>The routes are generated from a config file. Here is that file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/constants/routes.js
+
+export const LANDING = '/';
+export const SIGN_UP = '/signup';
+export const SIGN_IN = '/signin';
+export const HOME = '/home';
+export const ACCOUNT = '/account';
+export const ADMIN = '/admin';
+export const PASSWORD_FORGET = '/pw-forget';
+        </code>
+    </pre>
+
+    <p>Each route represents a page in your application. When you run your application, you can then test that the links and routes are working as expected. You will need to run your application on a server for React Router to work.</p>
+
+    <p>When you click a link, the URL changes. Even though the URL changes, the displayed content doesn't change. The navigation is only there to enable navigation through your application, but it does not know what to render on each route. That's where the route to component mapping comes in. In your App component, you can specify which component should show up according to the corresponding route, with the help of the Route component from React Router.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+
+import Navigation from '../Navigation';
+import LandingPage from '../Landing';
+import SignUpPage from '../SignUp';
+import SignInPage from '../SignIn';
+import PasswordForgetPage from '../PasswordForget';
+import HomePage from '../Home';
+import AccountPage from '../Account';
+import AdminPage from '../Admin';
+import NotFound from '../NotFound';
+
+const App = () => (
+    &lt;Router&gt;
+        &lt;React.Fragment&gt;
+            &lt;Navigation /&gt;
+
+            &lt;Switch&gt;
+                &lt;Route exact path={ROUTES.LANDING} component={LandingPage} /&gt;
+                &lt;Route path={ROUTES.SIGN_UP} component={SignUpPage} /&gt;
+                &lt;Route path={ROUTES.SIGN_IN} component={SignInPage} /&gt;
+                &lt;Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} /&gt;
+                &lt;Route path={ROUTES.HOME} component={HomePage} /&gt;
+                &lt;Route path={ROUTES.ACCOUNT} component={AccountPage} /&gt;
+                &lt;Route path={ROUTES.ADMIN} component={AdminPage} /&gt;
+                &lt;Route component={Notfound} /&gt;
+            &lt;Switch&gt;
+        &lt;/React.Fragment&gt;
+    &lt;/Router&gt;
+);
+
+export default App;
+        </code>
+    </pre>
+
+    <p>If a route matches a path prop, the respective component will be displayed. In this example, the PassWordForgot and SignUp components are not used in the Navigation component but will be defined elsewhere.</p>
 </main>
 
 </body>

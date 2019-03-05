@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Firebase</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://blog.bitsrc.io/building-a-todo-app-in-react-with-firebase-and-redux-ba3ab53a671b -->
+<!-- https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Firebase</h1>
+
+    <p>Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011 and acquired by Google in 2014. As of October 2018, the Firebase platform has 18 products.</p>
+
+    <p>Firebase can provide us with many different features and services such as Authentication, Storage, Testing and Database. You may, for example, use Firebase to store your application's data inside the Firebase Real-time database.</p>
+
+    <p>You may want to reference other pages within the notes:</p>
+
+    <ul>
+        <li><a href="react.html">React</a></li>
+        <li><a href="angular.html">Angular</a></li>
+    </ul>
+
+    <p>To start, go to the <a href="https://console.firebase.google.com/" target="_blank" rel="nopener noreferrer">Firebase homepage</a> and click on the Create New Project or the App Project button. You will need to be logged into a Google account or Gmail. Once logged into the Firebase console, you will need to create a new project.</p>
+
+    <p>To create a Database, click on the Database tab within the Firebase console. Select 'Realtime Database' and not 'Cloud Firestore Database' and then click on the 'Create database' button.</p>
+
+    <p>Select the "Start in test mode" option and click on the 'Enable' button. We have now setup a Firebase project and created a Realtime database for our app. We now need to connect the Firebase project to our application.</p>
+
+    <h2>Firebase &amp; React</h2>
+
+    <p>To connect Firebase and React, we need to install the Firebase libray inside our React app using NPM (Node Package Manager) or Yarn. This will need to be saved as a dependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install firebase --save
+
+# Yarn
+$ yarn add firebase
+        </code>
+    </pre>
+
+    <p>In the home of the Firebase project, you will notice three circular icons. The first two contain code that helps you connect the firebase project to an iOS or Android app. The third one will have code that will help you to connect the Firebase project to a web app (which is what we want). Click on it and copy the: apiKey, authDomain, databaseURL, projectId, storageBucket, and messagingSenderId values. These values are unique for each project.</p>
+
+    <p>Inside your React project directory, go to the src folder and create a new file named firebase.js. Inside this file, we will add the Firebase credentials.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import * as firebase from 'firebase';
+
+const config = {
+    apiKey: "ENTER YOURS HERE",
+    authDomain: "ENTER YOURS HERE",
+    databaseURL: "ENTER YOURS HERE",
+    projectId: "ENTER YOURS HERE",
+    storageBucket: "ENTER YOURS HERE",
+    messagingSenderId: "ENTER YOURS HERE"
+}
+
+firebase.initializeApp(config);
+const databaseRef = firebase.database().ref();
+export const todosRef = databaseRef.child("todos")
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
