@@ -25,6 +25,8 @@
 
 <!-- https://medium.freecodecamp.org/how-to-make-your-website-clean-and-maintainable-with-graphql-13fe06098656 -->
 
+<!-- https://medium.com/@deetercesler/using-graphql-with-react-2778750a768d -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -45,7 +47,27 @@
 <main role="main" id="main">
     <h1>GraphQL</h1>
 
-    <p>GraphQL is a query language for APIs created by Facebook. Once a GraphQL service is running (typically at a URL on a web service/server), it can be sent GraphQL queries to validate and execute.</p> 
+    <p>GraphQL is a query language for APIs created by Facebook. Once a GraphQL service is running (typically at a URL on a web service/server), it can be sent GraphQL queries to validate and execute. It is an open-source technology used to make API calls to get exactly, and only, the data you want. Having a GraphQL (GQL) enabled backend is useful for differing data needs between a mobile and desktop environment.</p>
+
+    <p>You will need three pieces to make GraphQL requests from the frontend:</p>
+
+    <ul>
+        <li>A GQL-enabled server to query.</li>
+        <li>A wrapper to "translate" the GQL into a readable API request.</li>
+        <li>The actual &lt;Query&gt; in your frontend to fetch the data you want.</li>
+    </ul>
+
+    <p>Apollo is often the most popular wrapper system used to "translate" your API requests. The other known alternative is Relay, which was created by Facebook.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm react-apollo
+$ npm apollo-boost
+        </code>
+    </pre>
+
+    <p>In Apollo, the client is the API backend you're going to be reaching out to.</p>
 
     <p>One of the primary challenges with traditional REST calls is the inability of the client to request a customised set of data. In most cases, once the client requests information from the server, it either gets all or none of the fields.</p>
 
