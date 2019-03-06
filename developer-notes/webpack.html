@@ -750,6 +750,146 @@ module.exports = {
 $ npm run eslint-fix
         </code>
     </pre>
+
+    <h2>Webpack Dev Server</h2>
+    <!-- https://webpack.js.org/configuration/dev-server/ -->
+
+    <p>webpack-dev-server can be used to quickly develop an application. It provides you with a simple web server and the ability to use live reloading.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack-dev-server --save-dev
+        </code>
+    </pre>
+
+    <p>You can update package.json to have a build script that will run webpack-dev-server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "start:dev": "webpack-dev-server"
+},
+        </code>
+    </pre>
+
+    <p>This can be run using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run start:dev
+        </code>
+    </pre>
+
+    <p>Within the webpack.config.js Webpack Config file, we can set the config for the webpack-dev-server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: './dist'
+    },
+    module: {
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: ['babel-loader', 'eslint-loader']
+        }]
+    },
+};
+        </code>
+    </pre>
+
+    <p>By default webpack-dev-server will be server over HTTP, but it can optionally be served over HTTP/2 with HTTPS:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: './dist',
+        https: true
+    }
+};
+        </code>
+    </pre>
+
+    <p>Or, alternatively:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        https: true
+    }
+};
+        </code>
+    </pre>
+
+    <p>You may need to add the HTML5 History API to webpack-dev-server when using React Router:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: './dist',
+        historyApiFallback: true,
+        https: true
+    }
+};
+        </code>
+    </pre>
+
+    <p>If you want to enable Gzip compression for everything served:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: './dist',
+        historyApiFallback: true,
+        https: true,
+        compress: true
+    }
+};
+        </code>
+    </pre>
+
+    <p>We can also set the port we want to use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+module.exports = {
+    devServer: {
+        contentBase: './dist',
+        historyApiFallback: true,
+        https: true,
+        compress: true,
+        port: 9000
+    }
+};
+        </code>
+    </pre>
 </main>
 
 </body>
