@@ -27,6 +27,7 @@
 
 <!-- REALLY USEFUL -->
 <!-- https://medium.freecodecamp.org/how-to-write-simple-modern-javascript-apps-with-webpack-and-progressive-web-techniques-a30354eab214 -->
+<!-- https://webpack.js.org/plugins/html-webpack-plugin/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -402,6 +403,143 @@ module: {
         }
     ]
 }   
+        </code>
+    </pre>
+
+    <h2>Bundle Splitting</h2>
+    <!-- https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758 -->
+    <p>The idea behind bundle splitting is pretty simple. If you have one giant file, the bundle, and you change one line of code, the user must download the entire file once again. If you split this into two files, then the user would only need to download the one that changes and the browser would serve the other file from the cache.</p>
+
+    <p>It's worth noting that since bundle splitting relates to caching, it makes no difference to first time visitors.</p>
+
+    <p>When we use cache busting when referring to a bundled JavaScript file, such as main.js, what we actually mean is something like: main.12etrsd.js, where the string of characters is a hash of the contents of the file. This means a different file name is generated when the code in your application changes, thus forcing the browser to download the new file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+    entry: { 
+        main: './src/index.js',
+        another: './src/another-module.js'
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contenthash].js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }   
+};
+        </code>
+    </pre>
+
+    <p>We can use contenthash to create the hash in Webpack.</p>
+
+    <p>If your main.js file is 400KB bundle, then each time this changes, our users have to download a new 400KB bundled file. This is where splitting our code maybe better, for example into main.js and vendor.js files.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+    entry: path.resolve(__dirname, 'src/index.js'),
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contenthash].js'
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }   
+};
+        </code>
+    </pre>
+
+    <p>Webpack 4 makes an effor to do the best thing for you without you having to tell it exactly how you want to split your bundles.</p>
+
+    <p>Adding optimization.splitChunks.chunks = 'all' (as above), is a way of saying "put everything you find in the node_modules directory into a file called vendors~main.js".</p>
+
+    <p>With this basic bundle splitting in place, our Users will download a new 200KB main.js file on each visit if changes to the code occur, but only download the additional 200KB vendors.js bundle if we change the node_modules in some way. If this doesn't change, the vendors.js will not need to be downloaded, it will already have been cached (on repeat visits).</p>
+
+    <p>Our vendors.js bundle will still suffer from the same problem our original main.js bundle file suffered from - a change to one part of it means having to re-download all parts of it. We can instead have a separate file for each NPM package.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+    entry: path.resolve(__dirname, 'src/index.js'),
+    plugins: [
+        new webpack.HashedModuleIdsPlugin(),    // so that file hashes don't change unexpectedly
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contenthash].js'
+    },
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: Infinity,
+            minSize: 0,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name(module) {
+                        // get the name. E.g. node_modules/packageName/not/this/part.js
+                        // or node_modules/packageName
+                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+                        // npm package names are URL-safe, but some servers don't like @ symbols
+                        return `npm.${packageName.replace('@', '')}`;
+                    }
+                }
+            }
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }   
+};
         </code>
     </pre>
 
