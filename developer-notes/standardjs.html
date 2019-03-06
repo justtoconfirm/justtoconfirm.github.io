@@ -35,10 +35,192 @@
 <main role="main" id="main">
     <h1>StandardJS</h1>
 
+    <p><a href="https://standardjs.com/" target="_blank" rel="noopener noreferrer">StandardJS</a> is a JavaScript style guide, linter, and formatter that requires no configuration as a way to enforce consistent style in your project. StandardJS automatically formats your code to and is used to catch style issues or programmer errors early, reducing the need for these issues to be picked up in code reviews.</p>
+
+    <p>It is worth pointing out that Standard is not a web standard. It is not named ECMA/standard, only standard/standard within the repo for this reason.</p>
+
+    <p>The main benefit of using StandardJS over a tool like ESLint is the lack of config files, such as .eslintrc, that are required. Nobody wants to maintain multiple confif files for every project they work on.</p>
+
+    <p>StandardJS should be installed in your project as a devDependency using NPM (Node Package Manager).</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
+$ npm install standard --save-dev
 
+# If you want to install StandardJS globally
+$ npm install standard --global
+        </code>
+    </pre>
+
+    <p>By default, StandardJS will look for all files matching the patterns: **/*.js and **/*.jsx</p>
+
+    <p>Your package.json should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "name": "my-cool-package",
+    "devDependencies": {
+        "standard": "*"
+    },
+    "scripts": {
+        "test": "standard"
+    }
+}
+        </code>
+    </pre>
+
+    <p>When you run the build script, StandardJS is executed and style is checked automatically.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm test
+
+# Don't usually need to use the 'run' command
+$ npm run test
+        </code>
+    </pre>
+
+    <p>StandardJS will output any issues or errors in the terminal. This should avoid the need for any style feedback on a pull request again.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm test
+Error: Use JavaScript Standard Style
+    lib/torrent.js:950:11: Expected '===' and instead saw '=='.
+        </code>
+    </pre>
+
+    <h2>StandardJS Fix</h2>
+
+    <p>Some issues will be highlighted in StandardJS, so a --fix flag is built-in for maximum convenience. Most of these issues are fixable, but some errors may need to be fixed manually.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ standard --fix
+        </code>
+    </pre>
+
+    <p>Let's update the package.json:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "name": "my-cool-package",
+    "devDependencies": {
+        "standard": "*"
+    },
+    "scripts": {
+        "test": "standard",
+        "test:fix": "standard --fix"
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Ignore</h2>
+
+    <p>Certain paths such as: node_modules, coverage, vendor, *.min.js, bundle.js, and files/folder that begin with '.' like .git, are automatically ignored by StandardJS. Paths in the .gitignore file are also automatically ignored. You may need to ignore additional folder or specific files. To do that, create a standard.ignore property and add it to your package.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "name": "my-cool-package",
+    "devDependencies": {
+        "standard": "*"
+    },
+    "scripts": {
+        "test": "standard",
+        "test:fix": "standard --fix"
+    },
+    "standard": {
+        "ignore": [
+            "**/out/",
+            "/lib/select2/",
+            "/lib/ckeditor/",
+            "tmp.js"
+        ]
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Disable Warnings</h2>
+
+    <p>StandardJS uses ESLint under-the-hood and you can hide warnings as you would normally if you were using ESLint directly.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ standard --verbose
+        </code>
+    </pre>
+
+    <p>You can disable all rules on a specific line:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+file = 'I know what I am doing'     // eslint-disable-line
+        </code>
+    </pre>
+
+    <p>Disable the "no-use-before-define" rule for multiple lines:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* eslint-disable no-use-before-define */
+console.log('offending code goes here...')
+console.log('offending code goes here...')
+console.log('offending code goes here...')
+/* eslint-enable no-use-before-define */
+        </code>
+    </pre>
+
+    <h2>Global functions &amp; objects</h2>
+
+    <p>Some packages, such as Mocha, put their functions on the global object. Since these functions are not defined or required anywhere in your code, StandardJS will show a warning that you're using a variable that is not defined.</p>
+
+    <p>To let StandardJS know that certain variables are global in your code, add this to the top of your file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* global myVar1, myVar2 */
+        </code>
+    </pre>
+
+    <p>Or, add this to package.json:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "standard": {
+        "globals": [ "myVar1", "myVar2" ]
+    }
+}
+        </code>
+    </pre>
+
+    <h2>README badges</h2>
+
+    <p>When using StandardJS, you can add the README badge within your repository to let people know that your code is using the standard style.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
         </code>
     </pre>
 </main>
