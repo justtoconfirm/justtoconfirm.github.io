@@ -96,12 +96,75 @@ describe('second set', () => {
     <p>Enzyme provides the ability the "shallow" render a component, only rendering the content of the tested component and not of any child components. This is useful when testing the component in isolation and to prevent the behaviour of its child components from affecting the test. This is the recommended way to test React components (exceptions, of course, apply).</p>
 
     <h2>Shapshot testing</h2>
+    <!-- https://jestjs.io/docs/en/snapshot-testing -->
 
     <p>Jest has a snapshot testing functionality which is useful to make sure the UI does not change unexpectedly. In the first run of a snapshot test, the snapshot is stored with the test. In subsequent runs, Jest is able to compare the newly rendered component to the stored snapshot to alert you to any differences.</p>
 
+    <p>Visual regression and Snapshot testing are two distinct ways of testing your UI (User Interface) and serve different purposes. Visual regression testing tools take screenshots of web pages and compare the resulting images pixel by pixel. Snapshot testing is used to compare changes to the code using a diff algorithm.</p>
+
+    <p>This type of testing is not intended to replace unit tests but to provide additional value and ease testing and is only one of more than 20 assertions that ship with Jest.</p>
+
+    <p>Consider this example test for a link component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import Link from '../Link.react';
+import renderer from 'react-test-renderer';
+
+it('renders correctly', () => {
+    const tree = renderer
+        .create(&lt;Link page="http://www.facebook.com"&gt;Facebook&lt;/Link&gt;)
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+});
+        </code>
+    </pre>
+
+    <p>The first time this test is run, Jest creates a snapshot file that looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+exports[`renders correctly 1`] = `
+&lt;a
+    className="normal"
+    href="http://www.facebook.com"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+&gt;
+    Facebook
+&lt;/a&gt;
+`;
+        </code>
+    </pre>
+
+    <p>The snapshot artifact should be committed alongside code changes and reviewed as part of your code review process. The rule is to treat snapshots as code. The goal is to make it easy to review snapshots in pull requests and to fight against simply regenerating snapshots when the test suite fails instead of examining the root cause of their failure.</p>
+
+    <p>When a snapshot test failes after a bug has been introduced, go ahead and fix the issue and make sure your snapshot tests are passing once again. For example, let's change the adderess the Link component in our example is pointing to and cause the snapshot test to fail:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import Link from '../Link.react';
+import renderer from 'react-test-renderer';
+
+it('renders correctly', () => {
+    const tree = renderer
+        .create(&lt;Link page="http://www.instagram.com"&gt;Instagram&lt;/Link&gt;)
+        .toJSON();
+    expect(tree).toMatchSnapshot();
+});
+        </code>
+    </pre>
+
+    <p>Because the snapshot no longer matches the test because the address has changed, the snapshot test will fail. To resolve this, we will need to update our snapshot artifact for this test case.</p>
+
     <p>When using a tool like Jest, we can create snapshots to test that the rendered component matches a snapshot on a subsequent run. This is useful for knowing if your component has changed behaviour.</p>
 
-    <p>This is a quick and simple way to capture unexpected render output, but reviewers need to be careful to check differences between the old and new snapshots. Typically, we have one snapshot test for every component to ensure that it renders as expected.</p>
+    <p>This is a quick and simple way to capture unexpected render output, but reviewers need to be careful to check differences between the old and new snapshots. Typically, we have one snapshot test for every component to ensure that it renders as expected. Snapshots should be considered similar to other assertion in Jest.</p>
 
     <pre>
         <code>
@@ -168,6 +231,16 @@ exports[`BaseButton renders correctly 1`] = `
         </code>
     </pre>
 
+    <p>You can run Jest with a flag that will tell it to re-generate snapshots:</p>
+
+        <code>
+<!-- leave this line empty -->
+$ jest --updateSnapshot
+        </code>
+    </pre>
+
+    <p>As of Jest 20, snapshots in Jest are not automatically written when Jest is run in a CI system without explicitly passing --updateSnapshot.</p>
+
     <h2>Jest Mocks</h2>
 
     <p>The goal for mocking is to replace something we don't control with something we do.</p>
@@ -199,6 +272,9 @@ exports[`BaseButton renders correctly 1`] = `
     <p>Unit testing is the practice of testing certain functions and areas, or units, of our code. This gives us the ability to verify that our functions work as expected. As you begin to write more and more tests, you end up creating a suite of tests that you can run at any time during development.</p>
 
     <h2>Jest</h2>
+    <!-- https://jestjs.io/en/ -->
+
+    <p>Jest is a JavaScript testing framework that works with projects including: React, Angular, Vue, Node, Babel, and TypeScript. It has little or no config to worry about and can generate code coverage information from the entire project, if needed.</p>
 
     <p>Jest is the de facto unit testing framework for React. It is provided and used by Facebook themselves. The main advantage for using Jest is that it has zero configuration. It can be installed quickly (included with CRA - create-react-app) and is simple to use. Place you tests, files with '.js' extension, in a __tests__ folder, or name your test files with a '.spec.js' or '.test.js' extension. Whatever you prefer, Jest will find and run your tests.</p>
 
@@ -206,12 +282,71 @@ exports[`BaseButton renders correctly 1`] = `
 
     <h3>Install Jest</h3>
 
-    <p>Install Jest as a devDependency using NPM (Node Package Manager).</p>
+    <p>Install Jest as a devDependency using NPM (Node Package Manager). We have some notes within </p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
 $ npm install jest --save-dev
+        </code>
+    </pre>
+
+    <p>Jest 24 dropped support for Babel 6, so its recommended to upgrade to Babel 7 which is actively maintained.</p>
+
+    <p>You can generate code coverage by adding the --coverage flag. Jest can then collect code coverage information from entire projects including untested files.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test --coverage
+        </code>
+    </pre>
+
+    <p>Jest also supports <a href="typescript.html">TypeScript</a>, via <a href="webpack.html">Babel</a>. You will need to install Babel and install the @babel/preset-typescript package via NPM (Node Package Manager) or Yarn.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-typescript --save-dev
+        </code>
+    </pre>
+
+    <p>This will need to be added to the list of presets within your babelrc config file.</p>
+
+    <p>Create a simple file named sum.test.js that will contain a simple test, as an example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+    expect(sum(1, 2)).toBe(3);
+});
+        </code>
+    </pre>
+
+    <p>This test used expect and toBe to test that two values were exactly identical. These are known as Matchers.</p>
+
+    <p>You will need to update package.json to run Jest:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "scripts": {
+        "test": "jest"
+    }
+}
+        </code>
+    </pre>
+
+    <p>Finally, run Jest and the test will output in your terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
         </code>
     </pre>
 
