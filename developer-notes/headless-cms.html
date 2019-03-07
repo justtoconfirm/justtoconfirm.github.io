@@ -16,6 +16,7 @@
 <!-- https://www.cmswire.com/web-cms/13-headless-cmss-to-put-on-your-radar/ -->
 <!-- https://blog.daftcode.pl/wordpress-as-a-headless-cms-b4144c626695 -->
 <!-- https://www.smashingmagazine.com/2018/10/headless-wordpress-decoupled/ -->
+<!-- https://www.agiledrop.com/blog/short-introduction-headless-drupal -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -44,6 +45,29 @@
     <p>The lack of a front-end means that developers can use any front-end technology they wish to present the content. Many headless CMSs have been purpose built for IoT (Internet of Things) applications.</p>
 
     <p>Using a headless CMS should mean that our front-end will consume the API of the CMS via <a href="ajax.html">AJAX</a> requests. The simplest way of doing AJAX in JavaScript is using the <a href="api.html">XMLHttpRequest</a> object or the Fetch API.</p>
+
+    <!-- https://www.gatsbyjs.org/docs/headless-cms/ -->
+    <p>A core feature of <a href="gatsby.html">Gatsby</a> is its ability to load data from anywhere. This is what makes Gatsby more powerful than many other static site generators. Many CMS's now support a "headless" mode. This allows content creators to manage their content through a familiar admin interface but allows content to be accessed via API endpoints, allowing for a fully customised frontend experience. Gatsby incorporates GraphQL and React to build the frontend.</p>
+
+    <!-- https://www.gatsbyjs.org/docs/sourcing-from-wordpress/ -->
+    <p>To simplify this, Gatsby will pull data from the backend "headless" CMS and we can generate static front-ends.</p>
+
+    <h3>Decoupling Drupal</h3>
+    <!-- https://www.agiledrop.com/blog/short-introduction-headless-drupal -->
+
+    <p>The concept of 'headless' aims to separate the front-end, the way the site is displayed from Drupal, from the backend of the CMS (Content Management System). What it essentially means is that all the services and the content management are handled by Drupal while the core user experience (UX) or the way the site is displayed in a browser, is controlled via a JavaScript front-end framework such as Angular, or a library such as React. Ths is achieved via Drupal's RESTful API service.</p>
+
+    <p>Headless Drupal can be known as a way of using Drupal as a service where the content management and the logic of the site are provided by Drupal and the front-end is done using JavaScript (React, for example).</p>
+
+    <p>With Drupal 8, RESTful services have been implemented into the Drupal core. Drupal uses JSON, one of the most widely adopted API formats, for its web services.</p>
+
+    <p>Since the logic of the website and the content management is handled by Drupal, redesigning a site visually would only require tinkering with the front-end. This frees up the front-end team to work on the way the site looks, in-turn, freeing up the back-end team to handle the site's backend architecture.</p>
+
+    <h3>Headless Django</h3>
+    <!-- https://www.django-cms.org/en/blog/2017/03/14/headless-django-cms/ -->
+    <!-- https://www.storyblok.com/tp/add-a-headless-cms-to-python-django-in-5-minutes -->
+
+    <p>Django is a Python framework and DjangoCMS is a CMS that makes use of this framework. At present DjangoCMS works on the assumption that it will serve its content directly to a web browser. The DjangoCMS team are working on the ability to serve content via RESTful APIs to any suitable system, such as a React or Angular front-end.</p>
 
     <h3>Decoupling WordPress</h3>
 

@@ -31,6 +31,8 @@
 <!-- https://jestjs.io/docs/en/configuration.html -->
 <!-- https://www.npmjs.com/package/enzyme-to-json -->
 
+<!-- https://medium.com/codeclan/mocking-es-and-commonjs-modules-with-jest-mock-37bbb552da43 -->
+
 <!-- Selenium WebDriver e2e tests -->
 <!-- https://www.smashingmagazine.com/2018/04/feature-testing-selenium-webdriver/ -->
 
@@ -242,8 +244,11 @@ $ jest --updateSnapshot
     <p>As of Jest 20, snapshots in Jest are not automatically written when Jest is run in a CI system without explicitly passing --updateSnapshot.</p>
 
     <h2>Jest Mocks</h2>
+    <!-- https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c -->
 
     <p>The goal for mocking is to replace something we don't control with something we do.</p>
+
+    <p>Mocking is a technique to isolate test subjects by replacing dependencies with objects that you can control and inspect. A dependency can be anything your subject depends on, but is typically a module that the subject imports. For JavaScript, there are great mocking libraries available such as sinon. Jest provides mocking out of the box.</p>
 
     <p>For JavaScript, there are great mocking libraries available like Sinon, Jest also provides mocking out of the box.</p>
 
@@ -273,10 +278,23 @@ $ jest --updateSnapshot
 
     <h2>Jest</h2>
     <!-- https://jestjs.io/en/ -->
+    <!-- https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675 -->
 
     <p>Jest is a JavaScript testing framework that works with projects including: React, Angular, Vue, Node, Babel, and TypeScript. It has little or no config to worry about and can generate code coverage information from the entire project, if needed.</p>
 
+    <p>Jest acts as a test runner, assertion library, and mocking library.</p>
+
     <p>Jest is the de facto unit testing framework for React. It is provided and used by Facebook themselves. The main advantage for using Jest is that it has zero configuration. It can be installed quickly (included with CRA - create-react-app) and is simple to use. Place you tests, files with '.js' extension, in a __tests__ folder, or name your test files with a '.spec.js' or '.test.js' extension. Whatever you prefer, Jest will find and run your tests.</p>
+
+    <p>Jest will look for tests in any of the following places:</p>
+
+    <ul>
+        <li>Files with .js suffix in __tests__ folders.</li>
+        <li>Files with .test.js suffix.</li>
+        <li>Files with .spec.js suffix.</li>
+    </ul>
+
+    <p>It is conventional to put each test file next to the code or component it is testing.</p>
 
     <p>Jest acts as a test runner, assertion library, and mocking library. Jest also provides Snapshot testing. This is the ability to create a rendered 'snapshot' of a component to compare it to a previously saved 'snapshot'. The test will fail if the two do not match. Snapshots will be saved for you beside the test file that created them in an auto-generated __snapshots__ folder.</p>
 
@@ -327,6 +345,28 @@ test('adds 1 + 2 to equal 3', () => {
     </pre>
 
     <p>This test used expect and toBe to test that two values were exactly identical. These are known as Matchers.</p>
+
+    <p>Here is a further test example that uses Enzyme and Chai:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import { expect } from 'chai'
+
+import Component from './HelpAndSupportCard'
+
+describe('&lt;HelpAndSupportCard /&gt;', () => {
+    //const tree = shallow(&lt;Component {...props} /&gt;)
+    const tree = shallow(&lt;Component /&gt;)
+
+    it('renders correctly', () => {
+        expect(tree.debug()).to.matchSnapshot()
+    })
+})
+        </code>
+    </pre>
 
     <p>You will need to update package.json to run Jest:</p>
 

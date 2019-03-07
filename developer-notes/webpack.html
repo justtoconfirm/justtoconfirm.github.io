@@ -29,6 +29,9 @@
 <!-- https://medium.freecodecamp.org/how-to-write-simple-modern-javascript-apps-with-webpack-and-progressive-web-techniques-a30354eab214 -->
 <!-- https://webpack.js.org/plugins/html-webpack-plugin/ -->
 
+<!-- SASS/SCSS -->
+<!-- https://github.com/webpack-contrib/sass-loader#extracting-style-sheets -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -542,6 +545,83 @@ module.exports = {
 };
         </code>
     </pre>
+
+    <h2>path.join vs path.resolve</h2>
+    <!-- https://stackoverflow.com/questions/39110801/path-join-vs-path-resolve-with-dirname/39111164 -->
+
+    <p>When creating a Webpack config file (webpack.config.js), you may come across path.join() and path.resolve(). Both look similar, but they have key differences. You will first need to require path in your Webpack config:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+path.join(__dirname, '/dist')
+        </code>
+    </pre>
+
+    <p>And here is the Webpack config file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+    entry: path.resolve(__dirname, 'src/index.js'),
+        </code>
+    </pre>
+
+    <p>You can see from the entry property that we are using path.resolve() in this example.</p>
+
+    <p>For instance:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+path.join('app/libs/oauth', '/../ssl');
+        </code>
+    </pre>
+
+    <p>Resolves to: app/libs/ssl</p>
+
+    <p>path.resolve(), on the other hand, will resolve to an absolute path.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+path.resolve('bar', '/foo');
+        </code>
+    </pre>
+
+    <p>Resolves to /foo since that is the first absolute path that can be constructed. However, if you run:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+path.resolve('/bar/bae', '/foo', 'test');
+        </code>
+    </pre>
+
+    <p>The path returned will be /foo/test again because that is the first absolute path that can be formed from right to left.</p>
+
+    <p>Using __dirname is the absolute path to the directory containing the source file. When you use path.resolve() or path.join(), they will return the same result if you give the same path following __dirname, so it reality, it doesn't matter it's just whichever one you prefer.</p>
+
+    <h3>Summary</h3>
+    <!-- https://stackoverflow.com/questions/35048686/difference-between-path-resolve-and-path-join-invocation -->
+
+    <p>The two methods deal with segments starting with / in very different ways. join will just concatenate it with the previous argument, resolve will treat this as the root directory and ignore all previous paths.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+path.join('/a', '/b');      // Outputs: '/a/b'
+
+path.resolve('/a', '/b');   // Outputs: '/b'
+        </code>
+    </pre>
+
+    <p>path.resolve() will always result in an absolute URL and will use your working directory as a base to resolve the path. But as __dirname is an absolute path, it doesn't really matter.</p>
 
     <h2>Code Splitting</h2>
 
