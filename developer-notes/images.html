@@ -18,6 +18,7 @@
 <!-- https://www.sitepoint.com/five-techniques-lazy-load-images-website-performance/ -->
 <!-- https://deanhume.com/lazy-loading-images-using-intersection-observer/ -->
 <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Adding_vector_graphics_to_the_Web -->
+<!-- https://medium.com/@allusis/our-html-friend-named-picture-a8cf755a3332 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -99,9 +100,36 @@
 
     <p>HTML5 introduced the &lt;picture&gt; element to add more flexibility when specifying image resources. The &lt;picture&gt; element contains a number of &lt;source&gt; elements, each referring to different image sources. This way, the browser can choose the image that best fits the current view/device.</p>
 
+    <p>The &lt;picture&gt; element accepts multiple image sources and empowers the browser to decide which image is appropriate based on the user's conditions. These conditions are often network speeds, or their screen resolution.</p>
+
     <p>You should always specify an &lt;img&gt; element as the last child element of the &lt;picture&gt; element. The &lt;img&gt; element is used by browsers that do not support the &lt;picture&gt; element, or if none of the &lt;source&gt; tags match.</p>
 
     <p>Here is the current support for the &lt;picture&gt; element according to <a href="https://caniuse.com/#feat=picture" target="_blank" rel="noopener noreferrer">caniuse.com</a></p>
+
+    <p>While it is perfectly valid HTML5, not all browsers have implemented it fully. This is where the &lt;img&gt; element comes in. It is used when the browser doesn't understand what &lt;picture&gt; is.</p>
+
+    <p>&lt;source&gt; elements are created for each separate image that you would want, or conditionally want, to render inside of the &lt;picture&gt; element. You can add as many of these as you require.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;picture&gt;
+    &lt;source media="(min-width: 64rem)" srcset="img/sudden-valley.jpg"&gt;
+    &lt;source srcset="img/sudden-valley_sm.jpg"&gt;
+    &lt;img src="img/sudden-valley.jpg" /&gt;
+&lt;/picture&gt;
+        </code>
+    </pre>
+
+    <h3>Source attributes</h3>
+
+    <ul>
+        <li>media - set a min/max width or height.</li>
+        <li>srcset - set the path to the image and what width to use.</li>
+        <li>type - set a MIME type for the image. If the user agent doesn't support the type, it's skipped.</li>
+    </ul>
+
+    <p>The &lt;picture&gt; element is the container for the &lt;source&gt; and &lt;img&gt; elements. When the browser sees &lt;picture&gt; it determines which one makes the most sense for your user, based on media queries or other source attributes.</p>
 
     <h2>SVG - Scalable Vector Graphics</h2>
 

@@ -37,6 +37,7 @@
 <!-- https://www.smashingmagazine.com/2018/04/feature-testing-selenium-webdriver/ -->
 
 <!-- https://medium.com/javascript-scene/unit-testing-react-components-aeda9a44aae2 -->
+<!-- https://medium.com/@rossbulat/test-driven-development-in-react-with-jest-and-enzyme-2a6cf2cc3071 -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -105,7 +106,13 @@ describe('second set', () => {
 
     <p>Some things are easier to test that others. Unit tests work well for pure functions, those which given the same input, always return the same output. It takes discipline and practice to train yourself to use TDD (Test Driven Development), if you don't write your tests first you may rob yourself of the best features of unit testing.</p>
 
-    <p>In React, it is bette to favour pure components for UI code. Provide some props, but always render the same component. If you need state from the app, you can wrap those pure components with a container component which manages state and side-effects.</p>
+    <p>TDD promotes developing with intent rather than procedure. React components already do a great job at compartmentalising logic, making them well suited to TDD. This is essentially treating testing as part of the development process, rather than a job to do at the end of a sprint.</p>
+
+    <p>Consider an example project, a navigation app with a &lt;SideBar /&gt; and &lt;TopBar /&gt; component, both of which use an &lt;Item /&gt; component for navigation links. By separating each component we are isolating the logic as well as the tests associated with each component.</p>
+
+    <p>My API can also be completely separate from other components within my main app project. The app.test.js file is specifically for API calls, which will no doubt include various mock functions to serve fake API calls.</p>
+
+    <p>In React, it is better to favour pure components for UI code. Provide some props, but always render the same component. If you need state from the app, you can wrap those pure components with a container component which manages state and side-effects.</p>
 
     <p>Here is a pure component in React:</p>
 
@@ -128,6 +135,32 @@ export default Hello;
     <!-- https://jestjs.io/docs/en/snapshot-testing -->
 
     <p>Jest has a snapshot testing functionality which is useful to make sure the UI does not change unexpectedly. In the first run of a snapshot test, the snapshot is stored with the test. In subsequent runs, Jest is able to compare the newly rendered component to the stored snapshot to alert you to any differences.</p>
+
+    <p>Snapshot testing is a useful feature to make sure that your markup does not unexpectedly change and to make sure that render() outputs what you intended it to. A snapshot file is automatically generated when the following method is called within your test:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+toMatchSnapshot()
+        </code>
+    </pre>
+
+    <p>This is often in conjunction with expect().</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+expect(&lt;Component /&gt;).toMatchSnapshot();
+        </code>
+    </pre>
+
+    <p>Snapshots are designed to be added to source control, so commit your snapshot files with your code updates.</p>
+
+    <p>Remember, the first time you run the test, a snapshot file will be generated within a __snapshots__ directory under your test directories. All files of which will be named &lt;test_name&gt;.snap.js</p>
+
+    <p>The package used to convert JavaScript objects into string representations within these .snap files is pretty-format.</p>
+
+
 
     <p>Visual regression and Snapshot testing are two distinct ways of testing your UI (User Interface) and serve different purposes. Visual regression testing tools take screenshots of web pages and compare the resulting images pixel by pixel. Snapshot testing is used to compare changes to the code using a diff algorithm.</p>
 
@@ -260,8 +293,9 @@ exports[`BaseButton renders correctly 1`] = `
         </code>
     </pre>
 
-    <p>You can run Jest with a flag that will tell it to re-generate snapshots:</p>
+    <p>You can run Jest with a flag that will tell it to re-generate snapshots. This is useful after you have updated your UI (User Interface) and wish to update your snapshots after:</p>
 
+    <pre>
         <code>
 <!-- leave this line empty -->
 $ jest --updateSnapshot
@@ -270,16 +304,149 @@ $ jest --updateSnapshot
 
     <p>As of Jest 20, snapshots in Jest are not automatically written when Jest is run in a CI system without explicitly passing --updateSnapshot.</p>
 
+    <h2>Simulating Events</h2>
+    <!-- https://medium.com/@rossbulat/test-driven-development-in-react-with-jest-and-enzyme-2a6cf2cc3071 -->
+
+    <p>Simulating events such as clicks and inputting text can be done within our tests using Enzyme's simulate() method. For example, let's say I wanted to test the result of clicking a button inside a component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+it('Should update form submitted state with button click', () => {
+    const component = mount(&lt;RegistrationForm /&gt;);
+    component
+        .find('button#submit_form')
+        .simulate('click');
+  
+    expect(component.state('form_submitted')).toEqual(true);
+    component.unmount();
+});
+        </code>
+    </pre>
+
+    <p>If we wanted to add input into form fields:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+component
+    .find('#name')
+    .simulate('change', { target: { value: 'Dan' } });
+        </code>
+    </pre>
+
+    <p>Similarly, we can also toggle checkboxes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+component
+    .find('#agreetoterms')
+    .simulate('change', {target: {checked: true}});
+        </code>
+    </pre>
+
     <h2>Jest Mocks</h2>
     <!-- https://medium.com/@rickhanlonii/understanding-jest-mocks-f0046c68e53c -->
 
     <p>The goal for mocking is to replace something we don't control with something we do.</p>
+
+    <p>As the name suggests, Mock functions allow us to re-implement a function, stripping away logic for the purpose of capturing calls to the function, testing parameters and testing return values.</p>
+
+    <p>The simplest way to use mock functions is to simply define an empty function and put it in place of an actual function within your tests. The benefit of doing this is tracking whether the function was actually called. We can define such a function by using:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+jest.fn()
+        </code>
+    </pre>
+
+    <p>In this example we would replace an onClick handler with an empty mock function and test whether it has been called:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+//define empty mock function 
+const fnClick = jest.fn();
+
+describe('click events', () => {
+    it('button click should show menu', () => {
+
+        //replace actual function with mock function
+        const component = shallow(&lt;MyButton onClick={fnClick} /&gt;);
+    
+        //simulate a click
+        component
+            .find('button#btn_open_menu')
+            .simulate('click');
+    
+        //check if function was called
+        expect(fnClick).toHaveBeenCalled();
+    });
+});
+        </code>
+    </pre>
+
+    <p>Here are a few more tests:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Test how many times the function is called
+expect(fnClick.mock.calls.length).toBe(3);
+
+// Test the values passed as arguments
+// The second argument of the third call to the function was 'yes'
+expect(mockCallback.mock.calls[2][1]).toBe('yes');
+
+// Test return values
+// The return value of the second call to the function was true
+expect(mockCallback.mock.results[1].value).toBe(true);
+        </code>
+    </pre>
 
     <p>Mocking is a technique to isolate test subjects by replacing dependencies with objects that you can control and inspect. A dependency can be anything your subject depends on, but is typically a module that the subject imports. For JavaScript, there are great mocking libraries available such as sinon. Jest provides mocking out of the box.</p>
 
     <p>For JavaScript, there are great mocking libraries available like Sinon, Jest also provides mocking out of the box.</p>
 
     <p>The simplest way to create a Mock Function instance is with jest.fn().</p>
+
+    <p>Modules can also be mocked using jest.mock(). Think of database calls or API requests that are slow and fragile - things that could break easily. Jest provides a simple example of mocking the axios module to overwrite API calls.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// import the module to mock
+import axios from 'axios';
+
+// wrap the module in jest.mock()
+jest.mock('axios');
+
+test('should fetch users', () => {
+    const users = [{first_name: 'Ross'}];
+    const resp = {data: users};
+
+    // append .mockResolvedValue(&lt;return value&gt;) to the module method
+    axios.get.mockResolvedValue(resp);
+
+    // carry out your test
+    return expect(resp.data).toEqual(users));
+});
+        </code>
+    </pre>
+
+    <h2>Debug Components</h2>
+
+    <p>It is worth mentioning that if you wish to log a component's render() output in HTML, use the debug() method of a wrapper:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const component = shallow(&lt;MyComponent /&gt;);
+console.log(component.debug());
+        </code>
+    </pre>
 
     <h2>TDD (Test Driven Development)</h2>
 

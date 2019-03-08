@@ -42,6 +42,26 @@
 
     <p>AJAX stands for Asynchronous JavaScript and XML. It is the use of the XMLHttpRequest (XHR) object to communicate with servers to send and receive information in various formats, including JSON, XML, and HTML. The most appealing characteristic of AJAX is its "asynchronous" nature, meaning it can communicate with the server, exchange data, then update the page without having to refresh the page. This allows you to make requests to the server without reloading the page and receive/work with data from the server.</p>
 
+    <!-- https://medium.freecodecamp.org/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa -->
+    <p>AJAX is the traditional way to make an asynchronous HTTP request. Data can be sent using the HTTP POST method and received using the HTTP GET method. We often initialize the XMLHttpRequest method (often called XHR), to make an HTTP call in AJAX, specify the URL endpoint and set the HTTP method, such as GET. Finally, we use the open() method to tie the HTTP method and URL endpoint together and call the send() method to fire off the request.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const http = new XMLHttpRequest();
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
+http.open("GET", url);
+http.send();
+
+http.onreadystatechange = (e) => {
+    console.log(http.responseText);
+}
+        </code>
+    </pre>
+
+    <p>If you run the above code in your browser console, it will return an Array of data in JSON format.</p>
+
     <p>AJAX (Asynchronous JavaScript and XML) enables requests to be made after the initial page load. Remember, we use GET to retrieve data from a source. Here we have created boilerplate code to see how to make an XHR (XMLHttpRequest) GET request.</p>
 
     <pre>
@@ -200,6 +220,150 @@ const renderJsonResponse = (res) => {
     rawJson = JSON.stringify(rawJson).replace(/,/g, ", \n")
     // manipulates responseField to show the returned JSON.
     responseField.innerHTML = `&lt;pre&gt;${rawJson}&lt;/pre&gt;`
+}
+        </code>
+    </pre>
+
+    <h2>Axios</h2>
+
+    <p>Axios is an open source library for making HTTP requests and provides many great features. Axios can be included in your project through NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install axios --save
+        </code>
+    </pre>
+
+    <p>You will then need to import it:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import axios from 'axios'
+        </code>
+    </pre>
+
+    <p>And here is how you would make a HTTP "GET" request using Axios:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
+axios.get(url)
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+        </code>
+    </pre>
+
+    <h2>Angular HTTPClient</h2>
+
+    <p>Angular has its own HTTP module that works with <a href="angular.html">Angular</a> apps. It uses the RxJS library to handle asynchronous requests and provides many options to perform the HTTP requests.</p>
+
+    <p>You will first need to create an Angular app. The first thing we then need to do is to import HttpClientModule in app.module.ts</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+// HttpModule
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        // HttpModule
+        HttpClientModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+
+export class AppModule { }
+        </code>
+    </pre>
+
+    <p>Then, we have to create a service to handle the requests. You can easily generate a service using Angular CLI:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ng g service FetchdataService
+        </code>
+    </pre>
+
+    <p>Next, we need to import HttpClient in our fetchdataService.ts service and inject it inside the constructor.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { Injectable } from '@angular/core';
+// Import HttpClient
+import { HttpClient } from '@angular/common/http';
+
+@Injectable()
+export class FetchdataService {
+    constructor(private http:HttpClient) { }
+
+    getData(url:string) {
+        return this.http.get(url)
+    }
+}
+        </code>
+    </pre>
+
+    <p>In the app.component.ts file, import the fetchdataService:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { FetchdataService } from './fetchdata.service';
+        </code>
+    </pre>
+
+    <p>Finally, we call the service and run it:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// app.component.ts
+
+import { Component ,OnInit} from '@angular/core';
+import { FetchdataService } from './fetchdata.service';
+import { Observable } from 'rxjs/Observable';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    providers:[FetchdataService]
+})
+export class AppComponent implements OnInit{
+    posts=[''];
+    title='Angular HttpClient';
+    Url = "https://jsonplaceholder.typicode.com/posts"
+
+    // inject FetchdataService service
+    constructor(private srv: FetchdataService) { }
+
+    getPosts() : void {
+        this.srv.getData(this.Url)
+        .subscribe(
+            data => this.posts.push(...data),
+            error=> console.log(error)
+        )
+    }
+ 
+    ngOnInit(){
+        this.getPosts()
+    }
 }
         </code>
     </pre>

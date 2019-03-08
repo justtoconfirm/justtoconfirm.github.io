@@ -41,6 +41,9 @@
 <!-- https://css-tricks.com/intro-firebase-react/ -->
 <!-- https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/ -->
 
+<!-- Props and State -->
+<!-- https://medium.com/@rubenleija/master-the-art-of-react-state-and-props-in-5-minutes-533831db26b3 -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -756,6 +759,8 @@ import $ from 'jquery';
 
     <p>We would often use jQuery to grab elements from the DOM (Document Object Model) every time you want a new JavaScript feature. By contrast, React attempts to limit interaction with the DOM to the bare minimum. It uses a so-called Virtual DOM, a lightweight copy of the DOM that is not seen, to only update the elements that need to change and nothing else. If we mix jQuery with React, we will be making more calls to the DOM than is necessary, losing some of the speed that React provides.</p>
 
+    <h3>Click Events</h3>
+
     <p>One of the most popular uses for jQuery is to control click events, like this:</p>
 
         <code>
@@ -839,6 +844,65 @@ const App = () => {
 }
 
 export default App;
+        </code>
+    </pre>
+
+    <h3>Change of State</h3>
+
+    <p>jQuery has a lot of methods related to adding, deleting and updating the classes of HTML elements: addClass(), removeClass(), toggleClass() and more. In React, we can create a simple stateful component (using class instead of function) with an initial state of 'skin'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            skin: 'night'
+        };
+
+        this.changeSkin = this.changeSkin.bind(this);
+    }
+
+    changeSkin() {
+        const newState = this.state;
+        this.state.skin === 'night' ? newState.skin = 'day' : newState.skin = 'night';
+        this.setState(newState);
+    }
+
+    render() {
+        return (
+            &lt;div className={this.state.skin}&gt;
+                &lt;p onClick={this.changeSkin}&gt;Change Skin&lt;/p&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+        </code>
+    </pre>
+
+    <p>A quirk of React class syntax is that anytime we add a new method, we need to bind it in the constructor().</p>
+
+    <p>This code will simply toggle the CSS classes between 'night' and 'day' each time the 'Change Skin' text is clicked.</p>
+
+    <p>You could create a simple stateless Button component that takes onClick as a prop, then within the template/component, we define the method - such as changeSkin() - that we want to call when the button gets clicked.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+const Button = (onClick, children) => {
+    return (
+        &lt;Button onClick={onClick}&gt;{children}&lt;/Button&gt;
+    )
+}
+
+export default Button;
         </code>
     </pre>
 </main>
