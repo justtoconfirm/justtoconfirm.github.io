@@ -729,6 +729,118 @@ export default App;
     </pre>
 
     <p>If a route matches a path prop, the respective component will be displayed. In this example, the PassWordForgot and SignUp components are not used in the Navigation component but will be defined elsewhere.</p>
+
+    <h2>React &amp; jQuery</h2>
+    <!-- https://medium.com/@bretcameron/react-intro-for-developers-who-know-jquery-1e9dd65863a8 -->
+
+    <p>You can include jQuery within your React project, if you wish to. First you will need to have Node and NPM (Node Package Manager) installed to setup jQuery:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install jquery --save
+        </code>
+    </pre>
+
+    <p>When you've done that, you cna import the $ symbol from jQuery at the top of any React file, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import $ from 'jquery';
+        </code>
+    </pre>
+
+    <p>By using jQuery in React, you are sacrificing several of React's core benefits. Most of what you want to achieve using jQuery can be done using React, it just requires a new way of thinking.</p>
+
+    <p>We would often use jQuery to grab elements from the DOM (Document Object Model) every time you want a new JavaScript feature. By contrast, React attempts to limit interaction with the DOM to the bare minimum. It uses a so-called Virtual DOM, a lightweight copy of the DOM that is not seen, to only update the elements that need to change and nothing else. If we mix jQuery with React, we will be making more calls to the DOM than is necessary, losing some of the speed that React provides.</p>
+
+    <p>One of the most popular uses for jQuery is to control click events, like this:</p>
+
+        <code>
+<!-- leave this line empty -->
+$('.app').click(function() {
+    alert('I Clicked Something!');
+});
+        </code>
+    </pre>
+
+    <p>In React, we prefer to achieve this effect using the onClick event. We can begin by creating a simple stateless React component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+const App = () => {
+    return (
+        &lt;div className="App"&gt;
+            &lt;p&gt;Click Me&lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default App;
+        </code>
+    </pre>
+
+    <p>We enabled click events by first defining a function to handle the click event, handleClick(), with an alert. This can be placed within our component before the return statement.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+const App = () => {
+
+    const handleClick = () => {
+        alert("Click Successful!");
+    };
+
+    return (
+        &lt;div className="App"&gt;
+            &lt;p&gt;Click Me&lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default App;
+        </code>
+    </pre>
+
+    <p>Now, we just need to simply pass this function to an onClick event on our paragraph tag, using curly braces to signify that we're leaving JSX and going back to JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+onClick={handleClick}
+        </code>
+    </pre>
+
+    <p>And here is our component code in full:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+const App = () => {
+
+    const handleClick = () => {
+        alert("Click Successful!");
+    };
+
+    return (
+        &lt;div className="App"&gt;
+            &lt;p onClick={handleClick}&gt;Click Me&lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default App;
+        </code>
+    </pre>
 </main>
 
 </body>
