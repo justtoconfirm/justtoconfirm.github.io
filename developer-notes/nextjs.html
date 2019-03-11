@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - NextJS</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://hackernoon.com/next-js-react-server-side-rendering-done-right-f9700078a3b6 -->
+<!-- https://nextjs.org/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>NextJS</h1>
+
+    <p>NextJS (Next.js) is a minimalistic framework for server-rendered <a href="react.html">React</a> applications. NextJS was open-sourced on 25th October 2016.</p>
+
+    <p><strong>Client side rendering - </strong> Normally, when you use React, your browser will download a minimal HTML page and the content will be filled in by JavaScript.</p>
+
+    <p><strong>Server side rendering - </strong> The initial content is generated on the server, so your browser can download a page with HTML content already in place. Updates to the content are still handled in the browser.</p>
+
+    <p>Think about how webapps are created with PHP. You create some files, write PHP code, then simply deploy it. We don't have to worry about routing much and the app is rendered on the server by default. That's exactly what we do with Next.js. Instead of PHP, we build the app with JavaScript and React.</p>
+
+    <p>To begin using NextJS in your project, you just need to install it as an NPM (Node Package Manager) module.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install next --save
+        </code>
+    </pre>
+
+    <p>You may need to also have React and React DOM installed and to create a directory for this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir next-react
+$ cd next-react
+$ npm init -y
+$ npm install react react-dom next --save
+$ mkdir pages
+        </code>
+    </pre>
+
+    <p>You may need to add a build script within your package.json:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "dev": "next"
+}
+        </code>
+    </pre>
+
+    <p>You may eventually have a package.json file like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "dependencies": {
+    "next": "^7.0.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1"
+  }
+}
+        </code>
+    </pre>
+
+    <p>If everything is setup correctly, we should have React, Webpack, hot module loading, routing, server-side rendering, pre-fetching and much more, right out of the box.</p>
+
+    <p>NextJS will show us a 404 page without any pages, so this is why we can create a pages directory in our project setup. Let's create a component inside our pages directory named index.js.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch pages/index.js
+        </code>
+    </pre>
+
+    <p>The page can be a very simple React component, but with Next we don't need to import React within the component. Each time we make a change to the component, you can see hot reloading in action.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// pages/index.js
+
+const Index = () => (
+    &lt;div&gt;
+        &lt;h1&gt;Hello Next&lt;/h1&gt;
+        &lt;p&gt;I'm already in love with you!&lt;/p&gt;
+    &lt;/div&gt;
+);
+
+export default Index;
+        </code>
+    </pre>
+
+    <p>Our React app is now being server side rendered.</p>
+
+    <p>In this example, we have two files that are components that represent pages:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// pages/about.js
+
+import Link from 'next/link'
+
+export default () => (
+    &lt;div&gt;
+        &lt;p&gt;This is the about page&lt;/p&gt;
+        &lt;Link href='/'&gt;&lt;a&gt;Go home&lt;/a&gt;&lt;/Link&gt;
+    &lt;/div&gt;
+)
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// pages/index.js
+
+import Link from 'next/link'
+
+export default () => (
+    &lt;div&gt;
+        &lt;h1&gt;Hello Next.js 👋&lt;/h1&gt;
+        &lt;Link href='/about'&gt;&lt;a&gt;About&lt;/a&gt;&lt;/Link&gt;
+    &lt;/div&gt;
+)
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

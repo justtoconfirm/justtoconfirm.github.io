@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - D3</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.freecodecamp.org/learn-d3-js-in-5-minutes-c5ec29fb0725 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>D3.js</h1>
+
+    <p>D3.js is a JavaScript library used to manipulate documents based on data. It uses HTML, CSS, and SVG to create visual representations of data which can be viewed in any modern browser. The library also provides some features for interactions and animations.</p>
+
+    <p>D3.js can simply be included within your HTML file inside a &lt;script&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src='https://d3js.org/d3.v4.min.js'&gt;&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>Using D3.js, we can manipulate the DOM (Document Object Model) meaning we can select elements and apply various transformations on them.</p>
+
+    <p>Let's start off with a simple example where we'll use D3 to select and change the colour and the font size of a heading tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Learn D3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Today is a beautiful day!!&lt;/h3&gt;
+
+&lt;script src='https://d3js.org/d3.v4.min.js'&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    d3.select('h3').style('color', 'darkblue');
+    d3.select('h3').style('font-size', '24px');
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Here we are simply chaining the select() method on the d3 object and then following up with the style() method.</p>
+
+    <p>To display data, we need to understand data binding. This is one of D3's best features. Using it, we can populate or manipulate DOM elements in real-time. We want to create list elements using a data object:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script&gt;
+    var fruits = ['apple', 'mango', 'banana', 'orange'];
+    d3.select('ul')
+        .selectAll('li')
+        .data(fruits)
+        .enter()
+        .append('li')
+        .text(function(d) { return d; });
+&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>In our JavaScript code above, D3 first selects the &lt;ul&gt; and any &lt;li&gt; elements inside using the select() and selectAll() methods. We then pass in the data using the data() method and use the enter() method, which works like a loop. Everything after this point will be executed once per item in the fruits array.</p>
+
+    <p>SVG (Scalable Vector Graphics) is a way to render graphical elements and images in the DOM. As SVG is vector-based, it's both lightweight and scalable. D3 uses SVG to create all its visuals and its core building blocks of the library.</p>
+
+    <h2>Generate a Bar Chart</h2>
+
+    <p>We begin by creating an SVG tag directly in our HTML.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;svg width="200" height="500"&gt;&lt;/svg&gt;
+        </code>
+    </pre>
+
+    <p>Next, we'll write the JavaScript we need in order to render the bar chart in our &lt;svg&gt; tag.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var data = [80, 120, 60, 150, 200];
+
+var barHeight = 20;
+
+var bar = d3.select('svg')
+          .selectAll('rect')
+          .data(data)
+          .enter()
+          .append('rect')
+          .attr('width', function(d) {  return d; })
+          .attr('height', barHeight - 1)
+          .attr('transform', function(d, i) {
+            return "translate(0," + i * barHeight + ")";
+          });
+        </code>
+    </pre>
+
+    <p>In this example, the values in the data array represent numbers we will use to render our bar chart. After selecting the SVG and rectangle elements, we pass our dataset using the data() method and call enter() to start looping on the data.</p>
+</main>
+
+</body>
+</html>

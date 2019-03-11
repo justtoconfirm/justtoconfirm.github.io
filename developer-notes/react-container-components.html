@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React Container Components</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://medium.com/teamsubchannel/react-component-patterns-e7fb75be7bb0 -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Container Components</h1>
+
+    <p>Components let you split the UI (User Interface) into independent, reusable pieces, and think about each piece in isolation. The first time you install React (npm install react), you get a component and its APIs. Similar to JavaScript functions, a component accepts input called "props" (properties) and returns React elements which describe what the user interface (UI) should look like. This is why React is referred to as a declarative API because you tell it what you want the UI to look like and React takes care of the rest.</p>
+
+    <p>Here are the five APIs you get when you install React:</p>
+
+    <ul>
+        <li>render</li>
+        <li>state</li>
+        <li>props</li>
+        <li>context</li>
+        <li>lifecycle events</li>
+    </ul>
+
+    <p>Components can be categorised between stateful and stateless. Stateful component typically utilise stateful APIs: render, state, and lifecycle events. Stateless components use: render, props, and context.</p>
+
+    <p>This is where we introduce component patterns. These are best use practices that were introduced to split data or logic layers and the UI or presentational layer. By doing this, you can create more reusable components that can be used to compose complext UI's. Common component patterns include:</p>
+
+    <ul>
+        <li>Container</li>
+        <li>Presentational</li>
+        <li>Higher ordrr components (HOC)</li>
+        <li>Render callback</li>
+    </ul>
+
+    <h2>What are Containers&#63;</h2>
+
+    <p>Containers are your data or logic layer and utilize stateful APIs. Using lifecycle events, you can connect to a state management store such as Redux and pass down data as props to child components.</p>
+
+    <p>Here is an example of a Container and Presentational components:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Presentational
+const GreetingCard = (props) =&gt; {
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;{props.name}&lt;/h1&gt;
+        &lt;/div&gt;
+    )
+}
+
+// Container
+class Greeting extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            name: "",
+        };
+    }
+
+    componentDidMount() {
+        // AJAX
+        this.setState(() =&gt; {
+            return {
+                name: "William",
+            };
+        });
+    }
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;GreetingCard name={this.state.name} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+        </code>
+    </pre>
+
+    <p>As you can see, we've removed the presentational part from the Greeting class component into it's own functional stateless component.</p>
+</main>
+
+</body>
+</html>

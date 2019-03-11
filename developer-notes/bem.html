@@ -15,6 +15,7 @@
 
 <!-- https://www.smashingmagazine.com/2018/06/bem-for-beginners/ -->
 <!-- http://getbem.com/naming/ -->
+<!-- https://seesparkbox.com/foundry/bem_by_example -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -35,6 +36,16 @@
 
 <main role="main" id="main">
     <h1>BEM (Block Element Modifier)</h1>
+
+    <p>BEM, which stands for Block Element Modifier, is a naming convention standard for CSS class names. It is immensely useful in writing CSS that is easier to read, understand, and scale. BEM is really useful in communicating purpose or function and component structure.</p>
+
+    <p>A BEM class name includes up to three parts:</p>
+
+    <ul>
+        <li>Block: The outermost parent element of the component is defined as the block.</li>
+        <li>Element: Inside of the component may be one or more children, called elements.</li>
+        <li>Modifier: Either a block or element may have a modifier.</li>
+    </ul>
 
     <h2>Block &amp; Element</h2>
 
@@ -177,6 +188,165 @@
 .form__search {}
 .form__submit {}
 .form__submit--disabled {}
+        </code>
+    </pre>
+
+    <h2>Examples of BEM in action</h2>
+
+    <p>Here are a few examples of BEM in action.</p>
+
+    <h3>Component with No Elements or Modifiers</h3>
+
+    <p>Simple components may only employ a single element and thus a single class would be the block.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button class="btn"&gt;Button&lt;/button&gt;
+
+.btn {
+    display: inline-block;
+    color: blue;
+}
+        </code>
+    </pre>
+
+    <h3>Component with a Modifier</h3>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button class="btn btn--secondary"&gt;Button&lt;/button&gt;
+
+.btn {
+    display: inline-block;
+    color: blue;
+}
+
+.btn--secondary {
+    color: green;
+}
+        </code>
+    </pre>
+
+    <p>Don't use the modifier class by itself. The modifier class is intended to augment, not replace, the base class.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- DON'T DO THIS --&gt;
+&lt;button class="btn--secondary"&gt;Button&lt;/button&gt;
+
+.btn--secondary {
+    display: inline-block;
+    color: green;
+}
+        </code>
+    </pre>
+
+    <h3>Components with Elements</h3>
+
+    <p>More complex components will have child elements. One of the purposes behind BEM is to keep specificity low and consistent. Don't omit class names from the child elements in your HTML. One goal of BEM is for most selectors to use just a single class name. To avoid you to use a selector with increased specificity.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- DO THIS --&gt;
+&lt;figure class="photo">
+    &lt;img class="photo__img" src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption class="photo__caption"&gt;Look at me!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo { }
+.photo__img { }
+.photo__caption { }
+
+
+&lt;!-- DON'T THIS --&gt;
+&lt;figure class="photo">
+    &lt;img src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption&gt;Look at me!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo { }
+.photo img { }
+.photo figcaption { }
+        </code>
+    </pre>
+
+    <p>BEM is not intended to communicate structural depth. A BEM class name representing a child element in the component should only include the base/block name and the one element name. Note that in the example below, photo__caption__quote is an incorrect usage of BEM, while photo__quote is more appropriate.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- DO THIS --&gt;
+&lt;figure class="photo">
+    &lt;img class="photo__img" src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption class="photo__caption"&gt;
+        &lt;blockquote class="photo__quote"&gt;
+            Look at me!
+        &lt;/blockquote&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo { }
+.photo__img { }
+.photo__caption { }
+.photo__quote { }
+
+
+&lt;!-- DON'T THIS --&gt;
+&lt;figure class="photo">
+    &lt;img class="photo__img" src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption class="photo__caption&gt;
+        &lt;blockquote class="photo__caption__quote"&gt;
+            Look at me!
+        &lt;/blockquote&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo { }
+.photo__img { }
+.photo__caption { }
+.photo__caption__quote { }
+        </code>
+    </pre>
+
+    <h3>Element with a Modifier</h3>
+
+    <p>In some cases, you may want to cary a single element in a component. In those cases, add a modifier to the element instead of the component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;figure class="photo">
+    &lt;img class="photo__img photo__img--framed" src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption class="photo__caption photo__caption--large"&gt;
+        Look at me!
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo__img--framed { }
+.photo__caption--large { }
+        </code>
+    </pre>
+
+    <h3>Component Modifier</h3>
+
+    <p>If you find yourself consistently modifying elements of the same component together in the same way, then consider adding the modifier to the base of the component and adjusting the styles for each child element based on that one modifier. This will increase specificity, but it makes modifiying components that much simpler.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;figure class="photo photo--highlighted">
+    &lt;img class="photo__img" src="me.jpg" alt="Image of me" /&gt;
+    &lt;figcaption class="photo__caption"&gt;
+        Look at me!
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo--highlighted .photo__img { }
+.photo--highlighted .photo__caption { }
         </code>
     </pre>
 </main>

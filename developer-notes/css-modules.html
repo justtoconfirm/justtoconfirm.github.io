@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - CSS Modules</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://www.javascriptstuff.com/what-are-css-modules/ -->
+<!-- https://blog.pusher.com/css-modules-react/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>CSS Modules</h1>
+
+    <p>A CSS Modules is a CSS file in which all class names are scoped locally by default. With CSS Modules, your CSS class names become similar to local variables in JavaScript. A CSS Module is just a CSS file but is called a 'CSS Module' if you plan on using it with a CSS Modules compiler. A CSS Module goes into the compiler and CSS comes out the other side.</p>
+
+    <p>With CSS Modules, we can modularize things in React and add some structure to the flow.</p>
+
+    <p>CSS is a language of globals. Global CSS can easily rewrite styling in other classes. A change in one class can ultimately change the UI on multiple components. Generally, nobody wants that to happen.</p>
+
+    <p>Often when developing an app, we have styling that becomes redundant or no longer in use. This can, over time, result in large file sizes. With CSS Modules, you only import the styles you need, therefore, reducing redundancy and increase our ability to spot CSS that is not being used.</p>
+
+    <p>When working with Modular CSS in React, we can work in a few ways:</p>
+
+    <ul>
+        <li>Using CSS as JavaScript Objects.</li>
+        <li>Using CSS Modules.</li>
+    </ul>
+
+    <h2>CSS as JavaScript Objects</h2>
+
+    <p>Writing CSS as JavaScript objects are easier in the context of React as it ensures you do not have to stray too far from JavaScript to apply CSS styling. CSS written as JavaScript objects can be leveraged directly in React components by using the style attribute on components.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// lets have some CSS in js: style.css.js
+const button = {
+    backgroundColor: '#202020',
+    padding: '12px',
+    borderRadius: '2px',
+    width: '100%'
+}
+export default { button }
+
+//importing and using in a JSX
+import styles from './style.css.js'
+
+const button = () => {
+    return &lt;button style={styles.button}&gt;Vanity Button&lt;/button&gt;
+}
+        </code>
+    </pre>
+
+    <p>This allows us to have styling that is unique to that element.</p>
+
+    <h3>CSS Modules</h3>
+
+    <p>CSS Modules are not very different from the method above, however, with CSS Modules, we can write our usual CSS code and import that into our component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// lets have some CSS in JS: style.css
+.button {
+    background-color: #202020;
+    padding: 12px;
+    border-radius: 2px;
+    width: 100px;
+}
+
+// Importing and using in a jsx
+import styles from './style.css'
+import React from 'react';
+
+export default class Button extends React.Component {
+    render(){
+        return (
+            &lt;button className={styles.button}&gt;Vanity Button&lt;/button&gt;
+        )
+    }
+}
+        </code>
+    </pre>
+
+    <p>This example will not work on it's own, you will need to setup a CSS loader for the CSS to be applied when using a CSS Module. This is likely to be a CSS loader applied to the <a href="webpack.html">Webpack</a> config file (webpack.config.js).</p>
+
+    <p>Both examples allow us to style our components, but the CSS styling will be output with our JavaScript code within our application.</p>
+</main>
+
+</body>
+</html>
