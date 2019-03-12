@@ -30,6 +30,7 @@
 
 <!-- https://jestjs.io/docs/en/configuration.html -->
 <!-- https://www.npmjs.com/package/enzyme-to-json -->
+<!-- https://blog.logrocket.com/testing-with-jest-from-zero-to-hero-85ce0e9cc953 -->
 
 <!-- https://medium.com/codeclan/mocking-es-and-commonjs-modules-with-jest-mock-37bbb552da43 -->
 
@@ -38,6 +39,7 @@
 
 <!-- https://medium.com/javascript-scene/unit-testing-react-components-aeda9a44aae2 -->
 <!-- https://medium.com/@rossbulat/test-driven-development-in-react-with-jest-and-enzyme-2a6cf2cc3071 -->
+<!-- https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2019-264e19514d0a -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -59,7 +61,147 @@
 <main role="main" id="main">
     <h1>Testing &amp; TDD (Test Driven Development)</h1>
 
+    <p>In short, if you want to "just get started", you can't go wrong with Jest. Jest is a testing framework created and maintained by Facebook. It is based on Jasmine and comes with assertions, spies, and mocks. Additional libraries can be added should you need unique features from them.</p>
+
+    <p>Like Jasmine, Jest creates test globals by default so there is no need to require them. This can be considered as bad practice since it makes your tests less flexible and controllable, but it makes your life easier.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// "describe" is in the global scope already
+// so no these require lines are **not required**:
+// import { describe } from 'jest'
+// import { describe } from 'jasmine'
+
+describe('calculator', function() {
+    ...
+})
+        </code>
+    </pre>
+
+    <p>Jest provides you with an easy way to mock modules, for example a service can be mocked to resolve a promise instead of making a network request.</p>
+
+    <p>Snapshot testing (jest-snapshot) is developed and maintained by Facebook and can be used with almost any other testing framework.</p>
+
+    <p>Jest includes code coverage built-in that is based on Istanbul.</p>
+
+    <p>Jest can also be used with Angular and not just React. Angular suggests using Jasmine over Jest.</p>
+
+    <p>Mocha is the most used testing library. Unlike Jasmine (and Jest), it is used with third-party assertions, mocking, and spying tools (usually Sinon and Chai). Mocha is a little harder to set up due to the number of libraries required, but is more flexible and open to extensions.</p>
+
+    <p>Functional tests can be run using a tool such as Selenium. It is not written specifically for testing and can control a browser for many purposes by exposing a driver that controls the browsers using add-ins and browser extensions.</p>
+
+    <p>Selenium WebDriver can be accessed in many different ways and using a variety of programming languages. The WebDriver can be imported into your testing framework and tests can be written as part of it.</p>
+
+    <p>Nightwatch has its own implementation of the Selenium WebDriver. It provides its own testing framework and test server, assertions, and tools.</p>
+
+    <p>Cypress is used to inject tests into a website. Cypress.io runs itself in the browser and controls your tests. Cypress only controls Chrome initiall and is not headless.</p>
+
+    <p>Puppeteer is a NodeJS library, developed by Google, that provides a convenient NodeJS API to control Chrome or Headless Chrome. Headless Chrome is just a regular Chrome 59+ version that is launched with the --headless flag. When Chrome is run in headless mode, it exposes an API to control it.</p>
+
+    <h2>E2E (End-to-End) Testing</h2>
+
+    <p>End-to-End (E2E) or UI (User Interface) testing (sometimes often called Functional tests), is a methodology used to test whether the flow of an application is performing as expected from start to finish. It is testing of your application from the user endpoint. Only the UI is exposed to the user.</p>
+
+    <p>This type of testing is to test how scenarios function on the product itself, by controlling the browser or the website. These tests usually ignore the internal structure of the application entirely and looks at them from the outside like on a black box.</p>
+
     <p>The State of JavaScript 2017 survey states that the two most popular JavaScript testing frameworks are Mocha and Jasmine.</p>
+
+    <p>Tests can be run in the browser by creating an HTML page with the test libraries and tests included as JavaScript files.</p>
+
+    <p>Tests can be also executed in NodeJS by importing tests and dependent libraries. jsdom is commonly used with NodeJS to simulate a browser-like environment using pure JavaScript. It provides window, document, body, location, cookies and whatever you get when you run your JavaScript inside a browser, but renders nothing real.</p>
+
+    <p>Headless mode uses a real browser and can be used to take screenshots, unlike jsdom.</p>
+
+    <h3>Testing Structure</h3>
+
+    <p>Usually refers to the organisation of your tests. Tests are usually organised in a BDD (Behaviour Driven Development) structure. It often looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+describe('calculator', function() {
+    // describes a module with nested "describe" functions
+    describe('add', function() {
+        // specify the expected behavior
+        it('should add 2 numbers', function() {
+            //Use assertion functions to test the expected behavior
+            ...
+        })
+    })
+})
+        </code>
+    </pre>
+
+    <h3>Assertion functions</h3>
+
+    <p>Check if the results a test returns are as expected - Chai, Jasmine, Jest, Cypress.</p>
+
+    <p>Assertion functions are used to make sure that tested variables contain the expected value. They often look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Chai expect (popular)
+expect(foo).to.be.a('string')
+expect(foo).to.equal('bar')
+
+// Jasmine expect (popular)
+expect(foo).toBeString()
+expect(foo).toEqual('bar')
+
+// Chai assert
+assert.typeOf(foo, 'string')
+assert.equal(foo, 'bar')
+
+// Unexpected expect
+expect(foo, 'to be a', 'string')
+expect(foo, 'to be', 'bar')
+        </code>
+    </pre>
+
+    <h3>Mocks, Spies, and Stubs</h3>
+
+    <p>Used to isolate certain parts of tests and catch their side effects - Sinon, Jasmine, Enzyme, Jest.</p>
+
+    <p>Spies provide us with information about functions, for example, how many times were the functions called. Spies are used in integration tests to make sure that the side effects of a process are as expected.</p>
+
+    <p>Mocks or Fakes are used to fake certain modules or behaviors to test different parts of a process. Sinon, for example, can fake a server to ensure offline, fast and expected responses when testing a certain flow.</p>
+
+    <h3>Snapshots</h3>
+
+    <p>Compare snapshots of component and data structures to make sure changes from previous runs are intended - Jest &amp; Ava</p>
+
+    <p>Snapshot testing is when you compare a data structure to an expected one. It doesn't actually render and take a screenshot of the component, but is saves it as internal data in a separate file. When the test runs, if the snapshot differs from the last one, the developer is prompted to confirm that the change is intended.</p>
+
+    <h3>Code Coverage</h3>
+
+    <p>Generate reports to know how much of the code is covered by your tests - Istanbul, Jest, Blanket</p>
+
+    <p>Jest seems to provide an option to view code coverage. Istanbul is another tool that will tell you how much of your code is covered with unit tests. It will report on statement, line, function and branch coverage in percentages so you will understand better what is left to cover.</p>
+
+    <h3>Browser Controllers</h3>
+
+    <p>Simulate user actions for Functional tests - Nightwatch, Nightmare, Phantom, Casper, Cypress</p>
+
+    <p>Browsers can be controlled by drivers that are installed on top of them. They control the browser using different methods, such as this example from Selenium:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Node.js <=> WebDriver <=> FF/Chrome/IE/Safari drivers <=> browser
+        </code>
+    </pre>
+
+    <h3>Visual Regression</h3>
+
+    <p>Tools used to compare your site to previous versions visually by using image comparison techniques.</p>
+
+    <h3>Setting up Testing</h3>
+
+    <p>Start by choosing the testing structure and syntax you like, assertion functions library and decide how you want to run the tests.</p>
+
+    <p>Some frameworks such as Jest, Jasmine, and Cypress provide all these out of the box. Some of them provide only some of the functionality and a combination of libraries maybe needed (mocha + chai + sinon).</p>
 
     <h2>Group tests using describe()</h2>
 
@@ -96,11 +238,71 @@ describe('second set', () => {
 
     <p>Just as you could do with the setup, you can perform something after each test runs using afterEach().</p>
 
+    <h2>Karma</h2>
+
+    <p>Karma hosts a test server with a special web page to run your tests in the page's environment. This page can be run across many browsers and browser-like environments.</p>
+
+    <h2>Sinon</h2>
+
+    <p>Sinon works with any unit testing framework and can be used to test spies, stubs and mocks for JavaScript.</p>
+
+    <h2>Cucumber</h2>
+
+    <p>Cucumber helps with writing tests in BDD by dividing them between acceptance criteria files using the Gherkin syntax and the tests that correspond to them. Tests can be written in a variety of languages that are supported by the framework, including JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// like-article.feature
+
+Feature: A reader can share an article to social networks
+    As a reader
+    I want to share articles
+    So that I can notify my friends about an article I liked
+Scenario: An article was opened
+    Given I'm inside an article
+    When I share the article
+    Then the article should change to a "shared" state
+        </code>
+    </pre>
+
+    <p>And here is the test:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// like-article.steps.js
+
+module.exports = function() {
+    this.Given(/^I'm inside an article$/, function(callback) {
+        // functional testing tool code
+    })
+  
+    this.When(/^I share the article$/, function(callback) {
+        // functional testing tool code
+    })
+    
+    this.Then(/^the article should change to a "shared" state$/, function(callback) {     
+        // functional testing tool code
+    }) 
+}
+        </code>
+    </pre>
+
     <h2>Shallow Rendering</h2>
 
     <p>Enzyme provides the ability the "shallow" render a component, only rendering the content of the tested component and not of any child components. This is useful when testing the component in isolation and to prevent the behaviour of its child components from affecting the test. This is the recommended way to test React components (exceptions, of course, apply).</p>
 
     <h2>Unit Testing</h2>
+
+    <p>Unit tests are the testing of individual units, like functions or classes, by supplying input and making sure the output is as expected.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+expect(fn(5)).to.be(10)
+        </code>
+    </pre>
 
     <p>Unit testing is a great discipline which can lead to 40-80% reduction in production bug density and can help to improve you application architecture and maintainability. Unit testing also provides quick feedback to tell you whether or not your changes worked. This can replace the use of console.log() and clicking around in the UI (User Interface) to test changes.</p>
 
@@ -131,6 +333,25 @@ export default Hello;
 
     <p>These kinds of components are generally very easy to test. You'll need a way to select the component adn you'll need to know the expected outcome.</p>
 
+    <h2>Integration Tests</h2>
+
+    <p>Testing processes across several units to achieve their goals.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const flyDroneButton = document.getElementById('fly-drone-button')
+
+flyDroneButton.click()
+
+assert(isDroneFlyingCommandSent())
+
+//or even
+drone.checkIfFlyingViaBluetooth()
+    .then(isFlying => assert(isFlying))
+        </code>
+    </pre>
+
     <h2>Shapshot testing</h2>
     <!-- https://jestjs.io/docs/en/snapshot-testing -->
 
@@ -159,8 +380,6 @@ expect(&lt;Component /&gt;).toMatchSnapshot();
     <p>Remember, the first time you run the test, a snapshot file will be generated within a __snapshots__ directory under your test directories. All files of which will be named &lt;test_name&gt;.snap.js</p>
 
     <p>The package used to convert JavaScript objects into string representations within these .snap files is pretty-format.</p>
-
-
 
     <p>Visual regression and Snapshot testing are two distinct ways of testing your UI (User Interface) and serve different purposes. Visual regression testing tools take screenshots of web pages and compare the resulting images pixel by pixel. Snapshot testing is used to compare changes to the code using a diff algorithm.</p>
 
@@ -857,6 +1076,37 @@ describe.only('&lt;Button/&gt;', () => {
     <p>Automate repetitive online tasks with Selenium WebDriver. This can be used to automate tasks such as login forms.</p>
 
     <p>Selenium is commonly used in Java. All major browsers provide their own implementation of the WebDriver interface. For example, should you want to use Chrome, you needed to get the WebDriver implementation of Chrome, ChromeDriver.</p>
+
+    <h2>How to write tests</h2>
+    <!-- https://www.taniarascia.com/unit-testing-in-javascript/ -->
+
+    <p>Test-driven development (TDD) is an approach to development that consists of writing test, followed by production code. Refactoring is then done, as needed. The tests are written to fail initially and the developer writes code to fulfill the requirements of the test, so that they then pass.</p>
+
+    <p>Testing frameworks, such as Mocha, are often used as JavaScript testing frameworks.</p>
+
+    <p>NodeJS (also known as Node or Node.js) also has a built-in assert module to test of true is equal to true. We can write a simple test like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const assert = require('assert');
+
+it('should return true', () => {
+    assert.equal(true, true);
+});
+        </code>
+    </pre>
+
+    <p>This function is using ES6 arrow functions and implicit returns.</p>
+
+    <p>This test can be run in the command prompt, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm test
+        </code>
+    </pre>
 </main>
 
 </body>

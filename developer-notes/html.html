@@ -311,6 +311,40 @@ rel="noopener noreferrer"
 &lt;/detail&gt;
         </code>
     </pre>
+
+    <h2>&lt;button&gt;</h2>
+
+    <p>&lt;button&gt; elements are much easier to style than &lt;input&gt; elements and you can add inner HTML content or use ::after and ::before pseudo-elements to achieve complext rendering, while &lt;input&gt; only accepts a text value attribute.</p>
+
+    <p>If your buttons are not to submit form data to a server, be sure to set their type attribute to button, otherwise they will try to submit form data and load a nonexistent response. If you need to submit data, set the type to be 'submit'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button type="button"&gt;Button&lt;/button&gt;
+&lt;button type="submit"&gt;Button&lt;/button&gt;
+        </code>
+    </pre>
+
+    <p>It is not recommended, but if you need to use an element in-place of a button, set the role attribute to be "button" for accessibility standards to be met.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button type="button"&gt;Button&lt;/button&gt;
+
+&lt;div role="button"&gt;>Fake Button&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>You may want to add a name attribute to a &lt;button&gt; element also. This is submitted with the form data.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button name="button" type="button"&gt;Button&lt;/button&gt;
+        </code>
+    </pre>
 </main>
 
 </body>

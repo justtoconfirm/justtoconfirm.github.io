@@ -14,6 +14,7 @@
 <body>
 
 <!-- https://reactjs.org/docs/components-and-props.html -->
+<!-- https://www.robinwieruch.de/react-pass-props-to-component/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -36,6 +37,8 @@
     <h1>React: Components</h1>
 
     <p>Components let you split the UI (User Interface) into independent, reusable pieces. Components are like JavaScript functions. They accept properties (props) and return React elements describing what should appear on the screen.</p>
+
+    <p>Basically, props are used to pass data from component to component.</p>
 
     <p>Component names should always start with a capital letter.</p>
 
@@ -148,6 +151,89 @@ class Welcome extends React.Component {
 }
         </code>
     </pre>
+
+    <p>And here is another example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class App extends Component {
+    render() {
+        const greeting = 'Welcome to React';
+
+        return (
+            &lt;div&gt;
+                &lt;Greeting greeting={greeting} /&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+
+const Greeting = props => &lt;h1&gt;{props.greeting}&lt;/h1&gt;;
+
+export default App;
+        </code>
+    </pre>
+
+    <p>Since you will always find the props in the function signature, you can destructure the props early in the function. One would call it React prop destructuring.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Before
+const Greeting = props => &lt;h1&gt;{props.greeting}&lt;/h1&gt;;
+
+// After
+const Greeting = ({ greeting }) => &lt;h1&gt;{greeting}&lt;/h1&gt;;
+        </code>
+    </pre>
+
+    <p>As you may notice, props are only passed from top to bottom. There is no way to pass props up to a parent component.</p>
+
+    <p>Props are read-only. Passing only props from component to component doesn't make the component interactive, because nothing is there to change the props. This is where React state comes into play which can be changed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react';
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isShow: true,
+        };
+    }
+
+    toggleShow = () => {
+        this.setState(state => ({ isShow: !state.isShow }));
+    };
+
+    render() {
+        return (
+            &lt;div&gt;
+                {this.state.isShow ? &lt;Greeting greeting={greeting} /&gt; : null}
+
+                &lt;button onClick={this.toggleShow} type="button"&gt;
+                    Toggle Show
+                &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+
+const Greeting = ({ greeting }) => &lt;h1&gt;{greeting}&lt;/h1&gt;;
+
+export default App;
+        </code>
+    </pre>
+
+    <p>Regardless of passing props or state to a component, the component just receives the data as props. It doesn't differentiate between props or state. Everythng incoming is props and everything managed by the component itself is state.</p>
+
+    <p>The children prop in React can be used for composing React components into each other rather than using inheritance.</p>
 
     <h2>Building a Component</h2>
 
@@ -647,6 +733,8 @@ class App extends Component {
 export default App
         </code>
     </pre>
+
+    <p>We can now look to use React Hooks in-place of classes to apply state.</p>
 
     <h3>Spread Operators</h3>
 
