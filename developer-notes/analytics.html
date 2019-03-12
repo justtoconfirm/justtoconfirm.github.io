@@ -18,6 +18,7 @@
 <!-- https://www.hotjar.com/getstarted -->
 <!-- https://addyosmani.com/blog/performance-budgets/ -->
 <!-- https://moz.com/learn/seo/conversion-rate-optimization -->
+<!-- https://blog.hubspot.com/marketing/google-tag-manager-guide -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -136,6 +137,10 @@
 
     <p>Google Tag Manager (GTM) allows you to manage your tags without editing your code. GTM gives you the ability to add and update your own tags for conversion tracking, site analytics, and more.</p>
 
+    <p>Google Tag Manager is a tag management system that allows you to create and monitor tags on a user interface without writing new code each time you want to construct a tag. You simply embed the GTM code into each page of your website. This eliminates the manual process of creating tags, making your marketing process more efficient and precise.</p>
+
+    <p>GTM enabled the marketing department to take complete control over the tags they create and monitor.</p>
+
     <p>Tracking pixels are little bits of code that collect information about your website users. These pixels are often referred to as "tags". GTM allows you to manage all your tracking tags in one place and install tags without manually editing your website code.</p>
 
     <p>Tracking code can also cause problems in the area of web development. Typically web developers are tasked with adding new tracking tags to a website. Installing tracking codes can be tedious and problematic. new tracking scrips have to be tested and verified. Tracking codes are also notorious for breaking websites.</p>
@@ -147,6 +152,36 @@
     <p>If your website is fairly simple and perhaps using Google Analytics tracking code, you probably don't need GTM. If you only have one tracking tag, again, you don't need tag manager.</p>
 
     <p>In GTM we use tags (also known as analytics or marketing scripts) that use triggers (known as rules), to activate your tracking tags. We can use variables, also known as macros.</p>
+
+    <h3>Collecting Data</h3>
+
+    <p>Collecting data using tools like Google Analytics is critical for expanding your business's online reach and converting leads into customers. Google Analytics (GA), and similar tools, aid this process, but they work more effectively with the addition of tags.</p>
+
+    <p>Tags, in a general sense, are bits of code you embed in your website's JavaScript or HTML to extract certain information. This may include how long users visit a page on your site, form submissions, how they arrived on your sire, which links they clicked etc. Each tag tracks something different. For instance, you may create a tag just to see how many people fill out the form on your "Contact Us" page. That tag can then send more precise information to Google Analytics or AdWords.</p>
+
+    <p>Manually coding tags can be tedious and difficult. With GTM, this whole process becomes much easier. All you do is embed a code into your site's pages once and then each time you want to create a tag, GTML codes it and embeds it for you.</p>
+
+    <h3>Setting up GTM</h3>
+    <!-- https://blog.hubspot.com/marketing/google-tag-manager-guide -->
+    <!-- https://www.analyticsmania.com/post/single-page-web-app-with-google-tag-manager/ -->
+
+    <p>Once you create a free GTM account, you'll be given the codes and instructions to follow. You include one code high in the &lt;head&gt; of your page and the other after the opening &lt;body&gt; tag. This needs to be applied on every page of your website.</p>
+
+    <p>Once you have a GTM account, the first thing you're going to want to learn is how to set up a tag. Google recommends the following naming convention:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+tag type - name of app - detail
+
+# Example
+Google Analytics - CTA - About Us page
+        </code>
+    </pre>
+
+    <p>This way you can correctly identify and collect data related to specific campaigns or pages.</p>
+
+    <p>Once created, you now need to setup a tag.</p>
 
     <h3>GTM - Tag Templates</h3>
 
