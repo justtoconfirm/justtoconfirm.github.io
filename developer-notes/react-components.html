@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React Components</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://reactjs.org/docs/components-and-props.html -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Components</h1>
+
+    <p>Components let you split the UI (User Interface) into independent, reusable pieces. Components are like JavaScript functions. They accept properties (props) and return React elements describing what should appear on the screen.</p>
+
+    <p>Component names should always start with a capital letter.</p>
+
+    <p>The simplest way to define a component is to write a JavaScript function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+        </code>
+    </pre>
+
+    <p>This function is a valid React component because it accepts a single "props" object and returns a React element. This is called a "function component" because they are literally functions. This example demonstrates the use of props:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+ReactDOM.render(
+    &lt;Welcome name="Dan" /&gt;,
+    document.getElementById('root')
+)
+        </code>
+    </pre>
+
+    <p>Let's recap what is happening here:</p>
+
+    <ul>
+        <li>We call ReactDOM.render() with the &lt;Welcome name="Dan" /&gt; element.</li>
+        <li>React calls the Welcome component with the {name: 'Dan'} as the props.</li>
+        <li>Our Welcome component returns a &lt;h1&gt;Hello, Dan&lt;/h1&gt; element as a result.</li>
+        <li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan&lt;/h1&gt;</li>
+    </ul>
+
+    <p>We can extend this further to create an App component that renders Welcome multiple times:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+function App() {
+    return (
+        &lt;div&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Matt" /&gt;
+            &lt;Welcome name="Archie" /&gt;
+        &lt;/div&gt;
+    )
+}
+
+ReactDOM.render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+)
+        </code>
+    </pre>
+
+    <p>The &lt;div&gt; elements will get rendered within the DOM and are needed otherwise React will throw an error. To avoid this, we can use React Fragments that don't get rendered in the DOM:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+function App() {
+    return (
+        &lt;React.Fragments&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Matt" /&gt;
+            &lt;Welcome name="Archie" /&gt;
+        &lt;/React.Fragments&gt;
+    )
+}
+
+ReactDOM.render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+)
+        </code>
+    </pre>
+
+    <p>We can also use an ES6 class to define a component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Welcome extends React.Component {
+    render() {
+        return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Building a Component</h2>
+
+    <p>Let's start by building a simple React component. This will be a demonstration of how a simple component can be imported into our React application. This component will be a simple Header component. In some of these examples we will be using ES6 syntax.</p>
+
+    <p>Begin by creating a new file named Header.js within the src/ directory of your project and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/Header.js
+
+import React from 'react'
+
+const Header = () => &lt;div&gt;Hi there, I am a header&lt;/div&gt;
+
+export default Header
+        </code>
+    </pre>
+
+    <p>Next, we simply need to import this into our application. For our example, we have created a simple &lt;App&gt; component within our src/ directory, so this is where we will import the Header component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/App.js
+
+import React from 'react'
+import Header from './Header'
+
+const App = () => {
+    return &lt;Header /&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Our component will not be displayed on the index.html page (this renders our application). In our index.js file, we need to import the App component so we can render the application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/index.js
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+ReactDOM.render(
+    &lt;App /&gt;, document.getElementById('root')
+)
+        </code>
+    </pre>
+
+    <p>This will then render whatever is within the App component onto our HTML page (application) within the root element that has an id of 'root'.</p>
+
+    <h2>File Structure</h2>
+
+    <p>Now that we have created a simple React component, we need to consider the file structure we adopt. Currently our file structure looks something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app /
+    .gitignore
+    .babelrc
+    .browserslistrc
+    webpack.config.js
+    package.json
+    node_modules 
+    src /
+        index.html
+        index.js
+        App.js
+        Header.js
+        </code>
+    </pre>
+
+    <p>Perhaps the file structure should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app /
+    .gitignore
+    .babelrc
+    .browserslistrc
+    webpack.config.js
+    package.json
+    node_modules 
+    src /
+        index.html
+            js /
+                index.js
+                components /
+                    App.js
+                    container /
+                    presentational /
+                        Header.js
+        </code>
+    </pre>
+
+    <h2>Build a Button Component</h2>
+
+    <p>Now that we have the basic idea of a React component, let's build a Button component. We must begin by creating a new file to render a simple Button element. Save this file as Button.js, as all components should have uppercase first letters in their file names. We will place this component in a sub-directory named 'button'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = () => {
+    return (
+        &lt;button&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>In-place of the Header component we created earlier, we can import the Button component. If successful, a simple &lt;button&gt; will appear rendered in your React application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return &lt;Button /&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>Adding Props</h3>
+
+    <p>Now that the Button component has been created, we can start adding props (properties). We will begin by adding a prop named 'type' to our Button. This will allow us to set the type attribute value of the Button to be 'button' or 'submit'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = ''}) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We can then pass in a type when we render the component. Open the index.js file where our Button component is being rendered and set the 'type' to be 'submit'. This will set the type attribute to be 'submit' which is what we use to submit forms using buttons.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return &lt;Button type="submit" /&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>We may want to set a default value for the prop should we pass no value down into the component. The default value for the button could be 'button'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = 'button'}) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>So when we don't pass in the prop to the Button component, the Button will still render with a type attribute of 'button'.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return &lt;Button /&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>Setting Button Label</h3>
+
+    <p>Not all buttons will want to use the label of 'Button' which we have hardcoded in our component. We can use the children prop to pass in a label from the parent component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = 'button', children}) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Let's pass in a label called 'Sign in' to our Button component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return &lt;Button&gt;Sign in&lt;/Button&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>Render functions</h3>
+
+    <p>The Button component can be further updated to include a render function, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = 'button', children}) => {
+
+    const renderButton = () =>
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+
+    return (
+        renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <h3>Rendering Buttons &amp; Links</h3>
+
+    <p>You may want to create a link to appear as a Button element on the page. We can update our Button component to allow this functionality to be applied.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = 'button', url = '', children}) => {
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>An anchor link will be rendered if a url prop value is passed into the component. This will initially look like a link, however using CSS, we can style the link to appear as a Button.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return &lt;Button url='https://www.google.co.uk'&gt;Google&lt;/Button&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>Adding CSS &amp; Classes</h3>
+
+    <p>Should you want to add a CSS class to your component, you can use the className attribute. As an example, we will add a className value of 'btn' to our Button component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+
+const Button = ({type = 'button', url = '', children}) => {
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button className='btn' type={type}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a className='btn' href={url}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>This will simply render a 'class' attribute onto our component when its rendered.</p>
+
+    <p>We may want to also toggle classes based on props being passed down into our component. For this, we can use the classnames NPM (Node Package Manager) package. This needs to be installed as a dependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install classnames --save
+        </code>
+    </pre>
+
+    <p>Within our Button component, we will add a few more props that we can use to toggle classes on our component. We will need to remember to import classnames within the component to use the package.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({type = 'button', url = '', className = '', theme = '', isFullWidth = false, children}) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary': theme === 'primary',
+        'btn--secondary': theme === 'secondary',
+        'btn--full-width': isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button className={buttonClass} type={type}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a className={buttonClass} href={url}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>The classnames NPM (Node Package Manager) package allows us to toggle classes on our Button component. We set a default class of 'btn' but then we can append modifier classes such as 'btn--primary' or 'btn--secondary' if we pass values into the props.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React from 'react'
+import Button from './presentational/button/Button'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Button theme='primary'&gt;Primary&lt;/Button&gt;        // btn btn--primary
+            &lt;Button theme='secondary'&gt;Secondary&lt;/Button&gt;    // btn btn--secondary
+            &lt;Button isFullWidth&gt;Primary&lt;/Button&gt;            // btn btn--full-width
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>onClick prop</h3>
+
+    <p>With buttons, we often want to click them to interact with our UI (User Interface). We can add an onClick prop to our Button component so we can functions if we wish.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({type = 'button', url = '', className = '', theme = '', isFullWidth = false, onClick, children}) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary': theme === 'primary',
+        'btn--secondary': theme === 'secondary',
+        'btn--full-width': isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button className={buttonClass} type={type} onClick={onClick}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a className={buttonClass} href={url} onClick={onClick}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Now that we have the onClick within our Button component, let's create a method to be called on the button click. Within our other component, &lt;App /&gt;, we need to turn this into a class and we need to add a method to be called:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/App.js
+
+import React, { Component } from 'react'
+import Button from './presentational/button/Button'
+
+class App extends Component {
+    constructor (props) {
+        super(props)
+
+        // This binding is necessary to make 'this' work in the callback
+        this.showLog = this.showLog.bind(this)
+    }
+
+    showLog () {
+        // Action here
+    }
+
+    render () {
+        return (
+            &lt;Button onClick={this.showLog}&gt;Show Log&lt;/Button&gt;
+        )
+    }
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h3>Spread Operators</h3>
+
+    <p>Instead of listing all our props within our component, we can look to use a spread operator.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({type = 'button', url = '', className = '', theme = '', isFullWidth = false, onClick, children}) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary': theme === 'primary',
+        'btn--secondary': theme === 'secondary',
+        'btn--full-width': isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button {...{ className, type, onClick }}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a {...{ className, href, onClick }}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <h3>Adding Type Checking</h3>
+
+    <p>You may want to use a tool such as Flow for Type Checking your components. This is how the Button component would be updated to include the TypeChecking of our props:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/js/components/presentational/button/Button.js
+
+import React from 'react'
+import classNames from 'classnames'
+import type { ButtonType } from './Button.types'
+
+const Button = ({type = 'button', url = '', className = '', theme = '', isFullWidth = false, onClick, children}: ButtonType) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary': theme === 'primary',
+        'btn--secondary': theme === 'secondary',
+        'btn--full-width': isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderButton = () =>
+        &lt;button {...{ className, type, onClick }}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a {...{ className, href, onClick }}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
