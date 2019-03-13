@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Ruby</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- http://codingpad.maryspad.com/2017/04/29/update-mac-os-x-to-the-current-version-of-ruby/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Ruby</h1>
+
+    <h2>Ruby Version Manager (RVM)</h2>
+
+    <p>To check the version of Ruby installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ ruby -version
+        </code>
+    </pre>
+
+    <p>On Mac OS, Ruby is installed by default. To manage Ruby versions, you can use the Ruby Version Manager (RVM). In the terminal, install RVM:
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ curl -L https://get.rvm.io | bash -s stable
+        </code>
+    </pre>
+
+    <p>Once this command has finished running, you may need to restart your terminal for RVM to be recognised. To use RVM to install a specific version of Ruby, use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ rvm install ruby-[version]
+
+// Example
+$ rvm install ruby-2.4.1
+        </code>
+    </pre>
+
+    <p>If you want to set the latest version of Ruby as the default version, in the terminal type:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ rvm --default use 2.4.1
+        </code>
+    </pre>
+
+    <p>Don't forget to replace 2.4.1 with the version number of Ruby you want to use.</p>
+
+    <h2>Sass</h2>
+
+    <p>To install Sass using Ruby, we need to install it as a gem. This will install libsass with Ruby as Ruby Sass is being deprecated at the end of March 2019.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ gem install sassc
+
+// Mac OS
+$ sudo gem install sassc
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
