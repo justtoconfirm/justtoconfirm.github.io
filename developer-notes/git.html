@@ -35,6 +35,243 @@
 
     <p>Git is a distributed version control system. It is by far the most widely used modern version control system in the world today. It is a mature, actively maintained, open-source project originally developed by Linus Torvalds in 2005.</p>
 
+    <h2>Using GitHub</h2>
+
+    <p><a href="https://www.github.com" target="_blank" rel="noopener noreferrer">GitHub</a> is a web-based hosting service for version control using Git. It offers version control and source code management functionality of Git along with it's own features.</p>
+
+    <p>When creating a GitHub repository (repo) and then creating a new branch, you will need to use Git to fetch any new branches you create from origin:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git fetch
+        </code>
+    </pre>
+
+    <p>You will then want to checkout your branch to switch to the new branch you have created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git checkout feature/my-feature-branch
+        </code>
+    </pre>
+
+    <p>Add your files:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git add *
+
+# Or specific files
+$ git add my-file.html
+        </code>
+    </pre>
+
+    <p>Then add a commit message:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git commit -m "This is a commit message"
+        </code>
+    </pre>
+
+    <p>And push the commit(s) to your branch:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git push origin feature/my-feature-branch
+        </code>
+    </pre>
+
+    <p>To merge your branch into master using Git in the terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git checkout master
+$ git merge feature/my-feature-branch
+
+$ git push origin master
+        </code>
+    </pre>
+
+    <p>Your master branch will now be updated with changes made from your feature branch. You may want to delete your feature branch if it's no longer required.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git branch -d feature/my-feature-branch
+        </code>
+    </pre>
+
+    <p>To check what branches you have:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git branch
+        </code>
+    </pre>
+
+    <p>To check the status of your branch:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git status
+        </code>
+    </pre>
+
+    <h2>GitFlow</h2>
+
+    <p>As you become a more experience developer, you'll realise that most work is done in teams. Version control is often used within teams to manage changes to your code base that comes from different developers.</p>
+
+    <p>We can often use GitFlow to define a release process for a team. GitFlow is more traditionally found within agile projects that do not use CI/CD, but its still useful to consider it when using version control.</p>
+
+    <p>The GitFlow way will work better with a waterfall methodology. The recommended way to work today is Continuous Deployment (CD) with fully covered by tests, have no develop branch, so we merge straight to master from feature branches and deploy immediately.</p>
+
+    <p>GitFlow is a pattern for using Git. Patterns dictate what type of branches exist in the project, their naming conventions and so on. GitFlow is one of the most well-known patterns. GitFlow was created in January 2010 by Vincent Driessen.</p>
+
+    <p>Following the GitFlow model, it is common place to have two branches:</p>
+
+    <ul>
+        <li>origin/master - is always production ready</li>
+        <li>origin/develop - includes tha latest delivered changes for the next release. When it's ready, it's merged to master and the changes are tagged with a release number.</li>
+    </ul>
+
+    <p>You may also come across limited lifetime branches:</p>
+
+    <ul>
+        <li>Feature branches</li>
+        <li>Release branches</li>
+        <li>Hot-fix branches</li>
+    </ul>
+
+    <h3>Feature branches</h3>
+
+    <p>Feature branches are branched off from and merged back to the development branch. They usually have the prefix of feature/ such as feature/fix-texts. At Crunch, we often used the Jira ticket number also when naming a feature branch:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+feature/SP-1234-fix-something-here
+        </code>
+    </pre>
+
+    <p>When adding commit messages, they would be in this format:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+DJ SP-1234 I have fixed something on this branch
+        </code>
+    </pre>
+
+    <p>When merging back into the development/develop branch, you can use the following flag that always creates a new commit for the merge. This allows you to have a better understanding of tracking history and know what commits were released together as a feature. This also simplifies reverting of features (if needed).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+--no-ff
+        </code>
+    </pre>
+
+    <h3>Release branches</h3>
+
+    <p>Release branches are branched off from develop and merged back into develop and master branches. They use the naming convention of release/ or release-*, such as release-1.2 and are used for last minute changes or testing before the next release is deployed to production.</p>
+
+    <p>The version number is defined when creating the release branch and used as its name.</p>
+
+    <p>After creating the release branch, you should also update the NPM version like below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm version patch
+        </code>
+    </pre>
+
+    <p>The output will be a new version number. A commit will be added to the branch with the new version updated in the package.json and package-lock.json files.</p>
+
+    <p>Run the following to see the changes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git log -1
+$ git show &lt;commit hash&gt;
+        </code>
+    </pre>
+
+    <p>For changing minor or major versions, use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm version minor
+$ npm version major
+        </code>
+    </pre>
+
+    <p>Use the -m flag to add a commit message, otherwise the commit will be the number of the new version.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git commit -m "This is a commit message"
+        </code>
+    </pre>
+
+    <p>This will also create a git tag. You can see that by running:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git tag
+        </code>
+    </pre>
+
+    <p>The git push command doesn't transfer tags to remote servers. You will need to push the tag after you have created them.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git push origin v1.5.1
+        </code>
+    </pre>
+
+    <p>Once the release branch has been tagged and is ready to be completed, it needs to be merged into the master branch.</p>
+
+    <p>Don't forget to merge the release branch back into develop. Once the merge to master and develop is complete, the release branch can be deleted. Any merge conflicts you encounter can then be fixed and just commit the changes.</p>
+
+    <h3>Hotfix branches</h3>
+
+    <p>A hotfix branch is used for urgent production bugs. Branched off from master and then merged back into develop and master once done. The naming convention is hotfix/ or hotfix-*</p>
+
+    <p>If you work with Release Branches and a release branch exists, try not to merge it back to develop, but into the release branch. The release branch will then be merged into develop later.</p>
+
+    <h2>Squash Commits</h2>
+
+    <p>It can be useful to have multiple commits or one commit per feature, but this highly depends on the type of project your working worth. For open source projects, it is often best to squash commits to keep the high level vision about the project when multiple contributors are involved. For larger projects within stable organisations, it maybe best to keep commits small provided commit messages are not things like "wip (work in progress)" or "fix" etc. Small commits are also useful if each commit on its own does not break the build or the product. For example, if a project contains 3 commits, and we revert 2, the product is still stable and working well.</p>
+
+    <p>Overall, it is better to commit frequently and often.</p>
+
+    <h2>Semver (Semantic Versioning)</h2>
+
+    <p>Semantic Versioning is a specification of naming convention for versions of code projects. The idea is that every new release will have a version number in the form of x.y.z, for example: 1.1.2.</p>
+
+    <ul>
+        <li>x - is increased when a major version is out - i.e when an API breaks</li>
+        <li>y - is a minor version, new functionality but the API changes are backward compatible</li>
+        <li>z - patch, is increased when doing a bug fix or a minor change is applied</li>
+    </ul>
+
+    <p>A lock file, like package-lock.json, will lock down the exact dependencies and sub-dependencies that your project uses so that everyone running npm install will install the exact same dependencies. A lock file isn't designed to be human-readable.</p>
+
     <h2>Git Commands</h2>
 
     <p>Here is a list of commonly used Git commands:</p>
@@ -75,6 +312,8 @@ $ git log --summary                         # View changes (detailed)
 $ git diff [source branch] [target branch]  # Preview changes before merging
         </code>
     </pre>
+
+    <p>Before merging changes into your master or development branches, it is worthwhile creating a pull-request (PR) that will allow fellow developers to review your code. Once the PR is approved, it can be then merged into your master or development branches.</p>
 </main>
 
 </body>

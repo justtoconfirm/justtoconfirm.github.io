@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Parcel</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://github.com/parcel-bundler/parcel -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Parcel</h1>
+
+    <p>Parcel is a web application bundler with zero configuration needed. Many web application, or module, bundlers are available including Webpack and Browserify, but they are built around configuration and plugins. Parcel is designed to have zero configuration, just point it at the entry point of your application and it does the right thing.</p>
+
+    <p>To install Parcel, Yarn or NPM (Node Package Manager) can be used:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ yarn global add parcel-bundler 
+
+$ npm install parcel-bundler -g
+        </code>
+    </pre>
+
+    <p>Parcel can take any type of file as an entry point, but a HTML or JavaScript file is a good place to start. Parcel also has a development server built in which will automatically rebuild your app as you change files and supports hot module replacement for fast development. Just point it at your entry file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ parcel index.html
+        </code>
+    </pre>
+
+    <p>Now open <a href="http://localhost:1234/" target="_blank" rel="noopener noreferrer">http://localhost:1234/</a> in your browser.</p>
+</main>
+
+</body>
+</html>

@@ -141,6 +141,46 @@ $ node main.js
         </code>
     </pre>
 
+    <h2>AVN - Automatic Version Switching for Node</h2>
+    <!-- https://github.com/wbyoung/avn -->
+    <!-- https://medium.com/@ramsunvtech/manage-multiple-node-versions-e3245d5ede44 -->
+
+    <p>To install AVN (Automatic Version Switching for Node), you can use NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install avn avn-nvm avn-n -g
+$ avn setup
+        </code>
+    </pre>
+
+    <p>You will need to add a .node-version file into your directory, usually the root. Now when you cd into a directory with this file, AVN will automatically detect the change and use your installed version manager to switch to that version of Node.</p>
+
+    <p>You .node-version file should contain a semver version number corresponding to the version of Node.js that your project uses.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// .node-version
+
+10.13.0
+        </code>
+    </pre>
+
+    <p>Your .bash_profile should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+source ~/.profile
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+        </code>
+    </pre>
+
     <h2>NPM &amp; Node Modules</h2>
 
     <p>NPM stands for Node Package Manager. It is the largest software package library in the world, with over 600,000 packages. The NodeJS installation comes with a Command Line Interface (CLI) for NPM which allows developers to interact with packages locally on their machines.</p>

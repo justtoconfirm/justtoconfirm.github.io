@@ -176,6 +176,18 @@ Let's use: Cascading Style Sheets
         </code>
     </pre>
 
+    <h2>Define a canonical page</h2>
+    <!-- https://support.google.com/webmasters/answer/139066?hl=en -->
+
+    <p>If you have a single page accessible by multiple URLs, or a different page with similar content (for example, a page with both a mobile and desktop version), Google can see these as duplicate versions of the same page. Google will choose one URL as the canonical version and crawl that. All other URLs will be considered as duplicate URLs and crawled less often.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="canonical" href="https://www.crunch.co.uk" /&gt;
+        </code>
+    </pre>
+
     <h2>&lt;!DOCTYPE&gt; Declaration</h2>
 
     <p>The &lt;!DOCTYPE&gt; declaration must be the very first thing in your HTML document, before the &lt;html&gt; tag. This is not an HTML tag, but an instruction to the web browser about the version of HTML being used.</p>
@@ -184,6 +196,40 @@ Let's use: Cascading Style Sheets
         <code>
 <!-- leave this line empty -->
 &lt;!DOCTYPE html&gt;
+        </code>
+    </pre>
+
+    <h2>Icons</h2>
+
+    <p>You can create a favicon.ico file which contains a 16x16 and 32x32 image then declare it within your HTML code. This will display an icon next to your page title within the browser tab. Other file formats such as .gif or .jpeg can be used, but .ico is recommended.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="shortcut icon" href="/crunch-core/images/favicon.ico" /&gt;
+        </code>
+    </pre>
+
+    <p>On an Apple iOS device, you may want users to be able to add your web application or webpage link to the Home screen. These links, represented by an icon, are called Web Clips. Often these icons are in PNG (.png) format and are named apple-touch-icon.png</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="apple-touch-icon" href="/crunch-core/images/apple-touch-icon.png" /&gt;
+&lt;link rel="apple-touch-icon" sizes="72x72" href="/crunch-core/images/apple-touch-icon-72x72.png" /&gt;
+&lt;link rel="apple-touch-icon" sizes="144x144" href="/crunch-core/images/apple-touch-icon-144x144.png" /&gt;
+        </code>
+    </pre>
+
+    <p>So you may want to use different icons for different devices:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="apple-touch-icon" href="touch-icon-iphone.png" /&gt;
+&lt;link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png" /&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png" /&gt;
+&lt;link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png" /&gt;
         </code>
     </pre>
 
