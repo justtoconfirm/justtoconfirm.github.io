@@ -41,6 +41,11 @@
 <!-- https://medium.com/@rossbulat/test-driven-development-in-react-with-jest-and-enzyme-2a6cf2cc3071 -->
 <!-- https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2019-264e19514d0a -->
 
+<!-- NEED TO ADD THIS -->
+<!-- ALLOW JEST TEST TO RUN OVER SPEC/TEST FILES IN JEST -->
+<!-- https://stackoverflow.com/questions/46094324/javascript-standard-style-does-not-recognize-jest -->
+<!-- https://medium.com/kaliop/end-to-end-testing-with-nightwatch-js-a821ad787fa4 -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -738,6 +743,28 @@ $ npm install jest --save-dev
         <code>
 <!-- leave this line empty -->
 $ npm run test --coverage
+        </code>
+    </pre>
+
+    <p>This will generate a HTML report, within the root of your project folder/directory within a folder named 'coverage'.</p>
+
+    <p>If you are using <a href="standardjs.html">StandardJS</a>, you may encounter problems with writing tests using Jest for your React components and StandardJS allowing linting to be done. Usually 'it' and 'describe' may thrown and error when using StandardJS, so to fix this issue, add the following to your package.json:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"standard": {
+    "env": [ "jest" ]
+}
+        </code>
+    </pre>
+
+    <p>Or within the test, a comment like this can be added:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* eslint-env mocha */
         </code>
     </pre>
 
