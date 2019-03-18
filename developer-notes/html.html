@@ -391,6 +391,51 @@ rel="noopener noreferrer"
 &lt;button name="button" type="button"&gt;Button&lt;/button&gt;
         </code>
     </pre>
+
+    <h2>Paths</h2>
+
+    <p>When you reference assets or files using paths, it often looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="stylesheet" href="styles/main.css" /&gt;
+        </code>
+    </pre>
+
+    <p>This assumes that the file structure is something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app /
+    index.html
+    styles/
+        main.css
+        </code>
+    </pre>
+
+    <p>But what if we want to reference a file from a parent directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app /
+    styles/
+        main.css
+    app /
+        index.html
+        </code>
+    </pre>
+
+    <p>You would have to move up through the directories until you reach your destination, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="stylesheet" href="../styles/main.css" /&gt;
+        </code>
+    </pre>
 </main>
 
 </body>

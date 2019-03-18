@@ -189,8 +189,150 @@ storiesOf('Button', module).add(
         </code>
     </pre>
 
+    <p>The example above is the initial setup for Storybook, but we want to connect create a story for a specific Button within our React application. Here is the file structure we want to create:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+my-app /
+    .storybook /
+        config.js
+    src /
+        button /
+            Button.js
+            storybook /
+                Button.stories.js
+        </code>
+    </pre>
+
+    <p>We update the Storybook config.js file within the .storybook directory so it looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { configure } from '@storybook/react'
+
+function loadStories() {
+  // You can require as many stories as you need.
+  require('./../src/button/storybook/Button.stories.js')
+}
+
+configure(loadStories, module)
+        </code>
+    </pre>
+
+    <p>Notice how we no-longer have an index.js file within a stories directory within our project. Inside the Button.stories.js file, our code should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/button/storybook/Button.stories.js
+
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import Button from './../Button'
+
+storiesOf('Button', module)
+  .add('with text', () => (
+    &lt;Button type='button'&gt;Button&lt;/Button&gt;
+  ))
+  .add('as a link', () => (
+    &lt;Button url='http://example.com'&gt;Link&lt;/Button&gt;
+  ))
+        </code>
+    </pre>
+
+    <p>This now imports our React Button component. When you inspect the Button within Storybook using your Browser's DevTools, you will see that the other props are rendered as attributes also. You can then use Knobs to toggle these props, such as the themes, to toggle the CSS styling that gets applied and change the Button's properties.</p>
+
+    <p>Here is the React Button component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// src/button/Button.js
+
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({ type = 'button', className = '', theme, url = '', onClick, isFullWidth, children }) => {
+  const buttonClass = classNames('btn', className, {
+    'btn--primary': theme === 'primary',
+    'btn--secondary': theme === 'secondary',
+    'btn--full-width': isFullWidth
+  })
+
+  const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+  const renderButton = () =>
+    &lt;button type={type} className={buttonClass} onClick={onClick}&gt;{children}&lt;/button&gt;
+
+  const renderAnchor = () =>
+    &lt;a href={url} className={buttonClass} role='button'&gt;{children}&lt;/a&gt;
+
+  return (
+    isAnchorElement ? renderAnchor() : renderButton()
+  )
+}
+
+export default Button
+        </code>
+    </pre>
+
     <h3>Knobs</h3>
     <!-- https://github.com/storybooks/storybook/tree/master/addons/knobs -->
+
+    <p>To begin using Knobs with Storybook, it will need to be installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @storybook/addon-knobs --save-dev
+
+# Install using Yarn
+$ yarn add @storybook/addon-knobs --dev
+        </code>
+    </pre>
+
+    <p>Then, create an addons.js file within the Storybook config directory - .storybook - and import the addon:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import '@storybook/addon-knobs/register';
+        </code>
+    </pre>
+
+    <p>Now, we can write our stories with Knobs, as this example shows:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { storiesOf } from '@storybook/react';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
+const stories = storiesOf('Storybook Knobs', module);
+
+// Add the `withKnobs` decorator to add knobs support to your stories.
+// You can also configure `withKnobs` as a global decorator.
+stories.addDecorator(withKnobs);
+
+// Knobs for React props
+stories.add('with a button', () => (
+  &lt;button disabled={boolean('Disabled', false)}&gt;
+    {text('Label', 'Hello Storybook')}
+  &lt;/button&gt;
+));
+
+// Knobs as dynamic variables.
+stories.add('as dynamic variables', () => {
+  const name = text('Name', 'Arunoda Susiripala');
+  const age = number('Age', 89);
+
+  const content = `I am ${name} and I'm ${age} years old.`;
+  return (&lt;div&gt;{content}&lt;/div&gt;);
+});
+        </code>
+    </pre>
 </main>
 
 </body>
