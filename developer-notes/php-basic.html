@@ -183,6 +183,205 @@ sayGreeting("Cassie", "Doe");
 ?&gt;
         </code>
     </pre>
+
+    <h2>PHP Login Example</h2>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// logout.php
+
+&lt;?php
+    // Need to get current sessions
+    session_start();
+    session_unset();
+    // Destroy the session
+    session_destroy();
+    // Redirect to hello.php
+    header("Location: hello.php");
+?&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// page2.php
+
+&lt;?php
+// Start the session
+session_start();
+
+// Check if the 'login' session exists
+if (!isset($_SESSION['login'])) {
+    // Not logged in
+    header('Location: hello.php');
+    exit();
+}
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;PHP learning - page 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;p&gt;&lt;a href="logout.php"&gt;Logout&lt;/a&gt;&lt;/p&gt;
+
+&lt;?php
+// Output the username session value from the previous page
+echo "Welcome, " . $_SESSION['username'] . ".&lt;br/&gt;";
+echo $_GET['age'] . "&lt;br/&gt;";
+echo "Today is " . date("Y/m/d") . "&lt;br/&gt;";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// hello.php
+
+&lt;?php
+// Start the session
+session_start();
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;PHP learning&lt;/title&gt;
+
+&lt;style&gt;
+.error {
+    color: red;
+}
+&lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!--
+Having an empty action attribute will post to the same page
+Setting the action to a page would move the user to that page on submit
+--&gt;
+&lt;form action="" method="post"&gt;
+    &lt;input type="text" name="uname" placeholder="username" /&gt;
+    &lt;input type="submit" name="Submit" value="Submit" /&gt;
+&lt;/form&gt;
+
+&lt;?php
+if (isset($_POST['Submit'])) { 
+    // Set form input entered to be the session 'username'
+    $_SESSION['username'] = $_POST['uname'];
+    // Set login session
+    $_SESSION['login'] = 'true';
+}
+?&gt; 
+
+&lt;p&gt;
+    &lt;!-- Output the value of the username session when the form is submitted --&gt;
+    &lt;strong&gt;&lt;?php echo "Username: " . $_SESSION['username'];?&gt;&lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+    &lt;a href="page2.php?name=Dan&age=32"&gt;Next &gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;?php
+// define variables
+// Input field values are empty unless user enters a value and clicks submit button
+$firstname = '';
+$email = '';
+
+// define variables and set error messages to be empty value by default
+$firstnameErr = "";
+$emailErr = "";
+
+if (isset($_POST['Validate'])) { 
+
+    if (empty($_POST['firstname'])) {
+        $firstnameErr = "Firstname is required";
+    } else {
+        $firstname = test_input($_POST['firstname']);
+
+        // Regex
+        if (!preg_match("/^[a-zA-Z ]*$/", $firstname)) {
+            $firstnameErr = "Only letters and white space allowed";
+        }
+    }
+
+    if (empty($_POST['email'])) {
+        // Error message if email is empty
+        $emailErr = "Email is required";
+    } else {
+        // Call the test_input function
+        // This will get the value from the email input field
+        // Will also populate the value attribute in the input field
+        $email = test_input($_POST['email']);
+
+        // check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "invalid email format";
+        }
+    }
+}
+
+// Validate input to prevent security issues
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
+&lt;?php
+$servername   = "localhost";
+$database = "testdb";
+$username = "admin";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+}
+  echo "Connected successfully!!!";
+?&gt;
+
+&lt;!-- Validation test --&gt;
+&lt;form action="" method="post"&gt;
+    &lt;label for="email"&gt;First name *:&lt;/label&gt;&lt;br/&gt;
+    &lt;!-- Keep the value entered in the input field --&gt;
+    &lt;input type="text" name="firstname" value="&lt;?php echo $firstname; ?&gt;" /&gt;&lt;br/&gt;
+    &lt;!-- Error message --&gt;
+    &lt;p&gt;&lt;span class="error"&gt;&lt;?php echo $firstnameErr; ?&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;label for="email"&gt;Email *:&lt;/label&gt;&lt;br/&gt;
+    &lt;input type="text" name="email" value="&lt;?php echo $email; ?&gt;" /&gt;&lt;br/&gt;
+    &lt;!-- Error message --&gt;
+    &lt;p&gt;&lt;span class="error"&gt;&lt;?php echo $emailErr; ?&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;input type="submit" name="Validate" value="Validate" /&gt;
+&lt;/form&gt;
+
+&lt;?php
+// Output the email address
+// echo $email;
+?&gt;
+
+&lt;?php
+echo 'Hello ' . htmlspecialchars($_GET["name"]) . '!';
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
 </main>
 
 </body>

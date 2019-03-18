@@ -29,6 +29,224 @@
 <!-- https://www.smashingmagazine.com/2018/12/common-css-issues-front-end-projects/ -->
 <!-- https://www.smashingmagazine.com/2019/03/aspect-ratio-unit-css/ -->
 
+<!--
+CSS Selectors
+
+https://codeburst.io/the-most-unused-css-selectors-ea8f75aacf10
+https://medium.com/@aljullu/8-css-selectors-dos-and-don-ts-1e0d23fcf96c
+https://medium.freecodecamp.org/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849
+https://blog.elpassion.com/reasons-to-use-bem-a88738317753
+
+Selecting an element with CSS that has a repetitive suffix.
+
+div[id$="_LoginPanel"] {
+    /* CSS stuff here */
+}
+
+The div tag can be any element in the DOM. This is useful if you want to target a specific element that has a dynamic suffix like this:
+
+<div id="0123_LoginPanel">
+
+</div>
+
+You can target elements with specific prefixes.
+
+div[class^="myPanel_"] {
+    /* CSS stuff here */
+}
+
+And as before, the HTML example:
+
+<div id="myPanel_1234">
+
+</div>
+
+You can also target an element that simply contains a parameter, perhaps both a synamic suffix and prefix.
+
+div[class*="logoutPanel"] {
+    /* CSS stuff here */
+}
+
+And then the HTML example as before:
+
+<div id="1gdug_logoutPanel_1234">
+
+</div>
+
+Pseudo class selectors are CSS selecors with a colon preceding them. Links often use pseudo classes for styling interaction.
+
+a:hover {}
+a:active {}
+a:focus {}
+a:visited {}
+
+div:first-child {}
+div:last-child {}
+div:checked {}
+
+These selectors come in handy when accessing specific elements as well as focusing on element states.
+
+::first-letter
+
+Pseudo class selector allowing you to target the first letter of a paragraph or element.
+
+p::first-letter {
+    /* CSS styling here */
+}
+
+You can chain together pseudo selectors to target only the first paragraph.
+
+p:first-child::first-letter {
+    /* CSS styling here */
+}
+
+:first-of-type
+
+psuedo selecotr used to select the first of any type within the current parent element and target it using CSS.
+
+article:first-of-type {
+    /* CSS styling here */
+}
+
+article:last-of-type {
+    /* CSS styling here */
+}
+
+:only-of-type
+
+This structural pseudo class can be used to target elements that do not have any siblings within its parent class. As an example, lets target all <ul> elements that have a single list item <li>
+
+li:only-of-type {
+    /* CSS styling here */
+} 
+
+You could do ul li, but this would target all list items.
+
+:empty
+
+This pseudo class represents an element that has no content within it. When you use an editor, for example, you may have multiple empty elements such as <p></p> in your rendered HTML. If you don't want the empty elements to appear on the page.
+
+p:empty {
+    display: none;
+}
+
+[attr=value]
+
+Attribute selectors let you target an element based on its attributes. In this example, we've used an attribute selector that will target all the links whose href attribute ends with .pdf
+
+a[href$=".pdf"] {
+    /* CSS styling here */
+}
+
+How to use CSS selectors
+
+Use one class selectors where possible. This will keep specificity low and will avoid using too generic classes. What if another developer added .active {font-weight: bold;} somewhere else in the code?
+
+.button.active {
+    /* Bad code */
+}
+
+.button-active {
+    /* Good code */
+}
+
+Decouple selectors from HTML structure. This allows you to change HTML structure and keep your CSS working.
+
+.header nav li button {
+    /* Bad code */
+}
+
+.header-button {
+    /* Good code */
+}
+
+Order selectors by HTML occurance. Order them in the same order they appear in the HTML.
+
+/* Bad */
+footer {}
+header {}
+
+/* Good */
+header {}
+footer {}
+
+Order selectors by specificity. A CSS rule should never be overwritten by another rule appearing before.
+
+/* Bad */
+.list-item:first-child {}
+.list-item {}
+.list-item:last-child {}
+
+/* Good */
+.list-item {}
+.list-item:first-child {}
+.list-item:last-child {}
+
+Avoid using tag selectors if possible to keep specificity as low as possible. Never use id selectors and avoid !important
+
+/* Bad */
+.content #intro .icon {}
+
+/* Good */
+.intro-icon {}
+
+Selectors should descrive purpose, not style.
+
+/* Bad */
+.blue-text {
+    /* Bad code as this can become color: red, and doesn't make any sense
+}
+
+/* Good */
+.highlighted-text {
+    /* CSS code here */
+}
+
+Naming Convention
+
+/* Bad code */
+.redBox {
+    fontWeight: 10em;
+}
+
+/* Good code */
+.red-box {
+    font-weight: 10em;
+}
+
+This is a hyphen delimiter. You can also use a more structured naming convention such as BEM.
+
+One way to mitigate issues when using CSS and JavaScript is to use a js-* class name (JavaScript hook) to denote a relationship with the DOM element in question.
+
+<div class="site-navigatation js-site-navigation"></div>
+
+In the JavaScript code:
+
+var nav = document.querySelector('.js-site-navigation');
+
+And in the CSS:
+
+.site-navigation {
+    color: blue;
+}
+
+You can use the rel attribute, but it's not commonly used.
+
+<link rel="stylesheet" href="main.css" />
+
+The rel attribute defines the relationship that the linked resource has to the document from which it's referenced.
+
+<div class="site-navigation" rel="js-site-navigation"></div>
+
+And in the JavaScript:
+
+var nav = document.querySelector("[rel='js-site-navigation']");
+
+The CSS would remain the same. You may come across this in some codebases. 
+
+JavaScript hooks should not use data-attributes, as they are used to store custom data.
+-->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
