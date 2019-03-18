@@ -831,6 +831,27 @@ $ npm run eslint-fix
         </code>
     </pre>
 
+    <!-- https://webpack.js.org/guides/build-performance/#stay-up-to-date -->
+    <p>You may want to use the include field to only apply the loader modules that actually need to be transformed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            include: path.join(__dirname, 'src'),
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader'
+            }
+        }
+    ]
+}
+        </code>
+    </pre>
+
     <h2>Webpack Dev Server</h2>
     <!-- https://webpack.js.org/configuration/dev-server/ -->
 
