@@ -92,6 +92,116 @@ body {
 }
         </code>
     </pre>
+
+    <h2>Themes</h2>
+
+    <p>We can apply themes using a mixture of mixins, variables, and maps. Here we can demonstrate this by generating themes for buttons. We begin by creating a mixin:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialise our variables as 'null' when used outside of the mixin
+$btn-color: null;
+
+@mixin theme($themes: $themes) {
+    // Iterate over the $themes map
+    @each $theme, $styles in $themes {
+        // Create the selector classes (e.g. '.btn--primary')
+        &--#{$theme} {
+
+            // Set the theme variables
+            $btn-color: map-get($styles, 'btn-color') !global;
+
+            // Output the user content
+            @content;
+
+            // Unset the theme variables
+            $btn-color: null !global;
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>Next, we can add a map for creating the different themes. Here we create two themes of 'primary' and 'secondary':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$themes: (
+    'primary': (
+        'btn-color': $color-btn-primary
+    ),
+    'secondary': (
+        'btn-color': $color-btn-secondary
+    )
+)
+        </code>
+    </pre>
+
+    <p>The mixin loops through the map and generates the theme with the classname of --primary or --secondary, so we can create class selectors for our button of .btn--primary and .btn--secondary</p>
+
+    <p>We want to create a variables file for all of our colours:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Orange
+$color-orangutan: #f06827;
+$color-bamboo: #da6304;
+        </code>
+    </pre>
+
+    <p>We can then apply these variables to variables specifically for our buttons:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Primary Theme
+$color-btn-primary: $color-orangutan !default;
+
+// Secondary Theme
+$color-btn-secondary: $color-bamboo !default;
+        </code>
+    </pre>
+
+    <p>And we now need to generate our theme classes, as modifier classes, for our button.</p>
+
+        <code>
+<!-- leave this line empty -->
+.btn {
+    @include theme {
+        background-color: $btn-color;
+
+        &:hover {
+            background-color: $btn-color;
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>As we have a parent class of .btn, when we apply our theme mixin, we prepend the name of the theme from our map, using:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&--#{$theme}
+        </code>
+    </pre>
+
+    <p>So we then get the following classes:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.btn { }
+.btn--primary { }
+.btn--secondary { }
+        </code>
+    </pre>
+
+    <p>If we want to add a new theme, we just need to add new colour variables and need to add a new property to the map.</p>
 </main>
 
 </body>
