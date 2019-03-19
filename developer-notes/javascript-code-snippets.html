@@ -14,6 +14,186 @@
 <body>
 
 <!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Learning JavaScript OOP</title>
+</head>
+<body>
+
+<div id="content">
+  <div id="clock">
+    00:00
+  </div>
+  <div id="clock2">
+    00:00
+  </div>
+  <div id="clock3">
+    00:00
+  </div>
+</div>
+
+<script>
+// Function job is to start our code
+function onReady () {
+
+  var clock = new com.o2GEEK.Clock('clock');
+  var clock2 = new com.o2GEEK.Clock('clock2', -300, 'ETC');
+  var clock3 = new com.o2GEEK.Clock('clock3', 60, 'GMT');
+
+}
+
+// Properties
+// Underscore identifies the properties as not being public
+// Properties belong to the date object
+Date.__interval = 0;
+Date.__aDates = [];
+
+// Static method
+// Accept the date 
+Date.addToInterval = function (date) {
+  // Will return the Date() constructor itself
+  //console.log(this);
+  //console.log(this.__interval);
+
+  // Add to the array - automatically update
+  this.__aDates.push(date);
+
+  // If no interval
+  if (!Date.__interval) {
+    Date.__interval = setInterval(function(){Date.updateDates()}, 1000);
+  }
+}
+Date.updateDates = function () {
+  // Get back the amount of dates that I have added in
+  //console.log(this.__aDates.length);
+
+  // Loop through
+  for (var i = 0; i < this.__aDates.length; i++) {
+    this.__aDates[i].updateSeconds();
+  }
+}
+
+// Add a new function to the data object
+// Update the date seconds using this function
+// This is done using prototype
+// prototype can be used to add functions to existing JS pre-built objects, like date
+// By adding a function to the date object, we don't have to then add this to the constructor internally
+Date.prototype.updateSeconds = function () {
+
+  // Can use this as we are using a method thats part of the date object itself
+  // We are referencing the date object
+  // get seconds + 1
+  this.setSeconds(this.getSeconds() + 1);
+
+  // Won't get access
+  //console.log(this.__interval);
+  // Will get access
+  //console.log(Date.__interval);
+
+}
+
+Date.prototype.autoClock = function (isAuto) {
+
+  // If function is called more than once, don't trigger more than once
+  // Clear the interval
+  //clearInterval(this.clockInterval);
+
+  // To re-trigger this function, set isAuto
+  if (isAuto) {
+    /*
+    var that = this;
+    // Call the updateSeconds function every second
+    // Creating a clock that will automatically count
+    this.clockInterval = setInterval(function(){that.updateSeconds()}, 1000);
+    */
+    Date.addToInterval(this);
+  }
+
+}
+
+// CREATE A NAMESPACE
+// Create a new object and check if it already exists
+// This will check to see if a third party code is also using this object
+// Do you exist, if you don't exist, create a new object
+// This is creating our 'com' folder - but we can rename it something else if we wish (unique)
+// This prevents us from overriding an existing object
+var com = com || {};
+  // Go to the com folder and create o2GEEK
+  // This creates the file and checks if it exists (as above)
+  // com.o2GEEK is just an example name
+  com.o2GEEK = com.o2GEEK || {};
+
+// Constructor
+// Cannot use 'this' if outside of the constructor
+//function Clock (id, offset, label) {
+// The constructor now belongs to our new object
+com.o2GEEK.Clock = function (id, offset, label) {
+
+  // set offset value of 0 for time zone unless value is provided
+  offset = offset || 0;
+  // set default label value to UTC
+  label = label || 'UTC';
+
+  var d = new Date();
+
+  // define parameters so we can use them outside the constructor in the functions.
+  // In the functions, we can use 'this' in the function if we need to use.
+  // e.g. this.label
+  var offset = (offset + d.getTimezoneOffset())*60*1000;
+  // Global variable for the date itself
+  this.d = new Date(offset + d.getTime());
+  // Create an interval that will run once a second
+  // Run our clock and run it automatically - refresh the view
+  this.d.autoClock(true);
+  this.id = id;
+  this.label = label;
+
+  var that = this;
+
+  setInterval(function() { 
+    that.updateClock(); }, 1000);
+  this.updateClock();
+
+}
+
+// Setting a property
+// This can be referred to anywhere in the application
+// Does not need to be declared in the constructor
+com.o2GEEK.Clock.prototype.version = '1.0';
+
+// With this method of OOP, updateClock just becomes the 'face' of the clock
+com.o2GEEK.Clock.prototype.updateClock = function () {
+  // Access the version property
+  //console.log(this.version);
+  var date = this.d;
+    // Call the updateSeconds function to update the clock every second
+    //date.updateSeconds();
+    // REMOVED as this is created within the constructor
+    //date = new Date(this.offset + date.getTime());
+
+  var clock = document.getElementById(this.id);
+    clock.innerHTML = this.formatDigits(date.getHours()) + ":" + this.formatDigits(date.getMinutes()) + ":" + this.formatDigits(date.getSeconds()) + " " + this.label;
+
+};
+
+com.o2GEEK.Clock.prototype.formatDigits = function ( val ) {
+
+  if (val < 10) val = "0" + val;
+
+  return val;
+
+};
+
+window.onload = onReady;
+</script>
+
+</body>
+</html>
+-->
+
+<!--
 (function () {
     'use strict';
 

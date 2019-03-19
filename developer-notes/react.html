@@ -52,6 +52,5643 @@
 <!-- REACT SAGA -->
 <!-- https://hackernoon.com/redux-saga-tutorial-for-beginners-and-dog-lovers-aa69a17db645?gi=5799d5e984f6 -->
 
+<!--
+REACT
+
+ToDO:
+-----
+
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {items: [], text: ''};
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} value={this.state.text} />
+          <button>{'Add #' + (this.state.items.length + 1)}</button>
+        </form>
+      </div>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({text: e.target.value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var newItem = {
+      text: this.state.text,
+      id: Date.now()
+    };
+    this.setState((prevState) => ({
+      items: prevState.items.concat(newItem),
+      text: ''
+    }));
+  }
+}
+
+class TodoList extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.items.map(item => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+ReactDOM.render(<TodoApp />, mountNode);
+
+
+-- App.js --
+
+//import React, { Component } from 'react';
+import React from 'react';  // THIS REPLACES THE TOP LINE
+//import logo from './logo.svg';
+//import './App.css';
+
+import C1 from './component1.js';
+import C2 from './component2.js';
+
+/*class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+      <div>Hello World</div>
+    );
+  }
+}*/
+
+//const App = React.createClass({
+// THINK THIS IS AN ARROW FUNCTION (ES6)
+const App = () => ({
+  render: function() {
+    return (
+      <div>
+        <div>Hello World</div>
+        <C1 />
+        <C2 name="Dan" />
+      </div>
+    );
+  }
+});
+
+export default App;
+
+-- index.js --
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+//import registerServiceWorker from './registerServiceWorker';
+//import './index.css';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+//registerServiceWorker();
+
+/*
+https://www.codementor.io/chrisharrington/react-tutorial-creating-a-simple-application-using-react-js-and-flux-architecture-85f6pccdv
+
+https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98dc
+
+React is a UI library. It is not interested in managing data flows. Redux is a library that manages data flow in a React application. Redux implements uni-directional data flow.
+Redux can be installed using npm i redux react-redux --save-dev
+
+As mentioned before, it's important to know the difference between props and state. Props and state are used as input for the render() method to determine its output, but they are not the same thing! The best way to figure out if data should go in props or state is to ask ourselves 'Will this data ever change?'. If not, it's a prop. If it will, it should go in state! Keep in mind that whenever props and/or state change, the component will run its render() method again.
+
+Let's say we have a <ToggleButton /> component. A toggle button has an on and off state. Using props for that value wouldn't work, since we can't actually change our props! Let's use state for this instead. We'll assume that the default state of this component is to be in the off state.
+*/
+
+-- component1.js --
+
+import React from 'react';  
+
+var C1 = React.createClass({
+    getInitialState: function(){
+        return {
+            username: 'dan.jackson',
+            location: 'Brighton'
+        }
+    },
+    render: function(){
+        return (
+            <div>
+                Hello {this.state.username}
+                Location: {this.state.location}
+            </div>
+        )
+    }
+});
+
+export default C1;
+
+-- component2.js --
+
+import React from 'react';  
+
+const C2 = (props) => ({
+    render: function() {
+        return (
+            <div>Component 2, {props.name}</div>
+        );
+    }
+});
+
+export default C2;
+
+------------ NEW CODE ------------
+
+At the heart of every React component is its 'state'. This is an object that determines how that component renders and behaves. The 'state' is what allows you to create components that are dynamic and interactive.
+
+State should be treated as 'private data' within the component itself. 
+
+A general rule is not to use state for static components. If your component does not need to change, based on external factors, then do not use state.
+
+JS Map
+
+When you run the dataTable code, a warning will appear in the console that a key should be provided for list items. A "Key" is a special string attribute you need to include when creating lists of elements.
+
+Keys help React to identify which items have changed, are added, or are removed.
+
+Variables
+
+You can use variables to store elements
+
+Components + props
+
+React uses components that are small and reusable, to create complex UIs. Components should be small, containing only a small amount of information.
+
+Props make components reusable through properties (props for short). Props are used to pass data from parent to chold components. They should not be changed and should be static information. Props help components to be reusable. The parent provides the data, while the child component is the presentation of the data.
+
+Props are immutable - they do not change.
+
+https://medium.com/@DaphneWatson/react-props-state-10371b408643
+
+A prop can be inherited through the React.render() function:
+
+React.render(<Component prop="test" />, document.getElementById('root'));
+
+Alternatively, the prop can be set within the parent component and then used within the child component.
+
+Components + state
+
+To add interactions to components, State can be used. A component needs to have mutable data to represent its state.
+
+When state is updated in a component, that component will trigger and update. The component itself, as well as its child components, will be re-rendered.
+
+States are mutable - they can change.
+
+For a component to have an initial state, set the initial state on the class constructor.
+
+Component Nesting
+
+React allows for nesting of components within one another. Child components can inherit properties through React.render() or from their parent component. This inherited property is accessible via this.props.
+
+------ BRAND NEW CODE EXAMPLES ------
+
+-- index.js --
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Stylesheets
+import './styles/style.css';
+
+// Get JSON data for invoices
+import invoiceData from './data/invoice';
+
+// Components
+import Header from './components/header';
+import DataTable from './components/dataTable';
+import Contacts from './components/contacts';
+import Greeting from './components/greeting';
+import Input from './components/input';
+
+function AppContainer () {
+    return (
+        <div>
+            <Header name="Test name" />
+            <DataTable {...{invoiceData}}/>
+            <Contacts />
+            /* Conditional statement - 'TRUE' or 'FALSE'
+            // Will display one component or another in greeting.js */
+            <Greeting isLoggedIn={true} />
+            <Input />
+        </div>
+    )
+} 
+
+ReactDOM.render(
+    <AppContainer />, document.getElementById('root')
+);
+
+-- input.js --
+
+import React, {Component} from 'react';
+
+class Input extends Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        text: ''
+    }
+  }
+
+  update(e) {
+    this.setState({text: e.target.value})
+  }
+
+  render() {
+    return (
+      <div>
+        <input type="text" className="input-field" onChange={this.update.bind(this)} />
+        <p>{this.state.text}</p>
+      </div>
+    );
+  }
+}
+
+export default Input;
+
+-- shoppinglist.js --
+
+import React, {Component} from 'react';
+
+// Parent component
+class ShoppingList extends Component {
+
+  render() {
+    return (
+      <ul>
+        <ListItem name="spatula" />
+        <ListItem name="salad tongs" />
+        <ListItem name="measuring spoons" />
+      </ul>
+    );
+  }
+
+}
+
+export default ShoppingList;
+
+-- listitem.js --
+
+import React, {Component} from 'react';
+
+import ShoppingList from './components/shoppinglist';
+
+class ListItem extends Component {
+
+  render() {
+    return (
+      <ul>
+        <li>{this.props.name}</li>
+      </ul>
+    );
+  }
+
+}
+
+React.render(<ShoppingList />, document.body);
+
+export default ListItem;
+
+-- loginbutton.js --
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function LoginButton (props) {
+    return (
+        <button onClick={props.onClick}>
+            Login
+        </button>
+    );
+}
+
+export default LoginButton;
+
+-- logoutbutton.js --
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function LogoutButton (props) {
+    return (
+        <button onClick={props.onClick}>
+            Logout
+        </button>
+    );
+}
+
+export default LogoutButton;
+
+-- dataTable.js --
+
+//import React, {PropTypes} from 'react';   // DEPRECATED v15.5.0
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function DataTable (props) {
+
+    // Get JSON data and add to DataTable
+    const {invoiceData} = props;
+
+    /*
+    Loop through the JSON data array using the JS map() function.
+    This returns the each element within an <li>
+    */
+    return (
+        <table>
+            <thead>
+                <th className="data-table-cell align-left">Date</th>
+                <th className="data-table-cell align-left">Description</th>
+                <th className="data-table-cell align-left">Amounts</th>
+                <th className="data-table-cell align-left">Status</th>
+            </thead>
+            <tbody>
+                {invoiceData.map((invoice) =>
+                    <tr>
+                        <td className="data-table-cell">{invoice.date}</td>
+                        <td className="data-table-cell">{invoice.description}</td>
+                        <td className="data-table-cell">{invoice.amount}</td>
+                        <td className="data-table-cell">{invoice.paid ? 'Paid' : 'Unpaid'}</td>
+                        <td className="data-table-cell"><button>Button</button></td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    )
+}
+
+DataTable.propTypes = {
+    invoiceData: PropTypes.array.isRequired
+}
+
+DataTable.defaultProps = {
+    invoiceData: []
+}
+
+export default DataTable;
+
+-- usergreeting.js --
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function UserGreeting (props) {
+    return <h1>Welcome back</h1>;
+}
+
+export default UserGreeting;
+
+-- guestgreeting.js --
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function GuestGreeting (props) {
+    return <h1>Please sign up</h1>;
+}
+
+export default GuestGreeting;
+
+-- greeting.js --
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
+import UserGreeting from './usergreeting';
+import GuestGreeting from './guestgreeting';
+
+function Greeting (props) {
+
+    const isLoggedIn = props.isLoggedIn;
+
+    if (isLoggedIn) {
+        return <UserGreeting />;
+    }
+    return <GuestGreeting />;
+    
+}
+
+export default Greeting;
+
+-- contact.js --
+
+import React, {Component} from 'react';
+
+class Contacts extends Component {
+  constructor(props) {
+    super(props);
+
+    // The props object displayed in the console.
+    // console.log(this.props);
+
+    this.state = {
+        name: 'Bob'
+    }
+  }
+  render() {
+    return (
+      <div>
+        <p>Hello {this.state.name}</p>
+        <p>It is {new Date().toLocaleTimeString()}.</p>
+      </div>
+    );
+  }
+}
+
+export default Contacts;
+
+-- logincontrol.js --
+
+import React, {Component} from 'react';
+
+import Greeting from './components/greeting';
+import LoginButton from './components/loginbutton';
+import LogoutButton from './components/logoutbutton';
+
+class LoginControl extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+
+    this.state = {
+        isLoggedIn: false
+    };
+  }
+
+  handleLoginClick() {
+    this.setState({isLoggedIn: true});
+  }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
+  }
+
+  render() {
+
+    const isLoggedIn = this.state.isLoggedIn;
+    let button = null;
+
+    if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick} />;
+    }
+
+    return (
+      <div>
+        <Greeting isLoggedIn={isLoggedIn} />
+        {button}
+      </div>
+    );
+  }
+}
+
+export default LoginControl;
+
+-- style.css --
+
+.data-table-cell {
+    padding: 25px;
+}
+
+.align-left {
+    text-align: left;
+}
+
+-- header.js --
+
+import React from 'react';
+
+function Header (props) {
+    return (
+        <header>
+            <h1>Invoice: {props.name}</h1>
+        </header>
+    )
+}
+
+export default Header;
+
+
+https://hashnode.com/post/getting-started-with-es6-and-react-by-building-a-minimal-todo-app-citaix6xe04og8y531g491a1o
+
+https://medium.com/@aghh1504/1-simple-react-todo-list-52186b62976b
+
+https://gist.github.com/jineshshah36/4a0326abb191781184e9
+
+Writing Components
+
+Class based components are statement and/or contain methods. We try to use them as spatingly as possible, but they have their place.
+
+import React, { Component } from 'react';
+
+https://engineering.musefind.com/our-best-practices-for-writing-react-components-dec3eb5c3fc8
+
+class MyComponent extends Component {}
+- This is the ES6 way of creating stateful components. Requires Babel to transpile from ES6 into ES5.
+
+function MyComponent() 
+OR
+const MyComponent = () => {}
+- Stateless component without lifecycle methods. Requires transpiling if you create it using the arrow function. Use this for simple display components.
+
+NodeJS syntax - commonJS - uses require() and ES6 uses import.
+
+https://medium.com/learning-new-stuff/learn-react-js-in-7-min-92a1ef023003
+
+So, you would create a component like this:
+
+var MyComponent = React.createClass({
+    render: function() {
+        return (
+            <h1>Hello World</h1>
+        );
+    }
+});
+
+To initialize a button with some data, you can use props. Data can be provided from anywhere , including using an Ajax call to grab some data from an API. For now, this will be just hard coded within a variable.
+
+var ButtonText = "Click the Button";
+
+We can then hand this data to the button component.
+
+<App text={ButtonText} />
+
+This is a JavaScript expression within JSX.
+
+Fetch Data from Google Spreadsheet:
+
+https://blog.yipl.com.np/creating-events-page-using-react-and-google-spreadsheet-at-younginnovations-2ec04c6eeecb
+
+initDataFromSpreadsheet() {
+    var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1hsq2GxF1RJu-PVHLU4hIkt-Kso0jHpWaT99WGXE92m0/pubhtml';
+    Tabletop.init({
+        key: public_spreadsheet_url,
+        callback: events => this.setState({events}),
+        simpleSheet: true
+    });
+}
+
+Build a Progressive Web App (PWA):
+
+https://engineering.musefind.com/build-your-first-progressive-web-app-with-react-8e1449c575cd
+
+https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-i-introduction-50679aef2b12
+
+https://engineering.musefind.com/
+
+The code below (Example code), will create an application that uses routing to create multiple pages within a React application.
+
+EXAMPLE CODE (PWA):
+
+-- App.js --
+
+import React, { Component } from 'react';
+import { Router, browserHistory, Route, Link } from 'react-router';
+
+const Page = ({ title }) => (
+    <div className="App">
+      <div className="App-header">
+        <h2>{title}</h2>
+      </div>
+      <p className="App-intro">
+        This is the {title} page.
+      </p>
+      <p>
+        <Link to="/">Home</Link>
+      </p>
+      <p>
+        <Link to="/about">About</Link>
+      </p>
+      <p>
+        <Link to="/settings">Settings</Link>
+      </p>
+    </div>
+);
+
+const Home = (props) => (
+  <Page title="Home"/>
+);
+
+const About = (props) => (
+  <Page title="About"/>
+);
+
+const Settings = (props) => (
+  <Page title="Settings"/>
+);
+
+class App extends Component {
+  render() {
+    return (
+      <Router history={browserHistory}>
+        <Route path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/settings" component={Settings}/>
+      </Router>
+    );
+  }
+}
+
+export default App;
+
+-- index.js --
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+function AppContainer () {
+    return (
+        <div>
+            <App />
+        </div>
+    )
+} 
+
+ReactDOM.render(
+    <AppContainer />, document.getElementById('root')
+);
+
+REACT ROUTER GUIDE:
+
+https://medium.com/@dabit3/beginner-s-guide-to-react-router-53094349669
+
+When you begin learning React and place code within the render() function like this:
+
+<h1>Hello, world!</h1>
+
+It is not a React component, but a React element.
+
+This is the simplist React component you can get:
+
+function Hello(props) {
+  return <h1>Hello, world!</h1>
+}
+
+CODEACADEMY
+
+-- app.js --
+
+Mix of JavaScript syntax and HTML syntax:
+
+var h1 = <h1>Hello World</h1>;
+
+The code belongs in a JavaScript file as it doesn't contain HTML code at all. The <h1>Hello World</h1> part of the code is something called JSX.
+
+JSX is a syntax extension for JavaScript written to be used with React. JSX code looks a lot like HTML. JSX is not valud JavaScript and browsers cannot read it. If a JavaScript file contains JSX code, the file will need to be compiled. This will translate the JSX code into regular JavaScript.
+
+The code: <h1>Hello world</h1> basic unit of JSX is called a JSX element. This looks similar to HTML. JSX elements are treated as JavaScript expressions. They can go anywhere that JavaScript expressions can go. This means that JSX elements can be saved in a variable, passed to a function, stored in an object or array etc.:
+
+var navBar = <nav>I am a nav bar</nav>;
+
+Here is an example of several JSX elements being stored in an object:
+
+var Pistons2004 = {
+  center:        <li>Ben Wallace</li>,
+  powerForward:  <li>Rasheed Wallace</li>,
+  smallForward:  <li>Tayshaun Prince</li>,
+  shootingGuard: <li>Richard Hamilton</li>,
+  pointGuard:    <li>Chauncey Billups</li>
+};
+
+JSX elements can have attributes, just like HTML elements. A JSX attribute is written using HTML-like syntax - a name followed by an equals sign, followed by a value.
+
+my-attribute-name="my-attribute-value"
+
+An example of a JSX element with an attribute:
+
+var title = <h1 id="title">Introduction to React.js</h1>;
+
+A JSX element can have multiple attributes.
+
+var p1 = <p id="large">foo</p>;
+var p2 = <p id="small">bar</p>;
+
+JSX elements can be nested inside of other JSX elements, just like HTML.
+
+<a href="https://www.google.com">
+    <h1>
+        Click me I am Google
+    </h1>
+</a>
+
+If a JSX expression takes up more than one line, you should wrap the multi-line JSX expression in parenthesis.
+
+(
+    <a href="https://www.google.com">
+        <h1>
+            Click me I am Google
+        </h1>
+    </a>
+)
+
+Nested JSX expressions can be saved as variables, passed to functions etc.
+
+var theGoogle = (
+    <a href="https://www.google.com">
+        <h1>
+            Click me I am Google
+        </h1>
+    </a>
+);
+
+Example in Codeacademy:
+
+var myDiv = (
+  <div>
+    <h1>Hello world</h1>
+  </div>
+);
+
+A JSX expression must have exactly one outermost element. In other words, this code would work:
+
+var paragraphs = (
+  <div id="i-am-the-outermost-element">
+    <p>I am a paragraph.</p>
+    <p>I, too, am a paragraph.</p>
+  </div>
+);
+
+This code will not work:
+
+var paragraphs = (
+  <p>I am a paragraph.</p> 
+  <p>I, too, am a paragraph.</p>
+);
+
+The first opening tag and final closing tag of a JSX expression must belong to the same JSX element. The simplest way of doing this is to wrap the expression within a <div></div>
+
+Like this example:
+
+var blog = (
+  <div>
+  <img src="pics/192940u73.jpg" />
+  <h1>
+    Welcome to Dan's Blog!
+  </h1>
+  <article>
+    Wow I had the tastiest sandwich today.  I <strong>literally</strong> almost freaked out.
+  </article>
+  </div>
+);
+
+Now we have learnt how to write JSX elements, it is now time to learn how to render them. To render a JSX expression means to make it appear onscreen.
+
+The following code will render a JSX expression:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// Copy code here:
+ReactDOM.render(<h1>Hello world</h1>, document.getElementById('app'));
+
+The output will be 'Hello world'.
+
+Lets explain the code having just written it:
+
+ReactDOM is the name of a JavaScript library. This library contains several React-specific methods, all of which deal with the DOM in some way or another.
+
+ReactDOM.render is the most commin way to render JSX. It takes a JSX expression, creates a corresponding tree of DOM nodes, and adds that tree to the DOM. That is the way to make a JSX expression appear onscreen.
+
+<h1>Hello world</h1> is the first argument being passed to ReactDOM.render. The first argument should be the JSX expression that will be rendered onto the screen.
+
+document.getElementById('app')
+
+This is the second argument. The first argument is appended to whetever element is selected by the second argument. This is where you want to render the element within the HTML file.
+
+ReactDOM.render()'s first argument should evaluate to a JSX expression, it doesn't have to literally be a JSX expression. The first argument could be a variable, so long as the variable containes a JSX expression.
+
+In this example, we save a JSX expression as a variable named toDoList. We then pass toDoList as a first argument to ReactDOM.render:
+
+var toDoList = (
+    <ol>
+        <li>Learn React</li>
+        <li>Become a Developer</li>
+    </ol>
+);
+
+ReactDOM.render(
+    toDoList,
+    document.getElementById('app')
+);
+
+Example code:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// Write code here:
+var myList = (
+  <ul>
+    <li>List one</li>
+    <li>List two</li>
+    <li>List three</li>
+    <li>List four</li>
+    <li>List five</li>
+    <li>List six</li>
+    <li>List seven</li>
+  </ul>
+);
+
+ReactDOM.render(
+  myList,
+  document.getElementById('app')
+);
+
+This will output:
+
+List one
+List two
+List three
+List four
+List five
+List six
+List seven
+
+ReactDOM.render will only update DOM elements that have changed. That means that if you render the exact same thing twice in a row, the second render will do nothing.
+
+var hello = <h1>Hello world</h1>;
+
+// This will add "Hello world" to the screen
+ReactDOM.render(hello,
+document.getElementById('app'));
+
+// This won't do anything at all
+ReactDOM.render(hello,
+document.getElementById('app'));
+
+This is brilliant! Only updating the necessary DOM elements is a large part of what makes React so successful. React accomplishes this thanks to something called the 'Virtual DOM'.
+
+This is the first stage in becoming fluent in React, learning how to create and render JSX elements.
+
+What will render 100 to the screen:
+
+ReactDOM.render(
+    <h1>{10 * 10}</h1>,
+    document.getElementById('app')
+);
+
+Correct way to attach the function 'yo' to a click event:
+
+var yo = function () {
+    alert('Yo');    
+};
+
+// Button
+<button onClick={yo}></button>
+
+* We are still working on Learn ReactJS: Part1 (14% has been completed - notes above)
+
+Grammar in JSX is mostly the sam as HTML, but with subtle differences. For example, in HTML it's common to use class as an attribute name:
+
+<h1 class="big">Hey</h1>
+
+In JSX, you can't use the word class, you have to use className instead:
+
+<h1 className="big">Hey</h1>
+
+This is because JSX gets translated into JavaScript, and class is a reserved word in JavaScript. When JSX is rendered, JSX className attributes are automatically rendered as class attributes.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// Write code here:
+var myDiv = <div className="big">I AM A BIG DIV</div>;
+
+ReactDOM.render(myDiv, document.getElementById('app'));
+
+Self-closing tags:
+
+Most HTML elements use two tags: an opening tag <div>, and a closing tag </div>. However, some HTML elements such as <img> and <input> use only one tag. The tag that belongs to a single-tag element isn't an opening tag nor a closing tag, it's a self-closing tag. When you write a self-closing tag in HTML, it is optional to include a forward-slash immediately before the final angle-bracket:
+
+<br />
+
+// Also fine without
+<br>
+
+But, in JSX, you have to include the slash. If you write a self-closing tag in JSX and forget the slash, an error will be raised.
+
+example:
+
+var profile = (
+  <div>
+    <h1>I AM JENKINS</h1>
+    <img src="images/jenkins.png" />
+    <article>
+      I LIKE TO SIT
+      <br/>
+      JENKINS IS MY NAME
+      <br/>
+      THANKS HA LOT
+    </article>
+  </div>
+);
+
+So far, we've focused on writing JSX expressions. It's similar to writing bits of HTML, but inside of a JavaScript file. Any code between tags of a JSX elements will be read as JSX, not as regular JavaScript, so numbers will simply be output and read as text, just like HTML. To perform a calculation, we can wrap out numbers in curly braces:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// Write code here:
+ReactDOM.render(
+  <h1>2 + 3</h1> // Output: 2 + 3
+  <h1>{2 + 3}</h1>, // Output: 5
+  document.getElementById('app')
+);
+
+Anything within the curly braces will be treated as regular JavaScript.
+
+Now we can inject regular JavaScript into JSX expressions. As an example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// Write code here:
+var math = <h1>2 + 3 = {2 + 3}</h1>;
+ReactDOM.render(
+  math, 
+  document.getElementById('app')
+);
+
+When you inject JavaScript into JSX, that JavaScript is part of the same environment as the rest of the JavaScript in your file. That means that you can access variables while inside of a JSX expression, even if those variables were declared on the outside.
+
+// Declare a variable
+var name = 'Gerdo';
+
+// Access your variable
+// From inside of a JSX expression
+var greeting = <p>Hello, {name}</p>;
+
+example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var theBestString = 'tralalalala i am da best';
+
+ReactDOM.render(<h1>{theBestString}</h1>, document.getElementById('app'));
+
+When writing JSX, it's common to use variables to set attributes. Here's an example of how that might work:
+
+// Use a variable to set the 'height' and 'width' attributes
+var sideLength = "200px";
+
+var panda = (
+  <img 
+    src="images/panda.jpg"
+    alt="panda"
+    height={sideLength}
+    width={sideLength} />
+);
+
+The image's attributes each get their own line. This can make the code more readable if you have many attributes. Object properties can also be used to set attributes:
+
+var pics = {
+  panda: "http://bit.ly/1Tqltv5",
+  owl: "http://bit.ly/1XGtkM3",
+  owlCat: "http://bit.ly/1Upbczi"
+};
+
+var panda = (
+  <img
+    src={pics.panda}
+    alt="Lazy Panda" />
+);
+
+var owl = (
+  <img
+    src={pics.owl}
+    alt="Big Owl" />
+);
+
+example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var goose = 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-goose.jpg';
+
+// Declare new variable here:
+var gooseImg = <img src={goose} />;
+
+ReactDOM.render(
+  gooseImg,
+  document.getElementById('app')
+);
+
+JSX elements can have event listeners, just like HTML elements can. Programming in React means constantly working with event listeners. You create an event listener by giving a JSX element a special attribute.
+
+<img onClick={myFunc} />
+
+An event listener attribute's name should be something like onClick or onMouseOver. The word 'on' plus the type of event you are listening for. An event listener attribute's value should be a function.
+
+function myFunc () {
+  alert("This is an alert");
+}
+
+<img onClick={myFunc} />
+
+In HTML, event listener names are written all in lowercase, such as: onclick or onmouseover. In JSX, event listener names are written in camelCase, such as onClick or onMouseOver.
+
+Inject JavaScript into JSX - use curly braces e.g { }
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+function makeDoggy (e) {
+  // Call this extremely useful function on an <img>.
+  // The <img> will become a picture of a doggy.
+  e.target.setAttribute('src', 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-puppy.jpeg');
+  e.target.setAttribute('alt', 'doggy');
+}
+
+// The onClick event listener injects JavaScript into JSX to call the function
+var kitty = (
+  <img 
+    src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-kitty.jpg" 
+    onClick={makeDoggy}
+    alt="kitty" />
+);
+
+ReactDOM.render(kitty, document.getElementById('app'));
+
+An IF conditional statement cannot be injected as JavaScript into JSX. The code will break. You cannot inject an If statement into JSX, but you can write an if statement and not inject it into JSX. An if and else are not injected between JSX tags, it is on the outside, and no JavaScript injection is needed.
+
+-- app.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+function coinToss () {
+  // This function will randomly return either 'heads' or 'tails'.
+  return Math.random() < 0.5 ? 'heads' : 'tails';
+}
+
+var pics = {
+  kitty: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-kitty.jpg',
+  doggy: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-puppy.jpeg'
+};
+
+// if/else statement begins here:
+if (coinToss() == 'heads') {
+  var img = <img src={pics.kitty} />;
+} else {
+  var img = <img src={pics.doggy} />;
+}
+
+ReactDOM.render(img, document.getElementById('app'));
+
+-- if.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+if (user.age >= drinkingAge) {
+  var message = (
+    <h1>
+      Hey, check out this alcoholic beverage!
+    </h1>
+  );
+} else {
+  var message = (
+    <h1>
+      Hey, check out these earrings I got at Claire's!
+    </h1>
+  );
+}
+
+ReactDOM.render(
+  message, 
+  document.getElementById('app')
+);
+
+Conditional statements can be written in a more compact way using a ternary operator. This works in the same way in React as it does in regular JavaScript.
+
+x ? y : z
+
+x - evaluated as either true or false.
+if 'x' is true, then the ternary returns 'y'.
+if 'x' is false, then the ternary returns 'z'.
+
+var headline = (
+  <h1>
+    { age >= drinkingAge ? 'Buy Drink' : 'Do Teen Stuff' }
+  </h1>
+);
+
+If age is greater than or equal to the drinking age, then headline will equal 'Buy Drink', otherwise it will be 'Do Teen Stuff'.
+
+example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+function coinToss () {
+  // Randomly return either 'heads' or 'tails'.
+  return Math.random() < 0.5 ? 'heads' : 'tails';
+}
+
+var pics = {
+  kitty: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-kitty.jpg',
+  doggy: 'https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-puppy.jpeg'
+};
+
+var img = <img src={pics[coinToss() == 'heads' ? 'kitty' : 'doggy']} />;
+
+ReactDOM.render(
+  img, 
+  document.getElementById('app')
+);
+
+Conditional statements can also use the && operator. The && (OR) operator is not React-specific, but it shows up in React surprisingly often. && works best in conditionals that will sometimes do an action, but other times do nothing at all. Each time you see && it will either run some code, or else no code will run.
+
+example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// judgmental will be true half the time.
+var judgmental = Math.random() < 0.5;
+
+var favoriteFoods = (
+  <div>
+    <h1>My Favorite Foods</h1>
+    <ul>
+      <li>Sushi Burrito</li>
+      <li>Rhubarb Pie</li>
+      { !judgmental && <li>Nacho Cheez Straight Out The Jar</li> }
+      <li>Broiled Grapefruit</li>
+    </ul>
+  </div>
+);
+
+ReactDOM.render(
+  favoriteFoods, 
+  document.getElementById('app')
+);
+
+If you run this code, every time you refresh the browser, there will be a 50% chance that 'judgmental' will be true. If it's false, then the <li> will be displayed.
+
+The array method .map often comes up in React. If you want to create a list of JSX elements, then .map if often the best option.
+
+var strings = ['Home', 'Shop', 'About Me'];
+
+var listItems = strings.map(function(string) {
+  return <li>{string}</li>;
+});
+
+<ul>{listItem}</ul>
+
+In the above example, we start out with an array of strings. We call .map on this array of strings, and the .map call returns a new array of <li>s.
+
+On the last line of the example, note than {listItems} will evaluate to an array, because it's the returned valie of .map JSX <li>s don't have to be in an array like this, but they can be.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var people = ['Rowe', 'Prevost', 'Gare'];
+
+var peopleLIs = people.map(function(person){
+  // return statement goes here:
+  return <li>{person}</li>;
+});
+
+// ReactDOM.render goes here:
+ReactDOM.render(<ul>{peopleLIs}</ul>, document.getElementById('app'));
+
+The output of this code:
+
+Rowe
+Prevost
+Gare
+
+When you make a list in JSX, sometimes your list will need to include something called keys.
+
+<ul>
+  <li key="li-01">Example 1</li>
+  <li key="li-02">Example 2</li>
+  <li key="li-03">Example 3</li>
+</ul>
+
+A key is a JSX attribute. The attribute's name is key and it's value should be something unique, similar to an ID attribute.
+
+Keys don't do anything that you can see. React uses them to internally keep track of lists. If you don't use keys when you're supposed to, React may accidentally scramble your list items into the wrong order.
+
+Not all lists need keys.
+
+A list will need keys if:
+
+The list-items have memory from one render to the next. For instance, when a to-do list renders, each item must "remember" whether it was checked off. The items shouldn't get amnesia when they render.
+
+A list's order might be shuffled. For instance, a list of search results might be shuffled from one render to the next.
+
+If neither of these conditions are true, then you don't have to worry about keys. It never hurts to use them if your unsure.
+
+* Need to finish React Part 1 tutorial - Codeacademy *
+
+Build a Mini Netflix using React:
+https://scotch.io/tutorials/build-a-mini-netflix-with-react-in-10-minutes
+
+.map is going to loop ver your return statement creating a new <li></li> with a new key attribute for each element on each loop, as each key needs to be unique. 
+
+First, add an i parameter so that you can access each element's unique index:
+
+var peopleLIs = people.map(function(person, i){})
+
+Now, you can get a unique key on each loop, by adding this attribute to you <li>
+
+key={'person_' + i}
+
+example code:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var people = ['Rowe', 'Prevost', 'Gare'];
+
+var peopleLIs = people.map(function(person, i){
+  // return statement goes here:
+  return <li key={'person_' + i}>{person}</li>;
+});
+
+// ReactDOM.render goes here:
+ReactDOM.render(
+  <ul>{peopleLIs}</ul>,
+  document.getElementById('app')
+);
+
+You can write React code without JSX at all. The majority of React developers use JSX.
+
+The following expression:
+
+var h1 = <h1>Hello world</h1>;
+
+can be rewritten without JSX, like this:
+
+var h1 = React.createElement(
+  "h1",
+  null,
+  "Hello world"
+);
+
+When a JSX element is compiled, the compiler transforms the JSX element into the method that you see above. React.createElement().
+
+Every JSX element is secretly a call to React.createElement()
+
+As an example, the following div:
+
+var greatestDivEver = <div>i am div</div>;
+
+Can be compiled into:
+
+var greatestDivEver = React.createElement(
+  "div",
+  null,
+  "i am div"
+);
+
+JSX unit completed - Codeacademy
+
+REACT COMPONENTS
+
+React applications are made out of components. A component is a small, reusable chunk of code that is resposible for one job. That job is often to render some HTML.
+
+The terms "component", "React component" and "component instance" all refer to the same thing.
+
+The code below will create and render a new React component:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyComponentClass = React.createClass({
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+});
+
+ReactDOM.render(
+  <MyComponentClass />,
+  document.getElementById('app')
+);
+
+We have created our first component.
+
+var React = require('react');
+
+This line of code returns a JavaScript object. This object contains methods that you need in order to use React. This returned object is called the React library.
+
+One of the methods in the React library is React.createElement
+
+When a JSX element is compiled, it transforms into a React.createElement() call. For this reason, you have to require the React library and save it in a variable name called React. 
+
+React.createElement must be available in order for JSX to work.
+
+require('react-dom') is very similar to require('react'). It also returns a JavaScript object, which contains React-related methods. The methods returned are for interacting with the DOM. One of these methods is ReactDOM.render. Methods returned by require('react') don't deal with the DOM at all or engage with anything that isn't part of React. They are for pure React purposes, such as creating components or writing JSX elements.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+Every component must come from a component class. A component class is like a factory that creates components. If you have a component class, then you can use that class to produce as many components as you want.
+
+To make a component class, you can use one of the methods in the React library: React.createClass
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+React.createClass();
+
+Calling React.createClass is the way to make a new component class. When creating a new component class, you should store it in a variable so that it can be used later. The variable name of the component class must begin with capital letters. This adheres to the naming convention in which class names are written in UpperCamelCase.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyComponentClass = React.createClass();
+
+React.createClass takes one argument. That argument must be a JavaScript object. This object will act as a set of instructions explaining to your component class how to build a React component.
+
+Here's what your 'instruction object' would look like on it's own:
+
+{
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+}
+
+There is only one property that you have to include in the object: a render function. A render function is a property whose name is render, and whose value is a function. The term 'render function' can refer to the entire property, or just the function part.
+
+A render function must have a return statement. Usually this returns a JSX expression.
+
+code example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var componentBlueprint = {
+  render: function () {
+    return <h1>Hello world</h1>
+  }
+}
+
+var MyComponentClass = React.createClass(componentBlueprint);
+
+To summarise, we have declared a new variable named componentBlueprint with a render function inside. The render function has a return statement that returns a JSX expression. This component - componentBlueprint - is then passed as an argument into the React.createClass component class.
+
+Saving the instructions object in a variable is a nice way to illustrate how it works, but it basically never happens in practice. You are more likely to see something like this:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyComponentClass = React.createClass({
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+});
+
+MyComponentClass is now a working component class, so we can now make a React component.
+
+<MyComponentClass />
+
+To make a React component, you write a JSX element. Instead of naming your JSX element something like h1 or div, you give it the same name as the component class. This is your component instance (instance of a class).
+
+JSX elements can be either HTML-like, or component instances. JSX uses capitalization to distinguish between the two. This is why component class names must begin with capital letters.
+
+Creating an instance of a class is simply to use a self-closing tag:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyComponentClass = React.createClass({
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+});
+
+<MyComponentClass />
+
+Whenever you make a React component instance, that component inherits all of the properties on it's class's instructions object.
+
+Your instructions object has one property - a function named render - therefore <MyComponentClass /> will inherit the render function from the class and have a render function itself. You could make multiple different <MyComponentClass /> instances and each one would inherit the same exact render function.
+
+Now, we must render our component.
+
+Fortunately, your component already has a render function. It inherited it from MyComponentClass. Now you just have to call that render function. To call a component's render function, pass that component to ReactDOM.render:
+
+ReactDOM.render (
+  <MyComponentClass />
+  document.getElementById('app')
+);
+
+ReactDOM.render will tell <MyComponentClass /> to call it's render function.
+
+<MyComponentClass /> will call it's render function, returning <h1>Hello world</h1>. ReactDOM.render will take that <h1>Hello world</h1> and add it to the virtual DOM, eventually making it visible on the screen.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyComponentClass = React.createClass({
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+});
+
+ReactDOM.render(
+  <MyComponentClass />,
+  document.getElementById('app')
+);
+
+The words 'Hello world' will be displayed on the screen.
+
+Getting JSX and React components to work together. A multi-line JSX expression should always be wrapped in parenthesis.
+
+Create a component:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var QuoteMaker = React.createClass({
+  render: function () {
+    return (
+      <blockquote>
+        <p>
+          What is important now is to recover our senses.
+        </p>
+        <cite>
+          <a target="_blank"
+            href="http://bit.ly/1LvSLUA">
+            Susan Sontag
+          </a>
+        </cite>
+      </blockquote>
+    );
+  }
+});
+
+ReactDOM.render(
+  <QuoteMaker />,
+  document.getElementById('app')
+);
+
+Take a look at this JavaScript object named redPanda:
+
+var redPanda = {
+  src: 'http://bit.ly/1U92LL3',
+  alt: 'Red Panda',
+  width: '200px'
+};
+
+You can, and often will, inject JavaScript into JSX inside of a render function.
+
+Example code:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var owl = {
+  title: "Excellent Owl",
+  src: "https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-owl.jpg"
+};
+
+// Component class starts here:
+var Owl = React.createClass({
+    render: function () {
+      return (
+       <div>
+          <h1>{owl.title}</h1>
+          <img 
+            src={owl.src} 
+            alt={owl.title} />
+       </div>
+      );
+    }
+});
+
+ReactDOM.render(<Owl />, document.getElementById('app'));
+
+This example code (above) will render 'Excellent Own' followed by an image.
+
+A render function must have a return statement. However, that isn't all that it can have. A render function can also be a fine place to put a simple calculation that needs to happen right before the component renders.
+
+var Random = React.createClass({
+  render: function () {
+    // First, some logic that must happen
+    // before rendering
+    // This should be in the render function and not outside
+    var n = Math.floor(Math.random()*10+1);
+
+    // Next, a return statement
+    // Using that logic:
+    return <h1>The number is {n}!</h1>
+  }
+});
+
+Set Friend equal to a component class, made with React.createClass():
+
+var Friend = React.createClass();
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var friends = [
+  {
+    title: "Yummmmmmm",
+    src: "https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyweirdo.jpg"
+  },
+  {
+    title: "Hey Guys!  Wait Up!",
+    src: "https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-earnestfrog.jpg"
+  },
+  {
+    title: "Yikes",
+    src: "https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-alpaca.jpg"
+  }
+];
+
+// New component class starts here:
+var Friend = React.createClass({
+  render: function () {
+    var friend = friends[2];
+    return (
+      <div>
+        <h1>{friend.title}</h1>
+        <img src={friend.src} />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Friend />,
+  document.getElementById('app')
+);
+
+This variable (below) will equal 'True' half the time and 'False' the other half:
+
+var fiftyFifty = Math.random() < 0.5;
+
+Example code (Conditional statement):
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var fiftyFifty = Math.random() < 0.5;
+
+// React.createClass call begins here:
+var TonightsPlan = React.createClass({
+  render: function () {
+    if (true) {
+      return <h1>Tonight I'm going out WOOO</h1>;
+    } else {
+      return <h1>Tonight I'm going to bed WOOO</h1>;
+    }
+  }
+});
+
+ReactDOM.render(
+  <TonightsPlan />,
+  document.getElementById('app')
+);
+
+The word 'this' gets used in React a lot. You are expecially likely to see 'this' inside of an object that is being passed to React.createClass:
+
+var IceGreamGuy = React.createClass({
+  food: 'ice cream',
+
+  render: function () {
+    return <h1>I like {this.food}</h1>;
+  }
+});
+
+'this' refers to the instructions object being passed to React.createClass. 'this' has two properties: food and render. this.food will evaluate to "ice cream".
+
+There's nothing React-specific about 'this' behaving in this way. In React, you will see this used in this way almost all the time.
+
+In this example, we are adding a new property - of name - to the instructions object:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyName = React.createClass({
+  // name property goes here:
+  name: 'Dan',
+
+  render: function () {
+    return <h1></h1>;
+  }
+});
+
+ReactDOM.render(<MyName />, document.getElementById('app'));
+
+Inside of the render function, we can then update the code further.
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var MyName = React.createClass({
+  // name property goes here:
+  name: 'Dan',
+
+  render: function () {
+    return <h1>My name is {this.name}.</h1>;
+  }
+});
+
+ReactDOM.render(<MyName />, document.getElementById('app'));
+
+This will print out 'My name is Dan' on the screen.
+
+Render functions often contain event listeners. Here's an example of an event listener within the render function:
+
+render: function () {
+  return (
+    <div onHover={myFunc}>
+    </div>
+  );
+}
+
+An event handler is a function that gets calls in response to an event. In the above example, the event handler is myFunc.
+
+In React, you define event handlers as property values on the instructions object. Like this:
+
+React.createClass({
+  myFunc: function () {
+    alert('Stop it. Stop hovering.');
+  },
+
+  render: function () {
+    return (
+      <div onHover={this.myFunc}>
+      </div>;
+    );
+  }
+});
+
+Notice that the object being passed to React.createClass has two properties: myFunc and render. myFunc is being used as an event handler and will be called any time that a user hovers over the rendered <div></div>
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Button = React.createClass({
+  scream: function () {
+    alert('AAAAAAAAHHH!!!!!');
+  },
+
+  render: function () {
+    return <button onClick={this.scream}>AAAAAH!</button>;
+  }
+});
+
+ReactDOM.render(
+  <Button />,
+  document.getElementById('app')
+);
+
+So far we have learnt a lot about React components in isolation. Next, we will be learning about how components fit into the world around them.
+
+Here is a render function that returns an HTML-like JSX element:
+
+var Example = React.createClass({
+  render: function () {
+    return <h1>Hello world</h1>;
+  }
+});
+
+Render functions can also return another kind of JSX: component instances
+
+var OMG = React.createClass({
+  render: function () {
+    return <h1>Whooaa!</h1>;
+  }
+});
+
+var Crazy = React.createClass({
+  render: function () {
+    return <OMG />;
+  }
+});
+
+In the above example, Crazy's render function returns an instance of the OMG component class. Crazy renders <OMG />
+
+This is basically a component being rendered by another component. When this happens, it is very similar to what happens when ReactDOM.render renders a component. So you use <Component /> within another component to do this.
+
+-- ProfilePage.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+
+var ProfilePage = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <NavBar />
+        <h1>All About Me!</h1>
+        <p>I like movies and blah blah blah blah blah</p>
+        <img src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyselfie.jpg" />
+      </div>
+    );
+  }
+});
+
+-- NavBar.js --
+
+var React = require('react');
+
+var NavBar = React.createClass({
+  render: function () {
+    var pages = ['home', 'blog', 'pics', 'bio', 'art', 'shop', 'about', 'contact'];
+    var navLinks = pages.map(function(page){
+      return (
+        <a href={'/' + page}>
+          {page}
+        </a>
+      );
+    });
+
+    return <nav>{navLinks}</nav>;
+  }
+});
+
+When you use React, every JavaScript file in your application is invisible to every other JavaScript file by default. ProfilePage.js and NavBar.js cannot see each other. By using <NavBar /> within the ProfilePage.js component, we have just added an instance of the NavBar component class, but since we're in ProfilePag.js, JavaScript has no idea what NavBar means.
+
+If you want to use a variable that's declared in a different file, such as NavBar, they you have to import the file you want. This is done through the require statement with the filename you want to import.
+
+var NavBar = require('./NavBar.js');
+
+If you pass require a string that begins with a dot or slash, the require will treat that string as a filepath. require will follow that filepath and import the file that it finds. If your filepath doesn't have a file extension, then '.js' is assumed. The above example can be shortened:
+
+var NavBar = require('./NavBar');
+
+None of this behavior is specific to React. Module systems of files are a very popular way to organise code using ES6. React's specific module system comes from Node.js.
+
+<NavBar /> is not going to work within ProfilePage.js until you import it.
+
+-- ProfilePage.js (updated) --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var NavBar = require('./NavBar');
+
+var ProfilePage = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <NavBar />
+        <h1>All About Me!</h1>
+        <p>I like movies and blah blah blah blah blah</p>
+        <img src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyselfie.jpg" />
+      </div>
+    );
+  }
+});
+
+We have now learnt how to use require to import a file into a different file. You don't possibly want to import the whole file, however, just the NavBar component class, so that it can be rendered as a <NavBar /> instance.
+
+What we need is a way to import only a specific part of a file into another file. The answer is something called module.exports.
+
+module.exports comes from the Node.js module system. Just like require, module.exports are meant to be used together, and you often never see one without the other.
+
+In one file, declare module.exports to be equal to an expression. It can be any expression you want:
+
+// Manifestos.js
+var faveManifestos = {
+  futurist: 'http://bit.ly/1lKuB2I',
+  SCUM: 'http://bit.lu/1xWjvYc',
+  cyborg: 'http://bit.ly/16sbeoI'
+};
+
+module.exports = faveManifestos;
+
+In a different file, use require to import the first file. require won't return the entire first file, it will return the first file's module.exports value.
+
+// App.js
+// Link to Futurist Manifesto
+
+console.log(require('./Manifestos').futurist);
+
+module.exports means, "if you require the file that I am in, then here's what you're going to get!".
+
+-- NavBar.js --
+
+var React = require('react');
+
+var NavBar = React.createClass({
+  render: function () {
+    var pages = ['home', 'blog', 'pics', 'bio', 'art', 'shop', 'about', 'contact'];
+    var navLinks = pages.map(function(page){
+      return (
+        <a href={'/' + page}>
+          {page}
+        </a>
+      );
+    });
+
+    return <nav>{navLinks}</nav>;
+  }
+});
+
+module.exports = NavBar;
+
+-- ProfilePage.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var NavBar = require('./NavBar');
+
+var ProfilePage = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <NavBar />
+        <h1>All About Me!</h1>
+        <p>I like movies and blah blah blah blah blah</p>
+        <img src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyselfie.jpg" />
+      </div>
+    );
+  }
+});
+
+Now your ready for <ProfilePage /> to render <NavBar />
+
+At the bottom of ProfilePage.js, use ReactDOM.render to render an instance of ProfilePage.
+
+-- ProfilePage.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var NavBar = require('./NavBar');
+
+var ProfilePage = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <NavBar />
+        <h1>All About Me!</h1>
+        <p>I like movies and blah blah blah blah blah</p>
+        <img src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyselfie.jpg" />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(<ProfilePage />, document.getElementById('app'));
+
+-- NavBar.js --
+
+var React = require('react');
+
+var NavBar = React.createClass({
+  render: function () {
+    var pages = ['home', 'blog', 'pics', 'bio', 'art', 'shop', 'about', 'contact'];
+    var navLinks = pages.map(function(page){
+      return (
+        <a href={'/' + page}>
+          {page}
+        </a>
+      );
+    });
+
+    return <nav>{navLinks}</nav>;
+  }
+});
+
+module.exports = NavBar;
+
+- A component can render another component.
+- Components can pass information to another component.
+- Information that gets passed from one component to another is known as "props".
+
+Every component has something called props. A component's props is an object that holds information about that component. To see a component's props object, you use the expression this.props
+
+Here's an example:
+
+render: function () {
+  console.log("Props object coming up!");
+  console.log(this.props);
+  console.log("That was my props object");
+  return <h1>Hello world</h1>;
+}
+
+Most of the information in this.props object is pretty useless.
+
+Example code (PropsDisplayer.js):
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var PropsDisplayer = React.createClass({
+  render: function () {
+    var stringProps = JSON.stringify(this.props);
+
+    return (
+      <div>
+        <h1>CHECK OUT MY PROPS OBJECT</h1>
+        <h2>{stringProps}</h2>
+      </div>
+    );
+  }
+});
+
+// ReactDOM.render goes here:
+ReactDOM.render(<PropsDisplayer />, document.getElementById('app'));
+
+The variable named stringProps is equal to a stringified version of this.props.
+
+The props object in this example isn't really empty, it has some properties that JSON.stringify can't pick up. The props object doesn't really have much value to show rght now.
+
+Output:
+
+CHECK OUT MY PROPS OBJECT
+
+{}
+
+You can pass information to a React component by giving a component an attribute.
+
+<MyComponent foo="bar" />
+
+Let's say that you want to pass a component the message "This is some top secret info.", here's how you could do it:
+
+<Example message="This is some top secret info." />
+
+As you can see, to pass information to a component, you need a name for the information that you want to pass. In the above example, we used the name message, but you can use whatever name you want.
+
+If you want to pass information that isn't a string, then wrap the information in curly braces. Here's how you would pass an array:
+
+<Greeting myInfo={["top", "secret", "lol"]} />
+
+In this next example, we pass several pieces of information to <Greeting />. The values that aren't strings are wrapped in curly braces:
+
+<Greeting name="Frarther" town="Flundon" age={2} haunted={false} />
+
+-- PropsDisplayer.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var PropsDisplayer = React.createClass({
+  render: function () {
+    var stringProps = JSON.stringify(this.props);
+
+    return (
+      <div>
+        <h1>CHECK OUT MY PROPS OBJECT</h1>
+        <h2>{stringProps}</h2>
+      </div>
+    );
+  }
+});
+
+// ReactDOM.render goes here:
+ReactDOM.render(<PropsDisplayer myProp="Hello"/>, document.getElementById('app'));
+
+Output:
+
+CHECK OUT MY PROPS OBJECT
+
+{"myProp":"Hello"}
+
+We just passed information to a component's props object. You will often want a component to display the information that you pass. To display the information from the prop you can use something like:
+
+this.props.name-of-information
+
+example:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Greeting = React.createClass({
+  render: function () {
+    return <h1>Hi there, {this.props.firstName}!</h1>;
+  }
+});
+
+// ReactDOM.render goes here:
+ReactDOM.render(
+  <Greeting firstName='Groberta' />, 
+  document.getElementById('app')
+);
+
+OUTPUT:
+
+Hi there, Groberta!
+
+So far, we have learnt how to pass a prop to a component:
+
+<Greeting firstName="Esmerelda" />
+
+You have also learned how to access and display a passed-in prop:
+
+render: function () {
+  return <h1>{this.props.firstName}</h1>;
+}
+
+The most common use of props is to pass information to a component from a different component.
+
+props is the name of the object that stores passed-in information. this.props refers to that storage object. At the same time, each piece of passed-in information is also called a prop. props could refer to two pieces of passed-in information, or it could refer to the object that stores those pieces of information.
+
+-- App.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Greeting = require('./Greeting');
+
+var App = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <h1>
+          Hullo and, "Welcome to The Newzz," "On Line!"
+        </h1>
+        <Greeting name="Dan" />
+        
+        <article>
+          Latest newzz:  where is my phone?
+        </article>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />, 
+  document.getElementById('app')
+);
+
+-- Greeting.js --
+
+var React = require('react');
+
+var Greeting = React.createClass({
+  render: function () {
+    return <h1>Hi there, {this.props.name}!</h1>;
+  }
+});
+
+module.exports = Greeting;
+
+So we have now passed a prop from one component to another component. You can also use props to make decisions.
+
+In this next example, this.props.name, Welcome expects to receive a piece of information called name. However, Welcome never renders this piece of information. Instead, it uses the information to make a decision.
+
+<Welcome /> instances will render the text WELCOME "2" MY WEB SITE BABYY!!!! unless the user is Mozart, in which case they will render the more respectful: hello sir it is truly great to meet you here on the web.
+
+The passed-in name is not displaed in either case. The name is used to decide what will be displayed. This is a common technique.
+
+The Greeting.js render function expects two props: name and singedIn
+
+Notice that this.props.signedIn is not located inside of the return statement. This means that Greeting will never display the value of "signedin". But Greeting will use that value to decide whether to display a friendly greeting or "GO AWAY".
+
+The signedIn prop will be created within App.js 
+
+-- App.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Greeting = require('./Greeting');
+
+var App = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <h1>
+          Hullo and, "Welcome to The Newzz," "On Line!"
+        </h1>
+        <Greeting name="Alison" signedIn={false} />
+        <article>
+          Latest:  where is my phone?
+        </article>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />, 
+  document.getElementById('app')
+);
+
+-- Greeting.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Greeting = React.createClass({
+  render: function () {
+    if (this.props.signedIn == false) {
+      return <h1>GO AWAY</h1>;
+    } else {
+      return <h1>Hi there, {this.props.name}!</h1>;
+    }
+  }
+});
+
+module.exports = Greeting;
+
+-- Welcome.js --
+
+var React = require('react');
+
+var Welcome = React.createClass({
+  render: function () {
+    if (this.props.name == 'Wolfgang Amadeus Mozart') {
+      return (
+        <h2>
+          hello sir it is truly great to meet you here on the web
+        </h2>
+      );
+    } else {
+      return (
+        <h2>
+          WELCOME "2" MY WEB SITE BABYYY!!!!!
+        </h2>
+      );
+    }
+  }
+});
+
+module.exports = Welcome;
+
+-- Home.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Welcome = require('./Welcome');
+
+var Home = React.createClass({
+  render: function () {
+    return <Welcome name='Ludwig van Beethoven' />;
+  }
+});
+
+ReactDOM.render(
+  <Home />, 
+  document.getElementById('app')
+);
+
+You can, and often will, pass functions as props. It is especially common to pass event handler functions. In this next example, we will pass an event handler function as a prop, however, you have to define an event handler before you can pass one anywhere.
+
+You define an event handler as a property on the instructions object, just like the render function. Almost all functions that you define in React will be defined in this way, as instructions object properties.
+
+Functions are defined outside of the component class. We have defined the function to be on the Talker component class:
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Button = require('./Button');
+
+var Talker = React.createClass({
+  talk: function () {
+    for (var speech = '', i = 0; i < 10000; i++) {
+      speech += 'blah ';
+    }
+    alert(speech);
+  },
+  
+  render: function () {
+    return <Button />;
+  }
+});
+
+ReactDOM.render(
+  <Talker />,
+  document.getElementById('app')
+);
+
+So, we now want to pass the function the exact same way you may pass any other information. If you want to pass any prop to an element such as <Button />, that means that you need to give <Button /> an attribute. The goal is to pass talk from <Talker /> to <Button />
+
+Your prop value should be the information that you want to pass. In this case, we want to pass the talk function.
+
+-- Talker.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Button = require('./Button');
+
+var Talker = React.createClass({
+  talk: function () {
+    for (var speech = '', i = 0; i < 10000; i++) {
+      speech += 'blah ';
+    }
+    alert(speech);
+  },
+  
+  render: function () {
+    return <Button talk={this.talk} />;
+  }
+});
+
+ReactDOM.render(
+  <Talker />,
+  document.getElementById('app')
+);
+
+-- Button.js --
+
+var React = require('react');
+
+var Button = React.createClass({
+  render: function () {
+    return (
+      <button>
+        Click me!
+      </button>
+    );
+  }
+});
+
+module.exports = Button;
+
+We have just passed a function from <Talker /> to <Button />. Button.js renders a <button></button> element. If the user clicks on this button, then we want our passed =in talk function to get called. This means that we need to attach talk to the <button></button> element as an event handler.
+
+To do this, you use the same method that you attach an event handler to any JSX element, you give it a special attribute. The attribute should be something like onClick or onHover. The value of this attribute should be the event handler that you want to attach.
+
+The attributes value should access the prop using: this.props.talk
+
+-- Button.js (updated) --
+
+var React = require('react');
+
+var Button = React.createClass({
+  render: function () {
+    return (
+      <button onClick={this.props.talk}>
+        Click me!
+      </button>
+    );
+  }
+});
+
+module.exports = Button;
+
+Now, when you click on the button, the talk function is called from the Talker.js file, and an alert will be displayed.
+
+The first name you have to choose is tha name of the event handler within the component (parent) class that defines it. The second name is the name of the prop that you will use to pass the event handler. This is the same as your attribute name. In the example, above, we chose talk for both names.
+
+return <Button talk={this.talk} />
+
+These two names can be whatever you want. You should name the event by what type of event you are listening for. In our example, the event type was "click". If you are listening for a "click" event, then you name your event handler handleClick. If you are listening for a 'keyPress' event, then you name your event handler handleKeyPress
+
+React.createClass({
+  handleHover: function () {
+    alert('I am an event handler.');
+    alert('I will be called in response to "hover" event.');
+  }
+});
+
+Your prop name should be the word on, plus your event type. If you are listening for a "click" event, then you name your prop onClick. If you are listening for a "keyPress" event, then you name your prop onKeyPress:
+
+React.createClass({
+  handleHover: function () {
+    alert('I am an event handler.');
+    alert('I will be called in response to "hover" event.');
+  },
+
+  render: function () {
+    return <Child onHover={this.handleHover} />;
+  }
+});
+
+Recap:
+
+event handler: handleClick: function ()
+prop name: <Button onClick
+prop value: {this.handleClick}
+
+// The attribute name onClick
+// creates an event listener:
+<button onClick={this.props.onClick}>
+  Click me!
+</button>
+
+Now look at Talker.js, when you give <Button /> an attribute named onClick, then the name onClick doesn't do anything special. The name onClick does not create an event listener when used on <Button /> - it's just an arbitrary attribute name:
+
+// The attribute name onClick
+// is just a normal attribute name
+<Button onClick={this.handleClick} />
+
+The reason for this is that in <Button /> is not an HTML-like JSX element; it's a component instance. Names like onClick only create event listeners if they're used on HTML-like JSX element, otherwise, they're just ordinary prop names.
+
+-- Button.js --
+
+var React = require('react');
+
+var Button = React.createClass({
+  render: function () {
+    return (
+      <button onClick={this.props.onClick}>
+        Click me!
+      </button>
+    );
+  }
+});
+
+module.exports = Button;
+
+-- Talker.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Button = require('./Button');
+
+var Talker = React.createClass({
+  handleClick: function () {
+    for (var speech = '', i = 0; i < 10000; i++) {
+      speech += 'blah ';
+    }
+    alert(speech);
+  },
+  
+  render: function () {
+    return <Button onClick={this.handleClick} />;
+  }
+});
+
+ReactDOM.render(
+  <Talker />,
+  document.getElementById('app')
+);
+
+Every component's props object has a property named children. this.props.children will return everything in between a component's opening and closing JSX tags. So far, all of the components used have been self-closing tags, such as <MyComponentClass /> but they don't have to be. You could still write <MyComponentClass></MyComponentClass>, and it would still work. this.props.children would return everything in between.
+
+In this example, <BigButton>'s this.props.children would equal the text "I am a child of BigButton".
+
+// Example 1
+<BigButton>
+  I am a child of BigButton.
+</BigButton>
+
+In Example 2, <BigButton>'s this.props.children would equal a <LilButton /> component.
+
+// Example 2
+<BigButton>
+  <LilButton />
+</BigButton>
+
+In Example 3, <BigButton>'s this.props.children would equal undefined.
+
+// Example 3
+<BigButton />
+
+If a component has more than one child between its JSX tags, then this.props.children will return those children in an array. However, if a component has only one child, then this.props.children will return the single child, not wrapped in an array.
+
+Example of <list> item:
+
+<List>  // opening tag
+  <li></li> // child
+</List> // closing tag
+
+-- List.js --
+
+var React = require('react');
+
+var List = React.createClass({
+  render: function () {
+    var titleText = 'Favorite ' + this.props.type;
+    if (this.props.children instanceof Array) {
+      titleText += 's';
+    }
+    return (
+      <div>
+        <h1>{titleText}</h1>
+        <ul>{this.props.children}</ul>
+      </div>
+    );
+  }
+});
+
+module.exports = List;
+
+-- App.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var List = require('./List');
+
+var App = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <List type='Living Musician'>
+          <li>Sachiko M</li>
+          <li>Harvey Sid Fisher</li>
+        </List>
+        <List type='Living Cat Musician'>
+          <li>Nora the Piano Cat</li>
+        </List>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />, 
+  document.getElementById('app')
+);
+
+-- BigButton.js --
+
+var React = require('react');
+var LilButton = require('./LilButton');
+
+var BigButton = React.createClass({
+  render: function () {
+    console.log(this.props.children);
+    return <button>Yo I am big</button>;
+  }
+});
+
+
+// Example 1
+<BigButton>
+  I am a child of BigButton.
+</BigButton>
+
+
+// Example 2
+<BigButton>
+  <LilButton />
+</BigButton>
+
+
+// Example 3
+<BigButton />
+
+OUTPUT:
+
+Favorite Living Musicians
+
+Sachiko M
+Harvey Sid Fisher
+Favorite Living Cat Musician
+
+Nora the Piano Cat
+
+Each <List><List /> instance is passed a singular title: "Living Musician" and "Living Cat Musician". Somehow, each <List><List/> counts it's list items and automatically adds an "s" to the end of its title if the count is greater than one. We could add a second piano cat, and the second list title would automatically pluralize.
+
+  render: function () {
+    var titleText = 'Favorite ' + this.props.type;
+    if (this.props.children instanceof Array) {
+      titleText += 's';
+    }
+
+Take a look at the Button component class.
+
+Button expects to receive a prop named text. The received text will be displayed in a <button></button> element. If nobody passes any text to Button, then Button's display will be blank. It would be better if Button could display a default message instead.
+
+You can make this happen by writing a function named getDefaultProps:
+
+var Example = React.createClass({
+  getDefaultProps: function () {},
+
+  render: function () {
+    return <h1>{this.props.text}</h1>;
+  }
+});
+
+The getDefaultProps functions should return an object:
+
+var Example = React.createClass({
+  
+  getDefaultProps: function () {
+    // Return an object:
+    return {};
+  },
+
+  render: function () {
+    return <h1>{this.props.text}</h1>;
+  }
+
+});
+
+Inside of this returned object, write properties for any default props that you'd like to set:
+
+var Example = React.createClass({
+  getDefaultProps: function () {
+    return { text: 'yo' };
+  },
+
+  render: function () {
+    return <h1>{this.props.text}</h1>;
+  }
+});
+
+If an <Example /> doesn't get passed any text, then it will display "yo". If an <Example /> does get passed some text, then it will display that passed-in text.
+
+-- Button.js --
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Button = React.createClass({
+  
+  getDefaultProps: function () {
+    return { text: 'I am a button' };
+  },
+  
+  render: function () {
+    return (
+      <button>
+        {this.props.text}
+      </button>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Button text="" />,     // IF WE REMOVE THIS ATTRIBUTE OF TEXT, THE DEFAULT VALUE WILL BE USED
+  document.getElementById('app')
+);
+
+Our lesson on props is complete. 
+
+* The React lessons are currently being updated for maintanence, so will need to finish.
+
+PLAN:
+
+- Complete ReactJS: Part 1 in Codeacademy, then update my notes on DevNotes with all this information.
+- Start the JavaScript Codeacademy tutorials.
+
+LEARN JAVASCRIPT
+
+JavaScript is the most widely used programming language on the web. The building blocks of JavaScript make up every program and line of JavaScript. JavaScript has its own building blocks, but instead, they are called data types. There are three essential data types:
+
+String - Any grouping of words or numbers surrounded by single quotes: '...' or double quotes: "...".
+
+Number - Any number, including numbers with decimals, without quotes: 4, 8, 1516, 23.42
+
+Boolean - This is always one of two words, either true or false, with no quotations.
+
+In the following example, the values within the variables are output in the console, this is a program to run JavaScript programs and show their results.
+
+var myString = "Dan";
+var myNumber = 19;
+var myBoolean = true;
+
+
+// Do not edit the code under this line
+console.log("Name: " + myString);
+console.log("Lucky Number: " + myNumber);
+console.log("Good joke? " + myBoolean);
+
+Let's learn how to ask JavaScript to talk to us. We can ask JavaScript to print words to the console with this line of code:
+
+console.log('Your message here.');
+
+We can log multiple things at once by seperating them with commas, like this:
+
+console.log('Margherita', 'Tomato');
+
+JavaScript includes the general math operators, so that maths does not need to be your strong suit.
+
+Add: +
+Subtract: -
+Multiply: *
+Divide: /
+
+3 + 4 = 7
+50 / 10 = 5
+
+Example:
+
+console.log(31 + 3.5);    // 34.5
+
+console.log(31 + 3.5);
+console.log(2017 - 1969);
+console.log(65 / 240);
+// Percent of the sun that is made up of helium
+console.log(0.2708333333333333 * 100);
+
+We are now going to learn about another operator - the modulus.
+
+The idea behind the modulus is to show you the remainder after you divide a number. So if you divide 13 / 5, 5 goes into 13 two times, and there will be 3 remaining. A modulus, denoted by a %, would take 13 % 5 and return a remainder of 3.
+
+A question modulus could solve, what will the moon phase be one year from today. Let's say its a full moon tonight and we want to know what the moon will look like one year from today. We know the moon circles the Earth every 27 days, so lets start by dividing 365 by 27.
+
+console.log(365 / 27);  // 13.518518518518519
+
+To figure out what phase the moon will be in a year, we need to know how many extra days the moon will rotate around the earth before the end of the year. We need the decimal we just found displayed as remaining days. We can use the modulus operator to find the remaining days:
+
+console.log(365 % 27);  // 14
+
+Now we know how many dats into the moon's phase it will be in exactly one year. If it's a full moon today, a year from now it will be a new moon.
+
+To make things easier, JavaScript also has built-in functions. Sometimes it is necessary to generate a random number within a program. To do that, we can use the following code:
+
+Math.random();
+
+This code will return a random number between 0 and 1. To generate a random number between 0 and 50, we could multiply this result by 50, like so:
+
+Math.random() * 50;
+
+The problem with this is that the answer will most likely be a decimal number. JavaScript has another built-in function called Math.floor that will take the decimal number and round down to the nearest whole number:
+
+Math.floor(Math.random() * 50);
+
+Math.random will generate a random number between 0 and 1, we the multiplied this number by 50, so we now have a number between 0 and 50. Then, Math.floor will round the number down to the nearest whole number.
+
+Let's generate a random number between 0 and 100:
+
+console.log(Math.floor(Math.random() * 100));
+
+As we write JavaScript code, we can create comments within our code. Comments are lines that are not evaluated when the code runs. They exist for human readers. Comments are extremely useful when we're looking back at code we've written later on and for other people who will be looking at your code.
+
+There are two types of code comments in JavaScript:
+
+A single line comment - will comment out a single line, and is denoted with two forward slashes // preceding a line of JavaScript code:
+
+// The first 5 decimals of pi
+console.log('Pi is equal to ' + 3.14159);
+
+A multi-line comment - will comment out multiple lines, and is denoted with /* to begin the comment, and */ to end the comment.
+
+/*
+console.log('All of this code');
+console.log('Is commented out');
+console.log('And will not be executed);
+*/
+
+Example:
+
+// Opening line
+console.log('It was love at first sight.');
+/*
+console.log('The first time Yossarian saw the chaplain he fell madly in love with him.');
+console.log('Yossarian was in the hospital with a pain in his liver that fell just short of being jaundice.');
+console.log('The doctors were puzzled by the fact that it wasn\'t quite jaundice.');
+console.log('If it became jaundice they could treat it.');
+console.log('If it didn\'t become jaundice and went away they could discharge him.');
+console.log('But this just being short of jaundice all the time confused them.');
+*/
+
+Here's how you declare a variable:
+
+var myName = 'Arya';
+console.log(myName);    // Output: Arya
+
+var - short for variable, is the JavaScript keyword that will create a new variable for us.
+myName - is chosen by the developer (you). The word has no spaced, and each new word is capitalized. This is common convention in JavaScript, and is called camelCase.
+= - means to assign whatever's next to the variable.
+'Arya' - is the value that the equals = assigns into the variable myName.
+
+After the variable is declared, we can print the variable with: console.log(myName). This will print 'Arya' to the console.
+
+var strength = '50,000 pounds';
+console.log('How much stuff can a variable hold? ', strength);
+
+OUTPUT: How much stuff can a variable hold?  50,000 pounds
+
+If variables can hold strings, they can also hold other data types.
+
+var MyAge = 15;
+var likesChocolate = true;
+
+console.log(myAge);
+// Output: 15
+
+console.log(likesChocolate);
+// Output: true
+
+Variables can hold any data type, like strings, numbers and Booleans. They can also hold data types that we have not learned yet, like arrays, functions and objects.
+
+var strength = '50,000 pounds';
+var age = 31;
+var hasPet = true;
+console.log(age);
+console.log(hasPet);
+console.log('How much stuff can a variable hold? ', strength);
+
+Variables allows us to use the same value over and over, without having to write a string or other data type over and over.
+
+More importantly, we can assign variables different values that can be read and changed by the program without altering the code.
+
+You can store the information in a variable and just change the value of that variable.
+
+var weatherCondition = 'Monday: Raining cats and dogs';
+weatherCondition = 'Tuesday: Sunny';
+
+console.log(weatherCondition);
+// Output: 'Tuesday: Sunny'
+
+True to their name, variables are indeed variable.
+
+var morningAlarm = '6:30AM';
+morningAlarm = '7:30AM';
+console.log('Morning alarm is set to:', morningAlarm);
+
+In the previous lessons, we've put strings into variables. Now, let's put a variable's value into a string.
+
+Putting a variable in a string uses a concept known as interpolation. We can use the + operator from earlier to interpolate (insert) a variable into a string, like this:
+
+var myPet = 'armadillo';
+console.log('I own a pet ' + myPet + '.');
+// Output: 'I own a pet armadillo.'
+
+In programming, making a decision with code is called control flow. For instance, if we were making a choose-your-own adventure game, we'd need to program a way for a user to choose which plot line they'd like to pursue. Control flow statements enable JavaScript to make those decisions by executing different code based on conditions.
+
+That's all programming really is: a list of instructions for computers.
+
+var needCoffee = true;
+if (needCoffee) {
+  console.log('Finding coffee');
+} else {
+  console.log('Keep on keeping on');
+}
+
+If the variable needCoffee is true, JavaScript will run one code block, and if a variable is false, it will run another.
+
+needCoffee is the condition we are checking inside the if's parenthesis. Since it's equal to true, our program will run the code between the first opening curly brace { and the first closing brace. }
+
+Code between curly braces are called blocks. if/else statements have two code blocks. If we adjusted needCoffee to be false, only the else's console.log will run.
+
+if/else statements are how we can process yes/no questions programmatically.
+
+var harryPotterFan = true;
+
+if (harryPotterFan) {
+  console.log('Mischief managed.');
+} else {
+  console.log('I lead a muggle\'s life.');
+}
+
+There is a \ in 'I lead a muggle\'s life.' because the string is surrounded by single quotes, we can use a back slash to add a single quote within the string. This is called escaping a character.
+
+if/else statements are made even more powerful with comparison operators. There are two comparisons you might be familiar with:
+
+Less than: <
+Greater than: >
+
+You may also recognise:
+
+Less than or equal to: <=
+Greater than or equal to: >=
+
+Comparisons need two things to compare and they will always return a boolean - true or false.
+
+var hungerLevel = 10;
+
+if (hungerLevel > 7) {
+  console.log('Time to eat!');
+} else {
+  console.log('Let\'s eat later.');
+}
+
+Often times, we might want to check if two things are equal, or if they are not.
+
+To check if two things equal each other, we can use === (three equals in a row). To check if two things do not equal each other, we can write !== (exclamation with two equals in a row). When comparing two variables, make sure to use three equal signs ===
+
+var moonPhase = 'full';
+
+if (moonPhase === 'full') {
+  console.log('Howwwwlll!!');
+} else {
+  console.log('I swear I am not a werewolf...');
+}
+
+The code inside the first block ran because moonPhase equals 'full', therefore the condition evaluates to be true.
+
+The if/else statements are either this or than currently. We can use more conditions to our if/else statements with else if.
+
+Lets create a 'decision tree':
+
+var moonPhase = 'solar eclipse';
+
+if (moonPhase === 'full') {
+  console.log('Howwwlll!!');
+} else if (moonPhase === 'mostly full') {
+  console.log('Arms and legs are getting hairier.');
+} else if (moonPhase === 'mostly new') {
+  console.log('Back on two feet');
+} else {
+  console.log('Invalid moon phase');
+}
+
+So far, we've been able to translate certain thoughts into JavaScript code, like "Are these things equal?" with ====
+
+In English, sometimes we say "both of these things" or "either one of these things". In JavaScript, we use special operators called logical operators:
+
+And - 'both must be true' &&
+Or - 'either can be true' ||
+Not - 'I want to make sure this is the opposite of what it really is' !
+Not Equal to - These should not be equal to each other !==
+
+Example code:
+
+if (stopLight === 'green' && pedestrians === false) {
+  console.log('Go!');
+} else {
+  console.log('Stop');
+}
+
+Further example:
+
+var moonPhase = 'full';
+var foggyNight = true;
+
+if (moonPhase === 'full' && foggyNight) {
+  console.log('Howwwlll!!');
+} else if (moonPhase === 'mostly full') {
+  console.log('Arms and legs are getting hairier.');
+} else if (moonPhase === 'mostly new') {
+  console.log('Back on two feet');
+} else {
+  console.log('Invalid moon phase');
+}
+
+NOTE: if/else statements check the true-ness or false-ness of variables, so there's no need to write: foggyNight === true.
+
+Using else if is a great tool for when we have a few different conditions we'd like to consider. If we wanted to write a program with 25 different conditions, like a JavaScript cash register, we'd have to write a lot of code, and it can be difficult to read and understand. For this purpose (when you may need many else if conditions), we can turn to a switch statement to write more concise and readable code.
+
+switch statements and if/else statements are essentially the same, but a switch statement can be easier for humans to read. The switch statement uses the switch keyword.
+
+var groceryItem = 'papaya';
+
+switch (groceryItem) {
+  case 'tomato':
+    console.log('Tomatoes are £0.49');
+    break;
+  case 'lime':
+    console.log('Limes are $0.49');
+    break;
+  case 'papaya':
+    console.log('Papayas are $1.29');
+    break;
+  default:
+    console.log('Invalid item');
+    break;
+}
+
+The switch keyword initiates the statement, and is followed by ( ... ), which contains the condition that each case will compare to. In the above example, the condition is groceryItem. A case is just like an if/else statement. The program stops with the break keyword. This keyword will prevent the switch statement from executing any more of its code. At the end of each switch statement, there is a default condition. If none of the case's are true, then this part of the code will run.
+
+var moonPhase = 'full';
+
+switch (moonPhase) {
+ case 'full':
+    console.log('Howwwwlll!!');
+    break;
+ case 'mostly full':
+    console.log('Arms and legs are getting harrier');
+    break;
+ case 'mostly new':
+    console.log('Back on two feet');
+    break;
+  default:
+    console.log('Invalid moon phase');
+    break;
+}
+
+Functions:
+
+A function is a block of code designed to perform a task. Functions are like recipes. They take data or variables, perform a set of tasks on them, and then return the result. The beauty of functions is that they allow us to write a chunk of code once, then we can reuse it over and over without having to write the same code multiple times.
+
+var calculatorOn = false;
+
+function pressPowerButton() {
+  if (calculatorOn) {
+    console.log('Calculator turning off.');
+    calculatorOn = false;
+  } else {
+    console.log('Calculator turning on.');
+    calculatorOn = true;
+  }
+}
+
+pressPowerButton();
+// Output: Calculator turning on.
+
+pressPowerButton();
+// Output: Calculator turning off.
+
+This code turns the calculator on if it's currently off, and turns it off it the calculator is currently on.
+
+On line 1, we have a variable named calculatorOn set to false. Our program starts with the calculator in the off position.
+
+On line 3, there's a function named pressPowerButton. Functions start with the keyword of 'function'. The function has a block of code that is executed between the curly braces { ... }
+
+We execute the block of code within the function twice, making the code reusable.
+
+Currently, we have no way to give a function a number. To do this, we can use parameters. Parameters are variables that we can set when we call the function, for example:
+
+function multiplyByThirteen(inputNumber) {
+  console.log(inputNumber * 13);
+}
+
+multiplyByThirteen(9);
+// Output: 117
+
+inputNumber is a paremeter, but when we call multiplyByThirteen(9), the number 9 is called an argument. Therefore, arguments are provided when you call a function, and paremeters receive arguments as their values. Parameters let us write logic inside functions that can be modified based on when we call the function.
+
+function takeOrder (topping) {
+  console.log('Order: pizza topped with ' + topping + '.');
+}
+
+takeOrder('bacon');
+
+// Output: Order: pizza topped with bacon.
+
+We have modified the console.log, in the example above, to interpolate the topping parameter.
+
+We can set as many paremeters as we'd like by adding them when we declare the function:
+
+function getRemainder(numberOne, numberTwo) {
+  console.log(numberOne % numberTwo);
+}
+
+getRemainder(365, 27);
+// Output: 14
+
+In this case, we are telling the function to assign numberOne the value of 365 and numberTwo the value of 27.
+
+function takeOrder (topping, crustType) {
+  console.log('Order: ' + crustType + ' pizza topped with ' + topping + '.');
+}
+
+takeOrder('bacon', 'thin crust');
+takeOrder('tomato', 'deep crust');
+takeOrder('pineapple', 'no crust');
+
+Output:
+
+Order: thin crust pizza topped with bacon.
+Order: deep crust pizza topped with tomato.
+Order: no crust pizza topped with pineapple.
+
+The use of console.log as the result of a function, isn't the best use of a function. The purpose of a function is to take some input, perform a task on that input, then return a result.
+
+To return a result, we can use the return keyword.
+
+function getRemainder(numberOne, numberTwo) {
+  return numberOne % numberTwo;
+}
+
+console.log(getRemainder(365, 27));
+// Output: 14
+
+Instead of using console.log inside of the getRemainder function, we use the return keyword. return will take the result of the math operation and give it back to whatever calls it. The console.log will output the result from the function into the console.
+
+The reason for using return, is to allow the use of getRemainder function in another place within our JavaScript program, we could then do that without printing the result to the console. Using return is generally best practice when writing functions, as it makes the code more flexible and maintainable.
+
+Example:
+
+var orderCount = 0;
+
+function takeOrder (topping, crustType) {
+  
+  orderCount = orderCount + 1;
+  
+  console.log('Order: ' + crustType + ' pizza topped with ' + topping + '.');
+}
+
+function getSubTotal(itemCount) {
+  return itemCount * 7.5;
+}
+
+takeOrder('bacon', 'thin crust');
+takeOrder('tomato', 'deep crust');
+takeOrder('pineapple', 'no crust');
+
+console.log(getSubTotal(orderCount));
+
+Now we have the pizza orders, you want to add them up to find the total cost of the pizza. Let's imaging that each pizza is 7.50, no matter what topping and crust type.
+
+Begin by creating a variable named orderCount and set this to 0 at the top of the code.
+
+Inside of the takeOrder function, set orderCount to equal orderCount plus 1, so that each time the takeOrder function runs, 1 is added to the orderCount.
+
+Now, calculate the subtotal using a function named getSubTotal that has one parameter named itemCount. Inside the block of the getSubTotal bloc, use the return statement to output itemCount multiplied by 7.5
+
+On the last line of your program, after the takeOrder function calles, call the getSubTotal function inside of a console.log statement. getSubTotal has a parameter that represents the amount of items ordered. Pass in the orderCount as an argument when making the function call.
+
+-----
+
+When functions return their value, we can use them together and inside one another. If a calculator needed to have a Celsius to Fahrenheit operation, we could write it with two functions like so:
+
+function multiplyByNineFifths(celsius) {
+  return celsius * (9/5);
+}
+
+function getFahrenheit(celsius) {
+  return multiplyByNineFifths(celsius) + 32;
+}
+
+console.log('The temperature is ' + getFahrenheit(15) + 'F');
+// Output: The temperature is 59 F
+
+We can use functions to section off small bits of logic or tasks, then we can use them when we need to. Functions can help take large problems and break them into small and manageable problems.
+
+var orderCount = 0;
+
+function takeOrder(topping, crustType) {
+  console.log('Order: ' + crustType + ' crust topped with ' + topping);
+  orderCount = orderCount + 1;
+}
+
+function getSubTotal(itemCount) {
+  return itemCount * 7.5;
+}
+
+function getTax() {
+  return getSubTotal(orderCount) * 0.06;
+}
+
+function getTotal() {
+  return getSubTotal(orderCount) + getTax();
+}
+
+
+takeOrder('bacon', 'thin');
+takeOrder('pepperoni', 'regular');
+takeOrder('pesto', 'thin');
+
+console.log(getSubTotal(orderCount));
+console.log(getTotal());
+
+With the example above, we are passing functions into one another to calculate the tax and total.
+
+Summary: Functions are written to perform a task. By using the return statement, we can return the result of a function which allows us to call functions anywhere, even inside of other functions.
+
+Next up, Scope. This informs us where variables are accessible from within our programs.
+
+** REACT course has been updated to now use ES6 and old code maybe now invalid. Will be worth re-doing the React course within Codeacademy to update to ES6.
+
+Scope refers to where in a program a variable can be accessed. The idea is that some variables are unable to be accessed everywhere within a program. 
+
+Example: Think of it like an apartment building. Everyone who lives in the apartment building is under the global scope of the building and manager. So, if there are rats in the shared laundry room, everyone has access to the laundry room, and therefore, the rats.
+
+If you write a variable outside of a function in JavaScript, it's in the global scope and can be used by any other part of the program.
+
+In the theoretical apartment building, you have your own apartment. I has stuff in it that is yours. Other people in the building cannot access it. This is like functional scope. You have access to your stuff inside your apartment, and in the building - but not anyone else's apartment.
+
+When we write variables inside a function, only that function has access to its own variables. Therefore, they are in the functional scope.
+
+In this example, both variables are in the global scope and accessible from anywhere in our program.
+
+var laundryRoom = 'Basement';
+var mailRoom = 'Room 1A';
+
+console.log('Laundry: ' + laundryRoom + ', Mail: ' + mailRoom);
+
+Example code:
+
+var laundryRoom = 'Basement';
+var mailRoom = 'Room 1A';
+
+function myApartment() {
+  var mailBoxNumber = 'Box 3';
+  laundryRoom = 'In unit';
+  
+  console.log('Mail box: ' + mailBoxNumber + ', Laundry ' + laundryRoom);
+}
+
+console.log('Laundry: ' + laundryRoom + ', Mail: ' + mailRoom);
+myApartment();
+
+Scope is the idea in programming that some variables are acessible/inaccessible from other parts of the program.
+
+Global Scope refers to variables that are accessible to every part of the program.
+
+Functional Scope refers to variables created inside of function, which are not accessible outside its block.
+
+We've learned to do a number of interesting things wth data using functions and using if/else statements. One thing that we haven't learned yet is how to organize and store data. One way we organise data in real life is to make lists. 
+
+Lists can be created in JavaScript, as an array:
+
+var bucketList = ['Rappel into a cave', 'Take a falconry class', 'Learn to juggle'];
+
+Arrays are JavaScript's way of making lists. These lists can store different data types and they are ordered, meaning the position of each list item is numbered by JavaScript.
+
+Arrays are created with brackets []
+
+Example:
+
+var bucketList = ['string1', 'string2', 'string3'];
+
+console.log(bucketList);
+
+Output:
+
+[ 'string1', 'string2', 'string3' ]
+
+Each item in an array has a numbered position. We can access an item using its number, just like we would in an ordinary list. JavaScript counts starting from 0, not 1, so the first item in an array will be at position 0. This is because JavaScript is zero-indexed.
+
+var bucketList = ['learn to juggle', 'take a falconry class', 'climb Mt Everest'];
+
+// Get first item in the array
+var listItem = bucketList[0];
+
+console.log(listItem);
+
+You can also access each individual character in a string the same way you do with array:
+
+var hello = 'Hello World';
+console.log(hello[6]);
+// Output: W
+
+'W' will be output since it's the character in the 6th position. This works because JavaScript internally stores strings in a similar way that it stores arrays.
+
+It is often convenient to know how many items are inside of an array. We can find this out by using one of the built-in properties of arrays, called .length.
+
+var bucketList = ['learn to juggle', 'take a falconry class', 'climb Mt Everest'];
+
+console.log(bucketList.length);
+
+// Output: 3
+
+.length is also a property for strings. For instance, you can write 'Hello World'.length, and it will output 11 (the number of characters in "Hello World").
+
+JavaScript has a built-in function for arrays that help us do common tasks. First, push() allows us to add items to the end of an array.
+
+var bucketList = ['learn to juggle', 'take a falconry class', 'climb Mt Everest'];
+
+bucketList.push('item 4', 'item 5');
+
+console.log(bucketList);
+
+OUTPUT:
+
+[ 'learn to juggle',
+  'take a falconry class',
+  'climb Mt Everest',
+  'item 4',
+  'item 5' ]
+
+  Now that we can push() items onto an array, let's pop one off, using the pop() function.
+
+  pop() is similar to push(), except that it deletes the last item of an array.
+
+  var bucketList = ['learn to juggle', 'take a falconry class', 'climb Mt Everest'];
+
+bucketList.pop();
+
+console.log(bucketList);
+
+OUTPUT:
+
+[ 'learn to juggle', 'take a falconry class' ]
+
+Loops let us loop over a block of code so we don't have to write out the same process over and over. Loops are especially helpful when we have an array we'd like to do something to each item in the array, like logging each item to the console.
+
+for - lets us loop a block of code a known amount of times.
+while - lets us loop a block of code an unknown amount of times.
+
+var vacationSpots = ['Monaco', 'San Fransisco', 'Milan'];
+
+console.log(vacationSpots[0]);
+console.log(vacationSpots[1]);
+console.log(vacationSpots[2]);
+
+for (var i = vacationSpots.length -1; i >= 0; i--) {
+  console.log('I would love to visit ' + vacationSpots[i]);
+}
+
+OUTPUT:
+
+Monaco
+San Fransisco
+Milan
+I would love to visit Milan
+I would love to visit San Fransisco
+I would love to visit Monaco
+
+Instead of writing out the same code over and over, let's make a loop that will loop through our array.
+
+For Loop explained:
+
+Within the for loop's parenthesis, the start condition is var i = 0, which means the loop will start counting at 0.
+
+The stop condition is i < animals.length, which means the loop will run as long as i is less than the length of the animals array. When i is greater than the length of the animals array, the loop will stop looping.
+
+The iterator is i++. This means that each loop, i, will have 1 added to it.
+
+And finally, the code block is inside the { ... }. The block will run each loop, until the loop stops.
+
+var vacationSpots = ['Monaco', 'San Fransisco', 'Milan'];
+
+for (var i = 0; i < vacationSpots.length; i++) {
+  console.log('I would love to visit ' + vacationSpots[i]);
+}
+
+OUTPUT:
+
+I would love to visit Monaco
+I would love to visit San Fransisco
+I would love to visit Milan
+
+A for loop can be used to loop forwards through an array, but also backwards. We just need to modify the start, stop, and iterator conditions.
+
+var vacationSpots = ['Monaco', 'San Fransisco', 'Milan'];
+
+for (var i = vacationSpots.length -1; i >= 0; i--) {
+  console.log('I would love to visit ' + vacationSpots[i]);
+}
+
+OUTPUT:
+
+I would love to visit Milan
+I would love to visit San Fransisco
+I would love to visit Monaco
+
+The start condition (var i = 0), needs to set i to equal the length of the vacationSpots array.
+
+Then, set the stop condition (i < vacationSpots.length) to stop when i is greater than or equal to 0.
+
+Finally, change i++ to i-- to subtract 1 from i each loop.
+
+Also, since JavaScript starts from 0, make sure the start condition the length of vacationSpots array, is minus 1.
+
+Let's say that you want to compare holidays in two arrays. This can be done using a for loop inside another for loop, to compare the items in two arrays. Each time the outter for loop runs once, the inner for loop will run completely. We can then see if anything matches.
+
+CODE:
+
+var myPlaces = ['Paris', 'New York', 'Barcelona'];
+var friendPlaces = ['Rome', 'Chicago', 'Paris'];
+
+for (var i = 0; i < myPlaces.length; i++) {
+    console.log(myPlaces[i]);
+  
+  for (var j = 0; j < friendPlaces.length; j++) {
+        console.log(friendPlaces[j]);
+    
+    if (myPlaces[i] === friendPlaces[j]) {
+          console.log('Match: ' + myPlaces[i]);
+        }
+    }
+}
+
+OUTPUT:
+
+Paris
+Rome
+Chicago
+Paris
+Match: Paris
+New York
+Rome
+Chicago
+Paris
+Barcelona
+Rome
+Chicago
+Paris
+
+For loops are great, but they have limitations. You have to know how many times you want the loop to run. This is the purpose of the while loop.
+
+The loop begins with the keyword while. Inside of the paranthesis, we can insert a condition. As long as the variable evaluates to true, the block of code will loop.
+
+var cards = ['Diamond', 'Spade', 'Heart', 'Club'];
+var currentCard = 'Heart';
+
+while (currentCard !== 'Spade') {
+  console.log(currentCard);
+  
+  var randomNumber = Math.floor(Math.random() * 4);
+  
+  currentCard = cards[randomNumber];
+}
+
+console.log('Spade');
+
+If the currentCard is not 'Spade', then add console.log to print the value of currentCard
+
+Then, create a random number between 0 and 3 and put it in a variable named randomNumber.
+
+Then use the randomNumber to reassign currentCard to a new card from the cards array.
+
+Outside of the while loop, a console.log is used to log that the program has found spade.
+
+Loops allow you to write less repetative code.
+
+We can use for loop inside another for loop to compare two lists.
+
+JavaScript & The DOM
+
+So far, we've only used JavaScript in isolation. JavaScript typically gets included with HTML and CSS (structure and styling of web pages). All modern web browsers know how to run JavaScript if we include it in an HTML and CSS project.
+
+We can link a JavaScript file to HTML by including it as the src of a <script> tag inside of an HTML file, like this:
+
+<script src="js/main.js"></script>
+
+This line of code will link the file located at js/main.js. By linking js/main.js in the index.html file, we are asking the browser to run our JavaScript code each time the index.html loads.
+
+NOTE: alert is a JavaScript function that will create a pop-up window with text inside it. Alert is not used by JavaScript developers in practice, however, it is useful for testing during development.
+
+alert('Hello JavaScript!');
+
+The script tag should be placed before the closing </body> tag of an HTML page.
+
+When the JavaScript file is connected to an HTML file, when the HTML document loads, the code inside main.js runs.
+
+The Document Object Model, commonly referred to as the DOM, is the term for elements in an HTML file. Elements are any HTML code denoted by HTML tags, like <div>, <a>, or <p>. JavaScript can be used to interact with the DOM.
+
+We can select an HTML element with JavaScript by selecting it's class attribute, like this:
+
+var header = document.getElementsByClassName('example-class-name');
+
+This would find an element like this in the HTML:
+
+<div class='example-class-name'> ... </div>
+
+So we could do something like this in the JS:
+
+var skillset = document.getElementsByClassName('skillset');
+alert(skillset);
+
+The pop up showed that we selected [object HTMLCollection]
+
+This confirms that JavaScript can select HTML elements. Since we can select HTML elements, we can manipulate them.
+
+We have just learnt how to select HTML elements using the syntax: document.getElementsByClassName. This is verbose and would get very dense if many elements we're to be selected. A better way to interact with DOM elements, is to use a library. A good library for this would be jQuery.
+
+jQuery is a library written in JavaScript. The syntax and functions it contain will help us to interact with the DOM efficiently.
+
+In the HTML file, add the following <script>:
+
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script src="js/main.js"></script>
+
+The link to jQuery needs to be above the link to the js/main.js file, which will give main.js access to the jQuery library.
+
+Now that we've included jQuery, let's get it ready to run.
+
+jQuery has a built in function to check if the page is ready before it will run our code:
+
+$(document).ready(main);
+
+This is placed after a main() function that has been added to the js/main.js file:
+
+function main() {
+  
+}
+
+$(document).ready(main);
+
+Notice we put main inside the parameters of ready. Main here is a callback which means that our code will wait until the document (in other words, the DOM) is loaded, or ready. When it is, then it will execute the main function. jQuery calls back to the main function, therefore it's a callback.
+
+In the event that our HTML and CSS took 5 minutes to load, this code would wait until it loaded completely before running.
+
+With plain JavaScript, we selected HTML elements with this code:
+
+document.getElementsByClassName('skillset');
+
+With jQuery, we can select the same element with:
+
+$('.skillset');
+
+We can wrap any CSS selector, like class, id, or tag, with $('.example-class') to select it with jQuery.
+
+The selectors jQuery uses are the exact same as CSS selectors. For instance, if there's an element with a class of supporting-text, you could select it with $('.supporting-text'). Another example, if an element had an id of 'header', you could select it with $('#header').
+
+It is common convention to name variables that hold jQuery selectors with a dollar sign $
+
+var $skillset = $('.skillset');
+
+Example:
+
+function main() {
+  var $skillset = $('.skillset');
+  alert($skillset);
+}
+
+$(document).ready(main);
+
+This example code will show an alert and output [object Object] confirming that we have successfully selected an HTML element.
+
+We can hide elements with a jQuery function naed hide(). This will add the CSS property display: none to the DOM element from the page, which will hide it.
+
+To fade in an element, we can use the jQuery function named fadeIn(). The function will fade an element in over a period of time in milliseconds. It looks like this:
+
+$('.example-class').fadeIn(400);
+
+We must start with an element that is not currently displayed on the page. The function - like hide() - can be attached directly to a jQuery selector. Within the fadeIn() function's parenthesis, we can specify how long we want the fade to last in milliseconds. 400 is the default.
+
+In order to make an element clickable, we need to write jQuery that listens to an element for a click event. jQuery can do this with an event listener function named: on('click');
+
+This function will wait for a click event, and when one occurs, it will execute a provided function:
+
+$('.example-class').on('click', function() {
+    // Execute the code here when .example-class is clicked.
+});
+
+FULL CODE:
+
+function main() {
+  $('.skillset').hide();
+  $('.skillset').fadeIn(1000);
+  
+  $('.projects').hide();
+  
+  $('.projects-button').on('click', function() {
+
+  });
+}
+
+$(document).ready(main);
+
+jQuery provides a function named show(), which is the opposite of hide(). To show an element, the syntax looks like this:
+
+$('.example-class').show();
+
+show() function is attached directly to the jQuery selector. This will change the CSS attribute display: none to a visible display property, therefore showing the event.
+
+jQuery provides a function named toggle() that allows elements to be hidden and shown each time it is triggered. The sytax looks like this:
+
+$('.example-class').toggle();
+
+toggle() can be called directly on an jQuert selector.
+
+When toggle() is executed, it will hide or show the element that the selector points to. If the element is currently hidden, toggle will show the element, and vice versa.
+
+We can toggle a CSS class with a jQuery function named toggleClass(). The syntax looks like this:
+
+$('.example-class').toggleClass('active');
+
+.toggleClass is a function that will toggle a CSS class on the jQuery selector it's connected to. If the element has the class applied to it, toggleClass() will remove it, and if it does not have the class, it will add it.
+
+In this example, 'active' is the class that we will toggle on and off.
+
+function main() {
+  $('.skillset').hide();
+  $('.skillset').fadeIn(1000);
+  
+  $('.projects').hide();
+  
+  $('.projects-button').on('click', function() {
+    $('.projects').toggle();
+    $('.projects-button').toggleClass('active');
+  });
+}
+
+$(document).ready(main);
+
+One issue with this code is that we only want the element we clicked to toggle and apply the class. Currently, we toggle anything with the .projects class.
+
+To fix this, we can select the specific element we clicked on with the jQuery selector $(this).
+
+The syntax would look like this:
+
+$('.example-class').on('click', function() {
+  $(this).toggleClass('active');
+});
+
+$(this) selects the clicked element. If there are multiple elements with a class of .example-class, this will only toggle the class of the one that is clicked on. this is a JavaScript keyword.
+
+jQuery has a function named next to help us select elements that are next to another element. If we have this in our HTML:
+
+<div class='item-one'> ... </div>
+<div class='item-two'> ... </div>
+
+If we wanted to hide item-two, we could write:
+
+$('.item-one').next().hide();
+
+We can attach next() to any jQuery selector to select the next direct element. Then, we can attach any jQuery function to next().
+
+function main() {
+  $('.skillset').hide();
+  $('.skillset').fadeIn(1000);
+  
+  $('.projects').hide();
+  
+  $('.projects-button').on('click', function() {
+    $(this).next().toggle();
+    $(this).toggleClass('active');
+  });
+}
+
+$(document).ready(main);
+
+HTML CODE:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' type='text/css' href='css/styles.css'>
+</head>
+
+<body>
+
+  <h1>Proficient in:</h1>
+  <div class='skillset'>
+    <div class='skill-html'>
+      <h1>HTML &amp; CSS</h1>
+      <p class='description'>
+        <div class='projects-button'>Recent Projects</div>
+        <ul class='projects'>
+          <li>Broadway</li>
+          <li>MOVE</li>
+        </ul>
+      </p>
+    </div>
+
+    <div class='skill-js'>
+      <h1>JavaScript</h1>
+      <p class='description'>
+        <div class='projects-button'>Recent Projects</div>
+        <ul class='projects'>
+          <li>Password Validator</li>
+          <li>Whale Talk</li>
+        </ul>
+      </p>
+    </div>
+
+    <div class='skill-jquery'>
+      <h1>jQuery</h1>
+      <p class='description'>
+        <div class='projects-button'>Recent Projects</div>
+        <ul class='projects'>
+          <li>Coming soon...</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script src='js/main.js'></script>
+</body>
+
+</html>
+
+
+Now when you click on the 'Recent Projects' buttons, only that section's buttons projects will toggle.
+
+We can change the text of an element with the jQuery function text(). This will allow us to change the text of the button to 'Projects Viewed' when selected. The syntax looks something like this:
+
+$('.my-selector').text('Hello world');
+
+text() attaches directly to a jQuery selector.
+
+Inside of the text's parenthesis, we can provide text that will become the text of our DOM element.
+
+function main() {
+  $('.skillset').hide();
+  $('.skillset').fadeIn(1000);
+  
+  $('.projects').hide();
+  
+  $('.projects-button').on('click', function() {
+    $(this).next().toggle();
+    $(this).toggleClass('active');
+    $(this).text('Projects Viewed');
+  });
+}
+
+$(document).ready(main);
+
+Right now, when we click the 'Recent Projects' buttons, the projects appear instantly. Lets make the projects slide onto the page when we click the 'Recent Projects' button and then slide off the page when we click the button again.
+
+jQuery provides a method named slideToggle() that can animate an element's entrance and exit. The syntax looks like this:
+
+$('.example-class').slideToggle(400);
+
+EXAMPLE CODE:
+
+function main() {
+  $('.skillset').hide();
+  $('.skillset').fadeIn(1000);
+  
+  $('.projects').hide();
+  
+  $('.projects-button').on('click', function() {
+    $(this).next().slideToggle(400);
+    $(this).toggleClass('active');
+    $(this).text('Projects Viewed');
+  });
+}
+
+$(document).ready(main);
+
+CODEACADEMY: LEARN GIT
+
+Git is a software that allows you to keep track of changes made to a project over time. Git works by recording the changes you make to a project, storing those changes, then allowing you to reference them as needed.
+
+To turn a directory into a Git project, can be done using the following command:
+
+$ git init
+
+The word init means initialize. The command sets up all the tools Git needs to begin tracking changes made to the project. This is done through the terminal and creates a Git project. A Git project can be thought of as having three parts:
+
+A Working Directory: Where you'll be doing all the work: creating, editing, deleting and organising files.
+
+A Staging Area: where you'll list changes you want to make to the working directory.
+
+A Repository: Where Git permanently stores those changes as different versions of the project.
+
+The Git workflow consists of editing files in the working directory, adding files to the staging area, and saving changes to a Git repository. In Git, we save cahnges with a commit.
+
+As you work on a file, or files, you will be changing the contents of the working directory. You can check the status of those changes with:
+
+$ git status
+
+In the output, within the terminal, you may notice in red under untracked files. This means that Git sees the file but has not started tracking any changes yet.
+
+In order for Git to start tracking the files, it needs to be added to the staging area. We can add the file to the staging area using:
+
+$ git add *
+
+OR
+
+$ git add FILENAME-HERE
+
+If you check the status ($ git status), Git will not indicate that the changes to the file(s) can now be committed. The files are now in the staging area.
+
+WORKING -> STAGING -> REPOSITORY (Commit)
+
+If we update the file further, we can check the differences between the working directory and the staging area:
+
+$ git diff FILENAME-HERE
+
+Here, the filename is the actual name of the file e.g. changes.txt
+
+Changes to the file are marked with + in the terminal (and often in indicated in green).
+
+The commit is the last step in our Git workflow. A commit permanently stores changes from the staging area inside the repository.
+
+$ git commit
+
+This is the command we will use next. We will also use -m (optional) following the commit command, to provide a message for the commit.
+
+$ git commit -m "Complete first line of dialogue"
+
+Stndard conventions for commit messages:
+
+- Must be in quotation marks
+- Written in the present tense
+- Should be brief (50 characters or less)
+
+Often with Git, you'll need to refer back to an earlier version of a project. Commits are stored chronologically in the repository and can be viewed with:
+
+$ git log
+
+This command will log a list of commits.
+
+In the output:
+
+- A 40-character code, called a SHA, that uniquely identifies the commit.
+- The commit author.
+- The data and time of the commit
+- The commit message.
+
+When working on a Git project, we sometimes make changes that we want to get rid of. 
+
+In Git, the commit you are currently on is known as the HEAD commit. In many cases, the most recently made commit is the HEAD commit. To see the HEAD commit, enter:
+
+$ git show HEAD
+
+What if you decide to change a code line in the working directory, but they, you wanted to discard that change. 
+
+$ git checkout HEAD FILENAME-HERE
+
+This command will restore the file in your working directory to look exactly as it did when you last made a commit.
+
+In Git, it's common to change many files, add those files to the staging area, and commit them to Git in a single commit. For example, say you want to change a name in two files. After you change the name in both files, you could add the changed files to the staging area with:
+
+$ git add filename_1 filename_2
+
+The files in the staging area belong in the same commit.
+
+If a file has been added in-error, we can unstage that file from the staging area using:
+
+$ git reset HEAD filename
+
+This command resets the file in the staging area to be the same as the HEAD commit. It does not discard file changes from the working directory, it just removes them from the staging area.
+
+In the terminal output, it might appear as:
+
+M    filename_3
+
+'M' is short for modification.
+
+The changes made to this file have now been booted out of the staging area, and we are now ready to commit.
+
+Git enabled you to rewind to the part before you made an error. This allows you to create a new destiny for the project using:
+
+git reset SHA
+
+The command works by using the first 7 characters of the SHA of a previous commit. For example, if the SHA of the previous commit is: 5d692065cf51a2f50ea8e7b19b5a7ae512f633ba use:
+
+$ git reset 5d69206
+
+Use $ git log to print out a log of commits made. Enter the command to reset to a previous commit:
+
+$ git reset d8e48ee
+
+Once done, you can use $ git log 
+
+Any commits after the one you reset, are gone. The HEAD commit has been reassigned.
+
+The reset command, in essence, rewinds the project's history to a specific commit.
+
+Branching:
+
+Up to this point, we've working in a single Git branch called master. Git allows us to create branches to experiment with versions of a project. A branch will not have an effect on master until you're ready to merge the changes into the master branch.
+
+To confirm which branch you are on, you can use the command:
+
+$ git branch
+
+In the output, the * (asterisk) is showing you what branch you're on. The project only has one branch by default. A new branch can be created that contain any commits from master, but also has commits that master does not have.
+
+Right now, the Git project only has one branch: master
+
+To create a new branch, use:
+
+$ git branch NEW-BRANCH-NAME
+
+The branch name is usually used to describe the purpose of the branch. The name cannot contain whitespace. Once the new branch has been created, use $ git branch to see the new branch with the master branch listed.
+
+The new branch is identical to the master branch. They share the same exact commit history. You can switch to the new branch:
+
+$ git checkout NEW-BRANCH-NAME
+
+Once you switch branch, you can now make commits on that branch and have no impact on master. You can continue to work, while master stays intact. All the commits on master are inherited by the new branch.
+
+If we want to include all the changes we have made in one branch on the master branch, we can accomplish this by merging the branch into master with:
+
+$ git merge BRANCH-NAME
+
+You first need to change branch back to master:
+
+$ git checkout master
+
+Then we can merge a branch into master:
+
+$ git merge BRANCH-NAME
+
+This is simple if the master branch has not changed. If a change occurs on master and then we merge a branch into master, Git does not know what changes to keep. This is called a merge conflict.
+
+In a code editor, the conflict may look like this:
+
+<<<<<<< HEAD
+master version of line
+=======
+fencing version of line
+>>>>>>> fencing
+
+the HEAD (master) version of the file and the other branch version of the file. Git asks us which version to keep. Within the code editor, delete the content of the line that appears in the master branch. The special markings (<<<< HEAD) need to be removed/deleted also to resolve the conflict.
+
+Add the file to the staging area, once done, commit the file and add the message 'Resolve merge conflicts' to indicate the purpose of the commit.
+
+In Git, branches are usually a means to an end. You create them to work on a new project feature, but the end goal is to merge that feature into the master branch. After the branch has been merged into master, it has served its purpose and can be deleted.
+
+$ git branch -d BRANCH-NAME
+
+To confirm that it has indeed been deleted, list the branches available:
+
+$ git branch
+
+Git can be used for single users or for working with collaborative teams. This allows a replica of the project to be created on your own computer, to allow reviews of work to take place and to access a definitive project version. This can be done through the use of remotes.
+
+A remote is a shared Git repository that allows multiple collaborators to work on the same Git project from different locations. Collaborators work on the project independently, and merge changes together when they are ready to do so.
+
+To get a copy of a repository using Git, the following command can be used:
+
+$ git clone REMOTE-LOCATION CLONE-NAME
+
+REMOTE-LOCATION tells Git where to go find the remote. This can be a web address, or filename. 
+
+CLONE-NAME is the name you give to the folder/directory in which Git will clone the repository. 
+
+Git gives the remote address the name of origin, so that you can refer to it more easily. You can see a list of a Git project's remotes with the command:
+
+$ git remote -v
+
+Git lists the name of the remote, origin, as well as it's location.
+
+Git automatically names this remote origin, because it refers to the remote repository of origin.
+
+The remote is listed twice, once for (fetch) and once for (push).
+
+If a change occurs before a commit is made, your clone will no longer be up-to-date. An easy way to see if changes have been made to the remote and bring down these changes to your local copy is with:
+
+$ git fetch
+
+This command will not merge changes from the remote into your local repository. It brings those changes onto what's called a remote branch. Even though the changes from new commits have been fetched to your local copy of the Git project, these commits are on the origin/master branch. Your local master branch has not been updated yet, so you can't view of make changes to any of the work that has been added.
+
+We can use $ git merge to integrate origin/master into your local master branch:
+
+$ git merge origin/master
+
+Git will perform a "fast-forward" merge, bringing local master branch up to speed with any recent commits made on the remote. Once complete, you are ready to contribute some of your own work.
+
+We often push branches up to the remote for review.
+
+On a branch, once stages and committed, its now time to share our work.
+
+$ git push origin BRANCH-NAME
+
+This command will push your branch up to the remote, origin. From there, another developer can review your branch and merge your work into the master branch, making it part of the project.
+
+A remote is a Git repo that lives outside of your Git project folder. Remotes can live on the web, on a shared network, or even in a separate folder on your locl computer.
+
+Git projects are usually managed on GitHub. This is a website used to host Git projects for millions for users. The project in GitHub can be accessed from anywhere in the world using this basic workflow.
+
+LEARN THE COMMAND LINE
+
+Using the command line allows you to perform actions without the use of a mouse. The command line is a quick, powerful, text-based interface developers use to perform actions on a computer.
+
+The command line is a text interface for your computer. It's a program that takes in commands, which is passes on to the computer's operating system to run. You can run programs, write scripts to automate common tasks making it an important tool.
+
+Most examples here relate to Mac OSX and Linux
+
+To access the command line, we use a terminal emulator, often called the terminal.
+
+$ ls
+
+This command prints out the files/folders of a directory.
+
+$ is called a shell prompt. It appears when a terminal is ready to accept a command. When you type ls, the command line looks at the folder you are in, and then 'lists' the files and folders inside. ls is an example of a command, a directive to the computer to perform a specific task. 
+
+When using the command line, we refer to folders as directories. Files and directories on your computer are organised into a filesystem. A filesystem organises a computer's files and directories into a tree structure.
+
+The first directory in the filesystem is the root directory. It is the parent of all other directories and files in the filesystem. You may already be familiar with this tree structure - Mac Finder and Windows Explorer represent the filesystem as trees as well.
+
+$ pwd
+
+pwd stands for 'print working directory'. It outputs the name of the directory you are currently in, called the working directory. Together with ls, the pwd command is useful to show where you are in the filesystem.
+
+$ cd 2015
+
+cd stands for 'change directory'. Just as you would click on a folder in Windows Explorer or Finder, cd switches you into the directory you specify. In other words, cd changes the working directory. The example above changes the directory into 2015.
+
+When a file, directory or program is passed into a command, it is called an argument. Here the 2015 directory is an argument for the cd command.
+
+The cd command takes a directory name as an argument, and switches into that directory.
+
+$ cd jan/memory/
+
+To navigate directly to a directory, use cd with the directory's path as an argument. Here cd jan/memory/ command navigates directly to the jan/memory directory.
+
+$ cd ..
+
+To move up one directory, use cd .. Here, cd .. navigates up from jan/memory to jan/
+
+Chage the directory to 2015/feb/
+
+$ cd ../feb
+
+$ mkdir media
+
+This command will create a new directory named media/
+
+The mkdir command stands for 'make directory'. It takes in a directory name as an argument, and then creates a new directory in the current working directory. Here we used mkdir to create a new directory named media/ inside the feb/ directory.
+
+$ touch keyboard.txt
+
+The touch command creates a new file inside the working directory. It takes in a filename as an argument, and then creates an empty file in the current working directory. Here, we used touch to create a new file named keyboard.txt inside the 2014/dec/ directory.
+
+In a filesystem, the tree (Filesystem Tree) structure starts with the root directory. Each parent directory can contain more child directories and files.
+
+$ ls -a
+
+The ls command lists all files and directories in the working directory.
+
+The -a modifies the behaviour of the ls command to also list the files and directories starting with a dot (.). Files starting with a dot are hidden, and don't appear when using ls alone.
+
+The -a is called an option. Options modify the behavior of commands. Here we use ls -a to display the contents of the working directory in more detail. In addition to -a, the ls command has several more options. Here are three common options:
+
+-a lists all contents, including hidden files and directories.
+
+-l lists all contents of a directory in long format.
+
+-t order files and directories by the time they were last modified.
+
+The -l option lists files and directories as a table. Here's what each column means:
+
+Access rights - These are actions that are permitted on a file or directory.
+
+Number of hard links. This number counts the number of child directories and files. This number includes the parent directory link (..) and the current directory link (.).
+
+The username of the file's owner.
+
+The name of the group that owns the file. Here the group name is eng.
+
+The size of the file in bytes.
+
+The data and time that the file was last modified.
+
+The name of the file or directory.
+
+$ ls -alt
+
+The -t option orders files and directories by the time they were last modified. In addition to using each option separately, like ls -a or ls -l, multiple options can be used together, like ls -alt.
+
+Here, ls -alt lists all contents, including hidden files and directories, in long format, ordered by the dat and time they were last modified.
+
+$ cp frida.txt lincoln.txt
+
+The cp command copies files or directories. Here, we copy the contents of frida.txt into lincoln.txt.
+
+$ cp biopic/cleopatra.txt historical/
+
+This example will copy cleopatra.txt from biopic/ directory into the historical/ directory.
+
+$ cp * satire/
+
+In addition to using filenames as arguments, we can use special characters like * to select groups of files. These special characters are called wildcards. The * selects all files in the working directory, se here we can use cp to copy all fies into the satire/ directory.
+
+$ cp m*.txt scifi/
+
+Here m*.txt selects all files in the working directory starting with "m" and ending with ".txt", and copies them into scifi/
+
+The mv command moves files. It's similar to cp in it's usage.
+
+$ mv superman.txt superhero/
+
+To move a file into a directory, use mv with the source file as the first argument and the destination directory as the second argument. 
+
+To rename a file, use mv with the old filename as the first argument and the new filename as the second argument:
+
+$ mv batman.txt spiderman.txt
+
+The rm command deletes files and directories. Here we remove the file waterbox.txt from the filesystem.
+
+$ rm waterboy.txt
+
+The -r option is used to modify the behaviour of the rm command. The -r stands for 'recursive' and it's used to delete a directory and all of it's child directories. rm deletes files and directories permanently.
+
+$ rm -r comedy
+
+Through redirection, you can direct the input and output of a command to and from other files and programs, and chain commands together in a pipeline.
+
+$ echo "Hello"
+
+The echo command accepts the string "Hello" as standard input, and echoes the string 'Hello' back to the terminal as standard output.
+
+standard input, abbreviated as stdin, is information inputted into the terminal through the keyboard or input device.
+
+standard output, abbreviated as stdout, is the information outputted after a process is run.
+
+standard error, abbreviated as stderr, is an error message outputted by a failed process.
+
+Redirection reroutes standard input, standard output, and standard error to or from a different location.
+
+$ echo "Hello" > hello.txt
+
+This is an example of a redirect (above).
+
+The > command redirects the standard output to a file. Here, "Hello" is entered as the standard input. The standard output "Hello" is redirected by > to the file hello.txt
+
+$ cat hello.txt
+
+The cat command outputs the contents of a file to the terminal. When you type cat hello.txt, the contents of hello.txt are displayed.
+
+$ cat oceans.txt > continents.txt 
+$ cat continents.txt
+
+cat command is used to view the contents of continents.txt
+
+> takes the standard output of the command on the left, and redirects it to the file on the right. Here the standard output of car oceans.txt is redirected to continents.txt (so we get a list of oceans listed)
+
+Note than > overwrites all original content in continents.txt. When you view the output data by typing cat on continents.txt, you will see only the contents of oceans.txt
+
+$ cat glaciers.txt >> rivers.txt
+$ cat rivers.txt
+
+When command is run, both glaciers and rivers are output.
+
+>> takes the standard output of the command on the left, and appends (adds) it to the file on the right. You can view he output data of the file with cat and the filename.
+
+< takes the standard input from the file on the right and inputs it into the program on the left.
+
+$ cat < lakes.txt
+
+Here, lakes.txt is the standard input for the cat command. The standard output appears in the terminal.
+
+$ cat volcanoes.txt | wc
+
+| is a 'pipe'. The | takes the standard output of the command on the left, and pipes it as standard input to the command on the right. You can think of this as a 'command to command' redirection.
+
+Here the output of cat volcanoes.txt is the standard input of wc. In turn, the wc command outputs the number of lines, words, and characters in volcanoes.txt
+
+$ cat volcanoes.txt | wc | cat > islands.txt
+
+Multiple | can be chained together. Here the standard output of cat volcanoes.txt is 'piped' to the wc command. The standard output of wc is then 'piped' to cat. Finally, the standard output of cat is redirected to islands.txt
+
+You can view the output data of this chain by typing cat islands.txt
+
+$ cat volcanoes.txt | wc
+
+| is a "pipe". The | takes the standard output of the command on the left, and pipes it as standard input to the command on the right. You cn think of this as "command to command" redirection.
+
+Here the output of cat volcanoes.text is the standard input of wc. In turn, the wc command outputs the number of lines, words, and characters in volcanoes.txt.
+
+$ cat volcanoes.text | wc | cat > islands.txt
+
+
+
+
+JAVASCRIPT CONTROL FLOW
+
+We will explore how we use the building blocks of JavaScript to write programs that make decisions.
+
+Control flow statements enable JavaScript programs to make decisions by executing code based on conditions. If a condition is true, we execute one block of code. If the statement is false, we execute another block of code.
+
+let userName = 'Dan';
+let knowsJavaScript = true;
+
+if (knowsJavaScript && userName) {
+  console.log('Great, ' + userName + '! Get ready to practice your JavaScript!');
+} else if (knowsJavaScript) {
+  console.log('Great! Get ready to practice your JavaScript!');
+} else if (userName) {
+  console.log('Great, ' + userName + '! Get ready to learn something new!');
+} else {
+  console.log('Great! Get ready to learn something new!');
+}
+
+The core task of programming is writing lists of instructions for computers.
+
+Lines of code between curly braces are called blocks. if/else statements hae two code blocks. If a the variable is true, the program will run the first block of code. Otherwise, it will run the other block of code. This is called a condition.
+
+var isSoccerFan = true;
+
+if (isSoccerFan) {
+  console.log('Goal!');
+} else {
+  console.log('No goal!');
+}
+
+In JavaScript, all variables and conditions have a truthy or falsy value.
+
+let variableOne = 'I Exist!';
+if (variableOne) {
+  // This code will run because variableOne contains a truthy value
+} else {
+  // This code will not run because the first block ran.
+}
+
+In this example, a variable is declared and a value set. The value of this variable is a string rather than a boolean. The second line of this program checks a condition if (variableOne). By only writing the name of the variable as the condition, we are checking the truthiness of the variableOne. In this case, variableOne contains a truthy value.
+
+If we changed if (variableOne) to say if (variableTwo), that condition would evaluate to falsy because we have not created a variable called variableTwo in this program. In other words, variableOne is truthy and variableTwo is falsy.
+
+All variables that have been created and set are truthy (and will evaluate to true if they are the condition of a control flow statement), unless:
+
+false
+0 and -0
+"" and '' (empty strings)
+null
+undefined
+NaN (Not a number)
+
+In programming, we often evaluate whether or not an expression is true or truthy. JavaScript provides a shorthand notation for this.
+
+let isRaining = true;
+if (isRaining) {
+  console.log('Carry an umbrella!');
+} else {
+  console.log('Enjoy the sun!');
+}
+
+In the example above, the condition is simply if (isRaining). 
+
+JavaScript provides an operator for swapping the truthiness and falsiness of values - the exclamation point (!). We can use this in conditional statements as shorthand to check of the value of a variable evaluates to false rather than true.
+
+let isPhoneCharged = true;
+if (!isPhoneCharged) {
+  console.log('Plug in your phone!');
+} else {
+  console.log('No need to charge!');
+}
+
+In the program above, the program checks if isPhoneCharged evaluates to false. Because isPhoneCharged is true, the second block of code will execute.
+
+Sometimes we need to compare variables to other values. We can achieve this with comparison operators.
+
+Less than: <
+Greater than: >
+Less than or equal to: <=
+Greater than or equal to: >=
+
+These comparisons evaluate to true or false.
+
+let hungerLevel = 5;
+
+if (hungerLevel > 7) {
+  console.log('Time to eat!');
+} else {
+  console.log('Let\'s eat later!');
+}
+
+Often, we might want to check if two things are equal to each other or if they are not.
+
+To check if two things equal each other, we write ===
+To check if two things do not equal each other, we write !==
+
+Use a single = sign to assign a value to a variable. Use === to compare the values of two different variables.
+
+let stopLight = 'green';
+
+if (stopLight === 'red') {
+  console.log('Stop');
+} else if (stopLight === 'yellow') {
+  console.log('Slow down');
+} else if (stopLight === 'green') {
+  console.log('Go!');
+} else {
+  console.log('Caution, unknown!');
+}
+
+The block above, ends with a singular else. This is a catch-all for any other situation.
+
+var moonPhase = 'mostly full';
+
+if (moonPhase === 'full') {
+  console.log('Howl!');
+} else if (moonPhase === 'mostly new') {
+  console.log('Back on two feet');
+} else if (moonPhase === 'mostly full') {
+  console.log('Arms and legs are getting hairier');
+} else {
+  console.log('Invalid moon phase');
+}
+
+Logical operators allows multiple values to be used.
+
+"both must be true" AND - &&
+"either can be true" OR - ||
+
+if (stopLight === 'green' && pedestrians === false) {
+  console.log('Go!');
+} else {
+  console.log('Stop');
+}
+
+Just as before, these logical operators will return either true or false.
+
+var moonPhase = 'full';
+var isFoggyNight = false;
+
+if (moonPhase === 'full' || isFoggyNight) {
+  console.log('Howl!');
+} else if (moonPhase === 'mostly new') {
+  console.log('Back on two feet');
+} else if (moonPhase === 'mostly full') {
+  console.log('Arms and legs are getting hairier');
+} else {
+  console.log('Invalid moon phase');
+}
+
+else if is a great tool if you have a few different conditions, however, the more conditions you have, can cause the JavaScript code to be difficult to read and to understand. For this reason, we can use a switch statement, as it can be easier for humans to read.
+
+let moonPhase = 'full';
+
+switch (moonPhase) {
+  case 'full':
+    console.log('Howl!');
+    break;
+  case 'mostly full':
+    console.log('Arms and legs are getting hairier');
+    break;
+  case 'mostly new': 
+    console.log('Back on two feet');
+    break;
+  default: 
+    console.log('Invalid moon phase');
+    break;
+}
+
+JavaScript also provides a way to shorten simple if/else statements called ternary operators.
+
+let isNightTime = true;
+
+if (isNightTime) {
+  console.log('Turn on the lights!');
+} else {
+  console.log('Turn off the lights!');
+}
+
+the equivalent way to write the above code as a ternary operator:
+
+isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+
+isNightTime ? - The conditional statement, followed by a question mark. This check if isNightTime is truthy.
+
+console.log('Turn on the lights!') - This code will be executed if the condition is truthy.
+
+: - a colon seperates the two different blocks of code that can be executed.
+
+console.log('Turn off the lights!') - This code will be executed if the condition is falsy.
+
+We can also use ternary operators for any condition that can be evaluated to true or false:
+
+age >= 16 ? console.log('You are old enough to drive in the United States!') : console.log('You are not old enough to drive in the United States!');
+
+Example:
+
+let isLocked = false;
+
+isLocked ? console.log('You will need a key to open the door.') : console.log('You will not need a key to open the door.');
+
+let isCorrect = true;
+
+isCorrect ? console.log('Correct!') : console.log('Incorrect!');
+
+let favoritePhrase = 'Love That!';
+
+favoritePhrase === 'Love That!' ? console.log('I love that!') : console.log("I don't love that!");
+
+JAVASCRIPT - MAIN CODEACADEMY COURSE
+
+There are some things that you can't do in the console. Computers speak certain languages, like JavaScript. If you use words that aren't in the JavaScript language, it will get confused and give you an error - such as a ReferenceError
+
+e.g. ReferenceError: eggplant is not defined
+
+The // sign is for comments. A comment is a line of text that JavaScript won't try to run as code. This is for developers to read. Comments make your program easier to understand and to figure out what your code does.
+
+We can find the length of the word "Cake" like this:
+
+"Cake".length;
+
+What can we use JavaScript for?
+
+- Make websites respond to user interaction.
+- Build apps and games 
+- Access information on the Internet (using APIs)
+- Organise and present data.
+
+You can create a confirmation box using JavaScript. Thes pop up, often if you delete something important or leave a website with unsaved changes.
+
+confirm('Sure you want to leave?');
+
+Programming is like writing a list of instructions to the computer so it can do things. To do these actions, the program needs input. You can ask for input with a prompt:
+
+prompt('What is your name?');
+
+Data comes in various types. 
+
+A boolean is either TRUE or FALSE.
+
+"I'm coding like a champ".length > 10;    // true
+
+You may have noticed that the interpreter doesn't print out every single thing it does. So if we want to know what it's thinking, we sometimes have to use the console.log to show output.
+
+console.log() takes whatever is inside the parenthesis and log it to the console. This is commonly called printing out.
+
+console.log(2 * 5);     // 10
+console.log("Hello");   // Hello
+
+So far we've learned about three data types:
+
+- strings (e.g. "dogs go woof!")
+- numbers (e.g 4, 10)
+- booleans (e.g. false, 5 > 4)
+
+List of comparison operators:
+
+> Greater than
+< Less than
+<= Less than or equal to
+>= Greater than or equal to
+=== Equal to
+!== Not equal to
+
+// Here is an example of using the greater than (>) operator.
+console.log(15 > 4); // 15 > 4 evaluates to true, so true is printed.
+
+// Fill in with >, <, === so that the following print out true:
+console.log("Xiao Hui".length < 122);
+console.log("Goody Donaldson".length > 8);
+console.log(8*2 === 16);
+
+Say we want to write a program that asks whether your name is longer that 7 letters. If the answer is yes, we can respond with "You have a long name!". We can do this with an if statement.
+
+if ("myName".length >= 7) {
+  console.log("You have a long name!");
+}
+
+The If statement is made up of the if keyword and a condition. If the answer to the condition is yes, the code inside the curly braces will run.
+
+Computers are very literal, syntax needs to be correct for a computer to understand the code. If mistakes occur, they needs to be fixed. This is called 'debugging', a term popularised by Grace Hopper when she literally removed a moth from her computer.
+
+Math:
+
+( ) - control the order of operations
+* and / - multiplication and division
+- and + - subtraction and addition
+
+if ("Jon".length * 2 / (2+1) === 2) {
+    console.log("The answer makes sense!");
+} else {
+    console.log("Error Error Error");
+}
+
+When % is placed between two numbers, the computer will divide the first number by the second number, and then return the remainder of that division.
+
+So, if we do 23 % 10, we divide 23 by 10 which equals 2 with 3 left over. So 23 % 10 evaluates to 3.
+
+Modulo is good at testing divisibility. Consider 30 % 10, this returns 0 as there is nothing left over.
+
+We can use modulos in comparisons, like this:
+
+10 % 2 === 0 evaluates to true
+7 % 3 === 0 evaluates to false because there is 1 left over.
+
+if(10 % 3) {
+    console.log("The first number is even");
+} else {
+    console.log("The first number is odd");
+}
+
+We've learned a few way to manipulate numbers, but we can also manipulate strings. Sometimes you don't want to display the entire string, just part of it. For example, in your Gmail inbox, you can set it to display the first 50 or so characters of each message so you can preview them. This preview is a substring of the original string (the entire message).
+
+"some word".substring(x, y);
+
+where x is where you start chopping and y is where you finish chopping.
+
+"hello".substring(0, 2);
+
+Each character in a string is numbered starting from 0.
+
+0 1 2 3 4
+h e l l o
+
+The letter 'h' is in position 0, the letter 'e' is in position '1', and so on. Therefore, if you start at position 0, and slice right up till position 2, you are left with just 'he'.
+
+// Be careful with the substring's letter positions!
+"wonderful day".substring(3, 7);
+
+In this example we want to find the 4th up to and including the 7th letter of the string. This leaves us with 'derf'.
+
+// Use console.log( ) to print out the substrings.
+// Here is an example of the 1st to 4th letter of "JavaScript":
+// console.log("JavaScript".substring(0,4));
+console.log("January".substring(0, 3));
+console.log("Melbourne is great".substring(0, 12));
+console.log("Hamburgers".substring(3, 10));
+
+We need a way to 'save' values from our coding. We do this by defining variables with a specific case-sensitive name. Once you create (declare) a variable as having a particular name, you can then call up that value by typing the variable name.
+
+var varName = data;
+
+// To create a variable, we use only one equals sign
+// But to check if two values are equal, we use 3 equal signs.
+
+// declare your variable here:
+var myAge = 31;
+
+console.log(myAge);
+
+It is useful to think that any time you type the variable's name, you are asking the computer to swap out the variable name and swap the value of the variable.
+
+var myName = "Steve Jobs";
+myName.substring(0, 5);
+
+CODE EXAMPLE:
+
+// Declare a variable on line 3 called
+// myCountry and give it a string value.
+var myCountry = "United Kingdom";
+
+// Use console.log to print out the length of the variable myCountry.
+console.log(myCountry.length);
+
+// Use console.log to print out the first three letters of myCountry.
+console.log(myCountry.substring(0, 3));
+
+We can also change a variable's value once declared.
+
+var myAge = "Thirty";
+// Say I had a birthday and I want to change my age
+myAge = "Thirty-one";
+
+Now the value of myAge is 'Thirty-one'.
+
+CODE EXAMPLE:
+
+// On line 2, declare a variable myName and give it your name.
+var myName = "Dan";
+// On line 4, use console.log to print out the myName variable.
+console.log(myName);
+// On line 7, change the value of myName to be just the first 2 
+// letters of your name.
+console.log(myName.substring(0, 2));
+// On line 9, use console.log to print out the myName variable.
+console.log(myName);
+
+console.log - This prints out in the console whatever we put in the parenthesis.
+
+Programming is simply a way to give instructions to the computer. A function takes in input, does something, and produces an output.
+
+var sayHello = function(name) {
+  console.log('Hello ' + name);
+};
+
+CODE EXAMPLE:
+
+// Below is the greeting function!
+// See line 7
+// We can join strings together using the plus sign (+)
+// See the hint for more details about how this works.
+
+var greeting = function (name) {
+    console.log("Great to see you," + " " + name);
+};
+
+// On line 11, call the greeting function!
+greeting("Dan");
+
+Let's break down exactly how a computer thinks when it sees the code for a function.
+
+The var keyword declares a variable named functionName.
+
+The keyword function tells the computer that functionName is a function and not something else.
+
+Parameters go in the parenthesis. The computer will look out for it in the code block.
+
+The code block is the reusable code that is between the curly brackets {}. Each line of code inside {} must end with a semi-colon.
+
+The entire function ends with a semi-colon.
+
+To use the function, we call the function by typing the function's name, and putting a parameter value inside parenthesis after it. The computer will run the reusable code with the specific parameter value substituted into the code.
+
+CODE EXAMPLE:
+
+// Write your foodDemand function below.
+// Last hint: In your reusable block of code, end each line
+// with a semicolon (;)
+var foodDemand = function(food) {
+    console.log("I want to eat" + " " + food);
+};
+
+foodDemand("Chocolate");
+
+CODE EXAMPLE:
+
+// Nicely written function:
+var calculate = function (number) {
+    var val = number * 10;
+    console.log(val);
+};
+
+// Badly written function with syntax errors!
+
+var greeting = function(name) {
+    console.log(name);
+}
+
+greeting("Dan");
+
+The DRY (Don't Repeat Yourself) principle is really important in programming. Any time you find yourself typing the same thing, but modifying only one small part, you can probably use a function. The small part being modified will be the parameter. The part of the code that keeps repeating will be the code in the reusable block.
+
+EXAMPLE CODE:
+
+var orangeCost = function(cost) {
+    console.log(cost * 5);
+};
+
+orangeCost(5);
+
+Now when we call a function, we don't always want to just print stuff. Sometimes, we just want it to return a value. We can then use this calue in other parts of the code. For this, we can use the return keyword.
+
+The return keyword simply gives the programmer back the value that comes out of the function. So the function runs, and when the return keyword is used, the function will immediately stop running and return the value.
+
+EXAMPLE CODE:
+
+// Parameter is a number, and we do math with that parameter
+var timesTwo = function(number) {
+    return number * 2;
+};
+
+// Call timesTwo here!
+var newNumber = timesTwo(5);
+console.log(newNumber);
+
+When we call a function, its return value is just the result from running the function. That value can then be used just like any other value in JavaScript.
+
+EXAMPLE CODE:
+
+// Define quarter here.
+var quarter = function(number) {
+    return number / 4;
+};
+
+if (quarter(24) % 3 === 0 ) {
+  console.log("The statement is true");
+} else {
+  console.log("The statement is false");
+}
+
+So far we've only looked at functions with one parameter. Functions can have more than one parameter.
+
+var areaBox = function(length, width) {
+  return length * width;
+};
+
+To call a function with more than one parameter, just enter a value for each parameter in the parenthesis:
+
+areaBox(3, 9);
+
+This would return the area of a box with a length of 3 and a width of 9.
+
+CODE EXAMPLE:
+
+// Write your function starting on line 3
+var perimeterBox = function(width, length) {
+    return length + length + width + width;
+};
+
+perimeterBox(3, 9);
+
+Scope can be global or local. Variables defined outside of a function are accessible anywhere once they have been declared. They are called global variables and their scope is global.
+
+var globalVar = "hello";
+
+var foo = function() {
+  console.log(globalVar);   // prints "hello"
+}
+
+The variable globalVar can be accessed anywhere, even inside the function foo.
+
+Variables defined inside a function are local variables. They cannot be accessed outside of that function.
+
+var bar = function() {
+  var localVar = "howdy";
+}
+
+console.log(localVar);    // error
+
+The variable localVar only exists inside the function bar. Trying to print localVar outside the function gives an error.
+
+The var keyword creates a new variable in the current scope. That means if var is used outside a function, that variable has a global scope. If var is used inside a function, that variable has a local scope.
+
+Using a variable without the var keyword refers to the global variable that has already been declared outside the function. However, if you use the var keyword inside a function, it declares a new local variable that only exists within that function.
+
+var my_number = 7; //this has global scope
+
+var timesTwo = function(number) {
+    var my_number = number * 2;
+    console.log("Inside the function my_number is: ");
+    console.log(my_number);
+}; 
+
+timesTwo(7);
+
+console.log("Outside the function my_number is: ")
+console.log(my_number);
+
+EXAMPLE CODE:
+
+var nameString = function (name) {
+  return "Hi, I am" + " " + name;
+};
+
+console.log(nameString("Dan"));
+
+EXAMPLE CODE:
+
+// Write your function below. 
+// Don't forget to call your function!
+var sleepCheck = function(numHours) {
+    if (numHours >= 8) {
+        return "You're getting plenty of sleep! Maybe even too much!";
+    } else {
+        return "Get some more shut eye!";
+    }
+};
+
+sleepCheck(10);
+sleepCheck(5);
+sleepCheck(8);
+
+We can use for loops to repeat code a number of times.
+
+CODE EXAMPLE:
+
+// Example of a for loop:
+
+for (var counter = 1; counter < 11; counter++) {
+  console.log(counter);
+}
+
+This will print the numbers 1 to 10.
+
+SYNTAX:
+
+for (var i = 1; i < 11; i = i + 1) {
+    /* your code here */;
+}
+
+This for loop will start at 5 and end at 10. The i variable can use any name and does not have to use i. This example, starts at 5 and ends at 11.
+
+// Change where the for loop starts.
+
+for (var i = 5; i < 11; i = i + 1){
+  console.log(i);
+}
+
+Be very careful with your syntax. If you write a loop that can't properly end, it's called an infinite loop and will crash your browser.
+
+This next loop starts at 5, counts up to 50 and only counts every fifth number:
+
+// Edit this for loop!
+
+for (var i = 5; i < 51; i = i + 5) {
+  console.log(i);
+}
+
+EXAMPLE CODE:
+
+// Example for loop
+
+for (var i = 8 ; i < 120; i = i + 12) {
+  console.log(i);
+}
+
+for loops can only run when the condition is true.
+
+EXAMPLE CODE: Count down:
+
+for (var i = 10; i >= 0; i--) {
+  console.log(i);
+}
+
+EXAMPLE CODE: FOR LOOP THAT COUNTS DOWN FROM 100 UNTIL 0 BY 5:
+
+for (var i = 100; i >= 1; i = i - 5) {
+    console.log(i);
+}
+
+Variables can store numbers or strings. But so far, we've only been able to store ONE number or ONE string. This is where arrays come in. Anytime you see data surrounded by [ ] it is an array.
+
+// You are now declaring an array.
+// Arrays are an awesome data structure!
+var junk = ['data', 'data', 2, 2.6];
+console.log(junk);
+
+OUTPUT: [ 'data', 'data', 2, 2.6 ]
+
+USING FOR LOOP:
+
+// Let's print out every element of an array using a for loop
+
+var cities = ["Melbourne", "Amman", "Halifax", "NYC"];
+
+for (var i = 0; i < cities.length; i++) {
+    console.log("I would like to visit " + cities[i]);
+}
+
+ANOTHER EXAMPLE:
+
+// Click on "Stuck? Get a hint!" if you get stuck!
+var names = ["Dan", "Mark", "Cassie", "Tony", "Dave"];
+
+for (var i = 0; i < names.length; i++) {
+    console.log("I know someone called " + names[i]);
+}
+
+The while loop is ideal when you want to use a loop, but you don't know how many times you'll have to execute that loop. As long as the condition evaluates to true, the loop will continue to run. As soon as it's false, it'll stop.
+
+COIN TOSS:
+
+var coinFace = Math.floor(Math.random() * 2);
+
+while(coinFace === 0){
+  console.log("Heads! Flipping again...");
+  var coinFace = Math.floor(Math.random() * 2);
+}
+console.log("Tails! Done flipping.");
+
+BASIC EXAMPLE:
+
+var understand = true;
+
+while(understand){
+  console.log("I'm learning while loops!");
+  understand = false;
+}
+
+As mentioned previously, an infinite loop will be created if you give a while loop a condition that is true and you don't build in a way for that condition to possibly become false, the loop will go on forever. You always need to ensure te condition between your while parenthesis can change.
+
+By using understand = false; the loop will exit.
+
+You may have noticed that when we give a variable the boolean value true, we check that variable directly, we don't bother with ===, for instance.
+
+var bool = true;
+while(bool) {
+  // Do something
+}
+
+This is the same as:
+
+var bool = true;
+while(bool === true) {
+  // Do something
+}
+
+If you happen to be using numbers, you could even do:
+
+var myNumber = 1;
+while(myNumber) {
+  // Do something!
+}
+
+Arrays have a property in common with strings. They can both use .length. When you call .length on an array, it returns the number of elements that an array has. An array containing different data types is called an heterogeneous array, which means mixture of data types.
+
+var mix = [42, true, "towel"];
+
+Not only can you put a mixture of data types in an array, you can even put other arrays inside arrays. This would create a two-dimensional array by nesting arrays one layer deep.
+
+var twoDimensional = [[1, 1], [1, 1]];
+
+This array is two-dimensional because it has two rows that each contain two items. This next array has three rows and three columns:
+
+var newArray = [[1, 1, 1], [2, 2, 2], [3, 3, 3]];
+
+Sometimes, you may want arrays that aren't even such as three elements in the first row, one element in the second row, and two elements in the third row. JavaScript allows those, and they're called Jagged arrays.
+
+Two rows means the first two elements in the array need to be arrays.
+
+var jagged = [[1, 1], [2, 2, 2], "test"];
+
+Using objects, we can put our information and the functions that use that information, in the same place. Objects are just collections of information (keys and values) between curly braces, like this:
+
+var myObject = {
+  key: value,
+  key: value,
+  key: value
+};
+
+EXAMPLE:
+
+var me = {
+    name: "Dan",
+    age: 31
+};
+
+Great work! you have just created your very first object. There are two ways to create an object: using object literal notation (which is what we did in this example), and using the object constructor.
+
+var myObj = {
+    type: 'fancy',
+    disposition: 'sunny'
+};
+
+var emptyObj = {};
+
+When you use the constructor, the syntax looks like this:
+
+var myObj = new Object();
+
+This tells JavaScript that you want to make a 'new' thing and this thing needs to be an Object. Once created, you can add keys to your object in two ways:
+
+myObj["name"] = "Dan";
+myObj.name = "Dan";
+
+EXAMPLE:
+
+var me = new Object();
+
+me.name = "Dan";
+me.age = 31;
+
+EXAMPLE:
+
+var object1 = {
+    name: "Dan"
+};
+
+var object2 = {
+    name: "Dave"
+};
+
+var object3 = {
+    name: "Mark"
+};
+
+EXAMPLE (Array containing the object):
+
+var myObj = {
+    type: 'fancy',
+    disposition: 'sunny'
+};
+
+var newArray = [[1, 1], [myObj]];
+
+EXAMPLE - KEY IN OBJECT HAS VALUE FROM AN ARRAY:
+
+var interests = ["Tennis", "Football"];
+
+var myObject = {
+  name: 'Eduardo',
+  type: 'Most excellent',
+  // Add your code here!
+  interests: Object.values(interests)
+};
+
+Just like with strings and numbers, we can put multiple objects into an array. 
+
+REACT (CODEACADEMY SINCE UPDATE TO ES6)
+
+const h1 = <h1>Hello world</h1>;
+
+This code seems like it must be JavaScript, since it stats with const and ends with ;, however, if you try to run that in an HTML file, it won't work. The code also contains <h1>Hello world</h1>, which looks exactly like HTML. That part of the code wouldn't work if you tried to run it in a JavaScript file.
+
+This code does belong in a JavaScript file. The part that looks like HTML, is something called JSX.
+
+JSX is a syntax extension for JavaScript. It was written to be used with React. JSX code looks a lot like HTML. JSX is not valid JavaScript, the web browser cannot read it. If a JavaScript file contains JSX code, then that file will have to be compiled. That means that before the file reaches the web browser, a JSX compiler will translate any JSX into regular JavaScript.
+
+A basic unit of JSX is called a JSX element.
+
+Here's an example of a JSX element:
+
+<h1>Hello world</h1>
+
+A JSX element looks exactly like HTML, the only noticeable difference is that you would find it in a JavaScript file, instead of an HTML file.
+
+REACT: states:
+
+A React component can access dynamic information in two ways: props and state.
+
+Unlike props, a component's state is not passed to it from the outside. A component decides its own state. To make a comonent have state, give the component a state property. This property should be declared inside of a constructor method, like this:
+
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { mood: 'decent' };
+  }
+
+  render() {
+    return <div></div>;
+  }
+}
+
+<Example />
+
+constructor and super are both features of ES6 and are not unique to React. React components always have to call super in their constuctors to be set up properly. In the example above, <Example /> has a state, and it's state is equal to { mood: 'decent' }.
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component {
+  // constructor method begins here:
+  constructor(props) {
+    super(props);
+    this.state = { title: 'Best App' };
+  }
+  
+  render() {
+    return (
+      <h1>
+        Wow this entire app is just an h1.
+      </h1>
+    );
+  }
+}
+
+To read a component's state, use the expression: this.state.name-of-property.
+
+<h1>
+This is the {this.state.title}
+</h1>
+
+This reads a property state from inside of its render function. Just like this.props, you can use this.state from any property defined inside of a component class's body.
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component {
+  // constructor method begins here:
+  constructor(props) {
+    super(props);
+    this.state = { title: 'Best App' };
+  }
+  
+  render() {
+    return (
+      <h1>
+        {this.state.title}
+      </h1>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
+This example will render 'Best App' onto the page.
+
+A component can do more than just read its own state. A component can also change its own state. A component can change its own state by calling the function: this.setState(). This function takes two arguments: an object that will update the component's state, and a callback. 
+
+In this next example, <Example /> has a state of:
+
+{
+  mood: 'great',
+  hungry: false
+}
+
+Now, let's say that <Example /> were to call:
+
+this.setState({ hungry: true });
+
+After that call, <Example /> state would be:
+
+{
+  mood: 'great',
+  hungry: true
+}
+
+The mood part of the state remains unaffected. this.setState() takes an object, and merges that object with the component's current state. If there are properties in the current state that aren't part of that object, then those properties remain how they were.
+
+The most common way to call this.setState() is to call a custom function that wraps a this.setState() call.
+
+makeSomeFog() is an example:
+
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { weather: 'sunny' };
+    this.makeSomeFog = this.makeSomeFog.bind(this);
+  }
+
+  makeSomeFog() {
+    this.setState({
+      weather: 'foggy'
+    });
+  }
+}
+
+The makeSomeFog() method contains a call to this.setState(). You may also notice this line:
+
+this.makeSomeFog = this.makeSomeFog.bind(this);
+
+This line is necessary because makeSomeFog() body contains the word this.
+
+PHP
+---
+
+PHP is one of the simplest server-side languages out there. A large number of applications and sites are built using PHP - including WordPress.
+
+PHP can do all sorts of things: evaluate form data sent from a browser, build custom web content to serve the browser, talk to the database, and even send and receive cookies.
+
+PHP code is written in the <?php and ?>
+
+JavaScript generally runs in the browser, or client. This means that it only really knows what's ging on in your browser, plus whatever information it gets from the website(s) you're connecting to.
+
+PHP, on the other hand, runs on the same computer as the website you're visiting, known as the server. This means that it has access to all the information and files on that machine, which allows it to construct custom HTL pages to send to your browser.
+
+PHP code can be written right into your HTML, like this:
+
+<body>
+  <p>
+
+    <?php
+      echo "I'm learning PHP!";
+    ?>
+
+  </p>
+</body>
+
+Your PHP code goes inside the <?php and ?> delimiters. Here we use the function echo to output 'I'm learning PHP!'. The line of code also ends with a semicolon.
+
+<?php
+    echo "Dan";
+?>
+
+Changing filenames from .html to .php tells the PHP interpreter that there's PHP code in the file to evaluate.
+
+The echo function outputs strings. If you type:
+
+<?php
+  echo "Hello";
+?>
+
+PHP will output Hello!
+
+Make sure to end your line of PHP code with a semicolon.
+
+A string is a word or phrase between quotes, like so: "Hello, world!". You can type a string all at once, like this:
+
+<?php
+  echo "Hello, world!";
+?>
+
+or use the concatenation operator, which glues multiple strings together.
+
+<?php
+   echo "Hello," . " " . "world" . "!";
+?>
+
+The concatenation operator is just a dot (.) as with JavaScript, the dot does the same thing that + does in JavaScript.
+
+YOUTUBE REACT TUTORIAL:
+https://www.youtube.com/watch?annotation_id=annotation_2546538071&feature=iv&index=2&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b&src_vid=MhkGQAoc7bc&v=fd2Cayhez58
+
+EXAMPLE 1:
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Layout extends React.Component {
+
+  // Logic within the component can be placed within a function
+  getVal(val) {
+    return "Dan" + val;
+  }
+
+  render() {
+
+    return (
+      <h1>It's {this.getVal(4)}</h1>
+    );
+
+  }
+}
+
+const app = document.getElementById('root');
+
+ReactDOM.render(<Layout />, app);
+
+EXAMPLE 2 (JS ES6 class can use a constructor method - must call super() as the first line):
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Layout extends React.Component {
+  constructor() {
+    super();
+    this.name = "Dan";
+  }
+
+  render() {
+    return (
+      <h1>Hi, {this.name}</h1>
+    );
+  }
+}
+
+const app = document.getElementById('root');
+
+ReactDOM.render(<Layout />, app);
+
+EXAMPLE 3: Multiple Components (create a directory called components in src)
+
+* All component file names should be uppercase
+* Don't need ReactDOM in components that will be added to the main component.
+
+-- index.js --
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Layout from './components/Layout';
+
+const app = document.getElementById('root');
+ReactDOM.render(<Layout />, app);
+
+-- Layout.js --
+
+import React from 'react';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.name = "Dan";
+  }
+
+  render() {
+    return (
+      <h1>Hi, {this.name}</h1>
+    );
+  }
+}
+
+-- NOTE --
+
+You could use an array to list out multiple DOM elements, such as a list:
+
+render() {
+  var list = [
+    <Header />,
+    <Header />,
+    <Header />
+  ];
+  return (
+    <div>
+      {list}
+    </div>
+  );
+}
+
+Example:
+
+render() {
+  var list = [
+    <li />,
+    <li />,
+    <li />
+  ];
+  return (
+    <ul>
+      {list}
+    </ul>
+  );
+}
+
+EXAMPLE 4: State & Props
+
+state (this.state) - is by default 'null'.
+Really only want to set states in the constructor method.
+Whenever state changes, on a component, the component will automatically re-render and update the DOM if changes occur.
+React will look and compare the virtualDOM and real DOM, and only update the parts that have been updated - if the state changes
+
+JS is really fast, but the DOM is really slow.
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {name: "Dan"};
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.name}
+        <Header />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+HOW TO CHANGE STATE:
+
+- After 1 second, the user did an action and we want to update our state.
+- this.setState() the method to use with states, just give it a new state (now our name is 'Bob').
+- So when setState() gets fired, the state will get updated, and that will automatically re-render
+- So, after 1 second the name "Dan" will change to "Bob" and render on the page.
+- Chrome > ESC (Display Rendering options) - Enable paint flashing, to flash green on the screen whenever a node gets changed.
+- React automatically manages DOM manipulation for us.
+- State only gets used if a component has an internal value, that only effects that component, aside from that, you want to use props.
+- Props are injected into every other component, whereas states are component specific.
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {name: "Dan"};
+  }
+
+  render() {
+
+    setTimeout(() => {
+      this.setState({name: "Bob"});
+    }, 1000)
+
+    return (
+      <div>
+        {this.state.name}
+        <Header />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+Props:
+
+- Example is to inject a prop into Header.
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  render() {
+
+    const title = "Welcome Dan";
+
+    return (
+      <div>
+        <Header title={title} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+Now if I go to Header.js, I can access this prop:
+
+-- Header.js --
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+  render() {
+
+    console.log(this.props);
+
+    return (
+      <Title />
+    );
+  }
+}
+
+The console.log will return an object with 'title: Dan' inside.
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  render() {
+
+    const title = "Welcome Dan";
+
+    return (
+      <div>
+        <Header name={"Some thing"} title={title} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+"Some thing" will be added to the object that gets passed to the Header component - current displayed in the console.log.
+- This is how you inject props into things.
+- We can create multiple versions, by creating another Header in Layout.js and giving it a new value.
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  render() {
+
+    const title = "Welcome Dan";
+
+    return (
+      <div>
+        <Header title={title} />
+        <Header title={"Another Title"} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+Now this would be two seperate objects, not one. Now we can have the title from the Layout.js to be injected into the Header.js component and render on the page/DOM:
+
+-- Header.js --
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+  render() {
+
+    return (
+      <Title title={this.props.title} />
+    );
+  }
+}
+
+The Title component, can then be updated to be of use:
+
+-- Title.js --
+
+import React from 'react';
+
+// Just have to export this class we have created
+export default class Title extends React.Component {
+  render() {
+    return (
+      <h1>{this.props.title}</h1>
+    );
+  }
+}
+
+So then we get the following output on the page:
+
+Welcome Dan
+
+Another Title
+
+footer
+
+Our Layout.js has passed a different title to each header, Our header is passing this then through to the title component, our title is then rendering this.
+
+Again, if the div or element doesn't change, it isn't re-rendered in the DOM.
+
+FULL CODE:
+
+-- HEADER.js --
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+  render() {
+
+    return (
+      <Title title={this.props.title} />
+    );
+  }
+}
+
+-- TITLE.js --
+
+import React from 'react';
+
+// Just have to export this class we have created
+export default class Title extends React.Component {
+  render() {
+    return (
+      <h1>{this.props.title}</h1>
+    );
+  }
+}
+
+-- LAYOUT.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "Welcome",
+    }
+  }
+
+  render() {
+
+    setTimeout(() => {
+      this.setState({title: "Welcome Dan"});
+    }, 2000);
+
+    return (
+      <div>
+        <Header title={this.state.title} />
+        <Header title={"Another Title"} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+This is how you manage data in a React app.
+
+EXAMPLE 5: EVENTS
+
+Now we can bind events, interact with data, and changing data in real-time.
+
+Adding an input that will allow us to change the title as we type. Begin by updating the Header.js component with an input.
+
+As the input gets changes, we want to trigger an event to update the state with a new title. The updated title will then get passed into the Header and then rendered as the title. BASICALLY, we have got to get the state to change. We will create a changeTitle() method to receive a value (parameter named title) in Layout.js:
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "Welcome",
+    }
+  }
+
+  changeTitle(title) {
+    this.setState({title});
+  }
+
+  render() {
+    return (
+      <div>
+        <Header title={this.state.title} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+We then pass the value as a prop in <Header />:
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "Welcome",
+    }
+  }
+
+  changeTitle(title) {
+    this.setState({title});
+  }
+
+  render() {
+    return (
+      <div>
+        <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+When passing functions/methods around, you always want to bind them to 'this'.
+
+-- Header.js --
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+  render() {
+    this.props.changeTitle();
+    return (
+      <div>
+        <Title title={this.props.title} />
+        <input />
+      </div>
+    );
+  }
+}
+
+The bind makes sure that wherever the changeTitle() function is called, it is always going to fire on the Layout.js component.
+
+event.target is the element that's receiving the onChange.
+
+The input onChange value is passed to the handleChange function in Header component, which passes the title to changeTitle() in Layout.js, which then sets our state and a re-render occurs.
+
+-- Header.js --
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+
+  handleChange(event) {
+    const title = event.target.value;
+    this.props.changeTitle(title);
+  }
+
+  render() {
+    return (
+      <div>
+        <Title title={this.props.title} />
+        <input onChange={this.handleChange.bind(this)} />
+      </div>
+    );
+  }
+}
+
+-- Layout.js --
+
+import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
+// Just have to export this class we have created
+export default class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "Welcome",
+    }
+  }
+
+  changeTitle(title) {
+    this.setState({title});
+  }
+
+  render() {
+    return (
+      <div>
+        <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+-- Title.js --
+
+import React from 'react';
+
+// Just have to export this class we have created
+export default class Title extends React.Component {
+  render() {
+    return (
+      <h1>{this.props.title}</h1>
+    );
+  }
+}
+
+We want to say 'Welcome' by default. To do this, we update Header.js component input to have value (printed inside the input field) attribute:
+
+import React from 'react';
+
+import Title from './Header/Title';
+
+// Just have to export this class we have created
+export default class Header extends React.Component {
+
+  handleChange(event) {
+    const title = event.target.value;
+    this.props.changeTitle(title);
+  }
+
+  render() {
+    return (
+      <div>
+        <Title title={this.props.title} />
+        <input value={this.props.title} onChange={this.handleChange.bind(this)} />
+      </div>
+    );
+  }
+}
+
+Following this process allows data to live in just the one place - inside the Layout.js component within the constructor.
+
+https://www.youtube.com/watch?v=_D1JGNidMr4&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b&index=5
+
+ROUTING IN REACT:
+
+SPA (Single Page Application) - do everything you would want to do on the page, such as navigation, without ever leaving the page itself.
+
+Routing allows you to click on buttons/links within an SPA and navigate to different pages/states of the application without leaving the HTML all done in JS.
+
+Can install npm install -s react-router
+-->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -71,6 +5708,8 @@
 
 <main role="main" id="main">
     <h1>React</h1>
+
+    <p>At the heart of every React component is its state. This is an object that determines how that component renders and behaves. The state is what allows you to create components that are dynamic and interactive. State should be treated as 'private data' within the component itself.</p>
 
     <h2>React vs Angular</h2>
 
@@ -913,6 +6552,40 @@ const Button = (onClick, children) => {
 }
 
 export default Button;
+        </code>
+    </pre>
+
+    <h2>Expressions</h2>
+
+    <p>Here is a simple example showing expressions in action:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM require 'react-dom';
+
+ReactDOM.render(
+    &lt;h1&gt;{2 + 3}&lt;/h1&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>Expressions allow you to inject JavaScript into JSX:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM require 'react-dom';
+
+var name = 'Dan';
+
+ReactDOM.render(
+    &lt;h1&gt;Hello, {name}&lt;/h1&gt;,
+    document.getElementById('app')
+);
         </code>
     </pre>
 </main>
