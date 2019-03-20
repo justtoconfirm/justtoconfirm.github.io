@@ -32,6 +32,9 @@
 <!-- SASS/SCSS -->
 <!-- https://github.com/webpack-contrib/sass-loader#extracting-style-sheets -->
 
+<!-- Setup Webpack 4 -->
+<!-- https://medium.freecodecamp.org/how-to-conquer-webpack-4-and-build-a-sweet-react-app-236d721e6745 -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -991,6 +994,25 @@ module.exports = {
 };
         </code>
     </pre>
+
+    <p>Let's explain these properties in more detail.</p>
+
+    <p>The historyApiFallback property tells webpack-dev-server to fallback to index.html in the event that a requested resource cannot be found.</p>
+
+    <p>You can add an --open flag to your build script if you want webpack-dev-server to open up the browser when you run it.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "start:dev": "webpack-dev-server --open"
+},
+        </code>
+    </pre>
+
+    <p>You may also be able to add the --progress flag to your build script to show the progress/status of the bundle (percentage) has completed.</p>
+
+    <p>If you hot reload the webpack-dev-server, this will enable Webpack's hot module replacement feature. This updates the browser every time you hit ctrl + s</p>
 </main>
 
 </body>

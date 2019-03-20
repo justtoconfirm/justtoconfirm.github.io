@@ -1104,6 +1104,23 @@ describe.only('&lt;Button/&gt;', () => {
         </code>
     </pre>
 
+    <p>Should you want to skip a test, you can always do something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe.skip('&lt;Button/&gt;', () => {
+    it('should render without throwing an error', () => {
+        expect(shallow(&lt;Button/&gt;).find('.btn').exists()).toBe(true)
+    })
+})
+        </code>
+    </pre>
+
     <h2>Selenium</h2>
 
     <p>Selenium is a framework for the automated testing of web applications. You can basically automate every task in your browser as if a user was to execute the task. The interface used to send commands to the different browsers is called Selenium WebDriver. Implementations for this interface are available fr every major browser, including Firefox and Google Chrome. Selenium basically allows you to automate web browsers.</p>
