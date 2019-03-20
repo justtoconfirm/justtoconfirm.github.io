@@ -38,6 +38,19 @@ https://medium.freecodecamp.org/css-naming-conventions-that-will-save-you-hours-
 https://blog.elpassion.com/reasons-to-use-bem-a88738317753
 -->
 
+<!-- vh and vw -->
+<!-- http://www.tipue.com/blog/css3-vw-vh/ -->
+<!-- Browsers that support vw and vh include Chrome 49+, IE11, Edge 16+, Firefox 49+, Safari 11.1+, iOS Safari 10.3+ and Chrome for Android 66+. -->
+<!-- fallback for vh and vw -->
+<!-- https://stackoverflow.com/questions/23350510/how-to-write-css-fallbacks-for-vh-vw -->
+<!-- height: 41px;
+height: 5.2vh; -->
+<!-- The browser sees height: 41px, as expected. It parses that, and knows what to do with it. Then, it sees height: 5.2vh. If the browser understands the vh unit, it will use that instead of 41px, just like color: blue;  color: red; would end up being red. If it doesn't understand the vh unit, it will ignore it, and, because we defined the fallback first, the fact that the browser ignores the vh unit doesn't matter.-->
+<!-- https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ -->
+
+<!-- calc() -->
+<!-- https://www.smashingmagazine.com/2015/12/getting-started-css-calc-techniques/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -1154,6 +1167,23 @@ img {
     </pre>
 
     <p>Go to the <a href="images.html">images</a> document for more details.</p>
+
+    <h2>CSS3 calc() function</h2>
+
+    <p>The CSS3 calc() function performs a calculation to be used as a property value. This function is supported in IE9 (Internet Explorer 9) and above.</p>
+
+    <p>The following example shows how to use the calc() function to calculate the width of a &lt;div&gt; element:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+div {
+    width: calc(100% - 100px);
+}
+        </code>
+    </pre>
+
+    <p>This would create a &lt;div&gt; that would stretch across the window with a 50px gap between both sides of the &lt;div&gt; and the edges of the window.</p>
 </main>
 
 </body>

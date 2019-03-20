@@ -18,6 +18,7 @@
 <!-- https://www.guru99.com/smoke-testing.html -->
 <!-- https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/ -->
 <!-- https://circleci.com/blog/what-is-continuous-integration/ -->
+<!-- https://wiki.jenkins.io/display/JENKINS/Terminology -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -105,12 +106,26 @@
 
     <p>Automated tests can only show their true power when you run them continuously and for every change.</p>
 
-    <pre>
-        <code>
+    <h2>Jenkins Terminology</h2>
+
+    <p>Here is a collection of terminology Jenkins uses:</p>
+
+    <ul>
+        <li>Job/Project - Refers to runnable tasks that are controlled and monitored by Jenkins.</li>
+        <li>Build - Result of one run of a project.</li>
+        <li>Stable build - A build is stable if it was built successfully and is not reported as unstable.</li>
+        <li>Unstable build - A build is unstable if it was built successfully and it is reported as being unstable.</li>
+        <li>Successful build - A build is successful when no errors are reported.</li>
+        <li>Upstream job - A job can have one or more upstream jobs, which means that a build for the current job maybe scheduled when an upstream build is finished. Every stable upstream build will schedule a build in the downstream job.</li>
+        <li>Downstream job - A job can have one or more downstream jobs. The current job is then known as an upstream job of the downstream job.</li>
+    </ul>
+
+<!--    <pre>
+        <code>-->
 <!-- leave this line empty -->
 
-        </code>
-    </pre>
+<!--        </code>
+    </pre>-->
 </main>
 
 </body>
