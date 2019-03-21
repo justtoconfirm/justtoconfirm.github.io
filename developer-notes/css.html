@@ -13,6 +13,11 @@
 </head>
 <body>
 
+<!-- REALLY USEFUL -->
+<!-- https://toddmotto.com/stop-toggling-classes-with-js-use-behaviour-driven-dom-manipulation-with-data-states/ -->
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide -->
+
 <!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Syntax -->
 <!-- https://www.sitepoint.com/optimizing-css-performance/ -->
 <!-- https://www.creativebloq.com/features/10-amazing-new-css-techniques -->
@@ -1184,6 +1189,94 @@ div {
     </pre>
 
     <p>This would create a &lt;div&gt; that would stretch across the window with a 50px gap between both sides of the &lt;div&gt; and the edges of the window.</p>
+
+    <h2>Using Data States</h2>
+
+    <p>You don't always need to use a class to manipulate the state of elements. Behaviour is separate to style and it can be a challenge to avoid crossing the line. Anything beyond using :hover pseudo to style your components, usually requires the use of JavaScript.</p>
+
+    <p>When building web applications, its good to think about the element states such as open, visible, toggled, selected, and many more. It depends what your components are doing. This is what we could look to use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.my-class {}
+.my-class.isSelected {}
+
+// BEM example
+.my-class {}
+.my-class--selected {}
+        </code>
+    </pre>
+
+    <p>To achieve something better, we could use data-state attributes for managing this.</p>
+
+    <p>Using data-* attributes for managing behaviour is a really good way of abstracting the interactive layer of our code. This attribute is supported in all browsers greater than IE8. Your CSS would look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.menu {
+  /* generic styles */
+}
+
+.menu[data-state=closed] {
+    display: none;
+    background: blue;
+}
+
+.menu[data-state=open] {
+    display: inherit;
+    background: red;
+}
+        </code>
+    </pre>
+
+    <p>This line of code sets a data-state attribute, checks the current value and then uses the alternative value as a simple toggle.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+elem.setAttribute('data-state', elem.getAttribute('data-state') === 'open' ? 'closed' : 'open');
+        </code>
+    </pre>
+
+    <p>Putting it all together:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var nav = document.querySelector('.nav__toggle');
+var toggleState = function (elem, one, two) {
+    var elem = document.querySelector(elem);
+    elem.setAttribute('data-state', elem.getAttribute('data-state') === one ? two : one);
+};
+
+nav.onclick = function (e) {
+    toggleState('.nav ul', 'closed', 'open');
+    e.preventDefault();
+};
+
+// ES5 using .bind() #ftw
+// nav.addEventListener('click', toggleState.bind(null, '.nav ul', 'closed', 'open'), false);
+        </code>
+    </pre>
+
+    <p>And here is the HTML markup:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;nav class="nav"&gt;
+    &lt;a href="#" class="nav__toggle"&gt;Menu&lt;/a&gt;
+    &lt;ul data-state="closed"&gt;
+        &lt;li&gt;Item 1&lt;/li&gt;
+        &lt;li&gt;Item 2&lt;/li&gt;
+        &lt;li&gt;Item 3&lt;/li&gt;
+        &lt;li&gt;Item 4&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+        </code>
+    </pre>
 </main>
 
 </body>

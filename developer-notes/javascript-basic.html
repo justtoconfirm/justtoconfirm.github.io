@@ -33,6 +33,9 @@
 <!-- https://blog.cloud66.com/an-overview-of-es6-modules-in-javascript/ -->
 <!-- https://github.com/getify/You-Dont-Know-JS -->
 
+<!-- https://medium.com/@dallasbille/javascript-normal-anonymous-and-iife-functions-11505360e4d1 -->
+<!-- https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -1088,6 +1091,17 @@ btn.addEventListener('click', () => {
     <p>Suppose we are making a database call to retrieve propertie about a user. This call is going to take time and if the request is "blocking", then it means it will block the execution of our program until the call is complete. This is often how a "synchronous" request is made as it ended up blocking the thread as it blocks a process or thread until that operation is complete, leaving the thread in a "wait state".</p>
 
     <p>An "asynchronous" operation is non-blocking. It permits the execution of the thread to process regardless of the time it takes for the operation to complete and no part of the thread falls into the "wait state".</p>
+
+    <h2>Storage</h2>
+
+    <p>Web storage is data stored locally within a user's browser. There are two types of web storage:</p>
+
+    <ul>
+        <li>Local storage - data with no expiration date that will persist after the browser window is closed.</li>
+        <li>Session storage - data that gets cleared after the browser window is closed.</li>
+    </ul>
+
+    <p>Previously, cookies were the only option for remembering data. Local storage has a higher storage limit and doesn't get sent with every HTTP request, so it can be a better option for client-side storage.</p>
 </main>
 
 </body>

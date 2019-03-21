@@ -19,6 +19,7 @@
 <!-- https://www.codementor.io/sheena/ajax-tutorial-web-development-du107rzaq -->
 <!-- https://blog.teamtreehouse.com/a-quick-guide-to-understanding-ajax -->
 <!-- https://codeburst.io/a-gentle-introduction-to-ajax-1e88e3db4e79 -->
+<!-- https://toddmotto.com/writing-a-standalone-ajax-xhr-javascript-micro-library/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -51,7 +52,7 @@
 const http = new XMLHttpRequest();
 const url = 'https://jsonplaceholder.typicode.com/posts';
 
-http.open("GET", url);
+http.open("GET", url);  // url can be the 'endpoint'
 http.send();
 
 http.onreadystatechange = (e) => {

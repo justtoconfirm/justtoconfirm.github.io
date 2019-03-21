@@ -69,6 +69,8 @@ function foo() {
 
     <p>An IIFE, or Immediately Invoked Function Expression, is a common JavaScript design pattern used by most popular libraries (jQuery, Backbone.js, Modernizr, etc) to place all library code inside of a local scope. In other words, it protects the module's scope from the environment in which it is placed.</p>
 
+    <p>An IIFE is immediately called at runtime, they only run once and cannot be called again.</p>
+
     <p>An IIFE is a syntax that makes possible the execution of a function as soon as it is defined.</p>
 
     <p>The main advantage of implementing this pattern is that IIFE's provide a "safe" environment (scope) for us to declare variables. No matter what variables we declare inside the IIFE, we know for sure that it won't collide with another variable declared in any part of our code. Think of an IIFE as a module that allows you to wrap code for new features to make sure the page works fine with or without it.</p>
@@ -103,6 +105,61 @@ function foo() {
     </pre>
 
     <p>The keyword "this" inside of an IIFE always points to the global object, which in the case of the browser, is the window object.</p>
+
+    <p>JavaScript has function scope, so this creates some much needed "private scope".</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(window, document, undefined) {
+    var name = 'Dan';
+}(window, document));
+
+console.log(name);  // name is not defined, it's in a different scope
+        </code>
+    </pre>
+
+    <p>We are passing in the window and document objects here.</p>
+
+    <p>Local variable names aren't really needed if they're passed into the IIFE, so we can name them whatever we'd like:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(a, b, undefined) {
+    console.log(a);     // Object window
+}(window, document));
+        </code>
+    </pre>
+
+    <p>You can also pass in jQuery too or whatever is available in the lexical scope:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function($, window, document, undefined) {
+    
+    // Use $ to refer to jQuery
+    // $(document).addClass('test');
+
+}(jQuery, window, document));
+        </code>
+    </pre>
+
+    <p>This also means that you don't need to call jQuery.noConflict() or anything, as $ is assigned locally to the module.</p>
+
+    <p>The browser isn't always the global object, such as when using Node.js, which can make it difficult when using an IIFE that works across multiple environments. For this reason, you can stick to this as a base:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+(function(root) {
+
+}(this));
+        </code>
+    </pre>
+
+    <p>In a browser, the global environment this refers to the window object, so we don't need to pass in window at all. The name root suggests that this can be a non-browser environment as well as the root of the browser.</p>
 
     <h3>Reduce scope lookups</h3>
 

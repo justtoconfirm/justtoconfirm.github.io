@@ -26,6 +26,8 @@
 
 <!-- https://developers.google.com/web/updates/2017/04/devtools-release-notes -->
 
+<!-- https://www.taniarascia.com/how-to-create-and-use-bash-scripts/ -->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -45,6 +47,100 @@
 
 <main role="main" id="main">
     <h1>Developer Setup</h1>
+
+    <h2>Bash Scripts</h2>
+    <!-- https://www.taniarascia.com/how-to-create-and-use-bash-scripts/ -->
+
+    <p>Bash scripting is extremely useful and useful for interacting with Bash (a Unix shell) that is available by default on Linux and MacOS operating systems.</p>
+
+    <p>Examples will be based on MacOS and will be using /Users/your_username</p>
+
+    <p>The first step is to create a bin directory. bin is the standard naming convention of a subdirectory that contains executable programs. You can make sure you're in the main user directory by navigating to ~ (which is a shortcut for the current home directory - /Users/your_username). This will be the default directory the Terminal always open in. Typing pwd will confirm the location also.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ pwd
+        </code>
+    </pre>
+
+    <p>Create bin in that folder, or wherever you want your bash scripts to live.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd ~          # This takes us to /Users/your_username
+$ mkdir bin     # This creates /Users/your_username/bin
+        </code>
+    </pre>
+
+    <p>Within your .bash_profile, you will need to add the following line to export your bin directory to the PATH:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export PATH=$PATH:/Users/your_username/bin
+        </code>
+    </pre>
+
+    <p>If you don't see hidden files and directories, press CMD + SHIFT + ..</p>
+
+    <p>Go to your bin folder located in /Users/your_username, create a file named hello-world, with no extension and open the file. Add the following line to this file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+#!/bin/bash
+        </code>
+    </pre>
+
+    <p>A bash script must always begin with this to signify that the script should run with bash as opposed to any other shell. This is called a "shebang".</p>
+
+    <p>Update the file to look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+#!/bin/bash
+
+echo Hello, World!
+        </code>
+    </pre>
+
+    <p>Now, run the file in the terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ hello-world
+        </code>
+    </pre>
+
+    <p>This won't work as we have to make our file executable by changing the permissions:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ chmod u+x hello-world
+        </code>
+    </pre>
+
+    <p>Now when you run the command, it will output the contents of the echo statement.</p>
+
+    <p>A bash script can use any commands that you can use on the command line. We could use a bash script to prompt a use for a git commit message and the process of adding, committing, and pushing to origin so it can be done with a single git-deploy command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+#!/bin/bash
+
+read -r -p 'Commit message: ' desc  # prompt user for commit message
+git add .                           # track all files
+git add -u                          # track deletes
+git commit -m "$desc"               # commit with message
+git push origin master              # push to origin
+        </code>
+    </pre>
 
     <h2>Bash Profile</h2>
 
