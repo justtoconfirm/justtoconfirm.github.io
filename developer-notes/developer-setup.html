@@ -13,6 +13,24 @@
 </head>
 <body>
 
+<!-- Bash Script -->
+<!-- Create file - need to close and reopen terminal -->
+<!--
+#!/bin/bash
+
+# gets the current git branch
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+# prompt the use for a commit message
+read -r -p 'Commit message: ' desc
+# track all files
+git add *
+# commit with message
+git commit -m "$desc"
+# push to origin
+git push origin $branch
+-->
+
 <!-- https://www.taniarascia.com/setting-up-a-brand-new-mac-for-development/ -->
 <!-- https://gist.github.com/pksunkara/988716 -->
 <!-- https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup -->
