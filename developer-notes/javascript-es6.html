@@ -16,6 +16,7 @@
 <!-- https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26 -->
 <!-- https://flaviocopes.com/javascript-arrow-functions/ -->
 <!-- https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/ -->
+<!-- https://www.taniarascia.com/es6-syntax-and-feature-overview/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -37,9 +38,44 @@
 <main role="main" id="main">
     <h1>JavaScript ES6 Syntax</h1>
 
+    <p>ECMAScript 2015, also known as ES6, introduced many changes to JavaScript.</p>
+
+    <p>A commonly accepted practice is to use const except in cases of loops and reassignment.</p>
+
+    <h2>The let keyword</h2>
+
+    <p>ES6 introduced the let keyword which allows for block-scoped variables which cannot be hoisted or redeclared.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var x = 0
+
+// ES6
+let x = 0
+        </code>
+    </pre>
+
     <h2>Arrow Functions</h2>
 
     <p>Arrow functions (also called "fat arrow functions") are one of the more popular features of ES6. They introduced a new way of writing concise functions in JavaScript. They utilize a new token, =&gt;, that looks like a "fat arrow". They are anonymous functions and change the way "this" binds in functions. By using arrow functions, we avoid having to type the function keyword, return keyword, and curly brackets.</p>
+
+    <p>The arrow function expression syntax is a shorter way of creating a function expression. Arrow functions do not have their own this, do not have prototypes, cannot be used for constructors and should not be used as object methods.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+function func(a, b, c) {}           // Function declaration
+
+var func = function(a, b, c) {}     // Function expression
+
+// ES6
+let func = a => {}              // Parenthesis optional with one parameter
+let func = (a, b, c) => {}      // Parenthesis requires with multiple parameters
+        </code>
+    </pre>
 
     <p>You can learn more about <a href="javascript-functions.html">JavaScript Functions</a> elsewhere within the documentation.</p>
 
@@ -208,6 +244,377 @@ link.addEventListener('click', function() {
     // this === link
 })
 
+        </code>
+    </pre>
+
+    <h2>Concatenation/String interpolation</h2>
+
+    <p>Expressions can be embedded in template literal strings.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var str = 'Release date: ' + date
+
+// ES6
+let str = `Release date: ${date}`
+        </code>
+    </pre>
+
+    <h2>Implicit Returns</h2>
+
+    <p>The return keyword is implied and can be omitted if using arrow functions without a block body.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+function func(a, b, c) {
+    return a + b + c
+}
+
+// ES6
+let func = (a, b, c) => a + b + c       // Curly brackets must be omitted
+        </code>
+    </pre>
+
+    <h2>Shorthand key/property</h2>
+
+    <p>ES6 introduces a shorter notation for assigning properties to variables of the same name.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var obj = {
+    a: a,
+    b: b
+}
+
+// ES6
+let obj = {
+    a,
+    b
+}
+        </code>
+    </pre>
+
+    <h2>Shorthand Method definition</h2>
+
+    <p>The function keyword can be omitted when assigning methods to an object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var obj = {
+    a: function(c, d) {},
+    b: function(e, f) {}
+}
+
+// ES6
+let obj = {
+    a(c, d) {},
+    b(e, f) {}
+}
+
+// Call method a
+obj.a()
+        </code>
+    </pre>
+
+    <h2>Destructuring (object matching)</h2>
+
+    <p>Use curly brackets to assign properties of an object to their own variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var obj = { a: 1, b: 2, c: 3 }
+
+// ES5
+var a = obj.a
+var b = obj.b
+var c = obj.c
+
+// ES6
+let { a, b, c } = obj
+        </code>
+    </pre>
+
+    <h2>Array iteration (looping)</h2>
+
+    <p>A more concise syntax has been introduced for iteration through arrays and other objects.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var arr = ['a', 'b', 'c']
+
+// ES5
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i])
+}
+
+// ES6
+for (let i of arr) {
+    console.log(i)
+}
+        </code>
+    </pre>
+
+    <h2>Default Parameters</h2>
+
+    <p>Functions can be initialized with default parameters, which will be used only if an argument is not invoked through the function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+var func = function(a, b) {
+    b = b === undefined ? 2 : b
+    return a + b
+}
+
+// ES6
+let func = (a, b = 2) => {
+    return a + b
+}
+
+func(10)        // returns 12
+func(10, 5)     // returns 15
+        </code>
+    </pre>
+
+    <h2>Spread operator syntax</h2>
+
+    <p>Spread syntax can be used to expand an array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES6
+let arr1 = [1, 2, 3]
+let arr2 = ['a', 'b', 'c']
+let arr3 = [...arr1, ...arr2]
+
+console.log(arr3)   // [1, 2, 3, "a", "b", "c"]
+        </code>
+    </pre>
+
+    <p>Spread syntax can also be used for function arguments.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES6
+let arr1 = [1, 2, 3]
+let func = (a, b, c) => a + b + c
+
+console.log(func(...arr1))  // 6
+        </code>
+    </pre>
+
+    <h2>Classes &amp; Constructor functions</h2>
+
+    <p>ES6 intoduced the class syntax on top of the prototype-based constructor function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+function Func(a, b) {
+    this.a = a
+    this.b = b
+}
+
+Func.prototype.getSum = function() {
+    return this.a + this.b
+}
+
+var x = new Func(3, 4)
+
+// ES6
+class Func {
+    constructor(a, b) {
+        this.a = a
+        this.b = b
+    }
+
+    getSum() {
+        return this.a + this.b
+    }
+}
+
+let x = new Func(3, 4)
+
+x.getSum()      // returns 7
+        </code>
+    </pre>
+
+    <h2>Inheritance</h2>
+
+    <p>The extends keyword creates a subclass.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5
+function Inheritance(a, b, c) {
+    Func.call(this, a, b)
+
+    this.c = c
+}
+
+Inheritance.prototype = Object.create(Func.prototype)
+Inheritance.prototype.getProduct = function() {
+    return this.a * this.b * this.c
+}
+
+var y = new Inheritance(3, 4, 5)
+
+// ES6
+class Inheritance extends Func {
+    constructor(a, b, c) {
+        super(a, b)
+
+        this.c = c
+    }
+
+    getProduct() {
+        return this.a * this.b * this.c
+    }
+}
+
+let y = new Inheritance(3, 4, 5)
+
+
+y.getProduct() // 60
+        </code>
+    </pre>
+
+    <h2>Modules - import/export</h2>
+
+    <p>Modules can be created to export and import code between files.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="export.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="import.js"&gt;&lt;/script&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// export.js
+
+let func = a => a + a
+let obj = {}
+let x = 0
+
+export { func, obj, x }
+        </code>
+    </pre>
+
+    <p>We can then import the module:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { func, obj, x } from './export.js'
+
+console.log(func(3), obj, x)
+        </code>
+    </pre>
+
+    <h2>Callbacks &amp; Promises</h2>
+
+    <p>Promises represent the completion of an asynchronous function. They can be used as an alternative chaining function.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5 Callback
+function doSecond() {
+    console.log('Do second.')
+}
+
+function doFirst(callback) {
+    setTimeout(function() {
+        console.log('Do first.')
+
+        callback()
+    }, 500)
+}
+
+doFirst(doSecond)
+
+// ES6 Promise
+let doSecond = () => {
+    console.log('Do second.')
+}
+
+let doFirst = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('Do first.')
+
+        resolve()
+    }, 500)
+})
+
+doFirst.then(doSecond)
+        </code>
+    </pre>
+
+    <p>An example below using XMLHttpRequest (Fetch API would be a more modern API to use):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// ES5 Callback
+function makeRequest(method, url, callback) {
+    var request = new XMLHttpRequest()
+
+    request.open(method, url)
+    request.onload = function() {
+        callback(null, request.response)
+    }
+    request.onerror = function() {
+        callback(request.response)
+    }
+    request.send()
+}
+
+makeRequest('GET', 'https://url.json', function(err, data) {
+    if (err) {
+        throw new Error(err)
+    } else {
+        console.log(data)
+    }
+})
+
+// ES6 Promise
+function makeRequest(method, url) {
+    return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest()
+
+        request.open(method, url)
+        request.onload = resolve
+        request.onerror = reject
+        request.send()
+    })
+}
+
+makeRequest('GET', 'https://url.json')
+    .then(event => {
+        console.log(event.target.response)
+    })
+    .catch(err => {
+        throw new Error(err)
+    })
         </code>
     </pre>
 </main>
