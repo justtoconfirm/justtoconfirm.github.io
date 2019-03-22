@@ -25,26 +25,19 @@
 
 <!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works -->
 
-<!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
-
 <!-- https://medium.com/@geoffrey.signorato/understand-the-concept-of-css-transitions-in-2-min-d731b8371f7f -->
 
 <!-- Really useful -->
-<!-- https://www.smashingmagazine.com/2019/02/css-browser-support/ -->
 <!-- https://www.smashingmagazine.com/2018/12/common-css-issues-front-end-projects/ -->
-<!-- https://www.smashingmagazine.com/2019/03/aspect-ratio-unit-css/ -->
 
 <!--
 CSS Selectors
 
 https://codeburst.io/the-most-unused-css-selectors-ea8f75aacf10
 https://medium.com/@aljullu/8-css-selectors-dos-and-don-ts-1e0d23fcf96c
-https://medium.freecodecamp.org/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849
-https://blog.elpassion.com/reasons-to-use-bem-a88738317753
 -->
 
 <!-- vh and vw -->
-<!-- http://www.tipue.com/blog/css3-vw-vh/ -->
 <!-- Browsers that support vw and vh include Chrome 49+, IE11, Edge 16+, Firefox 49+, Safari 11.1+, iOS Safari 10.3+ and Chrome for Android 66+. -->
 <!-- fallback for vh and vw -->
 <!-- https://stackoverflow.com/questions/23350510/how-to-write-css-fallbacks-for-vh-vw -->
@@ -52,9 +45,6 @@ https://blog.elpassion.com/reasons-to-use-bem-a88738317753
 height: 5.2vh; -->
 <!-- The browser sees height: 41px, as expected. It parses that, and knows what to do with it. Then, it sees height: 5.2vh. If the browser understands the vh unit, it will use that instead of 41px, just like color: blue;  color: red; would end up being red. If it doesn't understand the vh unit, it will ignore it, and, because we defined the fallback first, the fact that the browser ignores the vh unit doesn't matter.-->
 <!-- https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ -->
-
-<!-- calc() -->
-<!-- https://www.smashingmagazine.com/2015/12/getting-started-css-calc-techniques/ -->
 
 <header class="header" role="banner">
     <nav class="header__inner">
@@ -1277,6 +1267,44 @@ nav.onclick = function (e) {
 &lt;/nav&gt;
         </code>
     </pre>
+
+    <h2>VH &amp; VW units</h2>
+
+    <p>There are four viewport based units in CSS. These are vh (Viewport Height), vw (Viewport Width), vmin and vmax. They are truly responsive length units.</p>
+
+    <p>Viewport Height (vh) is based on the height of the viewport. A value of 1vh is equal to 1% of the viewport height. Viewport Width (vw) is based on the width of the viewport and 1vw is equal to 1% of the viewport width. If the viewport is 1200px wide and 1000px hight, the value of 10vw will be 120px and the value of 10vh will be 100px. Since these units are based on viewport dimensions, it is very convenient to use them in situations where width, height or size of elements neds to be set relative to the viewport.</p>
+
+    <p>It is very common to set background images on elements that fully cover the screen. You may want to design a website where each individual section has to cover the entire screen. In such cases, you can set the width of the respective elements to be equal to 100% and set their height equal to 100vh.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="fullscreen" id="a"&gt;
+    &lt;p&gt;a&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="fullscreen" id="b"&gt;
+    &lt;p&gt;b&lt;/p&gt;
+&lt;/div&gt;
+
+
+.fullscreen {
+    width: 100%;
+    height: 100vh;
+    padding: 40vh;
+}
+
+#a {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/vwa.jpg') center/cover;
+}
+
+#b {
+    background-color: #eaeaea;
+}
+        </code>
+    </pre>
+
+    <p>Most browsers fully support these units. IE11 does not support the vmax unit, but you can use these units with confidence in new projects, as detailed by <a href="https://caniuse.com/#feat=viewport-units" target="_blank" rel="noopener noreferrer">caniuse</a>.
 </main>
 
 </body>
