@@ -13,6 +13,16 @@
 </head>
 <body>
 
+<!--
+https://developers.google.com/tag-manager/quickstart
+https://moz.com/blog/an-introduction-to-google-tag-manager
+https://developers.google.com/tag-manager/api/v1/reference/accounts/containers
+https://blog.hubspot.com/marketing/google-tag-manager-guide
+https://marketingplatform.google.com/about/tag-manager/
+https://support.google.com/tagmanager/topic/7679384?visit_id=636894453485070510-1672643548&rd=2
+https://www.jeffalytics.com/google-tag-manager-tutorial/
+-->
+
 <header class="header" role="banner">
     <nav class="header__inner">
         <ul class="header__item header__item--links">
@@ -33,12 +43,157 @@
 <main role="main" id="main">
     <h1>Google Tag Manager (GTM)</h1>
 
+    <p>Google Tag Manager (GTM) is a tag management system that allows you to create and monitor tags on a user interface without having to write code.</p>
+
+    <p>GTM has a web-based interface that aids the process of working with tags. With GTM you're able to add, edit and disable tags without having to change the source code. GTM reduces the reliance on web developers to implement tags, allowing marketers and non-developers to do this as code changes are not needed. GTM can be used to work with third-party tags such as Twitter, Bing Ads, HotJar etc. If there is another tag which doesn't have a template in GTM, you can add your own custom code.</p>
+
+    <p>Google Analytics (GA) can provide a lot of important insights, but when used alone, it does have its limitations. By tagging your site using Google Tag Manager (GTM) in conjunction with Google Analytics (GA), you're able to collect much more data that you would otherwise.</p>
+
+    <p>Here is an overview of GTM terminology:</p>
+
+    <ul>
+      <li>Tags - record your data.</li>
+      <li>Triggers - tell your tags when to record the data.</li>
+      <li>Variables - help you translate your data and scale your tags across your websites</li>
+    </ul>
+
+    <h2>Setup</h2>
+
+    <p>The GTM code is embedded into each page of your website. The Google Tag Manager container is a small piece of JavaScript and non-JavaScript code that you paste into your pages. This then enables Tag Manager to fire tags by inserting gtm.js into the page.</p>
+
+    <p>Copy the following JavaScript and paste it as close to the opening &lt;head&gt; tag as possible on every page of your website, replacing GTM-XXXX with your container ID:</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
-
+&lt;!-- Google Tag Manager --&gt;
+&lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXX');&lt;/script&gt;
+&lt;!-- End Google Tag Manager --&gt;
         </code>
     </pre>
+
+    <p>Copy the following snippet and paste it immediately after the opening <body> tag on every page of your website, replacing GTM-XXXX with your container ID:</p>
+
+    <pre>
+        <code>
+  <!-- leave this line empty -->
+  &lt;!-- Google Tag Manager (noscript) --&gt;
+  &lt;noscript&gt;&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
+  height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&lt;/noscript&gt;
+  &lt;!-- End Google Tag Manager (noscript) --&gt;
+        </code>
+    </pre>
+
+    <p>The GTM snippet must be placed directly in the page you intend on tracking.</p>
+
+    <h2>Container</h2>
+
+    <p>The GTM container snippet is a small piece of JavaScript and non-JavaScript code that you paste into your pages. A container enables GTM to fire tags by inserting gtm.js into the page (or through an iFrame when JavaScript isn't available).</p>
+
+    <p>A container is comprised of a set of rules and tags. This is a typical GTM container:</p>
+
+    <pre>
+        <code>
+  <!-- leave this line empty -->
+  {
+    "accountId": string,
+    "containerId": string,
+    "name": string,
+    "domainName": [
+      string
+    ],
+    "publicId": string,
+    "timeZoneCountryId": string,
+    "timeZoneId": string,
+    "notes": string,
+    "usageContext": [
+      string
+    ],
+    "enabledBuiltInVariable": [
+      string
+    ],
+    "fingerprint": string
+  }
+        </code>
+    </pre>
+
+    <h2>Triggers</h2>
+
+    <p>In GTM, tags fire based on events, such as when a form is submitted or when a video is played. Triggers are used to listen for these events that govern when a tag is fired or blocked.</p>
+
+    <p>A trigger is a set of rules that tells your tag when to start firing. The most basic trigger in GTM is the all pages trigger. This tells your tag to fire on every page when the page loads. This trigger is typically used with the GA tag. GTM contains many other build-in triggers that you can use to fire your tags. GTM has triggers for YouTube videos, scroll depth, button clicks, custom events, and more. For example, you can set up the YouTube trigger to fire based on many different interactions a user has with your embedded YouTube videos. You can fire this tag when a user starts, seeks, pauses, or finishes your video. You can also fire this tag based on a user's viewing progress (e.g. 50% viewed). A trigger can fire a tag more than once within an event.</p>
+
+    <p>Tags fire in response to events. In GTM, a trigger listens to your web page or mobile app for certain types of events like form submissions, button clicks, or page views. Every tag must have at least one trigger in order to fire.</p>
+
+    <h2>Tags</h2>
+
+    <p>Tags, in a general sense, are bits of code you embed into your website's JavaScript or HTML to extract certain information. Each tag tracks something different. For instance, you may create a tag to see how many people fill out your form on your "Contact Us" page. That tag can then send more precise information to GA, AdWords, or another third party.</p>
+
+    <p>Tags are snippets of code which are added to a site to collect information and send it to third parties. You can use tags for all sorts of purposes including:</p>
+
+    <ul>
+      <li>Scroll tracking</li>
+      <li>How long users visit a page on your website</li>
+      <li>Form submissions</li>
+      <li>What links were clicked</li>
+      <li>Monitoring form submissions</li>
+      <li>Conducting surveys</li>
+      <li>Generating heat maps</li>
+      <li>Tracking how users arrive at your site</li>
+    </ul>
+
+    <p>GTM tags can also be used to monitor specific events like file downloads, clicks on certain links or items being removed from a shopping cart.</p>
+
+    <p>Tags are sometimes called pixels, little bits of code that collect information about your website users. These pixels are often referred to as "tags". GTM allows you to manage all your tags in one place and to install further tags without having to manually edit or update your website's code.</p>
+
+    <p>For example, should you want to use Google Analtics (GA), you would need to put the Analytics tracking tag on your website. Installing multiple tracking tags and additional code can be very tedious and problematic. New tracking scripts have to be tested and verified. Tracking codes are also notorious for breaking websites.</p>
+
+    <p>GTM allows you to store all your tracking tags in one place. Instead of manually adding new tags to your website, you can use GTM's tag templates.</p>
+
+    <p>Tag templates are ready-made tracking scripts with minimal input needed. They are optimised for speed, cross-browser compatibility and are verified by Google. These tag templates can be installed without touching any code. Most can be connected to your website by simply inputting vendor-generated tracking IDs such as Twitter pixel ID, or Google Analytics ID. Tag templates also reduce the amount of maintenance work you have to do on your website. When vendors update their tracking code, your template will automatically be updated. There are over 90 tag templates available in GTM. Facebook is the only platform which seems to not have a GTM template.</p>
+
+    <p>If you only have a single tracking tag, then it's unlikely you will need GTM. For instance, if your only using GA, you may not need GTM.</p>
+
+    <ul>
+      <li>Tags - scripts.</li>
+      <li>Triggers - rules that activate your tags.</li>
+      <li>Variables - also known as macros.</li>
+    </ul>
+
+    <h3>Preview</h3>
+
+    <p>Before you publish your tags to your site, you want to make sure the tag, the trigger, and the variable is working correctly. You can test your GTM implementation by using preview mode. With preview mode enabled, you can navigate to you site to see your tags in action and this allows you to see if, and when, your tags fire.</p>
+
+    <p>If you're using Google Analytics to record the data from your tags, you'll be able to see your events appear in your Real-Time reports while you're in preview mode.</p>
+
+    <p>Once you've verified your tags work and they record data correctly, you can deploy them. You set your tags live by hitting the publish button. When you hit publish, GTM will ask you to create a vision of your container.</p>
+
+    <p>Track event data you can use, don't just track events just to collect more information. GTM allows you to manage all you website's tags and tracking.</p>
+
+    <h3>Pause Tags</h3>
+
+    <p>Use the pause function to temporarily disable a tag. This function is useful when you need to troubleshoot configurations, control timed campaigns, and other instances where you would like to temporarily put a tag on hold without needing to delete the tag or adjust triggers in your container configuration.</p>
+
+    <h3>Tag Templates</h3>
+
+    <p>Tag templates replace the JavaScript code snippets you otherwise have to add to your site manually. To use the GA template, for example, you need to input your property Tracking ID. Each tag template has a Tag Configuration allowing for ID and other config values to be added/setup.</p>
+
+    <p>Each tag template provided in GTM has a unique input that connects it with your account on the corresponding vendor's platform. For most tag templates, you only need to piut in one unique value and set the trigger, and you are ready to go.</p>
+
+    <p>These days there are tags (or pixels/scripts/tracking codes) for everything. Google Analytics (GA), Facebook, Twitter, AdWords, LinkedIn, all ask you to add code to your website to track advertising performance. Adding multiple tags, and additional JavaScript, can begin to bloat your code and make your site perform more slowly. Not only that, but managing and testing all those tags can a real pain.</p>
+
+    <h2>Variables</h2>
+
+    <p>Variables are what make the values you track dynamic. Variables are critical if you wnt to scale your Tag management. The first variable most users setup is a constant. You can use a constant variable to enter your Google Analytics Tracking ID one time and use this for all your future tags.</p>
+
+    <p>GTM has built-in variables for almost anything that happens within a page on your website.</p>
+
+    <h2>Zones</h2>
+
 </main>
 
 </body>
