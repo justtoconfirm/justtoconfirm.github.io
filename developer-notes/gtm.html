@@ -61,6 +61,24 @@ https://www.jeffalytics.com/google-tag-manager-tutorial/
 
     <p>The GTM code is embedded into each page of your website. The Google Tag Manager container is a small piece of JavaScript and non-JavaScript code that you paste into your pages. This then enables Tag Manager to fire tags by inserting gtm.js into the page.</p>
 
+    <h3>Steps to Setup</h3>
+
+    <p>When you first login to GTM, with a Google/Gmail account, click the 'Create Account' button. This will take you to the 'Add a New Account' page. Here you can enter a few details to setup your GTM account. You will also need to setup a Container name.</p>
+
+    <ul>
+      <li>Login to GTM - following creation of your Google/Gmail account.</li>
+      <li>Click the 'Create Account' button.</li>
+      <li>Complete the 'Account Setup' details - e.g JTC</li>
+      <li>Complete the 'Container Setup' details - e.g www.justtoconfirm.co.uk</li>
+      <li>Select 'Web' to setup the Container for the Web.</li>
+      <li>Click 'Create'.</li>
+      <li>Accept the Terms of Use.</li>
+    </ul>
+
+    <p>Once these steps have been created, the GTM script, as described below, will be generated.</p>
+
+    <h3>Scripts</h3>
+
     <p>Copy the following JavaScript and paste it as close to the opening &lt;head&gt; tag as possible on every page of your website, replacing GTM-XXXX with your container ID:</p>
 
     <pre>
@@ -80,15 +98,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <pre>
         <code>
-  <!-- leave this line empty -->
-  &lt;!-- Google Tag Manager (noscript) --&gt;
-  &lt;noscript&gt;&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
-  height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&lt;/noscript&gt;
-  &lt;!-- End Google Tag Manager (noscript) --&gt;
+<!-- leave this line empty -->
+&lt;!-- Google Tag Manager (noscript) --&gt;
+&lt;noscript&gt;&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
+height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&lt;/noscript&gt;
+&lt;!-- End Google Tag Manager (noscript) --&gt;
         </code>
     </pre>
 
     <p>The GTM snippet must be placed directly in the page you intend on tracking.</p>
+
+    <p>Here is how your HTML should look (I've taken out the GTM ID from my examples):</p>
+
+    <pre>
+        <code>
+    <!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;GTM testing&lt;/title&gt;
+
+    &lt;!-- Google Tag Manager --&gt;
+    &lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');&lt;/script&gt;
+    &lt;!-- End Google Tag Manager --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Google Tag Manager (noscript) --&gt;
+&lt;noscript&gt;&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&lt;/noscript&gt;
+&lt;!-- End Google Tag Manager (noscript) --&gt;
+
+&lt;p&gt;GTM Testing&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>This does not appear to work locally and may need to be run on localhost or on a web server. On a Mac you can run a Python server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ python -m SimpleHTTPServer 8000
+        </code>
+    </pre>
 
     <h2>Container</h2>
 
