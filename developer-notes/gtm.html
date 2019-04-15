@@ -21,6 +21,7 @@ https://blog.hubspot.com/marketing/google-tag-manager-guide
 https://marketingplatform.google.com/about/tag-manager/
 https://support.google.com/tagmanager/topic/7679384?visit_id=636894453485070510-1672643548&rd=2
 https://www.jeffalytics.com/google-tag-manager-tutorial/
+https://www.analyticsmania.com/post/google-tag-manager-404-error-gtm-js/
 -->
 
 <header class="header" role="banner">
@@ -65,15 +66,23 @@ https://www.jeffalytics.com/google-tag-manager-tutorial/
 
     <p>When you first login to GTM, with a Google/Gmail account, click the 'Create Account' button. This will take you to the 'Add a New Account' page. Here you can enter a few details to setup your GTM account. You will also need to setup a Container name.</p>
 
-    <ul>
-      <li>Login to GTM - following creation of your Google/Gmail account.</li>
-      <li>Click the 'Create Account' button.</li>
-      <li>Complete the 'Account Setup' details - e.g JTC</li>
-      <li>Complete the 'Container Setup' details - e.g www.justtoconfirm.co.uk</li>
-      <li>Select 'Web' to setup the Container for the Web.</li>
-      <li>Click 'Create'.</li>
-      <li>Accept the Terms of Use.</li>
-    </ul>
+    <p>Begin by creating a Gmail account, if one does not already exist, and go to Google Tag Manager (GTM). This should open using your Gmail account. Click the 'Create Account' button.</p>
+
+    <img src="img/gtm/gtm-one.png" alt="The GTM Create Account button" />
+
+    <p>Next, enter the details within the 'Add a New Account' form. Click the 'Web' button once the relevant details have been entered.</p>
+
+    <img src="img/gtm/gtm-two.png" alt="The GTM New Account form" />
+
+    <p>Click the 'Create' button. The accept the Google Tag Manager Terms of Service Agreement.</p>
+
+    <p>We have now created a Workspace.</p>
+
+    <img src="img/gtm/gtm-three.png" alt="The GTM Workspace" />
+
+    <p>If you click on the Workspace ID - GTM-N5FST4T, in this example - you will get the generated GTM script that needs to be added to your website.</p>
+
+    <img src="img/gtm/gtm-four.png" alt="The GTM scripts that need to be added to the website" />
 
     <p>Once these steps have been created, the GTM script, as described below, will be generated.</p>
 
@@ -140,6 +149,16 @@ height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&l
 &lt;/html&gt;
         </code>
     </pre>
+
+    <p>A test website has been created <a href="test-website/index.html" target="_blank">here</a>.</p>
+
+    <h3>I see a 404 error</h3>
+
+    <p>Once GTM has been setup, you may discover a 404 JavaScript error within the browser console relating to gtm.js, the problem lies within GTM itself. Your browser is requesting data from Google's servers although that container is still not published as yet, thus no data will be returned. To resolve this issue, publish the GTM container once it has been created.</p>
+
+    <p>In this example, our Container name is www.justtoconfirm.co.uk and the Container ID is GTM-N5FST4T</p>
+
+    <p>You may need to create a tag before you can publish the Container.</p>
 
     <p>This does not appear to work locally and may need to be run on localhost or on a web server. On a Mac you can run a Python server:</p>
 
@@ -223,6 +242,12 @@ $ python -m SimpleHTTPServer 8000
       <li>Triggers - rules that activate your tags.</li>
       <li>Variables - also known as macros.</li>
     </ul>
+
+    <h3>Adding a Tag</h3>
+
+    <p>Within your Container, click the 'New Tag' option from the Dashboard. Amend the 'Untitled Tag' to name your Tag. I'm going to name this 'test-tag' in my example. We can then choose a tag type within the 'Tag Configuration' panel. Here you'll find tag templates for everything from HotJar to GA (Google Analytics) and LinkedIn to Twitter. You can also create a custom tag should you want to.</p>
+
+    <img src="img/gtm/gtm-five.png" alt="Tag Configuration screen" />
 
     <h3>Preview</h3>
 
