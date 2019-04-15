@@ -282,6 +282,42 @@ The &lt;abbr title="World Health Organisation"&gt;WHO&lt;/abbr&gt; was founded i
         </code>
     </pre>
 
+    <h2>Language attribute</h2>
+    <!-- https://support.google.com/webmasters/answer/189077?hl=en -->
+    <!-- https://webdesign.tutsplus.com/tutorials/use-the-lang-attribute-for-better-accessibility--cms-31961 -->
+
+    <p>The lang attribute helps to define the language of an element. We normally add the lang attribute to the &lt;html&gt; element within the HTML document.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;html lang="en"&gt;
+        </code>
+    </pre> 
+
+    <p>The first tag only specifies the language code. The second specifies the country code.</p>
+
+    <p>Browsers and other applicatins can use this information about the language of content to deliver to users the most appropriate information. The golden rule when creating language tags is to keep the tag as short as possible. Avoid region, script or other subtags except where they add useful distinguishing information. For instance, use ja for Japanese and not ja-JP, unless there is a particular reason that you need to say that this is Japanese as spoken in Japan, rather than elsewhere.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Means this page is in US style English --&gt;
+&lt;html lang="en-US"&gt; 
+
+&lt;!-- Means this page is in UK style English --&gt;
+&lt;html lang="en-GB"&gt; 
+        </code>
+    </pre>
+
+    <p>This is a subtag which is used for a region designation. This helps with the content's language when allowing translation services such as Google Chrome more accurately. Some software that reads screen content out loud can also parse the lang attribute affecting how it pronounces the page's content. This is not just limited to screen readers and assistive technology, but also voice assistants such as Alexa. We can use the popular screen reader such as JAWS to test this.</p>  
+
+    <p>This doesn't help the browser to display the page, but it is useful for search engines and screen readers. For example, a screen reader might deal with the "en-US" and "en-GB" thee same if they only support an American accent in English.</p> 
+
+    <p>Google ignores the localised 'GB' tag when considering SEO. The reason, people would copy and paste boilerplate code without understanding or updating the code, so Google don't see this as being relevant.</p> 
+
+    <p>Google does use the hreflang attribute. The lang attribute is used mostly for screen readers to handle the pronunciation of text properly.</p> 
+
     <h2>HTML Entities</h2>
 
     <p>An HTML entity is a piece of text ("string") that begins with an ampersand (&amp;) and ends with a semicolon (;). Entities are frequently used to display reserved characters which would otherwise be interpreted as HTML code, and invisible characters, such as non-breaking spaces. You can use them in place of other characters that are difficult to type with a standard keyboard.</p>
