@@ -76,11 +76,11 @@ https://www.analyticsmania.com/post/google-tag-manager-404-error-gtm-js/
 
     <p>Click the 'Create' button. The accept the Google Tag Manager Terms of Service Agreement.</p>
 
-    <p>We have now created a Workspace.</p>
+    <p>We have now created a Container named: www.justtoconfirm.co.uk with the Container ID of GTM-N5FST4T</p>
 
     <img src="img/gtm/gtm-three.png" alt="The GTM Workspace" />
 
-    <p>If you click on the Workspace ID - GTM-N5FST4T, in this example - you will get the generated GTM script that needs to be added to your website.</p>
+    <p>If you click on the Container ID - GTM-N5FST4T, in this example - you will get the generated GTM script that needs to be added to your website.</p>
 
     <img src="img/gtm/gtm-four.png" alt="The GTM scripts that need to be added to the website" />
 
@@ -160,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&l
 
     <p>You may need to create a tag before you can publish the Container.</p>
 
-    <p>This does not appear to work locally and may need to be run on localhost or on a web server. On a Mac you can run a Python server:</p>
+    <p>If this does not appear to work locally and may need to be run on localhost or on a web server, however I've not had this issue myself. On a Mac you can run a Python server:</p>
 
     <pre>
         <code>
@@ -249,6 +249,16 @@ $ python -m SimpleHTTPServer 8000
 
     <img src="img/gtm/gtm-five.png" alt="Tag Configuration screen" />
 
+    <p>Once a tag has been created we can Publish our tag and GTM should begin to work.</p>
+
+    <p>Here is a list of tags. You can see our 'Test tag' that works on the page load and will display 'Hello World' on the page.</p>
+
+    <img src="img/gtm/gtm-six.png" alt="List of tags within GTM" />
+
+    <p>Here is the custom HTML tag that will display 'Hello World' on the page. This is named 'Test Tag' and has a trigger for All pages so will display on the page load.</p>
+
+    <img src="img/gtm/gtm-seven.png" alt="Custom HTML Test Tag" />
+
     <h3>Preview</h3>
 
     <p>Before you publish your tags to your site, you want to make sure the tag, the trigger, and the variable is working correctly. You can test your GTM implementation by using preview mode. With preview mode enabled, you can navigate to you site to see your tags in action and this allows you to see if, and when, your tags fire.</p>
@@ -258,6 +268,8 @@ $ python -m SimpleHTTPServer 8000
     <p>Once you've verified your tags work and they record data correctly, you can deploy them. You set your tags live by hitting the publish button. When you hit publish, GTM will ask you to create a vision of your container.</p>
 
     <p>Track event data you can use, don't just track events just to collect more information. GTM allows you to manage all you website's tags and tracking.</p>
+
+    <p>You will see the panel within Chrome showing your GTM tags when using the Preview and Debug mode.</p>
 
     <h3>Pause Tags</h3>
 
@@ -273,9 +285,48 @@ $ python -m SimpleHTTPServer 8000
 
     <h2>Variables</h2>
 
-    <p>Variables are what make the values you track dynamic. Variables are critical if you wnt to scale your Tag management. The first variable most users setup is a constant. You can use a constant variable to enter your Google Analytics Tracking ID one time and use this for all your future tags.</p>
+    <p>Variables are what make the values you track dynamic. Variables are critical if you want to scale your Tag management. The first variable most users setup is a constant. You can use a constant variable to enter your Google Analytics Tracking ID one time and use this for all your future tags.</p>
 
     <p>GTM has built-in variables for almost anything that happens within a page on your website.</p>
+
+    <h2>Click Tracking in GTM</h2>
+    <!-- https://www.analyticsmania.com/post/google-tag-manager-click-tracking/ -->
+
+    <p>In GTM you can track buttons, outbound link clicks etc. The most common interactions on a website are commonly page-loading, scrolling, and clicking. You click links and buttons to navigate from one page to another, to reach a particular goal. That's why its crucial to track such interactions - to better understand user/visitor behaviour. We can then send this data to third-party tools such as Google Analytics (GA) to analyze the data.</p>
+
+    <p>There are two types of click triggers in GTM:</p>
+
+    <ul>
+        <li>All elements - trigger tracks cliucks of any element (link, images, buttons etc)</li>
+        <li>Just links - trigger/tracks link clicks only.</li>
+    </ul>
+
+    <p>If an HTML element is clicked and it has no hyperlink, the Just links trigger will not catch that click.</p>
+
+    <p>As an example, lets create a simple HTML button within our page:</p>
+
+    <pre>
+        <code>
+  <!-- leave this line empty -->
+&lt;div class="btn" role="button"&gt;
+    &lt;a href="https://www.example.com/purchase"&gt;Buy now&lt;/a&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>If I enable Just links tracking and click the "Buy now" caption, GTM will start climbing up the website's document until it reches a link. In this case, it will climb from the text and it will stop at the &lt;a&gt; HTML tag because it is a link. The &lt;a&gt; tag is considered as a clicked element.</p>
+
+    <p>All elements trigger is more straightforward here. If you click "Buy now", it will track the click of the "Buy now" text. The element you clicked is considered as a clicked element.</p>
+
+    <p>In plain English:</p>
+
+    <ul>
+        <li>Just links trigger tracks only link clicks</li>
+        <li>All elements trigger tracks clicks of elements that were actually clicked, regardless of whether they have a link or not (e.g. image, website background, button text etc.)</li>
+    </ul>
+
+    <!-- https://www.analyticsmania.com/post/google-tag-manager-click-tracking/ -->
+    <h3>Enable a generic link click trigger in GTM</h3>
 
     <h2>Zones</h2>
 
