@@ -92,6 +92,84 @@ const config = {
     </pre>
 
     <p>You may want to consider having two projects in Firebase, one for development and test data, the other for production and live data.</p>
+
+    <h2>Setting up Firebase for the Web</h2>
+
+    <p>Once you've logged into Firebase, select the 'Add project' button and create a new project.</p>
+
+    <img src="img/firebase/firebase-one.png" alt="Firebase Add project modal" />
+
+    <p>Within the modal, click the 'Create project' button. This will open the main dashboard for the project we've just created. Click on the &lt;/&gt; icon on the dashboard and this will open the code snippet we need to add to our <a href="test-website/index.html" target="_blank">HTML page</a>.</p>
+
+    <img src="img/firebase/firebase-two.png" alt="Code snippet to add Firebase to your website" />
+
+    <p>This script should be added at the bottom of your HTML page before other &lt;script&gt; tags.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyC0PzPACDXXXXXXXXXXXX",
+    authDomain: "test-project-8dda2.firebaseapp.com",
+    databaseURL: "https://test-project-8dda2.firebaseio.com",
+    projectId: "test-project-8dda2",
+    storageBucket: "test-project-8dda2.appspot.com",
+    messagingSenderId: "222425048423"
+};
+firebase.initializeApp(config);
+&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>At this stage we are only using the development version of Firebase.</p>
+
+    <h3>Creating a database</h3>
+    <!-- https://firebase.google.com/docs/database/web/read-and-write -->
+    <!-- https://www.robinwieruch.de/react-firebase-realtime-database/ -->
+
+    <p>Within the Firebase dashboard, you can create a database by clicking the Database option within the sidebar menu. We may want to look to create a Realtime Database. We want to create the database to be in 'Test mode' initially.</p>
+
+    <img src="img/firebase/firebase-three.png" alt="Model to set the Realtime database to test mode" />
+
+    <p>Click the 'Enable' button on the modal.</p>
+
+    <p>We can get a reference to the database service:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Get a reference to the database service
+var database = firebase.database();
+console.log(database);
+        </code>
+    </pre>
+
+    <p>We can create a &lt;div&gt; element on the HTML page like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div id="output"&gt;&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>A small piece of JavaScript code can be used to get the Firebase database and output the full database as an object onto the page:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var ref = firebase.database().ref();                           
+ref.on("value", function(snapshot) {
+    var output = document.getElementById('output');
+    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+});
+        </code>
+    </pre>
+
+    <p>If we change the database in Firebase, the HTML page will automatically be refreshed with the new content as its a real time database.</p>
 </main>
 
 </body>

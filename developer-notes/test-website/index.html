@@ -26,5 +26,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<a href="#">https://www.example.com/purchase</a>
 </div>
 
+<div id="output"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyC0PzPACD5lAMgr4eN7uz6XPk-HAF7vobg",
+	authDomain: "test-project-8dda2.firebaseapp.com",
+	databaseURL: "https://test-project-8dda2.firebaseio.com",
+	projectId: "test-project-8dda2",
+	storageBucket: "test-project-8dda2.appspot.com",
+	messagingSenderId: "222425048423"
+};
+firebase.initializeApp(config);
+</script>
+
+<script>
+var ref = firebase.database().ref();                           
+ref.on("value", function(snapshot) {
+	var output = document.getElementById('output');
+    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+});
+</script>
+
 </body>
 </html>
