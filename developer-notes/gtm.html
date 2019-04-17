@@ -271,9 +271,39 @@ $ python -m SimpleHTTPServer 8000
 
     <p>You will see the panel within Chrome showing your GTM tags when using the Preview and Debug mode.</p>
 
+    <p>The 'Refresh' link in GTM - within the preview banner - and the page itself needs to be hard refreshed in order for the changes you make in the tag to be visible.</p>
+
+    <h4>Viewing Preview Mode</h4>
+    <!-- https://support.google.com/tagmanager/answer/6107056?hl=en -->
+
+    <p>In a GTM workspace, click the 'Preview' button and a banner should appear at the top of GTM confirming that preview mode is active. Navigate to your website (live URL - such as https://www.hastingsdirect.com) and if your in preview mode (within GTM) the Tag Manager panel will appear on your browser (like DevTools) in Chrome where you can then trigger tags to fire.</p>
+
     <h3>Pause Tags</h3>
+    <!-- https://support.google.com/tagmanager/answer/7679308?hl=en -->
+    <!-- https://www.analyticsmania.com/post/common-google-tag-manager-mistakes/ -->
+    <!-- https://www.bounteous.com/insights/2015/07/27/publish-single-tag-google-tag-manager/ -->
 
     <p>Use the pause function to temporarily disable a tag. This function is useful when you need to troubleshoot configurations, control timed campaigns, and other instances where you would like to temporarily put a tag on hold without needing to delete the tag or adjust triggers in your container configuration.</p>
+
+    <p>You must save and publish tags that have been paused or unpaused for changes to take effect.</p>
+
+    <p>To pause a tag:</p>
+
+    <ul>
+        <li>Click on Tags, find the tag you wish to pause, and click on its name in the list to open it.</li>
+        <li>Click more actions (three stacked dots icon) and select Pause.</li>
+        <li>Save and publish your changes.</li>
+    </ul>
+
+    <p>When a tag is paused, it will be labeled with a pause icon (yellow icon with a pause symbol).</p>
+
+    <p>To unpause a tag:</p>
+
+    <ul>
+        <li>Click on Tags, find the tag you wish to unpause and click on its name in the list to open it.</li>
+        <li>Click on UNPAUSE, located below SAVE or click more actions (three stacked dots icon) and select Unpause.</li>
+        <li>Save and publish your changes.</li>
+    </ul>
 
     <h3>Tag Templates</h3>
 
