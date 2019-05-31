@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FED Workshop: React</title>
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header role="banner">
+    <!--<a href="index.html">Home</a>-->
+</header>
+
+<main role="main">
+    <h1>FED Workshop: React</h1>
+
+    <p>React is a JavaScript library for building user interfaces using components.</p>
+
+    <p>React uses Virtual DOM to update the real DOM which makes it efficient and faster. This is nothing but a JavaScript object representation of the real DOM.</p>
+
+    <p>JSX is a syntax extension to JavaScript and is a template language with the full power of JavaScript. It produces React elements will be rendered in the DOM. React recommends using JSX for components. In JSX, we combine both JavaScript and HTML syntax to produce React elements which are then rendered.</p>
+
+    <p>The code can be located within a GitHub repo here: <a href="https://github.com/justtoconfirm/react-workshop" target="_blank" rel="noopener noreferrer">https://github.com/justtoconfirm/react-workshop</a></p>
+
+    <p>To setup React, you will need Node installed. This includes NPM (Node Package Manager).</p>
+
+    <p>Begin by opening your terminal. Within the terminal, create a new directory and setup a package.json file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir react-workshop
+$ cd react-workshop
+
+$ npm init -y   # Creates the package.json file
+        </code>
+    </pre>
+
+    <p>Create a .gitignore file. This prevents any node modules from being added to your repository when using version control.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/node_modules
+        </code>
+    </pre>
+
+    <h2>Setup Webpack</h2>
+
+    <p>Next, install Webpack as a devDependency using NPM (Node Package Manager). We will need to install Webpack and Webpack CLI (Command Line Interface).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack webpack-cli --save-dev
+        </code>
+    </pre>
+
+    <p>Webpack and Webpack CLI will now be installed as a devDependency and listed within your package.json file. A package-lock.json file should also be present in your project directory.</p>
+
+    <p>Open the package.json file and add a build script to run Webpack. You will need to ensure that your build script contains a mode flag to run Webpack in development mode.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development"
+},
+        </code>
+    </pre>
+
+    <p>Now in your terminal, run Webpack using the build script created:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run dev
+        </code>
+    </pre>
+
+    <p>An error will occur as Webpack cannot locate the src/ directory. Webpack may have already created an empty dist/ directory. Within your project directory, create a new sub-directory named src/.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir src
+        </code>
+    </pre>
+
+    <p>Inside this src/ sub-directory create a simple JavaScript file named index.js containing the following line of code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log('Hello World');
+        </code>
+    </pre>
+
+    <p>Run the Webpack build script once again and no error should be showing in the terminal. Webpack will now generate a main.js bundled file within the dist/ sub-directory.</p>
+
+    <p>We should look to add another build script to our package.json file that will allow us to run Webpack in production mode.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+},
+        </code>
+    </pre>
+
+    <h2>Babel &amp; ES6 Syntax</h2>
+
+    <p>Modern JavaScript code is mostly written in the ES6 syntax, however, ES6 is not supported by all browsers. We therefore need to transpile our JavaScript code, this will turn our ES6 syntax into ES5 code for use on all browsers. We can use a tool like Babel to do this. Here are the packages we need to install:</p>
+
+    <ul>
+        <li>@babel/core - The main dependency that includes babel transform script.</li>
+        <li>@babel/preset-env - The default Babel preset used to transform ES6+ into valid ES5 code. Optionally configures browser polyfills automatically.</li>
+        <li>@babel/preset-react - Used for transforming JSX and React class syntax into valid JavaScript code. (Install at a later step)</li>
+        <li>babel-loader - A Webpack loader that hooks Babel into Webpack. We can run Babel from Webpack using this package.</li>
+    </ul>
+
+    <p>@babel is the latest stable release of Babel. We will also be installing @babel/preset-env which allows us to target only the browsers we want to support.</p>
+
+    <p>Install all the Babel packages using NPM:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install babel-loader @babel/core @babel/preset-env --save-dev
+        </code>
+    </pre>
+
+    <p>Once Babel is installed, create a .babelrc configuration file. Without this, Babel won't do anything. This needs to be created within the root of your project directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .babelrc
+        </code>
+    </pre>
+
+    <p>This .babelrc config file is empty. Open the file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ "@babel/preset-env" ]
+}
+        </code>
+    </pre>
+
+    <p>We may want to also install the @babel/preset-react NPM (Node Package Manager) package as a devDependency to apply ES6 when working with React.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-react --save-dev
+        </code>
+    </pre>
+
+    <p>If we install @babel/preset-react, we also need to update the .babelrc config file for Babel.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ]
+}
+        </code>
+    </pre>
+
+    <p>To apply Babel to our JavaScript, we will need to create a Webpack config file.</p>
+
+    <p>You may also want to setup a .browserslistrc file that will include a list of browsers supported by Babel (@babel/preset-env)</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .browserslistrc
+        </code>
+    </pre>
+
+    <p>This file will be setup in the root of your project directory. The file itself will be referenced automatically by Babel. Within the .browserslistrc add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+> 1%
+last 2 versions
+not ie < 11
+        </code>
+    </pre> 
+
+    <h2>Webpack Config file</h2>
+
+    <p>Next, in the root directory of your project folder, create a Webpack config file named webpack.config.js and add the following code to this new file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can look to test the Babel is working by creating an ES6 arrow function within our src/index.js file we created earlier.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const helloFunc = () => {
+    console.log('Hello World');
+}
+        </code>
+    </pre>
+
+    <h2>Building the HTML page</h2>
+
+    <p>Now that we have the initial Webpack configuration setup, we can now look to create a simple HTML page that will render our React application. Create a new HTML document named index.html within the dist/ sub-directory of your project. This file should contain the following HTML code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;React App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script src="main.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>Within your HTML document, add a root element in into the &lt;body&gt; of your page. This is where we want our React application to be rendered.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div id="app"&gt;&lt;/div&gt;
+        </code>
+    </pre>
+
+    <p>This "root" attribute is managed by the React DOM library and is the element that is used to render the application within the HTML. This can be named anything, but for simplicity we have called it "app".</p>
+
+    <h2>Setting the engines properties</h2>
+
+    <p>Within your package.json file you may want to specify the recommended versions of Node and NPM (Node Package Manager) to use. This will ensure we get warning or errors displayed in the terminal if we are using a different version of either.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"engines": {
+    "node": "^11.14.0",
+    "npm": "^6.7.0"
+},
+        </code>
+    </pre>
+
+    <p>We can also set the "engineStrict" property to be "true" in your package.json file to be sure that your module will definitely not run on versions of Node and NPM other than those specified.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"engineStrict": true,
+        </code>
+    </pre>
+
+    <h2>Install React</h2>
+
+    <p>We can now use NPM (Node Package Manager) to install React. Both the react and react-dom NPM packages will be required to be installed. Open your terminal and install both packages as dependencies:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react react-dom --save
+        </code>
+    </pre>
+
+    <p>Here is an overview of the packages we have installed:</p>
+
+    <ul>
+        <li>React - The top level API of the React library</li>
+        <li>React DOM - DOM specific methods for React</li>
+        <li>Babel - A JavaScript compiler that allows you to use ES6 JavaScript syntax</li>
+    </ul>
+
+    <h2>Hello World</h2>
+
+    <p>The smallest React example we can create is to display a heading saying "Hello World" on the page. We will use our earlier main.js file we created earlier to add our code. Begin by deleting any JavaScript code that was added from the earlir examples. We first need to import the React and React DOM libraries.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+        </code>
+    </pre>
+
+    <p>Once the two libraries have been imported, we can use the render method. provided by the React DOM library to render "Hello World" onto the page. This will be rendered within the "app" element found within our HTML document.</p>
+
+    <p>Your index.js file within the src directory should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>This can also be rewritten slightly:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <h2>React Components</h2>
+
+    <p>The simplest way to define a React component is to write a JavaScript function. This type of component is called a functional (or dumb) component in React because they are defined using functions.</p>
+
+    <p>You will need to run the build script whenever you make a change to your JavaScript files:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run dev
+        </code>
+    </pre>
+
+    <p>Component names should always start with an uppercase letter. We can create a simple React component named 'Welcome' using a JavaScript function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+// The Welcome component
+function Welcome() {
+    return &lt;h1&gt;Hello World&lt;/h1&gt;;
+}
+
+render(
+    &lt;Welcome /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>We can also now look to move our components out into individual JavaScript files and then import them if we require them. Begin by creating a new JavaScript file named Welcome.js within the same src directory as the index.js file. Move the Welcome component (function) from within the index.js file into this newly created file. We then need to import the Welcome component into the index.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Welcome from './Welcome';
+
+render(
+    &lt;Welcome /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>The Welcome.js file should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+// The Welcome component
+function Welcome() {
+    return &lt;h1&gt;Hello World&lt;/h1&gt;;
+}
+
+export default Welcome;
+        </code>
+    </pre>
+
+    <p>Because the Welcome component is now a seperate JavaScript file, a module, we need to export it to allow the component to then be imported elsewhere.</p>
+
+    <p>To be more realistic, we should look to turn our Welcome component into a Button component. Begin by renaming the Welcome.js file as Button.js and update the code within the file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+function Button() {
+    return &lt;button&gt;Button&lt;/button&gt;;
+}
+
+export default Button;
+        </code>
+    </pre>
+
+    <p>We should also update the index.js file to import the component now that the filename has been changed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Button from './Button';
+
+render(
+    &lt;Button /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>Rebuild the application. A button element should now appear on the page.</p>
+
+    <p>We can also remove semi-colons from our JavaScript files, if you would prefer. Our Button component would therefore look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { render } from 'react-dom'
+
+import Button from './Button'
+
+render(
+    &lt;Button /&gt;,
+    document.getElementById('app')
+)
+        </code>
+    </pre>
+
+    <p>Let's move our Button component into it's own directory called button within the src sub-directory. We will need to update our import statement within the index.js file accordingly:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import Button from './button/Button'
+        </code>
+    </pre>
+
+    <p>Our file structure can also begin to take shape:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    dist /
+        index.html
+        main.js
+    src /
+        button /
+            Button.js
+        index.js
+    node_modules /
+    .babelrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
+        </code>
+    </pre>
+
+    <h2>App component</h2>
+
+    <p>React will not allow more than one component or element within the render method of the index.js file. We can therefore create a new component, named App, that will allow multiple components to be used.</p>
+
+    <p>Within the src directory, create an empty file named App.js and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;Button /&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Within the index.js file, replace the Button component with our newly created App component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { render } from 'react-dom'
+
+import App from './App'
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('app')
+)
+        </code>
+    </pre>
+
+    <p>This will now render the App component, including the Button component we have now imported into the App component. Nothing should change on the frontend UI, so a &lt;button&gt; element will still appear. This method will allow us to import multiple components.</p>
+
+    <p>Here is the updated file structure:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    dist /
+        index.html
+        main.js
+    src /
+        button /
+            Button.js
+        App.js
+        index.js
+    node_modules /
+    .babelrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
+        </code>
+    </pre>
+
+    <h2>ES6 Functions</h2>
+
+    <p>Babel is being used within our project, so we can therefore use features of the ES6 JavaScript syntax. Within our App and Button components, we can apply the ES6 fat arrow function in-place of the traditional JavaScript function written in ES5.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = () => {
+    return (
+        &lt;button&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <h2>React Fragments</h2>
+
+    <p>You may want to begin reusing your components within your application. We can demonstrate this by opening the App component (App.js) and rendering two buttons using the Button component like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;Button /&gt;
+        &lt;Button /&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Once built, this will lead to an error - as displayed in the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment &lt;&gt;...&lt;/&gt;?
+        </code>
+    </pre> 
+
+    <p>To fix this issue, we can wrap a &lt;div&gt; element around both components - although this means an empty &lt;div&gt; element is output in the DOM (Document Object Model) - or we can use a React Fragment.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!-- Wrapping using a div element --&gt;
+&lt;div&gt;
+    &lt;Button /&gt;
+    &lt;Button /&gt;
+&lt;/div&gt;
+
+&lt;!-- React Fragment --&gt;
+&lt;&gt;
+    &lt;Button /&gt;
+    &lt;Button /&gt;
+&lt;/&gt;
+
+&lt;!-- React Fragment --&gt;
+&lt;React.Fragment&gt;
+    &lt;Button /&gt;
+    &lt;Button /&gt;
+&lt;/React.Fragment&gt;
+        </code>
+    </pre>
+
+    <p>A React fragment is suitable as it fixes this JSX error but avoids adding unnecessary elements into the DOM when then application renders. You should now see two button elements rendered within the application using the same Button component.</p>
+
+    <h2>Adding Props</h2>
+
+    <p>Now that we have built a Button component in React, we can begin to add props (properties). We shall begin by adding a prop named 'type' to our component. This will allow us to set the type attribute value of the button. Open the Button.js component file created earlier, and add a prop of type:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = '' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We can also add props using a const variable, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = (props) => {
+
+    // Props can be listed here
+    const { type = '' } = props
+
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We can then pass in a type when we render the component. Open the App.js file and remove the second button we created earlier. Within the remaining Button component, set the type attribute to be submit. This will pass down the value of 'submit' into the type prop within the Button component from it's parent component. When the button is rendered within the app, the type attribute will be added to the button element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;Button type="submit" /&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>You may want to set a default value for our prop within the component itself. Most button elements are likely to have a default type of 'button'. We can update our Button component to apply a default prop value:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>If no prop value is passed down to the Button component, the default value of 'button' will be applied. If another value, such as 'submit' were to be passed down, then this value would be applied instead.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;Button /&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>The button component above will have a type attribute of 'button'.</p>
+
+    <p>Not all buttons will want to use the label of 'Button' which we have hardcoded into our component. We can use the children prop to pass in a label from the parent component. Open the Button component and adjust the code to include the new prop:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We can now pass a label to the Button component and avoid the need to have the label hardcoded. For example, in App.js, update the code to set the button label to be 'Sign in':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;Button&gt;Sign in&lt;/Button&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Another button can be added to demonstrate this further.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Button&gt;Sign in&lt;/Button&gt;
+            &lt;Button&gt;Register&lt;/Button&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>The Button component can be further amended to include a render function, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button', children }) => {
+    
+    const renderButton = () => 
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+
+    return (
+        renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>You may want to create a link to appear as a button element on the page. We can update our Button component once again to allow this functionality to be applied.</p>
+
+    <p>Here we've added a url prop to our component. Should we render our Button component with a url value, the element will be rendered as a link and not as a HTML button element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button', url = '', children }) => {
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+    
+    const renderButton = () => 
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>As described above, if we pass a url prop into the component, a link will be rendered. This can then be styled to look like a button using CSS.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './button/Button'
+
+function App() {
+    return &lt;Button url="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/Button&gt;
+}
+
+export default App
+        </code>
+    </pre>
+
+    <h2>Styling &amp; CSS</h2>
+
+    <p>To apply a class attribute in React, we use the className attribute. In the following example, we can update the Button component to apply a class of 'btn' to the button element. This would then allow CSS to be used to style the button element when rendered within the app.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button', url = '', children }) => {
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+    
+    const renderButton = () => 
+        &lt;button type={type} className="btn"&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a href={url} className="btn"&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We may want to also toggle and/or apply modifier classes based on prop values being passed down into our component. For this, we can use the Classnames NPM (Node Package Manager) package. This needs to be installed as a dependency within our project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install classnames --save
+        </code>
+    </pre>
+
+    <p>Here is the link to the NPM repository for the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">Classnames</a> package.</p>
+
+    <p>Once installed, we can add a few more props to our Button component allowing us to toggle classes on our component. We will also need to remember to import the Classnames package within our component to allow this to be used.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({ type = 'button', url = '', className = '', theme = '', isFullWidth = false, children }) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+    
+    const renderButton = () => 
+        &lt;button type={type} className={buttonClass}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Within our App.js file - where our Button component renders - we can now apply different classes using different props. The default class for the component will always be 'btn' but any props added will apply additional/modifier classes when the element is rendered.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Will apply the classes: btn btn--primary
+return &lt;Button theme="primary"&gt;Button&lt;/Button&gt;
+
+// Will apply the classes: btn btn--secondary
+return &lt;Button theme="secondary"&gt;Button&lt;/Button&gt;
+
+// Will apply the classes: btn btn--full-width
+return &lt;Button isFullWidth&gt;Button&lt;/Button&gt;
+
+// Will apply the classes: btn btn--primary btn--full-width
+return &lt;Button theme="primary" isFullWidth&gt;Button&lt;/Button&gt;
+        </code>
+    </pre>
+
+    <h2>Spread Operator</h2>
+
+    <p>Within our components we can avoid the need to list out all of our props by using the spread operator. Here is the current render method within the Button component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const renderButton = () => 
+    &lt;button type={type} className={buttonClass}&gt;{children}&lt;/button&gt;
+        </code>
+    </pre>
+
+    <p>This can be updated to now use the spread operator:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Without the Classnames NPM package
+const renderButton = () => 
+    &lt;button {...{ type, className }}&gt;{children}&lt;/button&gt;
+
+// With the Classnames NPM package
+const renderButton = () => 
+    &lt;button {...{ type }} className={buttonClass}&gt;{children}&lt;/button&gt;
+        </code>
+    </pre>
+
+    <p>If we had multiple props we wanted to pass into our component, this would be a good example to follow:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const renderButton = () => 
+    &lt;button {...{ prop, prop, prop }}&gt;{children}&lt;/button&gt;
+        </code>
+    </pre>  
+
+    <h2>JavaScript Linting: StandardJS</h2>
+
+    <p>We can install StandardJS as a devDependency using NPM (Node Package Manager). StandardJS can be used for linting and to prevent the use of trailing commas in JavaScript objects.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install standard --save-dev
+        </code>
+    </pre>
+
+    <p>Once installedm, a build script within the package.json file needs to be added to run the StandardJS linter.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "standard",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+},
+        </code>
+    </pre> 
+
+    <p>Certain directories or paths, such as node_modules, vendor, *.min.js, bundle.js, and files that begin with '.' like .gitignore are automatically ignored by StandardJS. You may need StandardJS to also ignore additional files or folders. Update the package.json file to ignore further files, folder or directories.</p>
+
+    <p>Add the following into your package.json file:</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"standard": {
+    "ignore": [
+        "**/out/",
+        "/lib/select2/",
+        "/lib/ckeditor/",
+        "tmp.js",
+        "/dist/",
+        "webpack.config.js"
+    ]
+},
+        </code>
+    </pre>   
+
+    <p>To run StandardJS from inside the terminal, we run the build script within our package.json file like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre> 
+
+    <p>You may discover a number of errors that are output in the terminal. StandardJS provides a method to fix these issues. We can create another new build script within our package.json file to apply the fix method:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "standard",
+    "test:fix": "standard --fix",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+},
+        </code>
+    </pre>  
+
+    <p>To run the StandardJS fix, open your terminal and run the build script:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test:fix
+        </code>
+    </pre> 
+
+    <p>Your linting issues within your JavaScript code should now be fixed.</p>
+
+    <h2>Pre-Commit</h2>
+
+    <p>Within your package.json file, we can look to add a pre-commit hook to run our build scripts before making a commit to version control (such as Git). We can, for example, run the build script to run our front end tests, or other specified build scripts, before we commit the changes to ensure that the tests pass on our code. This reduces the potential for errors in the code to be in production.</p>
+
+    <p>Begin by installing the pre-commit NPM (Node Package Manager) package as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install pre-commit --save-dev
+        </code>
+    </pre> 
+
+    <p>Next, update your package.json file to configure this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"pre-commit": {
+    "run": [
+        "test"
+    ]
+},
+        </code>
+    </pre> 
+
+    <h2>Atomic Design Structure</h2>
+
+    <p>Now that the initial setup has been done, we can look to apply the Atomic Design methodology to our project structure. Begin by updating the file structure like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    dist /
+        index.html
+        main.js
+    src /
+        js/
+            components /
+                presentational /
+                    1-atoms /
+                        button /
+                            Button.js
+                App.js
+        index.js
+    node_modules /
+    .babelrc
+    .browserslistrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
+        </code>
+    </pre>
+
+    <p>The import statement paths within the components will need to be updated if the file structure changes.</p>
+
+    <p>You will also need to update your webpack.config.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+    entry: './src/js/',
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Testing</h2>
+
+    <p>Jest is a JavaScript testing framework that works with projects include React, Angular and VueJS. It has little or no configuration to worry about and can generate code coverage for the entire project. Jest acts as a test runner, assertion library and mocking library. Jest also provides Snapshot testing. This is the ability to create a rendered 'snapshot' of the component code to compare it to previously saved 'snapshots'. The test will fail if the two snapshots do not match. Snapshot files will be saved besides the test file that created them in an auto-generated __snapshots__ folder.</p>
+
+    <p>Jest is the de facto unit testing framework for React and is used by Facebook themselves.</p>
+
+    <p>We can place our test files with a '.js' extension in a __tests__ folder or we can simply name our test files with a '.spec.js' or '.test.js' file name extension. Whatever you prefer, Jest will find and run your tests. It is usually convention to put each test. file next to the code or component you wish to test.</p>
+
+    <h3>Install Jest</h3>
+
+    <p>We begin by installing Jest as a devDependency using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install jest --save-dev
+        </code>
+    </pre>
+
+    <p>To run the tests, we need to update our build scripts within the package.json file. Here is the example I use:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "npm run lint && jest",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "build:dev": "webpack --mode development",
+    "build": "webpack --mode production"
+},
+        </code>
+    </pre>
+
+    <p>To run the test:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <!-- Expressions -->
+    <!-- Testing -->
+    <!-- Storybook -->
+    <!-- Typechecking -->
+    <!-- State / Redux -->
+    <!-- React Router -->
+    <!-- React DevTools -->
+    <!-- Webpack devserver -->
+    <!-- README file -->
+</main>
+
+</body>
+</html>

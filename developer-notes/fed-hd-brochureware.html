@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - FED Brochureware</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <!--<nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>-->
+</header>
+
+<main role="main" id="main">
+    <h1>FED Brochureware</h1>
+
+    <h2>Repository</h2>
+
+    <p>A Repository, most likely in Bitbucket, will need to be created.</p>
+
+    <h2>Performance Budget</h2>
+
+    <h2>User Testing</h2>
+
+    <h2>CI/CD</h2>
+
+    <h2>Mobile First</h2>
+
+    <p>The brochureware should follow the mobile-first methodology, designing for the smallest screen and working your way up. This is part of Progressive Enhancement (PE). We require high-fidelity designs for mobile, tablet and desktop viewports.</p>
+
+    <h2>Resets</h2>
+
+    <h2>Rem units</h2>
+
+    <p>Font sizes should be set using rem (room element) units rather than pixels. Rem units are equal to the value of the font-size on the root element. This means that 1rem is equal to the font size of the &lt;html&gt; element. Most browsers have a default value of 16px.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+2rem    = 20px
+1.8rem  = 18px
+1.6rem  = 16px
+1.4rem  = 14px
+1.2rem  = 12px
+        </code>
+    </pre>  
+
+    <p>Add a body selector to the CSS stylesheet which sets the font-size to be 1.6rem (16px) by default.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+main {
+    display: block;
+}
+        </code>
+    </pre>  
+
+    <p>If you add a CSS property that the browser doesn't understand, it will simply ignore it. We can add a fallback for browsers that do not understand rem units but that do understand px (pixel) values. This can be automated using a SCSS mixin.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+        </code>
+    </pre> 
+
+    <p>By setting the font-size of the &lt;html&gt; element to be 62.5%, it allows us to easily calculate the rem value compared with using pixels.</p>
+
+    <h2>Styleguide &amp; Styleguide Driven Development (SGDD)</h2>
+
+    <h2>Component Library</h2>
+
+    <h2>Components</h2>
+
+    <p>Once the designs have been completed, we will need to identify the individual UI components. These can then be written as tickets for each component.</p>
+
+    <h2>NPM (Node Package Manager) or Yarn</h2>
+
+    <p>We should firstly identify the version of Node (or Yarn) we wish to use.</p>
+
+    <h2>Webpack &amp; React</h2>
+
+    <p>The UI components to be built using the React JavaScript library. A document has been created with <a href="react-workshop.html" target="_blank" rel="noopener noreferrer">step-by-step instructions</a> to setup Webpack and React.</p>
+
+    <p><a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en" target="_blank" rel="noopener noreferrer">React Developer Tools</a> should also be used when working with React</p>
+
+    <h2>TypeScript</h2>
+
+    <p>TypeScript is a typed superset of JavaScript that compiles into plain JavaScript. This is aimed at making the language more scalable and reliable. TypeScript is a typed version of JavaScript. Type checking helps to ensure our code works as expected and helps to reduce bugs or errors. We can apply TypeScript to React or use Flow to apply Typechecking for React components.</p>
+
+    <p>TypeScript allows you to use the latest features of JavaScript in your code without having to worry about browser support. Once you've written your code in TypeScript, you can compile it to plain old JavaScript thats supported in all browsers.</p>
+
+    <h2>Code Splitting</h2>
+    <!-- https://www.creativebloq.com/how-to/all-you-need-to-know-about-javascript-code-splitting -->
+
+    <p>Code splitting can be used to split your JavaScript code into pieces and make your site load faster. Modern sites often combine all of their JavaScript code into a single, large main.js script. This regularly contains all the JavaScript code even if the user only ever needs a small portion for the page they're viewing. When JavaScript is served this way, the loading performance of your web page or application can suffer. JavaScript code splitting is a solution to this problem.</p>
+
+    <p>When a web browser sees a &lt;script&gt; it needs to spend time downloading and processing the JavaScript you're referencing. This can feel fast on high-end devices, but parsing and executing unused code can take a while on mobile devices or slower networks.</p>
+
+    <p>Lighthouse is a useful tool for checking page speed - Reduce JavaScript Execution Time</p>
+
+    <p>PageSpeed Insights is an online tool used to highlight a site's performance.</p>
+
+    <p>Code splitting can be split up based on page/application 'logic' or libraries/frameworks from vendors.</p>
+
+    <p>Perhaps we only need to import parts of an NPM Package and not the whole package.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"lodash": "^4.7.0",
+
+// Replace with this in package.json to use the sortby method of lodash:
+"lodash.sortby": "^4.7.0",
+        </code>
+    </pre> 
+
+    <p>Webpack bundles (combines) all of your JavaScriprt modules and assets into static files the web browser can understand. This single bundle can be split into two separate scripts.</p>
+
+    <p>Using dynamic imports a second script can be lazy-loaded on demand, for example, loaded as needed when a user clicks the button.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import sortBy from "lodash.sortby";
+
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    import('lodash.sortby')
+        .then(module => module.default)
+        .then(sortInput())
+        .catch(err => { alert(err) });
+});
+        </code>
+    </pre> 
+
+    <h2>Browser Support</h2>
+
+    <p>Browser support should be one of the first considerations. React supports IE9 (Internet Explorer 9) and above, we should also consider the support we provide for other browsers. Here are a list of browsers we should look to support:</p>
+
+    <ul>
+        <li>Chrome</li>
+        <li>Safari</li>
+        <li>Firefox</li>
+        <li>IE11 - Internet Explorer</li>
+        <li>Edge</li>
+    </ul>
+
+    <p>A tool such as <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener noreferrer">Browserslist</a> can be used to configure the browser versions we support between different front-end tools. This is used by both Autoprefixer and Babel.</p>
+
+    <p>A .browserslistrc config file can be added:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Browsers that we support
+
+last 1 version
+> 1%
+maintained node versions
+not dead
+        </code>
+    </pre>  
+
+    <h2>Grid - Floats, CSS Grid &amp; Flexbox</h2> 
+
+    <h2>Accessibility</h2>
+
+    <p>Accessibility is the practice of making your website/application usable by as many different people as possible. This is not just users with disabilities, but also to benefit those on mobile devices or slow network connections.</p>
+
+    <p>The aim should be for the changes to meet a minimum of WCAG 2.0 Level AA accessibility but ideally to meet WCAG 2.0 Level AAA accessibility where possible.</p>
+
+    <p>We should consider how we test accessibility and the tools needed.</p>
+
+    <p>ARIA attributes are best avoided unless you really need to use them.</p>
+
+    <h2>NVM (Node Version Manager)</h2>
+
+    <p>Developers using MacOS can setup NVM (Node Version Manager) to allow easy switching of Node versions. A .bash_profile will need to be setup first.</p>
+
+    <h2>Atomic Design</h2>
+
+    <h2>BEM (Block Element Modifier)</h2>
+
+    <h2>SCSS</h2>
+
+    <p>We can continue to use the SCSS (Sassy CSS) syntax of Sass as it's the most aligned with how CSS is written. This will be compiled using Webpack loaders, or the node-sass NPM (Node Package Manager) package. The structure of the SCSS code should follow the Atomic Design principles and the BEM (Block Element Modifier) naming convention.</p>
+
+    <p>Any CSS output from SCSS being compiled should be minified to reduce the file size and increase performance.</p>
+
+    <h2>Web Fonts</h2>
+
+    <p>It is often recommended to host web fonts yourself to reduced the risk of fonts changing when hosted elsewhere. We should look to preload fonts to help improve performance. Preloading allows the assets to the retrieved much sooner and before the CSS is parsed saving significant time on the first render. This serves as a hint to the browser to download the asset as soon as possible. CSS would still be required to apply the font.</p>
+
+    <p>When using preloading, the asset should be the same as the one referenced within the CSS. WOFF2 font file types are recommended to be used as this provides an average 30% compression gain over WOFF (Web Open Font Format) thereby improving performance. WOFF2 is currently supported in Chrome, Edge, Firefox and Safari but not Internet Explorer (IE). A fallback font file type would need to be provided for IE - TTF (TrueType Font) is a good candidate.</p>
+
+    <p>Preloading will work on a server but not locally and requires HTTPS.</p>
+
+    <p>Preloading can be added to HTML code within the &lt;head&gt; section of the document:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="preload" href="font/astloch-v8-latin-regular.woff2" as="font" type="font/woff2" crossorigin /&gt;
+        </code>
+    </pre>
+
+    <p>We can use the following CSS, ideally in SCSS, to apply Web Fonts. WOFF2 should be the first reference:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+@font-face {
+    font-display: fallback;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400; 
+    src: local('Nunito Regular'), local('Nunito-Regular'),
+        url('../fonts/nunito-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/nunito-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/nunito-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/nunito-v9-latin-regular.eot'), /* IE9 Compat Modes */
+        url('../fonts/nunito-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/nunito-v9-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
+}
+        </code>
+    </pre>
+
+    <p>We should use the display property within our CSS for the fonts used and system fallback fonts will be needed in the event that the webfont doesn't load.</p>
+
+    <p>The font can simply be applied within our CSS code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+body {
+    font-family: 'Nunito';
+}
+        </code>
+    </pre>
+
+    <p>Font Subsetting should be considered when thinking about optimisation. This allows us to allow browsers to access only the characters within the font file that are needed but with the option to include the full font file with all characters when the browser requires them.</p>
+
+    <h2>Images</h2>
+
+    <p>We should use the &lt;picture&gt; HTML5 element where possible to display images:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;picture&gt;
+    &lt;source media="(min-width: 64rem)" srcset="img/sudden-valley.jpg"&gt;
+    &lt;source srcset="img/sudden-valley_sm.jpg"&gt;
+    &lt;img src="img/sudden-valley.jpg" /&gt;
+&lt;/picture&gt;
+        </code>
+    </pre>
+
+    <p><a href="https://caniuse.com/#feat=picture" target="_blank" rel="noopener noreferrer">Support</a> is widespread across most modern browsers, with the exception being IE11.</p>
+
+    <h2>Asset Optimisation</h2>
+
+    <h2>Lazy Loading</h2>
+
+    <h2>Cache Busting</h2>
+
+    <h2>PWA (Progressive Web App)</h2>
+
+    <p>PWA reduces the time it takes for your application to load and provides a better user experience for your users. Using HTTPS provides better security and having a cache-first service worker allows you app to render content even when offline.</p>
+
+    <p>The baseline criteria a website of application must fulfill in order to qualify as a PWA are:</p>
+
+    <ul>
+        <li>You need to be running under HTTPS</li>
+        <li>You need a Web App Manifest (Manifest file)</li>
+        <li>You need a Service Worker</li>
+    </ul>
+
+    <p>This can be reviewed using the Lighthouse Audit tool within the Chrome DevTools.</p>
+
+    <h2>ES6 JavaScript</h2>
+
+    <h2>Rest API, FetchAPI & GraphQL</h2>
+
+    <h2>Headless CMS</h2>
+
+    <h2>Testing</h2>
+
+    <p>We will write unit tests using Jest for our React components - with Enzyme to provide additional assertion. Snapshots and Mock files can also be created to aid testing of our components.</p>
+
+    <p>Linting will be applied to our JavaScript code to check for errors within the code. StandardJS is likely to be considered due to the near no-configuration thats needed.</p>
+
+    <p>Performance testing using tools such as Lighthouse will need to be considered.</p>
+
+    <h2>Visual Regression Testing</h2>
+
+    <h2>Automated Testing - Puppateer/Selenium</h2>
+
+    <h2>Search Engine Optimisation (SEO)</h2>
+
+    <h2>Tagging, Tracking &amp; Analytics</h2>
+
+    <h2>Documentation</h2>
+</main>
+
+</body>
+</html>
