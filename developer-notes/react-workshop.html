@@ -1121,7 +1121,7 @@ react-workshop /
                         button /
                             Button.js
                 App.js
-        index.js
+            index.js
     node_modules /
     .babelrc
     .browserslistrc
@@ -1181,7 +1181,8 @@ $ npm install jest --save-dev
         <code>
 <!-- leave this line empty -->
 "scripts": {
-    "test": "npm run lint && jest",
+    "test": "npm run lint && npm run jest",
+    "jest": "jest",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "build:dev": "webpack --mode development",
@@ -1196,6 +1197,107 @@ $ npm install jest --save-dev
         <code>
 <!-- leave this line empty -->
 $ npm run test
+        </code>
+    </pre>
+
+    <p>We should also look to install Enzyme - enzyme & enzyme-adapter-react-16 - using NPM (Node Package Manager) as devDependencies.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install enzyme enzyme-adapter-react-16 --save-dev
+        </code>
+    </pre>
+
+    <p>Enzyme and Jest need a bit of config setup. Update the package.json file so it looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"pre-commit": {
+    "run": [
+        "lint",
+        "jest"
+    ]
+},
+"standard": {
+    "env": [
+        "jest"
+    ],
+    "ignore": [
+        "**/dist/",
+        "webpack.config.js"
+    ]
+},
+"jest": {
+    "setupFilesAfterEnv": [
+        "&lt;rootDir&gt;/src/js/setupTests.js"
+    ]
+},
+        </code>
+    </pre>
+
+    <p>Create a setupTests.js file within the src/js/ directory in the project and add the following code into this newly created file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({
+    adapter: new Adapter()
+})
+        </code>
+    </pre>
+
+    <p>In the directory that contains the Button component, add a new test file named Button.spec.js with the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe('Button', () => {
+    it('Button renders correctly', () => {
+        const wrapper = shallow(&lt;Button /&gt;)
+        expect(wrapper).toMatchSnapshot()
+    })
+})
+        </code>
+    </pre>
+
+    <p>When we run the test, the Button component will be tested using Jest and a snapshot file will be generated. Our file structure should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    dist /
+        index.html
+        main.js
+    src /
+        js/
+            components /
+                presentational /
+                    1-atoms /
+                        button /
+                            __snapshots__ /
+                                Button.spec.js.snap
+                            Button.js
+                            Button.spec.js
+                App.js
+            index.js
+            setupTests.js
+    node_modules /
+    .babelrc
+    .browserslistrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
         </code>
     </pre>
 
