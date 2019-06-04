@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FED Workshop: React</title>
+    <title>Developer Notes - FED Workshop: React</title>
 
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -1300,6 +1300,180 @@ react-workshop /
     webpack.config.js
         </code>
     </pre>
+
+    <h2>Storybook</h2>
+
+    <p>Storybook is an open source tool for developing UI components. It is a component library. Storybook runs outside of the main app so users can develop UI components in isolation. It allows you to browse a component library and view different states of each component.</p>
+
+    <p>Begin by installing Storybook using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @storybook/react --save-dev
+        </code>
+    </pre>
+
+    <p>Add the following build script to your package.json file to run Storybook:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook"
+},
+        </code>
+    </pre>  
+
+    <p>Within the project root, create a directory named .storybook and inside this directory create a config file named config.js containing the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { configure } from '@storybook/react'
+
+function loadStories() {
+    require('./../src/js/components/presentational/atoms/button/storybook/Button.stories.js')
+    // You can require as many stories as you need.
+}
+
+configure(loadStories, module)
+        </code>
+    </pre> 
+
+    <p>We have added a the button component as a story into our Storybook.</p>
+
+    <p>Within the directory containing our Button component, create a directory named storybook with a file named Button.stories.js inside. This file should contain the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import Button from './../Button'
+
+storiesOf('Button', module)
+    .add('with text', () => (
+        &lt;Button type='button'&gt;Button&lt;/Button&gt;
+    ))
+    .add('as a link', () => (
+        &lt;Button url='http://example.com'&gt;Link&lt;/Button&gt;
+    ))
+        </code>
+    </pre> 
+
+    <p>We now have created a story within Storybooks for our Button component. The project file structure should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    .storybook /
+        config.js
+    dist /
+        index.html
+        main.js
+    src /
+        js/
+            components /
+                presentational /
+                    1-atoms /
+                        button /
+                            __snapshots__ /
+                                Button.spec.js.snap
+                            storybook /
+                                Button.stories.js
+                            Button.js
+                            Button.spec.js
+                App.js
+            index.js
+            setupTests.js
+    node_modules /
+    .babelrc
+    .browserslistrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
+        </code>
+    </pre> 
+
+    <h2>React Router</h2>
+
+    <p>React Router makes it possible to navigate between URLs on the client-side without making another request to a web server for every router change. The application is only requested once from the server after which all routing is done on the client side.
+
+    <p>To install React Router you will require the react-router-dom package. This can be installed using NPM (Node Package Manager). This needs to be installed as a dependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react-router-dom --save
+        </code>
+    </pre> 
+
+    <p>Within our App component, within the src directory, is where we will setup React Router. We will be using the Link component of React Router to enable navigation to different routes within the application. Here is the updated App.js component file (now using ES6 syntax):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import Button from './button/Button'
+
+const App = () => (
+    &lt;Router&gt;
+        return &lt;Button url="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/Button&gt;
+    &lt;/Router&gt;
+)
+
+export default App
+        </code>
+    </pre>
+
+    <p>We could possibly look to create a Navigation component that can be imported into our App component to contain our links to handle routing. Our App component would therefore look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import Navigation from './Navigation'
+
+const App = () => (
+    &lt;Router&gt;
+        &lt;Navigation /&gt;
+    &lt;/Router&gt;
+)
+
+export default App
+        </code>
+    </pre>
+
+    <p>The Navigation component should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const Navigation = () => {
+    return (
+        &lt;nav&gt;
+            &lt;Link to="/"&gt;Home&lt;/Link&gt;
+            &lt;Link to="/page2"&gt;Page 2&lt;/Link&gt;
+            &lt;Link to="/page3"&gt;Page 3&lt;/Link&gt;
+        &lt;/nav&gt;
+    )
+}
+
+export default Navigation
+        </code>
+    </pre>
+
+    <p>Now that the routes within our application have been created, we need to create the pages (routes) and the location to render the content of these pages when moving between routes.</p>
 
     <!-- Expressions -->
     <!-- Testing -->
