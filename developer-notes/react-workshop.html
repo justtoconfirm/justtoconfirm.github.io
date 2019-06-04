@@ -1117,7 +1117,7 @@ react-workshop /
         js/
             components /
                 presentational /
-                    1-atoms /
+                    atoms /
                         button /
                             Button.js
                 App.js
@@ -1282,7 +1282,7 @@ react-workshop /
         js/
             components /
                 presentational /
-                    1-atoms /
+                    atoms /
                         button /
                             __snapshots__ /
                                 Button.spec.js.snap
@@ -1377,7 +1377,7 @@ react-workshop /
         js/
             components /
                 presentational /
-                    1-atoms /
+                    atoms /
                         button /
                             __snapshots__ /
                                 Button.spec.js.snap
@@ -1411,47 +1411,254 @@ $ npm install react-router-dom --save
         </code>
     </pre> 
 
-    <p>Within our App component, within the src directory, is where we will setup React Router. We will be using the Link component of React Router to enable navigation to different routes within the application. Here is the updated App.js component file (now using ES6 syntax):</p>
+    <p>To run React Router we need a web server. We can install webpack-dev-server using NPM (Node Package Manager) as a devDependency:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack-dev-server --save-dev
+        </code>
+    </pre> 
+
+    <p>We now need to update the webpack.config.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const path = require('path')
+
+module.exports = {
+    entry: './src/js/',
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000,
+        https: true
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    }
+}
+        </code>
+    </pre>  
+
+    <p>A build script is needed within the package.json file to run the webpack-dev-server:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "start:dev": "webpack-dev-server"
+},
+        </code>
+    </pre> 
+
+    <p>The webpack-dev-server can be run using NPM (Node Package Manager):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run start:dev
+        </code>
+    </pre>   
+
+    <p>This should open our React app within a new browser window/tab on <a href="https://localhost:9000/" target="_blank" rel="nopener noreferrer">https://localhost:9000/</a></p>
+
+    <p>Within our index.js file, we can now import the react-router-dom package. We will be importing the BrowserRouter method of the react-router-dom package. We give the BrowserRouter an alias of Router.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
 import React from 'react'
+import { render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import Button from './button/Button'
+import App from './components/App'
 
-const App = () => (
+render(
     &lt;Router&gt;
-        return &lt;Button url="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/Button&gt;
-    &lt;/Router&gt;
+        &lt;App /&gt;
+    &lt;/Router&gt;,
+    document.getElementById('app')
 )
-
-export default App
         </code>
-    </pre>
+    </pre>    
 
-    <p>We could possibly look to create a Navigation component that can be imported into our App component to contain our links to handle routing. Our App component would therefore look like this:</p>
+    <p>We can now add the links and routes to apply React Router to our app. Route components will be rendered if the path prop matches the current URL. The App component can be updated with three components for each of the routes: Home, PageTwo and PageThree.</p>
 
     <pre>
         <code>
 <!-- leave this line empty -->
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
-import Navigation from './Navigation'
-
-const App = () => (
-    &lt;Router&gt;
-        &lt;Navigation /&gt;
-    &lt;/Router&gt;
+const Home = () => (
+    &lt;div&gt;
+        &lt;h2&gt;Home&lt;/h2&gt;
+    &lt;/div&gt;
 )
+
+const PageTwo = () => (
+    &lt;div&gt;
+        &lt;h2&gt;Page Two&lt;/h2&gt;
+    &lt;/div&gt;
+)
+
+const PageThree = () => (
+    &lt;div&gt;
+        &lt;h2&gt;Page Three&lt;/h2&gt;
+    &lt;/div&gt;
+)
+
+const App = () => {
+    return (
+        &lt;div&gt;
+            &lt;Link to='/'&gt;Home&lt;/Link&gt;
+            &lt;Link to='/pagetwo'&gt;Page Two&lt;/Link&gt;
+            &lt;Link to='/pagethree'&gt;Page Three&lt;/Link&gt;
+
+            &lt;Route exact path='/' component={Home} /&gt;
+            &lt;Route path='/pagetwo' component={PageTwo} /&gt;
+            &lt;Route path='/pagethree' component={PageThree} /&gt;
+        &lt;/div&gt;
+    )
+}
 
 export default App
         </code>
-    </pre>
+    </pre> 
 
-    <p>The Navigation component should look something like this:</p>
+    <p>The components that have been created can be moved to be external components as templates. The file structure can look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+react-workshop /
+    .storybook /
+        config.js
+    dist /
+        index.html
+        main.js
+    src /
+        js/
+            components /
+                presentational /
+                    atoms /
+                        button /
+                            __snapshots__ /
+                                Button.spec.js.snap
+                            storybook /
+                                Button.stories.js
+                            Button.js
+                            Button.spec.js
+                    templates /
+                        Home
+                        PageTwo
+                        PageThree
+                        Notfound
+                App.js
+            index.js
+            setupTests.js
+    node_modules /
+    .babelrc
+    .browserslistrc
+    .gitignore
+    package-lock.json
+    package.json
+    webpack.config.js
+        </code>
+    </pre> 
+
+    <p>The component code should be updated to import the React library and export the component as a module.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Home = () => (
+    &lt;div&gt;
+        &lt;h2&gt;Home&lt;/h2&gt;
+    &lt;/div&gt;
+)
+
+export default Home
+        </code>
+    </pre> 
+
+    <p>The components can then be imported into the App component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import Home from './presentational/templates/Home'
+        </code>
+    </pre> 
+
+    <p>We need to import another component from the react-router-dom package called Switch. This component helps us to render the components only when the path matches otherwise it fallbacks to a 404 (not found) component we will create.</p>
+
+    <p>Let's create a 404 component named NotFound.js</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const NotFound = () => (
+    &lt;div&gt;
+        &lt;h2&gt;404&lt;/h2&gt;
+    &lt;/div&gt;
+)
+
+export default NotFound
+        </code>
+    </pre> 
+
+    <p>Our App component can now be updated:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
+
+import Home from './presentational/templates/Home'
+import PageTwo from './presentational/templates/PageTwo'
+import PageThree from './presentational/templates/PageThree'
+import NotFound from './presentational/templates/NotFound'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Link to='/'&gt;Home&lt;/Link&gt;
+            &lt;Link to='/pagetwo'&gt;Page Two&lt;/Link&gt;
+            &lt;Link to='/pagethree'&gt;Page Three&lt;/Link&gt;
+
+            &lt;Switch&gt;
+                &lt;Route exact path='/' component={Home} /&gt;
+                &lt;Route path='/pagetwo' component={PageTwo} /&gt;
+                &lt;Route path='/pagethree' component={PageThree} /&gt;
+                &lt;Route component={NotFound} /&gt;
+            &lt;/Switch&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre> 
+
+    <p>Now let's check it now by manually entering a wrong path to our URL. The 404 page should be shown. We've also replaced the empty &lt;div&gt; elements to use React Fragments.</p>
+
+    <p>The links within the App component can also be moved into a seperate component named Navigation and then imported.</p>
 
     <pre>
         <code>
@@ -1459,21 +1666,51 @@ export default App
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navigation = () => {
-    return (
-        &lt;nav&gt;
-            &lt;Link to="/"&gt;Home&lt;/Link&gt;
-            &lt;Link to="/page2"&gt;Page 2&lt;/Link&gt;
-            &lt;Link to="/page3"&gt;Page 3&lt;/Link&gt;
-        &lt;/nav&gt;
-    )
-}
+const Navigation = () => (
+  &lt;React.Fragment&gt;
+    &lt;Link to='/'&gt;Home&lt;/Link&gt;
+    &lt;Link to='/pagetwo'&gt;Page Two&lt;/Link&gt;
+    &lt;Link to='/pagethree'&gt;Page Three&lt;/Link&gt;
+  &lt;/React.Fragment&gt;
+)
 
 export default Navigation
         </code>
-    </pre>
+    </pre> 
 
-    <p>Now that the routes within our application have been created, we need to create the pages (routes) and the location to render the content of these pages when moving between routes.</p>
+    <p>The App component can also be updated:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import Navigation from './presentational/organisms/Navigation'
+
+import Home from './presentational/templates/Home'
+import PageTwo from './presentational/templates/PageTwo'
+import PageThree from './presentational/templates/PageThree'
+import NotFound from './presentational/templates/NotFound'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Navigation /&gt;
+
+            &lt;Switch&gt;
+                &lt;Route exact path='/' component={Home} /&gt;
+                &lt;Route path='/pagetwo' component={PageTwo} /&gt;
+                &lt;Route path='/pagethree' component={PageThree} /&gt;
+                &lt;Route component={NotFound} /&gt;
+            &lt;/Switch&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
 
     <!-- Expressions -->
     <!-- Testing -->
