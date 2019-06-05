@@ -39,7 +39,35 @@
 
     <h2>Performance Budget</h2>
 
+    <p>A performance budget is a limit for pages which the team aim to not exceed. It could be the maximum JavaScript bundle size, total image weight, specificload time (e.g. Time-to-Interactive in under 5s on 3G/4G) or any other metrics that can measured for performance. A performance budget can be considered as 'currency' to spend and trade on user-experience (UX).</p>
+
+    <p>Here is a link to a <a href="https://addyosmani.com/blog/performance-budgets/" target="_blank" rel="noopener noreferrer">document detailing performance budgets</a>.</p>
+
+    <p>Examples of budgets:</p>
+
+    <ul>
+        <li>Our product page must shop less than 170KB of JavaScript on mobile.</li>
+        <li>Our home page must load and get interactive in less than 5s on 3G/4G connections.</li>
+        <li>Our home page must score &gt; 80 on Lighthouse performance audits.</li>
+    </ul>
+
+    <p>This may suggest having budgets for different device classes are worth considering. For example &lt; 170KB JavaScript (min/gzip) for mobile and &lt; 1.5MB for desktop.</p>
+
+    <p>We may need to consider the tools we use to measure performance and other metrics such as accessibility.</p>
+
+    <p>As with a financial budget, there maybe times when your performance (perf) budget will be low. This can require you to make cuts or trade-offs in order to maintain a fast and excellent user experience.</p>
+
+    <ul>
+        <li>Optimise Existing Features</li>
+        <li>Remove Existing Features</li>
+        <li>Don't Add New Features</li>
+    </ul>
+
+    <p>Many tools exist for enforcing performance budgets. <a href="https://github.com/siddharthkp/bundlesize" target="_blank" rel="noopener noreferrer">bundlesize</a> is great for catching JavaScript size regressions.</p>
+
     <h2>User Testing</h2>
+
+    <p>User testing refers to the technique used in the design process to evaluate a product, feature, or prototype with real users. Typically users are set a task and asked to perform to the best of their abilities, while observers watch, listen, take notes, and gather feedback.</p>
 
     <h2>CI/CD</h2>
 
@@ -48,6 +76,14 @@
     <p>The brochureware should follow the mobile-first methodology, designing for the smallest screen and working your way up. This is part of Progressive Enhancement (PE). We require high-fidelity designs for mobile, tablet and desktop viewports.</p>
 
     <h2>Resets</h2>
+
+    <p>All browsers ship with a set of default styles that are applied to every web page in what is called the "user agent stylesheet". Most of these stylesheets are open source. Here is a <a href="https://bitsofco.de/a-look-at-css-resets-in-2018/" target="_blank" rel="noopener noreferrer">useful link</a>.</p>
+
+    <p>Many of these styles are consistent across all user agent stylesheets. For example, the &lt;head&gt; element is not visible as it is actually hidden like any other element on a page with display: none</p>
+
+    <p>A lot of styles, however, are inconsistent between the user agent stylesheets. In order to deal with these inconsistencies between user agent stylesheets, CSS resets were created. A CSS reset is a set of styles applied to a page before any other custom styles with the purpose of creating a more standardised base between browsers.</p>
+
+    <p>It could be argues that resets often just get overwritten meaning additional load time for the CSS code.</p>
 
     <h2>Rem units</h2>
 
@@ -332,7 +368,21 @@ body {
 
     <h2>Visual Regression Testing</h2>
 
-    <h2>Automated Testing - Puppateer/Selenium</h2>
+    <p>When we think of regression testing, we tend to think about functionality and how new code affects the way previously working elements behave. But just because you're looking at functionality doesn't mean you should let visual design testing fall through the cracks during regression. Visual regression allows testing of the UI to make sure that style issues don't occur following changes and the web application UI is not affected.</p>
+
+    <p>Often a tool is used to take a screenshot and to then compare this with new screenshots taken when changes occur. This can be across multiple devices and browsers. From here, a baseline browser can be chosen and any differences can be compared side-by-side.</p>
+
+    <p>Tools to consider:</p>
+
+    <ul>
+        <li>PhantomCSS</li>
+        <li>Wraith</li>
+        <li>Selenium</li>
+    </ul>
+
+    <h2>Automated Testing - Puppeteer/Selenium</h2>
+
+    <p>Puppeteer is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools protocol. Most things that you can do manually in the browser can be done using Puppeteer. For example, you can create an up-to-date, automated testing environment running your tests directly within the latest version of Chrome using the latest JavaScript and browser features.</p>
 
     <h2>Search Engine Optimisation (SEO)</h2>
 
