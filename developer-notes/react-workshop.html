@@ -1712,6 +1712,61 @@ export default App
         </code>
     </pre>
 
+    <h2>&lt;main&gt; component</h2>
+
+    <p>A Main component can now be created. This will render the &lt;main&gt; HTML element. This will be located within the atoms directory as the Main component is an atom.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Main = ({ children }) =>
+    &lt;main role='main'&gt;{children}&lt;/main&gt;
+
+export default Main
+        </code>
+    </pre>
+
+    <p>The Main component uses the children prop to allow content to be placed between the opening and closing tags.</p>
+
+    <p>The App component can now import and use the Main component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import Main from './presentational/atoms/main/Main'
+import Navigation from './presentational/organisms/Navigation'
+
+import Home from './presentational/templates/Home'
+import PageTwo from './presentational/templates/PageTwo'
+import PageThree from './presentational/templates/PageThree'
+import NotFound from './presentational/templates/NotFound'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Navigation /&gt;
+
+            &lt;Main&gt;
+                &lt;Switch&gt;
+                    &lt;Route exact path='/' component={Home} /&gt;
+                    &lt;Route path='/pagetwo' component={PageTwo} /&gt;
+                    &lt;Route path='/pagethree' component={PageThree} /&gt;
+                    &lt;Route component={NotFound} /&gt;
+                &lt;/Switch&gt;
+            &lt;/Main&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
     <!-- Expressions -->
     <!-- Testing -->
     <!-- Storybook -->
