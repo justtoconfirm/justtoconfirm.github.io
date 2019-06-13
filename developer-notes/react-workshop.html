@@ -1767,6 +1767,41 @@ export default App
         </code>
     </pre>
 
+    <h2>onClick prop</h2>
+
+    <p>Within the Button component, we can look to add an onClick prop to handle events.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({ type = 'button', url = '', className = '', theme = '', isFullWidth = false, onClick, children }) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchorElement = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+    
+    const renderButton = () => 
+        &lt;button type={type} className={buttonClass} onClick={onClick}&gt;{children}&lt;/button&gt;
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    return (
+        isAnchorElement ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
     <!-- Expressions -->
     <!-- Testing -->
     <!-- Storybook -->
