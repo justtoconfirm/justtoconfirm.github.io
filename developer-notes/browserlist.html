@@ -265,6 +265,21 @@ module: {
         </code>
     </pre>
 
+    <p>We also require a PostCSS config file to be created. Once again, this needs to be placed within the root of your project and named postcss.config.js</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+    plugins: [
+        require('autoprefixer')
+    ]
+}
+        </code>
+    </pre>
+
+    <p>By default, without setting the browsers to be supported, the any -webkit and -moz prefixing will be removed from your CSS code. This is applying the Autoprefixer plugin to PostCSS.</p>
+
     <p>We should already have @babel/preset-env installed, but if not, we can use NPM (Node Package Manager) to automate browser support for our JavaScript code using Babel.</p>
 
     <pre>
@@ -302,6 +317,69 @@ $ touch .babelrc
 >0.25%
 not ie 11
 not op_mini all
+        </code>
+    </pre>
+
+    <p>We can begin with an empty .browserslistrc config file and add the following to support browsers with a 0.25% market share or greater:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+>0.25%
+        </code>
+    </pre>
+
+    <p>Using the following command will list those browsers:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npx browserslist
+        </code>
+    </pre>
+
+    <p>The following browsers will be supported:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+and_chr 75
+and_uc 11.8
+chrome 75
+chrome 74
+chrome 73
+chrome 72
+chrome 71
+chrome 63
+chrome 49
+edge 18
+edge 17
+firefox 67
+ie 11
+ios_saf 12.2-12.3
+ios_saf 12.0-12.1
+ios_saf 11.3-11.4
+ios_saf 11.0-11.2
+kaios 2.5
+op_mini all
+opera 60
+safari 12.1
+safari 12
+safari 5.1
+samsung 9.2
+samsung 4
+        </code>
+    </pre>
+
+    <p>This has re-introduced the -webkit vendor prefix to parts of our CSS. A list of browserlist options can be found on the <a href="https://github.com/browserslist/browserslist" target="_blank" rel="noopener noreferrer">GitHub</a> page.</p>
+
+    <p>We can do the following to only support IE11:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+>0.25%
+ie 11
         </code>
     </pre>
 </main>
