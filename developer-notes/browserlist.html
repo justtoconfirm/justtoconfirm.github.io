@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Browserslist</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Browserslist</h1>
+
+    <p>As front-end developers, we're well aware that different browsers (and versions) support different web platform features. We can balance with what analytics tells us about what browsers our users are using. For example, if Google Analytics (GA) tells us only 0.01% of users are using IE9, perhaps we should decide it's ok to stop supporting this browser and to start using features such as Flexbox and .classList</p>
+
+    <p>Tools such as Autoprefixer allows us to automate this process for our code.</p>
+
+    <p>You may want to create the .browserslistrc config file first of the JavaScript and CSS.</p>
+
+    <p>You can create a .browserslistrc config file within the root of you project folder using the command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# This is a command used within Mac OS
+$ touch .browserslistrc
+        </code>
+    </pre>
+
+    <p>This config file will also be used by tools such as post-css and Autoprefixer for our CSS.</p>
+
+    <p>Browserslist is about a single configuration for all tools that need to know what browsers you support. Both Autoprefixer and Babel reference Browserslist and it's config file .browserslistrc when determining support. It's used because it makes sense to target the same list of browsers using a single reference.</p>
+
+    <h2>CSS</h2>
+    <!-- https://css-tricks.com/browserlist-good-idea/ -->
+    <!--
+    https://github.com/browserslist/browserslist
+    https://www.npmjs.com/package/browserslist
+    https://css-tricks.com/browserlist-good-idea/
+
+    https://github.com/postcss/autoprefixer
+    https://github.com/postcss/postcss-loader
+    https://twitter.com/autoprefixer
+    https://www.npmjs.com/package/autoprefixer
+    -->
+
+    <p>Autoprefixer allows you to configure what browsers you wanted to target with the prefixing. This means you don't have to then generate prefixes for every browser resulting in potentially more code you don't need. The code generated will only be for the browsers you want to support.</p>
+
+    <p>Autoprefixer automatically uses the Browserslist configuration, provided you have a .browserslistrc file in the root of your project folder. You can also update your package.json file should you want to reduce the number of config files in your project:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "IE 10"
+    ]
+}
+        </code>
+    </pre>
+
+    <p>The PostCSS plugin is used to parse CSS and add vendor previxes to CSS rules using values from Can I Use. This is recommended by Google and used by Twitter and Alibaba. This plugin allows you to write vendor prefixes or avoid them completely allowing PostCSS to make changes to the CSS to meet your browsers that you need to support. Autoprefixer will use the data based on the current browser popularity and the browsers listed in the .browserslistrc config file to determine what prefixes to apply.</p>
+
+    <p>Autoprefixer is a CSS post processor. It combs through compiled CSS files to add or remove vendor prefixes like -webkit and -moz after checking the code against caniuse.com. The data on caniuse.com is the most accurate date source of browser support online.</p>
+
+    <p>CSS vendor prefixes, also called CSS browser prefixes, are a way for browser makers to add support for new CSS features to be fully supported in all browsers.</p>
+
+    <p>Autoprexer is a plugin for PostCSS.</p>
+
+    <h2>JavaScript</h2>
+    <!-- https://blog.jakoblind.no/babel-preset-env/ -->
+    <!--
+    https://makandracards.com/makandra/52051-webpacker-configuring-browser-compatibility
+    https://dzone.com/articles/using-webpack-4-to-create-browser-compatible-apps
+    https://www.sitepoint.com/beginners-guide-webpack-module-bundling/
+    -->
+
+    <p>To create a .babelrc config file in the root of your project, use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# This is a command used within Mac OS
+$ touch .babelrc
+        </code>
+    </pre>
+
+    <p>If you have followed any recent tutorials on how to set up a modern JavaScript project you may have installed Babel and then added babel-preset-env to your .babelrc config file like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    presets: ['@babel/preset-env']
+}
+        </code>
+    </pre>
+
+    <p>Babel will then transpile ES6 for you into ES5 syntax for support across all browsers. The .babelrc config file is placed in the root of your project. This is a configuration file for Babel. Babel presets is used to bundle together common Babel plugins. There are many unofficial presets from organisations and companies such as AirBnB, but the official presets are:</p>
+
+    <ul>
+        <li>@babel/preset-env</li>
+        <li>@babel/preset-flow</li>
+        <li>@babel/preset-react</li>
+        <li>@babel/preset-typescript</li>
+    </ul>
+
+    <p>Each preset has its own NPM (Node Package Manager) dependency that you need to install to configure. We want to use babel-preset-env. We begin by installing it as an NPM devDependency from within the terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-env --save-dev
+        </code>
+    </pre>
+
+    <p>Next, we configure in the preset section of your .babelrc config file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    presets: ['@babel/preset-env']
+}
+        </code>
+    </pre>
+
+    <p>By default, babel-preset-env just installs all ES6 plugins you'll need, but this can bloat your bundle. This bundle is always going to be larger if you need code to support older browsers by default, which is what babel-preset-env does out of the box by including all plugins to support all browsers. To reduce this bundle size, we can tell Babel to not use all plugins but only a subset of plugins we really need. That way the code needed is less within the transpiled ES5 code bundle.</p>
+
+    <p>You can, for example, avoid supporting IE by adding the following to your .browserslistrc config file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+not ie all
+        </code>
+    </pre> 
+
+    <p>Or that you define you only want support for browsers with a market share of 0.25% or more:</p>  
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+>0.25%
+        </code>
+    </pre> 
+
+    <p>Using "last 2 versions" is not recommended.</p>
+
+    <p>You can get a list of all browsers supported by your browserlist config by running the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npx browserslist
+        </code>
+    </pre> 
+
+    <p>If you describe to babel-preset-env what browsers you support, it can use less plugins, meaning less code needed.</p>
+
+    <h2>Last 2 Versions</h2>
+    <!-- https://jamie.build/last-2-versions -->
+
+    <p>It was initially thought that setting browser support "last 2 versions" within the .browserslistrc config file was a good idea, to compile the things that the browsers you support actually needed to be compiled. So if all the browsers you cared about supported arrow functions, babel-preset-env would always compile ES6 arrow functions because of the "last 2 versions" bit of the config.</p>
+
+    <p>When we way "we support the last 2 versions of every browser", we also mean browsers like:</p>
+
+    <ul>
+        <li>Internet Explorer Mobile (0.23% market share globally)</li>
+        <li>Blackberry Browser (0.07%)</li>
+        <li>Opera Mobile (0.01%)</li>
+        <li>QQ Browser (0%)</li>
+        <li>Baidu Browser (0%)</li>
+    </ul>
+
+    <p>"last 2 versions" will always match these browsers, those that have no market share and have not been updated in recent versions for a while.</p>
+
+    <p>Take Internet Explorer (IE) for example. It's been replaced by Edge and will never have any new versions after IE11. But if you support the "last 2 versions" of every browser, that means you support the last 2 versions of Edge and the last 2 versions of Internet Explorer. Since there's never going to be another version of Internet Explorer, you'll be supporting IE10 and IE11 all the time.</p>
+
+    <h3>What we can do instead</h3>
+
+    <p>We can update our config file to be something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+>0.25%
+not ie 11
+not op_mini all
+        </code>
+    </pre>
+
+    <p>We can also update browserslist config within the package.json file.</p>
+
+    <h2>Setup</h2>
+
+    <p>Here are the steps to setting up automated browser support. We shall begin by creating the .browserslistrc config file within the root of our project folder/directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .browserslistrc
+        </code>
+    </pre>
+
+    <p>We now need to install the Autoprefixer and postcss-loader as devDependencies using NPM (Node Package Manager).</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install autoprefixer postcss-loader --save-dev
+        </code>
+    </pre>
+
+    <p>Our Webpack config file (webpack.config.js) can then be updated. This needs to be used after css-loader (and possibly style-loader if used), but before other preprocessors such as sass-loader, less-loader, or stylus-loader. This will apply autoprefixing and browser automation to our CSS stylesheets.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader'
+            }
+        },
+        {
+            test: /\.s[c|a]ss$/,
+            use: [
+                'style-loader', 
+                MiniCssExtractPlugin.loader, 
+                'css-loader', 
+                'postcss-loader',
+                'sass-loader'
+            ]
+        }
+    ]
+},
+        </code>
+    </pre>
+
+    <p>We should already have @babel/preset-env installed, but if not, we can use NPM (Node Package Manager) to automate browser support for our JavaScript code using Babel.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-env --save-dev
+        </code>
+    </pre>
+
+    <p>Confirm that the .babelrc file, if created, contains the following:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    presets: ['@babel/preset-env']
+}
+        </code>
+    </pre>
+
+    <p>Should you need to create the .babelrc config file, this can be done through the terminal and needs to be added to your project root:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .babelrc
+        </code>
+    </pre>
+
+    <p>Now we just need to configure the browser support we require within the .browserslistrc config file and this will then be automated within the front end build process when using Webpack and Babel. This config file may looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+>0.25%
+not ie 11
+not op_mini all
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
