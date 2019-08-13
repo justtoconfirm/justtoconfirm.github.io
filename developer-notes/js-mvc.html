@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript MVC</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript MVC</h1>
+    <!-- https://www.taniarascia.com/javascript-mvc-todo-app/ -->
+
+    <p>Writing a simple application in plain JavaScript using the model-view-controller (MVC) architectural pattern. This will be a todo app allowing you to CRUD (Create, Read, Update and Delete) todos within the browser. It consists of an index.html, style.css and script.js files, so is simple and free from any framework/library dependencies.</p>
+
+    <p>MVC is one possible pattern for organising your code, and it's fairly popular.</p>
+
+    <ul>
+        <li><strong>Model</strong> - Manages the data of an application</li>
+        <li><strong>View</strong> - A visual representation of the model</li>
+        <li><strong>Controller</strong> - Links the user and the system</li>
+    </ul>
+
+    <p>The model is the data. In the todo application, this will be the actual todos and the methods that will add, edit, or delete them.</p>
+
+    <p>The view is how this data is displayed. In this application, this will be rendered HTML in the <abbr title="Document Object Model">DOM</abbr> and CSS.</p>
+
+    <p>The controller connects the model and the view. It takes user input, such as clicking or typing, and handles callbacks for user interaction.</p>
+
+    <p>The model never touches the view, the view never touches the model. The controller connects them.</p>
+
+    <h2>Setup</h2>
+
+    <p>This is going to be a fully JavaScript app, which means everything will be handled through JavaScript and the HTML will only consist of a single root element in the body.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+
+    &lt;title&gt;Todo App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;script src="dist/script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>You can add your style.css stylesheet to add style to the application. For now, this will be omitted to focus on the JavaScript. You will need to setup Babel to allow JavaScript classes to be writtten.</p>
+
+    <!-- https://babeljs.io/setup#installation -->
+    <!-- install: npm install --save-dev @babel/core @babel/cli -->
+    <!-- build script: "build": "babel src -d dist" - js can be in src directory inside project and will output in a dist -->
+
+    <h2>Building the App</h2>
+    <!-- Getting Started -->
+
+    <p>We're going to create a really nicd and simple to understand what class pertains to what part of MVC. I'll make a Model, View and Controller class, which takes in the model and view. The app will be an instance of the controller.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class Model {
+    constructor() {}
+}
+
+class View {
+    constructor() {}
+}
+
+class Controller {
+    constructor(model, view) {
+        this.model = model;
+        this.view = view;
+    }
+}
+
+// App is an instance of the controller
+const app = new Controller(new Model(), new View())
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
