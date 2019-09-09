@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Webpack Image Optimisation</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Webpack Image Optimisation</h1>
+
+    <p>Images take up a massive amount of bandwidth because of large file sizes. On average this can be around 60% of the data transferred to fetch a web page are image assets composed of JPEGs, PNGs and GIFs.</p>
+
+    <p>Image optimisation consists of different measures that can reduce the file size of your images.</p>
+
+    <h2>&lt;picture&gt;</h2>
+
+    <p>The browser itself if capable of choosing which image format to display through the use the the &lt;picture&gt; tag. This tag utilises multiple &lt;source&gt; elements with one &lt;img&gt; tag which is the actual <abbr title="Document Object Model">DOM</abbr> element which contains the image. The browser cycles through the sources and retrieves the first match. If the &lt;picture&gt; tag isn't supported, a &lt;div&gt; is rendered and the &lt;img&gt; tag is used.</p>
+
+    <h2>Minifying images</h2>
+
+    <p>When developing applications, we usually want to make our asset files smaller. Doing this will lead to smaller assets and faster websites. To do this with Webpack, we can use a plugin called imagemin-webpack-plugin.</p>
+
+    <p>We should already have Webpack setup - webpack.config.js config file created, webpack and webpack-cli installed as NPM (Node Package Manager) packages.</p>
+
+    <p>Usually you want to copy images into a dist/ (distribution) directory. This is common practice used to keep original code, images and other assets, seperate from their distributed versions.</p>
+
+    <p>Begin by installing imagemin-webpack-plugin as an NPM devDependency:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install imagemin-webpack-plugin --save-dev
+        </code>
+    </pre>
+
+    <p>First, declare the Imagemin plugin by adding this code at the top of webpack.config.js:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+        </code>
+    </pre>
+
+    <p>Next, add the following code as the last item in the plugins[] array. This adds Imagemin to the list of plugins that Webpack uses:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+new ImageminPlugin()
+        </code>
+    </pre>   
+
+    <p>Adding it at the end of the array ensures that Imagemin runs last after all other plugins.</p>
+
+    <p>We are also going to install copy-webpack-plugin. This allows compressed images to be copied around. Install this package also using NPM as a devDependency:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install copy-webpack-plugin --save-dev
+        </code>
+    </pre>  
+
+    <p>The webpack.config.js file should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
+
+module.exports = {
+    entry: './index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    plugins: [
+        new CopyWebpackPlugin([{
+            from: 'img/**/**',
+            to: path.resolve(__dirname, 'dist')
+        }]),
+        new ImageminPlugin()
+    ]
+}
+        </code>
+    </pre> 
+
+    <p>We can disable the ImageminPlugin when being used in development (but not production) by adding this line of code into the plugins section:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
+
+module.exports = {
+        // Code omitted for simplicity
+
+        new ImageminPlugin({
+            // Disable during development
+            disable: process.env.NODE_ENV !== 'production', 
+        })
+    ]
+}
+        </code>
+    </pre> 
+
+    <p>We now have a Webpack config that compresses images using Imagemin and takes the images from the src directory and copies them into the dist directory.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: './WebContent/src/index.js'
+    },
+    output: {
+        path: path.resolve(__dirname, './WebContent/dist'),
+        // Set filename of bundle if production or development mode is used
+        filename: env === 'production' ? 'js/min/[name].bundle.min.js' : 'js/[name].bundle.js'
+    },
+    optimization: {
+        // Create the runtime bundle containing the bootstrap code for Webpack
+        runtimeChunk: {
+            name: 'runtime'
+        },
+        // Allow shared and vendor dependencies to be split into separate bundles
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/i,
+                    chunks: 'all',
+                    name: 'hastingsvendor'
+                }
+            }
+        }
+    },
+    devtool: 'source-map',
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.s[c|a]ss$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
+        new CopyWebpackPlugin([{
+            from: "./WebContent/src/images/*",
+            to: "./images/[name].[ext]"
+        }]),
+        new ImageminPlugin({
+            // Disable during development
+            disable: process.env.NODE_ENV !== 'production', 
+        })
+    ]
+}
+
+        </code>
+    </pre>
+
+    <p>When the build was run, the example PNG file reduced from 16KB down to 8KB.</p>  
+
+    <p>Webpack may show a warning letting you know that your PNG files, in spite of some compression, still exceeds the recommended size limit. We can tell Imagemin to compress PNGs using the Pngquant plugin. The quality fields uses a min and max range of values to determine the compression level.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
+        new CopyWebpackPlugin([{
+            from: "./WebContent/src/images/*",
+            to: "./images/[name].[ext]"
+        }]),
+        new ImageminPlugin({
+            // Disable during development
+            disable: process.env.NODE_ENV !== 'production',
+            pngquant: ({
+                quality: '95-100'
+            }) 
+        })
+    ]
+}
+        </code>
+    </pre>
+
+    <p>By setting the quality value to 0-50, this will set the quality to be no greater than 50%.</p>
+
+    <p>The test option can also be added to the ImageminPlugin:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }),
+        new CopyWebpackPlugin([{
+            from: "./WebContent/src/images/*",
+            to: "./images/[name].[ext]"
+        }]),
+        new ImageminPlugin({
+            // Disable during development
+            disable: process.env.NODE_ENV !== 'production',
+            test: /\.(jpe?g|png|gif|svg)$/i, 
+            pngquant: ({
+                quality: '95-100'
+            }) 
+        })
+    ]
+}
+        </code>
+    </pre>
+
+    <p>The pngquant package can be installed using NPM.</p>
+
+    <p>Instead of using imagemin-webpack-plugin's default plugin for JPEG compression, imagemin-jpegtran, use the imagemin-mozjpeg plugin. Unlike Jpegtran, Mozjpeg let's you specify a compression quality for your JPEG images.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install imagemin-mozjpeg --save-dev
+        </code>
+    </pre> 
+
+    <p>Initialize the imagemin-mozjpeg plugin by adding the following line at the top of your webpack.config.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const imageminMozjpeg = require('imagemin-mozjpeg')
+        </code>
+    </pre>
+
+    <p>Add a plugins property to the object passed to ImageminPlugin(), such that the object now looks like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+new ImageminPlugin({
+    // Disable during development
+    disable: process.env.NODE_ENV !== 'production',
+    test: /\.(jpe?g|png|gif|svg)$/i, 
+    pngquant: ({
+        quality: '95-100'
+    }),
+    plugins: [imageminMozjpeg({quality: 50})]
+})
+        </code>
+    </pre>
+
+    <p>This code tells Webpack to compress JPEG files to a quality of 50 using the Mozjpeg plugin. Here we are adding settings for a plugin that is a defaulty plugin of imagemin-webpack-plugin. Thet can be added as a key-object pair on the object passed to ImageminPlugin(). The settings for Pnquant are a good example of this. However, if you're adding settings for non-default plugins (for example, Mozjpeg), thet should be added by including them in the array corresponding to the plugins property.</p>
+
+    <p>Our example JPEG image was reduced from 12KB down to 4KB.</p>
+
+    <p>We may want to look at using WebP file formats also to improve compression of image assets. This will help to improve our page performance in Lighthouse by serving images in next-gen formats.</p>
+
+    <p>For WebP, we may want to use the <a href="https://github.com/imagemin/imagemin-webp">ImageminWebP</a> package:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install imagemin-webp --save-dev
+        </code>
+    </pre>
+
+    <p>Lighthouse's "Efficiently encode images" performance audit can let you know if the JPEG images on your page are optimally compressed.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://web.dev/codelab-imagemin-webpack">https://web.dev/codelab-imagemin-webpack</a></li>
+        <li><a href="https://pusher.com/tutorials/webpack-part-6">https://pusher.com/tutorials/webpack-part-6</a></li>
+        <li><a href="https://github.com/Klathmon/imagemin-webpack-plugin">https://github.com/Klathmon/imagemin-webpack-plugin</a></li>
+        <li><a href="https://web.dev/serve-images-webp">https://web.dev/serve-images-webp</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/</a></li>
+        <li><a href="https://www.smashingmagazine.com/2018/07/converting-images-to-webp/">https://www.smashingmagazine.com/2018/07/converting-images-to-webp/</a></li>
+        <li><a href="https://github.com/tcoopman/image-webpack-loader/issues/138">https://github.com/tcoopman/image-webpack-loader/issues/138</a></li>
+        <li><a href="https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size">https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size</a></li>
+        <li><a href="https://pngquant.org/">https://pngquant.org/</a></li>
+        <li><a href="https://github.com/imagemin/imagemin-webp">https://github.com/imagemin/imagemin-webp</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
