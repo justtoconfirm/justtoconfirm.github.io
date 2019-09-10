@@ -139,9 +139,18 @@ console.log("Hello World");
         </code>
     </pre>
 
+    <p>To change directory back to the root of your project folder from within your terminal, use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd ..
+        </code>
+    </pre>
+
     <h2>Run Webpack</h2>
 
-    <p>To run Webpack, enter the following command in your terminal:</p>
+    <p>Begin by ensuring that you are the root of your project folder first. To run Webpack, enter the following command in your terminal:</p>
 
     <pre>
         <code>
@@ -150,7 +159,9 @@ $ npm run build
         </code>
     </pre>
 
-    <p>This will run the build script inside the package.json file. Once executed, this command will create a distribution directory inside the project folder named 'dist'. Within this directory, a bundled JavaScript file will be created named main.js.</p>         
+    <p>This will run the build script inside the package.json file. Once executed, this command will create a distribution directory inside the project folder named 'dist'. Within this directory, a bundled JavaScript file will be created named main.js.</p>  
+
+    <p>If using source control, such as Git/GitHub, you may want to consider also adding a .gitignore file to the root of the project folder to avoid the node_modules directory from being added to source control.</p>       
 </main>
 
 </body>
