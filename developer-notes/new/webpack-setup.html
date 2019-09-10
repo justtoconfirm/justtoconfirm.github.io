@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Webpack Setup</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <!--<a href="index.html">Home</a>-->
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <!--<a href="#main">Skip to content</a>-->
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Webpack: Setup</h1>
+
+    <h2>What is Webpack?</h2>
+
+    <p>Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for use in the browser. Alternative JavaScript module bundlers include <a href="https://rollupjs.org/guide/en/" target="_blank" rel="noopener noreferrer">rollup.js</a> and <a href="https://parceljs.org/" target="_blank" rel="noopener noreferrer">Parcel.js</a>.</p>
+
+    <h2>Install Node &amp; NPM (Node Package Manager)</h2>
+
+    <p>Webpack will be installed using NPM (Node Package Manager). Installing Node.js on your machine will also install NPM.</p>
+
+    <ul>
+        <li><a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Download Node.js</a></li>
+    </ul>
+
+    <p>The terminal can be used to confirm the versions of Node and NPM once installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node --version
+$ npm --version
+        </code>
+    </pre>
+
+    <h2>Create a new project</h2>
+
+    <p>Begin by opening your terminal and creating a new directory. In this example the directory created will be named js-project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir js-project
+        </code>
+    </pre>
+
+    <p>Next, change directory to the newly created project directory:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd js-project
+        </code>
+    </pre>
+
+    <p>Create a package.json file. This will be required to allow NPM (Node Package Manager) packages/modules to be installed:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm init -y
+        </code>
+    </pre> 
+
+    <h2>Install Webpack</h2>
+
+    <p>NPM (Node Package Manager) will be used to install Webpack within the project. The webpack and webpack-cli packages will be installed as devDependencies. Within the terminal, enter the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack webpack-cli --save-dev
+        </code>
+    </pre> 
+
+    <p>Both packages will be listed within the package.json file as devDependencies. A package-lock.json file and node_modules directory will now be generated within the project folder.</p>
+
+    <h2>Setup Webpack</h2>
+
+    <p>Begin by opening the package.json file and adding a build script. This will allow Webpack to be run from within the terminal. In this example the build script is named 'build':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+},
+        </code>
+    </pre>
+
+    <p>Webpack requires a src directory to be created. Begin by creating a src directory within the project folder:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir src
+        </code>
+    </pre>  
+
+    <p>Within this newly created src directory, create an empty JavaScript file. This needs to be named index.js as this is the default file Webpack will look for.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd src
+$ touch index.js
+        </code>
+    </pre> 
+
+    <p>Open the index.js file and add a single line of JavaScript code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log("Hello World");
+        </code>
+    </pre>
+
+    <h2>Run Webpack</h2>
+
+    <p>To run Webpack, enter the following command in your terminal:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run build
+        </code>
+    </pre>
+
+    <p>This will run the build script inside the package.json file. Once executed, this command will create a distribution directory inside the project folder named 'dist'. Within this directory, a bundled JavaScript file will be created named main.js.</p>         
+</main>
+
+</body>
+</html>
