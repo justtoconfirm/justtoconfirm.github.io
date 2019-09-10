@@ -201,12 +201,16 @@ pre {
     color: #999;
 }
 
+/* New Code */
+.note {
+    background-color: #fff3d4;
+    border-left: 5px solid #f6b73c;
+    font-weight: bold;
+    margin: 30px 0;
+    padding: 15px 20px;
+}
+
 .no-bullet-list {
     list-style-type: none;
     padding-left: 0;
-}
-
-/* New Code */
-.token--keyword {
-    color: #07a;
 }
