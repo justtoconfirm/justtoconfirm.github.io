@@ -190,10 +190,12 @@ pre {
     color: #690;
 }
 
+/*
 .token-attr-value,
 .token-keyword {
     color: #07a;
 }
+*/
 
 .token-punctuation {
     color: #999;
@@ -202,4 +204,9 @@ pre {
 .no-bullet-list {
     list-style-type: none;
     padding-left: 0;
+}
+
+/* New Code */
+.token--keyword {
+    color: #07a;
 }
