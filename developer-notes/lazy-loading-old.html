@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Lazy Loading</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<!-- https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/ -->
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Lazy Loading</h1>
+
+    <p>Lazy loading is a solution that lowers initial page payload and load time, but doesn't reduce the content available on a page. Lazy loading is a technique that defers loading of non-critical resources at page load time. Instead, these resources - such as images - are loaded at the moment of need.</p>
+
+    <ul>
+        <li>You arrive at a page and begin to scroll as you read the content.</li>
+        <li>At some point, you scroll a placeholder image into the viewport.</li>
+        <li>The placeholder image is suddenly replaced by the final image.</li>
+    </ul>
+
+    <p>Lazy loading is used to load stuff only when its needed by the user and avoids having to load something the user may never see. This will help to reduce initial page load time, page weight and system resource usage.</p>
+
+    <p>Anything above the fold shouldn't be lazy loaded. These assets should be loaded normally.</p>
+
+    <h2>Images</h2>
+
+    <p>The most common lazy loading candidates are images that use the &lt;img&gt; element. When we lazy load image elements, we use JavaScript to check it they're in the viewport. If they're in the viewport, their src (and sometimes srcset) attributes are populated with URLs to the desired image content.</p>
+
+    <p>This can be achieved by using the scroll or resize event handlers. While this approach is the most compatible across browsers, modern browsers offer a more performant and efficient way to do the work of checking if elements are visible via the intersection observer API.</p>
+
+    <p>Intersection observer is easier to use and read than relying on scroll or resize event handlers. All a developer needs to do is to decide what to do when an element is visible.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;img class="lazy" src="placeholder-image.jpg" data-src="image-to-lazy-load-1x.jpg" data-srcset="image-to-lazy-load-2x.jpg 2x, image-to-lazy-load-1x.jpg 1x" alt="I'm an image!"&gt;
+        </code>
+    </pre>
+
+    <p>The class attribute is used to select the element with JavaScript. The src attribute is used to reference the placeholder image that will appear when the page first loads. The data-src and data-srcset attributes are used to load the image once the element is in the viewport.</p>
+
+    <p>We can now add the intersection observer into our JavaScript code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.srcset = lazyImage.dataset.srcset;
+                    lazyImage.classList.remove("lazy");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    } else {
+        // Possibly fall back to a more compatible method here
+    }
+});
+
+        </code>
+    </pre>
+
+    <p>The DOMContentLoaded event queries the DOM for all &lt;img&gt; elements with a class of 'lazy'. If the intersection observer is available, we create a new observer that runs a callback when img.lazy elements enter the viewport.</p>
+
+    <p>The isIntersecting method is unavailable in Edge 15. Support is good amongst browsers for this method, but you will need a polyfill for browsers that don't support some features of this script, or add fallback code within the 'else' statement.</p>
+</main>
+
+</body>
+</html>

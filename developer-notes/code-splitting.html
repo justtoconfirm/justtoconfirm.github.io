@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>FED Code splitting</title>
+
+	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header role="banner">
+	<a href="index.html">Home</a>
+</header>
+
+<main role="main">
+	<h1>FEDs Code splitting</h1>
+	<h2>Resources</h2>
+	<p><a href="https://webpack.js.org/guides/code-splitting/" target="_blank" rel="noopener noreferrer">https://webpack.js.org/guides/code-splitting/</a></p>
+
+	<p><a href="https://www.npmjs.com/package/extract-css-chunks-webpack-plugin" target="_blank" rel="noopener noreferrer">https://www.npmjs.com/package/extract-css-chunks-webpack-plugin</a></p>
+
+	<p><a href="https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758" target="_blank" rel="noopener noreferrer">https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758</a></p>
+
+	<h3>What is code-splitting</h3>
+
+	<p>Code splitting is a great feature of Webpack that allows you to split your code into various 'bundles' which can then either be loaded on demand, or all at the same time.  With this you can then control the load prioritasion too which can have a big impact on improving the load time.</p>
+
+	<h3>Two different types of splitting</h3>
+
+	<ul class="bullets-secondary">
+		<li><strong>Bundle splitting</strong>: creating more, smaller files (but loading them all on each network request anyway) for better caching</li>
+		<li><strong>Code splitting</strong>: dynamically loading code, so that users only download the code they need for the part of the site that they’re viewing.</li>
+	</ul>
+	
+	<p></p>
+
+	<p></p>
+
+	<p></p>
+
+	<p></p>
+
+	<pre>
+		<code>
+<!-- leave this line empty -->
+$ mkdir react-workshop
+$ cd react-workshop
+
+$ npm init -y   # Creates the package.json file
+		</code>
+	</pre>
+
+</main>
+
+</body>
+</html>

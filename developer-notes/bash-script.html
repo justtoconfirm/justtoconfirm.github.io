@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bash Profile & Bash Script</title>
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header role="banner">
+    <a href="index.html">Home</a>
+</header>
+
+<main role="main">
+    <h1>Bash Profile &amp; Bash Script</h1>
+
+    <p>Bash, which stands for Bourne Again SHell (Bash), is a command-line interpreter that runs on Unix, Linux, and machines running Mac OS. It is the standard shell under OS X - meaning it is the standard program to interface with the operating system's (OS) underpinnings.</p>
+
+    <h2>Bash profile</h2>
+
+    <p><strong>Bash Profile</strong> or <strong>bash_profile</strong> is a configuration file for the bash shell. When bash is invoked as an interactive login shell, it first reads and executes commands from the .bash_profile. This file can be used to export variables in shell. These shell variables include: PATH, USER, and HOSTNAME.</p>
+
+    <p>Begin by setting up a .bash_profile file. First, open your terminal and add the following commands:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd ~/                 # This will take you to the home directory
+$ touch .bash_profile   # Create a .bash_profile file
+        </code>
+    </pre>
+
+    <p>Within the Finder you should be able to locate the .bash_profile file within the home directory. If hidden, use the following keyboard shortcut to reveal hidden files:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Command + Shift + . (dot)
+        </code>
+    </pre>
+
+    <h2>Creating a Bash script</h2>
+
+    <p>A <strong>bash script</strong> is a script used to tell the Bash shell what it should do. It is a plain text file that contains a series of commands. It is convention to give files that are Bash scripts an extension of .sh</p> 
+
+    <p>Let's create a bash script that will allow us to make git commits using a single command within the terminal. Open your terminal, and follow these commands:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ cd ~
+$ mkdir bin             # Create a directory named 'bin'
+$ cd bin
+$ touch git-deploy      # Create a script file, this should have no file extension
+        </code>
+    </pre>
+
+    <p>Open the .bash_profile and add the following line:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+export PATH=$PATH:/Users/jacksod/bin
+        </code>
+    </pre>
+
+    <p>Replace the 'jacksod' part of the path with your own username.</p>
+
+    <p>Within the git-deploy script file, add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+#!/bin/bash
+
+# gets the current git branch
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+# prompt the use for a commit message
+read -r -p 'Commit message: ' desc
+# track all files
+git add *
+# commit with message
+git commit -m "$desc"
+# push to origin
+git push origin $branch
+        </code>
+    </pre>
+
+    <p>We now need to set rights access to the file. Within the terminal, navigate to the git-deploy script file and run the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ chmod u+x git-deploy
+        </code>
+    </pre>
+
+    <p>Close the terminal and reopen it. Now run the bash script file using the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ git-deploy
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
