@@ -140,6 +140,10 @@ $ touch index.js
         </code>
     </pre> 
 
+    <div class="note">
+        <p>The default behaviour for Webpack 4 is to search for the index.js file within a src directory inside your project. Webpack will return an error within the terminal if it's unable to locate this file.</p>
+    </div>
+
     <p>Open the index.js file and add a single line of JavaScript code:</p>
 
     <pre>
@@ -171,7 +175,18 @@ $ npm run build
 
     <p>This will run the build script inside the package.json file. Once executed, this command will create a distribution directory inside the project folder named 'dist'. Within this directory, a bundled JavaScript file will be created named main.js.</p>  
 
-    <p>If using source control, such as Git/GitHub, you may want to consider also adding a .gitignore file to the root of the project folder to avoid the node_modules directory from being added to source control.</p>       
+    <p>If using source control, such as Git/GitHub, you may want to consider also adding a .gitignore file to the root of the project folder to avoid the node_modules directory from being added to source control.</p> 
+
+    <h2>Config file</h2>
+
+    <p>Although Webpack 4 itself is mostly known as being 'zero-configuration', a webpack.config.js config file can be created to further extend the functionality of Webpack. The webpack.config.js file needs to be created within the root of your project folder.</p>   
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch webpack.config.js
+        </code>
+    </pre>
 </main>
 
 </body>
