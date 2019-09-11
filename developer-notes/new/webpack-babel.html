@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Webpack Babel</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Webpack: Babel</h1>
+
+    <h2>ES6 (ECMAScript 6)</h2>
+
+    <p>Modern JavaScript code can be written in the ES6 (ECMAScript 6) syntax. This brings new syntax and features to make your code more modern and more readable it also allows you to write less code and do more. ES6 however, is not supported by all browsers. We therefore need to transpile the code to turn your ES6 syntax into ES5 for use in browsers that don't provide native support for ES6.</p>
+
+    <p>We can use Babel to transpile our ES6 code into ES5.</p>
+
+    <h2>Install Babel</h2>
+
+    <p>NPM (Node Package Manager) will be used to install the packages requires to setup Babel. Here is the list of packages to be installed:</p>
+
+    <ul>
+        <li>@babel/core - The main dependency that includes the Babel transform script</li>
+        <li>@babel/preset-env  - The default Babel preset used to transfrom ES6+ into valid ES5 code and to optionally configure browser polyfills</li>
+        <li>babel-loader - A Webpack loader that hooks Babel into Webpack allowing Babel to run when using Webpack</li>
+    </ul>
+
+    <p>Open the terminal and install the packages listed above as devDependencies:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/core @babel/preset-env babel-loader --save-dev
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The $ symbol at the start of a code line is used to identify that this is a terminal command. When entering the command, the $ symbol is not needed.</p>
+    </div>
+    
+    <h2>Updating the Webpack Config</h2>
+
+    <p>The Webpack config file, named webpack.config.js, is placed within the root of your project folder/directory. Although Webpack is referred to as 'zero-configuration', it mostly applies to general defaults such as entry and output. The Webpack config file will need to be updated to apply Babel.</p>
+
+    <p>Open the webpack.config.js file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Babel config file</h2>
+
+    <p>To allow Babel to work, a Babel config file needs to be created. This config file is named .babelrc and should be placed within the root of your project directory.</p>
+
+    <p>Begin by creating the .babelrc config file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ touch .babelrc
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The .babelrc file once created maybe hidden in your project folder. Use CTRL + SHIFT + . (dot) to see the hidden file(s).</p>
+    </div>
+
+    <p>This will create an empty config file. Open the .babelrc config file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ "@babel/preset-env" ]
+}
+        </code>
+    </pre>
+
+    <h2>Running Babel</h2>
+
+    <p>Now that Babel has been setup within your Webpack configuration, you can now write JavaScript in the latest ES6 syntax and have it transpiled into ES5 syntax for use across all browsers. Begin by opening the index.js file within the src directory of your project and add the following ES6 code example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const sayHello = () => {
+    console.log("Hello World")
+}
+
+sayHello()
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>As an example of ES6 we are using the ES6 Arrow function syntax to demonstrate Babel in action.</p>
+    </div>
+
+    <p>To run Webpack, simply use the build script within the package.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run build
+        </code>
+    </pre>
+
+    <p>When the build runs the code written in ES6 within the index.js file will be transpiled by Babel using Webpack and will be added to the main.js bundle in the distribution (dist) directory as ES5 syntax.</p>
+</main>
+
+</body>
+</html>
