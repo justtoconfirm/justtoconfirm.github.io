@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React Setup</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Setup</h1>
+
+    <h2>Install React</h2>
+
+    <p>NPM (Node Package Manager) can be used to install React. Both the react and react-dom NPM packages will be required to be installed. Open your terminal and install both packages as dependencies within the package.json file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react react-dom --save-dev
+        </code>
+    </pre>
+
+    <p>Here are the packages that are being installed:</p>
+
+    <ul>
+        <li>react - the top-level <abbr title="Application Programming Interface">API</abbr> of the React library</li>
+        <li>react-dom - <abbr title="Document Object Model">DOM</abbr> specific methods for React</li>
+    </ul>
+
+    <div class="note">
+        <p>These steps require Webpack to be installed and setup. Please read the <a href="webpack-setup.html">Webpack setup documentation</a> before installing React.</p>
+    </div>
+
+    <p>You may want to also install the @babel/preset-react package using NPM as a devDependency to allow components to be written in the ES6 JavaScript syntax within React.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/preset-react --save-dev
+        </code>
+    </pre>
+
+    <p>When the @babel/preset-react package is installed, the .babelrc config file will also need to be updated. Update the .babelrc file so it contains the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ]
+}
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Babel is a JavaScript compiler that allows you to use the ES6 JavaScript syntax in your code.</p>
+    </div>
+
+    <h2>Creating the HTML document</h2>
+
+    <p>Following the initial setup a simple HTML document is required that will allow the React application to render. Create a new HTML document named index.html within the distribution (dist) directory of your project. The HTML code should appear as below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;React Application&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script src="main.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>The main.js file that was created within the <a href="webpack-setup.html">Webpack setup documentation</a> is referenced within the &lt;script&gt; tag within this HTML code.</p>
+</main>
+
+</body>
+</html>
