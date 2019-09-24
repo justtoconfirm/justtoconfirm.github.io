@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Array</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Array</h1>
+
+    <p>The JavaScript Array object is a high-level list-like object used to store multiple items of any data type. Arrays are created by using square brackets with individual elements separated by commas.</p>
+
+    <p>JavaScript Arrays are mutable, meaning that the values they contain can be changed. Even if the array is declared using const, the contents can be manipulated by reassigning internal values or using methods like push() and pop().</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// An array containing numbers
+const numberArray = [0, 1, 2, 3];
+
+// An array containing different data types
+const mixedArray = [1, "chicken", false, null];
+
+// An array containing the same data type
+const fruits = ["apple", "orange", "banana"];
+        </code>
+    </pre>
+
+    <h2>Accessing Array elements</h2>
+
+    <p>Elements within an array are arranged by index values, starting at 0 as the first element index. Elements can be accessed by their index using the array name and the index surrounded by square brackets. Array items can be changed by accessing the item and assigning it to a new value.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// An array containing numbers
+const numberArray = [100, 200, 300, 400];
+
+// Access the second element in the array
+numberArray[1];     // 200
+
+// Changing a value at an index
+numberArray[1] = 205
+
+console.log(numberArray);   // [100, 205, 300, 400]
+        </code>
+    </pre>
+
+    <h2>indexOf</h2>
+
+    <p>indexOf is used to return the first index at which a given element can be found in an array. It is widely used to check whether an element is in an array or not.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const sports = ["football", "hocky", "judo"];
+
+const judoIndex = sports.indexOf("judo");
+console.log(judoIndex);     // 2
+        </code>
+    </pre>
+
+    <h2>The length property</h2>
+
+    <p>The length property of a JavaScript array indicates the number of elements that array contains. To obtain the length value, append the length property after the array name using a period.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const numberArray = [1, 2, 3, 4];
+
+numberArray.length;     // 4
+        </code>
+    </pre>
+
+    <p>The length property can also be used to append a new element to an array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const numberArray = [1, 2, 3, 4];
+
+numberArray[numberArray.length] = 5;    // [1, 2, 3, 4, 5]
+        </code>
+    </pre>
+
+    <h2>Loop through the array</h2>
+
+    <p>We can use a for loop to loop through an array and test it against the length property. This will output each element listed within the array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const numberArray = [1, 2, 3, 4];
+
+// Loop through the length of the array
+for (let i = 0; i < numberArray.length; i++) {
+    console.log(numberArray[i]);
+}
+        </code>
+    </pre>
+
+    <p>The variable may be best declared outside of the loop to avoid it being declared on each iteration of the loop.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const numberArray = [1, 2, 3, 4];
+// Declare the variable outside the loop
+let i;
+
+// Loop through the length of the array
+for (i = 0; i < numberArray.length; i++) {
+    console.log(numberArray[i]);
+}
+        </code>
+    </pre>  
+
+    <h2>The push() method</h2>
+
+    <p>The push() method of the JavaScript array can be used to add one or more elements to the end of an array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const cart = ["apple", "orange"];
+
+// Adding a single element to the array
+cart.push("banana");
+
+console.log(cart);      // ["apple", "orange", "banana"]
+
+// Adding multiple elements to the array
+cart.push("pear", "strawberry", "mango");
+
+console.log(cart);      // ["apple", "orange", "banana", "pear", "strawberry", "mango"]
+        </code>
+    </pre>
+
+    <h2>The pop() method</h2>
+
+    <p>The pop() method removes the last element from an array and returns that element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const cart = ["apple", "orange"];
+
+// Removing the last element from the array
+cart.pop();
+
+console.log(cart);      // ["apple"]
+        </code>
+    </pre>
+
+    <h2>reverse()</h2>
+
+    <p>The reverse method is used to reverse the array.</p> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const numbers = [1, 2, 3, 4, 5];
+
+numbers.reverse();
+console.log(numbers);   // [5, 4, 3, 2, 1]
+        </code>
+    </pre> 
+
+    <h2>The concat() method</h2>
+
+    <p>The concat() method creates a new array by merging (concatenating) multiple arrays. The concat() method does not change the existing arrays, it always returns a new array.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const italianCars = ["Ferrari", "Pagani", "Lamborghini"];
+const germanCars = ["BMW", "Audi", "Mercedes", "VW"];
+const myGarage = italianCars.concat(germanCars);    // Joins italianCars and the germanCars arrays
+
+console.log(myGarage);      // ["Ferrari", "Pagani", "Lamborghini", "BMW", "Audi", "Mercedes", "VW"]
+        </code>
+    </pre>  
+</main>
+
+</body>
+</html>
