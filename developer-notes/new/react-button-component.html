@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React: Button Component</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Button Component</h1>
+
+    <p>The simplest way to define a React component is to write a JavaScript function. This type of component is called a functional (or dumb) component in React because they are created using functions.</p>
+
+    <div class="note">
+        <p>Component names in React should always start with an uppercase letter.</p>
+    </div>
+
+    <h2>File Structure</h2>
+
+    <p>The file structure of your project folder should currently look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>You can change the file structure to add subdirectories to the src and dist folders but you may need to update the file paths within your React components and/or Webpack config file. This file structure is being used for simplicity at this stage.</p>
+    </div>
+
+    <h2>The Button component</h2>
+
+    <p>Within the src directory of your project folder, begin by creating a new empty JavaScript file. This file should be named Button.js</p>
+
+    <p>Within the Button.js file, add the following code to create a simple Button component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+
+function Button() {
+    return &lt;button&gt;Button&lt;/button&gt;
+}
+
+export default Button;
+        </code>
+    </pre>
+
+    <p>The index.js file can now be updated to import the Button component to render a button element within our application. Open the index.js file within the src directory and update the code.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Button from './Button';
+
+ReactDOM.render(
+    &lt;Button /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Run Webpack to rebuild your application for each change you make to your React application and refresh the browser to see your changes.</p>
+    </div>
+
+    <p>You should now see a button being rendered on the page.</p>
+
+    <p>The file structure within your project should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    Button.js
+        </code>
+    </pre>
+
+    <h2>Adding Props to the Button</h2>
+
+    <p>Now that the basic Button component has been created in React, we can begin to add props (properties). To begin, a prop named type can be added to the Button component. This will allow the type attribute for the button to be set.</p>
+
+    <p>Using Babel will allow our React components to be written using ES6 arrow functions. In this example, the Button component is written in ES6 syntax and the type prop has been added:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = '' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>The props can also be added to the component using a const variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = (props) => {
+
+    // Props can be listed here
+    const { type = '' } = props
+
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Multiple props can use this syntax:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = (props) => {
+
+    // Props can be listed here
+    const { type = '',
+            propTwo,
+            propThree } = props
+
+    return (
+        &lt;button type={type} propTwo={propTwo} propThree={propThree}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The semi-colons at the end of the statements can be removed from our React components.</p>
+    </div>
+
+    <h2>Passing values into props</h2>
+
+    <p>Now that the type prop has been added into the Button component we can pass in a type value into the Button component when we render the component. Open index.js in the src directory and update the code within the file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Button from './Button';
+
+ReactDOM.render(
+    &lt;Button type="submit" /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>In this example, we are passing down the value of 'submit' into the type prop of the Button component. This value is passed from the parent down to the child component. When rendered, the type attribute will be added to the button element.</p>
+
+    <h2>Default prop values</h2>
+
+    <p>The type prop can have a default value within the Button component. This default value will be applied each time the component is rendered unless another value is passed into the type prop.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+// The type prop has a default value of button
+const Button = ({ type = 'button' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>We now no longer need to include the type prop when we want to use the component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Button from './Button';
+
+ReactDOM.render(
+    &lt;Button /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>When rendered, the element will be rendered like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button type="button"&gt;Button&lt;/button&gt;
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Should we once again add the type property with the value of 'submit', this value will overwrite the default value of 'button'.</p>
+    </div>
+
+    <h2>The children prop</h2>
+
+    <p>The Button component currently has a fixed label of 'Button'. If this component is to be reusable, this label needs to allow changes for each button rendered. To do this, the children prop can be used. The children prop can be used to pass in a label from the parent component.</p>
+
+    <p>Open the Button component and add a second prop:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+// The type prop has a default value of button
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>When we use the component, we can change the label for each button.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Button from './Button';
+
+ReactDOM.render(
+    &lt;Button&gt;Sign in&lt;/Button&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>In this example, the button label has been changed to 'Sign in'. The value we want to pass down into the children prop of the Button component is between the opening and closing Button tags.</p>
+    </div>
+
+    <h2>Spread Operator</h2>
+
+    <p>Within our components we can avoid the need to list out all of our props by using the spread operator. Here is the current code within the Button component:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+        </code>
+    </pre>
+
+    <p>Here is the code when using the spread operator:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+    )
+}
+        </code>
+    </pre>
+
+    <p>For multiple props, the syntax would be:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const Button = ({ propOne, propTwo, propThree, children }) => {
+    return (
+        &lt;button {...{propOne, propTwo, propThree}}&gt;{children}&lt;/button&gt;
+    )
+}
+        </code>
+    </pre>
+
+    <h2>Change rendering of the button</h2>
+
+    <p>A prop can be used to change how the Button component is rendered. The url prop can be added to the Button component. Should a url value be passed down into the component, the Button will render as a link otherwise a button will be rendered.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Button = ({ type = 'button', url = '', children }) => {
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Should we want to render the Button component as a link, we just need to use the url prop when the button is being rendered.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import Button from './Button';
+
+ReactDOM.render(
+    &lt;Button url="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/Button&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <h2>Add styling</h2>
+
+    <p>To apply a class attribute to a React component the className attribute is used. In the following example, we can update the Button component to apply a class of 'btn' to the component. This will allow CSS to be used to style the button once rendered within the application.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const renderButton = () => 
+    &lt;button type={type} className="btn"&gt;{children}&lt;/button&gt;
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>In React, the className attribute is used in-place of class.</p>
+    </div>
+
+    <p>We may want to toggle classes based on prop values being passed down into our component. We can use the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">Classnames</a> NPM (Node Package Manager) package. This needs to be installed as a dependency within your project. Open your terminal and enter the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install classnames --save
+        </code>
+    </pre>
+
+    <p>This will add the package into you package.json file as a dependency.</p>
+
+    <p>Once installed we simply need to update the Button component with a number of props.</p>
+
+    <div class="note">
+        <p>Don't forget to import the classNames package at the top of the Button component. Without the import, the classNames package won't work!</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({ type = 'button', url = '', theme = '', isFullWidth = false, children }) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button type={type} className={buttonClass}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Within the index.js file, where the Button component is being rendered, we can now apply different classes using the theme prop. The default class for our Button component will be 'btn' but any value added will apply additional modifier classes when the element is rendered.</p>
+
+    <p>Open the index.js file in the src directory and experiment with a number of different classes using the theme prop:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Will apply the classes: btn btn--primary
+ReactDOM.render(
+    &lt;Button theme="primary"&gt;Button&lt;/Button&gt;,
+    document.getElementById('app')
+);
+
+// Will apply the classes: btn btn--secondary
+ReactDOM.render(
+    &lt;Button theme="secondary"&gt;Button&lt;/Button&gt;,
+    document.getElementById('app')
+);
+
+// Will apply the classes: btn btn--full-width
+ReactDOM.render(
+    &lt;Button isFullWidth&gt;Button&lt;/Button&gt;,
+    document.getElementById('app')
+);
+
+// Will apply the classes: btn btn--primary btn--full-width
+ReactDOM.render(
+    &lt;Button theme="primary" isFullWidth&gt;Button&lt;/Button&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Run Webpack to rebuild your application for each change you make to your React application and refresh the browser to see your changes.</p>
+    </div>
+</main>
+
+</body>
+</html>
