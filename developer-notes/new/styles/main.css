@@ -214,3 +214,11 @@ pre {
     list-style-type: none;
     padding-left: 0;
 }
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
