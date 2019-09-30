@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - NPM (Node Package Manager)</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>NPM (Node Package Manager)</h1>
+
+    <p>NPM stands for Node Package Manager. It is the largest software package library in the world with over 600,000 packages. NPM is installed with <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Node.js</a> which includes a Command Line Interface (CLI) for NPM allowing developers to interact with packages locally on their machines.</p>
+
+    <p>The NPM repository can be located at: <a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">https://www.npmjs.com/</a></p>
+
+    <p>You may also want to check out <a href="https://yarnpkg.com/lang/en/" target="_blank" rel="noopener noreferrer">Yarn</a> as an alternative to NPM.</p>
+
+    <div class="note">
+        <p>NPM came bundled with Node from version 0.6.3 and above.</p>
+    </div>
+
+    <p>Once Node.js has been installed, NPM should also be installed. To confirm the version of NPM installed open your terminal and enter the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm --version
+        </code>
+    </pre>
+
+    <p>If you want a special treat for Christmas, open your terminal and use the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm xmas
+        </code>
+    </pre>
+
+    <h2>Install a package</h2>
+
+    <p>The NPM install command installs a package and any packages that it depends on. If the package has a package-lock or shrinkwrap file, the installation of the dependencies will be driven by the versions listed in the package-lock or shrinkwrap files.</p>
+
+    <div class="note">
+        <p>The npm-shrinkwrap.json file will take precedence over the package-lock.json file. The package-lock.json file will be generated when you install an NPM package.</p>
+    </div>
+
+    <p>The syntax used within the terminal to install an NPM package:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install &lt;package-name-here&gt;
+
+# Shorthand syntax
+$ npm i &lt;package-name-here&gt;
+        </code>
+    </pre>
+
+    <h3>Install a global package</h3>
+
+    <p>To install a global package, use the -g flag:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install &lt;package-name-here&gt; -g
+
+# Shorthand syntax
+$ npm i &lt;package-name-here&gt; -g
+        </code>
+    </pre>
+
+    <p>To list the NPM packages that are installed as global packages, this command can be used:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm list -g --depth 0
+        </code>
+    </pre>
+
+    <h3>Install a package as a devDependency</h3>
+
+    <p>To install a package as a devDependency, use the --save-dev flag:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install &lt;package-name-here&gt; --save-dev
+
+# Shorthand syntax
+$ npm i &lt;package-name-here&gt; --save-dev
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>You will need to create a package.json file within your project folder/directory to install an NPM package as a devDependency.</p>
+    </div>
+
+    <h3>Install a package as a Dependency</h3>
+
+    <p>To install a package as a Dependency, use the --save flag:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install &lt;package-name-here&gt; --save
+
+# Shorthand syntax
+$ npm i &lt;package-name-here&gt; --save
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>You will need to create a package.json file within your project folder/directory to install an NPM package as a Dependency.</p>
+    </div>
+
+    <p>To view locally installed NPM packages, use the command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm ls
+        </code>
+    </pre>
+
+    <h2>The package.json file</h2>
+
+    <p>Begin by creating or opening a directory and generating a package.json file. This will allow you to install an NPM package as a dependency or devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Create a directory
+$ mkdir my-project
+# Change directory into the my-project folder
+$ cd my-project
+
+# Generate a package.json file
+$ npm init -y
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Once you've created the package.json file in your project, you can begin to install packages using NPM locally. These will be listed within your package.json file once installed and a node_modules folder will be generated inside the root of your project folder.</p>
+
+        <p>It's worthwhile creating a .gitignore file in the root of your project folder when using NPM packages to prevent the node_modules directory from being added to your repository when using version control.</p>
+    </div>
+
+    <h3>Update the package.json version</h3>
+
+    <p>When the package.json file has been created the default version is 1.0.0 but this version can be updated/changed using NPM. When changes occur, we can update the version as a patch, minor or major patch.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm version patch         # 1.0.x
+$ npm version minor         # 1.x.0
+$ npm version major         # x.0.0
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>If we updated the NPM package with a minor patch, the initial version within our package.json file would change from 1.0.0 to 1.1.0.</p>
+    </div>
+
+    <h2>Outdated packages</h2>
+
+    <p>To check for outdated packages:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm outdated
+        </code>
+    </pre>
+
+    <h2>Let's create a project</h2>
+
+    <p>Begin by opening your terminal and creating a new folder/directory named 'my-project':</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ mkdir my-project
+$ cd my-project
+        </code>
+    </pre> 
+
+    <p>Create a package.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm init -y
+        </code>
+    </pre> 
+
+    <p>Install the webpack and webpack-cli packages as devDependencies using NPM:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install webpack webpack-cli --save-dev
+        </code>
+    </pre> 
+
+    <p>Install react and the react-dom library as dependencies using NPM:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install react react-dom --save
+        </code>
+    </pre> 
+
+    <div class="note">
+        <p>Once installed the NPM packages will be listed within the package.json file and a node_modules directory will be generated within your project folder. The package-lock.json file may also be generated and appear within the root of your project folder once you begin to install packages.</p>
+    </div>
+</main>
+
+</body>
+</html>
