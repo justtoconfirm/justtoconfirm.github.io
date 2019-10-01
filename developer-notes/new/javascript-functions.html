@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Functions</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Functions</h1>
+
+    <p>A function is a block of code that performs an action, returns a value or specific task. Functions are a series of statements that have been grouped together. This block of code can then be reused without the need to repeat the same set of statements. Being reusable, functions can therefore make your programs more modular and more efficient.</p> 
+
+    <h2>Declare a Function</h2>
+
+    <p>Functions are declared, or defined, with the function keyword. Below is the syntax for a function in JavaScript.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function functionName() {
+    // Code to be executed here
+}
+        </code>
+    </pre>
+
+    <p>The declaration begins with the function keyword followed by the name - often called the identifier - of the function. Function names follow the same rules as variables - they can contain letters, numbers, underscores and dollar signs. The name of a function is often written in camelCase. The name of the function iis followed by a set of parenthesis which can be used for optional parameters. The code to be executed is contained within the curly brackets.</p>
+
+    <div class="note">
+        <p>When naming a function the name should describe the task or action of the function.</p>
+    </div>
+
+    <p>In this simple example, we'll make a function declaration to print a greeting statement to the console.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function sayGreeting() {
+    console.log("Hello, World");
+}
+        </code>
+    </pre>
+
+    <h2>Invoke a Function</h2>
+
+    <p>Here we have the code to print Hello, World to the console contained inside the sayGreeting() function. Nothing will happen and no code will execute until we invoke, or call, the function. You can invoke a function by writing the name of the function followed by the parenthesis.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Invoke a function
+sayGreeting();
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Now we have our greeting code within our sayGreeting() function, you can reuse the function as many times as you want to. Using parameters, we can also make the code more dynamic.</p>
+    </div>
+
+    <h2>Function Parameters</h2>
+
+    <p>We have created a very simple function that prints Hello, World to the console. Using parameters, we can add additional functionality that will make the code more flexible. Parameters behave as local variables inside a function and allow values to be passed into a function.</p>
+
+    <p>When a user logs into an application we may want to greet them by name instead of just saying "Hello, World". We'll add a parameter into our function, called name, to represent the name of the person being greeted.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize a custom greeting function
+function sayGreeting(name) {
+    console.log(`Hello, ${name}`);
+}
+        </code>
+    </pre>
+
+    <p>Instead of a static string consisting of Hello, World, we now have a template literal string containing our parameter, which is now behaving as a local variable.</p>
+
+    <p>This function can also be re-written without the template literal string:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize a custom greeting function
+function sayGreeting(name) {
+    console.log("Hello, " + name);
+}
+        </code>
+    </pre>
+
+    <p>Assuming our user name is "Dan", we'll call function and place the name as the argument. The argument is the value that gets passed into the function, in this case the argument is "Dan".</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Invoke the function with "Dan" as the argument
+sayGreeting("Dan");
+        </code>
+    </pre>
+
+    <p>When the function is invoked the greeting should be: "Hello, Dan". In a real world example, the function name would pull the username from a database instead of directly supplying the name as an argument value.</p>
+
+    <div class="note">
+        <p>Variables can be declared inside of functions. These variables are known as local variables and will only exist inside the scope of their own function block.</p>
+    </div>
+
+    <h2>The return keyword</h2>
+
+    <p>When the return keyword is used, the function ceases to execute and the value of the expression is returned. In this example, the value will be displayed in the console, it is however not the same as console.log() used to print to the console. Invoking the function will output the value exactly where the function was invoked. This value can be used immediately or placed into a variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize the function
+function add(x, y) {
+    return x + y;
+}
+
+// Invoke the function to find the sum
+add(9, 7);          // 16
+        </code>
+    </pre>
+
+    <h2>Function Expressions</h2>
+
+    <p>Previously a function declaration was used to get the sum of two numbers and return that value. We can also create a function expression by assigning a function to a variable. Using our same add function as an example, we can directly apply the returned value to a variable, in this example, sum.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Assign the add function to the sum constant (variable)
+const sum = function add(x, y) {
+    return x + y;
+}
+
+// Invoke function to find the sum using the variable
+sum(20, 5);         // 25
+        </code>
+    </pre>
+
+    <p>Now that the sum constant is a function, we can make this expression more concise by turning it into an anonymous function (an unnamed function). Currently, our function has the name add, but with function expressions, it is not necessary and is usually omitted.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Assign function to the sum constant (variable)
+const sum = function(x, y) {
+    return x + y;
+}
+
+// Invoke function to find the sum
+sum(20, 5);         // 25
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>A named function expression might be used to aid in debugging, but is usually omitted.</p>
+    </div>
+
+    <h2>Arrow Functions</h2>
+
+    <p>So far we've learnt how to define functions using the function keyword, however, there is a newer, more concise method of defining a function known as an arrow function expression (or, fat arrow). Arrow functions, as they are commonly known, are represented by an equals sign ( = ) followed by a 'greater than' ( &gt; ) sign.</p>
+
+    <div class="note">
+        <p>Arrow functions are a feature of the ECMAScript 6 (ES6) syntax.</p>
+    </div>
+
+    <p>Arrow functions are always anonymous functions and a type of function expression. We can create a simple example to find the total of two numbers.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Define the multiply function
+const multiply = (x, y) => {
+    return x * y
+}
+
+// Invoke the function to find the total
+multiply(30, 4)         // 120
+        </code>
+    </pre>
+
+    <p>Instead of writing out the function keyword, we use the =&gt; arrow to indicate a function. Otherwise, it works similar to a regular function expression with so differences.</p>
+
+    <p>In the case of only one parameter, the parenthesis can be excluded.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Define the square function
+const square = x => {
+    return x * x
+}
+
+// Invoke the function to find the total
+square(8)         // 64
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>In the case of no parameters, an empty set of parenthesis () is required in arrow functions.</p>
+    </div>
+
+    <p>With examples that only consist of a return statement, arrow functions allow the syntax to be reduced even further. If the function is only a single line return, as with the example above, both the curly brackets and the return statement can be omitted, as seen in the example below.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Define the square function
+const square = x => x * x
+
+// Invoke the function to find the total
+square(8)         // 64
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>All three syntax used to create a function results in the same output. It is generally a matter of preference or coding standards that determines the decision on how you will structure your own functions.</p>
+    </div>
+</main>
+
+</body>
+</html>

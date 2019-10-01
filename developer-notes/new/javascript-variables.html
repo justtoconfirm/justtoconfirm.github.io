@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Variables</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Variables</h1>
+
+    <p>A variable allows data to be temporarily stored within your script. It can be considered as a container for storing a value and must be declared befre it can be used. Variables are used to "remember" a value to allow it to be reused within your JavaScript code. Before you can use a variable you first need to declare it. This involves the use of the var keyword followed by the name of the variable. This is called the identifier.</p>
+
+    <ul>
+        <li>Use the var keyword to declare a JavaScript variable</li>
+        <li>The variable name is known as the identifier and is often written in camelCase</li>
+        <li>Once declared a value can be assigned to the variable using the assignment operator ( = )
+        <li>Until a value is assigned, the variable is said to be undefined</li>
+        <li>Strings, numbers and Boolean are just some of the data types you can use</li>
+    </ul>
+
+    <div class="note">
+        <p>JavaScript is an untyped language meaning that a JavaScript variable can hold a value of any data type. Unlike many other programming languages, you don't need to declare the data type a variable will contain as JavaScript handles this automatically during execution of the code.</p>
+    </div>
+
+    <p>Begin by declaring a simple variable with no value. This is an undefined variable as it has no value assigned.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var a;
+        </code>
+    </pre>
+
+    <p>Next, use the assignment operator ( = ) to assign a value to the variable that's been declared:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var a = 1;
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>This variable has been declared as a global variable and is within the global scope.</p>
+    </div>
+
+    <p>A few examples of declaring variables:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var name = "Fluffy";        // String
+var age = 6;                // Number
+var isCat = true;           // Boolean
+var pi = 3.14
+        </code>
+    </pre>
+
+    <p>The console can be used should you want to output the value contained within a variable. As an example, let's output the value of name in the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(name);          // Fluffy
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>These variable examples are declared within the global scope so can be viewed within the browser's window object. A variable declared inside a function has a different scope to a variable that is outside of a function.</p>
+    </div>
+
+    <p>Should you want to view the window object, open the console and enter:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(window);
+        </code>
+    </pre>  
+
+    <div class="note">
+        <p>ES6 introduced two new ways to define variables: let and const. Both work in all modern browsers and IE11 and above. To provide support for older browsers you will need to use a tool like Babel.</p>
+    </div>   
+
+    <h2>let</h2>
+
+    <p>let does almost the same exact thing as var, the big difference between let and var is that you can't redefine a variable set with let in the same scope.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var fruit = "orange";
+
+// The value of the variable is now banana
+var fruit = "banana";
+
+
+let fruit = "orange";
+
+// Throws an error: Uncaught SyntaxError: Identifier has already been declared
+let fruit = "banana";
+        </code>
+    </pre> 
+
+    <div class="note">
+        <p>You can still change the value of the variable, you just cannot define it as a new variable once it's already been declared within the current scope.</p>
+    </div> 
+
+    <p>let is similar to var but it has resolved some of the issues with var. Values in a variable declared using let can be overwritten, but unlike var, we cannot re-declare a variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var fruit = "orange";
+var fruit = "banana";       // The variable value gets overwritten
+
+let fruit = "orange";
+let fruit = "banana";       // Uncaught SyntaxError: Identifier 'fruit' has already been declared
+        </code>
+    </pre> 
+
+    <div class="note">
+        <p>As long as we don't rewrite the whole variable, we can reassign a value by just targeting the unique variable name - the identifier.</p>
+    </div> 
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let fruit = "orange";
+fruit = "banana";           // The variable value gets overwritten
+        </code>
+    </pre> 
+
+    <p>You can use let to define a new variable with the same name in a different scope, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let fruit = "orange";
+
+var getFruit = function() {
+    
+    // This works because it's a different scope
+    let fruit = "banana";
+
+    // Returns banana
+    return fruit;
+}
+
+// Logs orange in the console
+console.log(fruit);
+        </code>
+    </pre>
+
+    <h2>const</h2>
+
+    <p>Unlike var and let, if you define a variable with const, it cannot be given a new value. It is, as the term implies, constant.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const fruit = "orange";
+
+// Throws an error: Uncaught TypeError: Assignment to constant variable
+fruit = "banana";
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>It is always recommended to declare your variables are the top of the local or global scope as variable declarations are always processed first, by the JavaScript interpreter, before any code is executed.</p>
+    </div>     
+
+    <h2>Variables &amp; Memory</h2>
+
+    <p>Global variables use more memory as the browser has to remember them for as long as the web page or application using them is loaded. Local variables are only remembered during the period of time that a function is being executed. Each variable you declare takes up memory. The more variables you therefore declare, the more the browser has to remember and the more memory your script requires to execute.</p>
+
+    <p>Scripts that require more memory perform slower which in turn makes your application or web page take longer to respond to the user.</p>
+
+    <p>Variables often reference the same value stored in the memory. The same value can be used by more than one variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// The value of true is the same value being referenced from within browser memory
+var isCat = true;
+var isDog = true;
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
