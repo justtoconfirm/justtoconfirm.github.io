@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Objects</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- https://www.taniarascia.com/understanding-objects-in-javascript/ -->
+
+<main role="main" id="main">
+    <h1>JavaScript: Objects</h1>
+
+    <p>An object in JavaScript is a data type composed of a collection of names/keys and values. These names/keys and value pairs can consist of properties that may contain any data type - including strings, numbers, and Booleans - as well as methods.</p>
+
+    <div class="note">
+        <p>Methods are functions contained within an object.</p>
+    </div>
+
+    <p>Objects in JavaScript are standalone entities that can be likened to objects in real life. For example, a book may be an object which you would describe by the title, author, number or pages, and genre. A car might be an object you would describe by the colour, make, model and horsepower.</p>
+
+    <div class="note">
+        <p>JavaScript <a href="javascript-array.html">arrays</a> are also a type of object.</p>
+    </div>
+
+    <p>Objects are an integral and foundational aspect of most JavaScript programs. A common use case is a shopping cart that could consist of an array of many objects containing information for each item, such as name, price, and quantity. A to-do list is another example as is a user account object that may contain such data as usernames, passwords, and e-mail addresses.</p>
+
+    <div class="note">
+        <p>An object is a JavaScript data type, just as a number or string is also a data type. As a data type, an object can be contained within a variable.</p>
+    </div>
+
+    <p>There are two ways to construct an object in JavaScript:</p>
+
+    <ul>
+        <li>The object literal, which uses curly brackets: {}</li>
+        <li>The object constructor, which uses the new keyword</li>
+    </ul>
+
+    <p>First, the object literal.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize object literal with curly brackets
+const objectLiteral = {}
+        </code>
+    </pre>
+
+    <p>In this next example, we'll use the object constructor.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize object constructor with the new Object
+const objectConstructor = new Object()
+        </code>
+    </pre>
+
+    <p>Both of these approaches will create an empty object.</p>
+
+    <div class="note">
+        <p>You may notice the this keyword being used. When using this inside of an object, it refers to the current object.</p>
+    </div>
+</main>
+
+</body>
+</html>
