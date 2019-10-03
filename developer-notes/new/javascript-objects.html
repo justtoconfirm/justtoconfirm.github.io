@@ -37,6 +37,8 @@
 
     <p>An object in JavaScript is a data type composed of a collection of names/keys and values. These names/keys and value pairs can consist of properties that may contain any data type - including strings, numbers, and Booleans - as well as methods.</p>
 
+    <p>Objects are an extremely useful and versatile feature of the JavaScript programming language and are some of the main building blocks of writing code in JavaScript. Objects are a practical way to organise related data and functionality within your code. To-do lists, shopping carts, user accounts and locations on a webpak are a few of the many examples of real-world JavaScript objects you may encounter.</p>
+
     <div class="note">
         <p>Methods are functions contained within an object.</p>
     </div>
@@ -85,6 +87,146 @@ const objectConstructor = new Object()
     <div class="note">
         <p>You may notice the this keyword being used. When using this inside of an object, it refers to the current object.</p>
     </div>
+
+    <p>Using object literals is the more common and preferred method for creating objects as it has less potential for inconsistencies and unexpected results.</p>
+
+    <h2>A simple object</h2>
+
+    <p>We can create an example object contained in the variable of person, to describe someone.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize the person object
+const person = {
+    name: 'Dan',
+    gender: 'Male',
+    age: 34,
+
+    greet: function() {
+        return `Hi, my name is ${this.name}`
+    }
+}
+        </code>
+    </pre> 
+
+    <p>Our new object is person which has three properties. Each property consists of a name:value pair, also known as a key:value pair. One of the property names is gender which is linked to the property value "Male", a string. The object has one method, named greet.</p>
+
+    <p>Within the greet method, the this keyword is used. The this keyword is used inside of the object to refer to the current object, in this case, the person object.</p>
+
+    <p>Sending person to the console will print out the entire object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(person);        // {name: "Dan", gender: "Male", age: 34, greet: f}
+        </code>
+    </pre> 
+
+    <h2>Accessing object properties</h2>
+
+    <p>There are two ways to access an object's properties:</p>
+
+    <ul>
+        <li>Dot notation: (.)</li>
+        <li>Bracket notation: [ ]</li>
+    </ul>
+
+    <p>If you want to retrieve the property value of name from our object, we can do so with object dot or bracket notation, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Dot notation
+person.name
+
+// Bracket notation
+person['name']
+        </code>
+    </pre>
+
+    <p>In order to retrieve a method within an object, you would call it in much the same way you would call a regular function just attached to the object variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+person.greet()
+        </code>
+    </pre>
+
+    <p>The example above will return the string value for the object method greet().</p>
+
+    <h2>Looping through object properties</h2>
+
+    <p>JavaScript has a built-in type of for loop that is specifically meant for iterating over the properties of an object. This is known as the for...in loop. This loop can be used to traverse through all the properties of our object and print them to the console.</p>
+
+    <div class="note">
+        <p>Using bracket notation, we can retrieve the property value as a variable, in this case key.</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Iterate through properties of the person object
+for (let key in person) {
+    console.log(person[key])
+}
+        </code>
+    </pre>
+
+    <p>The output when using the loop should be:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Dan
+Male
+34
+        </code>
+    </pre>
+
+    <p>We can also retrieve the property name itself using just the first variable in the for...in loop. We have used a string method to convert the key values to upper case.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Get keys and values of the person properties
+for (let key in person) {
+    console.log(key.toUpperCase() + ':', person[key])
+}
+        </code>
+    </pre>
+
+    <p>The output when using the loop should be:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+NAME: Dan
+GENDER: Male
+AGE: 34
+        </code>
+    </pre>
+
+    <p>Another useful enumeration method is the Object.keys() method which will return an array of the object's keys.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize method on the person object to return property keys
+Object.keys(person)         // ["name", "gender", "age", "greet"]
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The Objects.keys method allows us to work with the keys or names of an object as an array so you can leverage all of the methods available to JavaScript arrays.</p>
+    </div>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/understanding-objects-in-javascript/" target="_blank" rel="noopener noreferrer">Tania Rascia: Understanding Objects in JavaScript</a></li>
+    </ul>
 </main>
 
 </body>
