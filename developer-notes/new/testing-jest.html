@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Testing: Jest</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Testing: Jest</h1>
+
+    <h2>What is Jest&#63;</h2>
+
+    <p>Jest is a JavaScript testing framework that works with a number of libraries, frameworks and tools including: React, Angular, Vue, Babel and TypeScript.</p>
+
+    <p>You can read the Jest documentation at <a href="https://jestjs.io/" target="_blank" rel="noopener noreferrer">https://jestjs.io/</a></p>
+
+    <div class="note">
+        <p>Jest acts as a test runner, assertion library, and mocking library.</p>
+    </div>
+
+    <p>Jest will look for tests and test files in one of these locations:</p>
+
+    <ul>
+        <li>Files with the .js file extension within the __tests__ folder</li>
+        <li>Files with the .test.js file name extension</li>
+        <li>Files with the .spec.js file name extension</li>
+    </ul>
+
+    <div class="note">
+        <p>It is often a convention to put each test file next to the code/file or component being tested.</p>
+    </div>
+
+    <h2>Install Jest</h2>
+
+    <p>Jest can be installed using <a href="npm.html">NPM</a> as a devDependency. Begin by opening your terminal within the root of your project folder - where you package.json file is located - and install Jest.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install jest --save-dev
+        </code>
+    </pre>
+
+    <h2>Update the package.json file</h2>
+
+    <p>Open the package.json file and create a test script that will run Jest.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"scripts": {
+    "test": "jest"
+}
+        </code>
+    </pre>
+
+    <p>Once the setup is complete, run the test script to run Jest.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <p>You can generate code coverage by adding a flag to the command. Jest can then collect code coverage information.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test --coverage
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>
