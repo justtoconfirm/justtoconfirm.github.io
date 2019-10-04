@@ -426,13 +426,15 @@ $ npm install classnames --save
         <p>Don't forget to import the classNames package at the top of the Button component. Without the import, the classNames package won't work!</p>
     </div>
 
+    <p>Update the props within the Button component to also include the className prop.</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
 import React from 'react'
 import classNames from 'classnames'
 
-const Button = ({ type = 'button', url = '', theme = '', isFullWidth = false, children }) => {
+const Button = ({ type = 'button', url = '', className = '', theme = '', isFullWidth = false, children }) => {
 
     const buttonClass = classNames('btn', className, {
         'btn--primary' : theme === 'primary',
