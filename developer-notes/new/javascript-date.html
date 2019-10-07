@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Date</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Date</h1>
+
+    <h2>The Date object</h2>
+
+    <p>JavaScript comes with a built-in Date object and related methods. The Date object is a built-in object in JavaScript that stores the date and time. It provides a number of built-in methods for formatting and managing the data.</p>
+
+    <p>To demonstrate the JavaScript Date object, a variable can be created and the current date can be assigned to it. Today's date is the 7th October, so this will be the current date, time and timezone displayed.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Set a variable to the current date and time
+const now = new Date()
+
+// View the output
+now
+        </code>
+    </pre>
+
+    <p>This will output in the console: Mon Oct 07 2019 08:41:00 GMT+0100 (British Summer Time)</p>
+
+    <div class="note">
+        <p>Here we are creating a new instance of the Date object and assigning it to a variable named 'now'.</p>
+    </div>
+
+    <p>JavaScript understands the date based on a timestamp derived from Unix time which is a value consisting of the number of milliseconds that have passed since midnight on January 1st, 1970. We can get this timestamp with the getTime() method.</p>
+
+    <p>This timestamp is basically the milliseconds since Epoch time.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// View the output
+now.getTime()
+        </code>
+    </pre>
+
+    <p>This number that is output for the current timestamp represents the same value as the above, 7th October, 2019.</p>
+
+    <div class="note">
+        <p>Epoch time was chosen as a standard for computers to measure time inn earlier days of programming and it's the method that JavaScript uses.</p>
+    </div>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/understanding-date-and-time-in-javascript/" target="_blank" rel="noopener noreferrer">Tania Rascia: Understanding Date and Time in JavaScript</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
