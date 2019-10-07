@@ -35,7 +35,7 @@
 
     <h2>The Date object</h2>
 
-    <p>JavaScript comes with a built-in Date object and related methods. The Date object is a built-in object in JavaScript that stores the date and time. It provides a number of built-in methods for formatting and managing the data.</p>
+    <p>JavaScript comes with a built-in Date object and related methods. The Date object is a built-in object in JavaScript that stores the date and time. It provides a number of built-in methods for formatting and managing the date.</p>
 
     <p>To demonstrate the JavaScript Date object, a variable can be created and the current date can be assigned to it. Today's date is the 7th October, so this will be the current date, time and timezone displayed.</p>
 
@@ -73,6 +73,49 @@ now.getTime()
     <div class="note">
         <p>Epoch time was chosen as a standard for computers to measure time inn earlier days of programming and it's the method that JavaScript uses.</p>
     </div>
+
+    <p>Epoch time, also referred to as zero time, is represented by the date string 01 January, 1970 00:00:00 Universal Time (UTC) and by the 0 timestamp. We can test this in the browser by creating a new variable and assigning it to a new Date instance based on a timestamp of 0.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Assign the timestamp 0 to a new variable
+const epochTime = new Date(0);
+
+epochTime;      // 01 January, 1970 00:00:00 Universal Time (UTC)
+        </code>
+    </pre> 
+
+    <h2>Retieving the Date</h2>
+
+    <p>Once we have a date we can access all the components of the Date object with various built-in methods. The methods will return each part of the date relative to the local timezone. Each of these methods starts with get.</p>
+
+    <p>Let's make a new date based on July 31, 1980 and assign it to a variable.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize a new birthday instance
+const birthday = new Date(1980, 6, 31);
+        </code>
+    </pre> 
+
+    <p>We can now use the methods of the Date object to get each date component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+birthday.getFullYear();         // 1980
+birthday.getMonth();            // 6
+birthday.getDate();             // 31
+birthday.getDay();              // 4
+birthday.getHours();            // 0
+birthday.getMinutes();          // 0
+birthday.getSeconds();          // 0
+birthday.getMilliseconds();     // 0
+birthday.getTime();             // 333846000000 (for GMT)
+        </code>
+    </pre> 
 
     <h2>Useful Links</h2>
 
