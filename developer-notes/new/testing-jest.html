@@ -96,6 +96,79 @@ $ npm run test
 $ npm run test --coverage
         </code>
     </pre>
+
+    <h2>A simple test</h2>
+
+    <p>Now that Jest has been installed, we can begin by writing a very simple JavaScript tests. Within the src directory, create an empty JavaScript file and add the following test code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const { add, mul, sub, div } = require('./math')
+
+test('2 + 3 = 5', () => {
+    expect(add(2, 3)).toBe(5);
+})
+
+test('3 * 4 = 12', () => {
+    expect(mul(3, 4)).toBe(12);
+})
+
+test('5 - 6 = -1', () => {
+    expect(sub(5, 6)).toBe(-1);
+})
+
+test('8 / 4 = 2', () => {
+    expect(div(8, 4)).toBe(2);
+})
+        </code>
+    </pre>
+
+    <p>In the same src directory, create a JavaScript module we want to test.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const add = (a, b) => a + b
+const mul = (a, b) => a * b
+const sub = (a, b) => a - b
+const div = (a, b) => a / b
+
+// Export each function
+module.exports = { add, mul, sub, div }
+        </code>
+    </pre>
+
+    <p>Run the test script to test the module using your JavaScript test.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <p>The module/component and the associated test file, can be moved into a subdirectory within the src directory. The file structure may look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    Button.js
+    math/
+        math.js
+        math.test.js
+        </code>
+    </pre>
 </main>
 
 </body>
