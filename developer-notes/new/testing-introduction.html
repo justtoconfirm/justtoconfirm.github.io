@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Testing: Introduction</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Testing: Introduction</h1>
+
+    <h2>Test-driven development (TDD)</h2>
+
+    <p>Test-driven development (TDD) is an approach to development that consists of writing tests, followed by writing production code, and refactoring as needed. The tests are written to fail initially before the developer then writes the code to fulfill the requirements of the test so that they pass.</p>
+
+    <div class="note">
+        <p>TDD is a design process and not a testing process. TDD is a robust way of designing software components ("units") interactively so that their behaviour is specified through unit tests.</p>
+    </div>
+
+    <h2>Unit Testing</h2>
+
+    <p>Unit testing is a level of software testing where individual units, or components, are tested. JavaScript unit tests are usually run in the browser or on the frontend.</p>
+
+    <p>Unit tests cover blocks of code to ensure that they run without problems. A tested unit can be a function, a module or a class. Unit tests should be isolated and independent of each other. Unit tests can make sure that individual parts of your application work as expected by finding problems early and avoiding regression.</p>
+
+    <p><a href="testing-jest.html">Jest</a> is a JavaScript testing framework that can be used to write unit tests.</p>
+
+    <h2>End to End tests (E2E)</h2>
+
+    <p>E2E tests are always run inside a browser, or browser-like environment. This can be an actual browser that opens and the tests are run inside or a headless browser environment (a browser running without the user interface). E2E tests are used to emulate an actual user within our application. The tests will simulate behavior like scrolling, clicking and typing to check the application works well from the point of view of an actual user.</p>
+
+<!--    <pre>
+        <code>-->
+<!-- leave this line empty -->
+
+        <!--</code>
+    </pre>-->
+</main>
+
+</body>
+</html>
