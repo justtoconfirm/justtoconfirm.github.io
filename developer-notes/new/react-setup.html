@@ -33,6 +33,26 @@
 <main role="main" id="main">
     <h1>React: Setup</h1>
 
+    <h2>JSX: JavaScript + XML</h2>
+
+    <p>When building components in React, you may use code that looks like HTML but it's not quite HTML. This is JSX, which stands for JavaScript XML.</p>
+
+    <p>With JSX, we can write what looks like HTML and also we can create and use our own XML-like tags. Using JSX is not mandatory for writing React.</p>
+
+    <div class="note">
+        <p>JSX is actually closer to JavaScript than HTML.</p>
+    </div>
+
+    <p>There are a few differences between HTML and JSX to consider:</p>
+
+    <ul>
+        <li>className is used instead of class for adding CSS classes, as class is a reserved keyword in JavaScript</li>
+        <li>Properties and methods in JSX are camelCase - onclick will become onClick</li>
+        <li>Self-closing tags must end in a slash - &lt;img /&gt;
+    </ul>
+
+    <p>JSX is easier to write and understand than creating and appending many elements in vanilla JavaScript and this is one of the reasons why React has become so popular.</p>
+
     <h2>Install React</h2>
 
     <p>NPM (Node Package Manager) can be used to install React. Both the react and react-dom NPM packages will be required to be installed. Open your terminal and install both packages as dependencies within the package.json file.</p>
@@ -165,6 +185,12 @@ $ npm run build
     <div class="note">
         <p>Run Webpack to rebuild your application for each change you make to your React application and refresh the browser to see your changes.</p>
     </div>
+
+    <h2>React Developer Tools</h2>
+
+    <p>There is an extension called React Developer Tools that will make your life much easier when working with React. Download <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React DevTools for Chrome</a>.</p>
+
+    <p>After you install it, when you open DevTools, you'll see a tab for React. Click the tab and you'll be able to inspect components as they're written. Initially this may not be that useful, but as the app becomes more complicated, it will become increasingly useful.</p>
 </main>
 
 </body>
