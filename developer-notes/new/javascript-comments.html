@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Comments</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Comments</h1>
+
+    <p>Comments are annotations in the source code of a program that are ignored by the interpreter and therefore have no effect on the actual output of the code. Comments are helpful in explaining the intent of what your code is, or should, be doing. Commenting your code early will reinforce good programming habits throughout your code to avoid issues later.</p>
+
+    <h2>Comment Syntax</h2>
+
+    <p>Let's take a look at the two different types of JavaScript comment syntax.</p>
+
+    <p>Single-line comments are written with two forward slashes (//)</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// This is a comment
+        </code>
+    </pre>
+
+    <p>All characters immediately following the // syntax until the end of the line will be ignored by JavaScript.</p>
+
+    <p>Block comments, sometimes referred to as multi-line comments, are written with opening tags and closing tags. If you know CSS, then you're already familiar with block-level comments.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/* This is
+a block or multi-line
+comment */
+        </code>
+    </pre>
+
+    <p>Everything between the opening and closing tags in the code block will be ignored.</p>
+
+    <p>You may also sometimes see a slightly modified version of the block comment syntax, which starts with /** and includes asterisks through the left side of the comment block.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+/**
+ * Initialize constant with an array of strings.
+ * Loop through each item in the arry and print
+ * it to the console.
+ */
+        </code>
+    </pre>
+
+    <p>Both single-line and multi-line comments are written above the code thay are designated to explain, as demonstrated in this example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Print "Hello, World!" to the console
+console.log('Hello, World!')
+        </code>
+    </pre>  
+
+    <p>When writing comments, indent them at the same level as the code immediately below them.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize a function
+function alphabetizeOceans() {
+    // Define oceans variables as a list of strings
+    const oceans = ['Pacific', 'Atlantic', 'Indian', 'Antarctic', 'Arctic']
+
+    // Print alphabetized array to the console
+    console.log(oceans.sort())
+}
+        </code>
+    </pre> 
+
+    <div class="note">
+        <p>Note that comments are just as much a part of the code as the program itself. Remember to maintain and update comments regularly along with everything else.</p>
+    </div>
+
+    <h2>Inline Comments</h2>
+
+    <p>Single-line comments are referred to as inline comments when they appear at the end of a line of code. Inline comments are used for quick annotation on small, specific snippets of content. Since the comment should only relate to the exact line it's written on, it is the most obvious type of comment.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let x = 99          // assign numerical value to x
+let y = x + 2       // assign the sum of x + 2 to y
+        </code>
+    </pre>  
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/how-to-write-comments-in-javascript/" target="_blank" rel="noopener noreferrer">Tania Rascia: How to write comments in JavaScript</a></li>
+    </ul>
+</main>
+
+</body>
+</html>

@@ -127,6 +127,41 @@ sayGreeting("Dan");
         <p>Variables can be declared inside of functions. These variables are known as local variables and will only exist inside the scope of their own function block.</p>
     </div>
 
+    <h3>Default parameters</h3>
+
+    <p>Functions can be initialized with default parameters which will only be used if an argument is not invoked through the function. In ES5, the function would look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var func = function(a, b) {
+    b = b === undefined ? 2 : b
+    return a + b
+}
+        </code>
+    </pre>
+
+    <p>In ES6:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+let func = (a, b = 2) => {
+    return a + b
+}
+        </code>
+    </pre>
+
+    <p>We can call the function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+func(10)            // returns 12
+func(10, 5)         // returns 15
+        </code>
+    </pre>
+
     <h2>The return keyword</h2>
 
     <p>When the return keyword is used, the function ceases to execute and the value of the expression is returned. In this example, the value will be displayed in the console, it is however not the same as console.log() used to print to the console. Invoking the function will output the value exactly where the function was invoked. This value can be used immediately or placed into a variable.</p>

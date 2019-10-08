@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Destructuring</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Destructuring</h1>
+
+    <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, properties or objects. The values that are unpacked are then placed into distinct variables.</p>
+
+    <p>If you use TypeScript or a modern JavaScript library such as React, you may already be familiar with destructuring.</p>
+
+    <h2>Destructuring an Array</h2>
+
+    <p>This is an example of how we retrieve values from inside an array:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize the array
+const arr = [1, 2, 3, 4, 5];
+
+// Get each value from the array and add to a variable
+let indexOne = arr[0];
+let indexTwo = arr[1];
+
+console.log(indexOne);      // 1
+console.log(indexTwo);      // 2
+        </code>
+    </pre>
+
+    <p>Using destructuring, we can now look to destructure an array:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize the array
+const arr = [1, 2, 3, 4, 5]
+
+// Let's destructure the array so each value is in a variable
+let [a, b] = arr
+
+// Output the values
+console.log(a)      // 1
+console.log(b)      // 2
+        </code>
+    </pre>
+
+    <h2>Accessing Object properties</h2>
+
+    <p>Object properties can be accessed by using the dot or bracket notations.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize an object
+const myObj = {
+    name: 'Dan',
+    age: 34
+}
+
+// Access the properties of the object
+myObj.name;         // Dan accessed using dot notation
+myObj['age'];       // 34 accessed using bracket notation
+        </code>
+    </pre>
+
+    <p>We can use the destructuring assignment here:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize an object
+const myObj = {
+    name: 'Dan',
+    age: 34
+}
+
+const { name } = myObj      // Dan
+const { age } = myObj       // 34
+
+// Or, you can write this on the same line
+const { name, age } = myObj;
+        </code>
+    </pre>
+
+    <p>Before ES6, in addition to regular dot or bracket notation for accessing the properties or objects, we also made use of the getPropValue utility function. It allowed us to pass in an object and a key before returning the value of that key from the object.</p>
+
+    <p>Here is a simple object:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize an object
+const obj = {
+    main: {
+        content: {
+            title: 'The Old Pier',
+            description: 'A really nice pub by the sea'
+        }
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can retrieve the title like so using the getPropValue function:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Get the value of the title property - 'A really nice pub by the sea'
+const title = getPropValue(obj, 'main.content.title');      
+        </code>
+    </pre>
+
+    <p>With ES6 destructuring at the inital one level, we can simplify the code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const obj = {
+    main: 'A seagull in Brighton'
+}    
+
+// Add || {} to avoid failing when destructuring from undefined or null
+const { main } = obj || {}      // 'A seagull in Brighton'
+        </code>
+    </pre>
+
+    <p>And with nested properties:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Initialize an object
+const obj = {
+    main: {
+        content: {
+            title: 'The Old Pier',
+            description: 'A really nice pub by the sea'
+        }
+    }
+}
+
+const { main: { content: { title }}} = obj || {}
+
+// Console example
+console.log(title)
+        </code>
+    </pre>
+
+    <p>The value of 'title' is assigned to the variable named title. We don't assign main or content to variables. This code will work fine so long as those properties exist in the object and non are undefined and/or null.</p>
+</main>
+
+</body>
+</html>
