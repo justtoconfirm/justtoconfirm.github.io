@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Events</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Events</h1>
+
+    <p>JavaScript becomes truly interactive and dynamic when we are able to make websites respond to actions the user has taken.</p>
+
+    <p>Events in JavaScript are actions that have taken place in the browser. Below are a few common examples of events that can happen on a website:</p>
+
+    <ul>
+        <li>The page finishes loading</li>
+        <li>The user clicks a button</li>
+        <li>The user hovers over a dropdown</li>
+        <li>The user submits a form</li>
+        <li>The user presses a key on their keyboard</li>
+    </ul>
+
+    <h2>Event Handlers &amp; Event Listeners</h2>
+
+    <p>When a user clicks a button or presses a key, an event is fired - specifically, a click event or a keypress event. An event handler is a JavaScript function that runs when an event fires. An event listener attaches a listener to an element which allows that particular element to wait and "listen" for that particular event to fire.</p>
+
+    <p>There are three ways to assign events to elements:</p>
+
+    <ul>
+        <li>Inline event handlers</li>
+        <li>Event handler properties</li>
+        <li>Event listeners</li>
+    </ul>
+
+    <h2>Inline Event Handler Attributes</h2>
+
+    <p>The simplest method to understand events is the inline event handler. The HTML page with a button can be created and this will reference a JavaScript file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button onclick="changeText()"&gt;Click me&lt;/button&gt;
+
+&lt;p&gt;I will change.&lt;/p&gt;
+
+&lt;script src="js/events.js"&gt;&lt;/script&gt;
+        </code>
+    </pre>
+
+    <p>Directly on the button, we will add an attribute called onclick. This attribute value will be a function to call that we will name changeText().</p>
+
+    <p>In our JavaScript, we will create that function that will modify the textContent of the paragraph element when the button is clicked.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Function to modify the text content of the paragraph
+const changeText = () => {
+    const paragraph = document.querySelector('p')
+
+    paragraph.textContent = 'I changed because of an inline event handler'
+}
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Inline event handlers are simple to use but they should generally not be sed beyond testing and learning purposes. It is much easier to maintain JavaScript that is handled through a separate script file than add handlers to every element in your HTML.</p>
+    </div>
+
+    <h2>Event Handler Properties</h2>
+
+    <p>Using the event handler property, we are setting the property of an element in the JavaScript code instead of the attribute in the HTML.</p>
+
+    <p>The HTML code will look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;button&gt;Click me&lt;/button&gt;
+
+&lt;p&gt;I will change.&lt;/p&gt;
+        </code>
+    </pre>
+
+    <p>Within our JavaScript code, we can simply access onclick then assign the function reference.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Function to modify the text content of the paragraph written in ES6
+const changeText = () => {
+    const paragraph = document.querySelector('p')
+
+    paragraph.textContent = 'I changed because of an event handler property.'
+}
+
+// Add the event handler as a property of the button element
+const button = document.querySelector('button')
+button.onclick = changeText
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Event handlers do not follow the camelCase convention that most JavaScript code adheres to. The code is onclick, not onClick.</p>
+    </div>
+
+    <p>When passing a function reference to the onclick property, we don't include parenthesis as we are not invoking the function in that moment but only passing a reference to it.</p>
+
+    <h2>Event Listeners</h2>
+
+    <p>The latest addition to JavaScript event handlers are event listeners. An event listener watches for an event on an element. Instead of assigning the event directly to a property on the element, we will use the addEventListener() method to listen for the event.</p>
+
+    <p>addEventListener() has twoo mandatory parameters - the event to be listening for and the listener callback function.</p>
+
+    <p>We will use the same HTML code as before, but we will attach the addEventListener() to the button.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Function to modify the text content of the paragraph written in ES6
+const changeText = () => {
+    const paragraph = document.querySelector('p')
+
+    paragraph.textContent = 'I changed because of an event handler property.'
+}
+
+// Add the event handler as a property of the button element
+const button = document.querySelector('button')
+button.addEventListener('click', changeText)
+        </code>
+    </pre>
+
+    <p>Previously, a click event was referred to as onclick but with event listeners, it is referred to as click. Every event listener drops the 'on' from the word. Unlike event handler properties, you can set multiple event listeners on the same element, as demonstrated below.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const paragraph = document.querySelector('p')
+const button = document.querySelector('button')
+
+const changeText = () => {
+    paragraph.textContent = 'Will I change?'
+}
+
+const alertText = () => {
+    alert('Will I alert?')
+}
+
+// Multiple listeners can be added to the same event and element
+button.addEventListener('click', changeText)
+button.addEventListener('click', alertText)
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>In this example, both events will fire.</p>
+    </div>
+
+    <p>Often, anonymous functions will be used instead of a function reference on an event listener. Anonymous functions are functions that are not named.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// An anonymous function on an event listener
+button.addEventListener('click', () => {
+    paragraph.textContent = 'Will I change?'
+})
+        </code>
+    </pre>
+
+    <p>It is also possible to use the removeEventListener() function to remove one or all events from an element.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Remove the alert function from the button element
+button.removeEventListener('click', alertText)
+        </code>
+    </pre>
+
+    <p>You can use addEventListener() on the document and window object. Event listeners are currently the most common and preferred way to handle events in JavaScript.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/understanding-events-in-javascript/">Tania Rascia: Understanding Events in JavaScript</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
