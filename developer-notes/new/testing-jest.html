@@ -176,6 +176,190 @@ src/
         </code>
     </pre>
 
+    <h2>Updating the file structure</h2>
+
+    <p>Now that we've created a simple test and Jest is now working, it's time to organise our Button component. Begin by creating a new folder in the src directory named 'Button' and move the Button.js component file into this newly created folder. The file structure should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    Button/
+        Button.js
+    math/
+        math.js
+        math.test.js
+        </code>
+    </pre>
+
+    <p>Now that the file structure has changed, the reference to the Button component needs to be updated within our index.js file. Open the index.js file in the src directory and update the import statement for the Button to this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import Button from './Button/Button'
+        </code>
+    </pre>
+
+    <p>Remember to run the build script once these changes have been made to rebuild the code for your application.</p>
+
+    <p>Create an new file named 'Button.test.js' in the Button directory. This will be our test file for the Button component but will intially be empty. The file structure should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    Button/
+        Button.js
+        Button.test.js
+    math/
+        math.js
+        math.test.js
+        </code>
+    </pre>
+
+    <p>Within the Button.test.js file, add some example code to get a test running:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+test('First test', () => {
+    expect(true).toBeTruthy()
+})
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>At this stage we're not testing the Button component itself, we are just updating the file structure ready for writing a test.</p>
+    </div>
+
+    <p>If you now run the test script you should see that we have two test suites and five tests that pass.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <h2>Writing the component test</h2>
+
+    <p>Begin by installing Enzyme as a devDependency using NPM:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install enzyme --save-dev
+        </code>
+    </pre>
+
+    <p>You may need to also install Enzyme Adapter if we're using React 16.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install enzyme-adapter-react-16 --save-dev
+        </code>
+    </pre>
+
+    <p>If you install the Enzyme Adapter, create a file named setupTests.js inside the src directory of your project containing the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({
+    adapter: new Adapter()
+})
+        </code>
+    </pre>
+
+    <p>Then, update your package.json file to include a reference to the path of the setupTests.js config file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"jest": {
+    "setupTestFrameworkScriptFile": "&lt;rootDir&gt;/src/setupTests.js"
+},
+        </code>
+    </pre>
+
+    <p>Once installed, open the Button.test.js file and add the following code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe('Button', () => {
+    it('Button renders correctly', () => {
+        const wrapper = shallow(&lt;Button /&gt;)
+    })
+})
+        </code>
+    </pre>
+
+    <p>Run the test by running the test script. Our test(s) should now pass. The terminal output is showing that setupTestFrameworkScriptFile is deprecated. This is located within the package.json file, so update the package.json file with this example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"jest": {
+    "setupFilesAfterEnv": ["&lt;rootDir&gt;/src/setupTests.js"]
+},
+        </code>
+    </pre>
+
+    <p>The warning should now be removed.</p>
+
+    <p>The file structure of your project should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    setupTests.js
+    Button/
+        Button.js
+        Button.test.js
+    math/
+        math.js
+        math.test.js
+        </code>
+    </pre>
+
     <h2>Useful Links</h2>
 
     <ul>
