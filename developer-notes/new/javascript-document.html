@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Document Object</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Document Object</h1>
+
+    <p>The topmost object in the Document Object Model (DOM) is the document object. It represents the web page loaded into the current browser window or tab. The DOM is vital to accessing and amending the contents of the current web page.</p>
+
+    <h2>Properties</h2>
+
+    <p>Here are some properties of the document object.</p>
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>document.title</td>
+            <td>Title of the current document</td>
+        </tr>
+        <tr>
+            <td>document.lastModified</td>
+            <td>Date on which the document was last modified</td>
+        </tr>
+        <tr>
+            <td>document.URL</td>
+            <td>Returns a string containing URL of current document</td>
+        </tr>
+        <tr>
+            <td>document.domain</td>
+            <td>Returns domain of current document</td>
+        </tr>
+    </table>
+
+    <h2>Methods</h2>
+
+    <p>The following are a few of the methods that select content or update content on the page.</p>
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>document.write()</td>
+            <td>Writes text to document</td>
+        </tr>
+        <tr>
+            <td>document.getElementById()</td>
+            <td>Returns element, if there is an element with the value of the id attribute that matches</td>
+        </tr>
+        <tr>
+            <td>document.querySelectorAll()</td>
+            <td>Returns list of elements that match a CSS selector which is specified as a parameter</td>
+        </tr>
+        <tr>
+            <td>document.createElement()</td>
+            <td>Creates a new element</td>
+        </tr>
+        <tr>
+            <td>document.createTextNode()</td>
+            <td>Creates new text node</td>
+        </tr>
+    </table>
+
+    <p>We can use these properries and methods to output details about the page using the document object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var msg = '&lt;p&gt;page title: ' + document.title + '&lt;br&gt;';
+msg += 'page address: ' + document.URL + '&lt;br&gt;';
+msg += 'last modified: ' + document.lastModified + '&lt;/p&gt;';
+
+var el = document.getElementById('footer');
+el.innerHTML = msg;
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The URL will look very different if you run this page locally rather than on a web server.</p>
+    </div>
+</main>
+
+</body>
+</html>

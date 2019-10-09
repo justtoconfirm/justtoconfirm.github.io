@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Ajax</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Ajax</h1>
+
+    <p>Ajax is a technique for loading data into part of a page without having to refresh the entire page. The data is often sent in a format called JSON (JavaScript Object Notation). The ability to load new content into part of a page improves the user experience because the user does not have to wait for an entire page to load if only part of it is being updated.</p>
+
+    <p>Ajax allows you to request data from a server and load it without having to refresh the entire page. Servers typically send back HTML, XML, or JSON data.</p>
+
+    <ul>
+        <li>Live search (or autocomplete) commonly uses Ajax. When you type in the search field you may often see the search results appear before you finish typing.</li>
+        <li>Shopping carts are updated without you leaving the page. At the same time, the site may display a message confirming an item was added or removed.</li>
+        <li>Creating a user account, a script may check if a username is available before completing registration.</li>
+    </ul>
+
+    <div class="note">
+        <p>Ajax uses an asynchronous processing model. This means the user can do other things while the web browser is waiting for the data to load. This improves the user experience.</p>
+    </div>
+
+    <p>Historically, Ajax was an acronym for the technologies used in asynchronous requests. It stood for Asynchronous JavaScript And XML (AJAX). Since then, technologies have moved on and the term is used to refer to a group of technologies that offer asynchronous functionality in the browser.</p>
+
+    <p>Here is how Ajax works:</p>
+
+    <ol>
+        <li>The Request - the browser requests information from the server</li>
+        <li>On the Server - the server responds with data, usually HTML, XML or JSON</li>
+        <li>The Response - the browser processes the content and adds it to the page</li>
+    </ol>
+
+    <div class="note">
+        <p>To create an Ajax request, browsers use the XMLHttpRequest (XHR) object. When the server responds to the browser's request, the same XMLHttpRequest object will process the result.</p>
+    </div> 
+
+    <p>Here you can see the JSON data with a .json extension:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "events": [
+        {
+            "location": "San Fransisco, CA", 
+            "date": "May 1", 
+            "map": "img/map-ca.png"
+        },
+        {
+            "location": "Austin, TX", 
+            "date": "May 15", 
+            "map": "img/map-tx.png"
+        },
+        {
+            "location": "New York, NY", 
+            "date": "May 30", 
+            "map": "img/map-ny.png"
+        }     
+    ]
+}
+        </code>
+    </pre>
+
+    <p>The JavaScript code should look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var xhr = new XMLHttpRequest();
+
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        responseObject = JSON.parse(xhr.responseText);
+
+        var newContent = '';
+
+        for (var i = 0; i < responseObject.events.length; i++) {
+            newContent += '&lt;div class="event"&gt;';
+            newContent += '&lt;img src="' + responseObject.events[i].map + '" ';
+            newContent += 'alt="' + responseObject.events[i].location + '" /&gt;';
+            newContent += '&lt;p&gt;&lt;b&gt;' + responseObject.events[i].location + '&lt;/b&gt;&lt;br&gt;';
+            newContent += responseObject.events[i].date + '&lt;p&gt;';
+            newContent += '&lt;/div&gt;';
+        }
+
+        document.getElementById('content').innerHTML = newContent;
+    }
+};
+
+xhr.open('GET', 'data/data.json', true);        // Prepare the request
+xhr.send(null);                                 // Send the request
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

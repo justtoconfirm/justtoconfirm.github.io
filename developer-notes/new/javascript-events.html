@@ -45,6 +45,8 @@
         <li>The user presses a key on their keyboard</li>
     </ul>
 
+    <p>When an event has occured it is often described as having fired or been raised. Events are said to trigger a function or script.</p>
+
     <h2>Event Handlers &amp; Event Listeners</h2>
 
     <p>When a user clicks a button or presses a key, an event is fired - specifically, a click event or a keypress event. An event handler is a JavaScript function that runs when an event fires. An event listener attaches a listener to an element which allows that particular element to wait and "listen" for that particular event to fire.</p>
@@ -89,7 +91,9 @@ const changeText = () => {
     </pre>
 
     <div class="note">
-        <p>Inline event handlers are simple to use but they should generally not be sed beyond testing and learning purposes. It is much easier to maintain JavaScript that is handled through a separate script file than add handlers to every element in your HTML.</p>
+        <p>Inline event handlers are simple to use but they should generally not be used beyond testing and learning purposes. It is much easier to maintain JavaScript that is handled through a separate script file than add handlers to every element in your HTML.</p>
+
+        <p>This approach is now considered bad practice.</p>
     </div>
 
     <h2>Event Handler Properties</h2>
@@ -135,7 +139,11 @@ button.onclick = changeText
 
     <p>The latest addition to JavaScript event handlers are event listeners. An event listener watches for an event on an element. Instead of assigning the event directly to a property on the element, we will use the addEventListener() method to listen for the event.</p>
 
-    <p>addEventListener() has twoo mandatory parameters - the event to be listening for and the listener callback function.</p>
+    <div class="note">
+        <p>Event Listeners are a more recent approach to handling events. They can deal with more than one function at a time. Not all browsers support Event Listeners. Check <a href="https://caniuse.com/#search=event" target="_blank" rel="noopener noreferrer">caniuse</a> for up-to-date browser support.</p>
+    </div>
+
+    <p>addEventListener() has two mandatory parameters - the event to be listening for and the listener callback function.</p>
 
     <p>We will use the same HTML code as before, but we will attach the addEventListener() to the button.</p>
 
@@ -204,6 +212,117 @@ button.removeEventListener('click', alertText)
     </pre>
 
     <p>You can use addEventListener() on the document and window object. Event listeners are currently the most common and preferred way to handle events in JavaScript.</p>
+
+    <h3>Support for older versions of IE</h3>
+
+    <p>IE5-8 (Internet Explorer) had a different event model and did not support addEventListener() but you can provide fallback code to make event listeners work with older versions of IE. Internet Explorer did not support addEventListener() but used its own method called attachEvent() which did the same job but was only available in IE.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Conditional statement if browser supports addEventListener()
+if (el.addEventListener) {
+    el.addEventListener('blur', function() {
+        checkUsername(5);
+    }, false);
+} else {
+    el.attachEvent('onblur', function() {
+        checkUsername(5);
+    });
+}
+        </code>
+    </pre>
+
+    <h2>Different Event Types</h2>
+
+    <p>Here is a selection of the events that occur in the browser while you are browsing the web. Any of these events can be used to trigger a function in your JavaScript code.</p>
+
+    <h3>UI Events</h3>
+
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>load</td>
+            <td>Web page has finished loading</td>
+        </tr>
+        <tr>
+            <td>unload</td>
+            <td>Web page is unloading (usually because a new page has been requested)</td>
+        </tr>
+        <tr>
+            <td>error</td>
+            <td>Browser encounters a JavaScript error or an asset doesn't exist</td>
+        </tr>
+        <tr>
+            <td>resize</td>
+            <td>Browser window has been resized</td>
+        </tr>
+        <tr>
+            <td>scroll</td>
+            <td>User has scrolled up or down the page</td>
+        </tr>
+    </table>
+
+    <h3>Keyboard Events</h3>
+
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>keydown</td>
+            <td>User first presses a key (repeats while key is depressed)</td>
+        </tr>
+        <tr>
+            <td>keyup</td>
+            <td>User releases a key</td>
+        </tr>
+        <tr>
+            <td>keypress</td>
+            <td>Character is being inserted (repeats while key is depressed)</td>
+        </tr>
+    </table>
+
+    <h3>Mouse Events</h3>
+
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>click</td>
+            <td>User presses and releases a button over the same element</td>
+        </tr>
+        <tr>
+            <td>dblclick</td>
+            <td>User presses and releases a button twice over the same element</td>
+        </tr>
+        <tr>
+            <td>mousedown</td>
+            <td>User presses a mouse button while over an element</td>
+        </tr>
+        <tr>
+            <td>mouseup</td>
+            <td>User releases a mouse button while over an element</td>
+        </tr>
+        <tr>
+            <td>mousemove</td>
+            <td>User moves the mouse (not on a touchscreen)</td>
+        </tr>
+        <tr>
+            <td>mouseover</td>
+            <td>User moves the mouse over an element (not on a touchscreen)</td>
+        </tr>
+        <tr>
+            <td>mouseout</td>
+            <td>User moves the mouse off an element (not on a touchscreen)</td>
+        </tr>
+    </table>    
 
     <h2>Useful Links</h2>
 

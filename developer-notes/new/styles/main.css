@@ -222,3 +222,27 @@ pre {
 .link:hover {
     text-decoration: underline;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+th {
+    border: 1px solid #ddd;
+    background-color: #3d7e9a;
+    color: #fff;
+    text-align: left;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
