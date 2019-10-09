@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React: Adding Components</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Adding Components</h1>
+
+    <p>So far, we've created a single component - the Button component. Almost everything in React consists of components. Most React applications have many small components and everything loads into the main App component.</p>
+
+    <p>We now want to add a further React component to our application. Within the src directory, begin by creating a new empty JavaScript file named App.js. We are going to import this new component into our index.js file.</p>
+
+    <p>Open the index.js file and update the code so it appears like the example below:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import App from './App'
+
+ReactDOM.render(
+    &lt;App /&gt;,
+    document.getElementById('app')
+)
+        </code>
+    </pre>
+
+    <p>Next, open the App.js component and add the following code. This will import the Button component we created earlier and render it within our app once again:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;Button&gt;Sign in&lt;/Button&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Remember to rebuild your application once the changes have been made to update the app.</p>
+    </div>
+
+    <p>Let's attempt to render two buttons within our App component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;Button&gt;Sign in&lt;/Button&gt;
+        &lt;Button&gt;Register&lt;/Button&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>When you rebuild the application, you may find that the terminal throws and error. This is because our component can only return single elements/components. The error may appear like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment &lt;&gt;...&lt;/&gt;?
+        </code>
+    </pre>
+
+    <p>To fix this issue, we simply need to wrap our two Button components with an element.</p>
+
+    <p>We can begin by wrapping our two Button components using a &lt;div&gt; or perhaps &lt;span&gt; element. This would fix our error, however a further element would be added to the DOM (Document Object Model) when the application renders.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;div&gt;
+            &lt;Button&gt;Sign in&lt;/Button&gt;
+            &lt;Button&gt;Register&lt;/Button&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>An alternative would be to use React Fragments. We can either wrap our two Button components with &lt;React.Fragment&gt; or we can use the shorthand alternative of &lt;&gt;. This avoids the need to render the wrapper element in the DOM as neither one of these options will render in our application but will fix the error in the terminal we encountered earlier.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Button&gt;Sign in&lt;/Button&gt;
+            &lt;Button&gt;Register&lt;/Button&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>We are now reusing the same Button component to render two buttons within our application.</p>
+
+    <p>The file structure should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    App.js
+    index.js
+    Button/
+        Button.js
+        </code>
+    </pre>
+
+    <h2>Building a Table Component</h2>
+
+    <p>We can now build a table component to demonstrate how to display data on a page within our React application. Open a new file in the src directory named Table.js and create a simple table with hard-coded values.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const Table = () => {
+    return (
+        &lt;table&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Name&lt;/th&gt;
+                    &lt;th&gt;Job&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Darren&lt;/td&gt;
+                    &lt;td&gt;Web Developer&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Dave&lt;/td&gt;
+                    &lt;td&gt;Web Developer&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Dan&lt;/td&gt;
+                    &lt;td&gt;Web Developer&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    )
+}
+
+export default Table
+        </code>
+    </pre>
+
+    <p>Next, we open the App.js component to import the Table component so it can be rendered on the page. You will need to build the application once again once these changes have been made.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+import Table from './Table/Table'
+
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Button&gt;Sign in&lt;/Button&gt;
+            &lt;Button&gt;Register&lt;/Button&gt;
+            &lt;Table /&gt;
+        &lt;/React.Fragment&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>The file structure within the project should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    App.js
+    index.js
+    Button/
+        Button.js
+    Table/
+        Table.js
+        </code>
+    </pre>
+
+    <p>Right now, we have a Table component but the data in the table is being hard-coded. One of the big features of React is how it handles data. It handles data with properties, referred to as props, and with state.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/getting-started-with-react/" target="_blank" rel="noopener noreferrer">Tania Rascia: Getting started with React</a></li>
+        <li><a href="https://www.robinwieruch.de/react-fetching-data" target="_blank" rel="noopener noreferrer">React: Fetching Data</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
