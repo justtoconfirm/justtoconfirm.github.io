@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JSHint</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JSHint</h1>
+
+    <h2>What is a linter?</h2>
+
+    <p>A static program analysis tool, lint, or a linter, is a tool that analyzes source code to flag programming errors, bugs, syntax errors and issues. The term originates from a Unix utility that examined C language source code.</p>
+
+    <h2>What is JSHint?</h2>
+
+    <p>JSHint is a static code analysis tool used to check JavaScript source code for errors and potential issues. Errors can include typos and syntax errors within your code. By analysing our code, this helps to reduce issues or bugs reaching production. JSHint should ideally be combined with unit/functional testing and code reviews.</p>
+
+    <p>Here is the <a href="https://jshint.com/docs/" target="_blank" rel="noopener noreferrer">documentation</a> for JSHint. the <abbr title="Command Line Interface">CLI</abbr> <a href="https://jshint.com/docs/cli/" target="_blank" rel="noopener noreferrer">documentation</a> is also available.</p>
+
+    <div class="note">
+        <p>JSHint was created in 2011 by Anton Kovalyov as a fork of the JSLint project.</p>
+    </div>
+
+    <p>JSHint is used by the following organisation:</p>
+
+    <ul>
+        <li>Mozilla</li>
+        <li>Wikipedia</li>
+        <li>Facebook</li>
+        <li>Medium</li>
+        <li>Spotify</li>
+    </ul>
+
+    <p>Other tools that can be used include:</p>
+
+    <ul>
+        <li><a href="https://eslint.org/" target="_blank" rel="noopener noreferrer">ESLint</a></li>
+        <li><a href="https://standardjs.com/" target="_blank" rel="noopener noreferrer">StandardJS</a></li>
+    </ul>
+
+    <h3>Install JSHint</h3>
+
+    <p>Open the project folder, and your terminal, and use NPM (Node Package Manager) to install JSHint as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install jshint --save-dev
+        </code>
+    </pre>
+
+    <p>Once installed, as a testing script to your package.json file to run JSHint. This will execute over the entire project.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"test": "jshint",
+        </code>
+    </pre>
+
+    <p>Should we want to run JSHint over a specific directory or file, append this to the end of the test script like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"test": "jshint WebContent/src/js",
+        </code>
+    </pre>
+
+    <p>You may want to exclude certain files or directories from being analyzed. Use the --exclude-path flag to add the file or directory you wish to exclude. In this example, the .gitignore file is being referenced as this contains the node_modules directory that we want to always exclude.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"test": "jshint WebContent/src/js --exclude-path .gitignore",
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>A .jshintignore file can be created in the project root should you want to ignore files or directories also.</p>
+    </div>
+
+    <h3>Running the test script</h3>
+
+    <p>To run the test script, simply open the terminal and enter the following command:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm run test
+        </code>
+    </pre>
+
+    <p>Any issues within your JavaScript code will be output in the terminal.</p>
+
+    <h3>Configuration</h3>
+
+    <p>JSHint works without any config, but should you want to configure the tool, a .jshintrc config file can be created in the root of your project folder.</p>
+
+    <div class="note">
+        <p>The config file may be needed to allow ES6 syntax to be ignored when analyzing your JavaScript code. If this is not set, JSHint will suggest issues with any ES6 syntax.</p>
+    </div>
+
+    <p>To allow ES6 syntax to be supported, open the .jshintrc config file and add the following property:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "esversion": 6
+}
+        </code>
+    </pre>
+</main>
+
+</body>
+</html>

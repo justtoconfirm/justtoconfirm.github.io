@@ -64,12 +64,22 @@ $ npm install react react-dom --save
         </code>
     </pre>
 
+    <div class="note">
+        <p>React and ReactDOM were split into two packages for version 0.14. Instead of assuming that React will render only in the browser, versions after 0.14 will support a variety of platforms.</p>
+    </div>
+
     <p>Here are the packages that are being installed:</p>
 
     <ul>
         <li>react - the top-level <abbr title="Application Programming Interface">API</abbr> of the React library</li>
         <li>react-dom - <abbr title="Document Object Model">DOM</abbr> specific methods for React</li>
     </ul>
+
+    <h3>ReactDOM</h3>
+
+    <p>ReactDOM contains the tools necessary to render React elements in the browser. ReactDOM is where we will find the render method as well as the renderToString and renderToStaticMarkup methods that are used on the server.</p>
+
+    <p>We can render a React element, including its children, to the DOM (Document Object Model) with ReactDOM.render.</p>
 
     <div class="note">
         <p>These steps require Webpack to be installed and setup. Please read the <a href="webpack-setup.html">Webpack setup documentation</a> before installing React.</p>
