@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: This, Bind, Call & Apply</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: This, Bind, Call & Apply</h1>
+
+    <h2>Global</h2>
+
+    <p>In the global context, the keyword of this refers to the global object. When you're working in a browser, the global context would be window. When working with Node.js, the global context is global.</p>
+
+    <p>If you log the value of this without any other code, you'll see what object this refers to.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+console.log(this);      // Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+        </code>
+    </pre>
+
+    <p>You can see that the this refers to window. This is the global object of the a browser.</p>
+
+    <p>A top-level function will still retain the this reference of the global object. When using a simple function that is not associated with any object, like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+function printThis() {
+    console.log(this);
+}
+
+printThis();
+        </code>
+    </pre>
+
+    <p>The function will still refer to the window object. However, when using strict mode, the context of this within a function on the global context will be undefined.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+'use strict';
+
+function printThis() {
+    console.log(this);
+}
+
+printThis();        // Undefined
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Generally it is safer to use strict mode to reduce the probability of this having an unexpected scope. Rarely will you want to refer to the window object using this.</p>
+    </div>
+
+    <h2>The Object Method</h2>
+
+    <p>A method is a function on an object, or a task that an object can perform. A method uses this to refer to the properties of the object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const america = {
+    name: 'The United States of America',
+    yearFounded: 1776,
+
+    describe() {
+        console.log(`${this.name} was founded in ${this.yearFounded}.`)
+    },
+}
+
+america.describe();
+        </code>
+    </pre>
+
+    <p>The function will log the following to the console:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+"The United States of America was founded in 1776."
+        </code>
+    </pre>
+
+    <p>In this example, this is the same as america. In a nested object, this refers to the current object.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/this-bind-call-apply-javascript/" target="_blank" rel="noopener noreferrer">Tania Rascia: Understanding This, Bind, Call and Apply in JavaScript</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
