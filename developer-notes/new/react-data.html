@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - React: Data</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>React: Data</h1>
+
+    <p>Most modern web applications make use of the <a href="https://searchapparchitecture.techtarget.com/definition/REST-REpresentational-State-Transfer" target="_blank" rel="noopener noreferrer">REST</a> Protocol to communicate with each other. To achieve this, data is sent as JSON (JavaScript Object Notation) to the <abbr title="Application Programming Interface">API</abbr>. In turn, the API returns a JSON payload which can be static or dynamic data.</p>
+
+    <div class="note">
+        <p>When fetching data in React, the componentDidMount() lifecycle method is the best place to fetch data.</p>
+    </div>
+
+    <p>Here are a few useful APIs:</p>
+
+    <ul>
+        <li><a href="http://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener noreferrer">http://jsonplaceholder.typicode.com/users</a></li>
+        <li><a href="https://api.github.com" target="_blank" rel="noopener noreferrer">https://api.github.com</a></li>
+        <li><a href=" https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a></li>
+    </ul>
+
+    <p>Here is an example to demonstrate how to render JSON data within an application. Update the index.js file with the following example:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import { render } from 'react-dom'
+
+// Data
+const data = [
+    {
+        "ingredients": [
+            {
+                "name": "Salmon"
+            },
+            {
+                "name": "Butter Lettuce"
+            }
+        ]
+    }
+]
+
+// Component
+const Menu = ({ recipes }) =&gt;
+    &lt;React.Fragment&gt;
+        &lt;React.Fragment&gt;
+            {recipes.map((recipe, i) =&gt;
+                &lt;Recipe key={i} {...recipe} /&gt;
+            )}
+        &lt;/React.Fragment&gt;
+    &lt;/React.Fragment&gt;
+
+// Component
+const Recipe = ({ ingredients, name }) =&gt;
+    &lt;React.Fragment&gt;
+        &lt;ul&gt;
+            {ingredients.map((ingredient, i) =&gt; 
+                &lt;li key={i}&gt;{ingredient.name}&lt;/li&gt;
+            )}
+        &lt;/ul&gt;
+    &lt;/React.Fragment&gt;
+
+render(
+    &lt;Menu recipes={data} /&gt;,
+    document.getElementById('app')
+)
+        </code>
+    </pre>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://pusher.com/tutorials/consume-restful-api-react" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React</a></li>
+        <li><a href="https://github.com/fisayoafolayan/consuming-restful-api-in-react/tree/master/src" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React: GitHub repository</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
