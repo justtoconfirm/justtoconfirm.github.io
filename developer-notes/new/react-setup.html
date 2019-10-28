@@ -183,6 +183,25 @@ import { render } from 'react-dom';
         </code>
     </pre> 
 
+    <p>The code example, above, should now look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>It's unlikely that by importing a single method from the ReactDOM library will reduce your bundle size. For example, if your bundle size were to be 134KB before, it is likely to be 134KB after.</p>
+    </div>
+
     <p>You will need to use Webpack to rebuild your application for each change you make to your React application. Once complete, refresh your HTML webpage in the browser and "Hello World" should be displayed on the page.</p>
 
     <pre>
