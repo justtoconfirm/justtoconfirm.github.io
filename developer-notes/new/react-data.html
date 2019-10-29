@@ -69,17 +69,15 @@ const data = [
     }
 ]
 
-// Component
+// Menu Component
 const Menu = ({ recipes }) =&gt;
     &lt;React.Fragment&gt;
-        &lt;React.Fragment&gt;
-            {recipes.map((recipe, i) =&gt;
-                &lt;Recipe key={i} {...recipe} /&gt;
-            )}
-        &lt;/React.Fragment&gt;
+        {recipes.map((recipe, i) =&gt;
+            &lt;Recipe key={i} {...recipe} /&gt;
+        )}
     &lt;/React.Fragment&gt;
 
-// Component
+// Recipe Component
 const Recipe = ({ ingredients, name }) =&gt;
     &lt;React.Fragment&gt;
         &lt;ul&gt;
@@ -101,6 +99,7 @@ render(
     <ul>
         <li><a href="https://pusher.com/tutorials/consume-restful-api-react" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React</a></li>
         <li><a href="https://github.com/fisayoafolayan/consuming-restful-api-in-react/tree/master/src" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React: GitHub repository</a></li>
+        <li><a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">Babel: Support for experimental 'classProperties' syntax</a></li>
     </ul>
 </main>
 
