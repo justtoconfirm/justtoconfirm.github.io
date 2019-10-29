@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - JavaScript: Introduction</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>JavaScript: Introduction</h1>
+
+    <p>JavaScript has two main characteristics to understand how our code will work. First, JavaScript is synchronous meaning the code will run line after line (most of the time), almost as you read it. Secondly, JavaScript is single-threaded meaning only one command will be executed at any time.</p>
+
+    <p>V8 is a JavaScript engine built by Google. It is open source and written in C++. The JavaScript engine compiles JavaScript code into machine code at execution by implementing a JIT (Just-In-Time) compiler. This is a similar approach to how a number of modern JavaScript engines, such as SpiderMonkey or Rhino (Mozilla), work.</p>
+
+    <div class="note">
+        <p>A compiler is a program that processes statements written in a particular programming language and turns them into machine language or "code" that a computer's processor uses. Typically, a developer writes code in a language such as JavaScript, Java or C++ using a code editor.</p>
+    </div>
+
+    <p>The JIT (Just-In-Time) compiler, converts our JavaScript code into machine language. When commands are entered into the console within the browser developer tools (also known as DevTools), they are passed to the JIT compiler, compiled, executed/run, and the output is returned back to the console.</p>
+
+    <div class="note">
+        <p>JavaScript files typically have the file extension of .js</p>
+    </div>
+
+    <h2>What is ECMAScript?</h2>
+
+    <p>For its initial release in 1995, Netscape labeled their new language LiveScript before renaming it to JavaScript a year later, hoping to capitalize on the popularity of Java at the time. In 1996, Netscape submitted JavaScript to ECMA International for standardization. This eventually resulted in a new language standard, labeled ECMAScript. All major JavaScript implementations since have been implementations of the ECMAScript standard, but the term JavaScript has stuck around for historical and marketing reasons.</p>
+
+    <p>In most instances, ECMAScript is usually used to refer to the standard while JavaScript is used when talking about the language in practice.</p>
+
+    <div class="note">
+        <p>JavaScript has no actual relationship to Java, the two are separate.</p>
+    </div>
+
+    <p>ECMAScript didn't change much for the first 15 years of existence. After the initial version of ECMAScript, work on the language continued and two more versions were quickly published. After ECMAScript 3 (ES3) was launched in 1999, no major changes were made to the official standard for ten years. Instead, various browser vendors made their own custom extensions to the language leaving developers to support multiple, varied, APIs.</p>
+
+    <p>ECMAScript 5 (ES5) was published in 2009 and around 2012, things started to change with a more standard approach to writing JavaScript being adopted. In June 2015, ECMAScript 6 (ES6 or ES2015) was released as a new version of the standard. This is a standard which has been implemented fairly completely in most modern browsers</p>
+
+    <h3>ES6 and beyond</h3>
+
+    <p>Since ECMAScript 6 (also known as ES6 or ECMAScript 2015) was released, it introduced a huge set of new features. They include arrow functions, sets, maps, classes, destructuring and much more. The Ecma Technical Committee that governs the ECMA specification, have since decided to release a new version of ECMAScript each year from 2015. A yearly update means no large releases like with ES6.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.smashingmagazine.com/2019/10/asynchronous-tasks-modern-javascript/" target="_blank" rel="noopener noreferrer">Smashing Magazine: Asynchronous tasks in modern JavaScript</a></li>
+    </ul>
+</main>
+
+</body>
+</html>

@@ -47,7 +47,213 @@
         <li><a href=" https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a></li>
     </ul>
 
-    <p>Here is an example to demonstrate how to render JSON data within an application. Update the index.js file with the following example:</p>
+    <h2>Create a simple component</h2>
+
+    <p>We're going to being by using the ES6 arrow function to create simple components. First, a table header.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const TableHeader = () => {
+    return (
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;Job&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+    )
+}
+
+export default TableHeader
+        </code>
+    </pre>
+
+    <p>The table body can then be created.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const TableBody = () => {
+    return (
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Charlie&lt;/td&gt;
+                &lt;td&gt;Janitor&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Mac&lt;/td&gt;
+                &lt;td&gt;Bouncer&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Dee&lt;/td&gt;
+                &lt;td&gt;Actress&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    )
+}
+
+export default TableBody
+        </code>
+    </pre>
+
+    <p>A class component is created that will render our table.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+class Table extends Component {
+    render() {
+        return(
+            &lt;table&gt;
+                &lt;TableHeader /&gt;
+                &lt;TableBody /&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+        </code>
+    </pre>
+
+    <p>Right now we have a Table component, but the data is being hard-coded. One of the main benefits of using React is how it handles data, it does so with properties - referred to as props - and with state.</p>
+
+    <p>Let's now remove all the data from our TableBody component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const TableBody = () => {
+    return &lt;tbody /&gt;
+}
+
+export default TableBody
+        </code>
+    </pre>
+
+    <p>All our data can now be moved to an array of objects, as if we were bringing in a JSON-based API. We will have to create this array inside our render() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import Table from './Table'
+
+class App extends Component {
+    render() {
+        const characters = [
+        {
+            name: 'Charlie',
+            job: 'Janitor',
+        },
+        {
+            name: 'Mac',
+            job: 'Bouncer',
+        },
+        {
+            name: 'Dee',
+            job: 'Actress',
+        },
+    ]
+
+    return (
+        &lt;div className="container"&gt;
+            &lt;Table /&gt;
+        &lt;/div&gt;
+    )
+  }
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Now we're going to pass the data through to the child component of Table using props (properties). We can call the property whatever we want as long as it's not a reserved keyword. In our example, the prop is called characterData. The data being passed through is the characters variable. This is placed between curly braces as it's a JavaScript expression.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import Table from './Table'
+
+class App extends Component {
+    render() {
+        const characters = [
+        {
+            name: 'Charlie',
+            job: 'Janitor',
+        },
+        {
+            name: 'Mac',
+            job: 'Bouncer',
+        },
+        {
+            name: 'Dee',
+            job: 'Actress',
+        },
+    ]
+
+    return (
+        &lt;div className="container"&gt;
+            &lt;Table characterData={characters} /&gt;
+        &lt;/div&gt;
+    )
+  }
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Now that the data is being passed through to our Table component, we have to work on accessing it from the other side.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+class Table extends Component {
+    render() {
+
+        const { characterData } = this.props
+
+        return(
+            &lt;table&gt;
+                &lt;TableHeader /&gt;
+                &lt;TableBody characterDate={characterData} /&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>If you open React DevTools and inspect the Table component, you'll see the array of data in the property. The data that's stored here is known as the virtual DOM, which is a fast and efficient way of syncing data with the actual DOM.</p>
+
+        <p>This data is not in the actual DOM yet, however.</p>
+    </div>
+
+    <p>Here is a further example to demonstrate how to render JSON data within an application. Update the index.js file with the following example:</p>
 
     <pre>
         <code>
@@ -100,6 +306,7 @@ render(
         <li><a href="https://pusher.com/tutorials/consume-restful-api-react" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React</a></li>
         <li><a href="https://github.com/fisayoafolayan/consuming-restful-api-in-react/tree/master/src" target="_blank" rel="noopener noreferrer">Consume Restful APIs with React: GitHub repository</a></li>
         <li><a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">Babel: Support for experimental 'classProperties' syntax</a></li>
+        <li><a href="https://www.robinwieruch.de/react-fetching-data" target="_blank" rel="noopener noreferrer">React: Fetching Data</a></li>
     </ul>
 </main>
 

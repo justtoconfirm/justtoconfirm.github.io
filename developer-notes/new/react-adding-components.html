@@ -148,6 +148,27 @@ export default App
         </code>
     </pre>
 
+    <p>Alternatively, we can use &lt;&gt; and &lt;/&gt; in-place of &lt;React.Fragment&gt; and &lt;/React.Fragment&gt;.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;&gt;
+            &lt;Button&gt;Sign in&lt;/Button&gt;
+            &lt;Button&gt;Register&lt;/Button&gt;
+        &lt;/&gt;
+    )
+}
+
+export default App
+        </code>
+    </pre>
+
     <p>We are now reusing the same Button component to render two buttons within our application.</p>
 
     <p>The file structure should look something like this:</p>
@@ -170,101 +191,6 @@ src/
         Button.js
         </code>
     </pre>
-
-    <h2>Building a Table Component</h2>
-
-    <p>We can now build a table component to demonstrate how to display data on a page within our React application. Open a new file in the src directory named Table.js and create a simple table with hard-coded values.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-import React from 'react'
-
-const Table = () => {
-    return (
-        &lt;table&gt;
-            &lt;thead&gt;
-                &lt;tr&gt;
-                    &lt;th&gt;Name&lt;/th&gt;
-                    &lt;th&gt;Job&lt;/th&gt;
-                &lt;/tr&gt;
-            &lt;/thead&gt;
-            &lt;tbody&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Darren&lt;/td&gt;
-                    &lt;td&gt;Web Developer&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Dave&lt;/td&gt;
-                    &lt;td&gt;Web Developer&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Dan&lt;/td&gt;
-                    &lt;td&gt;Web Developer&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/tbody&gt;
-        &lt;/table&gt;
-    )
-}
-
-export default Table
-        </code>
-    </pre>
-
-    <p>Next, we open the App.js component to import the Table component so it can be rendered on the page. You will need to build the application once again once these changes have been made.</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-import React from 'react'
-import Button from './Button/Button'
-import Table from './Table/Table'
-
-const App = () => {
-    return (
-        &lt;React.Fragment&gt;
-            &lt;Button&gt;Sign in&lt;/Button&gt;
-            &lt;Button&gt;Register&lt;/Button&gt;
-            &lt;Table /&gt;
-        &lt;/React.Fragment&gt;
-    )
-}
-
-export default App
-        </code>
-    </pre>
-
-    <p>The file structure within the project should look something like this:</p>
-
-    <pre>
-        <code>
-<!-- leave this line empty -->
-.babelrc
-node_modules/
-webpack.config.js
-package.json
-package-lock.json
-dist/
-    index.html
-    main.js
-src/
-    App.js
-    index.js
-    Button/
-        Button.js
-    Table/
-        Table.js
-        </code>
-    </pre>
-
-    <p>Right now, we have a Table component but the data in the table is being hard-coded. One of the big features of React is how it handles data. It handles data with properties, referred to as props, and with state.</p>
-
-    <h2>Useful Links</h2>
-
-    <ul>
-        <li><a href="https://www.taniarascia.com/getting-started-with-react/" target="_blank" rel="noopener noreferrer">Tania Rascia: Getting started with React</a></li>
-        <li><a href="https://www.robinwieruch.de/react-fetching-data" target="_blank" rel="noopener noreferrer">React: Fetching Data</a></li>
-    </ul>
 </main>
 
 </body>

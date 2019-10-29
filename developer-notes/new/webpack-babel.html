@@ -49,6 +49,17 @@
         <li>babel-loader - A Webpack loader that hooks Babel into Webpack allowing Babel to run when using Webpack</li>
     </ul>
 
+    <p>Packages to also be considered when using Babel:</p>
+
+    <ul>
+        <li>@babel/preset-env transpiles files using ES6, ES7 and ES8 which replaces babel-preset-latest. You can also use @babel/register to transpile files required by Node.js with extensions .es6, .es, .jsx and .js</li>
+        <li>@babel/cli is a command line interface that communications to the Babel transpiler.</li>
+    </ul>
+
+    <div class="note">
+        <p>@babel/preset-react is used to transpile files using React. This is required if your project is using React.</p>
+    </div>
+
     <p>Open the terminal and install the packages listed above as devDependencies:</p>
 
     <pre>
@@ -144,6 +155,12 @@ $ npm run build
     </pre>
 
     <p>When the build runs the code written in ES6 within the index.js file will be transpiled by Babel using Webpack and will be added to the main.js bundle in the distribution (dist) directory as ES5 syntax.</p>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://medium.com/@jeffrey.allen.lewis/the-ultimate-2018-webpack-4-and-babel-setup-guide-npm-yarn-dependencies-compared-entry-points-866b577da6a" target="_blank" rel="noopener noreferrer">Webpack 4 &amp; Babel: Setup Guide</a></li>
+    </ul>
 </main>
 
 </body>

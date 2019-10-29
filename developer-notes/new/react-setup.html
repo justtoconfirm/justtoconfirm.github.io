@@ -222,6 +222,38 @@ $ npm run build
     <p>There is an extension called React Developer Tools that will make your life much easier when working with React. Download <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React DevTools for Chrome</a>.</p>
 
     <p>After you install it, when you open DevTools, you'll see a tab for React. Click the tab and you'll be able to inspect components as they're written. Initially this may not be that useful, but as the app becomes more complicated, it will become increasingly useful.</p>
+
+    <h2>Class &amp; Functional Components</h2>
+
+    <p>A class component must include render() and the return can only return on parent element. As a wrap up, let's compare a simple functional component with a class component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const SimpleComponent = () => {
+    return &lt;div&gt;Example&lt;/div&gt;
+}
+        </code>
+    </pre>
+
+    <p>If the return is contained to one line, it does not need parenthesis.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class ClassComponent extends Component {
+    render() {
+        return &lt;div&gt;Example&lt;/div&gt;
+    }
+}
+        </code>
+    </pre>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://www.taniarascia.com/getting-started-with-react/" target="_blank" rel="noopener noreferrer">Tania Rascia: Getting started with React</a></li>
+    </ul>
 </main>
 
 </body>
