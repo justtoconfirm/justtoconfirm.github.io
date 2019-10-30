@@ -49,7 +49,7 @@
 
     <h2>Create a simple component</h2>
 
-    <p>We're going to being by using the ES6 arrow function to create simple components. First, a table header.</p>
+    <p>We're going to be using the ES6 arrow function to create simple components. First, a table header.</p>
 
     <pre>
         <code>
@@ -123,6 +123,47 @@ class Table extends Component {
 }
 
 export default Table
+        </code>
+    </pre>
+
+    <p>Here is the code for the index.js file also:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import App from './App'
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('app')
+);
+        </code>
+    </pre>
+
+    <p>The App.js code can be found further down this document.</p>
+
+    <p>Your file structure should look something like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    App.js
+    Table.js
+    TableBody.js
+    TableHeader.js
         </code>
     </pre>
 
@@ -221,6 +262,17 @@ export default App
 
     <p>Now that the data is being passed through to our Table component, we have to work on accessing it from the other side.</p>
 
+    <p>We are going to use the ES6 property shorthand to create a variable that contains this.props.characterData</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const { characterData } = this.props
+        </code>
+    </pre> 
+
+    <p>Here is the full code example for our Table component:</p>
+
     <pre>
         <code>
 <!-- leave this line empty -->
@@ -237,7 +289,7 @@ class Table extends Component {
         return(
             &lt;table&gt;
                 &lt;TableHeader /&gt;
-                &lt;TableBody characterDate={characterData} /&gt;
+                &lt;TableBody characterData={characterData} /&gt;
             &lt;/table&gt;
         )
     }
@@ -247,11 +299,46 @@ export default Table
         </code>
     </pre>
 
+    <p>This data is not in the actual DOM yet, however we can access all props through this.props, at this stage we are only passing one prop through, characterData, so we'll use this.props.characterData to retrieve that data.</p>
+
     <div class="note">
         <p>If you open React DevTools and inspect the Table component, you'll see the array of data in the property. The data that's stored here is known as the virtual DOM, which is a fast and efficient way of syncing data with the actual DOM.</p>
+    </div> 
 
-        <p>This data is not in the actual DOM yet, however.</p>
+    <p>We are now going to pass the props through as a parameter and map through the array to return a bale row for each object in the array. This map will be contained in the rows variable which we return as an expression.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const TableBody = props =&gt; {
+
+    const rows = props.characterData.map((row, index) =&gt; {
+        return(
+            &lt;tr key={index}&gt;
+                &lt;td&gt;{row.name}&lt;/td&gt;
+                &lt;td&gt;{row.job}&lt;/td&gt;
+            &lt;/tr&gt;
+        )
+    })
+
+    return &lt;tbody&gt;{rows}&lt;/tbody&gt;
+}
+
+export default TableBody
+        </code>
+    </pre>
+
+    <p>If you view the front end of the app, all the data is now loading. You may notice that a key index has been added to each table row. You should always use keys when making lists in React as they help to identify each list item.</p>
+
+    <p>Props are an effective way to pass existing data to a React component, however, the component cannot change the props as they're read-only.</p>
+
+    <div class="note">
+        <p>Don't forget to rebuild you application using Webpack whenever you make changes to your React code.</p>
     </div>
+
+    <h3>Further example</h3>
 
     <p>Here is a further example to demonstrate how to render JSON data within an application. Update the index.js file with the following example:</p>
 
