@@ -508,7 +508,7 @@ class App extends Component {
                 job: 'Actress'
             }            
         ],
-    },
+    };
 
     // Method - remove character
     removeCharacter = index => {
@@ -519,7 +519,7 @@ class App extends Component {
                 return i !== index
             }),
         })
-    },
+    };
 
     render() {
         const { characters } = this.state
@@ -597,6 +597,38 @@ export default TableBody
     </div>
 
     <p>We should now have delete buttons we can use to modify our state by deleting a character.</p>
+
+    <div class="note">
+        <p>You may notice an error in your terminal when running the build: Support for the experimental syntax 'classProperties' isn't currently enabled</p>
+    </div>
+
+    <h3>Fixing the terminal issue</h3>
+
+    <p>As described above, we have an issue in the terminal that we need to fix. Begin by installing a package using NPM (Node Package Manager). This should be installed as a devDependency.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ npm install @babel/plugin-proposal-class-properties --save-dev
+        </code>
+    </pre>
+
+    <p>Next, update the .babelrc config file to apply the @babel/plugin-proposal-class-properties package.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
+    ]
+}
+        </code>
+    </pre>
 
     <h2>Useful Links</h2>
 
