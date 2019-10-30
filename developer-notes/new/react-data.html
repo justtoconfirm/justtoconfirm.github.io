@@ -630,6 +630,124 @@ $ npm install @babel/plugin-proposal-class-properties --save-dev
         </code>
     </pre>
 
+    <p>Here is the link to the fix as an issue raised on GitHub: <a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">https://github.com/babel/babel/issues/8655</a></p>
+
+    <h2>Adding the Button component</h2>
+
+    <p>We can reuse our Button component we created previously and render this within the application. Begin by updating your Button component to add a new prop named onClick to the Button.js file.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = ({ type = 'button', url = '', className = '', theme = '', isFullWidth = false, onClick, children }) => {
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button type={type} className={buttonClass} onClick={onClick}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+        </code>
+    </pre>
+
+    <p>Within the TableBody component, update the code to import the Button component and render this in-place of the previous hard-coded button we were using previously.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+import Button from './Button/Button'
+
+const TableBody = props =&gt; {
+
+    const rows = props.characterData.map((row, index) =&gt; {
+        return(
+            &lt;tr key={index}&gt;
+                &lt;td&gt;{row.name}&lt;/td&gt;
+                &lt;td&gt;{row.job}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;Button theme="primary" onClick={() =&gt; props.removeCharacter(index)}>Delete&lt;/Button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        )
+    })
+
+    return &lt;tbody&gt;{rows}&lt;/tbody&gt;
+}
+
+export default TableBody
+        </code>
+    </pre>
+
+    <p>We are now using our Button component within our application.</p>
+
+    <p>Our file structure should currently look like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    App.js
+    Button/
+        Button.js
+    Table.js
+    TableBody.js
+    TableHeader.js
+        </code>
+    </pre>
+
+    <p>Ideally, you can update the file structure and place all the Table components within a separate directory. The import statement paths will need to be updated if you do this.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.babelrc
+node_modules/
+webpack.config.js
+package.json
+package-lock.json
+dist/
+    index.html
+    main.js
+src/
+    index.js
+    App.js
+    Button/
+        Button.js
+    Table/
+        Table.js
+        TableBody.js
+        TableHeader.js
+        </code>
+    </pre>
+
     <h2>Useful Links</h2>
 
     <ul>
