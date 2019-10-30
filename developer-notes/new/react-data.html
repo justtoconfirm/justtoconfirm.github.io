@@ -882,6 +882,280 @@ src/
         </code>
     </pre>
 
+    <h2>Submitting Form Data</h2>
+
+    <p>Now we have data stored in state and we have the ability to remove any item from the state. However, we also want the ability to add new data to state. In a real world application, you're more likely to start with an empty state and add to it, such as with a to-do list or a shopping cart.</p>
+
+    <p>Before anything else, remove all the hard coded data from the state.characters as we will update it using a form going forward.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// App.js - code omitted - empty state
+
+class App extends Component {
+    state = {
+        characters: [],
+    }
+}
+        </code>
+    </pre>
+
+    <p>We can now create a Form component in a new file called Form.js. We are going to create a class component and within you'll find a constructor(). We need the constructor() to use the this keyword and to receive the props from the parent component.</p>
+
+    <p>We're going to set the initial state of the Form to be an object with some empty properties and assign that initial state to this.state</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Form.js
+
+import React, { Component } from 'react'
+
+class Form extends Component {
+    constructor(props) {
+        super(props)
+
+        this.initialState = {
+            name: '',
+            job: '',
+        }
+
+        this.state = this.initialState
+    }
+}
+
+export default Form
+        </code>
+    </pre>
+
+    <p>Our goal for this form will be to update the state of Form every time the field is changes in the form and when we submit. All the data will pass to the App state which will then update the Table component.</p>
+
+    <p>First, we make the function that will run every time a change is made to an input. The event will be passed through and we'll set the state of Form to have the name (key) and value of the inputs.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Form.js
+
+handleChange = event => {
+    const { name, value } = event.target
+
+    this.setState({
+        [name]: value,
+    })
+}
+        </code>
+    </pre>
+
+    <p>Let's get this working before we move onto submitting the form. In the render, let's get our two properties from state and assign them as the values that correspond to the proper form keys. We run the handleChange() method as the onChange of the input and finally, we export the Form component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// Form.js
+
+render() {
+    const { name, job } = this.state;
+
+    return (
+        &lt;form&gt;
+            &lt;label>Name&lt;/label&gt;
+            &lt;input
+                type="text"
+                name="name"
+                value={name}
+                onChange={this.handleChange} /&gt;
+            &lt;label>Job&lt;/label&gt;
+            &lt;input
+                type="text"
+                name="job"
+                value={job}
+                onChange={this.handleChange} /&gt;
+        &lt;/form&gt;
+    );
+}
+
+export default Form;
+        </code>
+    </pre>
+
+    <p>In App.js, we can render the form below the table.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// App.js
+
+return (
+    &lt;div className="container"&gt;
+        &lt;Table characterData={characters} removeCharacter={this.removeCharacter} /&gt;
+        &lt;Form /&gt;
+    &lt;/div&gt;
+)
+        </code>
+    </pre>
+
+    <p>If you rebuild and view the app, yoi can see a form that doesn't have a submit yet. Update some fields and you should see the local state of Form being updated from within React DevTools.</p>
+
+    <p>The last step allows us to actually submit the data and update the parent state. We will create a function called handleSubmit() in the App component that will update the state by taking the existing this.state.characters and adding the new character parameter using the ES6 spread operator.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// App.js
+
+handleSubmit = character =&gt; {
+    this.setState({ characters: [...this.state.characters, character] })
+}
+        </code>
+    </pre>
+
+    <p>We need to make sure we pass that through as a parameter on Form.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;Form handleSubmit={this.handleSubmit} /&gt;
+        </code>
+    </pre>
+
+    <p>Now, in the Form component, we can create a method called submitForm() that will call that function and pass the Form state through as the character parameter we defined earlier. This will also reset the state to the initial state to clear the form after submit.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+submitForm = () =&gt; {
+    this.props.handleSubmit(this.state)
+    this.setState(this.initialState)
+}
+        </code>
+    </pre>
+
+    <p>Finally, we add a submit button to submit the form. We're using an onClick instead of an onSubmit since we're not using the standard submit functionality. The click will call the submitForm method we just created.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;input type="button" value="Submit" onClick={this.submitForm} /&gt;
+        </code>
+    </pre>
+
+    <p>The initial app is complete. We can create, add and remove users from our table. Since the Table and TableBody were already pulling from the state, it will display correctly.</p>
+
+    <p>Here is the full code for the App.js file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import Table from './Table/Table'
+import Api from './Api'
+import Form from './Form';
+
+class App extends Component {
+    state = {
+        characters: [],
+    };
+
+    // Method - remove character
+    removeCharacter = index =&gt; {
+        const { characters } = this.state
+
+        this.setState({
+            characters: characters.filter((character, i) =&gt; {
+                return i !== index
+            }),
+        })
+    };
+
+    handleSubmit = character =&gt; {
+        this.setState({characters: [...this.state.characters, character]});
+    }
+
+    render() {
+        const { characters } = this.state
+
+        return (
+            &lt;div className="container"&gt;
+                &lt;Table 
+                    characterData={characters} 
+                    removeCharacter={this.removeCharacter} /&gt;
+                &lt;Api /&gt;
+                &lt;Form handleSubmit={this.handleSubmit} /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Here is the full code for the Form.js:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, {Component} from 'react';
+
+class Form extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.initialState = {
+            name: '',
+            job: ''
+        };
+
+        this.state = this.initialState;
+    }
+
+    handleChange = event =&gt; {
+        const { name, value } = event.target;
+
+        this.setState({
+            [name] : value
+        });
+    }
+
+    onFormSubmit = (event) =&gt; {
+        event.preventDefault();
+        
+        this.props.handleSubmit(this.state);
+        this.setState(this.initialState);
+    }
+
+    render() {
+        const { name, job } = this.state; 
+
+        return (
+            &lt;form onSubmit={this.onFormSubmit}&gt;
+                &lt;label>Name&lt;/label&gt;
+                &lt;input 
+                    type="text" 
+                    name="name" 
+                    value={name} 
+                    onChange={this.handleChange} /&gt;
+                &lt;label>Job&lt;/label&gt;
+                &lt;input 
+                    type="text" 
+                    name="job" 
+                    value={job} 
+                    onChange={this.handleChange} /&gt;
+                &lt;button type="submit"&gt;
+                    Submit
+                &lt;/button&gt;
+            &lt;/form&gt;
+        );
+    }
+}
+
+export default Form
+        </code>
+    </pre>
+
     <h2>Useful Links</h2>
 
     <ul>
