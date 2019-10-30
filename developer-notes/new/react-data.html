@@ -387,6 +387,217 @@ render(
         </code>
     </pre>
 
+    <h2>State</h2>
+
+    <p>Currently we're storing our character data in an array within a variable and passing it through as props. This is a good start, however we may want to have the option to delete an item from the array. With props, we have a one way data flow, but with state, we can update private data from a component.</p>
+
+    <div class="note">
+        <p>You can think of state as any data that should be saved or modified without necessarily being added to a database - for example, adding and removing items from a shopping cart before confirming your purchase.
+    </div>
+
+    <p>To begin, we're going to create a state object within the App component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class App extends Component {
+    state = {}
+}
+        </code>
+    </pre>  
+
+    <p>The object will contain properties for everything you want to store in the state. For us, it's characters.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class App extends Component {
+    state = {
+        characters: [],
+    }
+}
+        </code>
+    </pre> 
+
+    <p>Move the entire array of objects we created earlier into state.characters</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+class App extends Component {
+    state = {
+        characters: [
+            {
+                name: 'Charlie',
+                // The rest of the data goes here
+            },
+        ],
+    }
+}
+        </code>
+    </pre> 
+
+    <p>Our data is officially contained in the state. Since we want to be able to remove a character from the tabel, we're going to create a removeCharacter method on the parent App class.</p>
+
+    <p>To retrieve the state, we'll get this.state.characters using the same ES6 method as before. To update the state, we'll use this.setState(), a built-in method for manipulating state. We will filter the array based on an index that we can pass through and return the new array.</p>
+
+    <div class="note">
+        <p>You must use this.setState() to modify an array. Simply applying a new value to this.state.property will not work.</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// App.js
+
+removeCharacter = index => {
+    const { characters } = this.state
+
+    this.setState({
+        characters: characters.filter((character, i) => {
+            return i !== index
+        }),
+    })
+}
+        </code>
+    </pre> 
+
+    <p>filter does no mutate but rather creates a new array and is a preferred method for modifying arrays in JavaScript. This particular method is testing an index against all the indices in the array and returning all but the one that is passed through.</p>
+
+    <p>Now we have to pass the function through to the component and render a button next to each character that can invoke the function. We will pass the removeCharacter function through as a prop to the Table component.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+// App.js
+
+render() {
+    const { characters } = this.state
+
+    return (
+        &lt;div className="container"&gt;
+            &lt;Table characterData={characters} removeCharacter={this.removeCharacter} /&gt;
+        &lt;/div&gt;
+    )
+}
+        </code>
+    </pre> 
+
+    <p>Here is the full App.js code:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import Table from './Table'
+
+class App extends Component {
+    state = {
+        characters: [
+            {
+                name: 'Charlie',
+                job: 'Janitor'
+            },
+            {
+                name: 'Mac',
+                job: 'Bouncer'
+            },
+            {
+                name: 'Dee',
+                job: 'Actress'
+            }            
+        ],
+    },
+
+    // Method - remove character
+    removeCharacter = index => {
+        const { characters } = this.state
+
+        this.setState({
+            characters: characters.filter((character, i) => {
+                return i !== index
+            }),
+        })
+    },
+
+    render() {
+        const { characters } = this.state
+
+        return (
+            &lt;div className="container"&gt;
+                &lt;Table characterData={characters} removeCharacter={this.removeCharacter} /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App
+        </code>
+    </pre>
+
+    <p>Since we're passing it down to TableBody from Table, we're going to have to pass it through again as a prop, just like we did with the character data.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React, { Component } from 'react'
+
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+class Table extends Component {
+    render() {
+
+        const { characterData, removeCharacter } = this.props
+
+        return(
+            &lt;table&gt;
+                &lt;TableHeader /&gt;
+                &lt;TableBody characterData={characterData} removeCharacter={removeCharacter} /&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+        </code>
+    </pre>
+
+    <p>Here's where the index we defined in the removeCharacter() method comnes in. In the TableBody component, we'll pass the key/index through as a parameter so the filter function knows which item to remove. We will create a button with an onClick and pass it through.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+import React from 'react'
+
+const TableBody = props =&gt; {
+
+    const rows = props.characterData.map((row, index) =&gt; {
+        return(
+            &lt;tr key={index}&gt;
+                &lt;td&gt;{row.name}&lt;/td&gt;
+                &lt;td&gt;{row.job}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button onClick={() => props.removeCharacter(index)}&gt;Delete&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        )
+    })
+
+    return &lt;tbody&gt;{rows}&lt;/tbody&gt;
+}
+
+export default TableBody
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>The onClick function must pass through a function that returns the removeCharacter() method, otherwise it will try and run automatically.</p>
+    </div>
+
+    <p>We should now have delete buttons we can use to modify our state by deleting a character.</p>
+
     <h2>Useful Links</h2>
 
     <ul>
