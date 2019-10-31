@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Cookies</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Cookies</h1>
+
+    <p>An HTTP cookie (web cookie, browser cookie) is a small piece of data stored in a small text file on your computer that a server sends to the user's web browser.</p>
+
+    <p>Cookies let you store user information in web pages and are mainly used for three purposes:</p>
+
+    <ul>
+        <li>Session management - Logins, shopping carts or anything else a server should remember</li>
+        <li>Personalisation - User preferences, themes, and other settings</li>
+        <li>Tracking - Recording and analyzing user behavior</li>
+    </ul>
+
+    <div class="note">
+        <p>Never use a cookie to store data you consider to be sensitive.</p>
+    </div> 
+
+    <p>An example could be:</p>
+
+    <ul>
+        <li>When a user visits a web page, their name can be stored in a cookie</li>
+        <li>The next time the user visits the page, the cookie "remembers" their name</li>
+    </ul>
+
+    <div class="note">
+        <p>When a browser requests a web page from a server, cookies belonging to the page are added to the request.</p>
+
+        <p>Cookies are sent with every request, so they can worsen performance - especially when considering mobile data connections.</p>
+    </div> 
+
+    <p>Cookies were once used for general client-side storage. It is recommended to now use modern storage APIs to store client-side data such as the Web Storage API - localStorage &amp; sessionStorage - or IndexedDB.</p>
+
+    <h2>HTTP requests - Cookies</h2>
+
+    <p>Cookies that are sent with HTTP requests can be viewed within Chrome DevTools.</p>
+
+    <ul>
+        <li>Open the Chrome DevTools and select the 'Network' tab</li>
+        <li>Under the 'Headers' tab, scroll down to the 'Request Headers' section</li>
+        <li>Here you'll find the Cookies property listing the cookies sent with the request</li>
+    </ul> 
+
+    <p>You can review cookies in the DevTools (developer tools) under: Application &gt; Storage &gt; Cookies</p>
+
+    <h2>Reject insecure cookies</h2>
+
+    <p>In May 2019, Chrome announced a secure-by-default model for cookies. This initiative is part of an ongoing effort to improve privacy and security across the web. Chrome plans to implement this new model with Chrome 80 in February 2020. Mozilla and Microsoft also intend to implement this new model in Firefox and Edge.</p>
+
+    <p>Websites typically integrate external services for advertising, third-party widgets, and other features. As you browser the web, these external services may store cookies in your browser and subsequently access those cookies to deliver personalised experiences or to measure audience engagement.</p>
+
+    <h3>Cross-site ("third party") context</h3>
+
+    <p>Every cookie has a domain. If the domain associated with the cookie matches an external service and not the website address, this is considered a cross-site (or "third party") context.</p>
+
+    <ul>
+        <li>The site domain is a.com</li>
+        <li>The cookie domain is b.com as this is from a web service. The site domain and cookie domain do not match</li>
+    </ul>
+
+    <h3>Same-site ("first party") context</h3>
+
+    <p>In contrast, cookie access in a same-site (or "first party") context occurs when a cookie's domain matches the website domain in the user's address bar. Same-site cookies are commonly used to keep people logged into individual websites, remember user preferences and support website analytics.</p>
+
+    <ul>
+        <li>The site domain is a.com</li>
+        <li>The cookie domain is a.com as this is from a web service. The site domain and cookie domain match</li>
+    </ul>
+
+    <div class="note">
+        <p>if you manage cookies that are only accessed in a same-site context (same-site cookies) there is no required action to be taken. Chrome will automatically prevent those cookies from being accessed by external entities even if the SameSite attribute is missing or no value is set.</p>
+
+        <p>It is best practice, however, to apply the SameSite value (Lax or Strict) anyway, and not rely on default browser behavior since not all browsers protect same-site cookies by default.</p>
+
+        <p>SameSite has been supported in Firefox since Firefox 60.</p>
+    </div>    
+
+    <p>Currently, if a cookie is only intended to be accessed this way, the developer has the option to apply one of two settings to prevent external access:</p>
+
+    <ul>
+        <li>SameSite=Lax</li>
+        <li>SameSite=Strict</li>
+    </ul>
+
+    <p>Here are the key differences between both:</p>
+
+    <ul>
+        <li>When you don't set the SameSite attribute, the cookie is always sent</li>
+        <li>SameSite=Lax, the cookie is only sent on same-site requests or top-level navigation with a safe HTTP method. It will not be sent with cross-domain POST requests or when loading the site in a cross-origin frame, but it will be sent when you navigate to the site via a standard top-level hyperlink.</li>
+        <li>SameSite=Strict, or invalid value, the cookie is never sent in cross-site requests. Even when clicking a top-level link on a third-party domain to your site, the browser will refuse to send the cookie.</li>
+    </ul>
+
+    <div class="note">
+        <p>Very few developers follow this recommended practice leaving a large number of same-site cookies needlessly exposed to threats such as Cross-Site Request Forgery attacks.</p>
+    </div>
+
+    <h3>Cookie Security - New Model</h3>
+
+    <p>To safeguard more websites and their users, the new secure-by-default model assumes all cookies should be protected from external access unless otherwise specified. The following cookie settings should be used:</p>
+
+    <ul>
+        <li>SameSite=None; Secure - designate cookies for cross-site access
+    </ul>
+
+    <p>When the SameSite=None attribute is present, an additional Secure attribute must be used so cross-site cookies can only be accessed over HTTPS connections. This won't mitigate all risks associated with cross-site access but it will provide protection against network attacks.</p>
+
+    <div class="note">
+        <p>With Chrome 80, Chrome will treat cookies that have no declared SameSite value as SameSite=Lax cookies. Only cookies with the SameSite=None; Secure setting will be available for external access provided they are being accessed from a secure connection.</p>
+
+        <p>This will also be a requirement for Firefox and Edge.</p>
+    </div>
+
+    <p>You will therefore need to apply the SameSite=None; Secure setting for any cross-site cookies you manage.</p>
+
+    <h3>Setting the SameSite attribute</h3>
+
+    <p>Here is a <a href="https://github.com/GoogleChromeLabs/samesite-examples" target="_blank" rel="noopener noreferrer">GitHub document</a> that provides examples of using the SameSite cookie attribute.</p>
+
+    <p>To set this in JavaScript:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = 'same-site-cookie=foo; SameSite=Lax';
+document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
+        </code>
+    </pre> 
+
+    <div class="note">
+        <p>Not all languages and libraries support the None value of the SameSite attribute yet, so developers will need to set the cookie header directly.</p>
+    </div>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://medium.com/compass-security/samesite-cookie-attribute-33b3bfeaeb95" target="_blank" rel="noopener noreferrer">Medium: SameSite Cookie attribute</a></li>
+    </ul>
+</main>
+
+</body>
+</html>

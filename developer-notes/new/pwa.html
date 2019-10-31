@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - PWA</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>PWA - Progressive Web Applications</h1>
+
+    <p>Progressive Web Applications (PWA) are a type of application delivered through the web and built using common web technologies including <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheet">CSS</abbr> and JavaScript. They are intended to work on any platform that uses a standards-compliant browser. PWAs often use the newest JavaScript features making them feel and function like native Android or iOS apps, therefore building a PWA is similar to building a web app, but from the user's perspective, it's similar to a native app.</p>
+
+    <div class="note">
+        <p>An advantage of a PWA over a native mobile app is that they consume less data. While native apps reside in the user's phone, PWAs are only accessed when users go to the website - when data is being used.</p>
+    </div>
+
+    <p>Progressive Web Apps are installed and live on the user's home screen without the need for an app store. They offer an immersive full screen experience with help from a web app manifest file and can re-engage users with push notifications.</p>
+
+    <p>The Web App <a href="https://developers.google.com/web/fundamentals/web-app-manifest/" target="_blank" rel="noopener noreferrer">Manifest</a> allows you to control how your app appears and how it's launched. You can specify home screen icons, the page to load when the app is launched, screen orientation and if to show the browser in Chrome.</p>
+
+    <h2>Manifest</h2>
+
+    <p>The Web App Manifest is a simple JSON file that tells the browser about your web application and how it should behave when "installed" on your user's mobile device or desktop. Having a manifest is required by Chrome to show the Add to Home Screen prompt.</p>
+
+    <p>A typical manifest file includes information about the app name, icons it should use, the start_url it should start at when launched, and more.</p>
+
+    <p>An example manifest.json file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+{
+    "short_name": "Maps",
+    "name": "Google Maps",
+    "icons": [
+        {
+            "src": "/images/icons-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/images/icons-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/maps/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/maps/",
+    "theme_color": "#3367D6"
+}
+        </code>
+    </pre>
+
+    <p>Once your manifest has been created, add a link tag to all the pages that encompass your web app.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;link rel="manifest" href="/manifest.json"&gt;
+        </code>
+    </pre>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener noreferrer">Google: Progressive Web Apps</a></li>
+        <li><a href="https://developers.google.com/web/progressive-web-apps/desktop" target="_blank" rel="noopener noreferrer">Google: Progressive Web Apps (Desktop)</a></li>
+        <li><a href="https://www.invisionapp.com/inside-design/whats-a-pwa/" target="_blank" rel="noopener noreferrer">What's a PWA</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
