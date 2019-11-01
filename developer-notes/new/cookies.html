@@ -33,7 +33,11 @@
 <main role="main" id="main">
     <h1>Cookies</h1>
 
-    <p>An HTTP cookie (web cookie, browser cookie) is a small piece of data stored in a small text file on your computer that a server sends to the user's web browser.</p>
+    <p>Web browsers and servers use the HTTP (HyperText Transfer Protocol) to communicate. An HTTP cookie (web cookie, browser cookie) is a small piece of data stored in a small text file on your computer that a server sends to the user's web browser.</p>
+
+    <p>Using cookies allows information to be exchanged between the server and the browser. the data they hold is small (4KB) as cookies are sent back-and-forth for every HTTP request to the server - including requests for assets like images, CSS or JavaScript files.</p>
+
+    <p>Cookies have a long history. The first version was in 1994 and over time they've been standardised in multiple RFC (Request For Comments) versions. RFC is the way standards are defined by the Internet Engineering Task Force (IETF), the entity responsible for setting standards for the Internet. The latest specification for Cookies is defined in the RFC 6265, which is dated 2011.</p>
 
     <p>Cookies let you store user information in web pages and are mainly used for three purposes:</p>
 
@@ -54,15 +58,141 @@
         <li>The next time the user visits the page, the cookie "remembers" their name</li>
     </ul>
 
+    <p>Cookies are saved in name-value pairs like: username = John Smith</p>
+
     <div class="note">
         <p>When a browser requests a web page from a server, cookies belonging to the page are added to the request.</p>
 
         <p>Cookies are sent with every request, so they can worsen performance - especially when considering mobile data connections.</p>
     </div> 
 
+    <h2>Alternatives to Cookies</h2>
+
     <p>Cookies were once used for general client-side storage. It is recommended to now use modern storage APIs to store client-side data such as the Web Storage API - localStorage &amp; sessionStorage - or IndexedDB.</p>
 
-    <h2>HTTP requests - Cookies</h2>
+    <p>JSON Web Tokens (JWT) is a Token-based Authentication that can be considered an alternative to cookies when building authentication and sessions on the Web.</p>
+
+    <h2>How to set a cookie</h2>
+
+    <p>JavaScript can create, read, and delete cookies with the document.cookie property. With JavaScript, a cookie can be created like:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = "username=John Smith";
+        </code>
+    </pre>
+
+    <p>This example will add a new cookie to the existing ones (it does not overwrite existing cookies). The cookie value should be URL encoded with encodeURIComponent() to make sure it does not contain any white space, comma, or semicolon which are not valid in cookie values.</p>
+
+    <div class="note">
+        <p>The Document property cookie lets you read and write cookies associated with the document. It serves as a getter and setter for the actual values of the cookies.</p>
+    </div>
+
+    <p>You can also add an expiry date (in UTC time), by default the cookie is deleted when the browser is closed.</p>
+
+    <div class="note">
+        <p>When user privacy is a concern, it's important that any web app implementation invalidate cookie data after a certain timeout instead of relying on the browser to do it. Many browsers let users specify that cookies should never expire, which is not always a safe option.</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = "username=John Smith; expires=Fri, 1 Nov 2019 12:00:00 UTC";
+        </code>
+    </pre>
+
+    <p>The path parameter can also be used to specify a document location for the cookie so that it's assigned to a specific path and only sent to the server if the path matches the current document location or parent.</p>
+
+    <h3>Set a cookie path</h3>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = "username=John Smith; path='/dashboard'";
+        </code>
+    </pre>   
+
+    <p>In the example above, this cookie is sent on /dashboard, /dashboard/today and any other sub-URLs of /dashboard/.</p>
+
+    <p>If a path is not set, it defaults to the current document location. This means that to apply a global cookie from an inner page, you need to specify path="/".</p>
+
+    <h3>Set a cookie domain</h3>
+
+    <p>The domain can be used to specify a subdomain for your cookie.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = "username=John Smith; domain='mysite.com';";
+        </code>
+    </pre>  
+
+    <p>If not set, it defaults to the host portion even if using a subdomain - if on subdomain.mydomain.com, by default it's set to mydomain.com. Domain cookies are included in subdomains.</p>
+
+    <h3>Cookie Security</h3>
+
+    <p>Adding the Secure parameter makes sure the cookie can only be transmitted securely over HTTPS and it will not be sent over unencrypted HTTP connections.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+document.cookie = "username=John Smith; Secure;";
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>This does not make cookies secure in any way - always avoid adding sensitive information to cookies.</p>
+    </div>
+
+    <p>The SameSite cookie attribute lets servers require that a cookie is not sent on cross-site requests, but only on resources that have the cookie domain as the origin. This reduces the rist of CSRF (Cross Site Request Forgery) attacks - as described by Google in relation to Chrome 80.</p>
+
+    <p>The link to the <a href="https://caniuse.com/#feat=same-site-cookie-attribute" target="_blank" rel="noopener noreferrer">Caniuse page</a> details the support for this attribute.</p>
+
+    <h3>Read a Cookie with JavaScript</h3>
+
+    <p>With JavaScript, cookies can be read like this:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+var x = document.cookie;
+        </code>
+    </pre>
+
+    <p>document.cookie will return all cookies in one stribg much like: cookie1=value; cookie2=value; cookie3=value;</p>
+
+    <h2>HTTP &amp; Cookies</h2>
+
+    <p>The server will send some data to the visitor's browser in the form of a cookie. The browser may accept the cookie and this is then stored as a plain text file on the visitor's hard drive. When the visitor arrives at another page, the browser sends the same cookie to the server for retrieval. Once retrieved, your server knows/remembers what was stored earlier.</p>
+
+    <div class="note">
+        <p>The Set-Cookie HTTP response header is used to send cookies from the server to the user agent, usually the browser, so the user agent can send them back to the server later.</p>
+    </div> 
+
+    <p>The server sends the cookie in its response header to set a cookie field, like so:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Set-Cookie: name = value
+        </code>
+    </pre>
+
+    <p>When a server responds to a browser request, it can send down a Set-Cookie header with one or many cookies.</p>
+
+    <div class="note">
+        <p>For Apache servers, the mod_headers module can be used to Set-Cookie headers. This is a module that provides directives to control and modify HTTP request and response headers.</p>
+    </div>
+
+    <p>If there is a cookie set, then the browser sends the following in its request header (Cookie header):</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+Cookie: name = value
+        </code>
+    </pre>
 
     <p>Cookies that are sent with HTTP requests can be viewed within Chrome DevTools.</p>
 
@@ -165,7 +295,23 @@ document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure';
 
     <ul>
         <li><a href="https://medium.com/compass-security/samesite-cookie-attribute-33b3bfeaeb95" target="_blank" rel="noopener noreferrer">Medium: SameSite Cookie attribute</a></li>
+        <li><a href="https://flaviocopes.com/cookies/" target="_blank" rel="noopener noreferrer">Flavio Copes: Cookies</a></li>
+        <li><a href="https://thoughtbot.com/blog/lucky-cookies" target="_blank" rel="noopener noreferrer">Throughtbot: Cookies</a></li>
     </ul>
+
+<!--
+https://support.google.com/chrome/thread/16654793?hl=en
+https://blog.chromium.org/2019/10/developers-get-ready-for-new.html
+https://web.dev/samesite-cookies-explained/
+https://www.chromestatus.com/feature/5633521622188032
+https://github.com/GoogleChromeLabs/samesite-examples
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
+
+https://www.dev2qa.com/how-to-view-http-headers-cookies-in-google-chrome-firefox-internet-explorer/
+-->
 </main>
 
 </body>
