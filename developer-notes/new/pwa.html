@@ -35,13 +35,54 @@
 
     <p>Progressive Web Applications (PWA) are a type of application delivered through the web and built using common web technologies including <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheet">CSS</abbr> and JavaScript. They are intended to work on any platform that uses a standards-compliant browser. PWAs often use the newest JavaScript features making them feel and function like native Android or iOS apps, therefore building a PWA is similar to building a web app, but from the user's perspective, it's similar to a native app.</p>
 
+    <p>As a specific term, websites can be tested against the following baseline criteria to qualify as a PWA:</p>
+
+    <ul>
+        <li>It must run under HTTPS</li>
+        <li>It must include a Web App Manifest</li>
+        <li>It must implement a service worker</li>
+    </ul>
+
     <div class="note">
         <p>An advantage of a PWA over a native mobile app is that they consume less data. While native apps reside in the user's phone, PWAs are only accessed when users go to the website - when data is being used.</p>
     </div>
 
     <p>Progressive Web Apps are installed and live on the user's home screen without the need for an app store. They offer an immersive full screen experience with help from a web app manifest file and can re-engage users with push notifications.</p>
 
+    <p>Here are a few of the other benefits of PWAs:</p>
+
+    <ul>
+        <li>SEOs promote PWAs making it easier for users to find them through Google or other search engines.</li>
+        <li>PWAs load directly onto a smartphone user screen without needing an app store to download.</li>
+        <li>PWAs are HTML5 based, they instantly load on any operating system and any device.</li>
+        <li>Easy to update, new versions of the app can be pushed directly to users.</li>
+    </ul>
+
+    <p>Twitter Lite is an example of a successful PWA. When introduced:</p>
+
+    <ul>
+        <li>Pages per session increased 65%</li>
+        <li>Tweets sent increased 75%</li>
+        <li>Bounce rate decreased 20%</li>
+        <li>Average load time decreased 30%</li>
+        <li>As of 2017, Twitter Lite is not the default mobile web experience for all Twitter users.</li>
+    </ul>
+
     <p>The Web App <a href="https://developers.google.com/web/fundamentals/web-app-manifest/" target="_blank" rel="noopener noreferrer">Manifest</a> allows you to control how your app appears and how it's launched. You can specify home screen icons, the page to load when the app is launched, screen orientation and if to show the browser in Chrome.</p>
+
+    <div class="note">
+        <p>Starting in Chrome 73, Progressive Web Apps are now supported on all desktop platforms, including Chrome OS, Linux, Mac, and Windows.</p>
+    </div>
+
+    <p>Desktop PWAs run in their own window. Native feel is important to users of PWAs. Desktop Progressive Web Apps are launched from the same place as other desktop apps and they run in an app window without tabs or an address bar. They look and feel like other apps on the desktop.</p>
+
+    <p>When launched from a user's home screen, service workers enable a Progressive Web App to load instantly regardless of the network state. A service worker, written in JavaScript, is like a client-side proxy and puts you in control of the cache and how to respond to resources requested. By pre-caching key resources you can eliminate the dependence on the network, ensuring an instant and reliable experience for your users.</p>
+
+    <p>By using a service worker to pre-cache content, the PWA will start consistently fast because it elimantes any network bottlenecks.</p>
+
+    <div class="note">
+        <p>For apps that require a network connection, a service worker is still valuable. They give you complete control over the online and offline experience. For example, if the user is offline, you could show cached data or provide your own custom offline page.</p>
+    </div>
 
     <h2>Manifest</h2>
 
@@ -93,6 +134,10 @@
         <li><a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener noreferrer">Google: Progressive Web Apps</a></li>
         <li><a href="https://developers.google.com/web/progressive-web-apps/desktop" target="_blank" rel="noopener noreferrer">Google: Progressive Web Apps (Desktop)</a></li>
         <li><a href="https://www.invisionapp.com/inside-design/whats-a-pwa/" target="_blank" rel="noopener noreferrer">What's a PWA</a></li>
+        <li><a href="https://www.kirupa.com/apps/build_a_pwa.htm" target="_blank" rel="noopener noreferrer">Build a PWA</a></li>
+        <li><a href="https://medium.com/dev-channel/learn-how-to-build-a-pwa-in-under-5-minutes-c860ad406ed" target="_blank" rel="noopener noreferrer">Learn how to build a PWA in under 5 minutes</a></li>
+        <li><a href="https://blog.bitsrc.io/how-to-build-a-react-progressive-web-application-pwa-b5b897df2f0a" target="_blank" rel="noopener noreferrer">Build a React PWA</a></li>
+        <li><a href="https://www.gatsbyjs.org/docs/progressive-web-app/" target="_blank" rel="noopener noreferrer">Gatsby: Progressive Web Apps</a></li>
     </ul>
 </main>
 
