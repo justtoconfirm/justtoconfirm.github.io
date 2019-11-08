@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Flexbox</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Code demo CSS -->
+<style>
+.container {
+    display: flex;
+}
+
+.container__item {
+    background-color: #3d7e9a;
+    color: #fff;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+}
+
+.container__item--flex-properties {
+    flex: 1 1 auto;
+}
+</style>
+<!-- / Code demo CSS -->
+
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Flexbox</h1>
+
+    <p>CSS Flexible Box Layout, commonly known as Flexbox, is a CSS3 web layout model. The flex layout allows responsive elements within a container to be automatically arranged depending upon screen size.</p>
+
+    <p>The flexible box layout is a way of using the display property of CSS in a whole new manner. This provides more control to developers who want to build naturally responsive layouts.</p>
+
+    <h2>Browser support</h2>
+
+    <p>Flexbox is supported in a number of browsers. Browser support can also be confirmed using <a href="https://caniuse.com/#feat=flexbox" target="_blank" rel="noopener noreferrer">caniuse</a>.</p>
+
+    <h2>How to use Flexbox</h2>
+
+    <p>The display: flex container may have a fixed or fluid width, but it makes sense to leave it fluid so the content adapts with the page. The internal elements are not given specific width values but instead, display based on proportions.</p>
+
+    <p>Flexbox is often considered as being one dimensional as it deals with layout in one dimension at a time - either as a row or as a column. This can be contrasted with the two-dimensional model of CSS Grid Layout, which controls columns and rows together.</p>
+
+    <div class="note">
+        <p>The flex value is an alternative to block elements floated and manipulated using media queries.</p>
+    </div>
+
+    <p>We use a CSS property named flex to define a ratio between boxes - usuall HTML &lt;div&gt; elements with flex: 1 representing a 1:1 ratio where each internal flex item displays at the same width regardless of screen resolution.</p>
+
+    <h3>The display property</h3>
+
+    <p>As discussed, the first important part of a flexbox is the container itself. This container is given display: flex so its children behave in the expected manner.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="container"&gt;
+    ...
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container {
+    display: flex;
+}
+        </code>
+    </pre>
+
+    <!-- Code demo -->
+    <div class="container">
+        <div class="container__item">One</div>
+        <div class="container__item">Two</div>
+        <div class="container__item">Three</div>
+        <div class="container__item">Four</div>
+    </div>
+    <!-- / Code demo -->
+
+    <h3>Flex properties</h3>
+
+    <p>You will very rarely see the flex-grow, flex-shrink, and flex-basis properties used individually; instead they are combined into the flex shorthand. The flex shorthand allows you to set the three values in this order - flex-grow, flex-shrink, flex-basis.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+&lt;div class="container"&gt;
+    &lt;div class="container__item"&gt;One&lt;/div&gt;
+    &lt;div class="container__item"&gt;Two&lt;/div&gt;
+    &lt;div class="container__item"&gt;Three&lt;/div&gt;
+    &lt;div class="container__item"&gt;Four&lt;/div&gt;
+&lt;/div&gt;
+        </code>
+    </pre>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container {
+    display: flex;
+}
+
+.container__item {
+    flex: 1 1 auto;     // flex-grow, flex-shrink, flex-basis
+}
+        </code>
+    </pre>
+
+    <!-- Code demo -->
+    <div class="container">
+        <div class="container__item container__item--flex-properties">One</div>
+        <div class="container__item container__item--flex-properties">Two</div>
+        <div class="container__item container__item--flex-properties">Three</div>
+        <div class="container__item container__item--flex-properties">Four</div>
+    </div>
+    <!-- / Code demo -->
+
+    <h3>The flex-wrap property</h3>
+
+    <p>The flex-wrap property specifies that the flex items will wrap if necessary. This is added to the container.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+        </code>
+    </pre>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://coder-coder.com/build-flexbox-website-layout/" target="_blank" rel="noopener noreferer">Build a Flexbox website layout</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
