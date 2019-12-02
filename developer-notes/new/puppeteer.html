@@ -43,13 +43,26 @@
         <li>Capture a timeline trace of your site to help diagnose performance issues</li>
     </ul>
 
-    <p>Puppeteer will be familiar to users of other browser testing frameworks. You create an instance of Broswer, open pages, and then manipulate them with Puppeteer's API.</p>
+    <p>Puppeteer will be familiar to users of other browser testing frameworks. You create an instance of Browser, open pages, and then manipulate them with Puppeteer's API.</p>
 
     <div class="note">
         <p>Puppeteer is just an API over the Chrome DevTools protocol. Naturally, it should have a Chromium instance to interact with. This is the reason why Puppeteer's ecosystem provides methods to launch a new Chromium instance and connect an existing instance also.</p>
     </div>
 
     <p>Puppeteer is the official tool for Chrome Headless testing by the Google Chrome team. Many of the industry standard libraries for automated testing, such as PhantomJS, have been discontinued.</p>
+
+    <h3>Is Puppeteer replace Selenium/WebDriver?</h3>
+
+    <p>No, both projects are valuable for very different reasons:</p>
+
+    <ul>
+        <li>Selenium/WebDriver focuses on cross-browser automation; its value proposition is a single standard API that works across all major browsers.</li>
+        <li>Puppeteer focuses on Chromium; its value proposition is richer functionality and higher reliability.</li>
+    </ul>
+
+    <p>We can also use Puppeteer with Jest.</p>
+
+    <p>In Puppeteer, "navigation" is anything changes a page's URL.</p>
 
     <h2>Installation</h2>
 
@@ -154,8 +167,8 @@ const puppeteerCore = require('puppeteer-core');
         executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
     });
     const page = await browser.newPage();
-    await page.goto('https://example.com');
-    await page.screenshot({path: 'example.png'});
+    await page.goto('https://hastingsdirect.com');
+    await page.screenshot({path: 'screenshot.png'});
  
     await browser.close();
 })();
@@ -173,6 +186,275 @@ chrome://version/
 
     <p>When the test runs, it will open an instance of the Chrome browser.</p>  
 
+    <h2>Writing Tests</h2>
+
+    <p>Tests are usually written in JavaScript files and executed using Node. Begin by opening an empty file and reference the puppeteer or puppeteer-core library.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+        </code>
+    </pre> 
+
+    <p>An anonymous function is then added to the test file:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+    // Test code here
+})();
+        </code>
+    </pre>
+
+    <p>Then we can use the launch() method to create a browser instance.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch();
+
+})();
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>We use await, and so we must wrap this method call in an async (asynchronous) function, which we immediately invoke.</p>
+    </div>
+
+    <p>We can also write this code like this, too:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+puppeteerCore.launch().then(async browser => {
+    // ...
+})
+        </code>
+    </pre>
+
+    <p>You can pass an object with options to puppeteer.launch(). The most common one is:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ headless: false });
+
+})();
+        </code>
+    </pre>
+
+    <p>This allows you to see what's happening in the browser and debug.</p>
+
+    <p>Next, we use the newPage() method on the browser object to get the page object.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ headless: false });
+    const page = await browser.newPage();
+
+})();
+        </code>
+    </pre>
+
+    <p>To open a page/URL, the goto() method on the page object is used to load the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto('https://www.hastingsdirect.com');
+
+})();
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>As mentioned previously, when using puppeteer-core, you can reference a currently installed version of Chrome using the executablePath property inside of the launch object.</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ 
+        headless: false,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.hastingsdirect.com');
+
+})();
+        </code>
+    </pre>
+
+    <p>You may also want to open the devtools when running Puppeteer in headless mode.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ 
+        headless: false,
+        devtools: true,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.hastingsdirect.com');
+
+})();
+        </code>
+    </pre>
+
+    <p>We can close the browser once the test has completed by calling the close() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ 
+        headless: false,
+        devtools: true,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.hastingsdirect.com');
+
+    await browser.close();
+})();
+        </code>
+    </pre>
+
+    <p>All methods return a promise, so they are normally prepended with the await keyword.</p>
+
+    <p>Once we have a page loaded with a URL, we can get the page content by calling the evaluate() method of the page.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ 
+        headless: false,
+        devtools: true,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.hastingsdirect.com');
+
+    const result = await page.evaluate(() => {
+        // ...
+    })
+
+    await browser.close();
+})();
+        </code>
+    </pre>
+
+    <p>We can use the page.$() method to access the Selectors API method querySelector() on the document and page.$$() as an alias to querySelectorAll().</p>
+
+    <p>Should we want to perform a mouse click event on an element, we pass this as a paremeter into the click() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+await page.click('button#submit');
+        </code>
+    </pre>
+
+    <h3>Emulate Devices</h3>
+
+    <p>The emulate method of the page object can be used to emulate a device. It sets the user agent to a specific device and sets the viewport accordingly. Here is how you emulate an iPhone X:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+const device = require('puppeteer/DeviceDescriptors')['iPhone X'];
+
+(async () => {
+
+    const browser = await puppeteerCore.launch({ 
+        headless: false,
+        devtools: true,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+    });
+    const page = await browser.newPage();
+    await page.emulate(device);
+    await page.goto('https://www.hastingsdirect.com');
+
+    const result = await page.evaluate(() => {
+        return document.querySelectorAll('.footer-tags a').length;
+    })
+
+    console.log(result);
+
+    await browser.close();
+})();
+        </code>
+    </pre>
+
+    <p>When using the goto() method, a new page is opened. You can pass an object as a second parameter, with options. The waitUntil option, if passed the networkidle2 value, will wait until the navigation is complete. In this example, the load value is passed in.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+await page.goto('https://www.hastingsdirect.com', { waitUntil: 'load' });
+        </code>
+    </pre>
+
+    <p>The page can be reloaded, using the reload() method.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+await page.reload();
+        </code>
+    </pre>
+
+    <p>A PNG screenshot of the page can be generated, saving it to the filename selected using path.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+await page.screenshot({ path: 'screenshot.png' });
+        </code>
+    </pre>
+
     <h2>Useful Links</h2>
 
     <ul>
@@ -187,6 +469,8 @@ chrome://version/
         <li><a href="https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e" target="_blank" rel="noopener noreferrer">Getting Started with Puppeteer</a></li>
         <li><a href="https://nitayneeman.com/posts/getting-to-know-puppeteer-using-practical-examples/">Getting to know puppeteer</a></li>
         <li><a href="https://www.nodenpm.com/puppeteer-core/package.html" target="_blank" rel="noopener noreferrer">puppeteer-core</a></li>
+        <li><a href="https://itnext.io/getting-started-using-puppeteer-headless-chrome-for-end-to-end-testing-8487718e4d97" target="_blank" rel="noopener noreferrer">Getting Started with Headless Testing in Puppeteer</a></li>
+        <li><a href="https://flaviocopes.com/puppeteer/" target="_blank" rel="noopener noreferrer">Flavio Copes: Puppeteer</a></li>
     </ul>
 </main>
 
