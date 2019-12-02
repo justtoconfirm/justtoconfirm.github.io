@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer Notes - Puppeteer</title>
+
+    <link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preload" href="fonts/nunito-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="header" role="banner">
+    <nav class="header__inner">
+        <ul class="header__item header__item--links">
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="index.html">Home</a>
+                </span>
+            </li>
+            <li class="header__link">
+                <span class="header__link--background">
+                    <a href="#main">Skip to content</a>
+                </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main role="main" id="main">
+    <h1>Puppeteer</h1>
+
+    <p>Puppeteer is a Node library which provides a high-level API to control headless Chrome or Chromium over the DevTools Protocol. Many things you can do manually in the browser can be done using Puppeteer. Here are a few examples:</p>
+
+    <ul>
+        <li>Generate screenshots and PDFs of pages</li>
+        <li>Crawl an SPA (Single-Page Application) and generate pre-rendered content</li>
+        <li>Automate form submission, UI testing, and keyboard inputs</li>
+        <li>Create an up-to-date automated testing environment. Run the tests directly in the latest version of Chrome using the latest JavaScript and browser features</li>
+        <li>Capture a timeline trace of your site to help diagnose performance issues</li>
+    </ul>
+
+    <p>Puppeteer will be familiar to users of other browser testing frameworks. You create an instance of Broswer, open pages, and then manipulate them with Puppeteer's API.</p>
+
+    <div class="note">
+        <p>Puppeteer is just an API over the Chrome DevTools protocol. Naturally, it should have a Chromium instance to interact with. This is the reason why Puppeteer's ecosystem provides methods to launch a new Chromium instance and connect an existing instance also.</p>
+    </div>
+
+    <p>Puppeteer is the official tool for Chrome Headless testing by the Google Chrome team. Many of the industry standard libraries for automated testing, such as PhantomJS, have been discontinued.</p>
+
+    <h2>Installation</h2>
+
+    <p>To use Puppeteer in your project, use NPM (Node Package Manager) or Yarn.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Install using NPM
+$ npm install puppeteer
+
+# Install using Yarn
+$ yarn add puppeteer
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>When you install Puppeteer, it downloads a recent version of Chromium (~170MB for Mac, ~282MB for Linux, ~280MB Windows) that is guaranteed to work with the <abbr title="Application Programming Interface">API</abbr>.</p>
+    </div>
+
+    <p>Since version 1.7.0, Google now publish the puppeteer-core package, a version of Puppeteer that doesn't download Chromium by default.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+# Install using NPM
+$ npm install puppeteer-core
+
+# Install using Yarn
+$ yarn add puppeteer-core
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>puppeteer-core is intended as a lightweight version of Puppeteer for launching an existing browser installation for connecting to a remote one. Be sure to check that the version of puppeteer-core installed is compatible with the browser you intend to connect to.</p>
+
+        <p>Prior to version 1.18.1, Puppeteer required at least Node v6.4.0. All subsequent versions rely on Node 8.9.0 or above.</p>
+    </div>
+
+    <h2>Example test</h2>
+
+    <p>Here is an example test using Puppeteer. We navigate to a page, https://example.com, and save a screenshot as example.png. This test file can be save as example.js</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteer = require('puppeteer');
+
+(async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    await page.screenshot({path: 'example.png'});
+
+    await browser.close();
+})();
+        </code>
+    </pre>
+
+    <p>The script can be executed using Node from within the command line:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+$ node example.js
+        </code>
+    </pre>
+
+    <div class="note">
+        <p>Puppeteer launches Chromium in headless mode. To launch a full version of Chromium, set the headless option when launching the browser.</p>
+    </div>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const browser = await puppeteer.lunch({headless: false});   // default in true
+        </code>
+    </pre>
+
+    <p>By default, Puppeteer downloads and uses a specific version of Chromium so its API is guaranteed to work out of the box. To use Puppeteer with a different version of Chrome or Chromium, pass in executable's path when creating a Browser instance.</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const browser = await puppeteer.lunch({executablePath: '/path/to/Chrome'});
+        </code>
+    </pre>
+
+    <h2>Useful Links</h2>
+
+    <ul>
+        <li><a href="https://developers.google.com/web/tools/puppeteer" target="_blank" rel="noopener noreferrer">Google Developers: Puppeteer</a></li>
+        <li><a href="https://developers.google.com/web/tools/puppeteer/get-started" target="_blank" rel="noopener noreferrer">Google Developers: Puppeteer - Get Started</li>
+        <li><a href="https://electronjs.org/apps/puppetry">Puppetry</a></li>
+        <li><a href="https://github.com/puppeteer/puppeteer" target="_blank" rel="noopener noreferrer">Puppeteer: GitHub</a></li>
+        <li><a href="https://www.npmjs.com/package/puppeteer" target="_blank" rel="noopener noreferrer">Puppeteer - NPM</a></li>
+        <li><a href="https://medium.com/@ngubanethabo.ambrose/what-is-the-npmrc-file-for-d19fe6d69c9a" target="_blank" rel="noopener noreferrer">What is the npmrc file?</a></li>
+        <li><a href="https://stackabuse.com/the-ultimate-guide-to-configuring-npm/" target="_blank" rel="noopener noreferrer">Ultimate guide to configuring NPM</a></li>
+        <li><a href="https://github.com/puppeteer/puppeteer/blob/master/docs/api.md#puppeteer-vs-puppeteer-core" target="_blank" rel="noopener noreferrer">puppeteer v puppeteer-core</a></li>
+        <li><a href="https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e" target="_blank" rel="noopener noreferrer">Getting Started with Puppeteer</a></li>
+        <li><a href="https://nitayneeman.com/posts/getting-to-know-puppeteer-using-practical-examples/">Getting to know puppeteer</a></li>
+    </ul>
+</main>
+
+</body>
+</html>
