@@ -89,6 +89,8 @@ $ yarn add puppeteer-core
         <p>Prior to version 1.18.1, Puppeteer required at least Node v6.4.0. All subsequent versions rely on Node 8.9.0 or above.</p>
     </div>
 
+    <p>puppeteer-code doesn't automatically download Chromium when installed.</p>
+
     <h2>Example test</h2>
 
     <p>Here is an example test using Puppeteer. We navigate to a page, https://example.com, and save a screenshot as example.png. This test file can be save as example.js</p>
@@ -138,6 +140,39 @@ const browser = await puppeteer.lunch({executablePath: '/path/to/Chrome'});
         </code>
     </pre>
 
+    <h2>Setup of puppeteer-core</h2>
+
+    <p>As mentioned before, puppeteer-core doesn't automatically download Chromium when installed. We can install puppeteer-core globally using NPM and then reference the version of Chrome we want to use. Here is the updated example test:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+const puppeteerCore = require('puppeteer-core');
+ 
+(async () => {
+    const browser = await puppeteerCore.launch({
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    });
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    await page.screenshot({path: 'example.png'});
+ 
+    await browser.close();
+})();
+        </code>
+    </pre>  
+
+    <p>The executable path of Chrome was located by using the following within the URL address bar of Chrome:</p>
+
+    <pre>
+        <code>
+<!-- leave this line empty -->
+chrome://version/
+        </code>
+    </pre>  
+
+    <p>When the test runs, it will open an instance of the Chrome browser.</p>  
+
     <h2>Useful Links</h2>
 
     <ul>
@@ -151,6 +186,7 @@ const browser = await puppeteer.lunch({executablePath: '/path/to/Chrome'});
         <li><a href="https://github.com/puppeteer/puppeteer/blob/master/docs/api.md#puppeteer-vs-puppeteer-core" target="_blank" rel="noopener noreferrer">puppeteer v puppeteer-core</a></li>
         <li><a href="https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e" target="_blank" rel="noopener noreferrer">Getting Started with Puppeteer</a></li>
         <li><a href="https://nitayneeman.com/posts/getting-to-know-puppeteer-using-practical-examples/">Getting to know puppeteer</a></li>
+        <li><a href="https://www.nodenpm.com/puppeteer-core/package.html" target="_blank" rel="noopener noreferrer">puppeteer-core</a></li>
     </ul>
 </main>
 
