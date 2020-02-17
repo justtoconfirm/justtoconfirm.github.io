@@ -70,6 +70,74 @@ $ npm install react react-dom --save
 
     <p>At this stage you may need to setup <a href="getting-started-with-webpack.html">Webpack</a> and <a href="getting-started-with-babel.html">Babel</a> to get React working.</p>
 
+    <h2>Building Components</h2>
+
+    <p>Almost everything in React consists of components. Most React apps have many small components and everything loads into the main App component. Components often also get their own file.</p>
+
+    <p>Begin by creating a file named index.js inside your project folder and within this file import React and ReactDOM.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+        </code>
+    </pre>
+
+    <p>Alternatively you can choose to import only the method you need from the ReactDOM library by changing the import statement. Here we only want to import the render method.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+        </code>
+    </pre>
+
+    <p>We need to now add a render method to the index.js file. The render method will display a message onto the page.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+RenderDOM.render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
+        </code>
+    </pre>
+
+    <p>If the import statement is amended to import the render method, then the code example above can be changed.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
+        </code>
+    </pre>
+
+    <p>To display the application in the browser, we need a simple HTML file. Create an empty HTML file in your project directory named index.html and add the following HTML code:</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+	
+	&lt;title&gt;React App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Root element --&gt;
+&lt;div id="app"&gt;&lt;/div&gt;
+
+&lt;script src="main.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+
 </main>
 
 <footer>
