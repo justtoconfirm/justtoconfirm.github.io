@@ -70,9 +70,23 @@ $ npm install react react-dom --save
 
     <p>At this stage you may need to setup <a href="getting-started-with-webpack.html">Webpack</a> and <a href="getting-started-with-babel.html">Babel</a> to get React working.</p>
 
+    <h2>JSX: JavaScript &amp; XML</h2>
+
+    <p>In many React component or code examples, you'll see what looks like HTML. This is not quite HTML but is JSX, which stands for JavaScript XML. With JSX, we can write what looks like HTML but we can also create and use our own XML-like tags.</p>
+
+    <p>JSX is actually closer to JavaScript than HTML. There are a few key differences to note when writing it:</p>
+
+    <ul>
+    	<li>className is used instead of class for adding CSS classes as class is a reserved keyword in JavaScript.</li>
+    	<li>Properties and methods in JSX are camelCase - onclick will become onClick.</li>
+    	<li>Self-closing tags must end in a slash - e.g. &lt;img /&gt;
+    </ul>
+
     <h2>Building Components</h2>
 
     <p>Almost everything in React consists of components. Most React apps have many small components and everything loads into the main App component. Components often also get their own file.</p>
+
+    <p>As we are using Webpack, it's often best to place all React components within the src directory.</p>
 
     <p>Begin by creating a file named index.js inside your project folder and within this file import React and ReactDOM.</p>
 
@@ -112,6 +126,18 @@ render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
         </code>
     </pre>
 
+    <p>The full code for the index.js file is here:</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
+        </code>
+    </pre>
+
     <p>To display the application in the browser, we need a simple HTML file. Create an empty HTML file in your project directory named index.html and add the following HTML code:</p>
 
     <pre>
@@ -135,6 +161,26 @@ render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
 
 &lt;/body&gt;
 &lt;/html&gt;
+        </code>
+    </pre>
+
+    <p>When you run the Webpack build a main.js file will be created. This needs to be included within your HTML file for the application to render. This will be the bundled JavaScript file and should be located within the distribution (dist) directory.</p>
+
+    <p>Within your project folder, the file structure should look something like the example below. The .gitignore, node_modules and package.json files have been included.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+project-folder /
+	.gitignore
+	node_modules /
+	package.json
+	package-lock.json
+	dist /
+		index.html
+		main.js
+	src /
+		index.js
         </code>
     </pre>
 
