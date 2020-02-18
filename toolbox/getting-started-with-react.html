@@ -184,6 +184,65 @@ project-folder /
         </code>
     </pre>
 
+    <p>Let's create a component named App that we can then import into the index.js file. Most React applications have many small components and everything can load into the main App component. The App component will be created within it's own file inside the src directory.</p>
+
+    <p>This component is a class component but can be written as a simple/functional component also.</p>
+
+    <p>Create a new file named App.js and add the code example below.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+
+class App extends Component {
+	render() {
+		return (
+			&lt;div&gt;
+				&lt;h1&gt;Hello React&lt;/h1&gt;
+			&lt;/div&gt;
+		)
+	}
+}
+
+export default App;
+        </code>
+    </pre>
+
+    <p>The component needs to be exported so it can be imported into other components. This newly created App component then needs to be imported into the index.js file and rendered. Update the index.js file so it looks like the example below.</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+import App from './App';
+
+render(&lt;App /&gt;, document.getElementById('app'));
+        </code>
+    </pre>
+
+    <p>When you run the build and view the app, nothing should change and 'Hello React' should render on the page.</p>
+
+    <p>The file structure in your project should look like this:</p>
+
+    <pre>
+        <code>
+<!-- Just leave this line alone -->
+project-folder /
+	.gitignore
+	node_modules /
+	package.json
+	package-lock.json
+	dist /
+		index.html
+		main.js
+	src /
+		App.js
+		index.js
+        </code>
+    </pre>
+
 </main>
 
 <footer>
