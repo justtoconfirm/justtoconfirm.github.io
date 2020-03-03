@@ -55,6 +55,16 @@ h2 {
     margin-top: 35px;
 }
 
+/* Tokens */
+.keyword {
+    color: #ffeead;
+}
+
+.value {
+    color: #62cfcf;
+}
+/* / Tokens */
+
 /* Terminal styling */
 .terminal {
     border-radius: 5px 5px 0 0;
@@ -121,4 +131,4 @@ h2 {
     padding: 8px;
     overflow: auto;
 }
-/* Terminal styling */
+/* / Terminal styling */
