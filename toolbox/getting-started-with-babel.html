@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
 	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
 	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
 	<link rel="stylesheet" href="style/main.css">
 </head>
 <body>
@@ -18,64 +19,71 @@
 
 <main role="main">
 
-    <h1>Getting Started with Babel</h1>
+    <div class="row">
+        <div class="columns small-12 large-12">
 
-    <h2>Install Babel</h2>
+            <h1>Getting Started with Babel</h1>
 
-    <p>Use Node Package Manager (NPM) to install the packages required to setup Babel.</p>
+            <h2>Install Babel</h2>
 
-    <ul>
-        <li>@babel/core - this is the main dependency, including Babel.</li>
-        <li>@babel/preset-env - the default Babel preset used to transform ES6 into ES5 syntax and to optionally configure browser polyfills.</li>
-        <li>babel-loader - a Webpack loader that hooks Babel into Webpack.</li>
-    </ul>
+            <p>Use Node Package Manager (NPM) to install the packages required to setup Babel.</p>
 
-    <p>Open your terminal within your project and install the packages as devDependencies.</p>
+            <ul>
+                <li>@babel/core - this is the main dependency, including Babel.</li>
+                <li>@babel/preset-env - the default Babel preset used to transform ES6 into ES5 syntax and to optionally configure browser polyfills.</li>
+                <li>babel-loader - a Webpack loader that hooks Babel into Webpack.</li>
+            </ul>
 
-    <pre>
-        <code>
+            <p>Open your terminal within your project and install the packages as devDependencies.</p>
+
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ npm install @babel/core @babel/preset-env babel-loader --save-dev
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>Should you need to use Babel within your React project, you should also install the following package:</p>
+            <p>Should you need to use Babel within your React project, you should also install the following package:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ npm install @babel/preset-react --save-dev
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <h2>Babel Config File</h2>
+            <h2>Babel Config File</h2>
 
-    <p>To allow Babel to work, a config file is required. This config file is named .babelrc and should be placed within the root of your project folder. Once the .babelrc file is created, it maybe hidden in your project folder. Use CTRL + SHIFT + . (dot), to see this hidden file.</p>
+            <p>To allow Babel to work, a config file is required. This config file is named .babelrc and should be placed within the root of your project folder. Once the .babelrc file is created, it maybe hidden in your project folder. Use CTRL + SHIFT + . (dot), to see this hidden file.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ touch .babelrc
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>In your code editor, open the .babelrc config file and add the following code:</p>
+            <p>In your code editor, open the .babelrc config file and add the following code:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 {
     "presets": [ "@babel/preset-env" ]
 }
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>To setup Babel for use with a <a href="getting-started-with-react.html">React</a> application, the @babel/preset-react package is required. You will also need to update the <a href="getting-started-with-webpack.html">Webpack</a> config file to apply Babel to Webpack.</p>
+            <p>To setup Babel for use with a <a href="getting-started-with-react.html">React</a> application, the @babel/preset-react package is required. You will also need to update the <a href="getting-started-with-webpack.html">Webpack</a> config file to apply Babel to Webpack.</p>
 
-    <p>The .babelrc config file should be updated to include the @babel/preset-react package should you be building a React application. This will allow your React components to be written in ES6 JavaScript syntax.</p>
+            <p>The .babelrc config file should be updated to include the @babel/preset-react package should you be building a React application. This will allow your React components to be written in ES6 JavaScript syntax.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 {
     "presets": [ 
@@ -83,8 +91,11 @@ $ touch .babelrc
         "@babel/preset-react" 
     ]
 }
-        </code>
-    </pre>
+    </code>
+</pre>
+
+        </div>
+    </div>
 
 </main>
 

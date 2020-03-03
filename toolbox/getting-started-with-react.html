@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
 	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
 	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
 	<link rel="stylesheet" href="style/main.css">
 </head>
 <body>
@@ -18,230 +19,248 @@
 
 <main role="main">
 
-	<h1>Getting Started with React</h1>
+    <div class="row">
+        <div class="columns small-12 large-12">
 
-	<h2>What is React?</h2>
+        	<h1>Getting Started with React</h1>
 
-	<ul>
-		<li>React is an open-source JavaScript library created by Facebook.</li>
-		<li>Used to build front end user interfaces (UI).</li>
-		<li>React is the view layer of an MVC (Model View Controller) application.</li>
-	</ul>
+        	<h2>What is React?</h2>
 
-	<p>React allows components to be created, which are similar to reusable HTML elements, to quickly build user interfaces. Data within React is stored and handled using state and props.</p> 
+        	<ul>
+        		<li>React is an open-source JavaScript library created by Facebook.</li>
+        		<li>Used to build front end user interfaces (UI).</li>
+        		<li>React is the view layer of an MVC (Model View Controller) application.</li>
+        	</ul>
 
-	<h2>React Developer Tools</h2>
+        	<p>React allows components to be created, which are similar to reusable HTML elements, to quickly build user interfaces. Data within React is stored and handled using state and props.</p> 
 
-	<p>There is a browser extension called <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React Developer Tools</a> that will make working with React much easier. Download React DevTools for Chrome, or for the browser you prefer to use.</p>
+        	<h2>React Developer Tools</h2>
 
-	<p>Once installed, when you open DevTools, you'll see a tab for React. This will allow you to inspect components as they're written. You can still go to the Elements tab to see the actual DOM (Document Object Model) output.</p>
+        	<p>There is a browser extension called <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React Developer Tools</a> that will make working with React much easier. Download React DevTools for Chrome, or for the browser you prefer to use.</p>
 
-	<h2>Install React</h2>
+        	<p>Once installed, when you open DevTools, you'll see a tab for React. This will allow you to inspect components as they're written. You can still go to the Elements tab to see the actual DOM (Document Object Model) output.</p>
 
-	<p>Node Package Manager (NPM) can be used to install React. Begin by creating a new directory where the React application will be built and setup a package.json file. Open your terminal and run the following commands:</p>
+        	<h2>Install React</h2>
 
-    <pre>
-        <code>
+        	<p>Node Package Manager (NPM) can be used to install React. Begin by creating a new directory where the React application will be built and setup a package.json file. Open your terminal and run the following commands:</p>
+
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ mkdir react-application
 $ cd react-application
 
 $ npm init -y
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>We now want to install the following packages:</p>
+            <p>We now want to install the following packages:</p>
 
-    <ul>
-    	<li>react - the top-level <abbr title="Application Programming Interface">API</abbr> of the React library.</li>
-    	<li>react-dom - <abbr title="Document Object Model">DOM</abbr> specific methods used by React.</li>
-    </ul>
+            <ul>
+            	<li>react - the top-level <abbr title="Application Programming Interface">API</abbr> of the React library.</li>
+            	<li>react-dom - <abbr title="Document Object Model">DOM</abbr> specific methods used by React.</li>
+            </ul>
 
-    <p>React and ReactDOM were split into two packages from version 0.14. ReactDOM is where you will find the render method.</p>
+            <p>React and ReactDOM were split into two packages from version 0.14. ReactDOM is where you will find the render method.</p>
 
-    <p>Once again, run the following commands in your terminal to install react and react-dom as dependencies:</p>
+            <p>Once again, run the following commands in your terminal to install react and react-dom as dependencies:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ npm install react react-dom --save
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>At this stage you may need to setup <a href="getting-started-with-webpack.html">Webpack</a> and <a href="getting-started-with-babel.html">Babel</a> to get React working.</p>
+            <p>At this stage you may need to setup <a href="getting-started-with-webpack.html">Webpack</a> and <a href="getting-started-with-babel.html">Babel</a> to get React working.</p>
 
-    <h2>JSX: JavaScript &amp; XML</h2>
+            <h2>JSX: JavaScript &amp; XML</h2>
 
-    <p>In many React component or code examples, you'll see what looks like HTML. This is not quite HTML but is JSX, which stands for JavaScript XML. With JSX, we can write what looks like HTML but we can also create and use our own XML-like tags.</p>
+            <p>In many React component or code examples, you'll see what looks like HTML. This is not quite HTML but is JSX, which stands for JavaScript XML. With JSX, we can write what looks like HTML but we can also create and use our own XML-like tags.</p>
 
-    <p>JSX is actually closer to JavaScript than HTML. There are a few key differences to note when writing it:</p>
+            <p>JSX is actually closer to JavaScript than HTML. There are a few key differences to note when writing it:</p>
 
-    <ul>
-    	<li>className is used instead of class for adding CSS classes as class is a reserved keyword in JavaScript.</li>
-    	<li>Properties and methods in JSX are camelCase - onclick will become onClick.</li>
-    	<li>Self-closing tags must end in a slash - e.g. &lt;img /&gt;
-    </ul>
+            <ul>
+            	<li>className is used instead of class for adding CSS classes as class is a reserved keyword in JavaScript.</li>
+            	<li>Properties and methods in JSX are camelCase - onclick will become onClick.</li>
+            	<li>Self-closing tags must end in a slash - e.g. &lt;img /&gt;
+            </ul>
 
-    <h2>Building Components</h2>
+            <h2>Building Components</h2>
 
-    <p>Almost everything in React consists of components. Most React apps have many small components and everything loads into the main App component. Components often also get their own file.</p>
+            <p>Almost everything in React consists of components. Most React apps have many small components and everything loads into the main App component. Components often also get their own file.</p>
 
-    <p>As we are using Webpack, it's often best to place all React components within the src directory.</p>
+            <p>As we are using Webpack, it's often best to place all React components within the src directory.</p>
 
-    <p>Begin by creating a file named index.js inside your project folder and within this file import React and ReactDOM.</p>
+            <p>Begin by creating a file named index.js inside your project folder and within this file import React and ReactDOM.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 import React from 'react';
 import ReactDOM from 'react-dom';
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>Alternatively you can choose to import only the method you need from the ReactDOM library by changing the import statement. Here we only want to import the render method.</p>
+            <p>Alternatively you can choose to import only the method you need from the ReactDOM library by changing the import statement. Here we only want to import the render method.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 import React from 'react';
 import { render } from 'react-dom';
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>We need to now add a render method to the index.js file. The render method will display a message onto the page.</p>
+            <p>We need to now add a render method to the index.js file. The render method will display a message onto the page.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 RenderDOM.render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>If the import statement is amended to import the render method, then the code example above can be changed.</p>
+            <p>If the import statement is amended to import the render method, then the code example above can be changed.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>The full code for the index.js file is here:</p>
+            <p>The full code for the index.js file is here:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 import React from 'react';
 import { render } from 'react-dom';
 
 render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>To display the application in the browser, we need a simple HTML file. Create an empty HTML file in your project directory named index.html and add the following HTML code:</p>
+            <p>To display the application in the browser, we need a simple HTML file. Create an empty HTML file in your project directory named index.html and add the following HTML code:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
-	&lt;meta charset="utf-8"&gt;
-	&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-	
-	&lt;title&gt;React App&lt;/title&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+        	
+    &lt;title&gt;React App&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
-&lt;!-- Root element --&gt;
-&lt;div id="app"&gt;&lt;/div&gt;
+    &lt;!-- Root element --&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
 
 &lt;script src="main.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>When you run the Webpack build a main.js file will be created. This needs to be included within your HTML file for the application to render. This will be the bundled JavaScript file and should be located within the distribution (dist) directory.</p>
+            <p>When you run the Webpack build a main.js file will be created. This needs to be included within your HTML file for the application to render. This will be the bundled JavaScript file and should be located within the distribution (dist) directory.</p>
 
-    <p>Within your project folder, the file structure should look something like the example below. The .gitignore, node_modules and package.json files have been included.</p>
+            <p>Within your project folder, the file structure should look something like the example below. The .gitignore, node_modules and package.json files have been included.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 project-folder /
-	.gitignore
-	node_modules /
-	package.json
-	package-lock.json
-	dist /
-		index.html
-		main.js
-	src /
-		index.js
-        </code>
-    </pre>
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>Let's create a component named App that we can then import into the index.js file. Most React applications have many small components and everything can load into the main App component. The App component will be created within it's own file inside the src directory.</p>
+            <p>Let's create a component named App that we can then import into the index.js file. Most React applications have many small components and everything can load into the main App component. The App component will be created within it's own file inside the src directory.</p>
 
-    <p>This component is a class component but can be written as a simple/functional component also.</p>
+            <p>This component is a class component but can be written as a simple/functional component also.</p>
 
-    <p>Create a new file named App.js and add the code example below.</p>
+            <p>Create a new file named App.js and add the code example below.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 import React, { Component } from 'react';
 
 class App extends Component {
-	render() {
-		return (
-			&lt;div&gt;
-				&lt;h1&gt;Hello React&lt;/h1&gt;
-			&lt;/div&gt;
-		)
-	}
+    render() {
+        return (
+        	&lt;div&gt;
+        		&lt;h1&gt;Hello React&lt;/h1&gt;
+        	&lt;/div&gt;
+        )
+    }
 }
 
 export default App;
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>The component needs to be exported so it can be imported into other components. This newly created App component then needs to be imported into the index.js file and rendered. Update the index.js file so it looks like the example below.</p>
+            <p>The component needs to be exported so it can be imported into other components. This newly created App component then needs to be imported into the index.js file and rendered. Update the index.js file so it looks like the example below.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
 
 render(&lt;App /&gt;, document.getElementById('app'));
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>When you run the build and view the app, nothing should change and 'Hello React' should render on the page.</p>
+            <p>When you run the build and view the app, nothing should change and 'Hello React' should render on the page.</p>
 
-    <p>The file structure in your project should look like this:</p>
+            <p>The file structure in your project should look like this:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 project-folder /
-	.gitignore
-	node_modules /
-	package.json
-	package-lock.json
-	dist /
-		index.html
-		main.js
-	src /
-		App.js
-		index.js
-        </code>
-    </pre>
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        App.js
+        index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    </div>
 
 </main>
 

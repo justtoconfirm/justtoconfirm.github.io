@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
 	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
 	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
 	<link rel="stylesheet" href="style/main.css">
 </head>
 <body>
@@ -18,91 +19,101 @@
 
 <main role="main">
 
-    <h1>Getting Started with Webpack</h1>
+    <div class="row">
+        <div class="columns small-12 large-12">
 
-    <h2>Install Webpack</h2>
+            <h1>Getting Started with Webpack</h1>
 
-    <p>Assuming that you have a project folder/directory available and a package.json file has been created, Node Package Manager (NPM) can be used to install Webpack. Both webpack and webpack-cli packages are required to be installed. Open your terminal and enter the following command to install both packages as devDependencies.</p>
+            <h2>Install Webpack</h2>
 
-    <pre>
-        <code>
+            <p>Assuming that you have a project folder/directory available and a package.json file has been created, Node Package Manager (NPM) can be used to install Webpack. Both webpack and webpack-cli packages are required to be installed. Open your terminal and enter the following command to install both packages as devDependencies.</p>
+
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ npm install webpack webpack-cli --save-dev
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>Once installed, open the package.json file and add a build script to run Webpack.</p>
+            <p>Once installed, open the package.json file and add a build script to run Webpack.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
 },
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <p>To run Webpack, run the build script within your terminal:</p>
+            <p>To run Webpack, run the build script within your terminal:</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ npm run build
-        </code>
-    </pre>  
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
 
-    <p>The default behaviour of Webpack 4 is to search for a file named index.js within a src directory inside your project. Webpack will return an error in the terminal if this directory and file cannot be found.</p>
+            <p>The default behaviour of Webpack 4 is to search for a file named index.js within a src directory inside your project. Webpack will return an error in the terminal if this directory and file cannot be found.</p>
 
-    <h2>Creating the index.js file</h2>
+            <h2>Creating the index.js file</h2>
 
-    <p>Within your project, begin by creating a src directory. This can be created using a terminal command.</p>
+            <p>Within your project, begin by creating a src directory. This can be created using a terminal command.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ mkdir src
-        </code>
-    </pre> 
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
 
-    <p>Once the directory is created, change directory (cd) into the src directory from within the terminal and create an empty JavaScript file. This file should be named index.js as this is what Webpack will look for by default.</p>
+            <p>Once the directory is created, change directory (cd) into the src directory from within the terminal and create an empty JavaScript file. This file should be named index.js as this is what Webpack will look for by default.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ cd src
 $ touch index.js
-        </code>
-    </pre> 
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
 
-    <p>Open this newly created index.js file and add a single line of JavaScript.</p>
+            <p>Open this newly created index.js file and add a single line of JavaScript.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 console.log("Hello World");
-        </code>
-    </pre> 
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
 
-    <p>Save the file and run the build script. Webpack will generate a distribution (dist) directory inside your project folder and inside will be a bundle JavaScript file named main.js. Webpack is now working.</p>
+            <p>Save the file and run the build script. Webpack will generate a distribution (dist) directory inside your project folder and inside will be a bundle JavaScript file named main.js. Webpack is now working.</p>
 
-    <h2>Webpack Config File</h2>
+            <h2>Webpack Config File</h2>
 
-    <p>Althought Webpack 4 is considered as 'zero-configuration', a Webpack config file can be used to extend this further. The Webpack config file is named webpack.config.js and should be within the root of your project folder.</p>
+            <p>Althought Webpack 4 is considered as 'zero-configuration', a Webpack config file can be used to extend this further. The Webpack config file is named webpack.config.js and should be within the root of your project folder.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 $ touch webpack.config.js
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-    <h2>Adding Babel to Webpack</h2>
+            <h2>Adding Babel to Webpack</h2>
 
-    <p>Once <a href="getting-started-with-babel.html">Babel</a> has been setup, the Webpack config can then be updated. Begin by opening the webpack.config.js file within a code editor and ensure the babel-loader has been added. The config file should look something like the example below.</p>
+            <p>Once <a href="getting-started-with-babel.html">Babel</a> has been setup, the Webpack config can then be updated. Begin by opening the webpack.config.js file within a code editor and ensure the babel-loader has been added. The config file should look something like the example below.</p>
 
-    <pre>
-        <code>
+<pre>
+    <code>
 <!-- Just leave this line alone -->
 module.exports = {
     module: {
@@ -117,8 +128,12 @@ module.exports = {
         ]
     }
 }
-        </code>
-    </pre>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    <div>
 
 </main>
 
