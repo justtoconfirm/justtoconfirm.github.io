@@ -55,23 +55,31 @@ h2 {
     margin-top: 35px;
 }
 
-/* Terminal Test */
+/* Terminal styling */
 .terminal {
     border-radius: 5px 5px 0 0;
     position: relative;
+    margin: 25px 0;
 }
-.terminal .top {
-    background: #E8E6E8;
-    color: black;
+
+.terminal--shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+.terminal__top {
+    background: #e8e6e8;
+    color: #000;
     padding: 5px;
     border-radius: 5px 5px 0 0;
 }
-.terminal .btns {
+
+.terminal__buttons {
     position: absolute;
     top: 7px;
     left: 5px;
 }
-.terminal .circle {
+
+.terminal__circle {
     width: 12px;
     height: 12px;
     display: inline-block;
@@ -81,26 +89,36 @@ h2 {
     border-style: solid;
 }
 
-.terminal-body {
+.terminal__circle--red { 
+    background: #ec6a5f; 
+    border-color: #d04e42; 
+}
+
+.terminal__circle--green { 
+    background: #64cc57; 
+    border-color: #4ea73b; 
+}
+
+.terminal__circle--yellow { 
+    background: #f5c04f; 
+    border-color: #d6a13d; 
+}
+
+.terminal__circle--clear{
+    clear: both;
+}
+
+.terminal__title {
+    text-align: center;
+}
+
+.terminal__body {
     margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-}
-
-.title{
-    text-align: center;
-}
-.red { background: #EC6A5F; border-color: #D04E42; }
-.green { background: #64CC57; border-color: #4EA73B; }
-.yellow{ background: #F5C04F; border-color: #D6A13D; }
-.clear{clear: both;}
-.terminal .body {
     background: black;
-    color: #7AFB4C;
+    color: #7afb4c;
     padding: 8px;
     overflow: auto;
 }
-.space {
-    margin: 25px 0;
-}
-.shadow { box-shadow: 0px 0px 10px rgba(0,0,0,.4)}
+/* Terminal styling */

@@ -29,13 +29,22 @@
 
             <p>Assuming that you have a project folder/directory available and a package.json file has been created, Node Package Manager (NPM) can be used to install Webpack. Both webpack and webpack-cli packages are required to be installed. Open your terminal and enter the following command to install both packages as devDependencies.</p>
 
-<pre>
-    <code>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
 <!-- Just leave this line alone -->
-$ npm install webpack webpack-cli --save-dev
-<!-- Just leave this line alone -->
-    </code>
-</pre>
+    $ npm install webpack webpack-cli --save-dev
+    </pre>
+</div>
+<!-- / Terminal --> 
 
             <p>Once installed, open the package.json file and add a build script to run Webpack.</p>
 
@@ -52,13 +61,22 @@ $ npm install webpack webpack-cli --save-dev
 
             <p>To run Webpack, run the build script within your terminal:</p>
 
-<pre>
-    <code>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
 <!-- Just leave this line alone -->
-$ npm run build
-<!-- Just leave this line alone -->
-    </code>
-</pre>  
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal --> 
 
             <p>The default behaviour of Webpack 4 is to search for a file named index.js within a src directory inside your project. Webpack will return an error in the terminal if this directory and file cannot be found.</p>
 
@@ -66,24 +84,42 @@ $ npm run build
 
             <p>Within your project, begin by creating a src directory. This can be created using a terminal command.</p>
 
-<pre>
-    <code>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
 <!-- Just leave this line alone -->
-$ mkdir src
-<!-- Just leave this line alone -->
-    </code>
-</pre> 
+    $ mkdir src
+    </pre>
+</div>
+<!-- / Terminal -->
 
             <p>Once the directory is created, change directory (cd) into the src directory from within the terminal and create an empty JavaScript file. This file should be named index.js as this is what Webpack will look for by default.</p>
 
-<pre>
-    <code>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
 <!-- Just leave this line alone -->
-$ cd src
-$ touch index.js
-<!-- Just leave this line alone -->
-    </code>
-</pre> 
+    $ cd src
+    $ touch index.js
+    </pre>
+</div>
+<!-- / Terminal -->
 
             <p>Open this newly created index.js file and add a single line of JavaScript.</p>
 
@@ -101,13 +137,22 @@ console.log("Hello World");
 
             <p>Althought Webpack 4 is considered as 'zero-configuration', a Webpack config file can be used to extend this further. The Webpack config file is named webpack.config.js and should be within the root of your project folder.</p>
 
-<pre>
-    <code>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
 <!-- Just leave this line alone -->
-$ touch webpack.config.js
-<!-- Just leave this line alone -->
-    </code>
-</pre>
+    $ touch webpack.config.js
+    </pre>
+</div>
+<!-- / Terminal -->
 
             <h2>Adding Babel to Webpack</h2>
 
@@ -132,23 +177,6 @@ module.exports = {
 <!-- Just leave this line alone -->
     </code>
 </pre>
-
-<!-- Terminal test -->
-<div class="terminal space shadow">
-    <div class="top">
-        <div class="btns">
-            <span class="circle red"></span>
-            <span class="circle yellow"></span>
-            <span class="circle green"></span>
-        </div>
-        <div class="title">bash -- 85x24</div>
-    </div>
-    <pre class="body terminal-body">
-
-    commands
-    </pre>
-</div>
-<!-- / Terminal test -->
 
         </div>
     <div>
