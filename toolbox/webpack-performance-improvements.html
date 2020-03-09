@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Improving the Performance of Webpack</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/webpack-performance-improvements.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+            <h1>Improving the Performance of Webpack</h1>
+
+            <h2>Loaders</h2>
+
+            <p>To improve performance, apply loaders to the minimal number of modules necessary. Use the include field to only apply the loader modules that actually need to be transformed. In this example, only JavaScript files in the src directory will have the loader applied.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    <span class="token-keyword">module:</span> {
+        <span class="token-keyword">rules:</span> [
+            {
+                <span class="token-keyword">test:</span> <span class="token-value">/\.js$/</span>,
+                <span class="token-keyword">include:</span> <span class="token-value">path.resolve(__dirname, 'src')</span>,
+                <span class="token-keyword">exclude:</span> <span class="token-value">/node_modules/</span>,
+                <span class="token-keyword">use:</span> {
+                    <span class="token-keyword">loader:</span> <span class="token-value">'babel-loader'</span>
+                }
+            }
+        ]
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Output without the Path Info</h2>
+
+            <p>Webpack has the ability to generate path information in the output bundle. This puts garbage collection pressure on projects that bundle multiple modules. This option can be turned off within the options.output.pathinfo setting.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    // ...
+    <span class="token-keyword">output:</span> {
+        <span class="token-keyword">pathinfo:</span> <span class="token-false">false</span>
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Devtool</h2>
+
+            <p>The devtool setting within the Webpack config file can have performance differences. In most cases, using cheap-module-eval-source-map, is the best option.</p>
+
+            <p>Having this option as source-maps can increase the time it takes for your codebase to compile.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    // ...
+    <span class="token-keyword">devtool:</span> <span class="token-value">'cheap-module-eval-source-map'</span> 
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Splitchunks</h2>
+
+            <p>In Webpack 4, add the optimization.splitChunks.chunks option into your Webpack config. This option enables smart code splitting. With it, Webpack will extract the vendor code if it gets larger than 30KB (before minification and gzip) and extract the common code. This is useful when your build generates multiple bundles.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    <span class="token-keyword">optimization:</span> {
+        <span class="token-keyword">splitChunks:</span> {
+            <span class="token-keyword">chunks:</span> <span class="token-value">'all'</span>,
+        }
+    },
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Should you want to allow shared and vendor dependencies to be split into separate bundles, update the Webpack config file further.</p>
+
+            <p>It's good practice to extract third-party libraries, such as lodash or react, to a separate vendor chunk as they are less likely to change than our local source code. This step will allow clients to request even less from the server to stay up to date. This is done by using the cacheGroups option of SplitChunks, as shown in the example below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    <span class="token-keyword">optimization:</span> {
+        <span class="token-keyword">splitChunks:</span> {
+            <span class="token-keyword">chunks:</span> <span class="token-value">'all'</span>,
+            <span class="token-keyword">cacheGroups:</span> {
+                <span class="token-keyword">vendors:</span> {
+                    <span class="token-keyword">test:</span> <span class="token-value">/[\\/]node_modules[\\/]/i</span>,
+                    <span class="token-keyword">chunks:</span> <span class="token-value">'all'</span>,
+                    <span class="token-keyword">name:</span> <span class="token-value">'vendorbundle'</span>
+                }
+            }
+        }
+    },
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also move the runtime into a separate file. This is achieved by enabling the optimization.runtimeChunk options.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    <span class="token-keyword">optimization:</span> {
+        <span class="token-keyword">runtimeChunk:</span> <span class="token-true">true</span>,
+    },
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The runtime bundle can be given a name:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<span class="token-keyword">module</span>.<span class="token-method">exports</span> = {
+    <span class="token-keyword">optimization:</span> {
+        <span class="token-keyword">runtimeChunk:</span> {
+            <span class="token-keyword">name:</span> <span class="token-value">'runtime'</span>
+        },
+    },
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Include them into index.html - and you're done.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!-- index.html --&gt;
+&lt;script src="runtime.js"&gt;&lt;/script&gt;
+&lt;script src="vendor.js"&gt;&lt;/script&gt;
+&lt;script src="main.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    <div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

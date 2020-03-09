@@ -55,6 +55,32 @@ h2 {
     margin-top: 35px;
 }
 
+/* Tokens */
+.token-keyword {
+    color: #ffeead;
+}
+
+.token-value {
+    color: #fc9463;
+}
+
+.token-operator {
+    color: #aa7ee1;
+}
+
+.token-method {
+    color: #ff6347;
+}
+
+.token-true {
+    color: #92d192;
+}
+
+.token-false {
+    color: #e1a6f2;
+}
+/* / Tokens */
+
 /* Terminal styling */
 .terminal {
     border-radius: 5px 5px 0 0;
