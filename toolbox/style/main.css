@@ -55,6 +55,11 @@ h2 {
     margin-top: 35px;
 }
 
+.list--no-type {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 /* Tokens */
 /*
 .token-keyword {
