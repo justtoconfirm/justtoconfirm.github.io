@@ -118,8 +118,8 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">import</span> <span class="other">React</span> <span class="keyword">from</span> <span class="value">'react'</span>;
-<span class="keyword">import</span> <span class="other">ReactDOM</span> <span class="keyword">from</span> <span class="value">'react-dom'</span>;
+import React from 'react';
+import ReactDOM from 'react-dom';
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -129,8 +129,8 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">import</span> <span class="other">React</span> <span class="keyword">from</span> <span class="value">'react'</span>;
-<span class="keyword">import</span> { <span class="other">render</span> } <span class="keyword">from</span> <span class="value">'react-dom'</span>;
+import React from 'react';
+import { render } from 'react-dom';
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -140,7 +140,7 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="other">RenderDOM.render</span>(<span class="keyword">&lt;h1&gt;</span>Hello React<span class="keyword">&lt;/h1&gt;</span>, document.getElementById(<span class="keyword">'app'</span>));
+RenderDOM.render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -150,7 +150,7 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="other">render</span>(<span class="keyword">&lt;h1&gt;</span>Hello React<span class="keyword">&lt;/h1&gt;</span>, document.getElementById(<span class="keyword">'app'</span>));
+render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -160,10 +160,10 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">import</span> <span class="other">React</span> <span class="keyword">from</span> <span class="value">'react'</span>;
-<span class="keyword">import</span> { <span class="other">render</span> } <span class="keyword">from</span> <span class="value">'react-dom'</span>;
+import React from 'react';
+import { render } from 'react-dom';
 
-<span class="other">render</span>(<span class="keyword">&lt;h1&gt;</span>Hello React<span class="keyword">&lt;/h1&gt;</span>, document.getElementById(<span class="keyword">'app'</span>));
+render(&lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById('app'));
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -173,24 +173,24 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">&lt;!DOCTYPE html&gt;</span>
-<span class="keyword">&lt;html</span> <span class="other">lang="en"</span><span class="keyword">&gt;</span>
-<span class="keyword">&lt;head&gt;</span>
-    <span class="keyword">&lt;meta</span> <span class="other">charset="utf-8"</span><span class="keyword">&gt;</span>
-    <span class="keyword">&lt;meta</span> <span class="other">http-equiv="X-UA-Compatible" content="IE=edge"</span><span class="keyword">&gt;</span>
-    <span class="keyword">&lt;meta</span> <span class="other">name="viewport" content="width=device-width, initial-scale=1"</span><span class="keyword">&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
         	
-    <span class="keyword">&lt;title&gt;</span>React App<span class="keyword">&lt;/title&gt;</span>
-<span class="keyword">&lt;/head&gt;</span>
-<span class="keyword">&lt;body&gt;</span>
+    &lt;title&gt;React App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
 &lt;!-- Root element --&gt;
-<span class="keyword">&lt;div</span> <span class="other">id="app"</span><span class="keyword">&gt;</span><span class="keyword">&lt;/div&gt;</span>
+&lt;div id="app"&gt;&lt;/div&gt;
 
-<span class="keyword">&lt;script</span> <span class="other">src="main.js"</span><span class="keyword">&gt;</span><span class="keyword">&lt;/script&gt;</span>
+&lt;script src="main.js"&gt;&lt;/script&gt;
 
-<span class="keyword">&lt;/body&gt;</span>
-<span class="keyword">&lt;/html&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -202,16 +202,16 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">project-folder /</span>
-    <span class="other">.gitignore</span>
-    <span class="keyword">node_modules /</span>
-    <span class="other">package.json</span>
-    <span class="other">package-lock.json</span>
-    <span class="keyword">dist /</span>
-        <span class="other">index.html</span>
-        <span class="other">main.js</span>
-    <span class="keyword">src /</span>
-        <span class="other">index.js</span>
+project-folder /
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        index.js
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -225,19 +225,19 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">import</span> <span class="other">React</span>, { <span class="other">Component</span> } <span class="keyword">from</span> <span class="value">'react'</span>;
+import React, { Component } from 'react';
 
-<span class="keyword">class</span> <span class="other">App</span> extends Component {
-    <span class="value">render()</span> {
-        <span class="value">return</span> (
-        	<span class="keyword">&lt;div&gt;</span>
-        		<span class="keyword">&lt;h1&gt;</span>Hello React<span class="keyword">&lt;/h1&gt;</span>
-        	<span class="keyword">&lt;/div&gt;</span>
+class App extends Component {
+    render() {
+        return (
+        	&lt;div&gt;
+        		&lt;h1&gt;Hello React&lt;/h1&gt;
+        	&lt;/div&gt;
         )
     }
 }
 
-<span class="keyword">export</span> default <span class="other">App</span>;
+export default App;
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -247,11 +247,11 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">import</span> <span class="other">React</span> <span class="keyword">from</span> <span class="value">'react'</span>;
-<span class="keyword">import</span> { <span class="other">render</span> } <span class="keyword">from</span> <span class="value">'react-dom'</span>;
-<span class="keyword">import</span> <span class="other">App</span> <span class="keyword">from</span> <span class="value">'./App'</span>;
+import React from 'react';
+import { render } from 'react-dom';
+import App from './App';
 
-<span class="other">render</span>(<span class="other">&lt;App /&gt;</span>, document.getElementById(<span class="keyword">'app'</span>));
+render(&lt;App /&gt;, document.getElementById('app'));
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -263,17 +263,17 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">project-folder /</span>
-    <span class="other">.gitignore</span>
-    <span class="keyword">node_modules /</span>
-    <span class="other">package.json</span>
-    <span class="other">package-lock.json</span>
-    <span class="keyword">dist /</span>
-        <span class="other">index.html</span>
-        <span class="other">main.js</span>
-    <span class="keyword">src /</span>
-        <span class="other">App.js</span>
-        <span class="other">index.js</span>
+project-folder /
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        App.js
+        index.js
 <!-- Just leave this line alone -->
     </code>
 </pre>

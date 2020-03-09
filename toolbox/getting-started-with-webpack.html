@@ -51,9 +51,9 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">"scripts"</span>: {
-    <span class="keyword">"test"</span>: <span class="value">"echo \"Error: no test specified\" && exit 1"</span>,
-    <span class="keyword">"build"</span>: <span class="value">"webpack"</span>
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
 },
 <!-- Just leave this line alone -->
     </code>
@@ -126,7 +126,7 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">console.log</span>(<span class="value">"Hello World"</span>);
+console.log("Hello World");
 <!-- Just leave this line alone -->
     </code>
 </pre> 
@@ -161,14 +161,14 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-<span class="keyword">module.exports</span> = {
-    <span class="keyword">module:</span> {
-        <span class="keyword">rules:</span> [
+module.exports = {
+    module: {
+        rules: [
             {
-                <span class="keyword">test:</span> <span class="value">/\.js$/</span>,
-                <span class="keyword">exclude:</span> <span class="value">/node_modules/</span>,
-                <span class="keyword">use:</span> {
-                    <span class="keyword">loader:</span> <span class="value">'babel-loader'</span>
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
                 }
             }
         ]

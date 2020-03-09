@@ -55,20 +55,6 @@ h2 {
     margin-top: 35px;
 }
 
-/* Tokens */
-.keyword {
-    color: #ffeead;
-}
-
-.value {
-    color: #62cfcf;
-}
-
-.other {
-    color: #92d192;
-}
-/* / Tokens */
-
 /* Terminal styling */
 .terminal {
     border-radius: 5px 5px 0 0;
