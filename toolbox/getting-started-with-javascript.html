@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Getting Started with JavaScript</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/getting-started-with-javascript.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>Getting Started with JavaScript</h1>
+
+            <p>JavaScript, often abbreviated to JS, is a programming language that conforms to the ECMAScript specification and was created by Brendan Eich in 1995. JavaScript files typically have the file extension of .js</p> 
+
+            <p>JavaScript is synchronous meaning the code will run line after line and is single-threaded meaning only one command will be executed at any given time. The language is a high-level programming language because the syntax is closer to human languages and further from machine language.</p>
+
+            <h2>What is ECMAScript &amp; LiveScript?</h2>
+
+            <p>JavaScript was created by Brendan Eich at Netscape in 1995. Netscape initially labeled this new language as LiveScript before renaming it to JavaScript a year later. This was to capitalise on the popularity of the Java programming language at the time - both JavaScript and Java are unrelated - In 1996, Netscape submitted JavaScript to ECMA International for standardisation. This eventually led to the language standard being referred to as ECMAScript.</p>
+
+            <p>All major implementations of JavaScript have since been known as ECMAScript, however the term JavaScript has stuck around for historic and marketing reasons.</p>
+
+            <h2>What is a Compiler?</h2>
+
+            <p>A compiler is a computer program that translates computer code written in one programming language into another language. The name compiler is primarily used for programs that translate source code from a high-level programming language, such as JavaScript, to a lower lever language to be executed.</p>
+
+            <p>A Just-In-Time (JIT) compiler is used to convert JavaScript code into machine code. Typically, when JavaScript code is entered into the console within a browser's developer tools (DevTools), the code is passed to the JIT compiler, compiled, executed and the output is returned back to the console.</p>
+
+            <p>The V8 JavaScript engine in Chrome is a compiler. It compiles JavaScript code into machine code at execution by implementing a JIT compiler. This is similar to many other JavaScript engines such as SpiderMonkey or Rhino (Mozilla). The V8 engine used by Chrome is open source and written in C++</p>
+
+            <h2>Adding a script file to your HTML</h2>
+
+            <p>Once you've written a HTML document, the time may come to add a JavaScript script file. This should ideally be placed before the closing HTML &lt;/body&gt; tag, although there are certain exceptions to this rule. In this example, the example script file named script.js is being added to our HTML.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In HTML5, when adding a script to HTML, the type attribute is no-longer needed but you may still come across examples like this that are still considered valid:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
