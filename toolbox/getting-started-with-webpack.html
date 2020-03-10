@@ -25,6 +25,23 @@
 
             <h1>Getting Started with Webpack</h1>
 
+            <h2>What is Webpack?</h2>
+
+            <p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript files for use in the browser.</p>
+
+            <p>Webpack has some main concepts which need to be understood. Here are a few of those concepts:</p>
+
+            <ul>
+                <li><strong>Entry</strong> - the entry point is the module which Webpack uses to start building its internal dependency graph. By default, the entry property is set to ./src/index.js, but we can specify a different module (or multiple modules) in the Webpack configuration file.</li>
+                <li><strong>Output</strong> - the output property instructs Webpack where to emit the bundle(s) and what name to use for the file(s). The default value for this property is ./dist/main.js for the main bundle and ./dist for any other generated files. Other values can be specified within the configuration file.</li>
+                <li><strong>Loaders</strong> - By default, Webpack only understands JavaScript and JSON (JavaScript Object Notation) files. To process other types of files, Webpack uses loaders. Loaders transform the source code of non-JavaScript modules, allowing us to preprocess those files before they're added to the dependency graph.</li>
+                <li><strong>Plugins</strong> - used for any other tasks that loaders cannot do. They provide us with a wide range of solutions for asset management, bundle minimization and optimisation.</li>
+            </ul>
+
+            <h3>What about Mode?</h3>
+
+            <p>Webpack also introduces the concept of <strong>Mode</strong>. Typically, when we develop an application we work with two types of source code - one for the development build, the other for the production build. Webpack allows us to set which one we want to generate by changing the mode parameter to <strong>development</strong>, <strong>production</strong> or <strong>none</strong>. This allows Webpack to use built-in optimisation that corresponds to each environment. The default value is production.</p>
+
             <h2>Install Webpack</h2>
 
             <p>Assuming that you have a project folder/directory available and a package.json file has been created, Node Package Manager (NPM) can be used to install Webpack. Both webpack and webpack-cli packages are required to be installed. Open your terminal and enter the following command to install both packages as devDependencies.</p>
@@ -79,6 +96,39 @@
 <!-- / Terminal --> 
 
             <p>The default behaviour of Webpack 4 is to search for a file named index.js within a src directory inside your project. Webpack will return an error in the terminal if this directory and file cannot be found.</p>
+
+            <p>To set the mode to production or development, update the package.json to set the mode required.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now if you want to run your Webpack build in development mode, run the build:dev script.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build:dev
+    </pre>
+</div>
+<!-- / Terminal -->
 
             <h2>Creating the index.js file</h2>
 
@@ -135,7 +185,7 @@ console.log("Hello World");
 
             <h2>Webpack Config File</h2>
 
-            <p>Althought Webpack 4 is considered as 'zero-configuration', a Webpack config file can be used to extend this further. The Webpack config file is named webpack.config.js and should be within the root of your project folder.</p>
+            <p>Although Webpack 4 is considered as 'zero-configuration', a Webpack config file can be used to extend this further. The Webpack config file is named webpack.config.js and should be within the root of your project folder.</p>
 
 <!-- Terminal -->
 <div class="terminal terminal--shadow">
@@ -177,6 +227,92 @@ module.exports = {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Webpack Bundle Analyzer</h2>
+
+            <p>Webpack Bundle Analyzer is a tool used to scan the bundle(s) and is used to build a visualization of what's inside the bundles that Webpack generates.</p>
+
+            <p>Begin by installing the webpack-bundle-analyzer packages as a devDependency using NPM (Node Package Manager).</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install webpack-bundle-analyzer --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The webpack-bundle-analyzer will need to be imported at the top of the Webpack config file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This now needs to be added as a plugin within the Webpack config file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    // ...
+
+    plugins: [
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'disabled',
+            generateStatsFile: true,
+            statsOptions: {
+                source: false
+            }
+        })
+    ],
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The options within the plugin will prevent the Bundle Analyzer from running on each build. To run the Bundle Analyzer, add a script to the package.json file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "analyzer": "webpack-bundle-analyzer --port 4200 dist/stats.json"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You will need to run the Webpack build to generate the stats.json file within the distribution (dist) directory. The Webpack Bundle Analyzer can be run using the analyzer script.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run analyzer
+    </pre>
+</div>
+<!-- / Terminal -->
 
         </div>
     <div>
