@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Images</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/images.html -->
+
+<!-- https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ -->
+<!-- https://web.dev/native-lazy-loading/ -->
+<!-- https://caniuse.com/#feat=loading-lazy-attr -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+            <h1>Images</h1>
+
+            <p>Images can improve the design and the appearance of a web page. In HTML, images are defined with the &lt;img&gt; tag. The tag itself is empty and contains attributes only without a closing tag.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="image.jpg" alt="An example alt text"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding dimensions to images</h2>
+
+            <p>When considering performance, adding dimensions to your images is recommended. Dimensions allow the page to be laid out with the appropriate space for the image before the image itself has been downloaded. This avoids a layout shift as the image is downloaded and is something Chrome has recently started measuring in the <a href="https://web.dev/cls/" target="_blank" rel="noopener noreferrer">Cumulative Layout Shift (CLS)</a> metric.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;Introductory paragraph.&lt;/p&gt;
+
+&lt;img src="hero-image.jpg" alt="This is a hero image"&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit…&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Adding width and height attributes to your &lt;img&gt; markup is now recommended. Without dimensions, this may render in two stages. The first stage as the HTML is downloaded and the second stage once the image is downloaded. This would cause the main content to jump down after the image is downloaded and the space needed to display the image can be calculated. This is very disrupting to the user.</p>
+
+            <img class="img" src="img/01-layout-shift-after-image-loads.png" width="600" height="240" alt="Layout shifts after image loads" loading="lazy">
+
+            <p>An image example with width and height dimensions:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="image.jpg" width="600" height="240" alt="An example alt text"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>How CSS Interacts with dimensions</h2>
+
+            <p>Dimensions such as widths and heights on an image can cause issues when you try to alter them using CSS. For example, if you want to limit your images to a certain width you might use the following CSS:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+img {
+    max-width: 100%;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This will override the width of the image and constrain it when necessary. If you have explicitly set the height on the image tag, then we are not overriding that (only the width) and you will end up with a stretched or squashed image as we have no longer maintain the aspect ratio of the image.</p>
+
+            <p>This can easily be fixed by adding the height property with the value of auto to your CSS so the height attribute from the HTML is overridden too.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+img {
+    max-width: 100%;
+    height: auto;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    <div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

@@ -55,6 +55,15 @@ h2 {
     margin-top: 35px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.img {
+    margin: 20px 0;
+}
+
 .list--no-type {
     list-style-type: none;
     padding-left: 0;
