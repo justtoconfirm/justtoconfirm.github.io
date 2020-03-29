@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Basics</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-basics.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Basics</h1>
+
+            <h2>Statements</h2>
+
+            <p>A script is a series of instructions that a computer can follow one-by-one. Each individual instruction, or step, is known as a <strong>statement</strong>. In JavaScript, statements should end with a semicolon. The semicolon also tells the JavaScript interpreter when an instruction, or step, is over indicating that it should move to the next step in the script.</p> 
+
+            <p>Each statement should start on a new line as this makes your code easier to read and follow.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var today = new Date();     // This is a statement
+
+document.write(today);      // This is a statement
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Statements surrounded by curly braces are within a code block. The closing curly brace of a code block is not followed by a semicolon.</p>
+
+            <p>A <strong>code block</strong> is a number of statements grouped together.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    // Statements are grouped here, this is a code block
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As this example shows:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var today = new Date();
+var currentHour = today.getHours();
+var greeting;
+
+// This is a code block
+if (currentHour > 12) {
+    greeting = "Good Afternoon";
+} else {
+    greeting = "Welcome";
+}
+
+document.write(greeting);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Comments</h2>
+
+            <p>You should write comments to explain what your code does. Comments help to make your code easier to read and understand to you and others who maybe reading your code. Comments are not processed by the JavaScript interpreter.</p>
+
+            <p>A <strong>single-line</strong> comment is anything that follows the two forward slash characters // on the same line. This type of comment is often used for short descriptions of what the code is doing.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// This is a single-line comment
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To write a comment that stretches over more than one line, use a <strong>multi-line</strong> comment, starting with the /* characters and ending with the */ characters.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* This is a multi-line comment
+over many lines. */
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

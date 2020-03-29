@@ -39,6 +39,49 @@
     </code>
 </pre>
 
+            <h2>The Alt attribute</h2>
+
+            <p>The Alt attribute - also called an "alt tag" - is the written copy that appears in place of an image if it fails to load on a user's screen. This text helps screen-reading tools to describe images to visually impaired users and allows search engines to better crawl and rank the page content as a consideration of SEO (Search Engine Optimisation).</p>
+
+            <p>The example, below, shows an example image with an alt attribute but this is considered as being "okay" as it's not very descriptive. More detail can be said about the image.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="pancakes.jpg" alt="Pancakes"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>This example is much better as it's far more descriptive.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="pancakes.jpg" alt="Stack of pancakes with maple syrup"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>Further examples may include:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!-- Okay text --&gt;
+&lt;img src="escalator.jpg" alt="Man on escalator"&gt;
+
+&lt;!-- Good text --&gt;
+&lt;img src="escalator.jpg" alt="Man walking on an escalator"&gt;
+
+&lt;!-- Recommended text --&gt;
+&lt;img src="escalator.jpg" alt="Man wearing a backpack walking down an escalator"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>It is recommended to not include "image of" or "picture of" within your alt attribute text as it's assumed your text refers to an image, so there's no need to specify that.</p>         
+
             <h2>Adding dimensions to images</h2>
 
             <p>When considering performance, adding dimensions to your images is recommended. Dimensions allow the page to be laid out with the appropriate space for the image before the image itself has been downloaded. This avoids a layout shift as the image is downloaded and is something Chrome has recently started measuring in the <a href="https://web.dev/cls/" target="_blank" rel="noopener noreferrer">Cumulative Layout Shift (CLS)</a> metric.</p>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Variables</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-variables.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Variables</h1>
+
+            <p>A script will have to temporarily store bits of information to do its job. This information can be stored in <strong>variables</strong>.</p>
+
+            <p>A variable is a good name for this concept because the data stored in a variable can change (or vary) each time the script runs.</p>
+
+            <p>When you write JavaScript, you have to tell the interpreter every individual step you want it to perform. Variables are used to "remember" the values you need the script to use. You can compare variables to short-term memory, because once you leave the page, the browser will forget the information held in variables within your script.</p>
+
+            <h2>Declaring a Variable</h2>
+
+            <p>Before you can use a variable, you need to announce that you want to use it. This involves creating the variable and giving it a name. This is known as <strong>declaring</strong> the variable.</p>
+
+            <p>To begin, the keyword of <strong>var</strong> is used to let the JavaScript interpreter know that you are about to declare a variable.</p>
+
+            <p>In order to use the variable, you must give it a name. This is sometimes called the <strong>identifier</strong>. In our example, the variable is called <strong>quantity</strong>. If the name is more than one word, it is usually written in camelCase. This means the first word is lowercase and any subsequent words have their first letter capitalized.</p>
+
+            <p>Rules for naming variables:</p>
+
+            <ul>
+                <li>The name must begin with a letter, dollar sign ($), or an underscore (_) and must not start with a number.</li>
+                <li>You must not use a dash (-) or a period (.) in a variable name.</li>
+                <li>All variables are case sensitive, so score would be different to Score, but it's considered bad practice to create two variables that have the same name.</li>
+                <li>If your variable name is made up of more than one word, use camelCase. For example, firstName rather than firstname.</li>
+                <li>The name of the variable should describe the information/data being stored.</li>
+                <li>Avoid the use of reserved or keywords.</li>
+            </ul>
+
+            <p>Below, we have declared a variable named quantity. This is an <strong>undefined</strong> variable as it has no value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var quantity;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Assigning Values</h2>
+
+            <p>Once you have declared a variable, you can now tell it what information you would like it to store. This is where we <strong>assign a value</strong> to the variable.</p>
+
+            <p>Here, we are setting a value of '3' to the quantity variable we declared. Where possible, the variable's name should describe the data being stored. The equals sign (=) is an <strong>assignment operator</strong> and is used to assign a value to a variable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var quantity = 3;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Data Types</h2>
+
+            <p>JavaScript distinguishes between numbers, strings, and true or false values known as Booleans. JavaScript also has other data types include: Arrays, objects, undefined, and null.</p>
+
+            <p>For tasks that involve counting or calculations, you will use numbers, usually between 0-9. Large numbers, such as 5272, should have no comma between the values and you can also use decimal or negative values.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var price = 3;
+var quantity = 5272;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The strings data type consists of letters and other characters and is enclosed within a pair of single or double quotes. Strings are frequently used when working with text and are often used to add content into a page as they can also contain HTML markup.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var firstName = "Dan";
+var lastName = "Jackson";
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Sometimes you will want to use double or single quote markes within a string. You can use a technique called <strong>escaping</strong>. This is done by using a backward slash (or backslash). This tells the interpreter that the following character is part of the string rather than at the end of it.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var message = "&lt;a href=\'sale.html\'&gt;25% off Sale&lt;/a&gt;";
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A Boolean value can only have a value of <strong>true</strong> or <strong>false</strong> and can often be considered as being on or off.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var inStock = true;
+var shipping = false;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Using Shorthand to Declare Variables</h2>
+
+            <p>Developers often use shorthand to create variables. While shorthand may save you a little bit of time typing code, it can make the code harder to read. Here are a few examples:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Three variables declared on the same line, then values assigned to each
+var price, quantity, total;
+price = 5;
+quantity = 3;
+total = price * quantity;
+
+// Three variables declared and assigned values on the same line
+var price = 5, quantity = 3;
+var toda = price * quantity;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Changing the value of a Variable</h2>
+
+            <p>Once you have assigned a value to a variable, you can then change what is stored in the variable later in the same script. Once created, you do not need to use the var keyword to assign a new value, you just use the variable name and the assignment operator.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var inStock = true;
+var shipping = false;
+
+// Some processing happens here and values need to change
+
+inStock = false;
+shipping = true;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

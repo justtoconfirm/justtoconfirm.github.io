@@ -43,6 +43,12 @@
 
             <p>The V8 JavaScript engine in Chrome is a compiler. It compiles JavaScript code into machine code at execution by implementing a JIT compiler. This is similar to many other JavaScript engines such as SpiderMonkey or Rhino (Mozilla). The V8 engine used by Chrome is open source and written in C++</p>
 
+            <h2>JavaScript runs where it is found in the HTML</h2>
+
+            <p>When the browser comes across a &lt;script&gt; element, it stops to load the script and then checks to see if it needs to do anything else.</p>
+
+            <p>When you place your JavaScript links at the bottom of your HTML page before the closing &lt;/body&gt; tag, it gives the HTML time to load before any JavaScript code is executed. This prevents errors and improves the speed in which the page renders.</p>
+
             <h2>Adding a script file to your HTML</h2>
 
             <p>Once you've written a HTML document, the time may come to add a JavaScript script file. This should ideally be placed before the closing HTML &lt;/body&gt; tag, although there are certain exceptions to this rule. In this example, the example script file named script.js is being added to our HTML.</p>
