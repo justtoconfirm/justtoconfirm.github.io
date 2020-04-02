@@ -31,6 +31,8 @@
 
             <p>When you write JavaScript, you have to tell the interpreter every individual step you want it to perform. Variables are used to "remember" the values you need the script to use. You can compare variables to short-term memory, because once you leave the page, the browser will forget the information held in variables within your script.</p>
 
+            <p>JavaScript is an <strong>untyped language</strong> meaning a variable can hold a value of any data type. Unlike many other programming languages, you don't need to declare the data type (string, number, boolean) as JavaScript automatically handles this during execution of the code.</p>
+
             <h2>Declaring a Variable</h2>
 
             <p>Before you can use a variable, you need to announce that you want to use it. This involves creating the variable and giving it a name. This is known as <strong>declaring</strong> the variable.</p>
@@ -155,6 +157,31 @@ var shipping = false;
 
 inStock = false;
 shipping = true;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Variables and Memory</h2>
+
+            <p>Each variable you declare takes up memory. The more variables a browser has to store, the greater the memory needed to run your script causing the script to execute more slowly and your web page to take longer to respond. The browser has to remember global variables for as long as the web page using them is loaded. Local variables are only remembered for the period of time that a function is being executed.</p>
+
+            <p>A variable references a value stored in memory. This same value can be referenced by more than one variable. Here, the value 15 is stored in memory and the two variables are referencing this same value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var height = 15;
+var width = 15;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Global variables are added to the JavaScript Window object. To view the Window object, open the browser console within the Developer Tools and enter the Window command:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+window
 <!-- Just leave this line alone -->
     </code>
 </pre>
