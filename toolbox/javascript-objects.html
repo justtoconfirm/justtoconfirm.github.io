@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Objects</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-objects.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Objects</h1>
+
+            <p>Objects group together a set of variables and functions to create a model. In an object, variables and functions take on new names. In an object, variables become known as <strong>properties</strong> and functions become known as <strong>methods</strong>.</p>
+
+            <p>To create an empty object literal, use:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var hotel = {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Properties tell us about the object. Methods represent tasks that are associated with the object.</p>
+
+            <p>This object represents a hotel. It has five properties and one method. The object is in curly braces and is stored in a variable called hotel.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var hotel = {
+    name: 'Quay',
+    rooms: 40,
+    booked: 25,
+    gym: true,
+    roomTypes: ['twin', 'double', 'suite'],
+
+    checkAvailability: function() {
+        return this.rooms - this.booked;
+    }
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is an example of <strong>literal notation</strong>. This is the easiest and most popular way to create objects in JavaScript.</p>
+
+            <p>The object is stored in a variable called <strong>hotel</strong>, so you would refer to it as the hotel object.</p>
+
+            <p>Like variables and functions, properties and methods have a name and a value. In an object, the name is called a <strong>key</strong>. Each key and value is separated with a comma. An object cannot have two keys with the same name. The value of a property can be a string, number, Boolean, array, or another object. The value of a method is always a function.</p>
+
+            <p>In the checkAvailable() method, the <strong>this</strong> keyword is used to indicate that it is using the <strong>rooms</strong> and <strong>booked</strong> properties of this object.</p>
+
+            <h2>Constructor Notation</h2>
+
+            <p>The new keyword and object constructor can be used to create a new blank object. You can then add properties and methods to this object. The Object() constructor is a function that's part of the JavaScript language and is used to create objects. Once an object has been created, dot notation can be used to add the properties and methods.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a new blank object
+var hotel = new Object();
+
+// Add properties and methods to this object
+hotel.name = 'Quay';
+hotel.rooms = 40;
+hotel.booked = 25;
+
+hotel.checkAvailability = function() {
+    return this.rooms - this.booked;  
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Sometimes you may need many objects to represent similar things. Object constructors can use a function as a template fo creating objects. In this example, we are using a function to create a <strong>template</strong> with the object's methods and properties.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function Hotel(name, rooms, booked) {
+    
+    this.name = name;
+    this.rooms = rooms;
+    this.booked = booked;
+
+    this.checkAvailability = function() {
+        return this.rooms - this.booked;
+    };
+
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>Here a function called Hotel will be used as a template for creating new objects that represent hotels. Like all functions, it contains statements. In this case, the statements add properties and methods to the object.</p>
+
+            <p>This function has three parameters, each sets the value of a property in the object. The methods will be the same for each object created using this template (function).</p>
+
+            <p>The <strong>this</strong> keyword is used instead of the object name to indicate that the property or method belongs to thee object that <strong>this</strong> function creates.</p>  
+
+            <p>The name of the function usually begins with an uppercase letter to help remind developers to use the <strong>new</strong> keyword when they create an object using this template function.</p>  
+
+            <h3>Instances of the Template</h3>
+
+            <p>You create instances of the object using the constructor function. The <strong>new</strong> keyword followed by the call to the function creates a new object using the template. The properties for each object you create are given as arguments to be passed into the function parameters.</p>
+
+            <p>Here, two objects are created to represent two hotels. Each object needs a different name. When the <strong>new</strong> keyword calls the constructor function, it creates a new object. Each time it is calld, the arguments passed into the function are different because they are properties of two different hotels. Both objects automatically get the same methods defined within the function (the checkAvailability() method).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var quayHotel = new Hotel('Quay', 40, 25);
+var parkHotel = new Hotel('Park', 120, 77);
+<!-- Just leave this line alone -->
+    </code>
+</pre>      
+
+            <p>This technique maybe used if your script contains a complex object that needs to be available but might not be used. The object is defined in the function, but only created if it's needed.</p>
+
+            <p>Even when many objects are created using the same constructor function, the methods stay the same because they access, update, or  perform a calculation based on the data stored in the properties.</p>        
+
+            <h2>Accessing an Object</h2>
+
+            <p>You can access the properties or methods of an object using <strong>dot notation</strong>. Square brackets can also be used.</p>
+
+            <p>To acceess a property or method of an object, use the name of the object followed by a period (<strong>member operator</strong>), then the name of the property of method you want to access.</p>
+
+            <p>Here are two variables created to hold the name of the hotel and the number of vacant rooms:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var hotelName = hotel.name;
+var roomsFree = hotel.checkAvailability();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also access the properties of an object using square brackets, but not methods. This time the object name is followed by square brackets and the property name is inside.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var hotelName = hotel['name'];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Updating an Object</h2>
+
+            <p>To update the value of a property inside an object, use dot notation once again but using the <strong>assignment operator</strong> (=) to assign a new value. The same method to get a value is used to set a new value. Here, the name of the hotel is updates from 'Quay' to 'Park':</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+hotel.name = 'Park';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the property you are attempting to update does not exist, it will be added as a new property to the object.</p>
+
+            <p>To delete a property from an object, use the <strong>delete</strong> keyword followed by the object name and property name.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+delete hotel.name;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you want to clear a value of a property, set the value to be a blank string.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+hotel.name = '';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
