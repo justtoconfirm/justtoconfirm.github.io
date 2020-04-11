@@ -71,6 +71,31 @@ request.send();
     </code>
 </pre>
 
+            <h2>The Fetch API</h2>
+
+            <p>The Fetch API is a newer built-in feature of JavaScript that makes working with requests and response easier than using the XMLHttpRequest object. Here's an example code snippet:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Replace './data.json' with your JSON feed
+fetch('./data.json')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        // Work with JSON data here
+        console.log(data)
+    })
+    .catch(err => {
+        // Do something for an error here
+    })
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With the Fetch API, even a 404 or 500 error will not return an error. Only a network error or a request not completing will throw an error.</p>
+
             <h2>Working with the JSON response</h2>
 
             <p>Now we've received a response from our HTTP request, we can work with it. However, the response is in JSON and we need to convert JSON into JavaScript objects in order to work with it.</p>
@@ -161,6 +186,113 @@ data.forEach(movie => {
             <p>We've successfully used a <strong>GET HTTP</strong> request to retrieve (or consume) the API endpoint.</p>
 
             <p>To display data on the front end within the <abbr title="Hypertext Markup Language">HTML</abbr>, we will need to work with the <strong>DOM (Document Object Model)</strong>.</p>
+
+            <h2>Displaying the Data</h2>
+
+            <p>Now that the data has been received from the API, we would like to display it on a HTML page. In order to display information on the front end of a website, we'll be working with the DOM (Document Object Model), which is actually an API itself that allows JavaScript to communicate with HTML.</p>
+
+            <p>Begin by creating an empty HTML file named index.html and adding a root element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div id="root"&gt;&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>And we can now update our JavaScript code to render the API data onto the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const app = document.getElementById('root');
+
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
+
+app.appendChild(container);
+
+// Create a request variable and assign a new XMLHttpRequest object to it
+var request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Begin accessing the JSON data here
+    var data = JSON.parse(this.response);
+
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
+
+            // Create a div element with a card class
+            const card = document.createElement('div');
+            card.setAttribute('class', 'card');
+
+            // Create an H1 element and set the text content to the film's title
+            const h1 = document.createElement('h1');
+            h1.textContent = movie.title;
+
+            // Create a paragraph and set the text content to the film's description
+            const p = document.createElement('p');
+            movie.description = movie.description.substring(0, 300);    // Limit to 300 chars
+            p.textContent = `${movie.description}...`;      // End with an ellipses
+
+            // Append the cards to the container element
+            container.appendChild(card);
+
+            // Each card will container an H1 and a paragraph
+            card.appendChild(h1);
+            card.appendChild(p);
+        });
+    } else {
+        const errorMessage = document.createElement('marquee');
+        errorMessage.textContent = `Gah, it's not working!`;
+        app.appendChild(errorMessage);
+    }
+}
+
+// Send request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To add some styling, use CSS. Here's the example code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 1rem;
+    border: 1px solid gray;
+}
+
+@media screen and (min-width: 600px) {
+    .card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+        flex: 1 1 calc(33% - 2rem);
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
 </main>
 
