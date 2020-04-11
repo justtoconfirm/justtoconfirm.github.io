@@ -106,6 +106,52 @@ costs = [420, 460, 230, 620];
 
             <p>You can combine arrays and objects to create complex data structures. Arrays can store a series of objects (and remember their order). Objects can hold arrays (as values of their properties).</p>
 
+            <h2>Array Iteration (Looping)</h2>
+
+            <p>A more concise syntax has been introduced in ES6 for iteration through arrays and other iterable objects. Tradtionally, a for loop has been used, as this example demonstates:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var arr = ['a', 'b', 'c'];
+
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>This for loop can be written differently to improve performance and efficiency by declaring the variables outside of the loop itself. This removed the variables being declared on each iteration of the for loop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var arr = ['a', 'b', 'c'];
+var i;
+var length = arr.length;
+
+for (i = 0; i < length; i++) {
+    console.log(arr[i]);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>In ES6, the syntax becomes far more concise.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var arr = ['a', 'b', 'c'];
+
+for (let i of arr) {
+    console.log(i);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
 </main>
 
 <footer>

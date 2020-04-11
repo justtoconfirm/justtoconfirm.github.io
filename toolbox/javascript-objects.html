@@ -216,6 +216,26 @@ var hotel = {
 
             <p>In the checkAvailable() method, the <strong>this</strong> keyword is used to indicate that it is using the <strong>rooms</strong> and <strong>booked</strong> properties of this object.</p>
 
+            <p>The <strong>function</strong> keyword can also be omitted when assigning methods to an object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var hotel = {
+    name: 'Quay',
+    rooms: 40,
+    booked: 25,
+    gym: true,
+    roomTypes: ['twin', 'double', 'suite'],
+
+    checkAvailability() {
+        return this.rooms - this.booked;
+    }
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Constructor Notation</h2>
 
             <p>The new keyword and object constructor can be used to create a new blank object. You can then add properties and methods to this object. The <strong>Object()</strong> constructor is a function that's part of the JavaScript language and is used to create objects. Once an object has been created, dot notation can be used to add the properties and methods.</p>
