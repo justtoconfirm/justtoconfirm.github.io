@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Array</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-array.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Array</h1>
+
+            <p>An array is a special type of object. They hold a related set of key/value pairs (like objects), but the key for each value is it's index number. An array doesn't just store one value; it stores a list of values. You should consider using an array whenever you are working with a list or set of values that are related to each other. Arrays are especially helpful when you do not know how many items a list will contain. An example of a list of related items could be a shopping list.</p>
+
+            <p>You create an array and give it a name just like you would any other variable. The array is given a name and uses the <strong>var</strong> keyword, just like a variable. Values are assigned to the array inside a pair of square brackets, with each value being separated by a comma. The values in the array do no need to be the same data type, so you can store a string, number and a Boolean all in the same array.</p>
+
+            <p>This technique for creating an array is known as an <strong>array literal</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var colors = ["white", "black", "orange"];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Accessing an Array</h2>
+
+            <p>Values in an array are accessed as if they are in a numbered list. It is important to know that the numbering of this list starts at zero (not one).</p>
+
+            <p>Each item in an array is automatically given a number called an <strong>index</strong>. This can be used to access specific items in the array. Confusingly, index values start at <strong>0</strong> (not 1), so the first item in the array has an index value of 0.</p>
+
+            <p>To retrieve the third item on the list, the array name is specified along with the index number in square brackets. So the third item is "orange" and this has an index of <strong>2</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var itemThree = colors[2];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Each array is an object and has a property of <strong>length</strong>, which holds the number of items in the array. We can use dot notation to access the property of an object such as an array. This should return a value of 3.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var totalColors = colors.length;
+<!-- Just leave this line alone -->
+    </code>
+</pre>    
+
+            <h2>Changing Values in an Array</h2>
+
+            <p>Having created the array, the third item on the list can be changed from "orange" to "red". To access the value in the array, use the name of the array and specify the index number for the value you need in square brackets. You can assign a new value just as you would if you were to assign a new value to an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+colors[2] = "red";      // Set the third value to "red"
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Arrays are Objects</h2>
+
+            <p>Here, hotel room costs are stored in an object. This example covers four rooms and the cost of each room is a property of the object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+costs {
+    room1: 420,
+    room2: 460,
+    room3: 230,
+    room4: 620
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>Here's the same data in an array. Instead of property names, it uses index numbers as the key.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+costs = [420, 460, 230, 620];
+<!-- Just leave this line alone -->
+    </code>
+</pre>    
+
+            <p>You can combine arrays and objects to create complex data structures. Arrays can store a series of objects (and remember their order). Objects can hold arrays (as values of their properties).</p>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

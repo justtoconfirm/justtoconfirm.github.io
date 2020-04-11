@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - How to Connect to an API</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-connect-to-api.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>How to Connect to an API</h1>
+
+            <p><strong>API</strong> stands for Application Program Interface, which is a set of methods of communication between various software components.</p>
+
+            <p>In other words, an API allows software to communicate with another piece of software. Here, we will be focussing in Web APIs which allows a web server to interact with third-party applications. In this case, the web server is using HTTP requests to communicate a publicly available URL endpoint containing <abbr title="JavaScript Object Notation">JSON</abbr> data.</p>
+
+            <p><strong>REST</strong> and <strong>RESTful APIs</strong> are simply referring to a set of standards that confirm to a specific architectural style.</p>
+
+            <p>Web APIs use HTTP requests that correspond to the <strong>Create</strong>, <strong>Read</strong>, <strong>Update</strong>, and <strong>Delete</strong> (<strong>CRUD</strong>) verbs.</p>
+
+            <ul>
+                <li><strong>POST</strong> - Create a new resource</li>
+                <li><strong>GET</strong> - Read a resource</li>
+                <li><strong>PUT/PATCH</strong> - Update an existing resource</li>
+                <li><strong>DELETE</strong> - Delete a resource</li>
+            </ul>
+
+            <h2>Getting the API Endpoint</h2>
+
+            <p>To get the endpoint of an API, you'll need to search the documentation. For example, if you look at the <a href="https://ghibliapi.herokuapp.com/" target="_blank" rel="noopener noreferrer">Studio Ghibli API documentation</a>, you'll see that the API was created to help developers learn how to interact with resources using HTTP requests. Since the API can be accessed by many different methods and languages, the documentation for most APIs doesn't tend to give specific instructions for how to connect.</p>
+
+            <p>Within this API documentation, within the films section, you'll see GET /films. This will show us the URL of our API endpoint is: <a href="https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a></p>
+
+            <p>If we open this in our browser, an array of objects in JSON will be displayed.</p>
+
+            <p>We can open a connection to the API using the <strong>XMLHttpRequest</strong> object, which is a way to open files and make HTTP requests. The XMLHttpRequest object, also called XHR object, was the default method for making API requests but has since been replaced by the <strong>Fetch API</strong> which now has much better browser support.</p>
+
+            <p>We can begin by creating a request variable to assign the new XMLHttpRequest object to. We then open the connection to the API with the <strong>open()</strong> method and specify the type of request as <strong>GET</strong> as well as the URL of the API endpoint we want to connect to. The request completes and we can access the data inside the <strong>onload</strong> function before we send the request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object to it
+var request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Begin accessing JSON data here
+}
+
+// Send request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Working with the JSON response</h2>
+
+            <p>Now we've received a response from our HTTP request, we can work with it. However, the response is in JSON and we need to convert JSON into JavaScript objects in order to work with it.</p>
+
+            <p>We're going to use <strong>JSON.parse()</strong> to parse the response and create a data variable that contains all the JSON as an array of JavaScript objects. using <strong>forEach()</strong>, we'll console log out the title of each file to ensure it's working properly.</p>
+
+            <p>Using the Browser inspector, you should see the titles of 20 Ghibli films.</p>
+
+            <p>Add the following code within the onload function of our request:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Begin accessing the JSON data here
+var data = JSON.parse(this.response);
+
+data.forEach(movie => {
+    console.log(movie.title);   // Log each movie's title
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We are missing a way to deal with errors. If the wrong URL is used, or the URL is broken and nothing is displayed, handling errors is useful to have. When an HTTP request is made, the response returns with a <strong>HTTP status code</strong>. The code <strong>404</strong> is well-known meaning <strong>Not Found</strong>, the status code <strong>200</strong> is <strong>OK</strong> - a successful request.</p>
+
+            <p>We can update our earlier code to wrap within an <strong>if statement</strong> to log out an error if the HTTP request fails.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Begin accessing the JSON data here
+var data = JSON.parse(this.response);
+
+if (request.status >= 200 && request.status < 400) {
+    data.forEach(movie => {
+        console.log(movie.title);
+    });
+} else {
+    console.log('error');
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is the full code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object to it
+var request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Begin accessing the JSON data here
+    var data = JSON.parse(this.response);
+
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
+            console.log(movie.title);
+        });
+    } else {
+        console.log('error');
+    }
+}
+
+// Send request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Should you want to get more data from the API, such as the movie description, we can add the description property to the forEach() function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+data.forEach(movie => {
+    console.log(movie.title);
+    console.log(movie.description);
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We've successfully used a <strong>GET HTTP</strong> request to retrieve (or consume) the API endpoint.</p>
+
+            <p>To display data on the front end within the <abbr title="Hypertext Markup Language">HTML</abbr>, we will need to work with the <strong>DOM (Document Object Model)</strong>.</p>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

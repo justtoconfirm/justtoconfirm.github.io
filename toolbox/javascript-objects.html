@@ -27,6 +27,155 @@
 
             <p>Objects group together a set of variables and functions to create a model. In an object, variables and functions take on new names. In an object, variables become known as <strong>properties</strong> and functions become known as <strong>methods</strong>.</p>
 
+            <h2>Built-in Objects</h2>
+
+            <p>Browsers come with a set of built-in objects that represent things like the browser window and the current web page shown in that window. These built-in objects act like a toolkit for creating interactive web pages.</p>
+
+            <p>The three sets of built-in objects each offer a different range of tools that help you to write scripts for web pages:</p>
+
+            <ul>
+                <li><strong>Browser Object Model (BOM)</strong> - The Browser Object Model contains the objects that represent the current browser window or tab. It contains objects that model things like browser history and the device's screen.</li>
+                <li><strong>Document Object Model (DOM)</strong> - The Document Object Model uses objects to create a representation of the current page. It creates a new object for each element (and each individual section of text) within the page. The DOM is used to access and update the contents of a web page.</li>
+                <li><strong>Global JavaScript Objects</strong> - The global JavaScript objects represent things that the JavaScript language needs to create a model. For example, there is an object that deals only with dates and times.</li> 
+            </ul>
+
+            <p>As soon as a web page has loaded into your browser, these objects are available for use in your script.</p>
+
+            <p>Just like any other object, dot notation can be used to access their properties and methods.</p>
+
+            <p>The objects you create will usually be specifically written for your needs and contain functionality, or model the data needed by your script. Built-in functions contain functionality commonly needed by many scripts.</p>
+
+            <p>An <strong>object model</strong> is a group of objects, each of which represent related things from the real world. Together they form a model of something larger.</p>
+
+            <h3>Browser Object Model</h3>
+
+            <p>The Browser Object Model (BOM) creates a model of the browser tab or window. The topmost object is the window object, which represents the current browser window or tab. Its child objects represent other browser features.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Window
+  |- Document
+  |- History
+  |- Location
+  |- Navigator
+  |- Screen
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li><strong>Window</strong> - The current browser window or tab</li>
+                <li><strong>Document</strong> - The current web page</li>
+                <li><strong>History</strong> - The pages in the browser history</li>
+                <li><strong>Location</strong> - URL of the current page</li>
+                <li><strong>Navigator</strong> - Information about the browser</li>
+                <li><strong>Screen</strong> - The device's display information</li>
+            </ul>
+
+            <p>The <strong>window</strong> object's <strong>print()</strong> method will cause the browser's print dialog box to be shown.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+window.print();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>screen</strong> object's <strong>width</strong> property will let you find the width of the device's screen in pixels.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+window.screen.width;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Document Object Model (DOM)</h3>
+
+            <p>The Document Object Model (DOM) creates a model of the current web page. The topmost object is the <strong>document</strong> object, which represents the page as a whole. Its child objects represent other items on the page include: &lt;html&gt;, &lt;body&gt;, &lt;title&gt;, &lt;div&gt;, &lt;p&gt;, and text.</p>
+
+            <p>The document object's getElementById() method gets an element by the value of its id attribute.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.getElementById('one');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The document object's <strong>lastModified</strong> property will tell you the date that the page was last updated.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.lastModified;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Global JavaScript Objects</h3>
+
+            <p>The global objects do not form a single model, they are a group of individual objects that relate to different parts of the JavaScript language. The names of global objects usually start with an uppercase letter.</p>
+
+            <p>The String object's <strong>toUpperCase()</strong> method makes all letters in a variable uppercase.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+hotel.toUpperCase();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The Math object's <strong>PI</strong> property will return the value of Pi.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Math.PI();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Date &amp; Time</h2>
+
+            <p>In order to work with dates, you create an instance of the <strong>Date</strong> object. You can then specify the time and date that you want to represent.</p>
+
+            <p>The Date() object constructor tells the JavaScript interpreter that this variable is a date and this in turn allows you to use the Date object's methods to set and retrieve dates and times from this object.</p>
+
+            <p>To create a Date object, use the <strong>Date()</strong> object constructor. The syntax is the same for creating any object with a constructor function and it can be used to create more than one Date object. This is very similar to how you use the <strong>Object()</strong> constructor to create a new object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var today = new Date();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here you can see we are using the <strong>new</strong> keyword and an <strong>assignment operator</strong> (<strong>=</strong>) to assign the date and time to a variable.</p>
+
+            <p>By default, the Date object will hold today's date and the current time. In JavaScript, dates are stored as a number, the milliseconds since midnight on January 1, 1970 (Unix time/epoch) and is determined by the computer's clock of the user. If you want it to store another date, you must explicitly specify the date and time you want it to hold.</p>
+
+            <p>Once the new Date object is created, the date and time will be contained when the JavaScript interpreter encountered the line of code. Once this instance is created, you can use the properties and methods of the Date object.</p>
+
+            <p>Here we will use the <strong>getFullYear()</strong> method of the Date object to return the year of the date being stored in the Date object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var today = new Date();
+var year = today.getFullYear();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Creating Objects</h2>
+
             <p>To create an empty object literal, use:</p>
 
 <pre>
@@ -69,7 +218,7 @@ var hotel = {
 
             <h2>Constructor Notation</h2>
 
-            <p>The new keyword and object constructor can be used to create a new blank object. You can then add properties and methods to this object. The Object() constructor is a function that's part of the JavaScript language and is used to create objects. Once an object has been created, dot notation can be used to add the properties and methods.</p>
+            <p>The new keyword and object constructor can be used to create a new blank object. You can then add properties and methods to this object. The <strong>Object()</strong> constructor is a function that's part of the JavaScript language and is used to create objects. Once an object has been created, dot notation can be used to add the properties and methods.</p>
 
 <pre>
     <code>
