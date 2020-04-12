@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Dev Toolbox - JavaScript Prototypes</title>
+	<title>Dev Toolbox - JavaScript Prototypes &amp; Classes</title>
 
 	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
 	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="columns small-12 large-12">
 
-        	<h1>JavaScript Prototypes</h1>
+        	<h1>JavaScript Prototypes &amp; Classes</h1>
 
             <p>JavaScript is a prototype-based language and functions differently than traditional class-based or object-oriented languages.</p>
 
@@ -324,6 +324,82 @@ const heroTwo = new Healer("Kanin", 1, "cure")
 </pre>
 
             <p>With this code we've created our Hero class with base properties using the constructor function and two classes called Warrior and Healer from the original constructor, adding methods to the prototypes and creating individual character instances.</p>
+
+            <h2>ES6 Classes</h2>
+
+            <p>Until recently, developers used constructor functions to mimic an object-oriented design pattern in JavaScript. The ES6 syntax introduced classes to JavaScript. Classes do not introduce additional functionality and are often described as "syntactical sugar", but they offer a clean and elegant structure to your code.</p>
+
+            <p>Classes provide us with a more concise way of creating object blueprints and help us to imitate the object-orientated inheritence model in JavaScript, which is a prototype-based language. Being familiar with classes is extremely helpful as popular JavaScript libraries such as React make frequent use of the class syntax.</p>
+
+            <p>In this example, we are re-writing the earlier example to use a class. The <strong>super</strong> keyword is used in-place of the <strong>call()</strong> method to access functions within the parent object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Hero {
+    constructor(name, level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    // Add the greet method to the constructor
+    greet() {
+        return `${this.name} says hello.`;
+    }
+}
+
+// Create a new class and extend from Hero
+class Warrior extends Hero {
+    constructor(name, level, weapon) {
+        // Chain constructor using the super keyword
+        super(name, level);
+
+        // Add a new property
+        this.weapon = weapon;
+    }
+
+    attack() {
+        return `${this.name} attacks with the ${this.weapon}.`;
+    }
+}
+
+// Create a new class and extend from Hero
+class Healer extends Hero {
+    constructor(name, level, spell) {
+        // Chain constructor using the super keyword
+        super(name, level);
+
+        // Add a new property
+        this.spell = spell;
+    }
+
+    heal() {
+        return `${this.name} casts ${this.spell}.`;
+    }
+}
+
+// Initialize individual character instances
+const heroOne = new Warrior("Iron Man", 5, "Rockets")
+const heroTwo = new Healer("Kanin", 1, "cure")
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As with our earlier example, we can then use the methods as before.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+heroOne.greet();    // "Iron Man says hello."
+heroOne.attack();   // "Iron Man attacks with the Rockets."
+heroTwo.greet();    // "Kanin says hello."
+heroTwo.heal();     // "Kanin casts cure."
+
+heroOne.level;      // 5
+heroTwo.level;      // 1
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
 </main>
 

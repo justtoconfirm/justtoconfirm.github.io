@@ -186,6 +186,42 @@ window
     </code>
 </pre>
 
+            <p>It is often best to avoid using too many variables if you can. Avoid creating new variables if you don't intend to save values. Often, we may come across code examples like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var fullName = firstName + " " + lastName;
+document.getElementById("userName").innerHTML = fullName;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This can be simplified with fewer variables to be written like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.getElementById("userName").innerHTML = firstName + " " + lastName;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>It's also recommended to keep the number of elements in the DOM small as this will improve page loading and speed up the rendering of the page. Every attempt to search the DOM will benefit from fewer elements and accessing the DOM is very slow when compared with other JavaScript objects.</p>
+
+            <p>If you expect to access a DOM element more than once, then use it as a local variable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var obj;
+
+obj = document.getElementById("welcomeMessage");
+obj.innerHTML = "Hello World";
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 </main>
 
 <footer>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Destructuring</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-destructuring.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Destructuring</h1>
+
+            <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, properties or objects. The values that are unpacked are then placed into distinct variables. If you use TypeScript or a modern JavaScript library such as React, you may already be familiar with destructuring.</p>
+
+            <p>In this simple example, we can look to destructure an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const colors = ["white", "black", "orange"];
+
+// Destructure the array so each value is in a variable
+let [a, b, c] = colors;
+
+// Log the values
+console.log(a);     // white
+console.log(b);     // black
+console.log(c);     // orange
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With objects, we can also use the destructuring assignment here.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const hotel = {
+    name: 'Quay',
+    rooms: 40,
+    booked: 25,
+    gym: true,
+    roomTypes: ['twin', 'double', 'suite'],
+
+    checkAvailability() {
+        return this.rooms - this.booked;
+    }
+};
+
+const { name } = hotel;     // "Quay"
+const { rooms } = hotel;    // 40
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The expression can also be written on the same line.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const { name, rooms } = hotel;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
