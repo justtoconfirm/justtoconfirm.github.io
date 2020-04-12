@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - JavaScript Map & Set</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/javascript-map-and-set.html -->
+
+<!-- https://www.taniarascia.com/understanding-map-and-set-javascript/ -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>JavaScript Map &amp; Set</h1>
+
+            <p>In JavaScript, developers often spend a lot of time deciding on the correct data structure to use. The correct data structure can make it easier to manipulate data later on, saving time and making the code easier to understand. The two main data structures used for storing collections of data are <strong>Objects</strong> and <strong>Arrays</strong> (also a type of object).</p>
+
+            <p>Objects are used to store key/value pairs, Arrays are used to store indexed lists. Since ES6 was introduced, two new iterable objects have been added to JavaScript: <strong>Maps</strong> and <strong>Sets</strong>.</p>
+
+            <ul>
+                <li>Maps - ordered collections of key/value pairs</li>
+                <li>Sets - collections of unique values</li>
+            </ul>
+
+            <h2>Introduction to Maps</h2>
+
+            <p>A Map is a collection of key/value pairs that can use any data type as a key and can maintain the order of its entries. Maps have elements of both Objects (unique key/value pair collection) and Arrays (an ordered collection), but are more similar to Objects in concept.</p>
+
+            <p>Maps can be initialized with the <strong>new</strong> keyword to provide an empty Map:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const map = new Map();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Values can be added to a map with the <strong>set()</strong> method. The first argument will be the key and the second argument is the value. The following example adds three key/value pairs to our map.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+map.set('firstName', 'Luke');
+map.set('lastName', 'Skywalker');
+map.set('occupation', 'Jedi');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With values added, we can begin to see how Maps have elements of both Objects and Arrays. Like an Array, we have a zero-indexed collection and we can see how many items are in the Map by default. Maps use the =&gt; syntax to signify key/value pairs as key =&gt; value.</p>
+
+            <p>A Map does look similar to a regular object but we can use any data type as a key with Map.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Map(3)
+0: {'firstName' => 'Luke'}
+1: {'lastName' => 'Skywalker'}
+2: {'occupation' => 'Jedi'}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Getting &amp; Deleting Items from a Map</h2>
+
+            <p>A Map structure has many built-in properties that make working with their elements much more direct and simple over Objects. We can initialize a new Map to demonstrate the following methods and properties of: <strong>delete()</strong> and <strong>get()</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const map = new Map([
+    ['animal', 'otter'],
+    ['shape', 'triange'],
+    ['city', 'New York'],
+    ['country', 'Bulgaria'],
+])
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can use the <strong>get()</strong> method to retrieve a value by key.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+map.get('animal');      // "otter"
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Should we want to remove a value from the map, we can use the <strong>delete()</strong> method. This removes an item by key and will return a Boolean of true of an item existed and was deleted. A value of false is returned if it did not match any item.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+map.delete('city');      // true
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>One useful benefit of using Maps over Objects is that you can find the size of the Map at anytime, just like an Array. You can use the <strong>size</strong> property to get the njmber of values in a Map.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+map.size;       // 4
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Should you want to clear a Map of all values, the <strong>clear()</strong> method can be used.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+map.clear();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>

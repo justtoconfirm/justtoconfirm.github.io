@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Introduction to CSS</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/introduction-to-css.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+            <h1>Introduction to CSS</h1>
+
+            <p>CSS is a language used to describe the style of an HTML document and describes how HTML elements should be displayed. CSS stands to <strong>Cascading Style Sheets</strong> and external stylesheets are stored in a CSS file with the file extension of .css</p>
+
+            <p>An external CSS stylesheet can be added within the &lt;head&gt; section of an HTML document.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+    &lt;link rel="stylesheet" href="stylesheet.css"&gt;
+
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may also see examples with the <strong>type</strong> attribute being used. Whilst this is valid code, in HTML5, the type attribute is no longer needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="stylesheet" type="text/css" href="stylesheet.css"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>CSS Syntax</h2>
+
+            <p>There are three main parts of CSS - selectors, properties and values.</p>
+
+            <ul>
+                <li><strong>Selectors</strong> - the element(s) being selected</li>
+                <li><strong>Properties</strong> - the aspect of the element being styled</li>
+                <li><strong>Values</strong> - the style being applied</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+selector {
+    property: value;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A real world example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+h1 {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>Spacing between selectors is important. For example, say we have two selectors:</p>
+
+            <ul>
+                <li>.foo.bar</li>
+                <li>.foo .bar</li>
+            </ul>
+
+            <p>The first example targets a class of <strong>foo</strong> and a class of <strong>bar</strong> on the same element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="foo bar"&gt;This is an element&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>The second example targets a class of <strong>bar</strong> that is a child of the <strong>foo</strong> class.</p> 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="foo"&gt;
+    &lt;div class="bar"&gt;This is an element&lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>From least specific to most specific, here are the main types of selectors:</p>
+
+            <ul>
+                <li><strong>Universal selector</strong> - selects all elements</li>
+                <li><strong>Type selector</strong> - targets element(s) by HTML tag (including pseudo elements)</li>
+                <li><strong>Class &amp; Attribute selectors</strong> - targets element(s) by class or attribute</li>
+                <li><strong>ID selector</strong> - targets an element by id</li>
+            </ul>  
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+* { }                   /* Universal selector */
+tag { }                 /* Type selector */
+tag::before { }         /* Type selector (pseudo element) */
+.class { }              /* Class selector */
+.class:hover { }        /* Class selector (pseudo class) */
+[attr] { }              /* Attribute selector */
+#id { }                 /* ID selector */
+<!-- Just leave this line alone -->
+    </code>
+</pre>    
+
+            <p><strong>Pseudo elements</strong> have two colons (:: or ::before) and <strong>pseudo classes</strong> have one colon (: or :hover).</p> 
+
+            <h2>CSS Specificity</h2>
+
+            <p>All things being equal, the order in which you use two selectors in the stylesheet matters. So if we have a stylesheet with two classes:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.foo {
+    color: blue;
+}
+
+.bar {
+    color: red;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Both of these classes are then on the same element:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="foo bar"&gt;This is an element&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>The selector closest to the bottom of the stylesheet will win. So in this example, the element's colour will be red because <strong>.bar</strong> appears closest to the bottom of the stylesheet.</p>  
+
+        </div>
+    <div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
