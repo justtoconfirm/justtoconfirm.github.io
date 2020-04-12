@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Building a Button Component</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/react-button-component.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>Building a Button Component</h1>
+
+            <p>The easiest and most simple way of building a React component is to use a JavaScript function. When using a function, this type of component is called a functional component because you are using a function to build it. In this example, we will be building a reusable Button component in React.</p>
+
+            <p>Remember, in React component names should always start with an uppercase letter, so our component will be named Button.</p>
+
+            <p>Begin by creating a new directory within the 'src' folder of your React project named 'Button'. Within this newly created folder add an empty JavaScript file named Button.js and add the following code to render a simple Button component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+
+function Button() {
+    return &lt;button&gt;Button&lt;/button&gt;
+}
+
+export default Button;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The component is written as a typical JavaScript function. We can use an ES6 Arrow function to also write our Button component as this next example demonstrates.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = () => {
+    return (
+        &lt;button&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our file directory should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project-folder /
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        App.js
+        Button/Button.js
+        index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>From our earlier React setup, we can now import our Button component into our App component to render the Button on to the page. Open the App.js file and update the code to import the Button component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Button from './Button/Button';
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Button /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Notice how when we import the Button component, we don't require the .js file extension.</p>
+
+            <p>Run the build and refresh the page to see the Button render.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal --> 
+
+            <h2>Adding Props</h2>
+
+            <p>Now that the Button component has been created, we can begin to add <strong>props</strong> (properties) to it. To begin, a prop named <strong>type</strong> is added. This will allow the type attribute for the button to be set.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = '' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we want to provide the prop with a default value, this can be defined within the component. This default value will be applied each time the component is rendered unless a new value is passed into the prop which will overwrite the default value.</p>
+
+            <p>Here, we will give the type prop the default value of 'button'.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = 'button' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the Button component is rendered it will have the type attribute of "button" by default. Perhaps when the Button component is rendered for use in a form, the type needs to be "submit". We can simply pass the value of "submit" into the type prop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Button from './Button/Button';
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Button type="submit" /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our Button component currently has a default label of 'Button'. For this component to be reusable, the label needs to allow change. The <strong>children</strong> prop can be used for this purpose.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now when we render the component, wee can change the label for each button by passing a value into the children prop between the opening &lt;Button&gt; and closing &lt;/Button&gt; tags. The Button label should now be 'Submit Form'.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Button from './Button/Button';
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Button type="submit"&gt;Submit Form&lt;/Button&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Multiple Props</h2>
+
+            <p>As the number of props increases, the harder it becomes to make the code easier to read. Using a const variable is one way to improve the readability of our component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        children
+    } = props
+
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A <strong>spread operator</strong> can also be used to avoid the need to list out all props within the return statement.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        children
+    } = props
+
+    return (
+        &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Change the Rendering of the Button</h2>
+
+            <p>A prop can be used to change how a component is rendered. For our Button component, a <strong>url</strong> prop can be added to take a value and render the Button either as an HTML link or button.</p>
+
+            <p>The following line of code is added into the Button component function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We then add two render methods and a ternary operator to determine which method to execute based on the value passed into the component url prop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const renderAnchor = () =>
+    &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+const renderButton = () => 
+    &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+
+return (
+    isAnchor ? renderAnchor() : renderButton()
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once the url prop has been added, our Button component code should look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        children
+    } = props
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now if we render the Button component, a HTML button will be rendered. Should we pass a URL into the Button as a prop value, then the Button will be rendered as a link, as this example below demonstrates.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Button from './Button/Button';
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Button url="https://www.google.co.uk"&gt;Open Google&lt;/Button&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding Styling</h2>
+
+            <p>To apply a class attribute to a React component the <strong>className</strong> attribute is used. We can update the Button component to apply the class of 'btn' as a default. In React className is used in-place of class.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        children
+    } = props
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className="btn"&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}} className="btn"&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is fine, but we may also want to toggle classes based on prop values being passed down into our component. To do this, we can install the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">Classnames</a> package using NPM (Node Package Manager). This package needs to be installed as a dependency within your project.</p>
+
+            <p>Begin by opening your terminal and entering the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install classnames --save
+    </pre>
+</div>
+<!-- / Terminal --> 
+
+            <p>Once installed - and added to your package.json file as a dependency - we need to update our Button component with a number of props and import the package.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        className = '',
+        theme = '',
+        isFullWidth = false,
+        children
+    } = props
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}} className={buttonClass}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now each time the Button component renders, the class of 'btn' will still be the default.</p>
+
+            <p>When we render a Button, we can now use the <strong>theme</strong> prop to specify what class to be applied.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Button&gt;Button&lt;/Button&gt;                                 // .btn
+&lt;Button theme="primary"&gt;Button&lt;/Button&gt;                 // .btn .btn--primary
+&lt;Button theme="secondary"&gt;Button&lt;/Button&gt;               // .btn .btn--secondary
+&lt;Button isFullWidth&gt;Button&lt;/Button&gt;                     // .btn .btn--full-width
+&lt;Button theme="primary" isFullWidth&gt;Button&lt;/Button&gt;     // .btn .btn--primary .btn--full-width
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Run the build and refresh the page to see the Button render.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal --> 
+
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
