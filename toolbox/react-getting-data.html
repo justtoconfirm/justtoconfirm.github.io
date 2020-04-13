@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Dev Toolbox - Getting Data</title>
+
+	<link rel="shortcut icon" type="image/ico" href="img/favicon/code.ico">
+	<link rel="preload" as="font" href="fonts/nunito-v9-latin-regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="style" href="style/foundation.min.css">
+	<link rel="preload" as="style" href="style/main.css">
+    <link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- https://justtoconfirm.github.io/toolbox/react-getting-data.html -->
+
+<main role="main">
+
+    <div class="row">
+        <div class="columns small-12 large-12">
+
+        	<h1>Getting Data</h1>
+
+            <p>Now that we have the setup and a simple Button component created in React, the time has come to create a second component. Begin by opening the 'src' directory and creating a new folder named <strong>Table</strong>. Inside this newly created folder, create an empty JavaScript file named <strong>Table.js</strong> and add the following code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+class Table extends Component {
+    render() {
+        return (
+            &lt;table&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Name&lt;/th&gt;
+                        &lt;th&gt;Job&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Dan&lt;/td&gt;
+                        &lt;td&gt;Web Developer&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Darren&lt;/td&gt;
+                        &lt;td&gt;Web Developer&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Dave&lt;/td&gt;
+                        &lt;td&gt;Web Developer&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;Scott&lt;/td&gt;
+                        &lt;td&gt;Web Developer&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The component we created is a custom class component. Back in App.js, we can import the Table and load the component into the <strong>render()</strong> method of the App. We could reuse this component over and over, however, since the data is hard-coded into it, it wouldn't be too useful.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Table from './Table/Table';
+
+class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Table /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Simple Components</h2>
+
+            <p>Other than classes, the other component we can use is a functional component. This component doesn't use the <strong>class</strong> keyword. Let's take our Table and make two simple components for it - a table header and a table body. We're going to use ES6 arrow functions to create these simple component. We begin with the table header.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const TableHeader = () => {
+    return (
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;Job&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+    )
+}
+
+export default TableHeader
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Then the table body.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const TableBody = () => {
+    return (
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Dan&lt;/td&gt;
+                &lt;td&gt;Web Developer&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Darren&lt;/td&gt;
+                &lt;td&gt;Web Developer&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Dave&lt;/td&gt;
+                &lt;td&gt;Web Developer&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Scott&lt;/td&gt;
+                &lt;td&gt;Web Developer&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    )
+}
+
+export default TableBody
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now our Table component will look like the code example below.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+class Table extends Component {
+    render() {
+        return (
+            &lt;table&gt;
+                &lt;TableHeader /&gt;
+                &lt;TableBody /&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The file structure should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project-folder /
+    .gitignore
+    node_modules /
+    package.json
+    package-lock.json
+    dist /
+        index.html
+        main.js
+    src /
+        App.js
+        Button/
+            Button.js
+        Table/
+            Table.js
+            TableBody.js
+            TableHeader.js
+        index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Everything should appear like it did before. Components can be nested in other components and functional or class components can be mixed.</p>
+
+            <p>A class component must include the <strong>render()</strong> method and the <strong>return</strong> can only return one parent element.</p>
+
+            <h2>Using Props</h2>
+
+            <p>Right now we have a Table component but the data is being hard-coded. We can use <strong>props</strong> (properties) to handle data in React.</p>
+
+            <p>Within our App component, we can move all our data into an array of objects. This will be an example to demonstrate data coming from a JSON-based <abbr title="Application Program Interface">API</abbr>. This array will be created inside the <strong>render()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Table from './Table/Table';
+
+class App extends Component {
+    render() {
+
+        const characters = [
+            {
+                name: 'Dan',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Darren',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Dave',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Scott',
+                job: 'Web Developer'
+            }
+        ]
+
+        return (
+            &lt;div&gt;
+                &lt;Table /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can remove this data from the TableBody component as it's now moved within the array inside the App component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const TableBody = () => {
+    return (
+        &lt;/tbody&gt;
+    )
+}
+
+export default TableBody
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we are going to pass the data through to the child component - Table - using a prop. We can name this prop whatever we want (as long as it's not a reserved keyword), so we will go with <strong>characterData</strong>. We are passing in the characters variable and this will be wrapped in curly braces as it's a <strong>JavaScript expression</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Table from './Table/Table';
+
+class App extends Component {
+    render() {
+
+        const characters = [
+            {
+                name: 'Dan',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Darren',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Dave',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Scott',
+                job: 'Web Developer'
+            }
+        ]
+
+        return (
+            &lt;div&gt;
+                &lt;Table characterData={characters} /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now that the data is being passed into the Table, we have to work on accessing it from the other side.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+class Table extends Component {
+    render() {
+
+        // Create a variable and retrieve data from the prop
+        const { characterData } = this.props
+
+        return (
+            &lt;table&gt;
+                &lt;TableHeader /&gt;
+                &lt;TableBody characterData={characterData} /&gt;
+            &lt;/table&gt;
+        )
+    }
+}
+
+export default Table
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you open React DevTools and inspect the Table component, you'll see the array of data in the property. The data stored here is known as the <strong>virtual DOM</strong>, which is a fast and efficient way of syncing data with the actual DOM.</p>
+
+            <p>Here we are passing the data into the TableBody component. Right now, the TableBody component takes no parameters and returns a single tag.</p>
+
+            <p>This data is not in the actual DOM yet. In the Table component, we can access all props through <strong>this.props</strong>. We're only passing one prop through, <strong>characterData</strong>, so we'll use <strong>this.props.characterData</strong> to retrieve the data. In our example, we use the ES6 property shorthand to create a variable that contains <strong>this.props.characterData</strong> which you can see in the code example above.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const { characterData } = this.props
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the TableBody component, we're going to pass the props through as a parameter and map through the array of data to return a table row for each object in the array. This map will be contained in the rows variable, which we will return as an expression.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const TableBody = props => {
+
+    const rows = props.characterData.map((row, index) => {
+        return (
+            &lt;tr key={index}&gt;
+                &lt;td&gt;{row.name}&lt;/td&gt;
+                &lt;td&gt;{row.job}&lt;/td&gt;
+            &lt;/tr&gt;
+        )
+    })
+
+    return &lt;tbody&gt;{rows}&lt;/tbody&gt;
+}
+
+export default TableBody
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The data will be loading in the front end of the app. A key index has been added to each table row. A key shhould always be used when making lists in React to help identify each list item, such as when you want to manipulate an item in that list.</p>
+
+            <p>Props are an effective way to pass data to a React component. Components cannot change props however, they're read-only.</p>
+
+            <h2>Manipulating Data with State</h2>
+
+            <p>Right now we're storing our data in an array using a variable and passing it through props. This is a good start, but imaging if we were to want to delete an item from the array. With props, we have a <strong>one way data flow</strong>, but with state, we can update data from a component. For example, adding and removing items from a shopping cart before confirming a purchase, is an example of using state. The data can be modified and stored without necessarily being added to a database.</p>
+
+            <p>Open the App component and create an empty <strong>state</strong> object. The object will contain properties for everything you want to store in state. For us, it's characters.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class App extends Component {
+    state = {}
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Move the entire array of objects we created earlier into <strong>state.characters</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class App extends Component {
+    state = {
+        characters: [
+            {
+                name: 'Dan',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Darren',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Dave',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Scott',
+                job: 'Web Developer'
+            },
+        ], 
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our data is now contained in the state. Since we want to be able to remove a character from the table, we're going to create a method on the parent App class. This method is going to be named <strong>removeCharacter()</strong>.</p>
+
+            <p>To retrieve the state, we'll get <strong>this.state.characters</strong> using the same ES6 method as before. To update the state, we'll use <strong>this.setState()</strong> - a built-in method for manipulating state. We will filter the array based on an index that we pass through and return the new array.</p>
+
+            <p>You must use <strong>this.setState()</strong> to modify an array. Applying a new value to <strong>this.state.property</strong> will not work.</p>
+
+            <p><strong>filter</strong> does not mutate but rather creates a new array and is the preferred method for modifying arrays in JavaScript.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+removeCharacter = index => {
+    const { characters } = this.state
+
+    this.setState({
+        characters: characters.filter((character, i) => {
+            return i !== index
+        }),
+    })
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we have to pass that function through to the component and render a button next to each character to invoke the function and delete the item. We'll pass the removeCharacter function through as a prop to the Table.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Table from './Table/Table';
+
+class App extends Component {
+
+    state = {
+        characters: [
+            {
+                name: 'Dan',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Darren',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Dave',
+                job: 'Web Developer'
+            },
+            {
+                name: 'Scott',
+                job: 'Web Developer'
+            },
+        ], 
+    }
+
+    removeCharacter = index => {
+        const { characters } = this.state;
+    
+        this.setState({
+            characters: characters.filter((character, i) => { 
+                return i !== index;
+            })
+        });
+    }
+
+    render() {
+        const { characters } = this.state;
+
+        return (
+            &lt;div&gt;
+                &lt;Table characterData={characters} removeCharacter={this.removeCharacter} /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Since we're passing it down the TableBody from Table, we're going to have to pass it through again as a prop, just like we did with the character data. In addition, since it turns out that the only components having their own states are App, it would be best practice to transform Table into a simple functional component from a class component it currently is.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
+
+const Table = props => {
+
+    // Create variable and retrieve data from the props
+    const { characterData, removeCharacter } = props
+
+    return (
+        &lt;table&gt;
+            &lt;TableHeader /&gt;
+            &lt;TableBody characterData={characterData} removeCharacter={removeCharacter} /&gt;
+        &lt;/table&gt;
+    )
+}
+
+export default Table
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We pass the key/index through to the TableBody component as a parameter, so the filter function knows which item to remove. We can create a button with an onClick and pass it through.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const TableBody = props => {
+
+    const rows = props.characterData.map((row, index) => {
+        return (
+            &lt;tr key={index}&gt;
+                &lt;td&gt;{row.name}&lt;/td&gt;
+                &lt;td&gt;{row.job}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button onClick={() => props.removeCharacter(index)}&gt;Delete&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        )
+    })
+
+    return &lt;tbody&gt;{rows}&lt;/tbody&gt;
+}
+
+export default TableBody
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The onClick function must pass through a function that returns the removeCharacter() method otherwise it will try to run automatically.</p>
+
+            <p>You may notice an error in the terminal when running the build. This error relates to the support for the experimental <strong>classProperties</strong> syntax, not currently enabled.</p>
+
+            <p>Begin by installing the following package as a devDependency:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @babel/plugin-proposal-class-properties --save-dev
+    </pre>
+</div>
+<!-- / Terminal --> 
+
+            <p>Next, update the Babel config file (.babelrc) to apply the @babel/plugin-proposal-class-properties package.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
+    ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the link to the fix as an issue raised on GitHub: <a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">https://github.com/babel/babel/issues/8655</a></p>
+
+            <p>Now we have buttons, we can modify our state by deleting characters.</p>
+
+            <h2>Adding Data</h2>
+
+            <p>Now we have data stored in state, we can remove an item from the state. In a real world application, you may also want to add data to the state such as with a to-do list or a shopping cart. To do this, you would likely begin with an empty state and add to it.</p>
+
+            <p>Remove all hard-coded data from the <strong>state.characters</strong> as we will be updating the state through a form component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class App extends Component {
+    state = {
+        characters: [],
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Let's create a new Form component. The <strong>initialState</strong> of the Form will be an object with some empty properties. This will be assigneed to <strong>this.state</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+class Form extends Component {
+    initialState = {
+        name: '',
+        job: '',
+    }
+
+    state = this.initialState
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Each time a field is changed in the form, the state of the Form component will be updated. When we submit the form, all the data will be passed to the App state which will then update the Table.</p>
+
+            <p>We will make a function that will run every time a change is made to an input. The event will be passed through and we'll set the state of From to have thee name (key) and value of the inputs.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+handleChange = event => {
+    const { name, value } = event.target
+
+    this.setState({
+        [name]: value,
+    })
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the <strong>render()</strong> method of the Form component, we get our two properties from state and assign them as values that correspond to the proper form kets. We will run the <strong>handleChange()</strong> method as the <strong>onChange</strong> of the input and export the Form component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+render() {
+    const { name, job } = this.state;
+
+    return (
+        &lt;form&gt;
+            &lt;label htmlFor="name"&gt;Name&lt;/label&gt;
+            &lt;input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={this.handleChange} /&gt;
+            &lt;label htmlFor="job"&gt;Job&lt;/label&gt;
+            &lt;input
+                type="text"
+                name="job"
+                id="job"
+                value={job}
+                onChange={this.handleChange} /&gt;
+        &lt;/form&gt;
+    );
+}
+
+export default Form;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the App component, we can import the Form component and render below the table.</p>
+
+            <p>We now need to actually submit the form data and update the parent state. Create a function called <strong>handleSubmit()</strong> on App component that will update the state by taking the existing <strong>this.state.characters</strong> and adding a new character parameter using the <strong>ES6 spread operator</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+handleSubmit = character => {
+    this.setState({ characters: [...this.state.characters, character] })
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Let's make sure we padd that through as a parameter on Form.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Form handleSubmit={this.handleSubmit} /&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the Form component, we create a method called <strong>submitForm()</strong> that will call that function and pass the Form state through as the character parameter we defined earloer. It will also reset the state to the initial state to clear the form after submit.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+submitForm = () => {
+    this.props.handleSubmit(this.state)
+    this.setState(this.initialState)
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Finally, we add a submit button to the form. We're using the onClick instead of onSubmit since we're not using the standard submit functionality. The click will call the submitForm() method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="button" value="Submit" onClick={this.submitForm} /&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the full code for the App component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import Table from './Table/Table';
+import Form from './Form/Form';
+
+class App extends Component {
+    state = {
+        characters: []
+    };
+
+    removeCharacter = index => {
+        const { characters } = this.state;
+    
+        this.setState({
+            characters: characters.filter((character, i) => { 
+                return i !== index;
+            })
+        });
+    }
+
+    handleSubmit = character => {
+        this.setState({characters: [...this.state.characters, character]});
+    }
+
+    render() {
+        const { characters } = this.state;
+        
+        return (
+            &lt;&gt;
+                &lt;Table characterData={characters} removeCharacter={this.removeCharacter} /&gt;
+                &lt;Form handleSubmit={this.handleSubmit} /&gt;
+            &lt;/&gt;
+        );
+    }
+}
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The Table components all remain the same. The Form component full code can be found below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, {Component} from 'react';
+
+class Form extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.initialState = {
+            name: '',
+            job: ''
+        };
+
+        this.state = this.initialState;
+    }
+
+    handleChange = event => {
+        const { name, value } = event.target;
+
+        this.setState({
+            [name] : value
+        });
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        
+        this.props.handleSubmit(this.state);
+        this.setState(this.initialState);
+    }
+
+    render() {
+        const { name, job } = this.state; 
+
+        return (
+            &lt;form onSubmit={this.onFormSubmit}&gt;
+                &lt;label for="name">Name&lt;/label&gt;
+                &lt;input 
+                    type="text" 
+                    name="name" 
+                    id="name"
+                    value={name} 
+                    onChange={this.handleChange} /&gt;
+                &lt;label for="job">Job&lt;/label&gt;
+                &lt;input 
+                    type="text" 
+                    name="job" 
+                    id="job"
+                    value={job} 
+                    onChange={this.handleChange} /&gt;
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+        );
+    }
+}
+
+export default Form;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Pulling in API Data</h2>
+
+            <p>One common usage of React is to pull data in from an API. As a test, we can create an API component to test this as an example using the Wikipedia API. For this example, the Fetch API will be used to gather the data from the URL endpoint and display it onto the page.</p>
+
+            <p>You can switch between the app we created and this test file by just changing the URL in index.js.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import App from './Api'
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The new aspect to this code is <strong>componentDidMount()</strong> a React lifecycle method. <strong>Lifecycle</strong> is the order in which methods are called in React. <strong>Mounting</strong> refers to an item being inserted into the DOM.</p>
+
+            <p>When we pull in API data, we want to use componentDidMount() because we want to make sure the component is rendered to the DOM before we bring in the data.</p>
+
+            <p>Open an empty file in the 'src' directory named Api.js and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+class App extends Component {
+    state = {
+        data: [],
+    }
+
+    // Code is invoked after the component is mounted/inserted into the DOM tree.
+    componentDidMount() {
+        const url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=Seona+Dancing&format=json&origin=*'
+
+        fetch(url)
+            .then(result => result.json())
+            .then(result => {
+                this.setState({
+                    data: result,
+                })
+            })
+    }
+
+    render() {
+        const { data } = this.state
+
+        const result = data.map((entry, index) => {
+            return &lt;li key={index}&gt;{entry}&lt;/li&gt;
+        })
+
+        return &lt;ul&gt;{result}&lt;/ul&gt;
+    }
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <a href="sitemap.html">Sitemap</a>
+</footer>
+
+</body>
+</html>
