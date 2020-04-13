@@ -27,6 +27,8 @@
 
         	<h2>What is React?</h2>
 
+            <p>React is a UI (User Interface) component library that uses JavaScript to create the components without a special template language. This approach is called <strong>creating composable UIs</strong> and is fundamental to the philosophy of React.</p>
+
         	<ul>
         		<li>React is an open-source JavaScript library created by Facebook.</li>
         		<li>Used to build front end user interfaces (UI).</li>
@@ -34,6 +36,8 @@
         	</ul>
 
         	<p>React allows components to be created, which are similar to reusable HTML elements, to quickly build user interfaces. Data within React is stored and handled using state and props.</p> 
+
+            <p>React components are self-contained. For example you may have a component for a date-picker, address or form elements. Each component has logic and styling. Certain components can also talk to a server on their own. For example, an auto-complete component may fetch the autocompletion list from the server.</p>
 
         	<h2>React Developer Tools</h2>
 
@@ -106,6 +110,194 @@
             	<li>Properties and methods in JSX are camelCase - onclick will become onClick.</li>
             	<li>Self-closing tags must end in a slash - e.g. &lt;img /&gt;
             </ul>
+
+            <p>React uses <strong>props</strong> (properties) inside of JSX tags to define both HTML attributes and React component properties. Props are similar to attribute syntax in HTML.</p>
+
+            <h2>Hello World</h2>
+
+            <p>The smallest React example looks like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+ReactDOM.render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the example below, we declare a variable called name and then use it inside JSX by wrapping it in curly braces.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+const name = 'Dan Jackson'
+const element = &lt;h1&gt;Hello, {name}&lt;/h1&gt;
+
+ReactDOM.render(
+    element,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now an example using props.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;
+}
+
+ReactDOM.render(
+    &lt;Welcome name="Dan" /&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li>We call <strong>ReactDOM.render()</strong> with the &lt;Welcome name="Dan" /&gt; element</li>
+                <li>React calls the Welcome component with {name: 'Dan'} as the props</li>
+                <li>Our Welcome component returns &lt;h1&gt;Hello, Dan&lt;/h1&gt; element as the result</li>
+                <li>React DOM updates the DOM to match &lt;h1&gt;Hello, Dan&lt;/h1&gt;</li>
+            </ul>
+
+            <p>We can extend this example further.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;
+}
+
+function App() {
+    return (
+        &lt;div&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Darren" /&gt;
+            &lt;Welcome name="Dave" /&gt;
+            &lt;Welcome name="Scott" /&gt;
+        &lt;/div&gt;
+    )
+}
+
+ReactDOM.render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Outputting Variables</h2>
+
+            <p>When you compose components, you may want them to be smart enough to change the view based on code. When using JavaScript, you have to resort the concatenation (+) or in ES6, a template literal. In React with JSX, curly braces can be used, as this example shows:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+class DateTimeNow extends Component {
+    render() {
+        let dateTimeNow = new Date().toLocaleString()
+        return (
+            &lt;span&gt;Current date and time is {dateTimeNow}.&lt;/span&gt;
+        )
+    }
+}
+
+export default DateTimeNow
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Moreover, you can execute JavaScript expressions or any JavaScript code inside of curly brackets, for example, the data can be formatted.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;Current time in your locale is {new Date(Date.now()).toLocalTimeString()}&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A simple HelloWorld class component can be written using JSX using dynamic data that JSX stores in a variable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+let helloWorldElement = &lt;h1&gt;Hello, World&lt;/h1&gt;
+
+class HelloWorld extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                {helloWorldElement}
+                {helloWorldElement}
+            &lt;/div&gt;
+        )
+    }
+}
+
+ReactDOM.render(
+    &lt;HelloWorld/&gt;,
+    document.getElementById('root');
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Invoking a Component method to get a URL</h2>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+class Content extends Component {
+    getUrl() {
+        return 'http://webapplog.com'
+    }
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;p&gt;Your REST API URL is:
+                    &lt;a href={this.getUrl()}&gt;
+                        {this.getUrl()}
+                    &lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <h2>Building Components</h2>
 
