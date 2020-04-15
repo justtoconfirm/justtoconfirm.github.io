@@ -1,0 +1,166 @@
+@font-face {
+    font-display: fallback;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400; 
+    src: local('Nunito Regular'), local('Nunito-Regular'),
+         url('../fonts/nunito-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/nunito-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/nunito-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/nunito-v9-latin-regular.eot'), /* IE9 Compat Modes */
+         url('../fonts/nunito-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/nunito-v9-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Nunito', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+
+main {
+    display: block;
+}
+
+pre {
+    background-color: #333;
+    border-radius: 4px;
+    color: #b3b9c5;
+    overflow: scroll;
+    padding-left: 20px;
+}
+
+h1 {
+    font-size: 26px;
+    font-size: 2.6rem;
+}
+
+h2 {
+    font-size: 20px;
+    font-size: 2rem;
+    margin-top: 35px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.img {
+    margin: 20px 0;
+}
+
+.list--no-type {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Tokens */
+/*
+.token-keyword {
+    color: #ffeead;
+}
+
+.token-value {
+    color: #fc9463;
+}
+
+.token-operator {
+    color: #aa7ee1;
+}
+
+.token-method {
+    color: #ff6347;
+}
+
+.token-true {
+    color: #92d192;
+}
+
+.token-false {
+    color: #e1a6f2;
+}
+*/
+/* / Tokens */
+
+/* Terminal styling */
+.terminal {
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    margin: 25px 0;
+}
+
+.terminal--shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+.terminal__top {
+    background: #e8e6e8;
+    color: #000;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.terminal__buttons {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+}
+
+.terminal__circle {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 15px;
+    margin-left: 2px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.terminal__circle--red { 
+    background: #ec6a5f; 
+    border-color: #d04e42; 
+}
+
+.terminal__circle--green { 
+    background: #64cc57; 
+    border-color: #4ea73b; 
+}
+
+.terminal__circle--yellow { 
+    background: #f5c04f; 
+    border-color: #d6a13d; 
+}
+
+.terminal__circle--clear{
+    clear: both;
+}
+
+.terminal__title {
+    text-align: center;
+}
+
+.terminal__body {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: black;
+    color: #7afb4c;
+    padding: 8px;
+    overflow: auto;
+}
+/* / Terminal styling */
