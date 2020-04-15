@@ -74,34 +74,6 @@ img {
     padding-left: 0;
 }
 
-/* Tokens */
-/*
-.token-keyword {
-    color: #ffeead;
-}
-
-.token-value {
-    color: #fc9463;
-}
-
-.token-operator {
-    color: #aa7ee1;
-}
-
-.token-method {
-    color: #ff6347;
-}
-
-.token-true {
-    color: #92d192;
-}
-
-.token-false {
-    color: #e1a6f2;
-}
-*/
-/* / Tokens */
-
 /* Terminal styling */
 .terminal {
     border-radius: 5px 5px 0 0;
@@ -166,7 +138,7 @@ img {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background: black;
-    color: #7afb4c;
+    color: #64cc57;
     font-size: 14px;
     font-size: 1.4rem;
     padding: 8px;
