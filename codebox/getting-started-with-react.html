@@ -44,6 +44,14 @@
                 <li>React is flexible. You can use React for interesting projects that are not web apps.</li>
             </ul>
 
+            <h2>JSX: JavaScript &amp; XML</h2>
+
+            <p>In many React components or code examples, you'll see what looks like HTML, but it's not JSX, which stands for JavaScript XML.</p> 
+
+            <p>JSX is a syntax extension for JavaScript and was written to be used with React. JSX is not valid JavaScript so browsers cannot read it. If a JavaScript file contains JSX then that file needs to be compiled meaning that before the code reaches a web browser, a JSX compiler will translate the JSX into regular JavaScript. This is why we use Babel in our React setup.</p>
+
+            <p>React uses <strong>props</strong> (properties) inside JSX tags to define both HTML attributes and React components. These props are similar to the attribute syntax used in HTML.</p>
+
             <h2>React Developer Tools</h2>
 
             <p>A browser extension is available called <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React Developer Tools</a> that will make working with React much easier. Once installed, you will see a tab for React when you open your browser's developer tools (DevTools). The Elements tab will show the actual DOM (Document Object Model) output.</p>
@@ -154,7 +162,7 @@
 
             <h2>The Babel Config File</h2>
 
-            <p>To allow Babel to work a config file is required. The Babel config file is named .babelrc and should be placed within the root of your project folder. Once created, the config file maybe hidden in the folder. Use CTRL + SHIFT + . (dot) to reveal any hidden files.</p>
+            <p>To allow Babel to work a config file is required. The Babel config file is named <strong>.babelrc</strong> and should be placed within the root of your project folder. Once created, the config file maybe hidden in the folder. Use <strong>CTRL</strong> + <strong>SHIFT</strong> + <strong>.</strong> (dot) to reveal any hidden files.</p>
 
             <p>Use the terminal to create a Babel config file:</p>
 
@@ -312,6 +320,22 @@ ReactDOM.render(
     </code>
 </pre>
 
+            <p>As we don't need to create a React Class component in index.js, we can simplify our code. You may also notice that we can look to remove the semicolons at the end of statements, but this is optional.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+
+render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <p>Run the production build script in the terminal. This will generate a <strong>dist</strong> folder in your project directory where a minified <strong>main.js</strong> file will be generated. This will also generate a <strong>package-lock.json</strong> file.</p>
 
 <!-- Terminal -->
@@ -376,6 +400,18 @@ ReactDOM.render(
     </code>
 </pre>
 
+            <p>Within your HTML, you will have a &lt;div&gt; somewhere in your code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div id="root"&gt;&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We call this a "root" DOM node because everything inside it will be managed by ReactDOM.</p>
+
             <p>Refresh the HTML page and Hello World will render. The file structure in your project should look like the example below:</p>
 
 <pre>
@@ -392,6 +428,89 @@ package.json
 src/
     index.js
 webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Writing a Simple Component</h2>
+
+            <p>The simplest way to define a component is to write a JavaScript function. A function can be a valid React component because it accepts a <strong>prop</strong> (property). Components created using a function are called <strong>function components</strong> because they are literally JavaScript functions.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function Welcome(props) {
+    return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This function can also be written as an <strong>ES6 Arrow Function</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const Welcome = props => {
+    return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also use an <strong>ES6 class</strong> to define a component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Welcome extends React.Component {
+    render() {
+        return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Data can be passed into the Welcome component using <strong>props</strong>. When rendered, the component will print <strong>Hello Dan</strong> onto the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Welcome name="Dan" /&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <h3>Composing Components</h3>
+
+            <p>Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. For example, we can create an App component in index.js that renders the Welcome component twice.</p>
+
+            <p>Typically most React apps have a single <strong>App</strong> component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+const Welcome = props => {
+    return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+
+const App = () => {
+    return (
+        &lt;div&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Pearl" /&gt;
+        &lt;/div&gt;
+    );
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
 <!-- Just leave this line alone -->
     </code>
 </pre>
