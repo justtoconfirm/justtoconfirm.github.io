@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Codebox - Getting Started with React</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Getting Started with React</h1>
+
+            <h2>What is React?</h2>
+
+            <p>React is a UI (User Interface) component library developed by engineers at Facebook and intially released on May 29, 2013. React uses JavaScript to create components without the need to use a template language. This approach is <strong>creating composable UIs</strong> and is fundamental to the philosophy of React.</p>
+
+            <p>React allows components to be created that are similar to reusable HTML elements, to quickly build user interfaces. Data within React is stored and handled using <strong>state</strong> and <strong>props</strong>.</p>
+
+            <p>React components are self-contained. For example you may have a component for a date-picker, address or form elements. Each component has logic and styling. Certain components can also talk to a server on their own. For example, an auto-complete component may fetch the autocompletion list from the server.</p> 
+
+            <p>To summarise:</p>
+
+            <ul>
+                <li>React is an open-source JavaScript library.</li>
+                <li>Used to build front-end user interfaces (UI).</li>
+                <li>React is the view layer of an MVC (Model View Controller) application.</li>
+            </ul>
+
+            <p>Here are some of the benefits of using React:</p>
+
+            <ul>
+                <li>React is fast. Apps made with React can handle complex updates and still feel quick and responsive.</li>
+                <li>React is modular. Instead of writing large, dense files of code, you can write much smaller, reusable files.</li>
+                <li>React is scalable. Large programs that display a lot of changing data are where React performs best.</li>
+                <li>React is flexible. You can use React for interesting projects that are not web apps.</li>
+            </ul>
+
+            <h2>React Developer Tools</h2>
+
+            <p>A browser extension is available called <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi" target="_blank" rel="noopener noreferrer">React Developer Tools</a> that will make working with React much easier. Once installed, you will see a tab for React when you open your browser's developer tools (DevTools). The Elements tab will show the actual DOM (Document Object Model) output.</p>
+
+            <h2>Install React</h2>
+
+            <p>Node Package Manager (NPM) can be used to install React. Begin by creating a new directory where the React application will be built and setup a package.json file. open your terminal and run the following commands:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ mkdir react-app
+    $ cd react-app
+
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We now have a directory named <strong>react-app</strong> and a generated package.json file.</p>
+
+            <p>We now want to install the following packages as dependencies:</p>
+
+            <ul>
+                <li><strong>react</strong> - the top-level API (Application Program Interface) of the React library.</li>
+                <li><strong>react-dom</strong> - DOM (Document Object Model) specific methods used by React.</li>
+            </ul>
+
+            <p>Both will now be listed in your package.json file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react react-dom --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p><strong>React</strong> and <strong>ReactDOM</strong> were split into two packages from version 0.14. React is the JavaScript library for building User Interfaces and ReactDOM is the JavaScript library that allows React to interact with the DOM. ReactDOM contains many methods all of which deal with the DOM and is where you will find the <strong>render()</strong> method.</p>
+
+            <p>We now need to install <strong>Babel</strong> and <strong>Webpack</strong> to run our React application.</p>
+
+            <h2>Install Babel</h2>
+
+            <p>Begin by installing the following packages using NPM (Node Package Manager):</p>
+
+            <ul>
+                <li><strong>@babel/core</strong> - this is the main dependency, including Babel.</li>
+                <li><strong>@babel/preset-env</strong> - the default Babel preset used to transform ES6 into ES5 syntax and to optionally configure browser polyfills.</li>
+                <li><strong>babel-loader</strong> - a Webpack loader that hooks Babel into Webpack.</li>
+            </ul>
+
+            <p>Open your terminal within your project and install each package as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @babel/core @babel/preset-env babel-loader --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To use Babel with React, the <strong>@babel/preset-react</strong> package will also need to be installed as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @babel/preset-react --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>The Babel Config File</h2>
+
+            <p>To allow Babel to work a config file is required. The Babel config file is named .babelrc and should be placed within the root of your project folder. Once created, the config file maybe hidden in the folder. Use CTRL + SHIFT + . (dot) to reveal any hidden files.</p>
+
+            <p>Use the terminal to create a Babel config file:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ touch .babelrc
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Open the config file in your code editor and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": [ "@babel/preset-env" ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As we are building a React application, the <strong>@babel/preset-react</strong> package should also be added to the config file. This will allow your React components to be written in the ES6 JavaScript syntax using JSX.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Install &amp; Setup Webpack</h2>
+
+            <p>To allow our React application to be built, we need to setup Webpack. Node Package Manager (NPM) can be used to install Webpack. Both the <strong>webpack</strong> and <strong>webpack-cli</strong> packages are required to be installed as devDependencies. Open your terminal and run the following commands to install Webpack</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install webpack webpack-cli --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once installed, open the package.json file and add build scripts to allow Webpack to be run in <strong>development</strong> or <strong>production</strong> modes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We want to use Babel within our React application, so we need to create a Webpack config file named <strong>webpack.config.js</strong> in the root of our project folder. Open your terminal and create an empty config file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ touch webpack.config.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Open the webpack.config.js file and add the following code using your code editor:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Your project folder should have the following file structure (a .gitignore file has also been included):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.babelrc
+.gitignore
+node_modules/
+package.json
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Hello World</h2>
+
+            <p>Now that Webpack and Babel are setup, we can begin to use React and build a simple application to render 'Hello World' onto a page. This is the smallest React example.</p>
+
+            <p>Begin by creating a new directory in your project folder named <strong>src</strong> and inside add an empty JavaScript file named <strong>index.js</strong>. Within the index.js file, add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+    &lt;h1&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Run the production build script in the terminal. This will generate a <strong>dist</strong> folder in your project directory where a minified <strong>main.js</strong> file will be generated. This will also generate a <strong>package-lock.json</strong> file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Should you want to run the build to generate an unminified main.js file, run the build script in development mode. The filename in either build mode will still be <strong>main.js</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build:dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Within the dist folder, create an empty HTML page named index.html and add the following HTML code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+    &lt;title&gt;React App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;script src="main.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Refresh the HTML page and Hello World will render. The file structure in your project should look like the example below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.babelrc
+dist/
+    index.html
+    main.js
+.gitignore
+node_modules/
+package-lock.json
+package.json
+src/
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
