@@ -432,6 +432,43 @@ webpack.config.js
     </code>
 </pre>
 
+            <h2>Using Variables</h2>
+
+            <p>An an example, we can declare a variable and use the variable name inside JSX by wrapping it in curly braces. Here, we are re-writing the example from earlier to display <strong>Hello Dan</strong> onto the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+const name = 'Dan';
+const element = &lt;h1&gt;Hello {name}&lt;/h1&gt;;
+
+render(
+    element,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also place JavaScript code inside JSX. Any code between the tags of a JSX element will be read as JSX, not as regular JavaScript, but using curly brackets will execute the code as an expression. Here the value of 2 + 3 (5) will be rendered on the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+render(
+    &lt;h1&gt;{2 + 3}&lt;/h1&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Writing a Simple Component</h2>
 
             <p>The simplest way to define a component is to write a JavaScript function. A function can be a valid React component because it accepts a <strong>prop</strong> (property). Components created using a function are called <strong>function components</strong> because they are literally JavaScript functions.</p>
