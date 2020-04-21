@@ -469,6 +469,24 @@ render(
     </code>
 </pre>
 
+            <h2>Adding Classes</h2>
+
+            <p>In HTML it's common to add class as an attribute to an element. In JSX, class cannot be used as it's a keyword in JavaScript from when JSX is compiled into JavaScript. In JSX, <strong>className</strong> is used and this is automatically rendered into a class attribute in the JavaScript code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+
+render(
+    &lt;h1 className="title"&gt;Hello World&lt;/h1&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Writing a Simple Component</h2>
 
             <p>The simplest way to define a component is to write a JavaScript function. A function can be a valid React component because it accepts a <strong>prop</strong> (property). Components created using a function are called <strong>function components</strong> because they are literally JavaScript functions.</p>
@@ -482,6 +500,8 @@ function Welcome(props) {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>Remember, in React, component names should always start with an uppercase letter.</p>
 
             <p>This function can also be written as an <strong>ES6 Arrow Function</strong>.</p>
 
@@ -551,6 +571,486 @@ render(
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>The empty &lt;div&gt; and &lt;/div&gt; elements are needed when multiple JSX elements are being returned. Without this, an error will occur in the terminal. Having empty HTML elements can increase the number of elements rendered in the DOM, so this can be replaced by <strong>React Fragments</strong>. Fragments let you group a list of children without adding extra nodes to the DOM.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const App = () => {
+    return (
+        &lt;React.Fragment&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Pearl" /&gt;
+        &lt;/React.Fragment&gt;
+    );
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or we can use Fragments in this way:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const App = () => {
+    return (
+        &lt;&gt;
+            &lt;Welcome name="Dan" /&gt;
+            &lt;Welcome name="Pearl" /&gt;
+        &lt;/&gt;
+    );
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Building a Button Component</h2>
+
+            <p>Inside the <strong>src</strong> directory, create a new folder named <strong>Button</strong> and inside an empty JavaScript file named Button.js. Add the following code to render a simple button component as a functional component within a JavaScript module.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+
+function Button() {
+    return &lt;button&gt;Button&lt;/button&gt;
+}
+
+export default Button;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The component is written as a typical JavaScript function. We can use an ES6 Arrow function if we wish. Notice that the semicolons at the end of each statement have also been removed (optional).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = () => {
+    return (
+        &lt;button&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is how our project directory should now look:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.babelrc
+dist/
+    index.html
+    main.js
+.gitignore
+node_modules/
+package-lock.json
+package.json
+src/
+    Button/
+        Button.js
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the <strong>index.js</strong> file we can now import our Button component into the App component within to render the Button onto the page. All previous code has been removed as we only require the Button to be rendered. When we import the Button component, the '.js' file extension is not needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Button from './Button/Button';
+
+const App = () => {
+    return (
+        &lt;Button /&gt;
+    );
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You will need to run your build and refresh the <strong>index.html</strong> page in the browser to see the button render on the page.</p>
+
+            <h3>Adding Props</h3>
+
+            <p>Now that the Button component has been created, we can begin to add <strong>props</strong> (properties). To begin, a prop named <strong>type</strong> is added. This will allow the type attribute for the button to be set.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = '' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To provide a prop with a default value this must be defined within the component. This default value will be applied each time the component is rendered or a new value is passed into the prop that will overwrite this default value.</p>
+
+            <p>Here, the default value of the type prop is set to <strong>button</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = 'button' }) => {
+    return (
+        &lt;button type={type}&gt;Button&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the Button component is rendered it will have the type attribute of <strong>button</strong> by default. To change this value, pass in a new value when the component is rendered. In this example, within index.js, we pass the value of <strong>submit</strong> into the type prop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Button from './Button/Button';
+
+const App = () => {
+    return (
+        &lt;Button type="submit" /&gt;
+    );
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our Button component currently has a default label of <strong>Button</strong>. For this component to be reusable, the label needs to allow change. Using the <strong>children</strong> prop will allow this.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = ({ type = 'button', children }) => {
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can now change the button label to <strong>Submit Form</strong> when we render the component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Button from './Button/Button';
+
+const App = () => {
+    return (
+        &lt;Button type="submit"&gt;Submit Form&lt;/Button&gt;
+    );
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Multiple Props</h3>
+
+            <p>As the number of props added increases, the less readable the code becomes. Using a const variable is one way to improve the readability of our Button component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        children
+    } = props
+
+    return (
+        &lt;button type={type}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A <strong>spread operator</strong> can also be used to avoid the need to list out all props within the return statement.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        children
+    } = props
+
+    return (
+        &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Change the Rendering of a Component</h3>
+
+            <p>A prop can be used to change how a component is rendered. For our Button component, a <strong>url</strong> prop can be added to take a value and render the Button either as an HTML link or button.</p>
+
+            <p>The following line of code is added into the Button component function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We then add two render methods and a ternary operator to determine which method to execute based on the value passed into the component <strong>url</strong> prop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const renderAnchor = () =>
+    &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+const renderButton = () => 
+    &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+
+return (
+    isAnchor ? renderAnchor() : renderButton()
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once the <strong>url</strong> prop has been added, our Button component code should look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        children
+    } = props
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now if we render the Button component, a HTML button will be rendered. Should we pass a URL into the Button as a prop value, then the Button will be rendered as a link, as this example below demonstrates.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom';
+
+import Button from './Button/Button';
+
+const App = () => {
+    return (
+        &lt;Button url="https://www.google.co.uk"&gt;Open Google&lt;/Button&gt;
+    );
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Setting Classes</h3>
+
+            <p>To apply a class attribute to a React component the <strong>className</strong> attribute is used. We can update the Button component to apply the class of <strong>btn</strong> as a default.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        children
+    } = props
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className="btn"&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}} className="btn"&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is fine, but we may also want to toggle classes based on prop values being passed down into our component. To do this, we can install the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">Classnames</a> package using NPM (Node Package Manager). This package needs to be installed as a dependency within your project.</p>
+
+            <p>Begin by opening your terminal and entering the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install classnames --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once installed, the package will be added as dependency to your package.json file. We now need to update our Button component with a number of props and also import the package itself.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import classNames from 'classnames'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        className = '',
+        theme = '',
+        isFullWidth = false,
+        children
+    } = props
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}} className={buttonClass}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now each time the Button component renders, the class of <strong>btn</strong> will still be the default.</p>
+
+            <p>When we render a Button, we can now use the <strong>theme</strong> prop to specify what additional modifier class is to be applied.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Button&gt;Button&lt;/Button&gt;                                // .btn
+&lt;Button theme="primary"&gt;Button&lt;/Button&gt;                // .btn .btn--primary
+&lt;Button theme="secondary"&gt;Button&lt;/Button&gt;              // .btn .btn--secondary
+&lt;Button isFullWidth&gt;Button&lt;/Button&gt;                    // .btn .btn--full-width
+&lt;Button theme="primary" isFullWidth&gt;Button&lt;/Button&gt;    // .btn .btn--primary .btn--full-width
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now run your build and refresh your page.</p>
 
 		</div>
 	</div>
