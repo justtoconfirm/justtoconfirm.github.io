@@ -550,6 +550,36 @@ class Welcome extends React.Component {
     </code>
 </pre> 
 
+            <h3>Functional &amp; Class Components</h3>
+
+            <p>Let's compare a simple functional component with a class component. Here is a <strong>functional component</strong> example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const SimpleComponent = () => {
+    return &lt;div&gt;Example&lt;/div&gt;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Here's an example <strong>class component</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class ClassComponent extends Component {
+    render() {
+        return &lt;div&gt;Example&lt;/div&gt;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>If the <strong>return</strong> is contained to a single line, it does not need parenthesis.</p>
+
             <h3>Composing Components</h3>
 
             <p>Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. For example, we can create an App component in index.js that renders the Welcome component twice.</p>
