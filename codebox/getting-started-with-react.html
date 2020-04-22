@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to getting started with React">
 
 	<title>Codebox - Getting Started with React</title>
 
@@ -300,6 +301,16 @@ webpack.config.js
     </code>
 </pre>
 
+            <p>If you are using version control, such as Git, it is often worthwhile creating a <strong>.gitignore</strong> file within the root directory of your project. This helps to avoid the <strong>node_modules</strong> directory from being committed to your repository.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules/
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Hello World</h2>
 
             <p>Now that Webpack and Babel are setup, we can begin to use React and build a simple application to render 'Hello World' onto a page. This is the smallest React example.</p>
@@ -410,7 +421,7 @@ render(
     </code>
 </pre>
 
-            <p>We call this a "root" DOM node because everything inside it will be managed by ReactDOM.</p>
+            <p>We call this a "root" element, or <strong>root DOM node</strong> because everything inside it will be managed by ReactDOM. This is the element that is used to render the application within our HTML. The attribte itself does not need to be named "root", but is named in this example for simplicity.</p>
 
             <p>Refresh the HTML page and Hello World will render. The file structure in your project should look like the example below:</p>
 
@@ -1052,6 +1063,174 @@ export default Button
 
             <p>Now run your build and refresh your page.</p>
 
+            <p>We can also now move our App component into a separate file and import it into the index.js file, in the same was as the Button component was imported.</p>
+
+            <p>Here is the <strong>index.js</strong> file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import App from './App'
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is the <strong>App.js</strong> file itself:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+    return (
+        &lt;Button&gt;Button&lt;/Button&gt;
+    );
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>And here is the updated directory structure:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.babelrc
+dist/
+    index.html
+    main.js
+.gitignore
+node_modules/
+package-lock.json
+package.json
+src/
+    App.js
+    Button/
+        Button.js
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding onClick Event Handlers</h2>
+
+            <p>Our Button component is no use if it doesn't do anything when clicked. When the button is clicked, we want it to call a function to perform a task and do something. Handling events with React elements is very similar to handling events on DOM elements.</p>
+
+            <ul>
+                <li>React events are named using camelCase, rather than lowercase.</li>
+                <li>With JSX you pass a function as the event handler, rather than a string.</li>
+            </ul>
+
+            <p>As with className, we use <strong>onClick</strong> in React in-place of <strong>onclick</strong> as this is a keyword used in JavaScript.</p>
+
+            <p>Inside our Button component we need to add a new <strong>onClick</strong> prop. This will pass in the name of the function we want to call when the button is clicked.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        className = '',
+        theme = '',
+        isFullWidth = false,
+        children, 
+        onClick
+    } = props
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the render method, we then need to add the onClick prop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const renderButton = () => 
+    &lt;button type={type} onClick={onClick} className={buttonClass}&gt;{children}&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or we can use the <strong>spread operator</strong> as before:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const renderButton = () => 
+    &lt;button {...{type, onClick}} className={buttonClass}&gt;{children}&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the <strong>App</strong> component, we can render the Button component and create a function that's called when the button is clicked to display an alert message.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+
+    function sayHello() {
+        alert('Hello')
+    }
+
+    return (
+        &lt;Button onClick={sayHello}&gt;Hello Alert&lt;/Button&gt;
+    );
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also turn the <strong>sayHello</strong> function into an ES6 Arrow function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+
+    const sayHello = () => {
+        alert('Hello')
+    }
+
+    return (
+        &lt;Button onClick={sayHello}&gt;Hello Alert&lt;/Button&gt;
+    );
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now when the button is clicked, an alert is shown with <strong>Hello</strong> displayed.
+
             <h2>Typechecking with PropTypes</h2>
 
             <p>Within your app, typechecking is used to catch bugs and errors. For some applications, you can use JavaScript extensions like <a href="https://flow.org/" target="_blank" rel="noopener noreferrer">Flow</a> or <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a> to typecheck your whole application. React itself also has some built-in typechecking abilities.</p>
@@ -1096,7 +1275,8 @@ const Button = (props) => {
         className = '',
         theme = '',
         isFullWidth = false,
-        children
+        children, 
+        onClick
     } = props
 
     const buttonClass = classNames('btn', className, {
@@ -1111,7 +1291,7 @@ const Button = (props) => {
         &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
 
     const renderButton = () => 
-        &lt;button {...{type}} className={buttonClass}&gt;{children}&lt;/button&gt;
+        &lt;button {...{type, onClick}} className={buttonClass}&gt;{children}&lt;/button&gt;
 
     return (
         isAnchor ? renderAnchor() : renderButton()
@@ -1186,7 +1366,8 @@ Button.propTypes = {
     className: PropTypes.string,
     theme: PropTypes.string,
     isFullWidth: PropTypes.bool,
-    children: PropTypes.string
+    children: PropTypes.string,
+    onClick: PropTypes.string
 }
 <!-- Just leave this line alone -->
     </code>
