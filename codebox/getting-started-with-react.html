@@ -1423,6 +1423,148 @@ Button.propTypes = {
     </code>
 </pre>
 
+            <h2>Building a Counter Component</h2>
+
+            <p>Now that our Button component has been created, we can look to create a second component, a Counter, and import our Button component. A class component must be used because we will be using the <strong>state object</strong>. React has a built-in state object. This object is where you store the values/data of the properties used in the component. Whenever the state object changes, the component is re-rendered.</p>
+
+            <p>In the <strong>src</strong> directory, create a new folder named <strong>Counter</strong> and within this folder, an empty JavaScript file named <strong>Counter.js</strong>.</p>
+
+            <p>Here is the file directory structure:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.babelrc
+dist/
+    index.html
+    main.js
+.gitignore
+node_modules/
+package-lock.json
+package.json
+src/
+    App.js
+    Button/
+        Button.js
+    Counter/
+        Counter.js
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is the code for this new component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import Button from '../Button/Button'
+
+class Counter extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            counter: 0
+        }
+    }
+
+    handleClick = (event) => {
+        let stateCounter = this.state.counter
+
+        stateCounter = stateCounter + 1
+
+        this.setState({
+            counter: stateCounter
+        })
+    }
+
+    render() {
+        return (
+            &lt;&gt;
+                &lt;p&gt;{this.state.counter}&lt;/p&gt;
+                &lt;Button onClick={this.handleClick}&gt;Increase Counter&lt;/Button&gt;
+            &lt;/&gt;
+        )
+    }
+}
+
+export default Counter
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Previously, it was necessary to include a <strong>constructor()</strong> on a React Class component, but this is not required anymore.</p>
+
+            <p>You will need to import the Counter component in the <strong>App.js</strong> file for it to be rendered.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import Button from './Button/Button'
+import Counter from './Counter/Counter'
+
+const App = () => {
+
+    const sayHello = () => {
+        alert('Hello')
+    }
+
+    return (
+        &lt;&gt;
+            &lt;Button onClick={sayHello}&gt;Hello Alert&lt;/Button&gt;
+            &lt;Counter /&gt;
+        &lt;/&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When you build this code, you may notice an error in the terminal. The error relates to support for the experimental <strong>classProperties</strong> syntax, not currently enabled. Begin by installing the following package as a devDependency:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @babel/plugin-proposal-class-properties --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next, update the <strong>.babelrc</strong> config file to apply the package.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": [ 
+        "@babel/preset-env",
+        "@babel/preset-react" 
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
+    ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the link to the GitHub issue: <a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">https://github.com/babel/babel/issues/8655</a></p>
+
 		</div>
 	</div>
 </main>
