@@ -526,7 +526,7 @@ const Welcome = props => {
     </code>
 </pre>
 
-            <p>We can also use an <strong>ES6 class</strong> to define a component:</p>
+            <p>We can also use an <strong>ES6 class</strong> to define a component. Notice that we use <strong>this.props.name</strong> to reference the value passed into the props within a class.</p>
 
 <pre>
     <code>
@@ -1259,7 +1259,27 @@ export default App
     </code>
 </pre>
 
-            <p>Now when the button is clicked, an alert is shown with <strong>Hello</strong> displayed.
+            <p>Now when the button is clicked, an alert is shown with <strong>Hello</strong> displayed.</p>
+
+            <p>An <strong>inline function</strong> can also be used which is defined inside of the onClick handler when the React component renders. This would be used to pass in additional arguments to a function, such as a value from a loop, or the target button's value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import Button from './Button/Button'
+
+const App = () => {
+
+    return (
+        &lt;Button onClick={() => alert('Hello'))}&gt;Hello Alert&lt;/Button&gt;
+    );
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <h2>Typechecking with PropTypes</h2>
 
