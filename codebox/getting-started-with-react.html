@@ -608,7 +608,7 @@ const App = () => {
 
             <h2>Building a Button Component</h2>
 
-            <p>Inside the <strong>src</strong> directory, create a new folder named <strong>Button</strong> and inside an empty JavaScript file named Button.js. Add the following code to render a simple button component as a functional component within a JavaScript module.</p>
+            <p>Inside the <strong>src</strong> directory, create a new folder named <strong>Button</strong> and inside an empty JavaScript file named <strong>Button.js</strong>. Add the following code to render a simple button component as a functional component within a JavaScript module.</p>
 
 <pre>
     <code>
@@ -1051,6 +1051,146 @@ export default Button
 </pre>
 
             <p>Now run your build and refresh your page.</p>
+
+            <h2>Typechecking with PropTypes</h2>
+
+            <p>Within your app, typechecking is used to catch bugs and errors. For some applications, you can use JavaScript extensions like <a href="https://flow.org/" target="_blank" rel="noopener noreferrer">Flow</a> or <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a> to typecheck your whole application. React itself also has some built-in typechecking abilities.</p>
+
+            <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. TypeScript includes typechecking by default. You may see React components written using TypeScript.</p>
+
+            <p>Typechecking ensures that the values within props have the correct data types.</p>
+
+            <p>We do need to install the <a href="https://www.npmjs.com/package/prop-types" target="_blank" rel="noopener noreferrer">PropTypes</a> package as a dependency as import it into the component.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install prop-types --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To run typechecking on the props for a component, you can assing the <strong>propTypes</strong> property. Here, we update the Button component with the propTypes property. In this example, we're using <strong>PropTypes.string</strong> to check that the value for the <strong>type</strong> prop is only a string.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+
+const Button = (props) => {
+
+    const {
+        type = 'button',
+        url = '',
+        className = '',
+        theme = '',
+        isFullWidth = false,
+        children
+    } = props
+
+    const buttonClass = classNames('btn', className, {
+        'btn--primary' : theme === 'primary',
+        'btn--secondary' : theme === 'secondary',
+        'btn--full-width' : isFullWidth
+    })
+
+    const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'))
+
+    const renderAnchor = () =>
+        &lt;a href={url} className={buttonClass}&gt;{children}&lt;/a&gt;
+
+    const renderButton = () => 
+        &lt;button {...{type}} className={buttonClass}&gt;{children}&lt;/button&gt;
+
+    return (
+        isAnchor ? renderAnchor() : renderButton()
+    )
+}
+
+Button.propTypes = {
+    type: PropTypes.string
+}
+
+export default Button
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now when we render the Button in the index.js file, should the <strong>type</strong> prop have a value that's not a string, such as a number, an error will be displayed in the browser console. For performancee, propTypes is only checked in <strong>development mode</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build:dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Here is how we will cause an error to be displayed:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Button type="1234"&gt;Button&lt;/Button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The error displayed in the console:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body terminal__body--error">
+<!-- Just leave this line alone -->
+    Warning: Failed prop type: Invalid prop `type` of type `number` supplied to `Button`, expected `string`.
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Here is the full propTypes object for the Button component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Button.propTypes = {
+    type: PropTypes.string,
+    url: PropTypes.string,
+    className: PropTypes.string,
+    theme: PropTypes.string,
+    isFullWidth: PropTypes.bool,
+    children: PropTypes.string
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
 		</div>
 	</div>

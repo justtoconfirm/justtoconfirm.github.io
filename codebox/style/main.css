@@ -137,11 +137,16 @@ img {
     margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background: black;
+    background-color: #000;
     color: #64cc57;
     font-size: 14px;
     font-size: 1.4rem;
     padding: 8px;
     overflow: auto;
+}
+
+.terminal__body--error {
+    background-color: #800000;
+    color: #ff0033;
 }
 /* / Terminal styling */
