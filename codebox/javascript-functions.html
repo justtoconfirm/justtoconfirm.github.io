@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript functions">
+
+	<title>Codebox - JavaScript Functions</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Functions</h1>
+
+            <p>Functions let you group a series of statements together to perform a specific task. If different parts of a script repeat the same task, you can reuse the function rather than repeating the same set of statements. The statements the function needs to perform its task are packaged up within a <strong>code block</strong>.</p>
+
+            <p>Statements in a function are not always executed when a page loads. You may have a task you only want to perform if the useer clicks on a specific element, such as a button on the page.</p>
+
+            <p>If you are going to ask the function to perform its task later, you need to give the function a name. This name should describe the task the function is performing. This is known as calling the function. Nothing will happen and no code will be executed until we call (<strong>invoke</strong>) the function.</p>
+
+            <p>When we write a function and expect it to provide you with an answer, the response is known as the <strong>return value</strong>.</p>
+
+            <p>A function is declared using the <strong>function</strong> keyword. Below is the syntax for a function in JavaScript.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function func() {
+    // Code to be executed here
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Declaring a Function</h2>
+
+            <p>To create a function you need to provide it with a name and any statements needed to to achieve its task should by within the curly braces. When a function is created it is known as a <strong>function declaration</strong>.</p> 
+
+            <p>This function is very basic as it only contains one statement inside of the code block. Most functions that you see or write are likely to consist of more than one statement.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sayHello() {
+    document.write("Hello");
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Calling a Function</h2>
+
+            <p>Having now declared a function, you can now execute all of the statements between the curly braces with a single line of code. This is known as <strong>calling the function</strong>.</p>
+
+            <p>To run the code within the function, use the function name followed by parenthesis. The function can be called as many times as you like within the same script.</p>
+
+            <p>The function executes the code within the code block. When finished, the code continues to run from the point where it was initially called.</p>
+
+            <p>Here, we are calling the <strong>sayHello()</strong> function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+sayHello();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Sometimes you will see a function called before it has been declared. This still works as the interpreter runs through the script before executing each statement so it will know that a function declaration appears later in the script. Ideally, declaring the function before calling it is the best solution.</p>
+
+            <h2>Function Parameters</h2>
+
+            <p>Using parameters allows our functions to be more flexible. Parameters allow values to be passed into functions and to behave in a similar way to local variables. Sometimes a function needs specific information to perform its task and this is why parameters are useful.</p>
+
+            <p>Perhaps when a user logs into an application, we may want to greet the user by name. We can add a parameter into our function, called name, to represent the name of the person being greeted. Parameters to be added to the function should be placed inside of the parenthesis of the function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sayHello(name) {
+    document.write("Hello");
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Inside the function we can then output the value passed into the name parameter.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sayHello(name) {
+    document.write("Hello " + name);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In ES6, instead of a static string we can use a <strong>template literal</strong> string containing the parameter. This now behaves like a local variable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sayHello(name) {
+    document.write(`Hello ${name}`);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We haven't yet defined and passed in the value of name. We assign a value when we invoke (call) our funcction. Let's assume the value of name is <strong>Dan</strong>. When we call the function, we assign this value as an <strong>argument</strong> and this is then passed into the parameter when the function is called.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+sayHello("Dan");
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When we call the function, <strong>Hello Dan</strong> will be printed on the page.</p>
+
+            <h2>Default Parameters</h2>
+
+            <p>Default parameters were introduced as part of the ES6 syntax. This allows developers to initialize a function with a default value if an argument is not supplied when the function is called. This can help to make our functions easier to read and avoid errors that stem from passing in undefined arguments.</p>
+
+            <p>Within the following function, we return the cube of a given number defined as <strong>x</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function cube(x) {
+    return x * x * x;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If not value is passed as an argument into a function, the function will implicitly use undefined as the value and return <strong>NaN</strong> (<strong>Not a Number</strong>). In this example, the function would then calculate the value of <strong>undefined * undefined * undefined</strong> which results in NaN being returned.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+cube();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Setting a default value avoids this occuring. A default value can be added to the parameter in the function using the <strong>assignment operator</strong> (=).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function cube(x = 5) {
+    return x * x * x;
+}
+
+cube();     // 5 * 5 * 5
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If a value is passed into the parameter as an argument, then the default value will be overwritten.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function cube(x = 5) {
+    return x * x * x;
+}
+
+cube(2);     // 2 * 2 * 2
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Before the introduction of default parameters in ES6, we would normally have to explicitly check for undefined values in order to set a default value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function cube(x) {
+
+    // Check to see if an argument is undefined
+    if (typeof x === 'undefined') {
+        // Set a default value if the argument is undefined
+        x = 5;
+    }
+
+    return x * x * x;
+
+}
+
+cube();     // 5 * 5 * 5
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Function Expressions</h2>
+
+            <p>In earlier examples we used function declarations, but <strong>function expressions</strong> can also be used by assigning a function to a variable.</p>
+
+            <p>Here we are creating a function expression for calculating the area of a shape.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const area = function getArea(width, height) {
+    return width * height;
+}
+
+area(20, 40);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now the area constant is a function, we can make this expression more concise by turning it into an <strong>anonymous function</strong> which is an unnamed function. A named function may help and aid in debugging but it not necessary. Currently our function has a name of getArea, but with a function expression a name is not necessary and is usually omitted.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const area = function(width, height) {
+    return width * height;
+}
+
+area(20, 40);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
