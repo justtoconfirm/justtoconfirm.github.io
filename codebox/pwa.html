@@ -55,10 +55,9 @@
           "sizes": "144x144"
         }
     ],
-    "start_url": "https://justtoconfirm.github.io/codebox/",
+    "start_url": "index.html",
     "background_color": "#fff",
     "display": "standalone",
-    "scope": "/",
     "theme_color": "#e8e6e8"
 }
 <!-- Just leave this line alone -->
@@ -115,6 +114,19 @@ if ('serviceWorker' in navigator) {
 </pre>
 
             <p>Create a service worker file named <strong>sw.js</strong> in the root of your project folder.</p>
+
+            <p>Within the sw.js file, add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+self.addEventListener('fetch', function(event) {
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In absence of abobe code, your service worker will get registered but web app install banner won't show up. Instead, you will see the following error message in your console: "The page does not work offline".</p>
 
 		</div>
 	</div>
