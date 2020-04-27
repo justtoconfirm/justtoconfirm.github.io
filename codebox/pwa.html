@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to Progressive Web Apps (PWA)">
+
+	<title>Codebox - Progressive Web Apps (PWA)</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Progressive Web Apps (PWA)</h1>
+
+            <p>Progressive Web Apps (PWA) are web applications that are regular web pages or websites but can appear to the user like traditional applications or native mobile apps. PWAs attempt to combine features offered by most modern browsers with the benefits of a mobile experience.</p>
+
+            <p>PWA is not one web technology, but a collection of web technologies including the web app manifest.</p>
+
+            <p>Unlike regular web apps with simple homescreen links or bookmarks, PWAs can be downloaded in advance, ise regular Web APIs (Application Program Interfaces) and can work offline.</p>
+
+            <p>Progressive Web Apps are built and enhanced with modern APIs to deliver native-like capabilities, reliability, and installability while reaching anyone, anywhere, and on any device with a single codebase.</p>
+
+            <h2>Add a web app manifest</h2>
+
+            <p>The web app manifest is a JSON file that provides information about the web application and tells the browser about how it should behave when installed on the user's desktop or mobile device. The manifest file is necessary for the web app to be downloaded and presented to the user similarly to a native application. This allows the app to be installed on the homescreen of a device, providing users with quick access and a richer experience.</p>
+
+            <p>A typical manifest file includes the app name, icons the app should use, and the URL that should be opened when the app is launched. Manifest files are supported in Chrome, Edge, Firefox, Opera and the Samsung mobile browser. Safari has partial support.</p>
+
+            <p>Tha manifest file can have any name, but is commonly named <strong>manifest.webmanifest</strong> and served from the root of your project directory/folder (your website's top-level directory).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Web app manifests are deployed in your HTML pages using a &lt;link&gt; element in the &lt;head&gt; of a document.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="manifest" href="/manifest.webmanifest"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
