@@ -39,7 +39,28 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-
+{
+    "name": "Codebox",
+    "short_name": "Codebox",
+    "description": "Developer guides & resources",
+    "icons": [
+        {
+          "src": "icons/developer.png",
+          "type": "image/png",
+          "sizes": "800x600"
+        },
+        {
+          "src": "icons/developer-144.png",
+          "type": "image/png",
+          "sizes": "144x144"
+        }
+    ],
+    "start_url": "https://justtoconfirm.github.io/codebox/",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#e8e6e8"
+}
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -55,6 +76,22 @@
 </pre>
 
             <p>To verify your manifest is setup correctly, use the <strong>Manifest</strong> pane in the <strong>Application</strong> panel of Chrome DevTools.</p>
+
+            <p>This will allow your application to be downloaded and opened in <strong>Offline mode</strong> when viewed on a mobile device.</p>
+
+            <h2>Service Workers</h2>
+
+            <p>A service worker is a script that your browser runs in the background, separate from a web page, allowing features to be used that don't need a web page or user interaction.</p>
+
+            <p>To install a service worker for your site, you need to register it, which is done in the JavaScript of your web page. Registering a service worker will cause the browser to start the service worker install step in the background.</p>
+
+            <p>Typically during the install step, you'll want to cache some static assets. If all the files are cached successfully, then the service worker becomes installed. If any of the files fail to download and cache, then the install step will fail and the service worker won't activate (install).</p>
+
+            <p>Service workers are currently supported by Chrome, Firefox and Opera.</p>
+
+            <p>Offline experiences are supported by this API. You will need HTTPS setup on your server. To add HTTPS to your server you'll need to get a TLS certificate and set it up for your server.</p>
+
+            <p>To install a service worker you first need to kick start the process by registering it in your page. This tells the browser where your service worker JavaScript file lives.</p>
 
 		</div>
 	</div>
