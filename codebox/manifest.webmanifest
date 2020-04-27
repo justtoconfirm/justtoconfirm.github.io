@@ -2,9 +2,16 @@
 	"name": "Codebox",
 	"short_name": "Codebox",
 	"description": "Developer guides & resources",
+	"icons": [
+	    {
+	      "src": "icons/developer.png",
+	      "type": "image/png",
+	      "sizes": "800x600"
+	    }
+	],
 	"start_url": "https://justtoconfirm.github.io/codebox/",
 	"background_color": "#fff",
-	"display": "browser",
+	"display": "standalone",
 	"scope": "/",
 	"theme_color": "#e8e6e8"
 }
