@@ -14,7 +14,7 @@
 	      "sizes": "144x144"
 	    }
 	],
-	"start_url": "https://justtoconfirm.github.io/codebox/",
+	"start_url": "/",
 	"background_color": "#fff",
 	"display": "standalone",
 	"scope": "/",
