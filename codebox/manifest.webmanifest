@@ -1,6 +1,6 @@
 {
-	"short_name": "Codebox",
 	"name": "Codebox",
+	"short_name": "Codebox",
 	"description": "Developer guides & resources",
 	"start_url": "https://justtoconfirm.github.io/index.html",
 	"background_color": "#fff",
