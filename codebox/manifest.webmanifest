@@ -2,7 +2,7 @@
 	"name": "Codebox",
 	"short_name": "Codebox",
 	"description": "Developer guides & resources",
-	"start_url": "https://justtoconfirm.github.io/index.html",
+	"start_url": "https://justtoconfirm.github.io/codebox/",
 	"background_color": "#fff",
 	"display": "browser",
 	"scope": "/",
