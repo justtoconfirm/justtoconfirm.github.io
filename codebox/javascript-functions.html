@@ -236,6 +236,103 @@ area(20, 40);
     </code>
 </pre>
 
+            <h2>Arrow Functions</h2>
+
+            <p>A newer, more concise method of defining a function is to use the Arrow function expression. This is part of the ES6 syntax. Arrow functions are represented by an equals sign followed by a greater than sign (=&gt;).</p>
+
+            <p>Arrow functions are always anonymous functions and a type of a function expression. We use the =&gt; arrow to indicate a function without the need to use the <strong>function</strong> keyword.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const area = (width, height) => {
+    return width * height;
+}
+
+area(20, 40);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If a function has just a single parameter, the parenthesis can be excluded. In this example, we are squaring the value of <strong>x</strong> which only requires one number to be passed as an argument.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const squared = x => {
+    return x * x;
+}
+
+squared(8);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If a function has no parameters, an empty set of parenthesis is required.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const sayHello = () => {
+    document.write("Hello");
+}
+
+sayHello();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>return</strong> keyword is implied and can be omitted if using an arrow function without a block body.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let func = (a, b, c) => a + b + c
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In ES5, this same function may look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function func(a, b, c) {
+    return a + b + c;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Getting Multiple Values</h2>
+
+            <p>Functions can return more than one value using an array. For example, this function calculates both the area and the volume.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function getSize(width, height, depth) {
+    var area = width * height;
+    var volume = width * height * depth;
+    var sizes = [area, volume];
+
+    return sizes;
+}
+
+var area = getSize(3, 2, 3)[0];         // Area
+var volume = getSize(3, 2, 3)[1];       // Volume
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li>First, a new function is created called <strong>getSize()</strong>. The area of the box is calculated and stored in a variable called area.</li>
+                <li>The volume is calculated and stored in a variable called volume. Both are then placed into an array named sizes.</li>
+                <li>The array is then returned to the code that called the getSize() function, allowing the values to be used.</li>
+                <li>The <strong>area</strong> variable holds the area of the box that is 3 x 2. The area is the first value in the array <strong>[0]</strong>.</li>
+                <li>The <strong>volume</strong> variable holds the volume of the box, 3 x 2 x 3. The volume is the second value in the array <strong>[1]</strong>.</li>
+            </ul>
+
 		</div>
 	</div>
 </main>
