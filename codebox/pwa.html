@@ -146,5 +146,44 @@ self.addEventListener('fetch', function(event) {
 	</div>
 </main>
 
+<div class="scroll-btn js-scroll-btn" id="js-scroll-btn" style="display: none; position: fixed; width: 100%; bottom: 0; text-align: right; padding: 40px 60px; z-index: 1;">Scroll</div>
+
+<script>
+/*let scrollPos = 0;
+
+function checkPosition() {
+    let windowY = window.scrollY;
+
+    if (windowY < scrollPos) {
+        console.log('Scroll up');
+    } else {
+        console.log('Scroll down');
+    }
+
+    scrollPos = windowY;
+}
+
+window.addEventListener('scroll', checkPosition);
+*/
+
+function scrollPosition() {
+
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 200) {
+        document.getElementById('js-scroll-btn').style.display = 'block';
+        console.log(window.scrollY);
+
+    } else {
+        document.getElementById('js-scroll-btn').style.display = 'none';
+        console.log('hidden');
+    }
+
+    //console.log(window.scrollY + 'px');
+}
+
+window.addEventListener('scroll', scrollPosition);
+</script>
+
 </body>
 </html>
