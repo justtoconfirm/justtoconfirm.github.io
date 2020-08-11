@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to getting started with React">
+
+	<title>Codebox - Getting Started with Vue.js</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Getting Started with Vue.js</h1>
+
+            <h2>What is Vue.js?</h2>
+
+            <p>Vue.js is an open-source JavaScript framework for building user interfaces and single-page applications (SPA). It was created by Evan You and was released in February 2014.</p>
+
+            <p>Vue.js does not support IE8 or below because it uses ECMAScript 5 (ES5) features that are un-shimmable in IE8.</p>
+
+            <h2>Install Vue.js</h2>
+            <!-- https://github.com/alefi87/vuejs-without-cli -->
+
+            <p>Node Package Manager (NPM) can be used to install Vue.js. Begin by creating a new directory where the Vue.js application will be built and setup a package.json file. Open your terminal and run the following commands:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ mkdir vue-app
+    $ cd vue-app
+
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We now have a directory named <strong>vue-app</strong> and a generated package.json file.</p>
+
+            <p>NPM is the recommended installation method when building large scale applications with Vue.js and pairs nicely with module bundlers such as Webpack.</p>
+
+            <p>We now want to install the latest stable build of Vue.js as a dependency:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install vue --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The following packages may need to be installed without vue-cli:</p>
+
+            <ul>
+                <li><strong>vue</strong></li>
+                <li><strong>vue-loader</strong> - for compiling and bundling <strong>.vue</strong> single file components</li>
+                <li><strong>vue-template-compiler</strong> - used to pre-compile Vue.js 2.0 templates into render functions</li>
+                <li><strong>webpack</strong></li>
+                <li><strong>webpack-cli</strong></li>
+                <li><strong>babel-loader</strong> - for transpiling JavaScript</li>
+                <li><strong>@babel/core</strong></li>
+                <li><strong>@babel/preset-env</strong></li>
+                <li><strong>file-loader</strong> - for image assets</li>
+                <li><strong>style-loader</strong> - for injecting styles into the DOM at runtime</li>
+                <li><strong>css-loader</strong> - for loading modules referenced in CSS files like images and fonts</li>
+            </ul>
+
+            <p>You can of course use <strong>vue-cli</strong> to generate the scaffolding for your application as this uses Webpack under-the-hood and adstracts away the configuration needed with a sensible default. It is recommended that beginners do not use vue-cli as explained within the Vue.js documentation.</p>
+
+            <p>Let's install the Vue.js packages we need:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install vue-loader vue-template-compiler --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Webpack will need to be installed as our build tool as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install webpack webpack-cli --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>A build script can be added into the package.json file to run the Webpack build tool in production mode.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A <strong>src</strong> directory will need to be created and within the directory an <strong>index.js</strong> file. Without the index.js file, the build will fail. If the build is successful, a <strong>dist</strong> directory containing a <strong>main.js</strong> file will be generated.</p>
+
+            <p>Let's now install the <strong>Babel</strong> packages as devDependencies using NPM:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install babel-loader @babel/core @babel/preset-env --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->   
+
+            <p>A <strong>.babelrc</strong> configuration file needs to be created in the root of your project folder.</p>
+
+            <p>This maybe a hidden file once created, so use the keyboard shortcut of: COMMAND + SHIFT + . (DOT) to make this file visible.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    presets: ['@babel/preset-env']
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
