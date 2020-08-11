@@ -26,7 +26,66 @@
 
             <p>Vue.js does not support IE8 or below because it uses ECMAScript 5 (ES5) features that are un-shimmable in IE8.</p>
 
-            <h2>Install Vue.js</h2>
+            <h2>Install Vue.js using CDN</h2>
+
+            <p>For prototyping or learning purposes, you can use the latest CDN version link.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>For production, linking to a specific version number and build will avoid unexpected breakage from newer versions.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A simple HTML page can be created to demonstrate the Vue.js application working.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+    &lt;title&gt;Vue App&lt;/title&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="app"&gt;
+    {{ message }}
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = new Vue({ 
+    el: '#app',
+    data: {
+        message: 'Hello World'
+    }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Install Vue.js with NPM</h2>
             <!-- https://github.com/alefi87/vuejs-without-cli -->
 
             <p>Node Package Manager (NPM) can be used to install Vue.js. Begin by creating a new directory where the Vue.js application will be built and setup a package.json file. Open your terminal and run the following commands:</p>
