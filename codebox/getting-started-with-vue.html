@@ -85,6 +85,280 @@ var app = new Vue({
     </code>
 </pre>
 
+            <h2>Install Vue.js using the Vue CLI tool</h2>
+
+            <p>Vue CLI requires Node.js version 8.9 or above (8.11.0+ recommended). Multiple Node versions can be managed using NVM (Node Version Manager).</p>
+
+            <p>The package name changed from <strong>vue-cli</strong> to <strong>@vue/cli</strong>.</p>
+
+            <p>To install, NPM or Yarn can be used:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @vue/cli -g
+    # OR
+    $ yarn global add @vue/cli
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>After installation, you will have access to the vue binary in your command line. You can verify the installation by simply checking the version installed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm vue --version
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To upgrade the version installed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm update @vue/cli -g
+    # OR
+    $ yarn global upgrade @vue/cli --latest
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To create a new project, use the following terminal command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ vue create project-name-here
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once created, open your terminal and cd into the project folder. NPM can then be used to run a server and view the Vue.js app.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ cd project-name-here
+    $ npm run serve
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h3>Main App Compoment</h3>
+
+            <p>When using the @vue/cli tool, we start with the main top level component. Vue CLI already generates a main component that can be found in the <strong>src</strong> directory and named <strong>App.vue</strong>.</p>
+
+            <p>Here is the full code for the main App.vue component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;template&gt;
+    &lt;div id="app"&gt;
+        &lt;img alt="Vue logo" src="./assets/logo.png"&gt;
+        &lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+    name: 'App',
+    components: {
+        HelloWorld
+    }
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+&lt;/style&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here you can see we're passing in a value of <strong>"Welcome to Your Vue.js App"</strong> into the <strong>msg</strong> property within the <strong>HelloWorld.vue</strong> component.</p>
+
+            <p>The file structure when creating a Vue application using Vue CLI will look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.git /
+.gitignore
+babel.config.js
+node_modules /
+package-lock.json
+package.json
+public /
+    favicon.ico
+    index.html
+README.md
+src /
+    App.vue
+    assets /
+        logo.png
+    components /
+        HelloWorld.vue
+    main.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Components</h3>
+
+            <p>The Vue CLI tool creates a component named <strong>HelloWorld.vue</strong> within the components directory.</p>
+
+            <p>Here is the full code for the <strong>HelloWorld.vue</strong> component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;template&gt;
+    &lt;div class="hello"&gt;
+        &lt;h1&gt;{{ msg }}&lt;/h1&gt;
+        &lt;p&gt;
+            For a guide and recipes on how to configure / customize this project,&lt;br&gt;
+            check out the
+            &lt;a href="https://cli.vuejs.org" target="_blank" rel="noopener"&gt;vue-cli documentation&lt;/a&gt;.
+        &lt;/p&gt;
+        &lt;h3&gt;Installed CLI Plugins&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener"&gt;babel&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener"&gt;eslint&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3&gt;Essential Links&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://vuejs.org" target="_blank" rel="noopener"&gt;Core Docs&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://forum.vuejs.org" target="_blank" rel="noopener"&gt;Forum&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://chat.vuejs.org" target="_blank" rel="noopener"&gt;Community Chat&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://twitter.com/vuejs" target="_blank" rel="noopener"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://news.vuejs.org" target="_blank" rel="noopener"&gt;News&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3&gt;Ecosystem&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://router.vuejs.org" target="_blank" rel="noopener"&gt;vue-router&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://vuex.vuejs.org" target="_blank" rel="noopener"&gt;vuex&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener"&gt;vue-devtools&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"&gt;vue-loader&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    name: 'HelloWorld',
+    props: {
+        msg: String
+    }
+}
+&lt;/script&gt;
+
+&lt;!-- Add "scoped" attribute to limit CSS to this component only --&gt;
+&lt;style scoped&gt;
+h3 {
+  margin: 40px 0 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+&lt;/style&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A component file consists of three parts; template, component class/scripts and styles section. The template area is the visual part of the component. Behaviour, events and data storage for the template are handled by the class. The style section serves to further improve the appearance of the template.</p>
+
+            <h3>Importing Components</h3>
+
+            <p>To utilise components that have been created, we need to import them into our main component. Inside of <strong>src/App.vue</strong> you will see an import statement used to currently import the <strong>HelloWorld.vue</strong> component.</p>
+
+            <p>The script section within the <strong>App.vue</strong> main component will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script&gt;
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+    name: 'App',
+    components: {
+        HelloWorld
+    }
+}
+&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Install Vue.js with NPM</h2>
             <!-- https://github.com/alefi87/vuejs-without-cli -->
 
