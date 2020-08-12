@@ -19,10 +19,21 @@
 		<div class="columns small-12 large-12">
 
 			<h1>Getting Started with Vue.js</h1>
+            <!-- https://www.taniarascia.com/getting-started-with-vue/ -->
 
             <h2>What is Vue.js?</h2>
 
             <p>Vue.js is an open-source JavaScript framework for building user interfaces and single-page applications (SPA). It was created by Evan You and was released in February 2014.</p>
+
+            <ul>
+                <li>Vue (or Vue.js), pronounced as 'view', is an open-source front-end JavaScript framework.</li>
+                <li>Vue is the view layer of an MVC (Model View Controller) application.</li>
+                <li>It is one of the most popular JavaScript libraries & frameworks.</li> 
+            </ul>
+
+            <p>Vue.js lets you extend HTML with attributes called <strong>directives</strong>. Directives offers functionality to applications and Vue.js also has built-in and user defined directives. Directives often have a prefix of <strong>v-</strong></p>
+
+            <p>The framework uses double braces {{ }} as place-holders for data.</p>
 
             <p>Vue.js does not support IE8 or below because it uses ECMAScript 5 (ES5) features that are un-shimmable in IE8.</p>
 
@@ -87,7 +98,7 @@ var app = new Vue({
 
             <h2>Install Vue.js using the Vue CLI tool</h2>
 
-            <p>Vue CLI requires Node.js version 8.9 or above (8.11.0+ recommended). Multiple Node versions can be managed using NVM (Node Version Manager).</p>
+            <p>Vue CLI (Command Line Interface) requires Node.js version 8.9 or above (8.11.0+ recommended). Multiple Node versions can be managed using NVM (Node Version Manager).</p>
 
             <p>The package name changed from <strong>vue-cli</strong> to <strong>@vue/cli</strong>.</p>
 
@@ -171,6 +182,8 @@ var app = new Vue({
 </div>
 <!-- / Terminal -->
 
+            <p>Using this command is the equivalent to <strong>create-react-app</strong> in React.</p>
+
             <p>Once created, open your terminal and cd into the project folder. NPM can then be used to run a server and view the Vue.js app.</p>
 
 <!-- Terminal -->
@@ -190,6 +203,61 @@ var app = new Vue({
     </pre>
 </div>
 <!-- / Terminal -->
+
+            <p>Once this is done, you can navigate to <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a> in your browser to see the default page.</p>
+
+            <p>If you're using VSC (Visual Studio Code), install the <strong>Vetur</strong> plugin for syntax highlighting, formatting and so on.</p>
+
+            <p>We now have a Vue.js boilerplate setup.</p>
+
+            <h3>Entry Point</h3>
+
+            <p>In <strong>main.js</strong> we're bringing in Vue and rendering the App to our app &lt;div&gt; in the <strong>index.html</strong> file. This file won't need to change initially.</div>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+new Vue({
+    render: h => h(App),
+}).$mount('#app')
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Anything else we make will be a <strong>.vue</strong> file which always consists of three things:</p>
+
+            <ul>
+                <li>&lt;template&gt;</li>
+                <li>&lt;script&gt;</li>
+                <li>&lt;style&gt;</li>
+            </ul>
+
+            <p>As this component example demonstrates:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;template&gt;&lt;/template&gt;
+
+&lt;script&gt;
+    export default {
+        name: 'component-name'
+    }
+&lt;/script&gt;
+
+&lt;style scoped&gt;&lt;/style&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>scoped</strong> attribute when applying styling is used to apply styling to limit CSS to this component only.</p>
+
+            <p>This may seem a little strange as separation of concerns for HTML, CSS & JavaScript are considered best practice in front-end development. In modern JavaScript applications, the way we design apps has evolved and keeping our styles and view with the component coupled together is generally considered an advantage to improve maintainability.</p>
 
             <h3>Main App Component</h3>
 
