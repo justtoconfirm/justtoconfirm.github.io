@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to getting started with React">
+
+	<title>Codebox - Introduction to Deno</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to Deno</h1>
+
+            <h2>What is Deno?</h2>
+
+            <p>Deno is a secure runtime for <strong>JavaScript</strong> and <strong>TypeScript</strong> mostly written in Rust. Deno was created by Ryan Dahl, the creator of Node (or Node.js as it's sometimes referred). Deno was created to address the issues and mistakes Dahl made when creating Node.</p>
+
+            <p>Deno is built using Rust on the V8 engine with full support for TypeScript. Full support for the latest features of the JavaScript language, including API support for ES modules as the default module system, are also included.</p> 
+
+            <p>Deno does not use NPM (Node Package Manager) or a package.json file.</p>
+
+            <p>The <a href="https://deno.land/" target="_blank" rel="noopener noreferrer">official documentation</a> for Deno is now available.</p>
+
+            <ul>
+                <li>Built on v8 & Rust.</li>
+                <li>Secure by default.</li>
+                <li>Ships a single executable file.</li>
+                <li>Supports modern JavaScript syntax & TypeScript by default.</li>
+                <li>Uses ES Modules.</li>
+            </ul>
+
+            <h2>Is Deno a replacement for Node?</h2>
+
+            <p><strong>No</strong> - Deno is not a replacement or alternative for Node.</p>
+
+            <h2>What is a JavaScript runtime?</h2>
+
+            <p>This refers to where your JavaScipt code is executed when you run it. If your JavaScript is executed in Chrome, your runtime is v8, Mozilla use Spidermonkey and IE uses Chakra. If you use Node or Deno to execute your JavaScript, your runtime will be v8.</p>
+
+            <p>When you visit a web page or website, you use a browser like Chrome, Firefox, Edge or Safari. Each browser has a JavaScript Runtime Environment. In this environment are Web APIs that a developer can access to build programs. The Runtime Environment is a JavaScript engine that parses the code. For example, once Chrome reacivees JavaScript code on a web page the v8 JavaScript Engine will start to parse it. First, it will partially parse the code to check for syntax errors, if no errors are found it will then start reading the code from top to bottom. The goal of this process is to turn JavaScript code into machine code.</p>
+
+            <h2>Installation</h2>
+
+            <p>Deno can be installed using cURL (Client URL). cURL is a command-line tool for data transfer using various network protocols. Open the terminal and enter the following cURL command to install Deno on your machine:</p>
+
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ curl -fsSL https://deno.land/x/install/install.sh | sh
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once the install has completed, you will need to copy and paste the export line from the terminal into your <strong>.bash_profile</strong> to run Deno. The example below shows the terminal output export lines you need to copy (without the $ signs).</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ export DENO_INSTALL="/Users/danjackson/.deno"
+    $ export PATH="$DENO_INSTALL/bin:$PATH"
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To confirm Deno has been installed, enter the following command in the terminal to view the output.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ deno --version
+
+    $ deno 1.4.1
+    $ v8 8.7.75
+    $ typescript 4.0.2
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You can run a simple command in your terminal to also check Deno is running:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ deno run https://deno.land/std/examples/welcome.ts
+
+    # Output
+    $ Welcome to Deno 🦕
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>TypeScript by default</h2>
+
+            <p>Deno is integrated to run TypeScript files by default. We no longer have to use Babel to compile our JavaScript code into TypeScript.</p>
+
+            <h2>Structure</h2>
+
+            <p>Applications can be written directly in TypeScript using Deno, you don't need to compile from JavaScript yourself. Deno's creators also made the decision to remove the need for a centralised package manager, such as NPM used by Node. Instead, the code is loaded directly from the URL. Once you run a script, the packages are downloaded from a specific location and then cached.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { Application, Router } from "https://deno.land/x/denotrain@v0.5.0/mod.ts";
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>ES Modules</h2>
+
+            <p>Deno only supports ES module syntax which means you no longer have to use the <strong>require</strong> statement, just use <strong>import</strong> as with the example above.</p>
+
+            <h2>Permissions</h2>
+
+            <p>Here are the flags used by Deno to allow permissions:</p>
+
+            <ul>
+                <li><strong>-allow-env</strong> allow environment access</li>
+                <li><strong>-allow-net</strong> allow network access</li>
+                <li><strong>-allow-plugin</strong> allow plugin access</li>
+                <li><strong>-allow-read</strong> allow file system read access</li>
+                <li><strong>-allow-run</strong> allow running subprocesses</li>
+                <li><strong>-allow-write</strong> allow file system write access</li>
+                <li><strong>-allow-all</strong> allow all permissions</li>
+            </ul>
+
+            <h2>Deno Standard modules</h2>
+
+            <p>Deno provides a rich set of standard modules. Here are a few frequently used standard modules listed:</p>
+
+            <ul>
+                <li><strong>datetime</strong> - date/time parsing module.</li>
+                <li><strong>fs</strong> - file system module.</li>
+                <li><strong>http</strong> - http server.</li>
+                <li><strong>hash</strong> - crypto module.</li>
+                <li><strong>uuid</strong> - generate random unique id.</li>
+            </ul>
+
+            <p>All standard Deno modules are listed <a href="https://deno.land/std@0.70.0" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+            <p>Third Party Deno modules are listed <a href="https://deno.land/x/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+            <h2>Hello World Example</h2>
+
+            <p>Let's look at a quick Hello World example that highlights the features of Deno. Create an empty TypeScript file named <strong>hello-world.ts</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log('Hello World');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can now run your code from within your terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ deno run hello-world.ts
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>HTTP Server in Deno</h2>
+
+            <p>Here's an example application from the Deno website:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { serve } from "https://deno.land/std/http/server.ts";
+
+const server = serve({ port: 3000 });
+
+console.log("http://localhost:3000/");
+
+for await (const req of server) {
+    req.respond({ body: "Hello World\n" });
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This file will be named as <strong>app.ts</strong></p>
+
+            <p>In the first line of the code, we are importing an HTTP server code from a URL. We don't have to do a typical NPM install command to install any modules in Deno as we have to when using Node.</p>
+
+            <p>The second line of code creates a server and configures a port.</p>
+
+            <p>We then run a loop to serve the request coming from the browser.</p>
+
+            <p>When we run the code, Deno will download the module and compile the TypeScript. The module will be cached. This code will throw an error as we need to provide permissions to the program to allow network ports in the system. Run the command again with the following flag:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ deno run --allow-net app.ts
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Now open your browser and navigate to <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">localhost:3000</a> and you should see a message in the browser.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
