@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to getting started with React">
+
+	<title>Codebox - Introduction to Gatsby</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to Gatsby</h1>
+
+            <h2>What is Gatsby?</h2>
+
+            <p>Gastby is an open-source React-based framework for creating websites and web applications. Components are written in React and rendered at build time to the DOM (Document Object Model) as static HTML, CSS & JavaScript files. By default, Gatsby builds a PWA (Progressive Web App).</p>
+
+            <p>The website for Gatsby features useful <a href="https://www.gatsbyjs.com/" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+            <p>Gastby renders static content from sources including Markdown (md), CSV (Comma Separated Values) and from CMS (Content Management System) platforms such as WordPress and Drupal.</p>
+
+            <p>You will require plugins to extend the core functionality of Gatsby.</p>
+
+            <h2>Building with Components</h2>
+
+            <p>Broadly defined, a component is a building block for your application. It is a self-contained piece of code that describes a section of the UI (User Interface). Gatsby is built on React. When we talk about defining components, we're referring to React components, usually written with <strong>JSX</strong>.</p>
+
+            <h2>Install Gatsby</h2>
+
+            <p>Install the Gastby CLI (Command Line Interface) globally in the terminal. You will need NPM (Node Package Manager) installed. Once installed this will allow you to use the gatsby command in your terminal. You may need to set permissions using <strong>sudo</strong> to install Gatsby globally on your system.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install gatsby-cli -g
+
+    # Permissions
+    $ sudo npm install gatsby-cli -g
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To create a new project, we use the following command. Here the name of our app is <strong>gatsby-app</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ gatsby new gatsby-app
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To start the development server:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ cd gatsby-app
+
+    $ gatsby develop
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>This will run the local server and the application can be viewed at <a href="http://localhost:8000/" target="_blank">http://localhost:8000/</a> in the browser.</p>
+
+            <h2>File Structure</h2>
+
+            <p>Once installed, your Gatsby file structure will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+gatsby-app /
+    .cache /
+    node_modules /
+    public /
+        icons /
+        page-data /
+            404 /
+                page-data.json
+            404.html /
+                page-data.json
+            dev-404-page /
+                page-data.json
+            index /
+                page-data.json
+            page-2 /
+                page-data.json
+            sq /
+            using-typescript /
+                page-data.json
+        static /
+        favicon-32x32.png
+        index.html
+        manifest.webmanifest
+    src /
+        components /
+            header.js
+            image.js
+            layout.css
+            layout.js
+            seo.js
+        images /
+            gatsby-astronaut.png
+            gatsby-icon.png
+        pages /
+            404.js
+            index.js
+            page-2.js
+            using-typescript.tsx
+    .gitignore
+    .prettierignore
+    .prettierrc
+    gatsby-browser.js
+    gatsby-config.js
+    gatsby-node.js
+    gatsby-ssr.js
+    LICENSE
+    package-lock.json
+    package.json
+    README.md
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding Plugins</h2>
+
+            <p>To add a plugin to Gatsby, navigate to and edit the <strong>gatsby-config.js</strong> file in the root directory.</p>
+
+            <p>The <strong>gatsby-plugin-react-helmet</strong> plugin comes pre-installed as default.</p>
+
+            <p>Gastby runs the <strong>gatsby-config.js</strong> during build and implements all installed plugins.</p> 
+
+            <h2>Hot Reloading</h2>
+
+            Gatsby comes with a hot reload feature so changes made on the source files are immediately visible on the rendered website. Essentially when you're running a Gatsby development server, the files are being "watched" in the background.</p>
+
+            <h2>Adding Pages</h2>
+
+            <p>Any React component defined in the <strong>src/pages</strong> directory will automatically become a new page added to our Gatsby app. Create a new file named <strong>about.js</strong> in the src/pages directory. Each page is created as a JavaScript file. The new about page can be viewed at <a href="http://localhost:8000/about" target="_blank">http://localhost:8000/</a> and the code for this page is below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from "react"
+
+const About = () => (
+    &lt;&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+        &lt;p&gt;This is the about page.&lt;/p&gt;
+    &lt;&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
