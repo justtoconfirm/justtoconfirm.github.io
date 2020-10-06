@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to Testing">
+
+	<title>Codebox - Introduction to Testing</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to Testing</h1>
+
+            <p>Testing means checking that our code meets some expectations. For example, a function should return the expected output for some given input.</p>
+
+            <h2>Unit Testing</h2>
+
+            <p>Unit testing is a type of software testing where individual units of source code or components are tested. This type of testing is carried out to validate that each unit of the software code performs as expected. Unit testing is carried out during the development phase by the developers. A unit is the smallest testable part of any software.</p> 
+
+            <p>It's usually convention to put each test file next to the unit or component being tested.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    script.js
+    script.test.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Mocking</h2>
+
+            <p>Mocking is a technique where code parts are replaced by dummy implementations that emulate real code. Mocking helps to achieve isolation of tests and is primary used in unit testing.</p>
+
+            <h2>TDD (Test-Driven Development)</h2>
+
+            <p>In JavaScript, as with many other languages, you will want to follow <strong>test-driven development</strong> (<strong>TDD</strong>) a discipline which imposes to write a failing test before writing code.</p>
+
+            <h2>Jest</h2>
+
+            <p>Jest is a JavaScript test runner, a library for creating, running and structuring tests. It is the default choice for React projects.</p>
+
+            <p>Jest will look for the following test files:</p>
+
+            <ul>
+                <li>JavaScript files with a <strong>.js</strong> file extension in a <strong>__tests__</strong> folder.</li>
+                <li>JavaScript files with a <strong>.test.js</strong> file extension.</li>
+                <li>JavaScript files with a <strong>.spec.js</strong> file extension.</li>
+            </ul>
+
+            <p>Jest can be installed using NPM (Node Package Manager):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install jest ---save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>A script will be required to be added to your <strong>package.json</strong> file to run Jest.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can then run Jest.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run test
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h3>Writing Tests in Jest</h3>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
