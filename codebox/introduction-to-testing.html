@@ -110,6 +110,261 @@ directory /
 
             <h3>Writing Tests in Jest</h3>
 
+            <p>Time to create your first test in Jest. It is often recommended to save a test file next to the code you're testing and name the test file with the file extension of <strong>.spec.js</strong> as Jest will search for test files with a <strong>.test.js</strong> or <strong>.spec.js</strong> filename, or alternatively a <strong>.js</strong> file placed within a directory named __tests__</p>
+
+            <p>If the file we are testing were to be named <strong>example.js</strong>, then our test file should be named <strong>example.spec.js</strong> like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    example.js
+    example.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Inside the test file (the file named .spec.js), create a <strong>test block</strong>. Jest uses the <strong>describe</strong> method. This is a method for containing one or more related tests. Every time you start writing a new suite of tests, wrap it in a describe block.</p>
+
+            <p>As you can see, it takes two arguments: a string for describing the test suite and a callback function for wrapping the actual test.</p> 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("Description of the test suite here", () => {
+   // Test stuff goes here 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We then use another function called <strong>test</strong> which is the actual test block.
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("Description of the test suite here", () => {
+   test("It is testing something here", () => {
+        // Actual test
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>At this point we're ready to write an actual test. Remember, testing is a matter of <strong>input</strong>, <strong>functions</strong>, and <strong>expected outputs</strong>.</p>
+
+            <p>Here's a very simple test file named <strong>SimpleModule.spec.js</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { simpleFunc } from "./SimpleModule";
+
+describe("A simple module", () => {
+    test("it should say hello", () => {
+        expect(simpleFunc()).toEqual("hello!");
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>And now we write the module as a function and export the function to allow it to be imported. This file should be named <strong>SimpleModule.js</strong></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function simpleFunc() {
+    return "hello!";
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's file file structure:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    SimpleModule.js
+    SimpleModule.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You will need to <strong>import</strong> the function your testing in your test file. Here is our example file structure for our next example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    filter.js
+    filter.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Import is the syntax used for <strong>ES modules</strong>. This allows JavaScript modules to be imported without the need for Babel. You should have Node.js version 13 or greater installed and Jest version 26.1.0 or greater installed.</p>
+
+            <p>Let's define a simple input, an array of objects:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next,we define the <strong>expected result</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+
+        const output = [{ id: 3, url: "https://www.link3.dev" }];
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we can write the actual test using <strong>expect</strong> and a Jest <strong>matcher</strong> for checking if our function - <strong>filterByTerm()</strong> - returns the expectd result when called.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+
+        const output = [{ id: 3, url: "https://www.link3.dev" }];
+
+        expect(filterByTerm(input, "link")).toEqual(output);
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When we run the test it will <strong>fail</strong> as we have no function to test against. Let's write a function in a file name <strong>filter.js</strong></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function filterByTerm(inputArr, searchTerm) {
+    return inputArr.filter(function(arrayElement) {
+        return arrayElement.url.match(searchTerm);
+    });
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>For each element of the input array we check the "url" property, matching it against a regular expression with the match <strong>method</strong>.</p>
+
+            <p>Now when we run the test it should pass.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run test
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Code Coverage</h2>
+
+            <p>Code coverage checks that the test covers every line of your code base. For instance, say you go straight into the function and add a few lines of new code. Unless you update the test to identify this new code, you're not going to know exactly what to test in our function. Code coverage is the tool that provides the utility and Jest has code coverage built-in.</p>
+
+            <p>You can set code coverage by passing the flag to the test script:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest --coverage"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or you can update the package.json file, like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+"jest": {
+    "collectCoverage": true
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also build an HTML report if you'd prefer to have the report be more visual:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+"jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["html"]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now every time you run your tests, you can access a new folder called <strong>coverage</strong> in your project.</p>
+
+            <p>When you run the test with code coverage enabled, you will see any lines of code not covered (uncovered) by your tests. This helps to identify if a new piece of code has been added into your functions without the test being updated. You should then update your test.</p>
+
+            <p>With code coverage you can discover what to test when in doubt.</p>
+
 		</div>
 	</div>
 </main>
