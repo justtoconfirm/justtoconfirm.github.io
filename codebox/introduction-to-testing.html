@@ -22,9 +22,30 @@
 
             <p>Testing means checking that our code meets some expectations. For example, a function should return the expected output for some given input.</p>
 
+            <h2>Testing Frameworks, Libraries & Utilities</h2>
+
+            <ul>
+                <li><strong>Jest</strong> - JavaScript test runner.</li>
+                <li><strong>Mocha</strong> - feature-rich JavaScript test framework for Node.js and the browser.</li>
+                <li><strong>Selenium</strong> - browser automation.</li>
+                <li><strong>Enzyme</strong> - JavaScript testing utility for React, by Airbnb, used to assertion.</li>
+                <li><strong>Jasmine</strong> - BDD (Behavior Driven Development) testing framework for JavaScript.</li>
+                <li><strong>Cypress</strong> - Front-end automated testing in Chrome.</li>
+                <li><strong>Chai</strong> - TDD/BDD assertion library.</li>
+                <li><strong>SinonJS</strong> - Standalone test spies, stubs and mocks for JavaScript.</li>
+            </ul>
+
             <h2>Unit Testing</h2>
 
             <p>Unit testing is a type of software testing where individual units of source code or components are tested. This type of testing is carried out to validate that each unit of the software code performs as expected. Unit testing is carried out during the development phase by the developers. A unit is the smallest testable part of any software.</p> 
+
+            <p>Unit tests can test:</p>
+
+            <ul>
+                <li>Functions</li>
+                <li>Pure classes</li>
+                <li>Components - React, Angular, Vue.js, Web Components</li>
+            </ul>
 
             <p>It's usually convention to put each test file next to the unit or component being tested.</p>
 
@@ -40,11 +61,30 @@ directory /
 
             <h2>Mocking</h2>
 
-            <p>Mocking is a technique where code parts are replaced by dummy implementations that emulate real code. Mocking helps to achieve isolation of tests and is primary used in unit testing.</p>
+            <p>Mocking is a technique where code parts are replaced by dummy implementations that emulate real code. Mocking helps to achieve isolation of tests and is primary used in unit testing. Mocking allows testing to be easier and allows an ideal setup to be used in your tests allowing the focus to be on the bits of the application we developed ourselves and not third-party code. It's especially useful when it's expensive or impractical to include a dependency directly in our tests.</p>
+
+            <p>Examples of where we would use mocking to test:</p>
+
+            <ul>
+                <li>Replace access or interaction with a real database.</li>
+                <li>Avoid making HTTP calls to an API.</li>
+            </ul>
+
+            <h2>Snapshot Testing</h2>
+
+            <p>Snapshot tests are a very useful tool whenever you want to make sure your UI (User Interface) does not change unexpectedly. A typical test renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match.</p>
+
+            <p>The snapshot artifact should be committed alongside your code changes and reviewed as part of your code review process.</p>
+
+            <p>In React, instead of rendering the graphical interface, which would require building the full application, you can use the test renderer to quickly generate a serializable value for your React tree.</p> 
 
             <h2>TDD (Test-Driven Development)</h2>
 
-            <p>In JavaScript, as with many other languages, you will want to follow <strong>test-driven development</strong> (<strong>TDD</strong>) a discipline which imposes to write a failing test before writing code.</p>
+            <p>In JavaScript, as with many other languages, you will want to follow <strong>test-driven development</strong> (<strong>TDD</strong>) a discipline which imposes writing a failing test first before writing code.</p>
+
+            <h2>Visual Testing (Visual Regression)</h2>
+
+            <p>Visual tests, also called visual regression tests, catch bugs in UI appearance. They work by taking screenshots and then comparing them commit-to-commit to identify changes.</p>
 
             <h2>Jest</h2>
 
@@ -57,6 +97,8 @@ directory /
                 <li>JavaScript files with a <strong>.test.js</strong> file extension.</li>
                 <li>JavaScript files with a <strong>.spec.js</strong> file extension.</li>
             </ul>
+
+            <p>In JavaScript, it's common to see test files end with <strong>.spec.js</strong> as developers use "spec" as shorthand for "specification".</p>
 
             <p>Jest can be installed using NPM (Node Package Manager):</p>
 
@@ -152,6 +194,22 @@ describe("Description of the test suite here", () => {
     </code>
 </pre>
 
+            <p>As an example, let's write a simple test that checks if a simple calculation is true.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("sum of 2 numbers", () => {
+    it("2 + 2 equal 4", () => {
+        expect(2 + 2).toEqual(4)
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Example: Hello Test</h3>
+
             <p>At this point we're ready to write an actual test. Remember, testing is a matter of <strong>input</strong>, <strong>functions</strong>, and <strong>expected outputs</strong>.</p>
 
             <p>Here's a very simple test file named <strong>SimpleModule.spec.js</strong>:</p>
@@ -207,6 +265,8 @@ directory /
 </pre>
 
             <p>Import is the syntax used for <strong>ES modules</strong>. This allows JavaScript modules to be imported without the need for Babel. You should have Node.js version 13 or greater installed and Jest version 26.1.0 or greater installed.</p>
+
+            <h3>Example: Array Test</h3>
 
             <p>Let's define a simple input, an array of objects:</p>
 
