@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript modules">
+
+	<title>Codebox - JavaScript Modules</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Modules</h1>
+
+            <p>A modules (sometimes referred to as <strong>ECMAScript modules</strong> or <strong>ES Modules</strong>) is a bundle of code that acts as an interface to provide functionality for other modules to use as we as being able to rely on the functionality of other modules. Modules are useful as they allow developers to reuse code and do not pollute the global namespace.</p>
+
+            <p>A module <strong>exports</strong> to provide code and <strong>imports</strong> to use other code.</p>
+
+            <p>Modules are now available natively in JavaScript.</p>
+
+            <ul>
+                <li>Modules allow you to separate code into individual components that can help make your code reusable and consistent.</li>
+                <li>Protects the global namespace.</li>
+            </ul>
+
+            <p>Before the introduction of JavaScript modules, websites consisted primarily of HTML and CSS. JavaScript snippets were applied to provide effects and interactivity. As a result, JavaScript programs were often written entirely in one file and loaded into a <strong>&lt;script&gt;</strong> tag. A developer could break the JavaScript up into multiple files, but all variables and functions would still be added to the global scope.</p>
+
+            <p>As things evolved with the advent of frameworks and libraries such as <strong>Angular</strong>, <strong>React</strong> and <strong>Vue</strong>, as well as the introduction of web applications in-place of desktop applications, JavaScript now plays a key role in the browser. For this reason, there is a much greater need to break code into modular files to avoid polluting the global namespace.</p> 
+
+            <p>The <strong>ES6</strong>, or <strong>ECMAScript 2015</strong> specification as it is often referred, introduced <strong>modules</strong> to the JavaScript language. This allowed the use of the <strong>import</strong> and <strong>export</strong> statements to organise your code.</p>
+
+            <h2>Modular Programming</h2>
+
+            <p>Before the introduction of modules, a developer that needed to organise their code into segments would need to create multiple JavaScript files and link to them as separate scripts within the HTML.</p>
+
+            <p>To demonstrate this, create an example <strong>index.html</strong> file and two JavaScript files, <strong>functions.js</strong> and <strong>script.js</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;JavaScript Modules&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Answers&lt;/h1&gt;
+    &lt;h2&gt;&lt;span id="x"&gt;&lt;/span&gt; and &lt;span id="y"&gt;&lt;span&gt;&lt;/h2&gt;
+
+    &lt;h3&gt;Addition&lt;/h3&gt;
+    &lt;p id="addition">&lt;/p&gt;
+
+    &lt;h3&gt;Subtraction&lt;/h3&gt;
+    &lt;p id="substraction"&gt;&lt;/p&gt;
+
+    &lt;h3&gt;Multiplication&lt;/h3&gt;
+    &lt;p id="multiplication"&gt;&lt;/p&gt;
+
+    &lt;h3&gt;Division&lt;/h3&gt;
+    &lt;p id="division">&lt;/p&gt;
+
+    &lt;script src="functions.js"&gt;&lt;/script&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>id</strong> attributes of the elements are set for <strong>DOM manipulation</strong>, which will happen in the script.js file, this will also set the values of <strong>x</strong> and <strong>y</strong>. The <strong>functions.js</strong> file will contain the mathematical functions that will be used in the <strong>script.js</strong> file.</p>
+
+            <p>Open the <strong>functions.js</strong> file and add the following JavaScript code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sum(x, y) {
+    return x + y;
+}
+
+function difference(x, y) {
+    return x - y;
+}
+
+function product(x, y) {
+    return x * y;
+}
+
+function quotient(x, y) {
+    return x / y;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>script.js</strong> file will determine the values of <strong>x</strong> and <strong>y</strong>, apply the functions to them and display the result.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const x = 10;
+const y = 5;
+
+document.getElementById('x').textContent = x;
+document.getElementById('y').textContent = y;
+
+document.getElementById('addition').textContent = sum(x, y);
+document.getElementById('substraction').textContent = difference(x, y);
+document.getElementById('multiplication').textContent = product(x, y);
+document.getElementById('division').textContent = quotient(x, y);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>index.html</strong> file when viewed in the browser, should display the results.</p>
+
+            <p>This is an effective way to divide code for websites with a small number of scripts. However, a few issues are associated with this approach:</p>
+
+            <ul>
+                <li><strong>Polluting the global namespace</strong> - All variables created in your scripts now exist in the window object. If you attempted to use another variable by the same name in another file, it would be difficult to know which value would be used since they would all be using the same window.sum variable. A variable could only be private by putting it within a function scope.</li>
+                <li><strong>Dependency management</strong> - Scripts are loaded in order from top to bottom. Moving the scripts into separate files gives the illusion of separation, but it's essentially the same as having a single &lt;script&gt; in the page.</li>
+            </ul>
+
+            <p>Before the introduction of native JavaScript modules in ES6, several solutions were considered, including writing code in <strong>objects</strong> or <strong>Immediately Invoked Function Expressions (IIFE)</strong>. This was an improvement over the the multiple script approach, but at least one object was still in the global namespace and sharing of code wasn't made any easier.</p> 
+
+            <h2>The Introduction of Modules</h2>
+
+            <p>Modules differ from regular scripts in a few ways:</p>
+
+            <ul>
+                <li>Modules do not add anything to the global (window) scope.</li>
+                <li>Modules are always in strict mode.</li>
+                <li>Loading the same module twice in the same file will have no effect as modules are only executed once.</li>
+                <li>Modules require a server environment.</li>
+            </ul>
+
+            <p>Modules are still often used alongside build tools and bundlers like Webpack for increased browser support and additional features, but they are also available for use directly, and natively, in browsers.</p>
+
+            <p>Modules in JavaScript use the <strong>import</strong> and <strong>export</strong> keywords.</p>
+
+            <ul>
+                <li>Import - used to read code exported from another module.</li>
+                <li>Export - used to provide code to other modules.</li>
+            </ul>
+
+            <p>To demonstrate this, update the <strong>functions.js</strong> file to be a module and export the functions. Add the <strong>export</strong> keyword in front of each function and this will make them available to other modules.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function sum(x, y) {
+    return x + y;
+}
+
+export function difference(x, y) {
+    return x - y;
+}
+
+export function product(x, y) {
+    return x * y;
+}
+
+export function quotient(x, y) {
+    return x / y;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now in <strong>script.js</strong>, use the <strong>import</strong> keyword to retrieve the code from the <strong>functions.js</strong> module at the top of the file.</p>
+
+            <p>The import must always be at the top of the file before any other code. It is also necessary to include the relative path (./ in this example).</p>
+
+            <p>Note, the individual functions are imported by naming them in curly braces in the import statement.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { sum, difference, product, quotient } from './functions.js';
+
+const x = 10;
+const y = 5;
+
+document.getElementById('x').textContent = x;
+document.getElementById('y').textContent = y;
+
+document.getElementById('addition').textContent = sum(x, y);
+document.getElementById('substraction').textContent = difference(x, y);
+document.getElementById('multiplication').textContent = product(x, y);
+document.getElementById('division').textContent = quotient(x, y);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In order to ensure this code gets loaded as a module and not a regular script, add the <strong>type</strong> attribute of <strong>module</strong> to the &lt;script&gt; tags in the index.html document. Any code that uses import or export must use this attribute.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script type="module" src="functions.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="script.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>At this point, you'll be able to reload the page following these updates and your website will now use modules.</p>
+
+            <p>If you run the modules locally as a direct link to a local file, you will encounter a CORS error. Because of the <strong>CORS policy</strong>, modules must be used in a server environment. A server environment can be set up locally with a tool like <strong>http-server</strong> or hosted elsewhere by a hosting provider.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body terminal__body--error">
+<!-- Just leave this line alone -->
+    Access to script at 'file:///Users/your_file_path/script.js' from origin<br>
+    'null' has been blocked by CORS policy: Cross origin requests are only<br>
+    supported for protocol schemes: http, data, chrome, chrome-extension,<br>
+    chrome-untrusted, https.
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Named Exports</h2>
+
+            <p>Using the export syntax allows you to individually import values that have been exported by their name. So we can export the function and then import the function by name using curly braces.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function sum() {}
+export function difference() {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here we can import both functions:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { sum, difference } from './functions.js';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>It's also possible to use an <strong>alias</strong> to rename the function. This allows naming to be used that would avoid conflicts with the same module. In this example, we can rename <strong>sum</strong> to be <strong>add</strong> and <strong>difference</strong> to be <strong>subtract</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { sum as add, difference as subtract } from './functions.js';
+
+// Call the function in the module using alias
+add(1, 2);      // 3
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Using the <strong>*</strong> syntax, you can import the entire module into one object. In the case of the <strong>sum</strong> and <strong>difference</strong> functions, they will become methods of the <strong>mathFunctions</strong> object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import * as mathFunctions from './functions.js';
+
+mathFunctions.sum(1, 2);            // 3
+mathFunctions.difference(10, 3);    // 7
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Default Exports</h2>
+
+            <p>In previous examples, we exported multiple named exports and imported them individually or as one object. Modules can also contain the <strong>default</strong> keyword when exporting. Using this keyword, a default export will not be imported with curly brackets but will be directly imported into a named identifier.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export default function sum(x, y) {
+    return x + y;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the <strong>script.js</strong> file, you can import the default function as sum without the curly braces:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import sum from './functions.js';
+
+sum(1, 2);      // 3
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This can be dangerous as there are no restrictions on what you can name a default export during the import. In this example, the default function is imported as difference, although it's actually the sum function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import difference from './functions.js';
+
+difference(1, 2);      // 3
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
