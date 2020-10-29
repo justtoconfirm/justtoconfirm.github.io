@@ -37,6 +37,33 @@
 
             <p>The <strong>ES6</strong>, or <strong>ECMAScript 2015</strong> specification as it is often referred, introduced <strong>modules</strong> to the JavaScript language. This allowed the use of the <strong>import</strong> and <strong>export</strong> statements to organise your code.</p>
 
+            <h2>Browser Support</h2>
+
+            <p>Browser support for native JavaScript modules is pretty good. It's worth checking <a href="https://caniuse.com/?search=modules" target="_blank" rel="noopener noreferrer">caniuse</a> to confirm the support within browsers as this can often change.</p>
+
+            <p>Native JavaScript modules are currently supported in the following browsers (October 2020):</p>
+
+            <ul>
+                <li><strong>Chrome</strong> (version 61 or greater)</li>
+                <li><strong>Firefox</strong> (version 60 or greater)</li>
+                <li><strong>Safari</strong> (version 11 or greater)</li>
+                <li><strong>Edge</strong> (version 16-18 & 79 or greater)</li>
+            </ul>
+
+            <h2>Before Native JavaScript Modules</h2>
+
+            <p>Prior to the introduction of native JavaScript modules, a few module solutions emerged:</p>
+
+            <ul>
+                <li><strong>CommonJS</strong> - a synchronous approach implemented in Node.js.</li>
+                <li><strong>AMD (Asynchronous Module Definition)</strong> - an asynchronous approach.</li>
+                <li><strong>UMD (Universal Module Definition)</strong> - inteneded as a universal approach that supported both CommonJS and AMD.</li>
+            </ul>
+
+            <p>The advent of these solutions made it easier for developers to share and reuse code in the form of packages, modules that can be distributed and shared, as found in NPM (Node Package Manager). However, since these solutions were not native to JavaScript, tools like <strong>Babel</strong>, <strong>Webpack</strong>, or <strong>Browserify</strong> were needed to implement the use of modules in browsers.</p>
+
+            <p>Now, modules are native in JavaScript following the introduction of the ES6 syntax.</p>
+
             <h2>Modular Programming</h2>
 
             <p>Before the introduction of modules, a developer that needed to organise their code into segments would need to create multiple JavaScript files and link to them as separate scripts within the HTML.</p>
@@ -288,6 +315,74 @@ mathFunctions.difference(10, 3);    // 7
     </code>
 </pre>
 
+            <p>Primitive values, function expressions and definitions, asynchronous functions, classes and objects can all be exported, but must have an identifier.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Primitive values
+export const number = 100;
+export const string = 'Dan';
+export const undefined = undefined;
+export const empty = null;
+export const obj = {name: 'Dan'};
+export const array = ['Cat', 'Dog', 'Rabbit'];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Function expression
+export const sum = (x, y) => x + y;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Function definition
+export function difference(x, y) {
+    return x - y;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Asynchronous function
+export async function getBooks() {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Class
+export class Book {
+    constructor(name, author) {
+        this.name = name,
+        this.author = author
+    }   
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Instantiated class
+export const book = new Book('Lord of the Rings', 'J.R.R Tolkein');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Default Exports</h2>
 
             <p>In previous examples, we exported multiple named exports and imported them individually or as one object. Modules can also contain the <strong>default</strong> keyword when exporting. Using this keyword, a default export will not be imported with curly brackets but will be directly imported into a named identifier.</p>
@@ -322,6 +417,33 @@ sum(1, 2);      // 3
 import difference from './functions.js';
 
 difference(1, 2);      // 3
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Named exports and default exports can be used alongside each other. This module exports two named values and a default value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export const length = 10;
+export const width = 5;
+
+export default function perimeter(x, y) {
+    return 2 * (x + y);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can import these variables and the default functions like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import calculatePerimeter, { length, width } from './functions.js';
+
+calculatePerimeter(length, width);      // 30
 <!-- Just leave this line alone -->
     </code>
 </pre>
