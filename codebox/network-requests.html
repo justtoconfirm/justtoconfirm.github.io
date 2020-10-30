@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to AJAX and XHR network requests">
+
+	<title>Codebox - Network Requests</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Network Requests</h1>
+
+            <p>Whenever you submit a URL from your web browser's address bar, you make an HTTP request to a server. The request will return an HTML document, the website or web page you requested. HTTP is the protocol that allows this to occur.</p>
+
+            <h2>What is an API?</h2>
+
+            <p>A big part of working with JavaScript is knowing how to connect to APIs. <strong>API</strong> stands for <strong>Application Program Interface</strong>, which can be defined as a set of methods of communication between various software components. In other words, an API allows software to communicate with other software and applications.</p>
+
+            <p>A <strong>Web API</strong> allows a web server to interact with third-party software. In this case, the web server is using HTTP requests to communicate to a publicly available URL endpoint containing <strong>JSON</strong> data.</p>
+
+            <h2>Obtaining the API endpoint</h2>
+
+            <p>As an example, open the API documentation for Ghibli Films. If you scroll to the films section, on the right you'll see GET /films. It will show us the URL of our API endpoint, <a href="https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a>, clicking on that link will display an array of objects in JSON.</p>
+
+            <h2>Making a request using the XHR object</h2>
+
+            <p>In order to make a request we will use the <strong>XMLHttpRequest</strong> (<strong>XHR</strong>) object. We first need to create an instance of this object and assign this object to a variable. In this example, our variable is named <strong>request</strong>.</p>
+
+            <p>XMLHttpRequest was the default method to make HTTP requests, such as making a request to an API, but <strong>Fetch API</strong> has now been introduced with greater browser support, so this can now used in-place of XHR.</p>
+
+            <p>We can open a connection to an API using the XHR object, which is a way to open files and make an HTTP request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, the HTTP method used needs to be specified. We open a new connection with the <strong>open()</strong> method. The type of request is specified as <strong>GET</strong> as well as the <strong>URL</strong> of the API endpoint.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may also see a <strong>true</strong> boolean parameter being used within the request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The request completes and we can now access the data inside the <strong>onload()</strong> function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+
+request.onload = function() {
+    // Begin accessing JSON data here
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When we're done, we'll send the request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+
+request.onload = function() {
+    // Begin accessing JSON data here
+}
+
+// Send the request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Working with the JSON response</h2>
+
+            <p>Now we've received a response from our HTTP request, we can work with it. The response is in JSON and we need to convert the JSON into a JavaScript object in order to work with it.</p>
+
+            <p>We use the <strong>JSON.parse()</strong> method to parse the response. We create a data variable that contains the JSON as an array of JavaScript objects.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+
+request.onload = function() {
+    // Parse the JSON data and create a variable
+    var data = JSON.parse(this.response);
+
+    // Log the data
+    console.log(data);
+}
+
+// Send the request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Using <strong>forEach()</strong>, we can log the data to ensure it's working properly.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+
+request.onload = function() {
+    // Parse the JSON data and create a variable
+    var data = JSON.parse(this.response);
+
+    data.forEach((movie) => {
+        // Log the movie title property from the data
+        console.log(movie.title);
+        // Log the movie description property from the data
+        console.log(movie.description);
+    });
+}
+
+// Send the request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We're currently missing some way to deal with errors (Wrong URL used, or broken URL). When an HTTP request is made, the response returns with HTTP status codes. <strong>404</strong> is the most well-known response, meaning Not Found, <strong>200 OK</strong>, a successful request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://www.example.com', true);
+
+request.onload = function() {
+    // Parse the JSON data and create a variable
+    var data = JSON.parse(this.response);
+
+    // Error checking
+    if (request.status >= 200 && request.status < 400) {
+        // Log the data
+        console.log(data);
+    } else {
+        console.log('Error');
+    }
+}
+
+// Send the request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We will now replace the example URL with the Studio Ghibli API endpoint URL and loop over the data to display the movie title and description:
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a request variable and assign a new XMLHttpRequest object
+const request = new XMLHttpRequest();
+
+// Open a new connection using the GET request on the URL endpoint
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+request.onload = function() {
+    // Parse the JSON data and create a variable
+    var data = JSON.parse(this.response);
+
+    // Error checking
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach((movie) => {
+            console.log(movie.title);
+            console.log(movie.description);
+        });
+    } else {
+        console.log('Error');
+    }
+}
+
+// Send the request
+request.send();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
