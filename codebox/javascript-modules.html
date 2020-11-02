@@ -276,6 +276,58 @@ document.getElementById('division').textContent = quotient(x, y);
 </div>
 <!-- / Terminal -->
 
+            <h2>Setting up http-server</h2>
+
+            <p>Begin by using NPM (Node Package Manager) to install the http-server package as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install http-server --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In your <strong>package.json</strong>, add a script to run the http-server.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "server": "http-server"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can then run the server locally using the terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run server
+    </pre>
+</div>
+<!-- / Terminal -->
+
             <h2>Named Exports</h2>
 
             <p>Using the export syntax allows you to individually import values that have been exported by their name. So we can export the function and then import the function by name using curly braces.</p>
