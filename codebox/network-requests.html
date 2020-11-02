@@ -236,6 +236,31 @@ request.send();
     </code>
 </pre>
 
+            <h2>Fetch API</h2>
+
+            <p>The Fetch API is a newer built-in feature of JavaScript that makes working with requests and responses easier. This is the modern equivalent to the XMLHttpRequest (XHR) object. It allows you to make network requests similar to XHR, the main difference is the <strong>Fetch API uses Promises</strong>, which enables a simpler and cleaner API avoiding 'callback hell' and having to remember the more complex API of XHR - it's easier to read/write.</p>
+
+            <p>With the Fetch API, a 404 or 500 error will not return an error, the promise returned from <strong>fetch()</strong> won't reject on HTTP error status, instead it will resolve normally (with <strong>ok</strong> status set to false). Only a network error or request not completing will throw an error.</p>
+
+            <p>Here's an example Fetch API template for making a simple request:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://www.example.com')
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        console.log(data)
+    })
+    .catch((err) => {
+        // Do something for an error here
+    })
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>
