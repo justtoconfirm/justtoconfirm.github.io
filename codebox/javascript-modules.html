@@ -242,6 +242,16 @@ document.getElementById('division').textContent = quotient(x, y);
     </code>
 </pre>
 
+            <p>Now that we have the <strong>functions.js</strong> as a module and we are importing the functions into the <strong>script.js</strong> file, we can now import just the <strong>script.js</strong> file, reducing the number of requests needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script type="module" src="script.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <p>At this point, you'll be able to reload the page following these updates and your website will now use modules.</p>
 
             <p>If you run the modules locally as a direct link to a local file, you will encounter a CORS error. Because of the <strong>CORS policy</strong>, modules must be used in a server environment. A server environment can be set up locally with a tool like <strong>http-server</strong> or hosted elsewhere by a hosting provider.</p>
