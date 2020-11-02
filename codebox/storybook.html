@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Storybook">
+
+	<title>Codebox - Storybook</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Storybook</h1>
+
+            <h2>What is Storybook?</h2>
+
+            <p>Storybook is an open-source tool for developing UI (User Interface) components in isolation for React, Vue, Angular, and more. This allows you to work on one component at a time and entire interfaces can be developed without the need to start-up a complex development stack or navigate around your application.</p>
+
+            <h2>What is a story?</h2>
+
+            <p>A story captures the rendered state of a UI component. Developers create multiple stories per component that describe each state a component can support.</p>
+
+            <p>Each story uses the file extension of <strong>.stories.js</strong> or <strong>.stores.ts</strong> and are written in <strong>Component Story Format</strong> (<strong>CSF</strong>), an ES6 modules-based standard for writing components.</p>
+
+            <h2>Install Storybook</h2>
+
+            <p>To install Storybook for React, use NPM (Node Package Manager) to install Storybook as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @storybook/react --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Update your <strong>package.json</strong> file to include a script to run Storybook. When you run the script, Storybook will start a local server on port 9001 and open a browser tab/window.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the root of your React project, create a directory named <strong>.storybook</strong>, this will be where our Storybook config file will be placed. Inside this directory, create a new file named <strong>.config.js</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { configure } from '@storybook/react'
+
+function loadStories() {
+    // You can require as many stories as you need.
+    require('./../src/Button/storybook/Button.stories.js')
+}
+
+configure(loadStories, module)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In this example, the config file tells Storybook where it can find the Story for the Button component. Any Story you add needs to be added into this config file.</p>
+
+            <p>Our example React file structure would look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.storybook / 
+    config.js
+src /
+    Button /
+        storybook /
+            Button.stories.js
+        Button.js
+    index.js
+.babelrc
+.gitignore
+index.html
+package-lock.json
+package.json
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
