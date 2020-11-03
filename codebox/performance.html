@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Performance">
+
+	<title>Codebox - Performance</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Performance</h1>
+
+            <h2>Performance Budget</h2>
+
+            <p>Performance is an important part of the user experience. To reach the goal of great performance, you have to define this clearly. Setting a <strong>performance budget</strong> will help to do this. Defining a budget helps get web performance agreed before starting a project and serves as a point-of-reference for making decisions about design, technology and features.</p>
+
+            <p>A performance budget is a set of limits imposed on metrics that affect site performance. This could be:</p>
+
+            <ul>
+                <li>The total size of the page.</li>
+                <li>The time it takes to load on a mobile network.</li>
+                <li>The number of HTTP requests.</li>
+                <li>Maximum size of images.</li>
+                <li>Maximum number of web fonts used.</li>
+                <li>Maximum file size of scripts, including framworks and/or libraries.</li>
+                <li>Total number of external resources, including third-party scripts.</li>
+            </ul>
+
+            <p>Examples of a performance budget:</p>
+
+            <ul>
+                <li>Our product page must ship less than <strong>170KB</strong> of JavaScript on mobile.</li>
+                <li>Our search page must include less than <strong>2MB</strong> of images on desktop.</li>
+                <li>Our homepage must load and get interactive in <strong>&lt; 5 seconds</strong> on a slow 3G mobile device.</li>
+                <li>Our blog must score <strong>&gt; 80</strong> on Lighthouse performance audits.</li>
+            </ul>
+
+            <p>Tools like Lighthouse and WebPageTest calculate performance scores based on general best practice rules. These scores can be used as guidelines for <strong>rule-based metrics</strong> and can be added to a performance budget.</p>
+
+            <p>A performance budget can be added to your build tools. There are a few open-source tools that can help you add a performance budget to your build process:</p>
+
+            <ul>
+                <li><a href="https://webpack.js.org/configuration/performance/" target="_blank" rel="noopener noreferrer">Webpack performance features</a></li>
+                <li><a href="https://github.com/siddharthkp/bundlesize" target="_blank" rel="noopener noreferrer">Bundlesize</a></li>
+            </ul>
+
+            <p>The tools will allows us to ensure our code adheres to the performance budget set. If something goes over the threshold:</p>
+
+            <ul>
+                <li>Optimise the existing feature or asset.</li>
+                <li>Remove an existing feature or asset.</li>
+                <li>Avoid adding the new feature or asset.</li>
+            </ul>
+
+            <h2>What is page speed?</h2>
+
+            <p>Page speed is the speed of an individual page on your site. The page speed metric shows <strong>First Contentful Paint (FCP)</strong> as simulated in a lab environment and available from Google <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener noreferrer">PageSpeed Insights (PSI)</a>. FCP marks the first point in the page load timeline where the user can see anything on the screen - a fast FCP helps reassure the user that something is happening.</p>
+
+            <p>If a page loads slowly the user will wait longer to see something useful and perceive the page as slower.</p>
+
+            <p>Milestone timings mark events that happen during the page load. The most useful timings are <strong>user-centric performance metrics</strong> that tell you something about the experience of loading a page. These metrics are available through browser APIs and as part of Lighthouse reports.</p>
+
+            <ul>
+                <li><strong>First Contentful Paint (FCP)</strong> - measures when the browser displays the first bit of content from the <abbr title="Document Object Model">DOM</abbr>, like text or images.</li>
+                <li><strong>Time to Interactive (TTI)</strong> - measures how long it takes for the page to become fully interactive and reliably respond to user input. This is a very important metric to track user interaction on the page, like clicking links, buttons or using form elements.</li>
+            </ul>
+
+            <h2>Tools & Resources to monitor performance</h2>
+
+            <p>There are a number of tools available to monitor performance of your website, web page or application:</p>
+
+            <ul>
+                <li><a href="https://web.dev/" target="_blank" rel="noopener noreferrer">web.dev</a>
+                <li><a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noopener noreferrer">Google Lighthouse</a></li>
+                <li><a href="https://www.thinkwithgoogle.com/feature/testmysite/" target="_blank" rel="noopener noreferrer">Google: Test my site</a></li>
+                <li><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights (PCI)</a></li>
+                <li><a href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">WebPageTest.org</a></li>
+                <li><a href="https://nibbler.silktide.com/" target="_blank" rel="noopener noreferrer">Nibbler</a></li>
+            </ul>
+
+            <h2>Code Coverage (Chrome)</h2>
+
+            <p><strong>Chrome Developer Tools</strong> has a tool that helps assess thee bloat in files. The <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage" target="_blank" rel="noopener noreferrer">Coverage tab</a> analyses code coverage as you navigate your website and provides a report/interface showing how much code in a given CSS or JavaScript file is actually being used.</p>
+
+            <p>To access the Coverage tab in Chrome:</p>
+
+            <ul>
+                <li>Open the <strong>Chrome Developer Tools</strong>.</li>
+                <li>Click on the three dots in the top right.</li>
+                <li>Navigate to <strong>More Tools</strong> &gt; <strong>Coverage</strong>.</li>
+                <li>Click the reload button to reload the page and begin the code coverage analysis.</li>
+            </ul>
+
+            <p>The report will show the amount of code being <strong>unused in red</strong>, <strong>green indicates the code being used</strong>. This only represents the current render and this will change as you change your screen size or interact with elements like modals or toggles.</p>
+
+            <h2>Benchmarking</h2>
+
+            <p>To benchmark performance, you first need to establish a <strong>baseline</strong>. Analyze the competition to see how you stack up. Here are examples of good default numbers to get you started:</p>
+
+            <ul>
+                <li><strong>ime to Interactive (TTI)</strong> is <strong>under 5 seconds</strong>.</li>
+                <li>Under <strong>170KB</strong> of critical-path resources (compressed/minified).</li>
+            </ul>
+
+            <p>These numbers are calculated based on real-world basedline devices and <strong>3G network speeds</strong>.</p>
+
+            <p>When performance tools are used, it's time to record values. These benchmarks will provide a useful comparison as you optimise your page. If the metrics improve, your changes are worthwhile, if they remain static (or worse, decline), you'll need to rethink your strategy. It's worthwhile running the tools a few times to take a median/average value for each.</p>
+
+            <h2>Minify Files</h2>
+
+            <p>Every unnecessary piece of code adds to the size of your page. It's important to minimise files where possible to eliminate extra spaces, line breaks and indentation. This ensures that your pages are as lean as possible.</p>
+
+            <h2>Reduce HTTP Requests</h2>
+
+            <p>If you use Chrome, you can use the <strong>Chrome Developer Tools</strong> to see how many HTTP requests the site makes.</p>
+
+            <ul>
+                <li>Open the <strong>Chrome Developer Tools</strong>.</li>
+                <li>Click on the <strong>Network</strong> tab.</li>
+                <li>In the bottom left corder you'll see the number of total requests the site makes. Reducing the number of requests will improve the speed of the site.</li>
+            </ul>
+
+            <p>Reducing the number of CSS and JavaScript files can help to reduce the number of requests the website makes everytime a user visits.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
