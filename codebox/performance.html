@@ -52,6 +52,7 @@
             <ul>
                 <li><a href="https://webpack.js.org/configuration/performance/" target="_blank" rel="noopener noreferrer">Webpack performance features</a></li>
                 <li><a href="https://github.com/siddharthkp/bundlesize" target="_blank" rel="noopener noreferrer">Bundlesize</a></li>
+                <li><a href="https://web.dev/use-lighthouse-for-performance-budgets/?utm_source=lighthouse&utm_medium=devtools" target="_blank" rel="noopener noreferrer">Use Lighthouse for performance budgets</a></li>
             </ul>
 
             <p>The tools will allows us to ensure our code adheres to the performance budget set. If something goes over the threshold:</p>
@@ -71,9 +72,13 @@
             <p>Milestone timings mark events that happen during the page load. The most useful timings are <strong>user-centric performance metrics</strong> that tell you something about the experience of loading a page. These metrics are available through browser APIs and as part of Lighthouse reports.</p>
 
             <ul>
-                <li><strong>First Contentful Paint (FCP)</strong> - measures when the browser displays the first bit of content from the <abbr title="Document Object Model">DOM</abbr>, like text or images.</li>
+                <li><strong>First Contentful Paint (FCP)</strong> - measures when the browser displays the first bit of content from the <abbr title="Document Object Model">DOM</abbr>, like text or images. Anything inside of an iframe is not included.</li>
                 <li><strong>Time to Interactive (TTI)</strong> - measures how long it takes for the page to become fully interactive and reliably respond to user input. This is a very important metric to track user interaction on the page, like clicking links, buttons or using form elements.</li>
             </ul>
+
+            <p><strong>First Contentful Paint (FCP)</strong> is one of six metrics tracked in the Performance section of a Lighthouse report. Each metric captures some aspect of page load speed.</p>
+
+            <p>Your FCP score is a comparison of your page's FCP time and FCP times for real websites, based on data from the <strong>HTTP archive</strong>. Sites performing in the ninety-ninth percentile render FCP in around 1.5 seconds, if your website's FCP is 1.5 seconds, your FCP score is 99.</p>
 
             <h2>Tools & Resources to monitor performance</h2>
 
@@ -81,11 +86,13 @@
 
             <ul>
                 <li><a href="https://web.dev/" target="_blank" rel="noopener noreferrer">web.dev</a>
+                <li><a href="https://web.dev/measure/" target="_blank" rel="noopener noreferrer">web.dev Measure tool</a>
                 <li><a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noopener noreferrer">Google Lighthouse</a></li>
                 <li><a href="https://www.thinkwithgoogle.com/feature/testmysite/" target="_blank" rel="noopener noreferrer">Google: Test my site</a></li>
                 <li><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights (PCI)</a></li>
                 <li><a href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">WebPageTest.org</a></li>
                 <li><a href="https://nibbler.silktide.com/" target="_blank" rel="noopener noreferrer">Nibbler</a></li>
+                <li><a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer">Caniuse</a></li>
             </ul>
 
             <h2>Code Coverage (Chrome)</h2>
@@ -116,6 +123,12 @@
 
             <p>When performance tools are used, it's time to record values. These benchmarks will provide a useful comparison as you optimise your page. If the metrics improve, your changes are worthwhile, if they remain static (or worse, decline), you'll need to rethink your strategy. It's worthwhile running the tools a few times to take a median/average value for each.</p>
 
+            <h2>Render Blocking</h2>
+
+            <p>CSS files are <strong>render-blocking resources</strong>, they mist be loaded and processed before the browser renders the page. Web pages that contain unnecessarily large styles take longer to render.</p>
+
+            <p>To defer non-critical CSS will lead to the goal of optimising the <strong>Critical Rendering Path</strong> and improving <strong>First Contentful Paint (FCP)</strong>.</p>
+
             <h2>Minify Files</h2>
 
             <p>Every unnecessary piece of code adds to the size of your page. It's important to minimise files where possible to eliminate extra spaces, line breaks and indentation. This ensures that your pages are as lean as possible.</p>
@@ -131,6 +144,88 @@
             </ul>
 
             <p>Reducing the number of CSS and JavaScript files can help to reduce the number of requests the website makes everytime a user visits.</p>
+
+            <h2>Preload</h2>
+
+            <p>The preload value of a <strong>&lt;link&gt;</strong> element's <strong>rel</strong> attribute lets you declare fetch requests in the <strong>&lt;head&gt;</strong> section of your HTML document. This ensures the resources are available earlier and are less likely to block the page render, improving performance.</p>
+
+            <p>Within your Lighthouse audit, you may encounter the following notification:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Consider using '&lt;link rel="preload"&gt;' to prioritize fetching resources that are currently requested later in page load.
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Suppose your page's <strong>critical request chain</strong> looks like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+index.html /
+    app.js /
+        styles.css
+        ui.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>     
+
+            <p>Your <strong>index.html</strong> file declares <strong>&lt;script src="app.js"&gt;</strong>. When <strong>app.js</strong> runs, it calls <strong>fetch()</strong> in order to download <strong>styles.css</strong> and <strong>ui.js</strong>. The page doesn't appear complete until the last two resource are downloaded, parsed and executed. Using this example, Lighthouse would flag styles.css and ui.js as candidates.</p>
+
+            <p>If, for example, app.js takes <strong>200ms</strong> to download, parse and execute, the potential savings for each resource is 200ms since app.js is no longer a bottleneck for each of the requests.</p>
+
+            <p>Here's an example of how to add preloading to your HTML page:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;head&gt;
+    &lt;link rel="preload" href="styles.css" as="style"&gt;
+    &lt;link rel="preload" href="ui.js" as="script"&gt;
+    &lt;link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin="anonymous"&gt;
+
+    &lt;!-- Stylesheets here --&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>   
+
+            <p>This example is trivial as the browser probably discovers the CSS stylesheet in the same chunk of HTML as the preloads, but the benefits can be seen much more clearly the later resources are discovered and the larger they are, for example:</p>
+
+            <ul>
+                <li>Resources that are pointed to from inside CSS, like fonts or images.</li>
+                <li>Resources that JavaScript can request, like JSON, imported scripts or web workers.</li>
+                <li>Larger images or video files.</li>
+            </ul>
+
+            <p>Preloading requests can make your pages load faster. Without preload links, styles.css and ui.js are requested only after app.js has been downloaded, parsed and executed. Before using preload, the files would be requested like so:</p> 
+
+            <ul>
+                <li>app.js</li>
+                <li>styles.css</li>
+                <li>ui.js</li>
+            </ul>
+
+            <p>The browser only becomes aware of those last two resources after it downloads, parses and executes app.js, but both styles.css and ui.js are important resources and should be downloaded as soon as possible. With preload enabled, the files will be requested like so (see the <strong>Network tab</strong> in the <strong>Chrome Developer Tools</strong>):</p>
+
+            <ul>
+                <li>ui.js</li>
+                <li>styles.css</li>
+                <li>app.js</li>
+            </ul>
+
+            <p>With preload links, <strong>styles.css</strong> and <strong>ui.js</strong> are requested at the same time as <strong>app.js</strong>.</p>
+
+            <p>Preload is supported by a number of browsers, including <strong>Chrome</strong>, <strong>Edge</strong> and <strong>Safari</strong>, however <strong>Firefox</strong> and <strong>IE</strong> have no native support for preload currently (November 2020) according to <a href="https://caniuse.com/?search=preload" target="_blank" rel="noopener noreferrer">caniuse</a>.</p>
+
+            <h2>Useful Resources & Links</h2>
+
+            <ul>
+                <li><a href="https://web.dev/defer-non-critical-css/" target="_blank" rel="noopener noreferrer">web.dev: Defer non-critical CSS</a></li>
+            </ul>
 
 		</div>
 	</div>
