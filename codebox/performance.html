@@ -95,21 +95,6 @@
                 <li><a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer">Caniuse</a></li>
             </ul>
 
-            <h2>Code Coverage (Chrome)</h2>
-
-            <p><strong>Chrome Developer Tools</strong> has a tool that helps assess thee bloat in files. The <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage" target="_blank" rel="noopener noreferrer">Coverage tab</a> analyses code coverage as you navigate your website and provides a report/interface showing how much code in a given CSS or JavaScript file is actually being used.</p>
-
-            <p>To access the Coverage tab in Chrome:</p>
-
-            <ul>
-                <li>Open the <strong>Chrome Developer Tools</strong>.</li>
-                <li>Click on the three dots in the top right.</li>
-                <li>Navigate to <strong>More Tools</strong> &gt; <strong>Coverage</strong>.</li>
-                <li>Click the reload button to reload the page and begin the code coverage analysis.</li>
-            </ul>
-
-            <p>The report will show the amount of code being <strong>unused in red</strong>, <strong>green indicates the code being used</strong>. This only represents the current render and this will change as you change your screen size or interact with elements like modals or toggles.</p>
-
             <h2>Benchmarking</h2>
 
             <p>To benchmark performance, you first need to establish a <strong>baseline</strong>. Analyze the competition to see how you stack up. Here are examples of good default numbers to get you started:</p>
@@ -129,9 +114,57 @@
 
             <p>To defer non-critical CSS will lead to the goal of optimising the <strong>Critical Rendering Path</strong> and improving <strong>First Contentful Paint (FCP)</strong>.</p>
 
+            <h2>Remove unused CSS</h2>
+
+            <p>If Lighthouse detects that a page has at least <strong>2048 bytes</strong> of CSS rules that weren't used while rendering the above the fold content, you'll receive a suggestion in the performance audit called <strong>Remove Unused CSS</strong>.</p>
+
+            <p>The Opportunities section of your Lighthouse report lists all stylesheets with unused CSS with a potential saving of <strong>2KB or more</strong>. Remove the unused CSS to reduce unnecessary bytes consumed by network activity.</p>
+
+            <p>Using a <strong>&lt;link&gt;</strong> tag is a common way to add styles to a page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="stylesheet" href="styles.css"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>The <strong>styles.css</strong> file that the browser downloads is known as an <strong>external stylesheet</strong> because it's stored separately from the HTML that uses it. By default, a browser must download, parse and process all external stylesheets that it encounters before it can display, or render, any content to the screen. This is because the stylesheet may contain rules that affect the styling of the page.</p>
+
+            <p>Each external stylesheet must be downloaded from the network. These extra network trips can increase the time that users must wait before they see any content on the screen.</p>
+
+            <p>Unused CSS slows down the browser's construction of the <strong>render tree</strong>. The render tree is similar to the DOM tree except that it includes the styles for each node. The browser must walk the entire DOM tree and check which CSS rules apply to each node. The more unused CSS there is, the more time the browser might potentially need to spend time calculating the styles for each node.</p>
+
+            <p>The <strong>Coverage tab</strong> in the <strong>Chrome Developer Tools (DevTools)</strong> can help you to discover <strong>critical</strong> and <strong>uncritical</strong> CSS. We can then inline critical CSS inside the &lt;head&gt; section of the HTML page using the <strong>&lt;style&gt;</strong> block and load the rest of the styles <strong>asynchronously</strong> using the <strong>preload</strong> link.</p>
+
+            <p>This process can be automated using the <a href="https://github.com/addyosmani/critical/blob/master/README.md" target="_blank" rel="noopener noreferrer">Critical tool</a> that will extract and incline "Above the Fold" CSS.</p>
+
+            <h2>Code Coverage (Chrome)</h2>
+
+            <p><strong>Chrome Developer Tools</strong> has a tool that helps assess thee bloat in files. The <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage" target="_blank" rel="noopener noreferrer">Coverage tab</a> analyses code coverage as you navigate your website and provides a report/interface showing how much code in a given CSS or JavaScript file is actually being used.</p>
+
+            <p>To access the Coverage tab in Chrome:</p>
+
+            <ul>
+                <li>Open the <strong>Chrome Developer Tools</strong>.</li>
+                <li>Click on the three dots in the top right.</li>
+                <li>Navigate to <strong>More Tools</strong> &gt; <strong>Coverage</strong>.</li>
+                <li>Click the reload button to reload the page and begin the code coverage analysis.</li>
+            </ul>
+
+            <p>The report will show the amount of code being <strong>unused in red</strong>, <strong>green indicates the code being used</strong>. This only represents the current render and this will change as you change your screen size or interact with elements like modals or toggles.</p>
+
             <h2>Minify Files</h2>
 
             <p>Every unnecessary piece of code adds to the size of your page. It's important to minimise files where possible to eliminate extra spaces, line breaks and indentation. This ensures that your pages are as lean as possible.</p>
+
+            <ul>
+                <li>minify.min.js</li>
+                <li>style.min.css</li>
+            </ul>
+
+            <p>Minification reduces the file size to reduce the size of your requests.</p>
 
             <h2>Reduce HTTP Requests</h2>
 
@@ -225,6 +258,7 @@ index.html /
 
             <ul>
                 <li><a href="https://web.dev/defer-non-critical-css/" target="_blank" rel="noopener noreferrer">web.dev: Defer non-critical CSS</a></li>
+                <li><a href="https://web.dev/unused-css-rules/?utm_source=lighthouse&utm_medium=devtools" target="_blank" rel="noopener noreferrer">web.dev: Remove unused CSS</a>
             </ul>
 
 		</div>
