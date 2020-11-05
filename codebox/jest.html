@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to Jest">
+
+	<title>Codebox - Introduction to Jest</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Jest</h1>
+
+            <p>Jest is a JavaScript test runner, a library for creating, running and structuring tests. It is the default choice for React projects.</p>
+
+            <p>Jest will look for the following test files:</p>
+
+            <ul>
+                <li>JavaScript files with a <strong>.js</strong> file extension in a <strong>__tests__</strong> folder.</li>
+                <li>JavaScript files with a <strong>.test.js</strong> file extension.</li>
+                <li>JavaScript files with a <strong>.spec.js</strong> file extension.</li>
+            </ul>
+
+            <p>In JavaScript, it's common to see test files end with <strong>.spec.js</strong> as developers use "spec" as shorthand for "specification".</p>
+
+            <p>Jest can be installed using NPM (Node Package Manager):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install jest ---save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>A script will be required to be added to your <strong>package.json</strong> file to run Jest.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can then run Jest.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run test
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Setting up Jest with StandardJS</h2>
+
+            <p>If you are using <strong>StandardJS</strong>, you may encounter problems with writing tests using Jest for your React components or JavaScript code and StandardJS allowing linting to be done. Usually <strong>it</strong> and <strong>describe</strong> may thrown an error when using StandardJS as it will consider these issues, so to fix this, add the following to your package.json:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"standard": {
+    "env": [ "jest" ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This will ensure StandardJS works well with Jest.</p>
+
+            <h3>Writing Tests in Jest</h3>
+
+            <p>Time to create your first test in Jest. It is often recommended to save a test file next to the code you're testing and name the test file with the file extension of <strong>.spec.js</strong> as Jest will search for test files with a <strong>.test.js</strong> or <strong>.spec.js</strong> filename, or alternatively a <strong>.js</strong> file placed within a directory named __tests__</p>
+
+            <p>If the file we are testing were to be named <strong>example.js</strong>, then our test file should be named <strong>example.spec.js</strong> like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    example.js
+    example.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Inside the test file (the file named .spec.js), create a <strong>test block</strong>. Jest uses the <strong>describe</strong> method. This is a method for containing one or more related tests. Every time you start writing a new suite of tests, wrap it in a describe block.</p>
+
+            <p>As you can see, it takes two arguments: a string for describing the test suite and a callback function for wrapping the actual test.</p> 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("Description of the test suite here", () => {
+   // Test stuff goes here 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We then use another function called <strong>test</strong> which is the actual test block.
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("Description of the test suite here", () => {
+   test("It is testing something here", () => {
+        // Actual test
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As an example, let's write a simple test that checks if a simple calculation is true.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+describe("sum of 2 numbers", () => {
+    it("2 + 2 equal 4", () => {
+        expect(2 + 2).toEqual(4)
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Example: Hello Test</h3>
+
+            <p>At this point we're ready to write an actual test. Remember, testing is a matter of <strong>input</strong>, <strong>functions</strong>, and <strong>expected outputs</strong>.</p>
+
+            <p>Here's a very simple test file named <strong>SimpleModule.spec.js</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { simpleFunc } from "./SimpleModule";
+
+describe("A simple module", () => {
+    test("it should say hello", () => {
+        expect(simpleFunc()).toEqual("hello!");
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may need to setup <strong>Babel</strong> in your project to allow the import statement to be used here. Using <strong>Webpack</strong> is one solution to create a frontend build process.</p> 
+
+            <p>And now we write the module as a function and export the function to allow it to be imported. This file should be named <strong>SimpleModule.js</strong></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function simpleFunc() {
+    return "hello!";
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's file file structure:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    SimpleModule.js
+    SimpleModule.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You will need to <strong>import</strong> the function your testing in your test file. Here is our example file structure for our next example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+directory /
+    filter.js
+    filter.spec.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>Example: Array Test</h3>
+
+            <p>Let's define a simple input, an array of objects:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, we define the <strong>expected result</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+
+        const output = [{ id: 3, url: "https://www.link3.dev" }];
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we can write the actual test using <strong>expect</strong> and a Jest <strong>matcher</strong> for checking if our function - <strong>filterByTerm()</strong> - returns the expectd result when called.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { filterByTerm } from './filter.js';
+
+describe("Filter function", () => {
+    test("it should filter by a search term (link)", () => {
+    
+        const input = [
+            { id: 1, url: "https://www.url1.dev" },
+            { id: 2, url: "https://www.url2.dev" },
+            { id: 3, url: "https://www.link3.dev" }
+        ];
+
+        const output = [{ id: 3, url: "https://www.link3.dev" }];
+
+        expect(filterByTerm(input, "link")).toEqual(output);
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When we run the test it will <strong>fail</strong> as we have no function to test against. Let's write a function in a file name <strong>filter.js</strong></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export function filterByTerm(inputArr, searchTerm) {
+    return inputArr.filter(function(arrayElement) {
+        return arrayElement.url.match(searchTerm);
+    });
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>For each element of the input array we check the "url" property, matching it against a regular expression with the match <strong>method</strong>.</p>
+
+            <p>Now when we run the test it should pass.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run test
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Setting up Enzyme</h2>
+
+            <p><strong>Enzyme</strong> is needed if you want to use the <strong>shallow()</strong> method in your tests. This is particularly useful if you want to test React components. The shallow method is used to render the single component that we are testing and not the child components. This is handled by Enzyme, so this will need to be installed along with Jest.</p>
+
+            <p>Enzyme is a testing utility created by Airbnb that can be used together with Jest. Enzyme makes it easier to <strong>assert</strong>, <strong>manipulate</strong>, and <strong>traverse</strong> your React components' output. This adds some additional utility methods for rendering a component, find elements, and interacting with elements.</p>
+
+            <p>Jest can be used with other JavaScript applications, but Enzyme only works with React. If Jest is not used, Enzyme must be paired with another test runner. Jest can be used without Enzyme to render components and test with snapshots, Enzyme simply adds additional functionality.</p>
+
+            <p>Enzyme is <strong>not included</strong> with the <strong>CRA</strong> (<strong>create-react-app</strong>) tool, so it must be installed in addition.</p>
+
+            <p>For React 16, you will need to install <strong>Enzyme</strong> and <strong>Enzyme Adapter</strong> as devDependencies.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+$ npm install enzyme enzyme-adapter-react-16 --save-dev
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When you try to run tests following installation, an error may occur within the terminal. You may need to configure Enzyme so it can be used with React 16 and Jest.</p>
+
+            <p>Now in the <strong>src</strong> directory (where your React components are located) of your application, create a file named <strong>setupTests.js</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({
+    adapter: new Adapter()
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This will configure the Enzyme adapter to allow Enzyme to work with React version 16.</p>
+
+            <p>Next, update the <strong>package.json</strong> file to include a reference to the path of this config file when running Jest.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"jest": {
+    "setupFilesAfterEnv": ["&lt;rootDir&gt;/src/setupTests.js"]
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may see this example (now deprecated):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"jest": {
+    "setupTestFrameworkScriptFile": "&lt;rootDir&gt;/src/setupTests.js"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Enzyme is now setup. Your directory should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+src /
+    Button /
+        Button.js
+        Button.spec.js
+    setupTests.js
+.babelrc
+.gitignore
+index.html
+package-lock.json
+package.json
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Testing React Components</h2>
+
+            <p>As shown on the file structure above, add a new test file for your component with the file name ending <strong>.spec.js</strong>, as with the example showing the Button. Your test code should look something like this (Button.spec.js):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe('&lt;Button/&gt;', () => {
+    it('should render without throwing an error', () => {
+        expect(shallow(&lt;Button/&gt;).find('.btn').exists()).toBe(true)
+    })
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Code Coverage</h2>
+
+            <p>Code coverage checks that the test covers every line of your code base. For instance, say you go straight into the function and add a few lines of new code. Unless you update the test to identify this new code, you're not going to know exactly what to test in our function. Code coverage is the tool that provides the utility and Jest has code coverage built-in.</p>
+
+            <p>You can set code coverage by passing the flag to the test script:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest --coverage"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or you can update the package.json file, like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+"jest": {
+    "collectCoverage": true
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also build an HTML report if you'd prefer to have the report be more visual:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "test": "jest"
+},
+"jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["html"]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now every time you run your tests, you can access a new folder called <strong>coverage</strong> in your project.</p>
+
+            <p>When you run the test with code coverage enabled, you will see any lines of code not covered (uncovered) by your tests. This helps to identify if a new piece of code has been added into your functions without the test being updated. You should then update your test.</p>
+
+            <p>With code coverage you can discover what to test when in doubt.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
