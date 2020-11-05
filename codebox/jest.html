@@ -423,6 +423,36 @@ describe('&lt;Button/&gt;', () => {
     </code>
 </pre>
 
+            <h2>Snapshot Testing</h2>
+
+            <p>Snapshot tests are a very useful tool whenever you want to make sure your UI does not change unexpectedly. A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match. Either change is unexpected, or the reference snapshot needs to be updated to the new version of the UI component.</p>
+
+            <p>You create a snapshot by using the <strong>toMatchSnapshot()</strong> method.</p>
+
+            <p>We can then write a simple test suite to test a Button component renders correctly and generates a snapshot.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { shallow } from 'enzyme'
+import Button from './Button'
+
+describe('&lt;Button/&gt;', () => {
+    it('should render without throwing an error', () => {
+        const wrapper = shallow(&lt;Button/&gt;)
+        expect(wrapper.find('.btn').exists()).toBe(true)
+        expect(wrapper).toMatchSnapshot()
+    })
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>       
+
+            <p>When we run this code, a new <strong>__snapshots__</strong> directory will be created in your component directory (where your test file is located). This will contain the snapshot file.</p> 
+
+            <p>The snapshot artifact should be committed alongside your code changes and reviewed as part of your code review process. Jest uses <strong>pretty-format</strong> to make snapshots human-readable during code review.</p>   
+
             <h2>Code Coverage</h2>
 
             <p>Code coverage checks that the test covers every line of your code base. For instance, say you go straight into the function and add a few lines of new code. Unless you update the test to identify this new code, you're not going to know exactly what to test in our function. Code coverage is the tool that provides the utility and Jest has code coverage built-in.</p>
