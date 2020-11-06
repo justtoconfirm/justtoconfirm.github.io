@@ -100,7 +100,7 @@
             <p>To benchmark performance, you first need to establish a <strong>baseline</strong>. Analyze the competition to see how you stack up. Here are examples of good default numbers to get you started:</p>
 
             <ul>
-                <li><strong>ime to Interactive (TTI)</strong> is <strong>under 5 seconds</strong>.</li>
+                <li><strong>Time to Interactive (TTI)</strong> is <strong>under 5 seconds</strong>.</li>
                 <li>Under <strong>170KB</strong> of critical-path resources (compressed/minified).</li>
             </ul>
 
@@ -136,7 +136,7 @@
 
             <p>Unused CSS slows down the browser's construction of the <strong>render tree</strong>. The render tree is similar to the DOM tree except that it includes the styles for each node. The browser must walk the entire DOM tree and check which CSS rules apply to each node. The more unused CSS there is, the more time the browser might potentially need to spend time calculating the styles for each node.</p>
 
-            <p>The <strong>Coverage tab</strong> in the <strong>Chrome Developer Tools (DevTools)</strong> can help you to discover <strong>critical</strong> and <strong>uncritical</strong> CSS. We can then inline critical CSS inside the &lt;head&gt; section of the HTML page using the <strong>&lt;style&gt;</strong> block and load the rest of the styles <strong>asynchronously</strong> using the <strong>preload</strong> link.</p>
+            <p>The <strong>Coverage tab</strong> in the <strong>Chrome Developer Tools (DevTools)</strong> can help you to discover <strong>critical</strong> and <strong>uncritical</strong> CSS. We can then inline critical CSS inside the <strong>&lt;head&gt;</strong> section of the HTML page using the <strong>&lt;style&gt;</strong> block and load the rest of the styles <strong>asynchronously</strong> using the <strong>preload</strong> link.</p>
 
             <p>This process can be automated using the <a href="https://github.com/addyosmani/critical/blob/master/README.md" target="_blank" rel="noopener noreferrer">Critical tool</a> that will extract and incline "Above the Fold" CSS.</p>
 

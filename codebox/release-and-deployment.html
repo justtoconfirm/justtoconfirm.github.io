@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to releases & deployments">
+
+	<title>Codebox - Release & Deployment</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Release & Deployment</h1>
+
+            <p><strong>CI</strong> and <strong>CD</strong> are two acronyms that are often mentioned when we talk about modern development practices. <strong>Continuous Integration (CI)</strong> is the practice of making and preparing a release easier, <strong>CD</strong> can either mean <strong>Continuous Delivery</strong> or <strong>Continuous Deployment</strong>.</p>
+
+            <h2>Continuous Integration (CI)</h2>
+
+            <p><strong>Continuous Integration (CI)</strong> is the process of automating the build and testing of code every time a team member commits changes to version control. Committing code triggers an automated build system. CI has emerged as best practice to allow developers to integrate their changes with the rest of the team's code base. This has a few benefits:</p>
+
+            <ul>
+                <li>Reduces potential merge conflicts as code is merged once completed.</li>
+                <li>Reduces bugs by catching them earlier in the development cycle.</li>
+                <li>Automated tests run for every build to ensure builds maintain a consistent quality. Automated tests are run whenever a new commit is merged or integrated into the main branch.</li>
+            </ul>
+
+            <p>Developers that practice CI merge changes back to the main branch as often as possible so the changes can be validated and automated tests can run againts the build. This helps to avoid the "integration hell" that usually happens when developers wait to merge changes into a release branch.</p>
+
+            <p>The process - using a modern version control system such as Git:</p>
+
+            <ul>
+                <li>A developer will complete a code change on a feature branch and submit a "pull request" (PR) once the feature is complete.</li>
+                <li>On approval of the PR, the changes get merged into the master branch.</li>
+                <li>The developer can then delete the feature branch.</li>
+                <li>Build definitions are created to ensure that every commit to the master branch triggers the automated build and testing process.</li>
+            </ul>
+
+            <h2>Continuous Delivery (CD)</h2>
+
+            <p><strong>Continuous Delivery (CD)</strong> is the process to build, test, configure and deploy from a build to a production environment.</p>
+
+            <p>It is an extension of CI to make sure you can release new changes to your users quickly. This means, that on top of having automated your testing, you've also automated your release process and can deploy your application at any point of time by clicking on a button.</p> 
+
+            <p>With Continuous Delivery (CD), you can therefore decide to release when you want (daily, weekly, or whatever suits your needs). Ideally you should deploy to production as early as possible to make sure that you release small batches that are easy to troubleshoot in the case of problems.</p>
+
+            <p>Multiple testing or staging environments create a <strong>Release Pipeline</strong> to automate the deployment of a new build. <strong>Continuous Integration (CI)</strong> starts the <strong>CD</strong> process and the pipeline stages each successive environment to the next upon successful completion of tests.</p>
+
+            <p>This process helps to remove the previous manual processes that led to unreliable releases that can produce delayes and errors.</p>
+
+            <h2>Continuous Deployment (CD)</h2>
+
+            <p><strong>Continuous Deployment (CD)</strong> goes one step further that Continuous Delivery. With this practice, every change that passes all stages of your production pipeline is released to production. There's no human intervention and only a failed test will prevent a new change from being deployed.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
