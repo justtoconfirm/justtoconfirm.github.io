@@ -194,6 +194,40 @@ render(
     </code>
 </pre> 
 
+            <p>Each one of these simple components is a duplicate of the other, to keep it simple, with a single label showing the page (or component) being viewed as you navigate through the application. Here's an example of the code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// components/About.js
+
+import React from 'react'
+
+const About = () => (
+    &lt;h1&gt;About&lt;/h1&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// components/Error.js
+
+import React from 'react'
+
+const Error = () => (
+    &lt;h1&gt;Error&lt;/h1&gt;
+)
+
+export default Error
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <p>If an incorrect URL or error occurs, an error page will need to be displayed. For this, we add a normal <strong>&lt;Route&gt;</strong> without a path. You will need to create an Error component also to render. Update your <strong>index.js</strong> file to import and add the new Error route.</p>
 
 <pre>
