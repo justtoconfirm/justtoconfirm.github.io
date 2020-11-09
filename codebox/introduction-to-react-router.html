@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to React Router">
+
+	<title>Codebox - Introduction to React Router</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to React Router</h1>
+
+            <p>Many modern websites are actually made up of a single page, they just look like multiple pages because they contain components which render like separate pages. This type of website is usually referred to as a <strong>Single Page Application (SPA)</strong>.</p>
+
+            <p>React Router allows certain components to be rendered conditionally to be displayed depending on the <strong>route</strong> being used in the URL (<strong>/</strong> for the <strong>home</strong> page or <strong>/about</strong> for the <strong>about</strong> page, for example).</p>
+
+            <h2>Install React Router</h2>
+
+            <p>We first have to install React Router using <strong>NPM (Node Package Manager)</strong>. Begin by opening your terminal and installing the package as a dependency:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react-router-dom --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Adding React Router</h2>
+
+            <p>Next, you'll need to set up your app to work with React Router. Everything that gets rendered will need to go inside the <strong>&lt;BrowserRouter&gt;</strong> element, so we need to wrap the <strong>&lt;App /&gt;</strong> component first.</p> 
+
+            <p>First import the <strong>BrowserRouter</strong> element from React Router into the <strong>index.js</strong> file.</p>
+
+            <p>Open your <strong>index.js</strong> file and add the updated code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+
+const App = () => {
+  return (
+    // Example code - this renders 'Hello World' on the page
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In your <strong>App</strong> component, add the <strong>Switch</strong> element. This will need to also be imported, like the <strong>BrowserRouter</strong> element, from React Router. This ensures that only one component is rendered at a time. You may want to wrap this with the HTML5 &lt;main&gt; element if you wish.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
+
+const App = () => {
+  return (
+    &lt;main role="main"&gt;
+        &lt;Switch&gt;
+            
+            // Code here
+        
+        &lt;/Switch&gt;
+    &lt;/main&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+    
+            <p>It's now time to add your <strong>&lt;Route&gt;</strong> tags. These are the links between the components and should be placed inside the <strong>&lt;Switch&gt;</strong> tags.</p>
+
+            <p>To tell the <strong>&lt;Route&gt;</strong> tags which component to load, simply add a <strong>path</strong> attribute and the name of the component you want to load with the <strong>component</strong> attribute.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
+
+const App = () => {
+  return (
+    &lt;main role="main"&gt;
+        &lt;Switch&gt;
+            &lt;Route path="/" component={Home} exact /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+            &lt;Route path="/contact" component={Contact} /&gt;
+        &lt;/Switch&gt;
+    &lt;/main&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+    
+            <p>Many homepage URLs are the same site followed by "/". In this example, we added <strong>exact</strong> to the Route tag. This is because the other URLs also contain "/", so if we don't tell the app that it needs to look for just "/", it loads the first one to match the route and can lead to a bug.</p>
+
+            <p>We're now going to create components that will render as pages within our SPA. Each component will be a 'page' and the file directory within src will look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    src /
+        components /
+            About.js
+            Contact.js
+            Home.js
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Within the <strong>index.js</strong> file, import each of these components and import the <strong>Route</strong> element from React Router.</p> 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+
+const App = () => {
+  return (
+    &lt;main role="main"&gt;
+        &lt;Switch&gt;
+            &lt;Route path="/" component={Home} exact /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+            &lt;Route path="/contact" component={Contact} /&gt;
+        &lt;/Switch&gt;
+    &lt;/main&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>If an incorrect URL or error occurs, an error page will need to be displayed. For this, we add a normal <strong>&lt;Route&gt;</strong> without a path. You will need to create an Error component also to render. Update your <strong>index.js</strong> file to import and add the new Error route.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+import Error from './components/Error'
+
+const App = () => {
+  return (
+    &lt;main role="main"&gt;
+        &lt;Switch&gt;
+            &lt;Route path="/" component={Home} exact /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+            &lt;Route path="/contact" component={Contact} /&gt;
+            &lt;Route component={Error} /&gt;
+        &lt;/Switch&gt;
+    &lt;/main&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>   
+
+            <p>Your file directory should now look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    src /
+        components /
+            About.js
+            Contact.js
+            Error.js
+            Home.js
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <h2>Adding Navigation</h2>
+
+            <p>So far our site can only be navigated by typing the URLs into the address bar. To add clickable links to the site, we use the <strong>&lt;Link&gt;</strong> element from React Router. We can setup a new component called <strong>Navbar</strong> and import this into our index.js file to render navigation links within our application.</p> 
+
+            <p>To use the <strong>&lt;Link&gt;</strong> element, you will need to import it into your component.</p>
+
+            <p>Open a new file and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const Navbar = () => (
+  &lt;&gt;
+    &lt;Link to='/'&gt;Home&lt;/Link&gt;
+    &lt;Link to='/about'&gt;About&lt;/Link&gt;
+    &lt;Link to='/contact'&gt;Contact&lt;/Link&gt;
+  &lt;/&gt;
+)
+
+export default Navbar
+<!-- Just leave this line alone -->
+    </code>
+</pre>   
+
+            <p>We can then import this component into the index.js file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import Navbar from './components/Navbar'
+
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+import Error from './components/Error'
+
+const App = () => {
+  return (
+    &lt;Navbar /&gt;
+
+    &lt;main role="main"&gt;
+        &lt;Switch&gt;
+            &lt;Route path="/" component={Home} exact /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+            &lt;Route path="/contact" component={Contact} /&gt;
+            &lt;Route component={Error} /&gt;
+        &lt;/Switch&gt;
+    &lt;/main&gt;
+  )
+}
+
+render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;,
+  document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Your file structure should now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    src /
+        components /
+            About.js
+            Contact.js
+            Error.js
+            Home.js
+            Navbar.js
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Your site now has clickable links that allow you to navigate around your application.</p>
+
+            <p>You will need to rebuild your React application to apply these changes.</p>
+
+            <h2>Setting up a development server</h2>
+
+            <p>To run React Router we need a server. During development, a local (development) server is best. For this example, we can use Webpack with a development server that provides live reloading. The <strong>webpack-dev-server</strong> should only be used during development.</p>
+
+            <p>First, install the module as a devDependency:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install webpack-dev-server --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next, open your package.json file and add a script to run the server:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "start": "webpack-dev-server"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Now run the server from within the terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run start
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In your <strong>webpack.config.js</strong> file, add <strong>devServer</strong> if not already added to set the <strong>historyApiFallback</strong> property to be 'true'.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+devServer: {
+    historyApiFallback: true
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Now when you run your server, your React application will run on port <strong>8080</strong> and React Router will work. Here are the URLs from our example:</p>
+
+            <ul>
+                <li><strong>Homepage</strong> - <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></li>
+                <li><strong>About</strong> - <a href="http://localhost:8080/about" target="_blank">http://localhost:8080/about</a></li>
+                <li><strong>Contact</strong> - <a href="http://localhost:8080/contact" target="_blank">http://localhost:8080/contact</a></li>
+            </ul>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
