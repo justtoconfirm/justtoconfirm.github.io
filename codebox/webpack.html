@@ -20,7 +20,9 @@
 
 			<h1>Webpack</h1>
 
-            <p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript files for use in the browser.</p>
+            <p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript files for use in the browser. As a module bundler, Webpack packs all your code as bundles for the browser and allows you to write the latest, modern JavaScript with Babel or using TypeScript. This can then be compiled into code that is cross-browser compatible and minified.</p>
+
+            <p>Both the <strong>vue create</strong> and <strong>create-react-app</strong> tools rely on Webpack under the hood.</p>
 
             <p>Webpack has four main concepts that need to be understood:</p>
 
@@ -53,6 +55,11 @@
     </pre>
 </div>
 <!-- / Terminal -->
+
+            <ul>
+                <li><strong>webpack</strong> - the module and asset bundler.</li>
+                <li><strong>webpack-cli</strong> - the command-line interface for Webpack.</li>
+            </ul>
 
             <p>Open your <strong>package.json</strong> file and create a script to run Webpack.</p>
 
@@ -187,6 +194,97 @@ package.json
 src /
     index.js
 webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The first part of setting up a Webpack config file is defining the <strong>entry point</strong>, what file or files Webpack will look for to compile and where to find them. In our example, we set the entry point to be <strong>src/index.js</strong>. Open the <strong>webpack.config.js</strong> file and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const path = require('path')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>output</strong> is where the bundled file will resolve. By default the output is the <strong>dist</strong> folder which is where our code gets built. The <strong>[name]</strong> in the output will be <strong>main</strong>, as specified in the entry object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const path = require('path')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    }
+
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can see that when we run our build, Webpack will generate a bundled file named <strong>main.bundle.js</strong> and this will be output in the <strong>dist</strong> folder.</p>
+
+            <p>We can change the name of the bundle if the production or development mode is used from within the output. Begin by importing an <strong>environment variable</strong> on line one of the <strong>webpack.config.js</strong> file. Next, add a ternary into the filename property inside output. The code below shows these two updates:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    }
+
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now update your <strong>package.json</strong> file to pass in the values of <strong>'production'</strong> or <strong>'development'</strong> when a build script is run.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "build": "NODE_ENV=production webpack --mode=production",
+    "build:dev": "NODE_ENV=development webpack --mode=development",
+} 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When the production build script is run, the value of <strong>'production'</strong> is passed to the <strong>NODE_ENV</strong> environment variable and this in-turn is passed into the <strong>webpack.config.js</strong>. This will output a minified bundle with the filename of <strong>main.bundle.min.js</strong>.</p>
+
+            <p>If the development mode is run, the value of <strong>'development'</strong> is passed to the <strong>NODE_ENV</strong> variable and into the <strong>webpack.config.js</strong> file which then outputs the bundle name of <strong>main.bundle.js</strong> using the 'else' part of the ternary in the filename property.</p>
+
+            <p>You may want to add a progress flag to each build script to see progress in the terminal as your build runs.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "build": "NODE_ENV=production webpack --mode=production --progress",
+    "build:dev": "NODE_ENV=development webpack --mode=development --progress",
+} 
 <!-- Just leave this line alone -->
     </code>
 </pre>
