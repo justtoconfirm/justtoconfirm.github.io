@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Guide to Webpack">
+
+	<title>Codebox - Webpack</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Webpack</h1>
+
+            <p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript files for use in the browser.</p>
+
+            <p>Webpack has four main concepts that need to be understood:</p>
+
+            <ul>
+                <li><strong>Entry</strong> - the entry point is the module which Webpack uses to start building its internal dependency graph. By default the entry property is set to <strong>index.js</strong>, but we can specify a different module (or multiple modules) in the Webpack configuration file - <strong>webpack.config.js</strong></li>
+                <li><strong>Output</strong> - the output property provides Webpack the location of where to emit the bundle(s) and what name(s) to use for the file(s). The default value for this property is <strong>main.js</strong> for the main bundle and all bundles are emitted into a <strong>dist</strong> directory. Alternative values can be specified within a <strong>webpack.config.js</strong> config file.</li>
+                <li><strong>Loaders</strong> - By default, Webpack only understands JavaScript and JSON (JavaScript Object Notation) files. To process other types of file, Webpack uses Loaders. These transform the source code of non-JavaScript modules allowing us to preprocess these files before they're added to the dependency graph.</li>
+                <li><strong>Plugins</strong> - used for any other tasks that loaders cannot do. Plugins provide us with a wide range of solutions including minimisation and optimisation of our code.</li>
+            </ul>
+
+            <p>By default and without a <strong>webpack.config.js</strong> file, Webpack will search for a src directory containing a file named <strong>index.js</strong> in your project. Once the build has completed, a <strong>dist</strong> directory will be created with a generated <strong>main.js</strong> bundled file within. This will be minified as Webpack runs in production mode by default.</p>
+
+            <h2>Install Webpack</h2>
+
+            <p>Using NPM (Node Package Manager), Webpack can be installed. Both the <strong>webpack</strong> and <strong>webpack-cli</strong> packages need to be installed. Open your terminal and install both packages as devDependencies.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install webpack webpack-cli --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Open your <strong>package.json</strong> file and create a script to run Webpack.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "build": "webpack"
+} 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Open your terminal and run Webpack.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>When you run Webpack for the first time you may encounter an error. The default behavior of Webpack is to search for a file named <strong>index.js</strong> within a <strong>src</strong> directory inside your project. Webpack will return an error in the terminal if this directory and/or file cannot be found. Your file structure should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+.gitignore
+package-lock.json
+package.json
+src /
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>.gitignore</strong> and <strong>node_modules</strong> file and directory have been added to demonstrate the likely file structure. The <strong>index.js</strong> file can be a very simple example file to get Webpack running.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/index.js
+
+console.log('Hello World');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Webpack will generate a <strong>dist</strong> directory if the build is successful and a bundled <strong>main.js</strong> file will be created. Your file structure will then be updated.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    main.js
+.gitignore
+package-lock.json
+package.json
+src /
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Setting the Mode</h2>
+
+            <p>Webpack introduces the concept of <strong>Mode</strong>. Typically when we develop an application we work with two types of source code, one for development the other for production. Webpack allows us to set which one we want to generate by changing the mode parameter. This parameter can either be <strong>production</strong>, <strong>development</strong> or <strong>none</strong>. This allows Webpack to use built-in optimisation that corresponds to each environment.</p>
+
+            <p>By default, Webpack will always use the production mode. The bundle created will be minified and optimised for production.</p>
+
+            <p>Open the <strong>package.json</strong> file and update the scripts to set the production and development modes:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development"
+} 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can now use either build script to run Webpack in production or development modes.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    # Production mode
+    $ npm run build
+
+    # Development mode
+    $ npm run build:dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Config file</h2>
+
+            <p>Although Webpack is considered as <strong>'zero-configuration'</strong>, a config file can be added to further extend the functionality of Webpack. This config file sits in the root of your project and is named <strong>webpack.config.js</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    main.js
+.gitignore
+package-lock.json
+package.json
+src /
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
