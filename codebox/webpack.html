@@ -481,7 +481,7 @@ webpack.config.js
 </div>
 <!-- / Terminal -->
 
-            <p>In the root of your project create a PostCSS config file named <strong>postcss.config.js</strong> and add the following code:</p>
+            <p>In the root of your project create a <strong>PostCSS</strong> config file named <strong>postcss.config.js</strong> and add the following code:</p>
 
 <pre>
     <code>
@@ -544,7 +544,7 @@ webpack.config.js
     </code>
 </pre>
 
-            <p>Open the webpack.config.js file and update your code to add the four loaders. They compile from last to first, so the last one you'll want in the list is the sass-loader as that needs to compile the SCSS, then PostCSS, then CSS and finally style-loader which will inject the CSS into the DOM.</p>
+            <p>Open the <strong>webpack.config.js</strong> file and update your code to add the four loaders. They compile from last to first, so the last one you'll want in the list is the <strong>sass-loader</strong> as that needs to compile the SCSS, then <strong>PostCSS</strong>, then CSS and finally <strong>style-loader</strong> which will inject the CSS into the DOM.</p>
 
 <pre>
     <code>
@@ -580,9 +580,9 @@ module.exports = {
     </code>
 </pre>
 
-            <p>When you run the build, the SCSS will compile into CSS but you will not see a CSS stylesheet being created. The styling is injected into the DOM via the main.js file.</p>
+            <p>When you run the build, the SCSS will compile into CSS but you will not see a CSS stylesheet being created. The styling is injected into the DOM via the <strong>main.js</strong> file.</p>
 
-            <p>To compile the SCSS into a CSS stylesheet that is exported, we need to use the MiniCssExtractPlugin instead. Begin by installing this plugin as a devDependency using NPM (Node Package Manager).</p>
+            <p>To compile the SCSS into a CSS stylesheet that is exported, we need to use the <strong>MiniCssExtractPlugin</strong> instead. Begin by installing this plugin as a <strong>devDependency</strong> using NPM (Node Package Manager).</p>
 
 <!-- Terminal -->
 <div class="terminal terminal--shadow">
@@ -601,7 +601,7 @@ module.exports = {
 </div>
 <!-- / Terminal -->
 
-            <p>Update your webpack.config.js file to look like the code below:</p>
+            <p>Update your <strong>webpack.config.js</strong> file to look like the code below:</p>
 
 <pre>
     <code>
@@ -656,9 +656,9 @@ module.exports = {
     </code>
 </pre>
 
-            <p>Now when you run the build, a CSS stylsheet called main.css inside a styles directory within dist will be generated. You will notice that both the minified and un-minified CSS stylesheets have a string after the filename. This is caused by the contenthash and will randomly generate on each build if the stylesheet code changes to help with cache busting.</p>
+            <p>Now when you run the build, a CSS stylesheet called <strong>main.css</strong> inside a styles directory within <strong>dist</strong> will be generated. You will notice that both the minified and un-minified CSS stylesheets have a string after the filename. This is caused by the <strong>contenthash</strong> and will randomly generate on each build if the stylesheet code changes to help with cache busting.</p>
 
-            <p>You will need to setup the HtmlWebpackPlugin to apply cache busting to your HTML code for this to work.</p>
+            <p>You will need to setup the <strong>HtmlWebpackPlugin</strong> to apply cache busting to your HTML code for this to work.</p>
 
             <p>Your file structure should now look like this:</p>
 
