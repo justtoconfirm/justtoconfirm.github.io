@@ -37,6 +37,15 @@
 
             <p>By default and without a <strong>webpack.config.js</strong> file, Webpack will search for a src directory containing a file named <strong>index.js</strong> in your project. Once the build has completed, a <strong>dist</strong> directory will be created with a generated <strong>main.js</strong> bundled file within. This will be minified as Webpack runs in production mode by default.</p>
 
+            <h2>Upgrading from Webpack 4 to Webpack 5</h2>
+
+            <p>If you're upgrading from Webpack 4 to Webpack 5, here are a few notes:</p>
+
+            <ul>
+                <li>The <strong>webpack-dev-server</strong> command is now <strong>webpack-serve</strong>.</li>
+                <li>Webpack 5 now has <a href="https://webpack.js.org/guides/asset-modules/" target="_blank" rel="noopener noreferrer">asset modules</a> that replace the need for <strong>file-loader</strong>, <strong>raw-loader</strong> and <strong>url-loader</strong>.</li>
+            </ul>
+
             <h2>Install Webpack</h2>
 
             <p>Using NPM (Node Package Manager), Webpack can be installed. Both the <strong>webpack</strong> and <strong>webpack-cli</strong> packages need to be installed. Open your terminal and install both packages as devDependencies.</p>
