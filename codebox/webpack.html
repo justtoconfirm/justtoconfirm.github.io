@@ -20,6 +20,8 @@
 
 			<h1>Webpack</h1>
 
+            <!-- https://www.taniarascia.com/how-to-use-webpack/ -->
+
             <p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript files for use in the browser. As a module bundler, Webpack packs all your code as bundles for the browser and allows you to write the latest, modern JavaScript with Babel or using TypeScript. This can then be compiled into code that is cross-browser compatible and minified.</p>
 
             <p>Both the <strong>vue create</strong> and <strong>create-react-app</strong> tools rely on Webpack under the hood.</p>
@@ -684,6 +686,119 @@ webpack.config.js
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>HTML template file</h2>
+
+            <p>If we're building a web app, we need an HTML page that will load that JavaScript bundle as a script automatically. This will also allow cache busting to be applied as the template will be updated as the filename for the bundle (or stylesheet) will randomly change.</p>
+
+            <p>We will use the <strong>html-webpack-plugin</strong> to provide this functionality. This generates an HTML file from a template.</p>
+
+            <p>Begin by installing the plugin as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install html-webpack-plugin --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Create a <strong>template.html</strong> file in the <strong>src</strong> folder. We can include variables and other custom information in this template. For this example, we add a custom title, but otherwise it will look like a regular HTML file with a root <strong>&lt;div&gt;</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+
+    &lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main role="main"&gt;
+        &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Update your <strong>webpack.config.js</strong> file to include the plugin and set the title.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].[contenthash].css',
+            chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Boilerplate',
+            template: path.resolve(__dirname, './src/template.html'),   // Template file
+            filename: 'index.html',      // Generated HTML page
+            minify: false
+        })
+    ],
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Run the build and you'll see the <strong>dist</strong> folder now contains an <strong>index.html</strong> file with the bundle loaded in.</p>
+
+            <p>In production mode the HTML minification is enabled by default. So we have disabled the minification by setting the <strong>minify</strong> property to <strong>false</strong> for the HTML within the HTMLWebpackPlugin options.</p>
 
 		</div>
 	</div>
