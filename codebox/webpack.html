@@ -224,8 +224,7 @@ const path = require('path')
 module.exports = {
     entry: {
         main: path.resolve(__dirname, './src/index.js')
-    }
-
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js'
@@ -248,8 +247,7 @@ const path = require('path')
 module.exports = {
     entry: {
         main: path.resolve(__dirname, './src/index.js')
-    }
-
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
@@ -288,6 +286,164 @@ module.exports = {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Setup Babel</h2>
+
+            <p>We're going to setup a rule that checks for an <strong>.js</strong> file in the project (not including <strong>node_modules</strong>) and uses Babel to transpile our code. For this to work we need a few fewer dependencies installed:</p>
+
+            <ul>
+                <li><strong>babel-loader</strong> - transpile files with Babel and Webpack.</li>
+                <li><strong>@babel/core</strong> - transpile ES2015 (ES6) and above to backwards compatible JavaScript. Useful for older browsers like IE.</li>
+                <li><strong>@babel/preset-env</strong> - Smart defaults for Babel.</li>
+            </ul>
+
+            <p>As an example, add the following code into your index.js file and run your Webpack build:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Game {
+    name = 'Violin Charades'
+} 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Without Babel installed, we may get an error like the one below:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">Error</div>
+    </div>
+    <pre class="terminal__body terminal__body--error">
+<!-- Just leave this line alone -->
+    ERROR in ./src/index.js 4:6<br>
+    Module parse failed: Unexpected token (4:6)<br>
+    You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file.
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Install Babel, and the additional dependencies, using NPM (Node Package Manager) as devDependencies.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install babel-loader @babel/core @babel/preset-env --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once installed, update the <strong>webpack.config.js</strong> file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            }
+        ]
+    },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Create a <strong>.babelrc</strong> file in the root of your project. This will add a lot of defaults with <strong>preset-env</strong> and any additional plugins you may want to use for Babel.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": ["@babel/preset-env"]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Your file structure should now look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+.babelrc
+dist /
+    main.js
+.gitignore
+package-lock.json
+package.json
+src /
+    index.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This will still throw an error as we are attempting to parse a ES6 class. To fix this issue, install the <strong>@babel/plugin-proposal-class-properties</strong> package and update the <strong>.babelrc</strong> config file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @babel/plugin-proposal-class-properties --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Your <strong>.babelrc</strong> config file should now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+    
+            <p>Should you want to setup Webpack with Babel for a React project, this has been documented within the <a href="getting-started-with-react.html">React setup guide</a>.</p>
 
 		</div>
 	</div>
