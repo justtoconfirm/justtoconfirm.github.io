@@ -445,6 +445,246 @@ webpack.config.js
     
             <p>Should you want to setup Webpack with Babel for a React project, this has been documented within the <a href="getting-started-with-react.html">React setup guide</a>.</p>
 
+            <h2>Adding Styles</h2>
+
+            <p>Using a style loader is necessary to be able to import a CSS or stylesheet into your scripts. In some instances, developers are using <strong>CSS-in-JSS</strong> styled components and new tools to bring styles into their JavaScript apps.</p>
+
+            <p>To keep it simple, we want to use <strong>PostCSS</strong> which will allow us to use the latest CSS features in any browser and we want to consider the use of <strong>Sass/SCSS</strong> as a CSS preprocessor.</p>
+
+            <p>Here are some of the packages we may look to install as devDependencies:</p>
+
+            <ul>
+                <li><strong>sass-loader</strong> - load SCSS and compile into CSS</li>
+                <li><strong>node-sass</strong> - Node Sass</li>
+                <li><strong>postcss-loader</strong> - Process CSS with PostCSS</li>
+                <li><strong>postcss-preset-evn</strong> - Sensible defaults for PostCSS</li>
+                <li><strong>css-loader</strong> - Resolve CSS imports</li>
+                <li><strong>style-loader</strong> - Inject CSS into the DOM (Document Object Model)</li>
+            </ul>
+
+            <p>Just like with Babel, we will need to first install these packages:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install sass-loader postcss-loader css-loader style-loader postcss-preset-env node-sass --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In the root of your project create a PostCSS config file named <strong>postcss.config.js</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    plugins: {
+        'postcss-preset-env': {
+        browsers: 'last 2 versions',
+        },
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In your <strong>src</strong> directory, create a new folder named <strong>styles</strong> and add a <strong>main.scss</strong> file containing the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+$font-size: 1rem;
+
+html {
+    font-size: $font-size;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Update the <strong>index.js</strong> file to import the SCSS file into your bundle. This will allow Webpack to locate your styling.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import './src/styles/main.scss'
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Your file directory should look something like this (the order may differ slightly):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    main.bundle.js
+    main.bundle.min.js
+src /
+    styles /
+        main.scss
+    index.js
+.gitignore
+package-lock.json
+package.json
+.babelrc
+postcss.config.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Open the webpack.config.js file and update your code to add the four loaders. They compile from last to first, so the last one you'll want in the list is the sass-loader as that needs to compile the SCSS, then PostCSS, then CSS and finally style-loader which will inject the CSS into the DOM.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+            }
+        ]
+    },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When you run the build, the SCSS will compile into CSS but you will not see a CSS stylesheet being created. The styling is injected into the DOM via the main.js file.</p>
+
+            <p>To compile the SCSS into a CSS stylesheet that is exported, we need to use the MiniCssExtractPlugin instead. Begin by installing this plugin as a devDependency using NPM (Node Package Manager).</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install mini-css-extract-plugin --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Update your webpack.config.js file to look like the code below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].[contenthash].css',
+            chunkFilename: '[id].css',
+        })
+    ],
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now when you run the build, a CSS stylsheet called main.css inside a styles directory within dist will be generated. You will notice that both the minified and un-minified CSS stylesheets have a string after the filename. This is caused by the contenthash and will randomly generate on each build if the stylesheet code changes to help with cache busting.</p>
+
+            <p>You will need to setup the HtmlWebpackPlugin to apply cache busting to your HTML code for this to work.</p>
+
+            <p>Your file structure should now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    styles/
+        main.8bifb9933023023.css    // This will be randomly generated
+    main.bundle.js
+    main.bundle.min.js
+src /
+    styles /
+        main.scss
+    index.js
+.gitignore
+package-lock.json
+package.json
+.babelrc
+postcss.config.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>
