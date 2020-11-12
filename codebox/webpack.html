@@ -809,6 +809,418 @@ module.exports = {
 
             <p>In production mode the HTML minification is enabled by default. So we have disabled the minification by setting the <strong>minify</strong> property to <strong>false</strong> for the HTML within the HTMLWebpackPlugin options.</p>
 
+            <h2>Images</h2>
+
+            <p>You'll want to be able to import images directly into your JavaScript files but this is something JavaScript cannot do by default. Webpack has built-in <stong>asset modules</stong> we can use for static assets. For image types, we will use <strong>asset/resource</strong>. This is a type and not a loader.</p>
+
+            <p>You will need to update the index.js file to import the image you want to use.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import example from './images/example.png'
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Your file structure should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    styles/
+        main.8bifb9933023023.css    // This will be randomly generated
+    main.bundle.js
+    main.bundle.min.js
+    index.html
+src /
+    images /
+        example.png
+    styles /
+        main.scss
+    index.js
+.gitignore
+package-lock.json
+package.json
+.babelrc
+postcss.config.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, update your <strong>webpack.config.js</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            },
+            // Images
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource'
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].[contenthash].css',
+            chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Boilerplate',
+            template: path.resolve(__dirname, './src/template.html'),   // Template file
+            filename: 'index.html',      // Generated HTML page
+            minify: false
+        })
+    ],
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can add an image to our <strong>src</strong> directory and when the build runs it will output to the <strong>dist</strong> folder. This will generate the image file but with a random hash. We may want to simply generate the image with the same file name as the file in the <strong>src</strong> directory. For this, we add the <strong>assetModuleFilename</strong> property into <strong>output</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            },
+            // Images
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource'
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].[contenthash].css',
+            chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Boilerplate',
+            template: path.resolve(__dirname, './src/template.html'),   // Template file
+            filename: 'index.html',      // Generated HTML page
+            minify: false
+        })
+    ],
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js',
+        assetModuleFilename: 'images/[name][ext]'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The JavaScript bundles are currently generated within the <strong>dist</strong> folder, but should perhaps be in a sub-directory named <strong>scripts</strong> inside dist. For this, the filename path will be updated within the <strong>output</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: env === 'production' ? 'scripts/min/[name].bundle.min.js' : 'scripts/[name].bundle.js',
+    assetModuleFilename: 'images/[name][ext]'
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The file structure will now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+node_modules
+dist /
+    images /
+        example.png
+    scripts /
+        min /
+            main.bundle.min.js
+        main.bundle.js
+    styles/
+        main.8bifb9933023023.css    // This will be randomly generated
+    index.html
+src /
+    images /
+        example.png
+    styles /
+        main.scss
+    index.js
+.gitignore
+package-lock.json
+package.json
+.babelrc
+postcss.config.js
+webpack.config.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Tidy-up of the file structure</h2>
+
+            <p>To further enhance the file structure and to create a tidy directory, let's update our Webpack config file to set a minified sub-directory for our stylesheet in the <strong>dist</strong> folder.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Extracts CSS into separate files
+new MiniCssExtractPlugin({
+    filename: env === 'production' ? 'styles/min/[name].[contenthash].min.css' : 'styles/[name].[contenthash].css',
+    chunkFilename: '[id].css',
+}),
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We may also want to reduce the length of the <strong>contenthash</strong> to 8 digits by adding a value for the CSS and JavaScript files.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Extracts CSS into separate files
+new MiniCssExtractPlugin({
+    filename: env === 'production' ? 'styles/min/[name].[contenthash:8].min.css' : 'styles/[name].[contenthash:8].css',
+    chunkFilename: '[id].css',
+}),
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is the full code for the webpack.config.js file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            },
+            // Images
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource'
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: env === 'production' ? 'styles/min/[name].[contenthash:8].min.css' : 'styles/[name].[contenthash:8].css',
+            chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Boilerplate',
+            template: path.resolve(__dirname, './src/template.html'),   // Template file
+            filename: 'index.html',      // Generated HTML page
+            minify: false
+        })
+    ],
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? 'scripts/min/[name].[contenthash:8].bundle.min.js' : 'scripts/[name].[contenthash:8].bundle.js',
+        assetModuleFilename: 'images/[name][ext]'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Creating Vendor & Runtime bundles</h2>
+
+            <p>The <strong>runtime</strong> is all the code Webpack needs to connect your modular application while it's running in the browser. It contains the loading and resolving logic needed to connect your modules as they interact including connecting modules that have already been loaded into the browser as well as logic to lazy-load the ones that haven't.</p>
+
+            <p>The runtime bundle generated should be placed as the first bundle script added to your HTML.</p>
+
+            <p>The <strong>vendor</strong> bundle contains any code from packages you install and then import into your <strong>index.js</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const env = process.env.NODE_ENV
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+    entry: {
+        main: path.resolve(__dirname, './src/index.js')
+    },
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            // SCSS/CSS
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2,
+                            sourceMap: false,
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
+            },
+            // Images
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource'
+            }
+        ]
+    },
+    plugins: [
+        // Extracts CSS into separate files
+        new MiniCssExtractPlugin({
+            filename: env === 'production' ? 'styles/min/[name].[contenthash:8].min.css' : 'styles/[name].[contenthash:8].css',
+            chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Boilerplate',
+            template: path.resolve(__dirname, './src/template.html'),   // Template file
+            filename: 'index.html',      // Generated HTML page
+            minify: false
+        })
+    ],
+    optimization: {
+        // Create the runtime bundle for all chunks containing the bootstrap code for Webpack
+        runtimeChunk: {
+            name: 'runtime'
+        },
+        // Allow shared and vendor dependencies to be split into separate bundles
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/i,
+                    chunks: 'all',
+                    name: 'vendor'
+                }
+            }
+        }
+    },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: env === 'production' ? 'scripts/min/[name].[contenthash:8].bundle.min.js' : 'scripts/[name].[contenthash:8].bundle.js',
+        assetModuleFilename: 'images/[name][ext]'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>
