@@ -22,13 +22,15 @@
 
             <h2>List</h2>
 
+            <p>We are going to build a simple React component that will render an unordered list.</p>
+
 <pre>
     <code>
 <!-- Just leave this line alone -->
 import React from 'react'
 
 const List = ({ listItems }) =&gt; (
-    &lt;ul className="a-list"&gt;
+    &lt;ul&gt;
         {listItems.map(item =&gt; (
             &lt;li key={item}&gt;{item}&lt;/li&gt;
         ))}
@@ -71,6 +73,14 @@ export default About
 </pre>
 
             <p>Here we are passing the values from the <strong>myList</strong> array into the <strong>listItems</strong> prop and this in-turn is being passed into our <strong>List</strong> component to render an unordered list onto the page.</p>
+
+            <p>This will render the following on the page:</p>
+
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
 
 		</div>
 	</div>
