@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Building React Components">
+
+	<title>Codebox - React Components</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>React Components</h1>
+
+            <h2>List</h2>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const List = ({ listItems }) =&gt; (
+    &lt;ul className="a-list"&gt;
+        {listItems.map(item =&gt; (
+            &lt;li key={item}&gt;{item}&lt;/li&gt;
+        ))}
+    &lt;/ul&gt;
+)
+
+export default List
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we want to pass data into our List component and the <strong>listItems</strong> prop, we need to first import our List component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import List from './List'
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our example <strong>About</strong> component may look something like the example below.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import List from './List'
+
+// These are the values we are passing into the List component
+const mylist = ['a', 'b', 'c']
+
+const About = () => (
+    &lt;List listItems={mylist} /&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here we are passing the values from the <strong>myList</strong> array into the <strong>listItems</strong> prop and this in-turn is being passed into our <strong>List</strong> component to render an unordered list onto the page.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
