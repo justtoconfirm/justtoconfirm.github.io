@@ -220,6 +220,146 @@ hotel.name = '';
     </code>
 </pre>
 
+            <h2>Object Destructuring</h2>
+
+            <ul>
+                <li>Helps to reduce the amount of code you need to write.</li>
+                <li>Allows you to access properties of an object more easily.</li>
+                <li>Is a feature of the ES6 syntax.</li>
+            </ul>
+
+            <p>Object destructuring allows you to create new variables using an object property as a value. Consider an example object that represents a note with properties of <strong>id</strong>, <strong>title</strong> and <strong>date</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const note = {
+    id: 1,
+    title: 'Remember the dog food',
+    date: '01/01/1970'
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Traditionally if you want to create a new variable for each property, you would need to assign each property to a variable and this is very repetative.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const id = note.id;
+const title = note.title;
+const date = note.date;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+    
+            <p>With <strong>object destructuring</strong>, this can all be done on a single line of code. By surrounding each variable in curly brackets, JavaScript will create new variables from each property with the same name.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Destructure properties into variables
+const {id, title, date} = note;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The variables are created with the same name as the object property. If you want the variable to have a different name, we use a colon (:) as seen with this example to change the variable name of <strong>id</strong> to be <strong>noteId</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Destructure properties into variables
+const {id: noteId, title, date} = note;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then output these variables to get their values:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log(id);
+console.log(title);
+console.log(date);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Destructuring an object does not modify the original object.</p>
+
+            <p>You can also destructure nested object values. For example, update the <strong>note</strong> object to have a nested <strong>author</strong> object:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const note = {
+    id: 1,
+    title: 'Remember the dog food',
+    date: '01/01/1970',
+    author: {
+        firstName: 'Sherlock',
+        lastName: 'Holmes'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In this example, the <strong>author</strong> object itself is not accessible. In order to access this object as well as its nested values, you would need to declare them separately.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const note = {
+    id: 1,
+    title: 'Remember the dog food',
+    date: '01/01/1970',
+    author,
+    author: {
+        firstName: 'Sherlock',
+        lastName: 'Holmes'
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then destructure <strong>note</strong> then destructure once again to create variables from the <strong>author</strong> properties:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Destructure properties into variables
+const {id, title, date, author: {firstName, lastName}} = note;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>firstName</strong> and <strong>lastName</strong> can be logged using <strong>template literals</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log(`${firstName} ${lastName}`);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Destructuring can also be used to access the object properties of primitive values. For example, <strong>String</strong> is a global object for strings and has a length property:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const {length} = 'A string';
+
+console.log(length);        // 8
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>

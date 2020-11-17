@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript events">
+
+	<title>Codebox - JavaScript Events</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Events</h1>
+
+            <p><strong>Events</strong> in JavaScript are actions that have taken place in the browser. Here are a few common events that can happen on a website:</p>
+
+            <ul>
+                <li>The page finishes loading</li>
+                <li>The user clicks a button</li>
+                <li>The user hovers over a dropdown</li>
+                <li>The user submits a form</li>
+                <li>The user presses a key on their keyboard</li>
+            </ul>
+
+            <p>When a user clicks a button or presses a key, an event is fired. This is a click event or keyboard event. An <strong>event handler</strong> is a JavaScript function that runs when an event fires.</p>
+
+            <ul>
+                <li><strong>Event handler</strong> - set one event on an element.</li>
+                <li><strong>Event listeners</strong> - set multiple events on an element.</li>
+            </ul>
+
+            <p>In this example, we have an HTML <strong>&lt;button&gt;</strong> element and a paragraph tag:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;button&gt;Click&lt;/button&gt;
+
+&lt;p&gt;This will change&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We will access the button element in our JavaScript code and call a function named <strong>changeText()</strong> when the button is clicked using the <strong>onclick event handler</strong>. This will change the text in the <strong>&lt;p&gt;</strong> tag on the page. Notice the onclick event handler does not follow the usual camelCase naming convention and is not onClick.</p>
+
+            <p>We do not include the parentheses when passing a reference to the <strong>changeText</strong> function as we are not invoking the function in that moment, only passing a reference to it.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const label = document.querySelector('p');
+const button = document.querySelector('button');
+
+const changeText = () => {
+    label.textContent = 'Updated text';
+}
+
+// Add the event handler as a property of the button element
+button.onclick = changeText;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Using an event handler property can have a few hurdles. For example, trying to set multiple, seperate onclick properties will cause at least one to be overwritten, as this example demonstrates:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const label = document.querySelector('p');
+const button = document.querySelector('button');
+
+// This won't be displayed
+const changeText = () => {
+    label.textContent = 'Updated text';
+}
+
+// This will be displayed
+const alertText = () => {
+    alert('This is an alert!');
+}
+
+// Add the event handler as a property of the button element
+button.onclick = changeText;
+button.onclick = alertText;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Only the <strong>alertText()</strong> function will run as it was the last code to be added.</p>
+
+            <p><strong>Event listeners</strong> watches for an event on an element. Instead of assigning the event directly to a property on the element, we use the <strong>addEventListener()</strong> method to listen for the event.</p>
+
+            <p>The <strong>addEventListener()</strong> method has two mandatory parameters, the event to be listening for and the listener callback function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const label = document.querySelector('p');
+const button = document.querySelector('button');
+
+const changeText = () => {
+    label.textContent = 'Updated text';
+}
+
+// Listen for a click event using the event listener
+button.addEventListener('click', changeText);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With a click event, the property is referred to as <strong>onclick</strong>, but with event listeners it's referred to as <strong>click</strong>.</p>
+
+            <p>They may look similar to event handlers, but <strong>event listeners</strong> can be used to <strong>set multiple events on the same element</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const label = document.querySelector('p');
+const button = document.querySelector('button');
+
+const changeText = () => {
+    label.textContent = 'Updated text';
+}
+
+const alertText = () => {
+    alert('This is an alert!');
+}
+
+// Multiple event listeners can be added to the same event and element
+button.addEventListener('click', changeText);
+button.addEventListener('click', alertText);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In this example, both events will fire. We can also use <strong>anonymous functions</strong> instead of a function reference on an event listener.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const label = document.querySelector('p');
+const button = document.querySelector('button');
+
+// Anonymous function on an event listener
+button.addEventListener('click', () => {
+   label.textContent = 'Updated text'; 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>It's also possible to use the <strong>removeEventListener()</strong> method to remove one or all events from an element:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Remove the alert function from the button element
+button.removeEventListener('click', alertText);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Keyboard Events</h2>
+
+            <p><strong>Keyboard events</strong> are used for handling keyboard actions, such as pressing or holding down a key. Keyboard events have specific properties for accessing individual keys. In this example, we pass a parameter through to the event listener known as an <strong>event object</strong>. Using this object, we can access more information about the action that took place.</p>
+
+            <ul>
+                <li><strong>keyCode</strong> - A number pertaining to the key (e.g. 65)</li>
+                <li><strong>key</strong> - This represents the character name (e.g. a)</li>
+                <li><strong>code</strong> - This represents the physical key being pressed (e.g. KeyA)</li>
+            </ul>
+
+            <p>Let's write some code to output these objects when we press a letter on the keyboard and log the result:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.addEventListener('keydown', (event) => {
+   console.log('keyCode: ' + event.keyCode);
+   console.log('key: ' + event.key);
+   console.log('code: ' + event.code); 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can write code that will output the direction when you press the keys: <strong>a</strong>, <strong>s</strong>, <strong>d</strong> or <strong>w</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Pass an event through to a listener
+document.addEventListener('keydown', (event) => {
+    var element = document.querySelector('p')
+
+    // Set variables for keydown codes
+    var a = 'KeyA'
+    var s = 'KeyS'
+    var d = 'KeyD'
+    var w = 'KeyW'
+
+    // Set a direction for each code
+    switch (event.code) {
+        case a:
+            element.textContent = 'Left'
+            break
+        case s:
+            element.textContent = 'Down'
+            break
+        case d:
+            element.textContent = 'Right'
+            break
+        case w:
+            element.textContent = 'Up'
+            break
+    }
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
