@@ -41,9 +41,56 @@
 
             <p>We now have a test realtime database created in Firebase. We now need to set the configuration for this database in our application using JavaScript.</p>
 
-            <p>You can find your <strong>Realtime Database URL</strong> in the <strong>Database</strong> tab in the <strong>Firebase console</strong>. It will be in the form of <strong>https://&lt;databaseName&gt;.firebaseio.com/</strong></p> 
+            <p>Once the database has been created, select the Web option <strong>&lt;/&gt;</strong> (next to the 'There are no apps in your project' label) in the <strong>Your apps</strong> panel. From here your code to embed into your HTML will be generated and should look like the example below:</p>
 
-            <p>Our database URL is generated as: <strong>https://test-project-af126.firebaseio.com/</strong></p>
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"&gt;&lt;/script&gt;
+&lt;!-- Added so we can use the database method --&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"&gt;&lt;/script&gt;
+
+&lt;!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries --&gt;
+
+&lt;script&gt;
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyCoHhwgDxDbl3UIpM5NdZ7eKUsAJhfeNK8",
+    authDomain: "test-project-af126.firebaseapp.com",
+    databaseURL: "https://test-project-af126.firebaseio.com",
+    projectId: "test-project-af126",
+    storageBucket: "test-project-af126.appspot.com",
+    messagingSenderId: "833435482407",
+    appId: "1:833435482407:web:0f1110df3351db5355d102"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Remember to place this code before the closing <strong>&lt;/body&gt;</strong> tag of your HTML.</p>
+
+            <h2>Reading Data from the Realtime Database</h2>
+
+            <!-- Database has the Name of firstname and the Value of "Dan" -->
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var ref = firebase.database().ref();
+
+ref.on("value", function(snapshot) {
+    console.log(snapshot.val());
+}, function (error) {
+    console.log("Error: " + error.code);
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <!-- Setup API -->
             <!-- https://console.cloud.google.com/projectselector2/apis/api/firebasedatabase.googleapis.com/overview -->
@@ -51,18 +98,17 @@
             <!-- https://firebase.google.com/docs/database/web/start -->
             <!-- https://stackoverflow.com/questions/38248723/firebase-database-is-not-a-function -->
 
-            <p>In your application, add the following Firebase scripts:</p>
             <!-- https://firebase.google.com/docs/web/setup#from-the-cdn -->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"&gt;&lt;/script&gt;
+<!--&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"&gt;&lt;/script&gt;
 &lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"&gt;&lt;/script&gt;
-&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"&gt;&lt;/script&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
 		</div>
 	</div>
