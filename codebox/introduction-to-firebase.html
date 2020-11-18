@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to Firebase">
+
+	<title>Codebox - Introduction to Firebase</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to Firebase</h1>
+
+            <p>Firebase is a platform developed by Google for creating mobile and web applications.</p>
+
+            <p><a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer">https://firebase.google.com/</a></p>
+
+            <p>You will require a Google account, such as Gmail, to access Firebase.</p>
+
+            <h2>Firebase Realtime Database</h2>
+
+            <p>The <strong>Firebase Realtime Database</strong> is a <strong>cloud-hosted</strong>, <strong>NoSQL database</strong>. Data is stored as JSON (JavaScript Object Notation) and is synchronised in realtime to every connected client.</p>
+
+            <ul>
+                <li>Create a Firebase project and in the <strong>Firebase console</strong>, click <strong>Add project</strong>.</li>
+                <li>Enter the name of your project.</li>
+                <li>Choose to setup <strong>Google Analytics</strong> for your project (optional).</li>
+                <li>Click <strong>Continue</strong></li>
+                <li>Navigate to the <strong>Realtime Database</strong> section of the Firebase console and click the <strong>Create Database</strong> button.</li>
+                <li>Select <strong>Start in test mode</strong> to set the Security Rules for our database as we are creating a test database. This will set a trial period for when the test database access will be revoked (after 30 days) and an alert email will be sent once this occurs. Click <strong>Enable</strong>.</li>
+            </ul>
+
+            <p>We now have a test realtime database created in Firebase. We now need to set the configuration for this database in our application using JavaScript.</p>
+
+            <p>You can find your <strong>Realtime Database URL</strong> in the <strong>Database</strong> tab in the <strong>Firebase console</strong>. It will be in the form of <strong>https://&lt;databaseName&gt;.firebaseio.com/</strong></p> 
+
+            <p>Our database URL is generated as: <strong>https://test-project-af126.firebaseio.com/</strong></p>
+
+            <!-- Setup API -->
+            <!-- https://console.cloud.google.com/projectselector2/apis/api/firebasedatabase.googleapis.com/overview -->
+
+            <!-- https://firebase.google.com/docs/database/web/start -->
+            <!-- https://stackoverflow.com/questions/38248723/firebase-database-is-not-a-function -->
+
+            <p>In your application, add the following Firebase scripts:</p>
+            <!-- https://firebase.google.com/docs/web/setup#from-the-cdn -->
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

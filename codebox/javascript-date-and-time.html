@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript date & time">
+
+	<title>Codebox - JavaScript Date & Time</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Date & Time</h1>
+
+            <p>JavaScript comes with a built-in <strong>Date</strong> object and related methods. The Date object is a built-in object in JavaScript that stores date and time. It provides a number of methods for formatting and managing the date and time.</p>
+
+            <p>To use the Date object you first need to create an instance of it. Without any arguments, the Date object corresponds to the current date and time (based on the system's settings).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create a new instance of the Date object and set a variable
+const current = new Date();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Based on the current time and date, the output will be:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Tue Nov 17 2020 23:19:26 GMT+0000 (Greenwich Mean Time)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The date and time are derived from <strong>Unix time</strong>, also called <strong>Epoch time</strong>, which is a value consisting of the number of miliseconds that have passed since midnight on <strong>January 01, 1970</strong>.</p>
+
+            <p>We can use this same instance of the Date object to get a <strong>timestamp</strong> using the <strong>getTime()</strong> method:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+current.getTime();      // 1605655345867
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The value of <strong>1605655345867</strong> in this example is the number of milliseconds that have passed since Epoch time.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
