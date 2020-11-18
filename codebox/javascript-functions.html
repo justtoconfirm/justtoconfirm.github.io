@@ -304,6 +304,94 @@ function func(a, b, c) {
     </code>
 </pre>
 
+            <h2>Destructuring Functions</h2>
+
+            <p><strong>Destructuring syntax</strong> can be applied to destructure the parameters in a function. To test this we will destructure the <strong>keys</strong> and <strong>values</strong> out of <strong>Objects.entries()</strong>. First we declare an object called <strong>note</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const note = {
+    id: 1,
+    title: 'My first note',
+    date: '01/01/1970'
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Given this object, you could list the <strong>key-value</strong> pairs by destructuring arguments as they are passed to the <strong>forEach()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Object.entries(note).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`); 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or you could accomplish the same thing using a <strong>for loop</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+for (let [key, value] of Object.entries(note)) {
+    console.log(`${key}: ${value}`);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Either way, you will receive the following output:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+id: 1
+title: My first note
+date: 01/01/1970
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can extend the object further:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const note = {
+    id: 1,
+    title: 'My first note',
+    author: {
+        firstName: 'Sherlock',
+        lastName: 'Holmes'
+    },
+    tags: ['personal', 'writing', 'investigations']
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then destructure this object whilst setting a new <strong>date</strong> property with the default of new <strong>Date()</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const {
+    id,
+    title,
+    date = new Date(),
+    author = {firstName},
+    tags: [personalTag, writingTag]
+} = note;
+
+console.log(date);      // Wed Nov 18 2020 23:53:49 GMT-0500 (Central Daylight Time)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Getting Multiple Values</h2>
 
             <p>Functions can return more than one value using an array. For example, this function calculates both the area and the volume.</p>

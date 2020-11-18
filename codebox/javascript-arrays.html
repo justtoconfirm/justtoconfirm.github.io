@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript array">
+
+	<title>Codebox - JavaScript Array</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Array</h1>
+
+            <h2>Getting Items from an array</h2>
+
+            <p>Each item in an array has an <strong>index</strong> number. The first item has the index of <strong>0</strong>, the second item has the index of <strong>1</strong>, and so on. If we want to select an item from an array, we use bracket notation and specify the index number.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams[0];       // Chelsea
+teams[1];       // Liverpool
+teams[2];       // Man Utd
+teams[3];       // Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding Items to an array</h2>
+
+            <p>We can use the <strong>push()</strong> method to add a new item to the end of an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams.push('Leicester City');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Iteration</h2>
+
+            <p>The <strong>forEach()</strong> method can be used to loop over each item contained within an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams.forEach(team => {
+    console.log(team); 
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also use a <strong>for loop</strong> which also uses the <strong>length</strong> property:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+// Declare variable so not to declare on each loop
+let i;
+
+for (i = 0; i < teams.length; i++) {
+    console.log(teams[i]);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Getting the length of the array</h2>
+
+            <p>The <strong>length</strong> property can be used to count the total number of items in an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+console.log(teams.length);      // 4
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Array Destructuring</h2>
+
+            <p><strong>Array destructuring</strong> allows you to create new variables using an array item as a value. Consider this example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Arrays in JavaScript <strong>preserve their order</strong>, so the first item will always have the index of <strong>0</strong>, the second will have the index of <strong>1</strong>, and so on. Knowing this, you can create variables from items in the array but this is a manual process and can take up space in your code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+const teamOne = teams[0];       // Chelsea
+const teamTwo = teams[1];       // Liverpool
+const teamThree = teams[2];     // Man Utd
+const teamFour = teams[4];      // Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With array destructuring, you can unpack the values from the array in order and assign them to their own variables.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+const [teamOne, teamTwo, teamThree, teamFour] = teams;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Values can be <strong>skipped</strong> by leaving the destructuring syntax blank between items:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+const [teamOne, , teamThree, teamFour] = teams;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>These variables can then be logged:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log(teamOne);       // Chelsea
+console.log(teamTwo);       // Liverpool
+console.log(teamThree);     // Man Utd
+console.log(teamFour);      // Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>Nested arrays</strong> can also be destructed. First, create a nested array:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Nested Array
+const nestedArray = [1, 2, [3, 4], 5];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then destructure that array and log the new variables:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Nested Array
+const nestedArray = [1, 2, [3, 4], 5];
+
+// Destructure the Array and nested items
+const [one, two, [three, four], five] = nestedArray;
+
+// Log the output
+console.log(one, two, three, four, five);       // 1 2 3 4 5
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
