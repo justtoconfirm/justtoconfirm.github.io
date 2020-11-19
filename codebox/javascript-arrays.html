@@ -20,6 +20,21 @@
 
 			<h1>JavaScript Array</h1>
 
+            <p>An Array in JavaScript is a type of global object that is used to store data. They are useful for storing multiple values in a single variable. Arrays can contain any datatype including <strong>numbers</strong>, <strong>strings</strong> and <strong>objects</strong>.</p>
+
+            <p>An empty array can be declared as with this example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Empty Array
+const array = [];
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is known as an <strong>array literal</strong>.</p>
+
             <h2>Getting Items from an array</h2>
 
             <p>Each item in an array has an <strong>index</strong> number. The first item has the index of <strong>0</strong>, the second item has the index of <strong>1</strong>, and so on. If we want to select an item from an array, we use bracket notation and specify the index number.</p>
@@ -38,7 +53,51 @@ teams[3];       // Millwall
     </code>
 </pre>
 
-            <h2>Adding Items to an array</h2>
+            <p>Attempting to access an item that doesn't exist will return <strong>undefined</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+teams[10];       // undefined
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In order to access items in a <strong>nested array</strong>, you would need another index number to correspond to the inner array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = [
+    ['Chelsea', 'Liverpool', 'Man Utd', 'Arsenal'],
+    ['Derby', 'Millwall', 'Sheffield Wednesday', 'Watford']
+];
+
+// Access both Arrays
+teams[0][0];        // Chelsea
+teams[0][1];        // Liverpool
+teams[1][0];        // Derby
+teams[1][1];        // Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you want to find out the index of a specific item in an array, we can use the <strong>indexOf()</strong> method. If an index number is not found, or a value does not exist, the console will return <strong>-1</strong></p>
+
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams.indexOf('Man Utd');       // 2
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding & Removing items in an array</h2>
 
             <p>We can use the <strong>push()</strong> method to add a new item to the end of an array.</p>
 
@@ -48,7 +107,30 @@ teams[3];       // Millwall
 // Array of teams
 const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
 
-teams.push('Leicester City');
+teams.push('Leicester City');       // Chelsea, Liverpool, Man Utd, Millwall, Leicester City
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>unshift()</strong> method will add an item to the beginning of an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams.unshift('Leicester City');    // Leicester City, Chelsea, Liverpool, Man Utd, Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The first item from an array can be removed using the <strong>shift()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+teams.shift();
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -87,6 +169,24 @@ for (i = 0; i < teams.length; i++) {
     </code>
 </pre>
 
+            <p>We can simplify our loop further when using ES6 syntax:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+// Declare variable so not to declare on each loop
+let i;
+
+// ES6 for loop syntax
+for (i of teams) {
+    console.log(i);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Getting the length of the array</h2>
 
             <p>The <strong>length</strong> property can be used to count the total number of items in an array.</p>
@@ -98,6 +198,36 @@ for (i = 0; i < teams.length; i++) {
 const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
 
 console.log(teams.length);      // 4
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also use the <strong>length</strong> property to find the <strong>last item</strong> in an array.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+// The last item in the Array
+const lastItem = teams.length -1;
+
+teams[lastItem];        // Millwall
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Changing items in an Array</h2>
+
+            <p>Items within an array can be changed by specifying the <strong>index</strong> of the item and assigning a new value. In this example, we will change the value of Liverpool to be Arsenal.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Millwall'];
+
+teams[1] = 'Arsenal';
 <!-- Just leave this line alone -->
     </code>
 </pre>
