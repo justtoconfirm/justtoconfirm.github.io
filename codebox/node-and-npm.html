@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to Node & NPM">
+
+	<title>Codebox - Node & NPM</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Node & NPM</h1>
+
+            <p>NPM stands for <strong>Node Package Manager</strong>. It is the largest software package library in the world with over 600,000 packages. The Node installation comes with a Command Line Interface (CLI) for NPM which allows developers to interact with packages locally on their machines.</p>
+
+            <p>NPM provides two main functionalities:</p>
+
+            <ul>
+                <li>Online repository for Node packages/modules that are searchable.</li>
+                <li>A command-line utility that allows Node packages/modules to be installed and managed.</li>
+            </ul>
+
+            <p>From Node version <strong>0.6.3</strong>, NPM is now included with every version of Node. When you install Node you also install NPM. This will allow the <strong>npm</strong> command to be used in your terminal.</p>
+
+            <p>Once Node has been installed, you can confirm the version of NPM installed in the terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm --version
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Create a package.json file</h2>
+
+            <p>Before you can install any packages or modules using NPM, you will need a <strong>package.json</strong> file to be created in the root of your project folder. This shortcut will create a package.json file for you:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The package.json file will set the package version to be <strong>1.0.0</strong> by default. You can use NPM to update this version as a <strong>major</strong>, <strong>minor</strong> or <strong>patch</strong> update as you project develops.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm version major         # Update package.json version to 2.x.x
+    $ npm version minor         # Update package.json version to x.2.x
+    $ npm version patch         # Update package.json version to x.x.2
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The package.json file lists all the packages installed within your project. When a project with a package.json file is pulled down from a repository (such as in GitHub), you will need to install the packages from NPM to generate the <strong>node_modules</strong> directory and <strong>package-lock.json</strong> file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install        # OR, npm i
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>The engines property</h2>
+
+            <p>Within your <strong>package.json</strong> file you may want to specify the recommended Node and NPM versions the project should use. This will display a warning during installation (and not build) in the terminal if the versions of Node and NPM being used are non-recommended.</p>
+
+            <p>Open your package.json file and add the <strong>engines</strong> object:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"engines": {
+    "node": ">=10.17.0",
+    "npm": ">=6.11.3"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In this example, we have set the recommended Node version to be <strong>10.17.0</strong> or higher and NPM to be <strong>6.11.3</strong> or higher.</p>
+
+            <p>We can also set the <strong>engineStrict</strong> property to be true to be set this to be strict during installation and prevent the install should the versions of Node or NPM not adhere to the versions in the engines property. By default this is set to <strong>false</strong> leaving the engines object to be "advisory only".</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"engineStrict": true,
+"engines": {
+    "node": ">=10.17.0",
+    "npm": ">=6.11.3"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Install & Update packages</h2>
+
+            <p>Once a package.json file has been created, you can then install NPM packages. When you install a package a <strong>node_modules</strong> directory will be created containing the package and any dependencies. This will need to be omitted from your version control using a <strong>.gitignore</strong> file.</p>
+
+            <p>To install a package as a <strong>devDependency</strong>, use the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install &lt;PACKAGE_NAME&gt; --save-dev         # e.g. npm install webpack --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To install a package as a <strong>dependency</strong>, use this command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install &lt;PACKAGE_NAME&gt; --save         # e.g. npm install react --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To install a package <strong>globally</strong> (best avoided if possible):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install &lt;PACKAGE_NAME&gt; -g         # e.g. npm install yarn -g
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once installed, you may need to update your packages to a specific version and/or the latest version.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install &lt;PACKAGE_NAME&gt;@versions         # e.g. npm install react@17.0.1 --save
+    $ npm install &lt;PACKAGE_NAME&gt;@latest           # e.g. npm install react@latest --save           
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Scripts</h2>
+
+            <p>Once an NPM package has been installed, you may want to create a script to run the package in your terminal. Open your package.json file and update the <strong>scripts</strong> object to add new script.</p>
+
+            <p>In this example, we want to create a <strong>script</strong> called build to run <strong>Webpack</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "build": "webpack"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the default package.json setup you will already see a scripts object containing a <strong>test</strong> script.</p>
+
+            <p>To run our <strong>build</strong> script, open your terminal and enter the following <strong>npm run</strong> command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You may want to create an <strong>alias</strong> for terminal commands in your <strong>.bash_profile</strong> config file to create a shorthand way of running terminal tasks and commands.</p>
+
+            <h2>Checking for outdated packages</h2>
+
+            <p>Packages may need to be updated. To check for any outdated packages in your project, use the following command in your project:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm outdated
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Checking installed packages</h2>
+
+            <p>To check which NPM packages have been installed <strong>locally</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm list
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To check which NPM packages have been installed <strong>globally</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm list -g --depth 0
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>NPM Christmas Tree</h2>
+
+            <p>If you want a special Christmas tree to appear in your terminal, enter the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm xmas
+    </pre>
+</div>
+<!-- / Terminal -->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
