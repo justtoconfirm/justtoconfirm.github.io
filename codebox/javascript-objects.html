@@ -220,6 +220,27 @@ hotel.name = '';
     </code>
 </pre>
 
+            <h2>Loop over an object's keys and values</h2>
+
+            <p>Sometimes your data structure maybe a complex object that contains many key/value pairs. After you get the object's keys, you can loop through the keys and values to access each pair using the <strong>key</strong> and <strong>value</strong> variables during the loop.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let myObject = {
+    one: 1,
+    two: 2,
+    three: 3
+};
+
+// Use forEach to loop through the key and value pairs in the object
+Object.keys(myObject).forEach((key, value) => {
+    console.log(key, value);
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Object Destructuring</h2>
 
             <ul>

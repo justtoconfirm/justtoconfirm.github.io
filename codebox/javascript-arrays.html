@@ -232,6 +232,50 @@ teams[1] = 'Arsenal';
     </code>
 </pre>
 
+            <h2>Finding a specific item</h2>
+
+            <p>We can use the <strong>find()</strong> method to iterate through an array to find a specific item.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of customers
+const customers = [
+    { id: 0, name: 'Darren' },
+    { id: 1, name: 'Dave' },
+    { id: 2, name: 'Dan' },
+    { id: 3, name: 'Scott' }
+];
+
+let customer = customers.find(person => person.name === 'Scott');
+
+console.log(customer);          // { id: 3, name: "Scott" }
+console.log(customer.name);     // Scott
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Using the Spread Operator</h2>
+
+            <p>The <strong>spread operator</strong> allows you to "spread" out an array. This can be used to transform an array into a list of arguments or even combine two arrays together.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Array of teams
+const teams = ['Chelsea', 'Liverpool', 'Man Utd', 'Arsenal'];
+const teamsChampionship = ['Derby', 'Millwall', 'Sheffield Wednesday', 'Watford']
+
+console.log(...teams);      // Chelsea Liverpool Man Utd Arsenal
+
+// Combine the two Arrays
+const combined = [...teams, ...teamsChampionship];
+
+console.log(...combined);   // Chelsea Liverpool Man Utd Arsenal Derby Millwall Sheffield Wednesday Watford
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Array Destructuring</h2>
 
             <p><strong>Array destructuring</strong> allows you to create new variables using an array item as a value. Consider this example:</p>
