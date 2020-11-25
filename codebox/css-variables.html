@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CSS Variables">
+
+	<title>Codebox - CSS Variables</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>CSS Variables</h1>
+
+            <p><strong>CSS Variables</strong>, sometimes referred to as <strong>Custom properties</strong> or <strong>cascading variables</strong>, are entities defined in CSS that contain specific values to be reused.</p>
+
+            <p>Advantages include:</p>
+
+            <ul>
+                <li>Makes the code easier to read and more understandable.</li>
+                <li>Makes it much easier to change the colour values.</li>
+                <li>CSS variables have access to the DOM, which means they can be changed using JavaScript.</li>
+            </ul>
+
+            <p>They are set using <strong>custom property notation</strong> and are accessed using the <strong>var()</strong> function.</p>
+
+            <p>Most <a href="https://caniuse.com/?search=CSS%20variables" target="_blank" rel="noopener noreferrer">browsers support</a> CSS custom properties with the exception of Internet Explorer.</p>
+
+            <p>Declaring a custom property is done using a custom property name that begins with a double hyphen (<strong>--</strong>) and a property value that can be any CSS value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+--main-bg-color: #cceecc;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A common best practice is to define custom properties on the <strong>:root</strong> pseudo-class so that the styling can be applied globally across your HTML code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+:root {
+    --main-bg-color: #cceecc;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can use the custom property value by specifying it's name inside the <strong>var()</strong> function in place of a regular value. Here, we are applying the custom property value to set the background colour of the body element:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+body {
+    background-color: var(--main-bg-color);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Setting Fallbacks</h2>
+
+            <p>The first argument of the <strong>var()</strong> function is the name of the custom property. We can apply a second argument to act as a fallback value which is used as a substitute when the custom property is invalid or not available. The var() function only accepts two parameters. If the second argument is also invalid, the fallback will fail.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+body {
+    background-color: var(--main-bg-color, #cdcdcd);    /* Fallback to #cdcdcd if --main-bg-color not defined */
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Changing Variables</h2>
+
+            <p>Sometimes we want the variables to change only in specific elements or sections of the page. Here we have an example of CSS variables being used to set the colour of HTML elements. Assume we want a different colour of blue for the button elements, we can re-declare the variable inside the button selector.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+:root {
+    --blue: #1e90ff;
+    --white: #fff;
+}
+
+body {
+    background-color: var(--blue);
+}
+
+button {
+    --blue: #0000ff;            # Re-declare variable
+    background-color: var(--white);
+    color: var(--blue);         # This is now #0000ff;
+    border: 1px solid var(--blue);
+    padding: 5px;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can use this same method to set local variables to specific elements if the code is to be used in one place.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+button {
+    --button-blue: #0000ff;
+    color: var(--button-blue);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
