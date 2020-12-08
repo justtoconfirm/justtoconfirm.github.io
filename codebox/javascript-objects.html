@@ -241,6 +241,29 @@ Object.keys(myObject).forEach((key, value) => {
     </code>
 </pre>
 
+            <h2>Freeze method</h2>
+
+            <p>The <strong>Object.freeze()</strong> method freezes an object. A frozen object can no longer be changed preventing new properties from being added to it and existing properties from being removed or changed. This also prevents its prototype from being changed. The object then becomes <strong>immutable</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Create an empty object
+const dog = {};
+
+// Add a property to the object
+dog.breed = 'Pug';
+
+Object.freeze(dog);     // Freeze the object
+
+Object.isFrozen(dog);   // true
+
+// Add a property to the object
+dog.name = 'Fido';      // TypeError: Cannot add property name, object is not extensible
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Object Destructuring</h2>
 
             <ul>
