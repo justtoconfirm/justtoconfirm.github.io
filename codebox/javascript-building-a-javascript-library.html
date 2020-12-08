@@ -82,7 +82,7 @@
 (function(window, undefined) {
 
     // Array to store anything that is queued
-    domReadyQueue = [];
+    let domReadyQueue = [];
 
     // Define a DOM Ready handler function
     function handleDOMReady(fn) {
@@ -111,7 +111,7 @@
 (function(window, undefined) {
 
     // Array to store anything that is queued
-    domReadyQueue = [];
+    let domReadyQueue = [];
 
     // Define a DOM Ready handler function
     function handleDOMReady(fn) {
@@ -143,7 +143,7 @@
 (function(window, undefined) {
 
     // Array to store anything that is queued
-    domReadyQueue = [];
+    let domReadyQueue = [];
 
     // Define a DOM Ready handler function
     function handleDOMReady(fn) {
@@ -180,7 +180,7 @@ Pearl(function() {
 (function(window, undefined) {
 
     // Array to store anything that is queued
-    domReadyQueue = [];
+    let domReadyQueue = [];
 
     // Define a DOM Ready handler function
     function handleDOMReady(fn) {
@@ -230,7 +230,7 @@ Pearl(function() {
     'use strict';
 
     // Array to store anything that is queued
-    domReadyQueue = [];
+    let domReadyQueue = [];
 
     // Define a DOM Ready handler function
     function handleDOMReady(fn) {
@@ -269,6 +269,70 @@ Pearl(function() {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Adding Properties & Methods to our Library</h2>
+
+            <p>Now that we have the structure of our library complete, we can look to now add <strong>properties</strong> and <strong>methods</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    'use strict';
+
+    // Array to store anything that is queued
+    let domReadyQueue = [];
+
+    // Define a DOM Ready handler function
+    function handleDOMReady(fn) {
+        // Check if the readyState is complete and the DOM is ready or push to the array
+        return document.readyState === "complete" ? fn.call(document) : domReadyQueue.push(fn);
+    }
+
+    document.addEventListener('DOMContentLoaded', function onDOMReady() {
+        // Always remove event handlers to aid performance that can be affected due to memory leaks
+        document.removeEventListener("DOMContentLoaded", onDOMReady);
+
+        // Loop over the queue array
+        while(domReadyQueue.length) {
+            // Remove first element and return it from the array using shift() and add it to the document
+            domReadyQueue.shift().call(document);
+        }
+    })
+
+    // Constructor
+    function Pearl(selector) {
+        // Check to see if the selector is a function - as with the DOM Ready handler
+        if (typeof selector === 'function') {
+            return handleDOMReady(selector);
+        }
+
+        // Add properties and methods to the library
+        const self = {
+            // Pearl('h2');
+            element: document.querySelector(selector),
+            hide: () => {
+                // Pearl('h2').hide();
+                self.element.style.display = "none"
+            }
+        }
+
+        return self;
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+
+// DOM Ready handler
+Pearl(function() {
+    console.log('Test Test Test');
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>           
 
 		</div>
 	</div>
