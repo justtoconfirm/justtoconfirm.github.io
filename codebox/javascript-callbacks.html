@@ -26,6 +26,8 @@
 
             <p>JavaScript functions are executed in the order (sequential) they are called (top-down), not the sequence they are defined. The <strong>sayGoodbye()</strong> function is executed first and the <strong>sayHello()</strong> function is executed second in this example as this is the order given.</p> 
 
+            <p>When using an API (Application Programming Interface), you may use a callback. This would allow a call to be made to the API that contains the data to ensure it's returned first before the data can be used.</p>
+
             <p>Callbacks make sure that a function is not going to run before a task is completed.</p>
 
 <pre>
@@ -58,6 +60,28 @@ var btn = document.querySelector('#btn');
 btn.addEventListener("click", function() {
    console.log("User has clicked on the button"); 
 });    
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is a syntactic code example of a higher-order function and a callback:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// A function
+function fn() {
+    console.log('Just a function');
+}   
+
+// A function that takes another function as an argument
+function higherOrderFunction(callback) {
+    // When you call a function that is passed as an argument,
+    // it is referred to as a callback
+    callback();
+}
+
+higherOrderFunction(fn);
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -111,7 +135,7 @@ function displayTotal(result) {
     document.getElementById("total").innerHTML = result;      
 }
 
-// This is a Higher-Order Function (HOF)
+// This is a higher-order function (HOF)
 function addCalculation(num1, num2, callback) {
     let total = num1 + num2;
 
