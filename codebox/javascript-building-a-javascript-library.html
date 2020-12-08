@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Building a JavaScript Library">
+
+	<title>Codebox - Building a JavaScript Library</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Building a JavaScript Library</h1>
+
+            <h2>Create an IIFE</h2>
+
+            <p>Begin by creating an <strong>IIFE (Immediately Invoked Function Expression)</strong>. This will be executed once per page load and is useful for one time activities, setup or attaching events. Within this function we will add a <strong>window</strong> parameter. This will allow the window global object to be passed into our function to become a local parameter which increases performance (faster to access) and increases safety by avoiding conflicts.</p>
+
+            <p>The <strong>undefined</strong> parameter will also be set to ensure no other library can overwrite undefined. This then becomes the default undefined in the library and acts as a safety mechanism.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+    
+}(window));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Add a Constructor</h2>
+
+            <p>Once the IIFE function has been created a <strong>Constructor function</strong> can be added. This function is invoked using the new keyword and the name should always start with an uppercase letter. The name of the Constructor function is the name of your library.</p>
+
+            <p>Our example library is to be named <strong>Pearl</strong>.</p>
+
+            <p>We also need to allow our library to be accessible to the window object and outside of the IIFE.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    // Constructor
+    function Pearl() {
+
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Checking if the DOM is ready</h2>
+
+            <p>We need to check that the <strong>DOM (Document Object Model)</strong> is ready before we can use the library. We begin by adding a function we shall name <strong>handleDOMReady()</strong> into our IIFE. This function will use the <strong>readyState</strong> property to determine if the DOM is ready. There are three ready states:</p>
+
+            <ul>
+                <li><strong>loading</strong> - The document is still loading.</li>
+                <li><strong>interactive</strong> - The document has finished loading and the document has been parsed but resources such as images, stylesheets and frames are still to load.</li>
+                <li><strong>complete</strong> - The document and all resources have finished loading.</li>
+            </ul>
+
+            <p>We therefore want to call this function when the DOM has finished loading and the state is complete. If <strong>readyState</strong> is complete, we call the function and pass it to the document object. If the readyState is <strong>loading</strong> or <strong>interactive</strong>, then we push to an array named <strong>domReadyQueue</strong> to wait.</p>
+
+            <p>The <strong>fn.call()</strong> is a callback function we will call if the DOM is ready. With the <strong>call()</strong> method, you can write a method that can be used on different objects.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    // Array to store anything that is queued
+    domReadyQueue = [];
+
+    // Define a DOM Ready handler function
+    function handleDOMReady(fn) {
+        // Check if the readyState is complete and the DOM is ready or push to the array
+        return document.readyState === "complete" ? fn.call(document) : domReadyQueue.push(fn);
+    }
+
+    // Constructor
+    function Pearl() {
+
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the Constructor function, add a parameter named selector. We will be using this to write check the type of selector being passed into the Constructor function. Our first check is for a function. The Ready handler we write will be a function that we will pass into our library so this check will be useful.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    // Array to store anything that is queued
+    domReadyQueue = [];
+
+    // Define a DOM Ready handler function
+    function handleDOMReady(fn) {
+        // Check if the readyState is complete and the DOM is ready or push to the array
+        return document.readyState === "complete" ? fn.call(document) : domReadyQueue.push(fn);
+    }
+
+    // Constructor
+    function Pearl(selector) {
+        // Check to see if the selector is a function - as with the DOM Ready handler
+        if (typeof selector === 'function') {
+            return handleDOMReady(selector);
+        }
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Add the DOM Ready Handler outside of the IIFE function. This is similar to the <strong>ready()</strong> function in jQuery.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    // Array to store anything that is queued
+    domReadyQueue = [];
+
+    // Define a DOM Ready handler function
+    function handleDOMReady(fn) {
+        // Check if the readyState is complete and the DOM is ready or push to the array
+        return document.readyState === "complete" ? fn.call(document) : domReadyQueue.push(fn);
+    }
+
+    // Constructor
+    function Pearl(selector) {
+        // Check to see if the selector is a function - as with the DOM Ready handler
+        if (typeof selector === 'function') {
+            return handleDOMReady(selector);
+        }
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+
+// DOM Ready handler
+Pearl(function() {
+    console.log('Test Test Test');
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next we attach an event to the document that will fire whenever the document is ready. When the <strong>DOMContentLoaded</strong> event fires, the callback of <strong>onDOMReady</strong> executes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, undefined) {
+
+    // Array to store anything that is queued
+    domReadyQueue = [];
+
+    // Define a DOM Ready handler function
+    function handleDOMReady(fn) {
+        // Check if the readyState is complete and the DOM is ready or push to the array
+        return document.readyState === "complete" ? fn.call(document) : domReadyQueue.push(fn);
+    }
+
+    document.addEventListener('DOMContentLoaded', function onDOMReady() {
+        // Always remove event handlers to aid performance that can be affected due to memory leaks
+        document.removeEventListener("DOMContentLoaded", onDOMReady);
+
+        // Loop over the queue array
+        while(domReadyQueue.length) {
+            // Remove first element and return it from the array using shift() and add it to the document
+            domReadyQueue.shift().call(document);
+        }
+    })
+
+    // Constructor
+    function Pearl(selector) {
+        // Check to see if the selector is a function - as with the DOM Ready handler
+        if (typeof selector === 'function') {
+            return handleDOMReady(selector);
+        }
+    }
+
+    // Allow library to be accessible by the window object
+    window.Pearl = Pearl;
+    
+}(window));
+
+// DOM Ready handler
+Pearl(function() {
+    console.log('Test Test Test');
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
