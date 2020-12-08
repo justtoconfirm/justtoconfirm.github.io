@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript Callbacks">
+
+	<title>Codebox - JavaScript Callbacks</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Callbacks</h1>
+
+            <p>Simply put, a callback is a function that is executed after another function has finished executing. This allows us to pass functions as parameters to other functions.</p>
+
+            <p>In JavaScript, functions are objects. Functions can therefore take other functions as arguments. This type of function is called a <strong>Higher-Order Function (HOF)</strong>. A function that is passed into a function as an argument is called a <strong>callback function</strong>.</p>
+
+            <p>JavaScript functions are executed in the order (sequential) they are called (top-down), not the sequence they are defined. The <strong>sayGoodbye()</strong> function is executed first and the <strong>sayHello()</strong> function is executed second in this example as this is the order given.</p> 
+
+            <p>Callbacks make sure that a function is not going to run before a task is completed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function sayHello() {
+    console.log("Hello");
+}
+
+function sayGoodbye() {
+    console.log("Goodbye");
+}
+
+
+sayGoodbye();       // Goodbye    
+sayHello();         // Hello        
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When we use an Event Listener we use callbacks. The first paramater is the type of event, <strong>"click"</strong> for example, the second parameter is a callback function that gets called once the event has been actioned.</p>
+
+            <p>In this example, when the button is clicked, the callback function logs a message:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+var btn = document.querySelector('#btn');
+
+btn.addEventListener("click", function() {
+   console.log("User has clicked on the button"); 
+});    
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's another quick example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function greeting(name) {
+    alert(`Hello ${name}.`);
+}
+
+function getUserInput(callback) {
+    let name = prompt('Please enter your name.');
+    callback(name);
+}
+
+// The value of 'name' will be passed into the greeting() function when called
+getUserInput(greeting);  
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Callbacks are used so that you can have better control over when to execute a function. In this example, we have a simple calculator function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function displayTotal(result) {
+    document.getElementById("total").innerHTML = result;       
+}
+
+function addCalculation(num1, num2) {
+    let total = num1 + num2;
+    return total;
+}
+
+let result = addCalculation(5, 5);
+displayTotal(result);         
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The problem with this example is that you have to call two functions to display the result. Here is the example again but using a callback named <strong>sum</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function displayTotal(result) {
+    document.getElementById("total").innerHTML = result;      
+}
+
+// This is a Higher-Order Function (HOF)
+function addCalculation(num1, num2, callback) {
+    let total = num1 + num2;
+
+    // This will call the displatTotal() function using the sum callback
+    callback(total);        
+}
+
+// This variable is passed into the displayTotal() function
+let result = addCalculation(5, 5, sum);         
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When you pass a function as an argument, the following rules apply:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// This is incorrect, remember to not use parenthesis
+addCalculation(5, 5, sum());
+
+// This is correct
+addCalculation(5, 5, sum);      
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
