@@ -20,6 +20,61 @@
 
 			<h1>Building a JavaScript Library</h1>
 
+            <h2>Small Library Example</h2>
+
+            <p>Here is a small library example built using vanilla JavaScript:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function $(selector) {
+    
+    const self = {
+        // Element will hold our HTML element from passing in our selector
+        element: document.querySelector(selector),
+        // Method - anonymous function
+        html: () => self.element,
+        // On function for addEventListener
+        on: (event, callback) => {
+            document.addEventListener(event, callback)
+        },
+        hide: () => {
+            // This gets the current element that is being referenced (self.element e.g h2.style.display)
+            self.element.style.display = "none"
+        },
+        attr: (name, value) => {
+            if (value == null) {
+                self.element.getAttribute(name)
+            } else {
+                self.element.setAttribute(name, value)
+            }
+        }
+    }
+
+    return self;
+}
+
+// Example of using the library - pass selector into the function using selector parameter
+// This calls the html method in our object
+$('.class').html();
+
+// Click on H1 element and display an alert
+$('h1').on('click', function() {
+   alert('Clicked!'); 
+});
+
+// Hide
+$('h2').hide();
+
+// Give H1 a class name
+$('h1').attr('class', 'helloThere');
+
+// Log the value of the function
+console.log($('.class').html());
+<!-- Just leave this line alone -->
+    </code>
+</pre>            
+
             <h2>Create an IIFE</h2>
 
             <p>Begin by creating an <strong>IIFE (Immediately Invoked Function Expression)</strong>. This will be executed once per page load and is useful for one time activities, setup or attaching events. Within this function we will add a <strong>window</strong> parameter. This will allow the window global object to be passed into our function to become a local parameter which increases performance (faster to access) and increases safety by avoiding conflicts.</p>
