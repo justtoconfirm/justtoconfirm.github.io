@@ -126,13 +126,15 @@ export default About
 import React from 'react'
 import List from './List'
 
-// These are the values we are passing into the List component
+// These are the values we are passing into each List component
 const mylist = ['a', 'b', 'c']
 const developers = ['Darren', 'Dave', 'Scott', 'Dan']
 
 const About = () => (
-    &lt;List type='ol' listItems={mylist} /&gt;
-    &lt;List type='ul' listItems={developers} /&gt;
+    &lt;&gt;
+        &lt;List type='ol' listItems={mylist} /&gt;
+        &lt;List type='ul' listItems={developers} /&gt;
+    &lt;/&gt;
 )
 
 export default About
