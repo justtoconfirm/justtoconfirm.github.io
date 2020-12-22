@@ -20,10 +20,233 @@
 
 			<h1>React Hooks</h1>
 
+            <p>React Hooks were introduced in <strong>React 16.8.0</strong> and let you use state and other React features without writing a class. A Hook in React is a function that shares common logic between multiple components. It is recommended to prefix Hooks with <strong>use</strong>, followed by the name of the Hook.</p>
+
+            <p>Start by creating a new file and adding a function. The <strong>useState</strong> method will need to be imported from React.</p>
+
 <pre>
     <code>
 <!-- Just leave this line alone -->
+import { useState } from 'react';
 
+const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here, we instantiate new <strong>isShowing</strong> and <strong>setIsShowing</strong> state values to store the current view state of a modal. These are state variables.</p>
+
+            <p>Next, declare a function named <strong>toggle</strong> that changes the value of <strong>isShowing</strong> to be the opposite of what it currently is now.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { useState } from 'react';
+
+const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+
+    const toggle =  () => {
+        setIsShowing(!isShowing);
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Finally, return the value of isShowing and the toggle function from the Hook so the component (modal) has access to them and export the useModal hook.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { useState } from 'react';
+
+const useModal = () => {
+    const [isShowing, setIsShowing] = useState(false);
+
+    const toggle =  () => {
+        setIsShowing(!isShowing);
+    }
+
+    return {
+        isShowing,
+        toggle
+    }
+};
+
+export default useModal;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Building the Modal component</h2>
+
+            <p>Next, we build a Modal component to apply the Hook. Modal is a stateless functional component that takes two props - <strong>isShowing</strong> and <strong>hide</strong> - and only returns HTML when <strong>isShowing</strong> is <strong>true</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
+    &lt;&gt;
+        &lt;div className="modal"&gt;
+            &lt;h1&gt;Hello Modal&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;/&gt;, document.body
+) : null;
+
+export default Modal;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>What are Portals?</h2>
+
+            <p>Portals allow React components to render in another part of the <strong>DOM</strong> that's outside of their parent component. We can therefore use Portal to mount our Modal component at the end of the <strong>document.body</strong> element, rather than as a child of another component.</p>
+
+            <p>To do this in the code above, we specify two arguments to the <strong>createPortal()</strong> function, the modal component we want to render and the location of where we want to append the component.</p>
+
+            <h2>Adding the Modal component to our app</h2>
+
+            <p>Now that the basic modal has been built, we need to add it to our application so it can be rendered. Within the App component, add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom'
+import Modal from './Modal';
+import useModal from './useModal';
+
+const App = () => {
+    
+    const {isShowing, toggle} = useModal();
+
+    return (
+        &lt;&gt;
+            &lt;button className="btn" onClick={toggle}&gt;Show Modal&lt;/button&gt;
+            &lt;Modal isShowing={isShowing} hide={toggle} /&gt;
+        &lt;/&gt;
+    );
+};
+
+export default App;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li>We firstly import the custom React Hook inside of the component and initialise <strong>isShowing</strong> and <strong>toggle</strong> from the Hook.</li>
+                <li>Next, <strong>toggle</strong> is passed into the button's <strong>onClick</strong> attribute which sets the value of <strong>isShowing</strong> to be <strong>true</strong> when the button is clicked.</li>
+                <li>Finally, we pass <strong>isShowing</strong> and <strong>toggle</strong> through the Modal component's props so we can access them there.</li>
+            </ul>
+
+            <p>We now need to add styling.</p>
+
+            <p>Begin by extending the modal component with a few further classes, a close button and add the <strong>children</strong> prop:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Modal = ({ isShowing, hide, children }) => isShowing ? ReactDOM.createPortal(
+    &lt;&gt;
+        &lt;div class="overlay" /&gt;
+        &lt;div class="modal-wrapper"&gt;
+            &lt;div className="modal"&gt;
+                &lt;div class="modal__header"&gt;
+                    &lt;button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}&gt;
+                        &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="modal__content"&gt;
+                    {children}
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/&gt;, document.body
+) : null;
+
+export default Modal;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Add the styling using <strong>CSS</strong> or <strong>SCSS</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: .5;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+.modal {
+    z-index: 100;
+    background-color: #fff;
+    position: relative;
+    margin: 1.75rem auto;
+    border-radius: 3px;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: flex-end;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Update the <strong>App</strong> component to set the content of the modal.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { render } from 'react-dom'
+import Modal from './Modal';
+import useModal from './useModal';
+
+const App = () => {
+    
+    const {isShowing, toggle} = useModal();
+
+    return (
+        &lt;&gt;
+            &lt;button className="btn" onClick={toggle}&gt;Show Modal&lt;/button&gt;
+            &lt;Modal isShowing={isShowing} hide={toggle}&gt;Hello, this is a modal&lt;/Modal&gt;
+        &lt;/&gt;
+    );
+};
+
+export default App;
 <!-- Just leave this line alone -->
     </code>
 </pre>
