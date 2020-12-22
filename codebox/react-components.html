@@ -52,6 +52,42 @@ import List from './List'
     </code>
 </pre>
 
+            <p>Our list component can be extended to allow an unordered or ordered list to be rendered based on the prop value:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const List = props => (
+
+    const {
+        type = 'ul',
+        list
+    } = props
+
+    const listItems = list.map((item, index) =>
+        &lt;li key={index}&gt;{ item }&lt;/li&gt;
+    )
+
+    const listType = type && (type.includes('ol'))
+
+    const renderUnorderedList = () =>
+        &lt;ul&gt;{listItems}&lt;/ul&gt;
+
+    const renderOrderedList = () =>
+        &lt;ol&gt;{listItems}&lt;/ol&gt;
+
+    return (
+        listType ? renderOrderedList() : renderUnorderedList()
+    )
+)
+
+export default List
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <p>Our example <strong>About</strong> component may look something like the example below.</p>
 
 <pre>
@@ -81,6 +117,28 @@ export default About
                 <li>b</li>
                 <li>c</li>
             </ul>
+
+            <p>We can also pass in values to render the list as an ordered or unordered list (default). Even if we don't pass in a <strong>type</strong> prop value, the list will default to be rendered as an unordered list.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import List from './List'
+
+// These are the values we are passing into the List component
+const mylist = ['a', 'b', 'c']
+const developers = ['Darren', 'Dave', 'Scott', 'Dan']
+
+const About = () => (
+    &lt;List type='ol' listItems={mylist} /&gt;
+    &lt;List type='ul' listItems={developers} /&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
 		</div>
 	</div>
