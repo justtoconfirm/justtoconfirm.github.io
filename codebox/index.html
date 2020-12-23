@@ -112,6 +112,43 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
+<script src="https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js"></script>
+<script>
+    var config = {
+        apiKey: '26dd2e052c76be85191ad548fb141738cdb293b2',
+        product: 'COMMUNITY',
+        optionalCookies: [
+            {
+                    name: 'analytics',
+                    label: 'Analytics',
+                    description: '',
+                    cookies: [],
+                    onAccept : function(){},
+                    onRevoke: function(){}
+                },{
+                    name: 'marketing',
+                    label: 'Marketing',
+                    description: '',
+                    cookies: [],
+                    onAccept : function(){},
+                    onRevoke: function(){}
+                },{
+                    name: 'preferences',
+                    label: 'Preferences',
+                    description: '',
+                    cookies: [],
+                    onAccept : function(){},
+                    onRevoke: function(){}
+                }
+        ],
+
+        position: 'RIGHT',
+        theme: 'DARK'
+    };
+    
+    CookieControl.load( config );
+</script>
+
 <!-- AUTOCOMPLETE CODE -->
 <!--<!DOCTYPE html>
 <html>
