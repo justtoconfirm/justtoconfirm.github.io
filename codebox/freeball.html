@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Freeball">
+
+	<title>Codebox - Freeball</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+<style>
+input {
+    padding: 12px;
+    width: 100px;
+}
+
+button {
+    background-color: #0066a1;
+    color: #fff;
+    padding: 15px;
+    width: 150px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #0070b0;
+}
+
+.resultsForm {
+    margin: 50px 0;
+}
+</style>
+
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Freeball</h1>
+
+            <ol>
+                <li>No one owner can control a team and must be owned by fans or fan groups.</li>
+                <li>Predicted results are generated first and actual results generated second. A goal is scored if the value of the predicted result matches with the actual result in the same index (e.g. 1-1-1 / 1-0-1 = 2 goals).
+                <li>Every team receives a vote to determine league, competition or rule changes. Each team must vote 0 (No) or 1 (Yes). If 50% of the votes or above are marked as 1 (Yes) then the vote stands. The number of teams in the league will determine how many votes are available.</li>
+            </ol>
+
+            <div class="resultsForm">
+                <input id="qty" type="number" value="0">
+                <button id="getQty">Submit</button>
+
+                <p><strong>Score:</strong> <span id="result">0</span></p>
+            </div>
+
+		</div>
+	</div>
+</main>
+
+<script>
+(function(window, document) {
+
+    // Create an empty array to store the score/results
+    let score = []
+
+    const input = document.querySelector('#qty')
+    const submitBtn = document.querySelector('#getQty')
+
+    const getResults = () => {
+        // Clear the array on each call of the function
+        score = [];
+
+        // Loop up to the value set in the input field
+        for (var i = 0; i < input.value; i++) {
+           
+           // Generate random number of 0 or 1 on each loop
+           let randomNumber =  Math.floor(Math.random()*2);
+
+           // Push each random number to the score array on each loop
+           score.push(randomNumber);
+        }
+
+        // Output the results in the array on the page
+        document.querySelector('#result').innerHTML = score
+    }
+
+    // Call the getReady() function on the button click
+    submitBtn.addEventListener('click', getResults)
+
+}(window, document))
+</script>
+
+</body>
+</html>
