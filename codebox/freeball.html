@@ -29,10 +29,6 @@ button:hover {
     cursor: pointer;
     background-color: #0070b0;
 }
-
-.resultsForm {
-    margin: 50px 0;
-}
 </style>
 
 </head>
@@ -44,18 +40,10 @@ button:hover {
 
 			<h1>Freeball</h1>
 
-            <ol>
-                <li>No one owner can control a team and must be owned by fans or fan groups.</li>
-                <li>Predicted results are generated first and actual results generated second. A goal is scored if the value of the predicted result matches with the actual result in the same index (e.g. 1-1-1 / 1-0-1 = 2 goals).
-                <li>Every team receives a vote to determine league, competition or rule changes. Each team must vote 0 (No) or 1 (Yes). If 50% of the votes or above are marked as 1 (Yes) then the vote stands. The number of teams in the league will determine how many votes are available.</li>
-            </ol>
+            <input id="qty" type="number" value="0">
+            <button id="getQty">Submit</button>
 
-            <div class="resultsForm">
-                <input id="qty" type="number" value="0">
-                <button id="getQty">Submit</button>
-
-                <p><strong>Score:</strong> <span id="result">0</span></p>
-            </div>
+            <p><strong>Score:</strong> <span id="result">0</span></p>
 
 		</div>
 	</div>
