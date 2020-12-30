@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Cookies">
+
+	<title>Codebox - Cookies</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Cookies</h1>
+
+            <p>Cookies are small text files stored on a computer used to store information in web pages. When a browser requests a web page from a server, cookies belonging to the page are added to the request.</p>
+
+            <p>The <strong>cookie</strong> property of the <strong>Document</strong> object lets you read and write cookies.</p>
+
+            <h2>Write a new Cookie</h2>
+
+            <p>We can create a cookie using <strong>document.cookie</strong> and set the name and value of this cookie within a string. Cookies are saved in name/value pairs.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.cookie = "username=Dan Jackson";      
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also add an expiry date. By default, a cookie is deleted when the browser is closed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+document.cookie = "username=Dan Jackson; expires=Thu, 31 Dec 2020 12:00:00 GMT";      
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Return all cookies</h2>
+
+            <p>We can use the cookie property to return all cookies in a single string.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let cookies = document.cookie;     
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

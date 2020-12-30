@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to CSS">
+
+	<title>Codebox - CSS Variables</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to CSS</h1>
+
+            <p>CSS is not the largest asset to consider during development but it is the first the browswer discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed. It's always worthwhile making your CSS stylesheets as lean as possible to improve performance of your web page, website or application.</p>
+
+            <h2>Adding CSS to HTML</h2>
+
+            <p>Adding an external CSS stylesheet - a file with the extension <strong>.css</strong> - to a HTML document requires the following code to be added between the <strong>&lt;head&gt;</strong> and <strong>&lt;/head&gt;</strong> tags:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="stylesheet" href="stylesheet.css"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Example HTML</h2>
+
+            <p>Here is an example HTML code to demonstrate our CSS examples:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="container"&gt;
+    &lt;!-- Child element(s) --&gt;
+    &lt;p&gt;Paragraph one.&lt;/p&gt;
+    &lt;p&gt;Paragraph two.&lt;/p&gt;
+
+    &lt;div class="container__summary"&gt;
+        &lt;!-- Grandchild elements(s) --&gt;
+        &lt;p&gt;Paragraph three.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Child element(s) --&gt;
+    &lt;p&gt;Paragraph four.&lt;/p&gt;
+    &lt;p&gt;Paragraph five.&lt;/p&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>CSS Naming Conventions</h2>
+
+            <p>In CSS, it's better the strive for reusable, recyclable CSS classes rather than writing for specific use cases. This is critical to a successful naming convention.</p>
+
+            <p>We can create a class that will set the colour of an element blue when used. In this example, the class name used is too specific and risks being difficult to maintain. If the colour changes, the class name becomes irrelevant and will need to be updated across your HTML.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.blue {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The next example depends on the location to render the code correctly using element selectors in-place of a class:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+header span {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We could create a class that is defines the purpose of the code, but this can be too specific also:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.header-color {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Far better to create a reusable, portable and easily maintained class to keep your CSS clean:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.highlight-color {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>Single Responsibility Principle</strong> is a paradigm that states that all pieces of code should focus on doing one thing only. In CSS, our selectors should be small and provide very specific functionality.</p>
+
+            <p>In this example, we have two CSS class selectors that handle layout, structure and styling. This can lead to lots of repetition between classes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.error-message {
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #f00;
+    border-bottom: 1px solid #f00;
+    background-color: #fee;
+    color: #f00;
+    font-weight: bold;
+}
+
+.success-message {
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #0f0;
+    border-bottom: 1px solid #0f0;
+    background-color: #efe;
+    color: #0f0;
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can apply the <strong>Single Responsibility Principle</strong> to this code and break these classes into smaller classes with specific tasks, applying <strong>abstraction</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.box {
+    display: block;
+    padding: 10px;
+}
+
+.message {
+    border-style: solid;
+    border-width: 1px 0;
+    font-weight: bold;
+}
+
+.message--error {
+    background-color: #fee;
+    color: #f00;
+}
+
+.message--success {
+    background-color: #efe;
+    color: #0f0;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>It is often best to follow the <strong>DRY (Don't Repeat Yourself)</strong> principle in CSS. This helps us to avoid writing the same bits of code multiple times. CSS is best written when it follows this principle and one way to keep our CSS DRY is to group code together.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.menu li {
+    color: red;
+}
+
+.menu li a {
+    color: red;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This code example (above) is not DRY as both selectors set the same property and value. We can group these selectors together to turn our CSS DRY:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.menu li,
+.menu li a {
+    color: red;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Universal Selector (*)</h2>
+
+            <p><strong>Universal Selectors</strong> such as <strong>*</strong>, <strong>[disabled]</strong> and <strong>[type="text"]</strong>, check every element in the DOM (Document Object Model) for a match. This can be very expensive for the browser when considering performance. This selector is often used for box-sizing and other globals.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+* {
+    box-sizing: border-box;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Descendent Selector (space)</h2>
+
+            <p>Adding space between selectors in CSS is known as a <strong>descendent selector</strong>. In this example, we will target all <strong>&lt;p&gt;</strong> tags within the element that has the <strong>container</strong> class and set the font-weight to be bold.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container p {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The Child Combinator (&gt;)</h2>
+
+            <p>The <strong>child combinator</strong> will only target direct children of a particular element and only those that are nested directly within the element. This will apply only to child elements and nothing nested further (grand child elements).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container > p {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adjacent Sibling Combinator (+)</h2>
+
+            <p>Combines two selectors that have the same parent. The <strong>Adjacent Sibling Combinator</strong> will only select the first element that is immediately proceeded by the former selector. In this example, the <strong>&lt;p&gt;</strong> tag immediately after the <strong>container__summary</strong> element will be selected.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__summary + p {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Sign (~)</h2>
+
+            <p>We can select all elements that proceeded the former selector. Here, we can target all <strong>&lt;p&gt;</strong> tags immediately after the <strong>container__summary</strong> element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__summary ~ p {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Dynamic suffix</h2>
+
+            <p>You can use CSS to select elements that have dynamic values. For example, if multiple elements have <strong>id</strong> attribute values of <strong>01234_loginPanel</strong> or <strong>43210_loginPanel</strong>, we can use the following CSS:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+div[id$="_loginPanel"] {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also target elements with specific values, such as <strong>loginPanel</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+div[id^="loginPanel_"] {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also check if an element contains a suffix and prefix:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+div[id*="loginPanel"] {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also target attributes of elements using <strong>Attribute Selectors</strong>. Here, we will target all links whose <strong>href</strong> attribute values end with <strong>.pdf</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+a[href$=".pdf"] {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Pseudo Selectors</h2>
+
+            <p><strong>Pseudo Selectors</strong> are CSS selectors with a colon (<strong>:</strong>) proceeding them. Links often use Pseudo Selectors for state.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+a:hover {}
+a:active {}
+a:focus {}
+a:visited {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>::first-letter</h3>
+
+            <p>Selector to target the first letter of a paragraph or element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+p::first-letter {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>::first-of-type &amp; ::last-of-type</h3>
+
+            <p>Select the first or last of any type within the current parent element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+p::first-of-type {
+    font-weight: bold;
+}
+
+p::last-of-type {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>::only-of-type</h3>
+
+            <p>Target elements that do not have any siblings within the parent class. Example maybe an unordered list with a single list item.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+li::only-of-type {
+    font-weight: bold;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>:empty</h3>
+
+            <p>Represents an element that has no content within. You may have multiple elements, such as <strong>&lt;p&gt;</strong> in rendered HTML with no content. The <strong>:empty</strong> selector can be used to hide the empty elements on the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+p:empty {
+    display: none;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

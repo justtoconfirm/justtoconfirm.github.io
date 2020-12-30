@@ -258,5 +258,230 @@ var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 autocomplete(document.getElementById("myInput"), countries);
 </script>-->
 
+<!-- cookie-policy.js -->
+<!--
+const CookieControl = (function(window, document, config) {
+
+  'use strict';
+
+  // Destructure the config properties into variables
+  const { 
+    style: { 
+      color,
+      backgroundColor
+    }
+  } = config;
+
+  // Set empty arrays for cookies to be stored
+  let allCookiesArray = [];
+  let necessaryCookiesArray = [];
+  let optionalCookiesArray = [];
+  let trashCookiesArray = [];
+
+  // Return the cookies to be retained from the necessaryCookies[] array inside the config object
+  let necessaryCookies = config.necessaryCookies;
+  // Return the cookies to be retained from the optionaCookies[] array inside the config object
+  let optionalCookies = config.optionalCookies;
+
+  // Declare variables for each for loop
+  let nc;
+  let ac;
+  let i;
+  let rc;
+
+  // Loop through the necessaryCookies
+  for (nc = 0; nc < necessaryCookies.length; nc++) {
+
+    // Push each necessary cookie name to the necessaryCookiesArray[] array
+      necessaryCookiesArray.push(necessaryCookies[nc].trim());
+  }
+
+  // Get all cookies from the browser and store in the variable
+  let cookies = document.cookie.split(";");
+
+  // Loop through all the cookies listed in the browser
+  for (ac = 0; ac < cookies.length; ac++) {
+
+    // Return the name of each cookie using the index 0, index 1 will get the value, no array will return both
+    // trim() function used to remove whitespace for each cookie name
+    let cookieName = cookies[ac].split("=")[0].trim();
+
+    // Push each cookie name to the allCookiesArray[] array
+    allCookiesArray.push(cookieName);
+  }
+
+  // Compare all browser cookies from the allCookiesArray[] with the necessary cookies listed in the necessaryCookiesArray[]
+  for (i = 0; i < allCookiesArray.length; i++) {
+      
+      if (necessaryCookiesArray.indexOf(allCookiesArray[i]) == -1) {
+        
+        // Push any cookies that are not in either array into a new array named trashCookiesArray[]
+        trashCookiesArray.push(allCookiesArray[i]);
+      }
+  }
+
+  // Loop through all cookies listed in the trashCookiesArray[] for removal
+  for (rc = 0; rc < trashCookiesArray.length; rc++) {
+            
+        // This will delete all cookies listed in the trashCookiesArray[]
+        document.cookie = trashCookiesArray[rc]+" =; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+    return {
+        Constructor: function Constructor() {
+
+          // panel width
+      let width;
+      // panel position
+      let position;
+
+      // Check if the CookieControl cookie has been set 
+            if (document.cookie.match(/^(.*;)?\s*CookieControl\s*=\s*[^;]+(.*)?$/)) {
+        alert('Cookie Exists');
+        position = '-100%';
+      } else {
+        alert('Cookie does not exist');
+        position = '0%';
+      }
+
+          // Variable to store the current screen width by calling the function
+      let currentScreenWidth = window.innerWidth;
+
+      // Set width for desktop screens and mobile screens
+      if (currentScreenWidth < 502) {
+        width = '90%';
+      } else {
+        width = '450px';
+      }
+
+        let head = document.head || document.getElementsByTagName('head')[0];
+        let style = document.createElement('style');
+
+        // CSS styling
+      let bodyCSS = 'html, body { height: 100%; margin: 0; }';
+      let panelCSS = `.m-cookie-panel { height: 100%; color: ${color}; background-color: ${backgroundColor}; position: absolute; }`;
+      let panelInnerCSS = '.m-cookie-panel__inner { padding: 15px; }';
+      let headingCSS = '.m-cookie-panel__heading { margin: 0; }';
+      let paragraphCSS = `.m-cookie-panel__copy { border-bottom: 1px solid ${color}; padding-bottom: 20px; }`;
+      let buttonCSS = '.m-cookie-panel__btn { padding: 10px; font-weight: bold; cursor: pointer; margin: 20px 0; }';
+
+      // Create <style> tag in the HTML <head> section
+      head.appendChild(style);
+      
+      // Add CSS classes to the <style> tag
+      style.appendChild(document.createTextNode(bodyCSS));
+      style.appendChild(document.createTextNode(panelCSS));
+      style.appendChild(document.createTextNode(panelInnerCSS));
+      style.appendChild(document.createTextNode(headingCSS));
+      style.appendChild(document.createTextNode(paragraphCSS));
+      style.appendChild(document.createTextNode(buttonCSS));
+
+            // Create a div element for the panel
+            let panel = document.createElement('div');
+            // Create a div element for the inner panel
+            let panelInner = document.createElement('div');
+            // Create a button element
+            let button = document.createElement('button');
+
+            // Create a class and style attribute with values, add class attribute to the panel
+            let panelClassAttr = document.createAttribute('class');
+            let panelStyleAttr = document.createAttribute('style');
+            panelClassAttr.value = 'm-cookie-panel';
+            panelStyleAttr.value = `width: ${width}; left: ${position};`;
+            panel.setAttributeNode(panelClassAttr);
+            panel.setAttributeNode(panelStyleAttr);
+
+            // Create a class attribute and value, add class attribute to the panel inner
+            let panelInnerClassAttr = document.createAttribute('class');
+            panelInnerClassAttr.value = 'm-cookie-panel__inner';
+            panelInner.setAttributeNode(panelInnerClassAttr);
+
+            // Create a class attribute and value, add class attribute to the button
+            let buttonClassAttr = document.createAttribute('class');
+            buttonClassAttr.value = 'm-cookie-panel__btn';
+            button.setAttributeNode(buttonClassAttr);  
+
+            // Set button label
+            button.innerHTML = 'Save and close';          
+
+            panel.appendChild(panelInner);
+
+      // Loop over the heading and text content arrays within the config object
+      config.content.headings.forEach((header, index) => {
+
+        let heading = document.createElement('h2');
+        let paragraph = document.createElement('p');
+        let copy = config.content.text[index];
+
+        let headingClassAttr = document.createAttribute('class');
+        headingClassAttr.value = 'm-cookie-panel__heading';
+
+        let paragraphClassAttr = document.createAttribute('class');
+        paragraphClassAttr.value = 'm-cookie-panel__copy';
+
+        heading.setAttributeNode(headingClassAttr);
+        paragraph.setAttributeNode(paragraphClassAttr);
+
+        heading.appendChild(document.createTextNode(header));     
+        paragraph.appendChild(document.createTextNode(copy));
+
+        panelInner.appendChild(heading);
+        panelInner.appendChild(paragraph);
+      });
+
+      panelInner.appendChild(button);
+
+      // Set the CookieControl cookie and close the panel on button click
+      button.addEventListener('click', function() {
+        document.cookie = 'CookieControl=true';
+      });
+
+            // Prepend the panel to the DOM after the opening <body> tag and not where the script is placed in the HTML
+            document.body.prepend(panel);
+        }
+    }
+
+}(window, document, config));
+
+const cookieControl = CookieControl.Constructor();
+-->
+
+<!-- cookie policy HTML code (needs server to run) -->
+<!--
+<script>
+const config = {
+  necessaryCookies: ['CookieControl', 'pet', 'color'],
+  optionalCookies: [],
+  style: {
+    color: '#fff',
+    backgroundColor: '#0276a5'
+  },
+  content: {
+    headings: [
+      'Our use of cookies', 
+      'Necessary cookies', 
+      'Analytics cookies'
+    ],
+    text: [
+      'We use necessary cookies to make our site work. We\'d also like to set optional analytics cookies to help us improve it. We won\'t set optional cookies unless you enable them. Using this tool will set a cookie on your device to remember your preferences.',
+      'Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions.',
+      'We\'d like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. The cookies collect information in a way that does not directly identify anyone. For more information on how these cookies work, please see our \'Cookies page\'.'
+    ]
+  }
+};
+</script>
+
+SET TEST COOKIES
+<script>
+document.cookie='testingCookie=Dan';
+document.cookie='pet=Cat';
+document.cookie='color=Blue';
+</script>
+
+<script src="cookie-policy.js"></script>
+-->
+
+<!-- https://stackoverflow.com/questions/13140292/what-does-prototype-mean-here-in-the-jquery-source-code -->
+
 </body>
 </html>
