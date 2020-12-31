@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript Promises">
+
+	<title>Codebox - JavaScript Promises</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Promises</h1>
+
+            <p>Most modern browsers support JavaScript Promises, however a <a href="https://github.com/stefanpenner/es6-promise#readme" target="_blank" rel="noopener noreferrer">polyfill</a> is available should you need to support older browsers.</p>
+
+            <p>A promise can be:</p>
+
+            <ul>
+                <li><strong>fulfilled</strong> - the action relating to the promise succeeded.</li>
+                <li><strong>rejected</strong> - the action relating to the promise failed.</li>
+                <li><strong>pending</strong> - hasn't fulfilled or rejected yet.</li>
+                <li><strong>settled</strong> - has fulfilled or rejected.</li>
+            </ul>
+
+            <p>The promise constructor takes one argument, a callback with two parameters, <strong>resolve</strong> and <strong>reject</strong>. We use the callback to do something then call resolve if everything worked, otherwise the call is rejected.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const promise = new Promise(function(resolve, reject) {
+   
+    if () {
+        resolve('Stuff worked!');
+    } else {
+        reject(Error('It broke!'));
+    }
+
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's how we use the promise:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+promise.then(function(result) {
+    console.log(result);        // Stuff worked!
+}, function(err) {
+    console.log(err);           // Error: It broke!
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+            
+            <p>The <strong>then()</strong> method takes two arguments, a callback for <strong>success</strong> and another for the <strong>failure</strong>. Both are optional.</p>
+
+            <p>We can write a simple function using promises to make a <strong>GET</strong> request. This will be an alternative to using the <strong>XMLHttpRequest (XHR)</strong> object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function get(url) {
+    
+    // Return a new promise
+    return new Promise(function(resolve, reject) {
+
+        // Do the usual XHR stuff
+        let req = new XMLHttpRequest();
+        req.open('GET', url);
+
+        req.onload = function() {
+            // Check the status of the request
+            if (req.status == 200) {
+                // Resolve the promise with the response text
+                resolve(req.response);
+            } else {
+                // Otherwise reject with the status text and meaninful error
+                reject(Error(req.statusText));
+            }
+        };
+
+        // Handle network errors
+        req.onerror = function() {
+            reject(Error('Network Error'));
+        };
+
+        // Make the request
+        req.send();
+    });
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then call the <strong>get()</strong> function to make a GET request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+get('story.json').then(function(response) {
+    console.log('Success!', response);
+}, function(error) {
+    console.error('Failed!', error);
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we use an open API such as <a href="https://ghibliapi.herokuapp.com/films" target="_blank" rel="noopener noreferrer">https://ghibliapi.herokuapp.com/films</a> then the response will return an array of all Films from Studio Ghibli in the console if the GET request has been successful.</p>
+
+            <p>Another open API to consider using is <a href="https://open-platform.theguardian.com/" target="_blank" rel="noopener noreferrer">The Guardian Open Platform</a>.</p>
+
+            <h2>Chaining</h2>
+
+            <p>You can use the <strong>then()</strong> method to chain code together to transform values or run additional asynchronous (async) actions one after another.</p>
+
+            <p>In our earlier example the response received is <strong>JSON (JavaScript Object Notation)</strong> but is currently received as plain text. We can alter our <strong>get()</strong> function to use the <strong>JSON responseType</strong>, but we can also use promises to parse the JSON that is returned in the response.</p>
+
+            <p><strong>JSON.parse()</strong> takes a single argument and returns a transformed value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+get('story.json').then(function(response) {
+    return JSON.parse(response);
+}).then(function(response) {
+    console.log('This is JSON', response);
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This can be written as a shortcut:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+get('story.json').then(JSON.parse).then(function(response) {
+    console.log('This is JSON', response);
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In fact, we could make a <strong>getJSON()</strong> function that returns a promise, fetches a URL, then parses the response as JSON:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function getJSON(url) {
+    return get(url).then(JSON.parse);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

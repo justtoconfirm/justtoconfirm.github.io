@@ -60,6 +60,8 @@ function sayHello() {
 
             <p>Having now declared a function, you can now execute all of the statements between the curly braces with a single line of code. This is known as <strong>calling the function</strong>.</p>
 
+            <p><strong>Defining a function does not execute it, calling a function executes the code.</strong></p>
+
             <p>To run the code within the function, use the function name followed by parenthesis. The function can be called as many times as you like within the same script.</p>
 
             <p>The function executes the code within the code block. When finished, the code continues to run from the point where it was initially called.</p>
@@ -235,6 +237,134 @@ area(20, 40);
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>Here is a <strong>function expression</strong> (function can be anonymous, as here) example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const square = function(number) {
+    return number * number;
+}
+
+let x = square(4);      // x gets the value 16
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This function can also be written using <strong>ES6</strong> (arrow function) syntax:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const square = number => {
+    return number * number;
+}
+
+let x = square(4);      // x gets the value 16
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is a <strong>function declaration</strong> example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function square(number) {
+    return number * number;
+}
+
+square(4);      // 16
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The main difference between a function expression and a function declaration is the function name. A function name can be omitted (removed) from a function expression, to create anonymous functions. A function expression can also be used as an IIFE which runs as soon as it's defined.</p>
+
+            <h2>Function scope</h2>
+
+            <p>Variables defined inside a function cannot be accessed from anywhere outside the function. This is because the variable is defined only in the scope of the function. A function can however, access all variables and functions defined inside the scope in which it's defined.</p>
+
+            <p>In other words, a function defined in the global scope can access all variables defined in the global scope. A function defined inside another function can also access all variables defined in its parent function and any other variables to which the parent function has access.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// The following variables are defined in the global scope
+const numOne = 20;
+const numTwo = 3;
+
+// This function is defined in the global scope
+function multiply() {
+    return numOne * numTwo;
+}
+
+multiply();     // 60
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then rewrite our code to consider function scope:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function getScore() {
+    
+    let numOne = 2;
+    let numTwo = 3;
+    let name = 'Dan';
+
+    function add() {
+        return name + ' scored ' + (numOne + numTwo);
+    }
+
+    return add();
+}
+
+getScore();     // Dan scored 5
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Hoisting</h2>
+
+            <p>Hoisting refers to the availability of functions and variables at the top of your code as opposed to being available after they have been declared (created).</p>
+
+            <p><strong>Function declarations</strong> are hoisted but <strong>function expressions</strong> are not.</p>
+
+            <p>In this example, a function is called before a function declaration. This is an example of hoisting and will not cause an error as we're using a function declaration.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+logStuff();
+
+function logStuff() {
+    console.log('This is a test log');
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we use a <strong>function expression</strong> however, an error (Uncaught ReferenceError: Cannot access 'logStuff' before initialization) will be thrown:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+logStuff();
+
+const logStuff = () => {
+    console.log('This is a test log');
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Hoisting is important when thinking about when and where a function is needed.</p>
+
+            <p>Function expressions are invoked to avoid polluting the global scope. Instead of your program being aware of many different functions, if they're anonymous (which can only be done using function expressions), they are used and forgotten about immediately.</p>
 
             <h2>Arrow Functions</h2>
 
@@ -420,6 +550,202 @@ var volume = getSize(3, 2, 3)[1];       // Volume
                 <li>The <strong>area</strong> variable holds the area of the box that is 3 x 2. The area is the first value in the array <strong>[0]</strong>.</li>
                 <li>The <strong>volume</strong> variable holds the volume of the box, 3 x 2 x 3. The volume is the second value in the array <strong>[1]</strong>.</li>
             </ul>
+
+            <h2>Immediately Invoked Function Expression (IIFE)</h2>
+
+            <p>An IIFE is a way to execute functions immediately, as soon as they are created. They are very useful because they don't pollute the global object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function() {
+    
+    /* */
+
+}());
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also define an IIFE using an ES6 arrow function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(() => {
+    
+    /* */
+
+}());
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We basically have a function defined inside parenthesis and then we append <strong>()</strong> to execute that function. The wrapping parenthesis are actuallty what makes our function to be a function expression. If this were a function declaration it would be invalid (Syntax Error) because we hadn't specified a name. The IIFE is an <strong>anonymous function</strong> as it has no name.</p>
+
+            <p>Function declarations require a name, while function expressions do not.</p> 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function() {
+    
+    /* SyntaxError: function statement requires a name */
+
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>An IIFE can also be named. This does not change the fact that the function does not "leak" to the global scope and it cannot be invoked again after its execution.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function doSomething() {
+    
+    /* */
+
+}());
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Put simply, an <strong>Immediately Invoked Function Expression (IIFE)</strong> is a good way at protecting the scope of your function and variables within it. IIFEs are often used in JavaScript frameworks and libraries in order to wrap all of their code inside in order to protect the scope of the code within the function (avoids the code polluting the global namespace) and to make sure everything is executed without the user having to do anything.</p>
+
+            <p>You may want to pass global objects into the IIFE to use them in your code and protect them from the global scope. IN this example we are passing the global <strong>Document</strong> and <strong>Window</strong> objects into the IIFE. The parameters in the function are also named <strong>'window'</strong> and <strong>'document'</strong>, but the parameters can be named whatever you consider suitable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+(function(window, document) {
+    
+    /* */
+
+}(window, document));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may also have an object - named <strong>config</strong> in this example - outside of the IIFE you want to pass into the function as a parameter.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const config = {
+    color: '#fff',
+    backgroundColor: '#000',
+    message: {
+        intro: 'Hello and Welcome!'
+    }
+};
+
+(function(w, d, c) {
+    
+    let color = c.color;
+    let message = c.message.intro;
+
+    console.log(color);     // #fff
+    console.log(message);   // Hello and Welcome!
+
+}(window, document, config));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Currying</h2>
+
+            <p><strong>Currying</strong> is an advanced technique that can be used when working with functions in JavaScript. Currying, or <strong>partial application</strong>, is a process where a function takes multiple arguments one at a time. In other words, you can pass all the arguments a function is expecting and get the result. So, rather than have a function that looks like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function(arg1, arg2, arg3) {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You have something that looks like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function(arg1)(arg2)(arg3) {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When you pass in an argument, the first function processes it then returns a function that processes the next parameter. This allows you to chain your arguments.</p>
+
+            <p>Let's take a look at another example. Here's a function for a greeting using familiar syntax:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const greeting = function(greeting, name) {
+    console.log(greeting + " " + name);
+}
+
+greeting("Hello", "Dan");
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This function requires both the name and the greeting to be passed as arguments to work. If you were to pass just the greeting you would get <strong>"Hi undefined"</strong> returned.</p>
+
+            <p>We can rewrite this function using currying so that the basic function only requires the greeting and it can return another function that takes the name of the person we would like to greet.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const greeting = function(greeting) {
+    return function(name) {
+        console.log(greeting + " " + name);
+    };
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we have a new function for any type of greeting and we can pass that new function the name of the person we want to greet.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const greeting = function(greeting) {
+    return function(name) {
+        console.log(greeting + " " + name);
+    };
+};
+
+const sayGreeting = greeting("Hi");
+
+sayGreeting("Dan");         // Hi Dan
+sayGreeting("Pearl");       // Hi Pearl
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also call the original curried function directly by passing in each of the parameters in a separate set of parenthesis.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const greeting = function(greeting) {
+    return function(name) {
+        console.log(greeting + " " + name);
+    };
+};
+
+greeting("Hi")("Dan");       // Hi Dan
+greeting("Hi")("Pearl");     // Hi Pearl
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Currying is useful because it lets you chain your arguments in a way that prevents if from having side effects. This is an example of functional programming, your function does one thing and one thing only. If a function has more than one argment, it can have additional side effects. The final argument in a chain has access to all arguments in the chain, therefore, regardless of how it's called, if the sequence is correct, the final result will always return as expected.</p>
+
+            <p>Currying also makes your code quick and easier to read. This lets you create a sequence of functions and ensures that this is enforced. This makes it easier to detect issues every step of the way.</p>
 
 		</div>
 	</div>
