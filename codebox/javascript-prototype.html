@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to the JavaScript Prototype">
+
+	<title>Codebox - JavaScript Prototype</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Prototype</h1>
+            <!-- https://www.taniarascia.com/understanding-prototypes-and-inheritance-in-javascript/ -->
+
+            <p>JavaScript is a <strong>prototype-based</strong> language, meaning object properties and methods can be shared and objects have the ability to be cloned or extended.</p>
+
+            <p>Every object in JavaScript has an internal property called <strong><[[Prototype]]</strong>. We can demonstate this by creating a new, empty object. The double square brackets that enclose <strong>[[Prototype]]</strong> signifies that this is an internal property and cannot be accessed directly in code.</p>
+
+            <p>It's important that every object in JavaScript has a <strong>[[Prototype]]</strong> as it creates a way for any two or more objects to be linked.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let x = {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Another way to create an object is with the object constructor:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let x = new Object();
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To find the <strong>[[Prototype]]</strong> of this newly created object, we use the <strong>getPrototypeOf()</strong> method. Another way to find the <strong>[[Prototype]]</strong> of an object is to use the <strong>__proto__</strong> property, however his is a legacy feature not found in modern browsers and should not be used in production code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Object.getPrototypeOf(x);
+
+x.__proto__         // Legacy - do not use in production code
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The output of using the <strong>getPrototypeOf()</strong> method will consist of several built-in properties and methods:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, ...}
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Constructor Functions</h2>
+
+            <p>To begin, a Constructor function is just a regular function. It becomes a Constructor function when it's called on by an instance with the <strong>new</strong> keyword. In JavaScript, the convention for naming a Constructor function is always to capitalise the first letter of the function's name.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Initialize a constructor function
+function Hero(name, level) {
+    this.name = name,
+    this.level = level
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we can create an instance of the <strong>Hero</strong> Constructor function using the <strong>new</strong> keyword. We pass in values for the <strong>name</strong> and <strong>level</strong> into the function as arguments.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let ironMan = new Hero('Iron Man', 10);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
