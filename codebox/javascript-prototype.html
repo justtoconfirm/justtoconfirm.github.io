@@ -23,7 +23,7 @@
 
             <p>JavaScript is a <strong>prototype-based</strong> language, meaning object properties and methods can be shared and objects have the ability to be cloned or extended.</p>
 
-            <p>Every object in JavaScript has an internal property called <strong><[[Prototype]]</strong>. We can demonstate this by creating a new, empty object. The double square brackets that enclose <strong>[[Prototype]]</strong> signifies that this is an internal property and cannot be accessed directly in code.</p>
+            <p>Every object in JavaScript has an internal property called <strong>[[Prototype]]</strong>. We can demonstate this by creating a new, empty object. The double square brackets that enclose <strong>[[Prototype]]</strong> signifies that this is an internal property and cannot be accessed directly in code.</p>
 
             <p>It's important that every object in JavaScript has a <strong>[[Prototype]]</strong> as it creates a way for any two or more objects to be linked.</p>
 
@@ -92,12 +92,274 @@ function Hero(name, level) {
     </code>
 </pre>
 
+            <p>Here we have created a Constructor function called <strong>Hero</strong> with two parameters: <strong>name</strong> and <strong>level</strong>. All characters will have a <strong>name</strong> and <strong>level</strong> properties. The <strong>this</strong> keyword will refer to the new instance that is created, so setting <strong>this.name</strong> to the name parameter ensures the new object will have a <strong>name</strong> property set.</p>
+
             <p>Now we can create an instance of the <strong>Hero</strong> Constructor function using the <strong>new</strong> keyword. We pass in values for the <strong>name</strong> and <strong>level</strong> into the function as arguments.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-let ironMan = new Hero('Iron Man', 10);
+const ironMan = new Hero('Iron Man', 10);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we console out <strong>ironMan</strong>, we will see a new object has been created with the new properties set as expected:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    Hero {name: "Iron Man", level: 10}
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Now if we get the <strong>[[Prototype]]</strong> of <strong>ironMan</strong>, we will be able to see the constructor as <strong>Hero()</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Object.getPrototypeOf(ironMan);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    constructor: f Hero(name, level)
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>At this time, only properties and not methods are defined in the constructor.</p>
+
+            <h2>Adding Methods to Prototype</h2>
+
+            <p>We can add a method to the <strong>Hero</strong> Constructor function using <strong>prototype</strong>. In this example, we will create a <strong>greet()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Hero.prototype.greet = function() {
+    return `${this.name} says hello.`
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Since the <strong>greet()</strong> method is now in the <strong>prototype</strong> of the Hero function and <strong>ironMan</strong> is an instance of Hero, the <strong>greet()</strong> method is now available to <strong>ironMan</strong> or any other instance of the Hero function we create.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+ironMan.greet();        // Iron Man says hello.
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you inspect the <strong>[[Prototype]]</strong> of Hero, you'll see <strong>greet()</strong> as an available option now.</p>
+
+            <h2>The call() method</h2>
+
+            <p>It wouldn't make any sense to add all methods or properties to our Hero Constructor function as not everything needs to be shared for every class as we may have different classes with different abilities (properties and methods), only the common ones need to be in the Constructor function to be shared.</p>
+
+            <p>We want to create new Constructor functions but connect them to the original Hero Constructor function.</p>
+
+            <p>We can use the <strong>call()</strong> method to copy over properties and methods from one constructor into another constructor. Let's create a Warrior and a Healer constructor.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Initialize a Warrior Constructor function
+function Warrior(name, level, weapon) {
+    
+    // Chain constructor with call
+    Hero.call(this, name, level);
+
+    // Add a new property to the Warrior Constructor
+    this.weapon = weapon;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A Healer Constructor function can also be created in the same way:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Initialize a Healer Constructor function
+function Healer(name, level, spell) {
+    
+    // Chain constructor with call
+    Hero.call(this, name, level);
+
+    // Add a new property to the Warrior Constructor
+    this.spell = spell;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Both new constructors now have the properties of Hero and a few unique ones.</p>
+
+            <p>We can now add the <strong>attack()</strong> method to the Warrier constructor and the <strong>heal()</strong> method to the Healer constructor.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Warrior.prototype.attack = function() {
+    return `${this.name} attacks with the ${this.weapon}.`;
+}
+
+Healer.prototype.heal = function() {
+    return `${this.name} casts ${this.spell}.`;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>At this point, we will create our characters with the two new character constructor functions available.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const heroOne = new Warrior('Iron Man', 10, 'Laser');
+const heroTwo = new Healer('Doctor Strange', 50, 'Cure');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>heroOne</strong> is recognised as a Warrior and <strong>heroTwo</strong> as a Healer with the new properties.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    Warrier {name: "Iron Man", level: 10, weapon: "Laser"}
+    Healer {name: "Doctor Strange", level: 50, spell: "Cure"}
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We can now use the new methods we set on each prototype.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+heroOne.attack();       // Iron Man attacks with the Laser.
+heroTwo.heal();         // Doctor Strange casts Cure.
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we attempt to use the <strong>greet()</strong> method from the Hero constructor, you will get the following error:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body terminal__body--error">
+<!-- Just leave this line alone -->
+    Uncaught TypeError: heroOne.greet is not a function
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Prototype properties and methods are not automatically linked when you use the <strong>call()</strong> method to chain constructors.</p>
+
+            <p>We can use the <strong>Object.create()</strong> method to link the prototypes. Make sure this is placed before you add any additional methods.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Warrior.prototype = Object.create(Hero.prototype);
+Healer.prototype = Object.create(Hero.prototype);
+
+// All other prototype methods added below
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can now use the <strong>greet()</strong> prototype method from the Hero constructor for our Warrior or Healer instances without error.</p>
+
+            <p>Here is the full code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Initialize constructor functions
+function Hero(name, level) {
+    this.name = name
+    this.level = level
+}
+
+function Warrior(name, level, weapon) {
+    Hero.call(this, name, level)
+
+    this.weapon = weapon
+}
+
+function Healer(name, level, spell) {
+    Hero.call(this, name, level)
+
+    this.spell = spell
+}
+
+// Link prototypes and add prototype methods
+Warrior.prototype = Object.create(Hero.prototype)
+Healer.prototype = Object.create(Hero.prototype)
+
+Hero.prototype.greet = function () {
+    return `${this.name} says hello.`
+}
+
+Warrior.prototype.attack = function () {
+    return `${this.name} attacks with the ${this.weapon}.`
+}
+
+Healer.prototype.heal = function () {
+    return `${this.name} casts ${this.spell}.`
+}
+
+// Initialize individual character instances
+const heroOne = new Warrior('Darren', 20, 'GTM')
+const heroTwo = new Healer('Dave', 500, 'Cure')
+
+heroOne.attack();
 <!-- Just leave this line alone -->
     </code>
 </pre>
