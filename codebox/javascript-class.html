@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to the JavaScript Class">
+
+	<title>Codebox - JavaScript Class</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Class</h1>
+            <!-- https://www.taniarascia.com/understanding-classes-in-javascript/ -->
+
+            <p>Until recently, developers used <strong>constructor functions</strong> to mimic an object-oriented design pattern in JavaScript. Classes were introduced within the ES6 (ECMAScript 2015) specification and are often described as "syntactic sugar" over prototypes and inheritance, which means they offer a cleaner and easier syntax without offering new functionality.</p>
+
+            <p>Both classes and constructor functions imitate an object-oriented inheritance model in JavaScript.</p>
+
+            <p>Understanding prototypical inheritence is key to understanding JavaScript. Being familiar with classes is also helpful when working with JavaScript libraries such as React.</p>
+
+            <p>A JavaScript class is a type of function but are declared with the <strong>class</strong> keyword.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Initialising a function with a function expression
+const x = function() {}
+
+// Initialising a class with a class expression
+const y = class {}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we access the <strong>[[Prototype]]</strong> of either the function or class expression using the <strong>Object.getPrototypeOf()</strong> method, the same result is returned for both.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+Object.getPrototypeOf(y)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The console output:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+            <span class="terminal__circle terminal__circle--clear"></span>
+        </div>
+        <div class="terminal__title">DevTools</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    ƒ () { [native code] }
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Defining a Class</h2>
+
+            <p>The new class syntax is structured very similarly to a function. The only differences in the syntax is using the <strong>class</strong> keyword instead of <strong>function</strong> and assigning the properties inside a <strong>constructor()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Hero {
+    constructor(name, level) {
+        this.name = name
+        this.label = label
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can create a new instance of <strong>Hero</strong> using the <strong>new</strong> keyword and assigning values.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const heroOne = new Hero('Iron Man', 1)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Defining Methods</h2>
+
+            <p>With classes, the syntax of defining methods is simplified. The common practice with constructor functions is to assing methods directly to the prototype, but in a class, we can use the <strong>method definition shorthand</strong> introduced in ES6, which is much shorter and easier to write.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Hero {
+    constructor(name, level) {
+        this.name = name
+        this.label = label
+    }
+
+    // Adding a method to the constructor
+    greet() {
+        return `${this.name} says hello.`
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Extending a Class</h2>
+
+            <p>As with Constructor functions, a class can be extended and further classes can inherit from the parent. In this example, we will create a <strong>Healer</strong> class. With ES6 classes, the <strong>super</strong> keyword is used in place of the <strong>call()</strong> method to access the parent methods or properties. We use extends to refer to the parent <strong>Hero</strong> class.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+class Hero {
+    constructor(name, level) {
+        this.name = name
+        this.label = label
+    }
+
+    // Adding a method to the constructor
+    greet() {
+        return `${this.name} says hello.`
+    }
+}
+
+// Create a new class and extend from the parent
+class Healer extends Hero {
+    constructor(name, level, spell) {
+        // Chain constructor with super
+        super(name, level)
+    }
+
+    // Add a new property to this class
+    this.spell = spell
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can create a new instance of <strong>Healer</strong> using the <strong>new</strong> keyword. This will contain all the properties inherited from the parent <strong>Hero</strong> class but also the <strong>spell</strong> property added to the Healer class.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const heroTwo = new Healer('Doctor Strange', 50, 'Cure')
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
