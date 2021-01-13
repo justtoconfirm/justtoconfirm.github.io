@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to GraphQL">
+
+	<title>Codebox - GraphQL</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>GraphQL</h1>
+            <!-- https://www.toptal.com/graphql/graphql-nodejs-api -->
+            <!-- https://blog.heroku.com/building-graphql-api-javascript -->
+            <!-- https://flaviocopes.com/graphql-vs-rest/ -->
+
+            <p>GraphQL is an open-source data query language for APIs (Application Program Interface) and was developed internally by Facebook in 2012 before being publicly released in 2015. It is a syntax that describes how to ask for data and is generally used to load data from a server to a client.</p>
+
+            <p>REST is built on top of an existing architecture, which in the most common scenarios is HTTP. GraphQL is built on its own set of conventions.</p>
+
+            <p>In a traditional REST-based API approach, the client makes a request and the server dictates the response. But, in GraphQL, the client determines precisely the data it wants from the server. For example, the client may only want the user's name and email and no further information. GraphQL is <strong>less verbose</strong>, we only get what we ask for, which differs from REST, which gives you everything (not very efficient and lots of unnecessary data).</p>
+
+            <p>With GraphQL, the user is able to make a single call to fetch the required information rather than to construct multiple REST requests to fetch the same.</p>
+
+            <p>Within Node, tools such as <a href="https://github.com/graphql/express-graphql" target="_blank" rel="noopener noreferrer">express-graphql</a>, can be used as a popular server middleware for integrating GraphQL with Node.js.</p>
+
+            <h2>A single endpoint</h2>
+
+            <p>GraphQL has <strong>only one endpoint</strong> where you send all your queries. With a REST approach, you create multiple endpoints and use HTTP <strong>verbs</strong> to distinguish read actions, such as <strong>GET</strong>, or write actions, such as <strong>POST</strong>, <strong>PUT</strong> and <strong>DELETE</strong>. GraphQL does not use HTTP verbs to determine the request type.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
