@@ -19,13 +19,13 @@
 		<div class="columns small-12 large-12">
 
 			<h1>Server-side Rendering (SSR)</h1>
-            <!-- https://www.digitalocean.com/community/tutorials/react-server-side-rendering#:~:text=Server%2Dside%20rendering%20(SSR),served%20as%20static%20HTML%20markup. -->
+            <!-- https://www.digitalocean.com/community/tutorials/react-server-side-rendering -->
             <!-- https://www.freecodecamp.org/news/what-exactly-is-client-side-rendering-and-hows-it-different-from-server-side-rendering-bd5c786b340d/ -->
             <!-- https://blog.logrocket.com/why-you-should-render-react-on-the-server-side-a50507163b79/ -->
 
-            <p><strong>Server-side Rendering (SSR)</strong> is a technique for rendering a client-side application on the server and then sending the fully rendered page to the client. This allows dynamic components to be served as static HTML markup.</p>
+            <p>Server-side rendering (SSR) is a technique for rendering a client-side Single page application (SPA) on the server and sending a fully rendered page to the client. This allows for dynamic components to be served as static HTML markup.</p>
 
-            <p>SSR is a often used when building <strong>Single Page Applications (SPA)</strong>.</p>
+            <p>This approach can be useful for Search Engine Optimisation (SEO) when indexing does not handle JavaScript properly.</p>
 
             <p>JavaScript currently enables you to build three types of applications:</p>
 
@@ -35,20 +35,21 @@
                 <li><strong>Server-side rendered (SSR)</strong> applications</li>
             </ul>
 
-            <p>SPAs comes with many challenges, one of which is <strong>Search Engine Optimisation (SEO)</strong>. Possible solutions are to make use of a <strong>static site generator</strong> or <strong>server-side rendering (SSR)</strong>.</p>
+            <h2>Servers</h2>
+
+            <p>NodeJS is not available as an Apache module in the way mod-perl and mod-php are, so it's not possible to run Node on top of an Apache server.</p>
+
+            <h2>Single page applications (SPA)</h2>
+
+            <p>SSR is a often used when building <strong>Single page applications (SPA)</strong>. SPAs comes with many challenges, one of which is <strong>Search Engine Optimisation (SEO)</strong>.</p>
+
+            <p>To resolve these issues we can make use of a <strong>static site generators</strong> or <strong>server-side rendering (SSR)</strong>.</p>
+
+            <p>Types of SSR languages or frameworks include: <strong>PHP</strong>, <strong>Java</strong>, <strong>.Net</strong> and <strong>Node.js</strong></p>
 
             <ul>
                 <li><strong>SSR</strong> - Server-side Rendering</li>
                 <li><strong>CSR</strong> - Client-side Rendering</li>
-            </ul>
-
-            <p>Example of SSR languages or frameworks:</p>
-
-            <ul>
-                <li><strong>PHP</strong></li>
-                <li><strong>Java</strong></li>
-                <li><strong>.Net</strong></li>
-                <li><strong>Node.js</strong></li>
             </ul>
 
             <h2>React & Server-side Rendering (SSR)</h2>
@@ -63,7 +64,7 @@
                 <li><strong>Social sharing</strong></li>
             </ul>
 
-            <h2>Alternatives</h2>
+            <h2>Alternatives to Server-side Rendering (SSR)</h2>
 
             <ul>
                 <li><strong>Nuxt.js</strong> - server-side rendering framework for Vue.js.</li>
