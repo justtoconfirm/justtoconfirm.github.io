@@ -522,6 +522,60 @@ console.log(date);      // Wed Nov 18 2020 23:53:49 GMT-0500 (Central Daylight T
     </code>
 </pre>
 
+            <p>Destructuring also reduces the need to overload your functions with multiple parameters. When you call this function (below) you will need to pass multiple values as arguments into the function and in the correct order or this could lead to undefined values being returned or errors.</p>
+
+            <p>This is also a violation of the <strong>clean code principle</strong>. This principle suggests that a function should not have more than two parameters, this function has four.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function myFunction(employeeID, employeeName, employeeAge, employeeGender) {
+    //
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Creating a <strong>higher-level object</strong> as an argument and using the <strong>ES6 destructuring syntax</strong> is a good approach to overcoming this problem.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const users = {
+    employeeID: 1234,
+    employeeName: 'Dan',
+    employeeAge: 25,
+    employeeGender: 'Male'
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we can re-write the function:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function myFunction({ employeeID, employeeName, employeeAge, employeeGender }) {
+
+    // Destructure the value you need
+    console.log(`Meet ${employeeName}`);
+    
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can call the function using a single argument:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+myFunction(users);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Getting Multiple Values</h2>
 
             <p>Functions can return more than one value using an array. For example, this function calculates both the area and the volume.</p>
