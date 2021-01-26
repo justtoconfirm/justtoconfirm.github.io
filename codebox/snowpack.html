@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to Snowpack">
+
+	<title>Codebox - Snowpack</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Snowpack</h1>
+            <!-- https://blog.logrocket.com/snowpack-vs-webpack/ -->
+
+            <p><strong>Snowpack</strong> is a frontend build tool and is an alternative to Webpack or Parcel. Snowpack uses JavaScript's native module system, known as <strong>ESM (ES Modules)</strong>, to avoid unnecessary work and improve speed.</p>
+
+            <p>Snowpack is a package installed from NPM. Create a <strong>package.json</strong> file in your project directory to manage dependencies.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You can install Snowpack using <strong>NPM (Node Package Manager)</strong> or <strong>Yarn</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    # npm
+    $ npm install snowpack --save-dev
+
+    # yarn
+    $ yarn add snowpack --dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+        <p>For long-term development, the best way to use Snowpack is with a <strong>package.json</strong> script. This reduces the need to remember exact Snowpack commands and lets you share common scripts.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Recommended: package.json scripts
+// npm run start (or: "yarn run ...")
+"scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The following command will start the local dev server for development. By default, this serves your current working directory to the browser and will look for an <strong>index.html</strong> file to start.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run start
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Building your project will build into a static build/ directory that you can then deploy anywhere.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run build
+    </pre>
+</div>
+<!-- / Terminal -->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
