@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to TypeScript">
+
+	<title>Codebox - Introduction to TypeScript</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to TypeScript</h1>
+            <!-- https://www.freecodecamp.org/news/learn-typescript-in-5-minutes-13eda868daeb/ -->
+
+            <p>TypeScript is an open-source language built on JavaScript and developed by Microsoft. TypeScript is useful in the development of large applications and transcompiles to JavaScript. TypeScript first became popular with the release of Angular 2.</p>
+
+            <p>JavaScript code is valid in TypeScript code.</p>
+
+            <p>For TypeScript files, we use the file extension of <strong>.ts</strong></p>
+
+            <h2>Installing TypeScript</h2>
+
+            <p>Before we start coding, we need to install TypeScript. We can use NPM (Node Package Manager) for this. Open your terminal and install the <strong>typescript</strong> package. This can be installed globally or as a devDependency (preference).</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install typescript --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once installed, a <strong>package.json</strong> file will be needed with a script to run TypeScript using the <strong>tsc</strong> command.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "typescript": "tsc"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we have a TypeScript file named <strong>hello-world.ts</strong>, the package.json script may need to be updated to compile the file into JavaScript. This will generate a file named <strong>hello-world.js</strong> when executed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "typescript": "tsc hello-world.ts"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Alternatively, if we want to compile all the TypeScript files inside any folder, we can use a wildcard.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "typescript": "tsc *.ts"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

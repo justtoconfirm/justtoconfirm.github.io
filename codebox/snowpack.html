@@ -20,8 +20,11 @@
 
 			<h1>Snowpack</h1>
             <!-- https://blog.logrocket.com/snowpack-vs-webpack/ -->
+            <!-- https://nafeu.medium.com/modern-react-development-but-without-200-mb-of-node-modules-69d8ca01eacf -->
 
             <p><strong>Snowpack</strong> is a frontend build tool and is an alternative to Webpack or Parcel. Snowpack uses JavaScript's native module system, known as <strong>ESM (ES Modules)</strong>, to avoid unnecessary work and improve speed.</p>
+
+            <p><strong>ECMAScript modules (ESM)</strong> uses <strong>import</strong> and <strong>export</strong> keywords and are powered by Web Assembly, making Snowpack very fast. Snowpack also has out-of-the-box support for TypeScript, JSX, CSS Modules, Hot Module Reloading, and more.</p>
 
             <p>Snowpack is a package installed from NPM. Create a <strong>package.json</strong> file in your project directory to manage dependencies.</p>
 
@@ -119,6 +122,90 @@
     </pre>
 </div>
 <!-- / Terminal -->
+
+            <h2>Creating a Config file</h2>
+
+            <p>A config file may not always be needed, but if you need to create a <strong>snowpack.config.js</strong> file, you can initialise it using a single command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npx snowpack init
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Setting up React</h2>
+
+            <p>Snowpack can be used to setup React applications quickly without the need for Babel. Browsers don't understand JSX (or TypeScript), so any compile-to-JavaScript file formats compile to <strong>.js</strong> in the final browser build. This is why we often use Babel when using Webpack.</p>
+
+            <p>Begin by installing React and ReactDOM as dependencies using NPM:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react react-dom --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Create a simple <strong>index.jsx</strong> file in your project folder with the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(&lt;h1&gt;Hello World&lt;/h1&gt;, document.getElementById('root'));
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Create an HTML file, named <strong>index.html</strong>, where your application will render.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Snowpack Test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;script type="module" src="/index.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Run your build and the localhost server will start to display your React application.</p>
+
+            <p>When Snowpack serves our <strong>.jsx</strong> file it automatically transpiles and serves it as <strong>.js</strong></p>
 
 		</div>
 	</div>

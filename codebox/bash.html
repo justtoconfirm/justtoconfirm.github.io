@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Bash">
+
+	<title>Codebox - Bash</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Bash</h1>
+
+            <p>Bash is a Unix shell which is a <strong>command line interface (CLI)</strong> for interacting with an operating system (OS). Bash is available by default on Linux and MacOS operating systems. Newer MacOS installations (from Catalina) come installed with <strong>Z Shell (zsh)</strong> as the new default.</p>
+
+            <h2>Creating a bash script</h2>
+
+            <p>Any command that you can run from the command line can be used in a bash script. Scripts are used to run a series of commands.</p>
+
+            <p>Create a file called <strong>hello-world</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ touch hello-world
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Edit the file to print a string that says "Hello world" using <strong>echo</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+echo "Hello world"
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now from the command line, run the script using the bash interpreter:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ bash hello-world
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>This script will run from the command line with the <strong>bash</strong> interpreter, but it's not executable on its own. For the file to run directly, we need to change the <strong>permissions</strong> to allow the script to be executable. <strong>chmod</strong> is a command that changes permissions on a file and <strong>+x</strong> will add execute rights to the script.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ chmod +x hello-world
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Within the hello-world bash script file, we will need to add a <strong>shebang (#!)</strong> at the top of the script. In Unix-like systems, a file with a shebang is interpreted as an executable file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+#!/bin/bash
+
+echo "Hello world"
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now you can run the <strong>hello-world</strong> script directly as it's executable. The prefixing of the file with <strong>./</strong> means the file is in the current directory.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ ./hello-world
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In order to run a bash script without specifying the directory, you would need to add the directory of the script to the <strong>PATH</strong> running in your <strong>.bash_profile</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export PATH=$PATH:/path/to/script/directory
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
