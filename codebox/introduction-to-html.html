@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to HTML">
+
+	<title>Codebox - Introduction to HTML</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to HTML</h1>
+            <!-- https://www.creativebloq.com/features/18-hot-new-html-tags-to-use-today -->
+            <!-- https://www.creativebloq.com/features/tags-to-use-right-now -->
+
+            <h2>&lt;detail&gt; & &lt;summary&gt;</h2>
+
+            <p>The <strong>&lt;detail&gt;</strong> element will hide its content by default. When the user clicks the heading, it expands to reveal the content inside. It can also be given a custom heading using the <strong>&lt;summary&gt;</strong> elment. It's supported by all major browsers apart from Internet Explorer (IE).</p>
+
+            <details>
+                <summary>Click me</summary>
+                <p>Any content inside is hidden by default.</p>
+            </details>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;details&gt;
+    &lt;summary&gt;Click me&lt;/summary&gt;
+    &lt;p&gt;Any content inside is hidden by default.&lt;/p&gt;
+&lt;/details&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;dfn&gt;</h2>
+
+            <p>By wrapping a word or phrase in the &lt;dfn&gt; element, it indicates that this term is being <strong>defined</strong>. When placed inside a <strong>&lt;p&gt;</strong>, <strong>&lt;dl&gt;</strong>, or <strong>&lt;section&gt;</strong> element, the content surrounding it is treated as a definition. An id attribute can be used to link back to it whenever it next appears in the page.</p>
+
+            <p><dfn>Semantic markup</dfn> is HTML that provides meaning to content.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;&lt;dfn&gt;Semantic markup&lt;/dfn&gt; is HTML that provides meaning to content.&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;meter&gt;</h2>
+
+            <p>For numerical data that has a defined range, the &lt;meter&gt; element can provide a visual indication of what the data means in context. The browser can conditionally style the element for high or low values.</p>
+
+            <meter value="6.4" min="0" max="10" low="4" high="9" optimum="7.5"></meter>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;meter value="6.4" min="0" max="10" low="4" high="9" optimum="7.5"&gt;&lt;/meter&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;data&gt;</h2>
+
+            <p>The <strong>&lt;data&gt;</strong> element provides a hook for machines to understand meaning. The element may contain a value, such as as a product ID or ISBN. For date or time values, the &lt;time&gt; element should be used.</p>
+
+<p><data value="9781484254516">Practical Web Inclusion and Accessibility</data></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;&lt;data value="9781484254516"&gt;Practical Web Inclusion and Accessibility&lt;/data&gt;&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;time&gt;</h2>
+
+            <p>Allows machines to parse time and dates within copy. A <strong>datetime</strong> attribute can be used that shows the date in a format that is easier for machines to parse.</p>
+
+            <p>Our event is happening on the <time datetime="2021-04-02">2nd April</time></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;Our event is happening on the &lt;time datetime="2021-04-02"&gt;2nd April&lt;/time&gt;&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
