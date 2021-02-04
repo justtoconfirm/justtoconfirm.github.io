@@ -19,6 +19,10 @@
 		<div class="columns small-12 large-12">
 
 			<h1>Introduction to CSS</h1>
+            <!-- https://www.smashingmagazine.com/2021/02/things-you-can-do-with-css-today/ -->
+            <!-- https://www.youtube.com/watch?v=Z6wjUOSh9Tk -->
+            <!-- https://web.dev/content-visibility/ -->
+            <!-- https://caniuse.com/?search=content-visibility -->
 
             <p>CSS is not the largest asset to consider during development but it is the first the browswer discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed. It's always worthwhile making your CSS stylesheets as lean as possible to improve performance of your web page, website or application.</p>
 
@@ -334,7 +338,7 @@ a:visited {}
     </code>
 </pre>
 
-            <h3>::first-letter</h3>
+            <h3>The ::first-letter selector</h3>
 
             <p>Selector to target the first letter of a paragraph or element.</p>
 
@@ -348,7 +352,7 @@ p::first-letter {
     </code>
 </pre>
 
-            <h3>::first-of-type &amp; ::last-of-type</h3>
+            <h3>The ::first-of-type &amp; ::last-of-type selectors</h3>
 
             <p>Select the first or last of any type within the current parent element.</p>
 
@@ -366,7 +370,7 @@ p::last-of-type {
     </code>
 </pre>
 
-            <h3>::only-of-type</h3>
+            <h3>The ::only-of-type selector</h3>
 
             <p>Target elements that do not have any siblings within the parent class. Example maybe an unordered list with a single list item.</p>
 
@@ -380,7 +384,7 @@ li::only-of-type {
     </code>
 </pre>
 
-            <h3>:empty</h3>
+            <h3>The :empty selector</h3>
 
             <p>Represents an element that has no content within. You may have multiple elements, such as <strong>&lt;p&gt;</strong> in rendered HTML with no content. The <strong>:empty</strong> selector can be used to hide the empty elements on the page.</p>
 
@@ -389,6 +393,61 @@ li::only-of-type {
 <!-- Just leave this line alone -->
 p:empty {
     display: none;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The :is selector</h2>
+
+            <p>The <strong>:is</strong> pseudo-class works by taking a passed selector list then translating it into an expanded selector list for us. This allows us to write more compact code. Aside from IE11 and Opera Mini, this has excellent <a href="https://caniuse.com/css-matches-pseudo" target="_blank" rel="noopener noreferrer">browser support</a>.</p>
+
+            <p>When writing CSS, we can usually find ourselves writing bits of repeating code, as this example demonstrates:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.post h1,
+.post h2,
+.post h3 {
+    line-height: 1.2;
+}
+
+.post img,
+.post video {
+    width: 100%;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Thankfully, the <strong>:is</strong> pseudo class can be used to simplify our code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.post :is(h1, h2, h3) {
+    line-height: 1.2;
+}
+
+.post :is(img, video) {
+    width: 100%;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Scroll Margin</h2>
+
+            <p>When a browser skips to an element with an id, the targeted element would sit flush to the top of the viewport. Not only did this not look great but it caused issues with fixed headers too.</p>
+
+            <p>The property <strong>scroll-margin-top</strong> can be used to fix this. <a href="https://caniuse.com/mdn-css_properties_scroll-margin" target="_blank" rel="noopener noreferrer">Browser support</a> is pretty good, only IE11 seems to not support this property.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+[id] {
+    scroll-margin-top: 2px;
 }
 <!-- Just leave this line alone -->
     </code>
