@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to Heroku">
+
+	<title>Codebox - Heroku</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Heroku</h1>
+            <!-- https://www.freecodecamp.org/news/how-to-deploy-your-site-using-express-and-heroku/ -->
+
+            <h2>Setup</h2>
+
+            <p>On MacOS, it's recommended to use <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a> to install <strong>Heroku CLI</strong> locally onto your machine. If you haven't already installed Homebrew, use the following terminal command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Homebrew is a package manager for MacOS and Linux. To verify the installation of Homebrew, use the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ brew --version
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The Heroku CLI requires Git. This will need to be installed and setup to use the CLI. Once Homebrew has been installed run the following command to install the Heroku CLI:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ brew tap heroku/brew && brew install heroku
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To verify the installation of the CLI, use the command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ heroku --version
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You should see <strong>heroku/x.y.z</strong> in the output (x.y.z will be replaced by the version number).</p>
+
+            <h2>Setting up an Express server</h2>
+
+            <p>Begin by installing the Express server framework for NodeJS using NPM (Node Package Manager).</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install express --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+        <p>The next step is to create a file called <strong>app.js</strong> which runs an Express server locally.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Require the Express module
+const express = require('express')
+// Create an instance of Express
+const app = express()
+
+// Use express.static middleware to serve static files from the folder specified
+app.use(express.static('public'))
+
+// Define a URL route using app.get
+app.get('/', function(req, res) {
+    // Respond with a simple HTML message
+    res.send('&lt;h1&gt;Hello World&lt;/h1&gt;')
+})
+
+// Start the server on the port specified
+app.listen(process.env.PORT || 3000, () => console.log('Server is running...'))
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li>The first two lines of code simply require the Express module and create an instance of Express named <strong>app</strong>.</li>
+                <li>The next line requires the use of the <strong>express.static</strong> middleware. This lets static files (such as HTML, CSS & JavaScript) be served from the directory specified. In this case, the files will be served from a folder named <strong>public</strong>.</li>
+                <li><strong>app.get()</strong> is used to define a URL route. Any URL requests to the root URL will be responded to with a simple HTML message.</li>
+                <li>The final line of code starts the server. This will set the port to 3000.</li>
+            </ul>
+
+            <p>If you save the <strong>app.js</strong> file in the root of your project folder and run the following command, the server will run <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">locally</a> on <strong>port 3000</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node app.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p><strong>Hello World</strong> will be displayed in the browser if the server is running successfully.</p>
+
+            <p>We can create a <strong>public</strong> directory in the root of our project. From here we will host our static files such as HTML, CSS & JavaScript. Navigate to your public directory and create a HTML page named <strong>index.html</strong>.</p>
+
+            <p>Update the <strong>app.js</strong> code to display the <strong>index.html</strong> file when the server is running.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Require the Express module
+const express = require('express')
+// Require the Path module
+const path = require('path')
+// Create an instance of Express
+const app = express()
+
+// Use express.static middleware to serve static files from the folder specified
+app.use(express.static('public'))
+
+// Define a URL route using app.get
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+})
+
+// Start the server on the port specified
+app.listen(process.env.PORT || 3000, () => console.log('Server is running...'))
+<!-- Just leave this line alone -->
+    </code>
+</pre>          
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
