@@ -21,6 +21,8 @@
 			<h1>Heroku</h1>
             <!-- https://www.freecodecamp.org/news/how-to-deploy-your-site-using-express-and-heroku/ -->
 
+            <p>Create a free Heroko account at: <a href="https://signup.heroku.com/" target="_blank" rel="noopener noreferrer">https://signup.heroku.com/</a></p>
+
             <h2>Setup</h2>
 
             <p>On MacOS, it's recommended to use <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a> to install <strong>Heroku CLI</strong> locally onto your machine. If you haven't already installed Homebrew, use the following terminal command:</p>
@@ -100,6 +102,72 @@
 <!-- / Terminal -->
 
             <p>You should see <strong>heroku/x.y.z</strong> in the output (x.y.z will be replaced by the version number).</p>
+
+            <p>A warning was received following the upgrade to <strong>MacOS 11.2 (Big Sur)</strong>. The following commands were needed to get Heroku CLI installed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ sudo rm -rf /Library/Developer/CommandLineTools
+    $ sudo xcode-select --install
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h2>Login to Heroku</h2>
+
+            <p>You can login to Heroku using the Heroku CLI. You will need to have setup an Heroku account to do this. The default option to login to your account is through the web browser. You can also login to Heroku using the CLI via the terminal.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ heroku login -i
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once logged in, you can create a new Heroku project. In this example, our project is named <strong>test-app</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ heroku create test-app
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <ul>
+                <li>Heroku will generate a random name for your project if you don't specify one in the command.</li>
+                <li>The name will form part of the URL you can use to access your project.</li>
+                <li>It is possible to rename your project later.</li>
+            </ul>
 
             <h2>Setting up an Express server</h2>
 
