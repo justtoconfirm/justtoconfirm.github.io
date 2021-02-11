@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introductory guide to Redux">
+
+	<title>Codebox - Getting Started with React</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Redux</h1>
+            <!-- https://www.taniarascia.com/redux-react-guide/ -->
+
+            <p>Redux is a state container for JavaScript applications. Normally, with React, you manage state at a component level and pass state around via props. With Redux, the entire state of your application is managed in one immutable object.</p>
+
+            <p>Redux was originally created by Dan Abramov and Andrew Clark. The documentation can be found <a href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+            <ul>
+                <li>Access or update any part of the state from a Redux-connected component.</li>
+                <li>Keep track of changes with <strong>Redux DevTools</strong>. Any action or state change is tracked and easy to follow.</li>
+            </ul>
+
+            <p>Redux does require a lot of initial boilerplate to setup. A smaller application may also not need React and may instead benefit from using the <strong>Context API</strong> for global state needs. You may want to start building your app with the Context API and latet convert to using Redux as your app grows in size for better maintanence and organisation.</p>
+
+            <p>Redux has a number of key terms to be familiar with:</p>
+
+            <ul>
+                <li>Actions</li>
+                <li>Reducers</li>
+                <li>Store</li>
+                <li>Dispatch</li>
+                <li>Connect</li>
+            </ul>
+
+            <p>There is an <a href="getting-started-with-react.html">introductory guide to React</a>, should you need it.</p>
+
+            <p>You may want to create the directories for Redux using your terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ mkdir actions components pages reducers
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Both the <strong>pages</strong> and <strong>components</strong> directories are created for React, <strong>actions</strong> and <strong>reducers</strong> for Redux.</p>
+
+            <p>The file structure for a React application using Redux may look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+src /
+    actions /
+    components /
+    pages /
+    reducers /
+    App.js
+    index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Getting Started</h2>
+
+            <p>Redux requires a few dependencies:</p>
+
+            <ul>
+                <li><strong>Redux</strong> - Core library</li>
+                <li><strong>React Redux</strong> - React bindings for Redux</li>
+                <li><strong>Redux DevTools Extension</strong> - Connects Redux app to Redux DevTools</li>
+            </ul>
+
+            <p>The <strong>Redux</strong> & <strong>React Redux</strong> packages can be installed using NPM (Node Package Manager):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install redux --save
+    $ npm install react-redux --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
