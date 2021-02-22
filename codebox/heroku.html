@@ -169,6 +169,74 @@
                 <li>It is possible to rename your project later.</li>
             </ul>
 
+            <p>If your application is created successfully, your URL will be generated within the terminal:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://test-app.herokuapp.com/
+https://git.heroku.com/test-app.git
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To connect Heroku to GitHub, login to the Heroku dashboard and under the Deploy tab, connect your GitHub repository to your Heroku app.</p> 
+
+            <a href="https://id.heroku.com/login" target="_blank" rel="noopener noreferrer">https://id.heroku.com/login</a></p>
+
+            <p>You can deploy the <strong>main</strong> branch to the Heroku app from inside the dashboard. You may also need to set the remote:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ heroku git:remote -a test-app
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We are getting an error in the logs, so we may need to add a script in the <strong>package.json</strong> file to run the NPM start command to spin up the Express server on Heroku:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can manually or automatically deploy changes to the app in Heroku from within the dashboard or use the terminal to push the changes to the app using the <strong>Heroku CLI</strong> if logged in:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ git push heroku main
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Once Heroku and GitHub are connected, you will see an active environment being displayed within your GitHub repository.</p>
+
             <h2>Setting up an Express server</h2>
 
             <p>Begin by installing the Express server framework for NodeJS using NPM (Node Package Manager).</p>
