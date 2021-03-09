@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to fetching data in React">
+
+	<title>Codebox - Fetching Data in React</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Fetching Data in React</h1>
+            <!-- https://www.robinwieruch.de/react-fetching-data -->
+            <!-- https://www.robinwieruch.de/react-hooks-fetch-data/ -->
+
+            <p>React components have lifecycle methods. The <strong>render()</strong> method is a <strong>lifecycle method</strong> that is mandatory to output a React element/component.</p>
+
+            <p>There is another lifecycle method that is ideal for fetching data, <strong>componentDidMount()</strong>. This is the best lifecycle method for getting data.</p>
+
+            <p>When this method runs, the component was already rendered once with the <strong>render()</strong> method, but it renders again when we fetch the data using the <strong>componentDidMount()</strong> method.</p>
+
+            <p>The fetched data would be stored in the local state of the component with <strong>setState()</strong>. Afterwards, the local state can be used in the <strong>render()</strong> method to display the data or pass it down as props.</p>
+
+            <p>In this example we will be using the Hacker News API: <a href="https://hn.algolia.com/api/v1/search?query=react" target="_blank" rel="noopener noreferrer">https://hn.algolia.com/api/v1/search?query=react</a></p>
+
+            <p>The React library is flexible allowing us to choose our own solutions to fetch data. For simplicity, we will use the native <strong>Fetch API</strong> within the browser.</p>
+
+            <p>This example will show how JSON data from an API can be rendered within a React application:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+class App extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            hits: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('https://hn.algolia.com/api/v1/search?query=' + 'react')
+            .then(response => response.json())
+            .then(data => this.setState({ hits: data.hits }))
+    }
+
+    render() {
+        // Update the hits array in the state with the data from the API
+        const { hits } = this.state;
+
+        return (
+            &lt;ul&gt;
+                {hits.map(hit =&gt; 
+                    &lt;li key={hit.objectID}&gt;
+                        &lt;a href={hit.url}&gt;{hit.title}&lt;/a&gt;
+                    &lt;/li&gt;
+                )}
+            &lt;/ul&gt;
+        )
+    }
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We initialised our code with the <strong>hits</strong> property in the local state with an empty array.</p>
+
+            <p>When the data is fetched successfully, it will be stored in the local state with React's <strong>this.setState()</strong> method. The <strong>render()</strong> method will then trigger again to display the fetched data.</p>
+
+            <ul>
+                <li>The <strong>componentDidMount()</strong> lifecycle method gets invoked as soon as the component gets mounted and when that is done, we make a request to search for "React" via the Hacker News API. The state is then updated based on the response.</li>
+                <li>We could also use the <strong>componentDidUpdate()</strong> lifecycle method which gets invoked when there's a change in a component.</li>
+            </ul>
+
+            <p>We can update our code further:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+
+const API = 'https://hn.algolia.com/api/v1/search?query='
+const QUERY = 'react'
+
+class App extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            hits: []
+        }
+    }
+
+    componentDidMount() {
+        fetch(API + QUERY)
+            .then(response => response.json())
+            .then(data => this.setState({ hits: data.hits }))
+    }
+
+    render() {
+        // Update the hits array in the state with the data from the API
+        const { hits } = this.state;
+
+        return (
+            &lt;ul&gt;
+                {hits.map(hit =&gt; 
+                    &lt;li key={hit.objectID}&gt;
+                        &lt;a href={hit.url}&gt;{hit.title}&lt;/a&gt;
+                    &lt;/li&gt;
+                )}
+            &lt;/ul&gt;
+        )
+    }
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>React Hooks can be used for gathering data, but in the future, a feature called <strong>Suspense</strong> will be used to fetch data.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
