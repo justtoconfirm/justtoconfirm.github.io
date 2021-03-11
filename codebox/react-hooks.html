@@ -20,9 +20,227 @@
 
 			<h1>React Hooks</h1>
 
+            <!--
+            React Hooks (useState):
+            https://www.youtube.com/watch?v=O6P86uwfdR0
+            React Hooks (useEffect):
+            https://www.youtube.com/watch?v=0ZJgIjIuY7U
+            -->
+
             <p>React Hooks were introduced in <strong>React 16.8.0</strong> and let you use state and other React features without writing a class. A Hook in React is a function that shares common logic between multiple components. It is recommended to prefix Hooks with <strong>use</strong>, followed by the name of the Hook.</p>
 
             <p>A Hook is a special function that lets you "hook into" React features. For example, <strong>useState</strong> is a Hook that lets you add React state to function components.</p>
+
+            <ul>
+                <li>Hooks can only be used inside a function, they cannot be used inside of a class components.</li>
+                <li><strong>useState</strong> always returns an array with two values.</li>
+            </ul>
+
+            <h2>Introduction to the setState Hook</h2>
+
+            <p>Here we are going to use the <strong>setState</strong> hook to manage state within a React functional component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState } from 'react'
+
+function App() {
+
+    /*  
+        This is our default state, set to 4, using an array and destructuring
+        count - this will be our current state, a variable
+        setCount - a function that will allow us to update our state 
+    */
+    // This is a state hook
+    // const [ count, setCount ] = useState(4)         // This will run everytime, performance impact
+
+    // This is a better way of setting state as it will only run once when the component renders
+    /* const [ count, setCount ] = useState(() => {
+        console.log('run function, only once')
+        return 4;
+    }) */
+
+    function decreaseCount() {
+        /* 
+            call setCount function to update state 
+            When called, re-render function with the new value of our count
+            Passing in a function allows us to take the previous state value
+        */
+        setCount(prevCount => prevCount - 1)
+    }
+
+    function increaseCount() {
+        setCount(prevCount => prevCount + 1)
+    }
+
+    return (
+        &lt;&gt;
+            &lt;button onClick={decreaseCount}&gt;-&lt;/button&gt;
+            &lt;span&gt;{count}&lt;/span&gt;
+            &lt;button onClick={increaseCount}&gt;+&lt;/button&gt;
+        &lt;/&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>We can tidy our code up a little:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState } from 'react'
+
+function App() {
+
+    // Two Hooks being used to manage state
+    const [ count, setCount ] = useState(4)
+    const [ theme, setTheme ] = useState('blue')
+
+    function decreaseCount() {
+        setCount(prevCount => prevCount - 1)
+    }
+
+    function increaseCount() {
+        setCount(prevCount => prevCount + 1)
+        setTheme('red')
+    }
+
+    return (
+        &lt;&gt;
+            &lt;button onClick={decreaseCount}&gt;-&lt;/button&gt;
+            &lt;span&gt;{count}&lt;/span&gt;
+            &lt;span&gt;{theme}&lt;/span&gt;
+            &lt;button onClick={increaseCount}&gt;+&lt;/button&gt;
+        &lt;/&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <h2>The useEffect Hook</h2>
+
+            <p>Using the <strong>useEffect</strong> hook to query an API and return results.</p>
+
+            <p>For example, you could set the state for the window width like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const [ windowWidth, setWindowWidth] = useState(window.innerWidth)
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <p>We can then use the <strong>useEffect</strong> hook to display the width of the window as it changes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState, useEffect } from 'react'
+
+function App() {
+    const [ windowWidth, setWindowWidth ] = useState(window.innerWidth)
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth)
+    }
+
+    // Execute function on mount, add eventListener on each render to dynamically change value
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+
+        // Clean up to remove eventListener
+        return() => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
+    return (
+        &lt;div&gt;{windowWidth}&lt;/div&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>The API used will be: <a href="http://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">jsonplaceholder.typicode.com</a></p>
+
+            <p>This API has fields for:</p>
+
+            <ul>
+                <li>/posts</li>
+                <li>/comments</li>
+                <li>/users</li>
+            </ul>
+
+            <p>We will query these endpoints from the API and return the data in JSON format.</p>
+
+            <p>When our resourceType changes, we will use a side effect to change our application and render the correct content from the API. In a class component, a lifecycle method such as <strong>componentDidMount()</strong>, but in a functional component we don't have any lifecycle methods available.</p>
+
+            <p>This is where the <strong>useEffect</strong> hook comes in. We are going to use this hook to do some form of side effect whenever something happens.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState, useEffect } from 'react'
+
+function App() {
+
+    // Default resourceType to 'posts' using this hook
+    const [ resourceType, setResourceType ] = useState('posts')
+    const [ items, setItems ] = useState([])
+
+    // Everything inside the function will execute everytime our application renders
+    /* useEffect(() => {
+        console.log('render everytime')
+    }) /*
+
+    // We can use an array, everytime a value in the array changes, the hook will run
+    // Whenever resourceType changes, the hook will run
+    /* useEffect(() => {
+        console.log('resource type changes')
+    }, [resourceType]) */
+
+    // Query the API
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+            .then(response => response.json())
+            //.then(json => console.log(json))
+            .then(json => setItems(json))
+    }, [resourceType])
+
+    return (
+        &lt;&gt;
+            &lt;button onClick={() => setResourceType('posts')}&gt;Posts&lt;/button&gt;
+            &lt;button onClick={() => setResourceType('users')}&gt;Users&lt;/button&gt;
+            &lt;button onClick={() => setResourceType('comments')}&gt;Comments&lt;/button&gt;
+        &lt;/&gt;
+
+        &lt;h1&gt;{resourceType}&lt;/h1&gt;
+
+        // Map over items from within the state and set JSON to be a string
+        {items.map(item => {
+            return &lt;pre&gt;{JSON.strigify(item)}&lt;/pre&gt;
+        })}
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>  
+
+            <h2>Building a Modal</h2>
 
             <p>Start by creating a new file and adding a function. The <strong>useState</strong> method will need to be imported from React.</p>
 
