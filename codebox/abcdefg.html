@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Freeball">
+
+	<title>Codebox - Freeball</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+<style>
+input {
+    padding: 12px;
+    width: 100px;
+}
+
+button {
+    background-color: #0066a1;
+    color: #fff;
+    padding: 15px;
+    width: 150px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #0070b0;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    width: 8%;
+}
+
+th {
+    background-color: #0066a1;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+</style>
+
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+            <!-- 
+                [1,0,0,1,1,1,0,1] - predicted (if player owned, do not use the random generator field)
+                [1,0,0,1,1,0,0,0] - actual
+                [1,2,3,4,5,0,6,0] - match with 6 (6 goals)
+            -->
+
+
+            <!-- 
+                [0,1,0,1,1,0,1,0] - predicted
+                [0,1,0,0,0,0,1,1] - actual
+                [1,1,1,0,0,1,1,0] - 5 goals
+            -->
+
+			<h1>Freeball</h1>
+
+            <input id="qty" type="number" value="0">
+            <button id="getQty">Submit</button>
+
+            <p><strong>Score:</strong> <span id="result">0</span></p>
+
+            <h2>League One</h2>
+
+            <table>
+                <tr>
+                    <th style="width: 36%;">Team</th>
+                    <th>Pld</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>D</th>
+                    <th>Pts</th>
+                    <th>GF</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Brighton</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>7</td>
+                    <td>18</td>
+                    <td>17</td>
+                    <td>+1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Harrogate Town</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>16</td>
+                    <td>18</td>
+                    <td>-2</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">AFC Uckfield</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>20</td>
+                    <td>24</td>
+                    <td>-4</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Halifax Town <sup>*</sup></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>+5</td>
+                </tr>
+            </table>
+
+            <h2>Results</h2>
+
+            <table>
+                <tr>
+                    <th style="width: 20%; text-align: left;">Home Team</th>
+                    <th style="text-align: right;">Score</th>
+                    <th style="text-align: left;">Score</th>
+                    <th style="width: 20%; text-align: right;">Away Team</th>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Halifax Town</td>
+                    <td style="text-align: right;">6</td>
+                    <td style="text-align: left;">1</td>
+                    <td style="font-weight: bold; text-align: right;">AFC Uckfield</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Harrogate Town</td>
+                    <td style="text-align: right;">4</td>
+                    <td style="text-align: left;">2</td>
+                    <td style="font-weight: bold; text-align: right;">Brighton</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Brighton</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: left;">-</td>
+                    <td style="font-weight: bold; text-align: right;">Halifax Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">AFC Uckfield</td>
+                    <td style="text-align: right;">6</td>
+                    <td style="text-align: left;">3</td>
+                    <td style="font-weight: bold; text-align: right;">Harrogate Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Halifax Town</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: left;">-</td>
+                    <td style="font-weight: bold; text-align: right;">Harrogate Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Brighton</td>
+                    <td style="text-align: right;">5</td>
+                    <td style="text-align: left;">5</td>
+                    <td style="font-weight: bold; text-align: right;">AFC Uckfield</td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">AFC Uckfield</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: left;">-</td>
+                    <td style="font-weight: bold; text-align: right;">Halifax Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Brighton</td>
+                    <td style="text-align: right;">6</td>
+                    <td style="text-align: left;">4</td>
+                    <td style="font-weight: bold; text-align: right;">Harrogate Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Halifax Town</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: left;">-</td>
+                    <td style="font-weight: bold; text-align: right;">Brighton</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Harrogate Town</td>
+                    <td style="text-align: right;">5</td>
+                    <td style="text-align: left;">4</td>
+                    <td style="font-weight: bold; text-align: right;">AFC Uckfield</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">Harrogate Town</td>
+                    <td style="text-align: right;">-</td>
+                    <td style="text-align: left;">-</td>
+                    <td style="font-weight: bold; text-align: right;">Halifax Town</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; text-align: left;">AFC Uckfield</td>
+                    <td style="text-align: right;">4</td>
+                    <td style="text-align: left;">5</td>
+                    <td style="font-weight: bold; text-align: right;">Brighton</td>
+                </tr>
+            </table>
+
+		</div>
+	</div>
+</main>
+
+<script>
+(function(window, document) {
+
+    // Create an empty array to store the score/results
+    let score = []
+
+    const input = document.querySelector('#qty')
+    const submitBtn = document.querySelector('#getQty')
+
+    const getResults = () => {
+        // Clear the array on each call of the function
+        let score = [];
+
+        let i;
+
+        // Loop up to the value set in the input field
+        for (i = 0; i < input.value; i++) {
+           
+           // Generate random number of 0 or 1 on each loop
+           let randomNumber =  Math.floor(Math.random()*2);
+
+           // Push each random number to the score array on each loop
+           score.push(randomNumber);
+        }
+
+        // Output the results in the array on the page
+        document.querySelector('#result').innerHTML = score
+    }
+
+    // Call the getReady() function on the button click
+    submitBtn.addEventListener('click', getResults)
+
+}(window, document))
+</script>
+
+</body>
+</html>
