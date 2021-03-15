@@ -58,6 +58,8 @@
 </div>
 <!-- / Terminal -->
 
+            <p>Gatsby will require Node version <strong>12.13.0</strong> or greater.</p>
+
             <p>To create a new project, we use the following command. Here the name of our app is <strong>gatsby-app</strong>.</p>
 
 <!-- Terminal -->
@@ -159,6 +161,123 @@ gatsby-app /
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Setup Gastby without creating a new project</h2>
+
+            <p>We can setup Gatsby without creating a new project. Follow these instructions:</p>
+
+            <ul>
+                <li>Install Node version <strong>12.13.0</strong> or higher.</li>
+                <li>If not installed, install <strong>gatsby-cli</strong> using your terminal.</li>
+            </ul>
+
+            <p>Once these steps have been completed, create a directory to hold the Gatsby project and setup a <strong>package.json</strong> file using NPM (Node Package Manager). You may also want to add a <strong>.gitignore</strong> file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next, install the Gatsby and React packages:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install gatsby react react-dom
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Now, add a <strong>src</strong> directory and a <strong>pages</strong> directory inside your project.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ mkdir src
+    $ cd src
+    $ mkdir pages
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Inside the pages directory, create an <strong>index.js</strong> file and add some React code as a starting point for the project.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+function Home() {
+    return &lt;h1&gt;Hello Gatsby&lt;/h1&gt;
+}
+
+export default Home
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>From within the root of your project, run the <strong>gatsby develop</strong> command to start a development server.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ gatsby develop
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Your initial page should now be running on a localhost development server.</p>
+
+            <ul>
+                <li><a href="http://localhost:8000" target="_blank" rel="noopener noreferrer">http://localhost:8000</a></li>
+            </ul>
+
+            <p>A <strong>GraphiQL IDE</strong> will also be running:</p>
+
+            <ul>
+                <li><a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http://localhost:8000/___graphql</a></li>
+            </ul>
+
+            <p>A <strong>public</strong> directory will be created when the develop command is run from within the terminal.</p>
 
             <h2>Adding Plugins</h2>
 
