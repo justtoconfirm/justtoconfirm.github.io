@@ -342,6 +342,8 @@ ReactDOM.render(
     </code>
 </pre>
 
+            <p>The <strong>render()</strong> method is known as a <strong>lifecycle method</strong> in React and is mandatory to output a React element/component.</p>
+
             <p>As we don't need to create a React Class component in index.js, we can simplify our code. You may also notice that we can look to remove the semicolons at the end of statements, but this is optional.</p>
 
 <pre>
@@ -857,7 +859,7 @@ render(
 <!-- Just leave this line alone -->
 import React from 'react'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -881,7 +883,7 @@ export default Button
 <!-- Just leave this line alone -->
 import React from 'react'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -937,7 +939,7 @@ return (
 <!-- Just leave this line alone -->
 import React from 'react'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -996,7 +998,7 @@ render(
 <!-- Just leave this line alone -->
 import React from 'react'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -1051,7 +1053,7 @@ export default Button
 import React from 'react'
 import classNames from 'classnames'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -1185,7 +1187,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -1328,7 +1330,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Button = (props) => {
+const Button = props => {
 
     const {
         type = 'button',
@@ -1472,6 +1474,128 @@ Button.propTypes = {
 </pre>
 
             <p>Here's the link to the GitHub issue: <a href="https://github.com/babel/babel/issues/8655" target="_blank" rel="noopener noreferrer">https://github.com/babel/babel/issues/8655</a></p>
+
+            <h2>Building a List component</h2>
+
+            <p>We are now going to build a simple React component that will render an unordered list.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const List = ({ listItems }) =&gt; (
+    &lt;ul&gt;
+        {listItems.map(item =&gt; (
+            &lt;li key={item}&gt;{item}&lt;/li&gt;
+        ))}
+    &lt;/ul&gt;
+)
+
+export default List
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we want to pass data into our List component and the <strong>listItems</strong> prop, we need to first import our List component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import List from './List'
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our list component can be extended to allow an unordered or ordered list to be rendered based on the prop value:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const List = props => (
+
+    const {
+        type = 'ul',
+        list
+    } = props
+
+    const listItems = list.map((item, index) =>
+        &lt;li key={index}&gt;{ item }&lt;/li&gt;
+    )
+
+    const listType = type && (type.includes('ol'))
+
+    const renderUnorderedList = () =>
+        &lt;ul&gt;{listItems}&lt;/ul&gt;
+
+    const renderOrderedList = () =>
+        &lt;ol&gt;{listItems}&lt;/ol&gt;
+
+    return (
+        listType ? renderOrderedList() : renderUnorderedList()
+    )
+)
+
+export default List
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our example <strong>About</strong> component may look something like the example below.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import List from './List'
+
+// These are the values we are passing into the List component
+const mylist = ['a', 'b', 'c']
+
+const About = () => (
+    &lt;List listItems={mylist} /&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here we are passing the values from the <strong>myList</strong> array into the <strong>listItems</strong> prop and this in-turn is being passed into our <strong>List</strong> component to render an unordered list onto the page.</p>
+
+            <p>This will render the following on the page:</p>
+
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+
+            <p>We can also pass in values to render the list as an ordered or unordered list (default). Even if we don't pass in a <strong>type</strong> prop value, the list will default to be rendered as an unordered list.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import List from './List'
+
+// These are the values we are passing into each List component
+const mylist = ['a', 'b', 'c']
+const developers = ['Darren', 'Dave', 'Scott', 'Dan']
+
+const About = () => (
+    &lt;&gt;
+        &lt;List type='ol' listItems={mylist} /&gt;
+        &lt;List type='ul' listItems={developers} /&gt;
+    &lt;/&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
 		</div>
 	</div>

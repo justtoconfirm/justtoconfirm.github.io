@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to managing state in React">
+
+	<title>Codebox - React State</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>React State</h1>
+
+            <p>React components have a built-in <strong>state</strong> object where the property values belonging to the component are stored. When the state object changes, the component re-renders.</p>
+
+            <p>Libraries and tools, such as <a href="redux.html">Redux</a>, are available for managing state across your application.</p>
+
+            <p>State allows components to create and manage their own data. Unlike props, components cannot pass data with state.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'        
+import ReactDOM from 'react-dom'
+
+class Test extends Component {                  
+    constructor() {
+        super()
+
+        this.state = {
+            id: 1,
+            name: 'test'
+        }
+    }
+
+    render() {
+        return (
+            &lt;&gt;
+                &lt;p&gt;{this.state.id}&lt;/p&gt;
+                &lt;p&gt;{this.state.name}&lt;/p&gt;
+            &lt;/&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Class components were previously used to manage state within a React component. Since React version 16.8.0, <a href="react-hooks.html">React Hooks</a> can now be used to manage state within a component without the need to use a class and constructor.</p>
+
+            <p>We can add as many properties as we like within the state object.</p>
+
+            <p>In this example, a class is written to demonstate using state in React. The <strong>state object</strong> is initialised within the <strong>constructor method</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'        // Can be written as: import React from 'react'; 
+import ReactDOM from 'react-dom'
+
+class Bulb extends Component {                  // Can then be written as: class Bulb extends React.Component
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            bulb: 'off'
+        }
+    }
+
+    render() {
+        return (
+            &lt;h1&gt;Bulb&lt;/h1&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Refer to the <strong>state</strong> object anywhere within the component by using the <strong>this.state.propertyname</strong> syntax. Here, we refer to the state object in the <strong>render()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+render() {
+    return (
+        &lt;h1&gt;Bulb: {this.state.bulb}&lt;/h1&gt;
+    )
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To change a value in the state object, use the <strong>this.setState()</strong> method.</p>
+
+            <p>State should <strong>not</strong> be modified directly, but it can be modified with the <strong>setState()</strong> method.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+this.state.id = '2021'          // incorrect
+
+this.setState({
+    id: '2021'                  // correct
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Always use the <strong>setState()</strong> method to change the state object, it will ensure that the component knows its been updated and calls the <strong>render()</strong> method (and any other lifecycle method).</p>
+
+            <p>A change in the state happens based on user-input, triggering an event, and so on. React components with state are rendered based on the data in the state. State holds the initial information.</p>
+
+            <p>When the value in the state object changes, the component will <strong>re-render</strong>, meaning the output will change to the new value(s). So, when state changes, React gets informed and immediately re-renders the DOM (Document Object Model) - not the whole DOM, but only the component with the updated state. This is why React is so fast. The <strong>setState()</strong> method triggers the re-rendering process for the updated parts and React knows which part(s) to change without the need to re-render the whole DOM.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'        // Can be written as: import React from 'react'; 
+import ReactDOM from 'react-dom'
+
+class Bulb extends Component {                  // Can then be written as: class Bulb extends React.Component
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            bulb: 'off'
+        }
+    }
+
+    // Button to change state onClick
+    lightOn = () => {
+        this.setState({
+            bulb: 'on'
+        })
+    }
+
+    render() {
+        return (
+            &lt;&gt;
+                &lt;h1&gt;Bulb: {this.state.bulb}&lt;/h1&gt;
+
+                &lt;button type="button" onClick={this.lightOn}&gt;Light on&lt;/button&gt;
+            &lt;/&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Differences between props & state</h2>
+
+            <ul>
+                <li>Components receive data from outside with props, whereas they can create and manage their own data with state.</li>
+                <li>Props are used to pass data, state is for managing data.</li>
+                <li>Data from props is read-only and cannot be modified by a component.</li>
+                <li>State data can be modified by its own component, but is private and cannot be accessed from outside.</li>
+                <li>Props can only be passed from a parent component to child component (unidirectional flow).</li>
+            </ul>
+
+            <h2>Introducing Hooks</h2>
+
+            <p>We can now manage state within a component using <a href="react-hooks.html">Hooks</a> and writing our components as functions instead of classes.</p>
+
+            <p>Hooks are a new addition to React 16.8 and let you use state and other React features without writing a class. Hooks <strong>don't</strong> work inside classes, but you can use them instead of writing classes.</p>
+
+            <p>If your project is not using React Hooks, then you can only use state in class components.</p>
+
+            <p>A Hook is a special function that lets you "hook into" React features. For example, <strong>useState</strong> is a Hook that lets you add React state to function components.</p>
+
+            <p>Let's start by writing a counter using class component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+class Counter extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            count: 0
+        }
+    }
+
+    setCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        })
+    }
+
+    render() {
+        return (
+            &lt;&gt;
+                &lt;p&gt;You clicked {this.state.count} times&lt;/p&gt;
+
+                &lt;button type="button" onClick={this.setCount}&gt;Add to Count&lt;/button&gt;
+            &lt;/&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can remove the need for a function and update the state from within the button itself.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
+class Counter extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            count: 0
+        }
+    }
+
+    render() {
+        return (
+            &lt;&gt;
+                &lt;p&gt;You clicked {this.state.count} times&lt;/p&gt;
+
+                &lt;button type="button" onClick={() => this.setState({ count: this.state.count + 1 })}&gt;Add to Count&lt;/button&gt;
+            &lt;/&gt;
+        )
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This example can now be re-written to use the state hook and replace the class with a function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState } from 'react'
+
+function Counter() {
+    const [count, setCount] = useState(0)
+
+    return (
+        &lt;&gt;
+            &lt;p&gt;You clicked {count} times&lt;/p&gt;
+
+            &lt;button type="button" onClick={() => setCount(count + 1)}&gt;Add to Count&lt;/button&gt;
+        &lt;/&gt;
+    )
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As a reminder, function components in React look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const Example = props => {
+    // You can use Hooks here!
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or can be written like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function Example(props) {
+    // You can use Hooks here!
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Components written using functions were previously known as <strong>stateless components</strong>, the preferred name for this type of function is <strong>function components</strong>.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
