@@ -314,7 +314,7 @@ export default About
 
             <h2>Adding Links</h2>
 
-            <p>Gatsby has a built-in Link component that can be used to navigate between different pages within your application.</p>
+            <p>Gatsby has a built-in <strong>Link</strong> component that can be used to navigate between different pages within your application.</p>
 
 <pre>
     <code>
@@ -328,7 +328,7 @@ const Home = () => (
         &lt;p&gt;This is the about page.&lt;/p&gt;
 
         &lt;Link to='/'&gt;Home&lt;/Link&gt;
-        &lt;Link to='/about'&gt;About&lt;/Link&gt;
+        &lt;Link to='/about/'&gt;About&lt;/Link&gt;
     &lt;&gt;
 )
 
@@ -340,6 +340,27 @@ export default About
             <h2>Adding a 404 page</h2>
 
             <p>To add a 404 error page, create a new page in the <strong>pages</strong> directory named <strong>404.js</strong>.</p>
+
+            <h2>Building the application</h2>
+
+            <p>Once the development of the application is completed, the static code needs to be generated as HTML, CSS and JavaScript for deployment to an environment. Run the following terminal command to output the HTML, CSS & JavaScript in the <strong>public</strong> directory for hosting and create a production build.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ gatsby build
+    </pre>
+</div>
+<!-- / Terminal -->
 
 		</div>
 	</div>
