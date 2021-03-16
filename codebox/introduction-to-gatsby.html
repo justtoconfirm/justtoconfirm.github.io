@@ -293,12 +293,12 @@ export default Home
 
             <h2>Adding Pages</h2>
 
-            <p>Any React component defined in the <strong>src/pages</strong> directory will automatically become a new page added to our Gatsby app. Create a new file named <strong>about.js</strong> in the src/pages directory. Each page is created as a JavaScript file. The new about page can be viewed at <a href="http://localhost:8000/about" target="_blank">http://localhost:8000/</a> and the code for this page is below:</p>
+            <p>Any React component defined in the <strong>src/pages</strong> directory will automatically become a new page added to our Gatsby app. Create a new file named <strong>about.js</strong> in the src/pages directory. Each page is created as a JavaScript file. The new about page can be viewed at <a href="http://localhost:8000/about" target="_blank">http://localhost:8000/about</a> and the code for this page is below:</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-import React from "react"
+import React from 'react'
 
 const About = () => (
     &lt;&gt;
@@ -311,6 +311,35 @@ export default About
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Adding Links</h2>
+
+            <p>Gatsby has a built-in Link component that can be used to navigate between different pages within your application.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { Link } from 'gatsby'
+
+const Home = () => (
+    &lt;&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+        &lt;p&gt;This is the about page.&lt;/p&gt;
+
+        &lt;Link to='/'&gt;Home&lt;/Link&gt;
+        &lt;Link to='/about'&gt;About&lt;/Link&gt;
+    &lt;&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Adding a 404 page</h2>
+
+            <p>To add a 404 error page, create a new page in the <strong>pages</strong> directory named <strong>404.js</strong>.</p>
 
 		</div>
 	</div>
