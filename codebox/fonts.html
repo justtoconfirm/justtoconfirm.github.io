@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Fonts">
+
+	<title>Codebox - Fonts</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Fonts</h1>
+
+            <p>It's often recommended to host web font files yourself on your own server as external font files, such as Google fonts, are often updated and can expire at anytime.</p>
+
+            <h2>Font Subsetting</h2>
+
+            <p>A typical font file contains multiple/alternative characters, special symbols, and standard characters. Web browsers can only access a small fraction of those characters and may not initially need the majority of the additional characters that are not regularly used. Removing these inaccessible or extra features will reduce the font file size so it downloads quicker. A fallback file can be provided to include all the additional features (the full font file) to ensure that should the browser need them they are available.</p>
+
+            <h2>WOFF (Web Open Font Format)</h2>
+
+            <p>WOFF (WOFF 1.0) is basically OTF or TTF with metadata and compression supported by all major browsers. It was created as a collaboration between the Mozilla Foundation, Opera, and Microsoft to be a web font. Because fonts are compressed, they load faster. Metadata allows for the inclusion of licence data within the font file to address copyright issues. WOFF is the recommended font to use for modern browsers, but is not supported by IE8/9/10/11.</p>
+
+            <p>WOFF2 (WOFF 2.0) is the latest generation and offers a 30% average compression gain over WOFF. WOFF2 does not have the wide browser support of WOFF, but is considered as the recommended font type to use, with WOFF as a fallback should support not be provided. WOFF2 is currently supported in Edge, Firefox, Chrome, Opera, Safari, iOS Safari, Samsung Internet, and Chrome for Android. IE (Internet Explorer) does not provide support for WOFF2, as with WOFF.</p>
+
+            <h2>TTF (TrueType Font)</h2>
+
+            <p>TTF (TrueType Font) was developed by Microsoft and Apple and has long been the most common format for fonts on Mac and Windows operating systems. All major browsers support TTF, however, IE8 (Internet Explorer 8) has no support, with IE9 only providing partial support as the fonts must be 'installable'. TTF has very basic digital rights management (DRM) and the file is not compressed, as a result, they have large file sizes.</p>
+
+            <h2>OTF (OpenType Font)</h2>
+
+            <p>An evolution of TTF, OTF (OpenType Font) is a result of a joint effort between Adobe and Microsoft. OpenType fonts contain the screen and printer font data in one component. OTF permits the storage of up to 65,000 characters allowing additional characters such as small caps, alternative characters and other extras to be included that had previously been distributed as separate fonts.</p>
+
+            <h2>EOT (Embedded Open Type)</h2>
+
+            <p>EOT fonts were designed by Microsoft to be fonts used on the web. It is an attempt to address the copyright shortcomings of TTF and OTF when publishing on the web. EOT uses a Microsoft tool to create a font from existing TTF/OTF fonts. Compression and subsetting make the font files smaller and subsetting provides copyright protection and encryption. EOT is only supported by IE (Internet Explorer).</p>
+
+            <h2>Preload</h2>
+
+            <p>Preloading fonts helps to improve web performance. Without preloading fonts, the browser fetches the HTML - which in turn downloads the CSS - and then parses the CSS. Only much later does the associated font file get downloaded. With preload, the fonts are fetched much sooner, before the CSS is parsed, saving significant time on the first render. Preload serves as a hint to the browser to download the asset as soon as possible, but it doesn't know when the asset will be needed (preload downloads the asset, but doesn't actually apply it), so you will still require CSS to apply the font styling.</p>
+
+            <p>When using preload, the reference to the local font file should be the same as the one referenced from within the CSS. If this is not the same, a console error may likely be shown within the browser console.</p>
+
+            <p>WOFF2 font file types are recommended to be used to apply fonts and is supported by most modern browsers (with the exception of IE). A fallback should be provided, which is often WOFF, followed by other font file types such as TTF and EOT. When applying font files, the regular font type is best to use over other options and the crossorigin attribute needs to be added to the tag. System font fallbacks should also be used in the event that the web font cannot be loaded.</p>
+
+            <p>Preloading does not seem to work within a local build but should work when hosted on a server such as localhost (this works fine on GitHub pages using HTTPS).</p>
+
+            <p>The following tag should be added to the <strong>&lt;head&gt;</strong> section of your HTML code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="preload" href="/fonts/open-sans/open-sans-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Applying Fonts</h2>
+
+            <p>To apply the web fonts to HTML, CSS will need to be updated. The following CSS can be used to apply a web font file that is hosted locally. The font name is simply used as an example.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+@font-face {
+    font-display: fallback;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400; 
+    src: local('Nunito Regular'), local('Nunito-Regular'),
+         url('../fonts/open-sans/open-sans-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/open-sans/open-sans-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/open-sans/open-sans-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/open-sans/open-sans-regular.eot'), /* IE9 Compat Modes */
+         url('../fonts/open-sans/open-sans-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/open-sans/open-sans-regular.svg#Nunito') format('svg'); /* Legacy iOS */
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once the CSS has been updated to reference the font file, we can then choose to reference the font within our HTML:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+body {
+    font-family: 'Open Sans'
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
