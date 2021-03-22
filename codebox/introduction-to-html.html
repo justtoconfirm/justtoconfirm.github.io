@@ -22,6 +22,84 @@
             <!-- https://www.creativebloq.com/features/18-hot-new-html-tags-to-use-today -->
             <!-- https://www.creativebloq.com/features/tags-to-use-right-now -->
 
+            <ul>
+                <li><strong>Tags</strong> - the opening or closing tag, such as <strong>&lt;p&gt;</strong> and <strong>&lt;/p&gt;</strong> within HTML.</li>
+                <li><strong>Elements</strong> - contain opening and closing tags often with content, such as <strong>&lt;p&gt;Hello World&lt;/p&gt;</strong></li>
+            </ul>
+
+            <p>HTML tags such as <strong>&lt;img&gt;</strong> can be self-closing.</p>
+
+            <h2>&lt;!DOCTYPE&gt; declaration</h2>
+
+            <p>The HTML declaration must be the very first thing in your HTML document. This is not an HTML tag but is an instruction to the browser about the version of HTML being used.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>HTML lang attribute</h2>
+
+            <p>Declaring the language attribute on the HTML tag enables a screen reader to read out text with the correct pronunciation.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;html lang="en"&gt;
+&lt;html lang="de"&gt;
+&lt;html lang="fr"&gt;
+
+&lt;html lang="en-GB"&gt;
+&lt;html lang="en-US"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;title&gt;</h2>
+
+            <p>The <strong>&lt;title&gt;</strong> tag defines the title of the HTML document. This is a requirement of all HTML documents. This tag is placed inside the <strong>&lt;head&gt;</strong> section of your HTML.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;title&gt;Example page title&lt;/title&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Paragraphs</h2>
+
+            <p>The <strong>&lt;p&gt;</strong> tag defines a paragraph. With a closing <strong>&lt;/p&gt;</strong> tag, this forms a paragraph element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is yet another paragraph.&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is a paragraph.</p>
+            <p>This is yet another paragraph.</p>
+
+            <h2>&lt;abbr&gt;</h2>
+
+            <p>The <strong>&lt;abbr&gt;</strong> tag defines an abbreviation using the <strong>title</strong> attribute.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;p&gt;The &lt;abbr title="World Health Organisation"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <abbr title="World Health Organisation">WHO</abbr> was founded in 1948.</p>
+
             <h2>&lt;detail&gt; & &lt;summary&gt;</h2>
 
             <p>The <strong>&lt;detail&gt;</strong> element will hide its content by default. When the user clicks the heading, it expands to reveal the content inside. It can also be given a custom heading using the <strong>&lt;summary&gt;</strong> elment. It's supported by all major browsers apart from Internet Explorer (IE).</p>
@@ -58,7 +136,7 @@
 
             <h2>&lt;meter&gt;</h2>
 
-            <p>For numerical data that has a defined range, the &lt;meter&gt; element can provide a visual indication of what the data means in context. The browser can conditionally style the element for high or low values.</p>
+            <p>For numerical data that has a defined range, the <strong>&lt;meter&gt;</strong> element can provide a visual indication of what the data means in context. The browser can conditionally style the element for high or low values.</p>
 
             <meter value="6.4" min="0" max="10" low="4" high="9" optimum="7.5"></meter>
 
@@ -72,7 +150,7 @@
 
             <h2>&lt;data&gt;</h2>
 
-            <p>The <strong>&lt;data&gt;</strong> element provides a hook for machines to understand meaning. The element may contain a value, such as as a product ID or ISBN. For date or time values, the &lt;time&gt; element should be used.</p>
+            <p>The <strong>&lt;data&gt;</strong> element provides a hook for machines to understand meaning. The element may contain a value, such as as a product ID or ISBN. For date or time values, the <strong>&lt;time&gt;</strong> element should be used.</p>
 
 <p><data value="9781484254516">Practical Web Inclusion and Accessibility</data></p>
 
