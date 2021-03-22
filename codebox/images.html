@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Images">
+
+	<title>Codebox - Images</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Images</h1>
+
+            <p>In HTML images are defined with the <strong>&lt;img&gt;</strong> tag. This tag is empty, meaning it has no content or closing tag, and only contains attributes. The <strong>src</strong> attribute specifies the location of the image.</p>
+
+            <h2>The alt attribute</h2>
+
+            <p>The <strong>alt attribute</strong>, also called the "alt tag", is the written copy that appears in-place of an image if/when it fails to load on a user's screen. This text helps screen-reading tools to describe the image to visually impaired users and to allow search engines to better crawl then rank the page content for SEO (Search Engine Optimisation).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!-- Good --&gt;
+&lt;img src="img/escalator.jpg" alt="Man on an escalator."&gt;
+
+&lt;!-- Better --&gt;
+&lt;img src="img/escalator.jpg" alt="Man walking on an escalator."&gt;
+
+&lt;!-- Best --&gt;
+&lt;img src="img/escalator.jpg" alt="Man wearing a backpack walking on an escalator."&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The value of the alt attribute should describe the image. It is recommended to not include "image of" or "picture of" within the alt attribute text as it's assumed your text already refers to an image so it does not need to be specified.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="img/flowers-roses.jpg" alt="Roses growing in a garden."&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the image is decorative, such as icons or background images, using CSS background images is the preferred method. If HTML must be used, use an empty <strong>alt</strong> attribute. This will avoid screen readers having to read the image description of the image if it's not part of the content.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="icons/facebook-icon.jpg" alt=""&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Image dimensions</h2>
+
+            <p>Dimensions of an image allows the page to be laid out with the appropriate space for the image before the file itself has been downloaded. This avoids a layout shift as the image is downloaded and is something Chrome has recently started measuring in its <a href="https://web.dev/cls/" target="_blank" rel="noopener noreferrer">Cumulative Layout Shift (CLS)</a> metric.</p>
+
+            <p>The <strong>width</strong> and <strong>height</strong> attribute always define the width and height of an image in pixels. Google recommends always setting the height and width of an image to be the same as the size of the image so the browser doesn't have to do any resizing calculations. If no dimensions are provided, the browser will require a reflow and repaint once the image is downloaded, which can impact performance.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="img/flowers-roses.jpg" width="128" height="128" alt="Roses growing in a garden."&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Dimensions such as width and height on an image can cause issues when you try to alter them using CSS. If we set the <strong>max-width</strong> of an image in our HTML to be <strong>100%</strong>, this will override the width of the image and constrain it when necessary. This will lead to a stretched or squashed images as we no longer maintain the aspect ratio of the image as the scale of the image changes.</p>
+
+            <p>We can fix this by adding a height property in our CSS with the value of <strong>auto</strong> so the height attribute from the HTML is overwritten too and the image scales nicely.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+img {
+    max-width: 100%;
+    height: auto;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>SEO Considerations</h2>
+
+            <p>Search engines also read image filenames and count them towards SEO, therefore give your images descriptive filenames. The filename of <strong>flowers-roses.jpg</strong> is always better than <strong>img8645363.jpg</strong>.</p>
+
+            <p>It is recommended to host your images on the same server as your website. Pointing your image source to an image hosted elsewhere that you don't have permissions to use or link to, is called "hotlinking" and is not recommended. This also requires the browser to do more work by having to look up an IP address from the DNS server.</p>
+
+            <h2>Scalable Vector Graphics (SVG)</h2>
+
+            <p><strong>Scalable Vector Graphics (SVG)</strong> is a unique type of image format that uses vector data rather than pixels to make up the images you see. Using SVGs, images can scale up to any resolution. An SVG image is usually much smaller than high-resolution images in other formats, helping to decrease the file size and improve performance.</p>
+
+            <ul>
+                <li>SVG images do not lose their quality when zoomed or resized.</li>
+                <li>They are accessible.</li>
+                <li>SVG images have a small file size and are highly scalable.</li>
+            </ul>
+
+            <p>An SVG file can be created by using a design program, such as Adobe Illustrator or Photoshop, and saving the image as an SVG. Existing images can be taken and converted to SVG also.</p>
+
+            <p>SVG files have the following browser support:</p>
+
+            <ul>
+                <li><strong>Chrome</strong></li>
+                <li><strong>Firefox</strong></li>
+                <li><strong>Safari</strong></li>
+                <li><strong>Opera</strong></li>
+                <li><strong>Edge</strong></li>
+                <li><strong>IE9/10/11 (Partial Support)</strong></li>
+            </ul>
+
+            <p>SVGs use XML (Extensible Markup Language) format is text-based, making them both searchable and indexable by screen readers and search engines. Screen readers can interpret SVG files as long as the correct accessibility tags are used.</p>
+
+            <p>SVG images are ideal for:</p>
+
+            <ul>
+                <li><strong>Logo & Icons</strong> - use SVG logos/icons to resolve any scalability issues across websites and social media. Icons and logos must be clear and sharp at any size.</li>
+                <li><strong>Diagrams, Charts & Graphs</strong> - ideal for diagrams and illustrations that rely on plain lines.</li>
+            </ul>
+
+            <p>The simplest method to add an SVG image to a webpage is to use the <strong>&lt;img&gt;</strong> tag. The SVG image is referenced using the <strong>src</strong> attribute.</p>
+
+            <p>When you add an SVG image using the <strong>&lt;img&gt;</strong> tag without specifying the size, it assumes the size of the original SVG file. Adding a <strong>width</strong> and <strong>height</strong> attribute can be used to set the original size.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;img src="img/brand-logo.svg" width="50" height="50" alt="Our brand logo."&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can use CSS to add an SVG image to our webpage. This is ideal if we want to set the SVG image as a background image.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+body {
+    background-image: url(img/happy.svg);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>SVG images can be written directly into the HTML document using the <strong>&lt;svg&gt;</strong> tag. Open the SVG image in a code editor and paste the XML directly into your HTML inside of the <strong>&lt;svg&gt;</strong> and <strong>&lt;/svg&gt;</strong> tags inside of the <strong>&lt;body&gt;</strong></p>
+
+            <p>When using SVG as inline in the HTML, it reduces load times because it serves as an HTTP request. Using the inline method also lets you perform more customisation as opposed to using the <strong>&lt;img&gt;</strong> tag or <strong>background-image</strong> methods.</p>
+
+            <p>You can also use an HTML &lt;object&gt; element to add SVG images to a webpage using the code syntax below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;object data="img/brand-logo.svg" width="50" height="50"&gt; &lt;/object&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We use the <strong>data</strong> attribute to specify the URL of the resource that you'll use by the object.</p>
+
+            <h2>HTML5 &lt;picture&gt; element</h2>
+
+            <p>HTML5 introduced the <strong>&lt;picture&gt;</strong> element to add more flexibility when specifying image resources. This element contains a number of &lt;source&gt; elements, each referring to a different image source. This allows the browser to choose the image file that best fits the current viewport size.</p>
+
+            <p>This is a container for the <strong>&lt;source&gt;</strong> and <strong>&lt;img&gt;</strong> tags.</p>
+
+            <p>The <strong>&lt;img&gt;</strong> tag is used by the browser to render the image on the page. Browsers that do not support the <strong>&lt;picture&gt;</strong> tag will automatically render the image in the <strong>&lt;img&gt;</strong> tag.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;picture&gt;
+    &lt;source media="(min-width: 64rem)" srcset="img/image-example-350-200.jpg"&gt;
+    &lt;source srcset="img/image-example.jpg"&gt;
+    &lt;img src="img/image-example.jpg" height="240" width="300" alt="An example image description here."&gt;
+&lt;/picture&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
