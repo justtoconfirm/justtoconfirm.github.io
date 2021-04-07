@@ -254,6 +254,154 @@
             </div>
             <!-- / Demo -->
 
+            <h2>Building a Flexbox Grid</h2>
+
+            <p>We're going to now build a grid using Flexbox in the vein of Bootstrap, Foundation and Skeleton. With only two classes of <strong>row</strong> and <strong>column</strong>, we can create an infinite equally spaced grid.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .column {
+        flex: 1;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In a framework like Bootstrap, the grid is based on 12 columns. With flexbox, this can be simplified within our HTML code. This example will provide us with one 100% wide column.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 100% width --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The width of each column is 100% divided by the number of columns within the flex container row.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 50% width --&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 50% width --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is another example showing equally dividing columns:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 33.3% width --&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 33.3% width --&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;!-- 33.3% width --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can change the widths of our columns to make the grid more flexible. We can use the <strong>flex</strong> property inside of a media query to create columns that are unique widths.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+@media screen and (min-width: 800px) {
+    .column_25 {
+        flex: 2.5;
+    }
+
+    .column_55 {
+        flex: 5.5;
+    }
+
+    .column_20 {
+        flex: 2;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We are currently using a single breakpoint to keep things simple for mobile/tablet (small screens) and desktop/laptop (large screens), however this can be extended further if needed. Using <strong>min-width</strong> media queries is optimal for mobile first layout designs.</p>
+
+            <p>Each column will have a 100% width on mobile having used the <strong>flex-basis</strong> property and will wrap down to the next column. On desktop, all columns will be contained to a single line. The <strong>flex-basis</strong> property specifies the initial main size of a flex item inside a flex container.</p> 
+
+            <p>Our HTML may look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="row"&gt;
+    &lt;div class="column column_25"&gt;
+        &lt;!-- 25% width --&gt;
+    &lt;/div&gt;
+    &lt;div class="column column_55"&gt;
+        &lt;!-- 55% width --&gt;
+    &lt;/div&gt;
+    &lt;div class="column column_20"&gt;
+        &lt;!-- 20% width --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We should wrap the grid inside of a container so your content doesn't stretch beyond 1200px on large screens.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The HTML will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="container"&gt;
+    &lt;!-- rows and columns --&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>
