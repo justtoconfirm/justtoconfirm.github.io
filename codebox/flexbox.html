@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to Flexbox">
+
+	<title>Codebox - Flexbox</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .container-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width: 300px;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        .container-nowrap {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            width: 300px;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        .container__item {
+            padding: 10px;
+            background-color: #efefef;
+            border: 1px solid #ccc;
+        }
+
+        .container__item-size {
+            padding: 10px;
+            background-color: #efefef;
+            border: 1px solid #ccc;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Flexbox</h1>
+            <!-- https://spaceninja.com/2015/08/24/what-is-flexbox/ -->
+            <!-- https://blog.logrocket.com/flexbox-vs-css-grid/ -->
+            <!-- https://www.taniarascia.com/easiest-flex-grid-ever/ -->
+            <!-- https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/ -->
+
+            <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong> as it's known, was introduced in 2009 and is a CSS3 web layout model that allows responsive elements within a container to be automatically arraged depending upon screen size.</p>
+
+            <p>Flexbox is a <strong>one-dimensional layout method</strong> for laying out items in <strong>rows</strong> or <strong>columns</strong>. Items flex to fill additional space and shrink to fit smaller spaces.</p>
+
+            <p>Flexbox is supported across all modern browsers. <a href="https://caniuse.com/flexbox" target="_blank" rel="noopener noreferrer">IE11 has partial support</a>.</p>
+
+            <p>There are three versions of the Flexbox spec:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: flex;      // This is the one to use
+    display: flexbox;   // This was a draft spec implemented in IE10, avoid if possible
+    display: box;       // This is no longer used
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Specifying the layout to use Flexbox</h2>
+
+            <p>To begin, we need to first select the elements that are to be laid out as flexible boxes. To do this, we set the <strong>display</strong> property in our CSS on the parent element. This causes the element to become a <strong>flex container</strong> and its children to become <strong>flex items</strong>.</p>
+
+            <p>Summary: The <strong>flex container holds the flex items</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: flex;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With this one line of CSS code, every item inside the element turns into a flex item. The main direction that our flex items take in our flex container is a row.</p>
+
+            <p>You can set the <strong>flex-direction</strong> here to set the direction as a <strong>row</strong>, but it's not necessary:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: flex;
+    flex-direction: row;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The HTML for this example may look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="container"&gt;
+    &lt;div class="container__item"&gt;One&lt;/div&gt;
+    &lt;div class="container__item"&gt;Two&lt;/div&gt;
+    &lt;div class="container__item"&gt;Three&lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>Within a responsive grid, you could consider the <strong>container</strong> class to be a row.</p>
+
+            <p><strong>This code will set the flex items to be in a row.</strong></p>
+
+            <p>The flex items are assigned a portion of the space in the container which corresponds to how much text is in each container/box. An item with a longer string of text is assigned more space - this means we don't end up with tall, skinny columns.</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">rgeurguegruereugruegrygerugeruguefuevfuvefufuefufvfe</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can change the direction of our flex items in our flex container to be a column rather than a row using the <strong>flex-direction</strong> property and setting the value to be <strong>column</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    flex-direction: column;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>This code will set the flex items to be in a column.</strong></p>
+
+            <!-- Demo -->
+            <div class="container-column">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Preferred Size</h2>
+
+            <p>The preferred size of a container/box is the size defined by a <string>width</string> or a <string>height</string>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item {
+    width: 150px;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also use the <strong>logical alias</strong> in the inline direction.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item {
+    inline-size: 150px;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item-size">One</div>
+                <div class="container__item-size">Two</div>
+                <div class="container__item-size">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>The flex-wrap property</h2>
+
+            <p>The <strong>flex-wrap</strong> CSS property sets whether flex items are forced onto one line or wrap onto multiple lines.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    flex-wrap: wrap;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can see here that the flex items wrap within the container if they cannot fit if we set the <strong>flex-wrap</strong> property value to be <strong>wrap</strong>.</p>
+
+            <!-- Demo -->
+            <div class="container-wrap">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+                <div class="container__item">Four</div>
+                <div class="container__item">Five</div>
+                <div class="container__item">Six</div>
+                <div class="container__item">Seven</div>
+                <div class="container__item">Eight</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can also set the value to be <strong>nowrap</strong> which causes the flex container to overflow.</p>
+
+            <!-- Demo -->
+            <div class="container-nowrap">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+                <div class="container__item">Four</div>
+                <div class="container__item">Five</div>
+                <div class="container__item">Six</div>
+                <div class="container__item">Seven</div>
+                <div class="container__item">Eight</div>
+            </div>
+            <!-- / Demo -->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
