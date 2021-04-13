@@ -13,9 +13,16 @@
 	<link rel="stylesheet" href="style/main.css">
 
     <style>
-        .container {
+        .container,
+        .container-responsive {
             display: flex;
             flex-direction: row;
+        }
+
+        @media (max-width: 800px) {
+            .container-responsive {
+                flex-direction: column;
+            }
         }
 
         .container-column {
@@ -47,6 +54,27 @@
             border: 1px solid #ccc;
         }
 
+        .container__item-flex {
+            flex: 1;
+        }
+
+        .container__item-grow:nth-of-type(1),
+        .container__item-grow:nth-of-type(2) { 
+            flex-grow: 1;
+        }
+
+        .container__item-grow:nth-of-type(3) { 
+            flex-grow: 2;
+        }
+
+        .container__item-basis-full { 
+            flex-basis: 100%;
+        }
+
+        .container__item-basis:nth-of-type(2) { 
+            flex-basis: 50%;
+        }
+
         .container__item-size {
             padding: 10px;
             background-color: #efefef;
@@ -66,6 +94,8 @@
             <!-- https://blog.logrocket.com/flexbox-vs-css-grid/ -->
             <!-- https://www.taniarascia.com/easiest-flex-grid-ever/ -->
             <!-- https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/ -->
+            <!-- https://css-tricks.com/almanac/properties/f/flex/ -->
+            <!-- https://css-tricks.com/understanding-flex-grow-flex-shrink-and-flex-basis/ -->
 
             <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong> as it's known, was introduced in 2009 and is a CSS3 web layout model that allows responsive elements within a container to be automatically arraged depending upon screen size.</p>
 
@@ -251,6 +281,173 @@
                 <div class="container__item">Six</div>
                 <div class="container__item">Seven</div>
                 <div class="container__item">Eight</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Responsive Flexbox</h2>
+
+            <p>We can use media queries to create different layout for different screen sizes and devices.</p>
+
+            <p>This code will display the items in a row on desktop (above 800px width) and stack the items as columns on mobile screens (below 800px) using a media query and the <strong>flex-direction</strong> property.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: flex
+    flex-direction: row;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="container-responsive">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>The flex property</h2>
+
+            <p>The <strong>flex</strong> property is a shorthand property for the <strong>flex-grow</strong>, <strong>flex-shrink</strong>, and <strong>flex-basis</strong> properties. This property sets the flexible length on the flex items within the container.</p>
+
+            <p>The second and third parameters of <strong>flex-shrink</strong> and <strong>flex-basis</strong>, are optional.</p>
+
+            <ul>
+                <li><strong>flex-grow</strong></li>
+                <li><strong>flex-shrink</strong> (optional)</li>
+                <li><strong>flex-basis</strong> (optional)</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item {
+    flex: flex-grow | flex-shrink | flex-basis
+}
+
+/* OR */
+
+.container__item {
+    flex: max | min | ideal size
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Using the below CSS code will set all flexible items to be the same length, regardless of content.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item {
+    flex: 1;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the demo if we set each flex item to use the above CSS code:</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item container__item-flex">One</div>
+                <div class="container__item container__item-flex">Two</div>
+                <div class="container__item container__item-flex">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h3>flex-grow</h3>
+
+            <p>We are essentially setting the <strong>flex-grow</strong> property here using the shorthand <strong>flex</strong> property set to 1, meaning every item will set an equal size inside the flex container. This is the same as writing:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item {
+    flex-grow: 1;           // is the same as flex: 1;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we were to give one of the child items a value of 2, that item would take up twice as much space as the others in the flex container.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item:nth-of-type(1),
+.container__item:nth-of-type(2) { 
+    flex-grow: 1;           // is the same as flex: 1;
+}
+
+.container__item:nth-of-type(3) { 
+    flex-grow: 2;           // is the same as flex: 2;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can see that the third item is much larger in length than the first and second items.</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item container__item-grow">One</div>
+                <div class="container__item container__item-grow">Two</div>
+                <div class="container__item container__item-grow">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h3>flex-basis</h3>
+
+            <p>The <strong>flex-basis</strong> property specifies the initial size of the flex item before any avialable space is distributed. When omitted from the <strong>flex</strong> shorthand property, its value is zero.</p>
+
+            <p>The default value for <strong>flex-basis</strong> is <strong>auto</strong>.</p>
+
+            <p><strong>flex-basis</strong> is the third (optional) parameter in the flex shorthand property.</p>
+
+            <p>Here we're setting the <strong>flex-basis</strong> of the second item to set the initial size to be 50%.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container__item:nth-of-type(2) { 
+    flex-basis: 50%;    
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item container__item-basis">One</div>
+                <div class="container__item container__item-basis">Two</div>
+                <div class="container__item container__item-basis">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>If we change the value of all our items by setting the <strong>flex-basis</strong> to be 100% and have a single item, the container will be full width:</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item container__item-basis-full">One</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>If we had a further item, the space will be shared equally within the row.</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__item container__item-basis-full">One</div>
+                <div class="container__item container__item-basis-full">Two</div>
             </div>
             <!-- / Demo -->
 
