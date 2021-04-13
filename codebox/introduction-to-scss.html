@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to SCSS">
+
+	<title>Codebox - Introduction to SCSS</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Introduction to SCSS</h1>
+            <!-- https://www.liquidlight.co.uk/blog/use-and-import-rules-in-scss/ -->
+
+            <p>SCSS is a CSS preprocessor that is interpreted or compiled into CSS (Cascading Style Sheets).</p>
+
+            <p>Browsers do not understand SCSS so your code will need to be compiled into CSS first.</p> 
+
+            <p>SCSS is used to keep your CSS more organised and concise, it also provides additional features not always found in CSS. Examples of SCSS features include <strong>mixins</strong>, <strong>variables</strong> and <strong>functions</strong>. in SCSS, these are called <strong>members</strong>.</p>
+
+            <p>Larger projects are often devided into smaller files, called <strong>partials</strong>, making it easier to find the code you need and creating a clear file structure. The partials can be loaded inside other stylesheets to create global styles for components and sections of your site. This helps to keep your code DRY (Don't Repeat Yourself) and readable.</p>
+
+            <p>There are two syntaxes to consider:</p>
+
+            <ul>
+                <li><strong>Sass (Syntactically Awesome Style Sheets)</strong> is the original syntax using indentation to separate code blocks and newlines to separate rules. This has the file extension of <strong>.sass</strong></li>
+                <li><strong>SCSS (Sassy CSS)</strong> is the newer syntax similar that's similar to CSS and uses braces to denote code blocks. This has the file extension of <strong>.scss</strong></li>
+            </ul>
+
+            <p>Our examples will be using the <strong>SCSS (Sassy CSS)</strong> syntax.</p>
+
+            <h2>Partials</h2>
+
+            <p>SCSS code can be written in individual files, named partials, that you can then include in other SCSS files. This helps to modularize your CSS and helps to keep things easier to maintain. A partial is a file named with a leading underscore.</p>
+
+            <p>An example of a partial file name maybe something like <strong>_variables.scss</strong> that contains variables we can reuse throughout our site.</p>
+
+            <h2>Variables</h2>
+
+            <p>Variables are used to store information you want to reuse throughout your stylesheet. Things like colours, font stacks or any CSS value you want to reuse can make use of variables. In SCSS, the <strong>$</strong> symbol is used to declare a variable.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+$primary-color: #eee;
+
+body {
+    color: $primary-color;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When the SCSS code is compiled, it takes the variable we define and outputs CSS with our variable value placed in the CSS code. This helps to keep styling consistent throughout the site.</p>
+
+            <h2>Nesting</h2>
+
+            <p>Unlike CSS, SCSS allows your CSS code to be nested. Beware havinf too many selectors nested as it will make the CSS code harder to maintain and is generally considered bad practice.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When this SCSS code is compiled into CSS, we get the following output:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
