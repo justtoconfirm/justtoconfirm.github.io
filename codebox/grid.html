@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to CSS Grid">
+
+	<title>Codebox - CSS Grid</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+    <style>
+        .container {
+            display: grid;
+        }
+
+        .container--grid-template-columns {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .container--grid-template-columns-two {
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+        .container__items {
+            background-color: #efefef;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>CSS Grid</h1>
+            <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout -->
+
+            <p>A grid is a set of horizontal and vertical lines that define columns and rows. Elements can be placed onto the grid within these columns and rows to create the page layout.</p>
+
+            <p><strong>CSS Grid Layout</strong> introduces a two-dimensional grid system to CSS.</p>
+
+            <p><a href="https://caniuse.com/?search=CSS%20grid" target="_blank" rel="noopener noreferrer">Browser support</a> for CSS Grid is good across all modern browsers, with only Internet Explorer having partial support.</p>
+
+            <h2>Creating the Grid container</h2>
+
+            <p>We create a grid container using the <strong>display</strong> property on an element. As soon as we do this, the children of the element become <strong>grid items</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our HTML will look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="container"&gt;
+    &lt;div&gt;One&lt;/div&gt;
+    &lt;div&gt;Two&lt;/div&gt;
+    &lt;div&gt;Three&lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>All the direct children are now grid items. The grid has created a single column for the grid items.</p>
+
+            <!-- Demo -->
+            <div class="container">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Grid Tracks</h2>
+
+            <p>We define rows and columns on our grid with the <strong>grid-template-columns</strong> and <strong>grid-template-rows</strong> properties. These define <strong>grid tracks</strong>, a space between any two lines on the grid. The grid tracks can be defined using any length unit.</p>
+
+            <p>CSS Grid introduced the <strong>fr</strong> unit to represent a fraction of the available space in a grid container.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>This can also be written using the <strong>repeat()</strong> notation, to repeat all or a section of the track listing.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here we are setting the columns so that the three columns have equal space.</p>
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>And here we can add a few more grid items:</p>
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+                <div class="container__items">Four</div>
+                <div class="container__items">Five</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>If we change the <strong>grid-template-columns</strong> property slightly, the first column of our grid will increase in size.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns-two">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>Let's add a few more grid items:</p>
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns-two">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+                <div class="container__items">Four</div>
+                <div class="container__items">Five</div>
+            </div>
+            <!-- / Demo -->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
