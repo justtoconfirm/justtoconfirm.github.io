@@ -25,6 +25,10 @@
             grid-template-columns: 2fr 1fr 1fr;
         }
 
+        .container--grid-minmax {
+            grid-auto-rows: minmax(30px, auto);
+        }
+
         .container--gutter {
             column-gap: 1em;
             row-gap: 1em;
@@ -219,6 +223,39 @@
                 <div class="container__items">Five</div>
             </div>
             <!-- / Demo --> 
+
+            <h2>Setting the height of rows</h2>
+
+            <p>We may want to give our tracks a minumum height when building a grid allowing the grid to expand to fit any content that is added. In this example, we may want our rows to never be smaller than 30px in height, but to automatically increase in height if needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(30px, auto);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can use the <strong>minmax()</strong> function for this within the <strong>grid-auto-rows</strong> property. This means the rows will automatically have a minimum height of 30px and a maximum set to <strong>auto</strong>. Using auto means that the height of the row will stretch to give space for the tallest item in a cell.</p>
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns container--grid-minmax">
+                <div class="container__items">One</div>
+                <div class="container__items">
+                    <p>I have some more content in.</p>
+                    <p>This makes me taller than 30 pixels.</p>
+                </div>
+                <div class="container__items">Three</div>
+                <div class="container__items">Four</div>
+                <div class="container__items">Five</div>
+            </div>
+            <!-- / Demo --> 
+
+            <p>This helps to make our grid flexible.</p>
 
 		</div>
 	</div>
