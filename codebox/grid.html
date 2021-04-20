@@ -25,7 +25,13 @@
             grid-template-columns: 2fr 1fr 1fr;
         }
 
+        .container--gutter {
+            column-gap: 1em;
+            row-gap: 1em;
+        }
+
         .container__items {
+            padding: 10px;
             background-color: #efefef;
             border: 1px solid #ccc;
         }
@@ -168,6 +174,51 @@
                 <div class="container__items">Five</div>
             </div>
             <!-- / Demo -->
+
+            <h2>Gutters</h2>
+
+            <p>Gutters, sometimes referred to as alleys, between grid cells can be created using the <strong>column-gap</strong> and <strong>row-gap</strong> properties. The shorthand <strong>gap</strong> property can also be used.</p>
+
+            <p>When the CSS Grid was first shipped in browsers, these properties were prefixed with <strong>grid-</strong> but as browsers are being updated to remove this prefix, this will be maintained as an alias making them safe to use.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This can also be written like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can see that the gap between each cell is 1em between each row and column.</p>
+
+            <!-- Demo -->
+            <div class="container container--grid-template-columns container--gutter">
+                <div class="container__items">One</div>
+                <div class="container__items">Two</div>
+                <div class="container__items">Three</div>
+                <div class="container__items">Four</div>
+                <div class="container__items">Five</div>
+            </div>
+            <!-- / Demo --> 
 
 		</div>
 	</div>
