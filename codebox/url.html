@@ -23,8 +23,75 @@
             <!-- https://support.google.com/google-ads/answer/6277564?hl=en-GB#:~:text=URL%20parameter%20is%20a%20way,by%20an%20ampersand%20(%26). -->
             <!-- https://www.sitepoint.com/get-url-parameters-with-javascript/ -->
             <!-- https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters -->
+            <!-- https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL -->
 
             <p>A <strong>URL</strong>, or <strong>Uniform Resource Locator</strong>, is a mechanism used by the browser to retrieve any published resource on the web. It is nothing more than the address given to a unique resource. Such resources can be an HTML page, CSS stylesheet, an image or anything else that maybe published.</p>
+
+            <h2>Scheme</h2>
+
+            <p>The first part of the URL is the <strong>scheme</strong>, which indicates the protocol that the browser must use to request the resource. Usually for websites the protocol is <strong>HTTPS</strong> or <strong>HTTP</strong> (its unsecured version). The browser can handle other schemes such as <strong>mailto:</strong> (to open a mail client) or <strong>ftp:</strong> (to handle file transfers).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https:
+http:
+mailto:
+ftp:
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Authority</h2>
+
+            <p>The authority follows the scheme, which is separated by the character pattern <strong>://</strong> and includes the domain name, but can also include the port number (separated by a colon).</p>
+
+            <p>The <strong>domain name</strong> indicated which web server is being requested. Usually the domain name is used, but an IP address may also be used.</p>
+
+            <p>The <strong>port</strong> indicates the technical "gate" used to access the resources on the web server. It is usually omitted if the web server uses the standard ports of the HTTP protocol (80 for HTTP and 443 for HTTPS) to grant access to the resources.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+://www.example.com
+://www.example.com:80
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>mailto:</strong> scheme does not use an authority for the mail client, therefore the colon is not followed by two slashes and only acts as a delimiter between the scheme and the mail address.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+mailto:contactme@mydomain.com
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Path to resource</h2>
+
+            <p>The <strong>path to resource</strong> is a path that represents the physical location of a file on a web server.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/path/to/myfile.html
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Anchor</h2>
+
+            <p>An anchor represents a sort of "bookmark" inside the resource giving the browser the directions to show the content located at that "bookemarked" spot. Within an HTML document, the browser will scroll to the point where the anchor is defined. The hash (<strong>#</strong>) is also known as the <strong>fragment identifier</strong> and is never sent to the server with the request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.example.com/path/to/myfile.html#anAnchor
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <h2>URL Parameters</h2>
 
@@ -153,7 +220,35 @@ https://www.domain.com?language=en
 https://www.domain.com?type=yellow?price_range=20-50
 <!-- Just leave this line alone -->
     </code>
-</pre>         
+</pre>    
+
+            <h2>Absolute URLs</h2>
+
+            <p>In your browser's address bar, a URL doesn't have any context, so you must provide a full (or absolute) URL. You don't need to include the protocol (the browser uses HTTP by default) or port (which is only required when the targeted web server is using an unusual port), but all other parts of the URL are necessary.</p>
+
+            <p>When a URL is used within a document, such as in an HTML page, the browser already has the document's own URL, so it can use this information to fill in the missing parts of any URL available inside that document.</p>
+
+            <p>If a URL starts with "/", the browser will fetch that resource from the top root of the server.</p>
+
+            <p>This is a full absolute URL:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com/en-GB/docs
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>Implicit protocol</strong> - in this case, the browser will call that URL with the same protocol (https:) as the one used to load the document hosting that URL:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+//www.domain.com/en-GB/docs
+<!-- Just leave this line alone -->
+    </code>
+</pre>             
 
 		</div>
 	</div>
