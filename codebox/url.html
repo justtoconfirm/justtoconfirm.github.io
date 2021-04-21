@@ -220,7 +220,43 @@ https://www.domain.com?language=en
 https://www.domain.com?type=yellow?price_range=20-50
 <!-- Just leave this line alone -->
     </code>
-</pre>    
+</pre>
+
+            <h2>Getting a URL parameter</h2>
+
+            <p>We can grap the parameter in a URL using <strong>window.location.search</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const queryString = window.location.search      // ?page=url
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then parse the parameter using <strong>URLSearchParams()</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const urlParams = new URLSearchParams(queryString);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>For example, <strong>URLSearchParams.get()</strong> will return the first value associated with the given search parameter:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const page = urlParams.get('page');     // url
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In modern browsers (excluding Internet Explorer, which requires a polyfill), the <strong>URLSearchParams()</strong> method can be used to work with URL parameters.</p>  
+
+            <div id="paramURL"></div>  
 
             <h2>Absolute URLs</h2>
 
@@ -253,6 +289,20 @@ https://www.domain.com/en-GB/docs
 		</div>
 	</div>
 </main>
+
+<script>
+/*
+Get the value of the URL parameter and print onto the page
+*/
+const el = document.getElementById('paramURL');
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+// Search for the URL parameter than matches the specified key
+const pageParam = urlParams.get('page');
+
+// Print the value of the URL parameter on the page
+el.innerHTML = `The value of the URL parameter is: <strong>${pageParam}</strong>`;
+</script>
 
 </body>
 </html>
