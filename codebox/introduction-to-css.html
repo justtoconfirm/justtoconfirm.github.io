@@ -11,6 +11,22 @@
 	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
 	<link rel="stylesheet" href="style/foundation.min.css">
 	<link rel="stylesheet" href="style/main.css">
+
+    <style>
+        .container {
+            width: 100%;
+            border: 1px solid #eee;
+            height: 200px;
+        }
+
+        .container--linear-gradient {
+            background: linear-gradient(black, white);
+        }
+
+        .container--radial-gradient {
+            background: radial-gradient(circle, black, white);
+        }
+    </style>
 </head>
 <body>
 
@@ -34,6 +50,80 @@
     <code>
 <!-- Just leave this line alone -->
 &lt;link rel="stylesheet" href="stylesheet.css"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may want to use a minified CSS file to improve performance and page speed. This may have a slightly different file name.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="stylesheet" href="stylesheet.min.css"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The display property</h2>
+
+            <p>The display property specifies the display behavior of an element and is used to control layout. The property specifies if and how an element is displayed. Every HTML element has a default display value. The default display value for most elements is <strong>block</strong> or <strong>inline</strong>.</p>
+
+            <p>Every element has a default value, however, we can override this. Changing an element from inline to block, or vice versa, can be useful for making the page look a specific way and still following web standards. A common example is making the inline &lt;li&gt; elements horizontal for menus.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+li {
+    display: inline;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Setting the display property of an element only changes how the element is displayed. An inline element is still not allowed to have a block element inside it.</p>
+
+            <p>An <strong>inline</strong> element does not start on a new line and only takes up as much width as necessary. Any height and width properties will have no effect.</p>
+
+            <ul>
+                <li>&lt;span&gt;</li>
+                <li>&lt;a&gt;</li>
+                <li>&lt;img&gt;</li>
+            </ul>
+
+            <p><strong>inline-block</strong> displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values.</p>
+
+            <p><strong>block</strong> elements start on a new line and takes up the whole width available.</p>
+
+            <ul>
+                <li>&lt;div&gt;</li>
+                <li>&lt;h1-6&gt;</li>
+                <li>&lt;li&gt;</li>
+                <li>&lt;p&gt;</li>
+                <li>&lt;header&gt;</li>
+                <li>&lt;footer&gt;</li>
+                <li>&lt;form&gt;</li>
+            </ul>
+
+            <p>Elements can also be hidden using the display property. Setting the display property to <strong>none</strong>, the element will be hidden and the page will be displayed as if the element is not there.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    display: none;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we use the <strong>visibility</strong> property in-place of display, this too hides the element, however, the element will still take up the same space as before. The element will be hidden, but still affect the layout.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    visibility: hidden;
+}
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -452,6 +542,38 @@ p:empty {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>CSS Gradients</h2>
+
+            <p>We can tell the browser to create a gradient. Methods of defining a linear or radial colour gradient has good <a href="https://caniuse.com/?search=CSS%20gradients" target="_blank" rel="noopener noreferrer">browser support</a>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    background: linear-gradient(black, white);
+}
+
+.element {
+    background: radial-gradient(circle, black, white);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Gradients are just another form of background image with the browser being used to make the image using the <strong>CSS3 Gradient Syntax</strong>.</p>
+
+            <p>Here's the linear gradient:</p>
+
+            <!-- Demo -->
+            <div class="container container--linear-gradient"></div>
+            <!-- / Demo -->
+
+            <p>Here's the radial gradient:</p>
+
+            <!-- Demo -->
+            <div class="container container--radial-gradient"></div>
+            <!-- / Demo -->
 
 		</div>
 	</div>

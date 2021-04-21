@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to URLs">
+
+	<title>Codebox - URL</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>URL</h1>
+            <!-- https://www.semrush.com/blog/url-parameters/ -->
+            <!-- https://support.google.com/google-ads/answer/6277564?hl=en-GB#:~:text=URL%20parameter%20is%20a%20way,by%20an%20ampersand%20(%26). -->
+            <!-- https://www.sitepoint.com/get-url-parameters-with-javascript/ -->
+            <!-- https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters -->
+
+            <p>A <strong>URL</strong>, or <strong>Uniform Resource Locator</strong>, is a mechanism used by the browser to retrieve any published resource on the web. It is nothing more than the address given to a unique resource. Such resources can be an HTML page, CSS stylesheet, an image or anything else that maybe published.</p>
+
+            <h2>URL Parameters</h2>
+
+            <p><strong>URL parameters</strong>, also known as <strong>"query strings"</strong> or <strong>"URL query parameters"</strong>, are elements that are inserted into your URLs to help you filter and organise content, or track information on your site.</p>
+
+            <p>URL parameters are a way to pass information about a click using the URL itself and can be used to pass data from page to page within a URL.</p>
+
+            <p>If your website has many paramater-based URLs, it's important to signal to the web crawlers which pages not to index and to link to the static, non-parameterised page when considering SEO. A static page URL would look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com/shoes
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once you've decided on which static page should be indexed, remember to canonicalize it. Set up canonical tags on the parameterised URLs referencing the preferred URL. This will send a signal to crawlers that only the main landing page is to be indexed and not the parameterised URLs.</p>
+
+            <p>You'll notice that on this page, the URL of <strong>page=url</strong> is passed into the URL as a parameter with a value when you click on the link to open this page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;a href="url.html?page=url"&gt;URL&lt;/a&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The URL parameter refers to the portion of the URL that comes after a question mark (<strong>?</strong>) and are made of a key and a value, separated by an equal sign (<strong>=</strong>). Multiple parameters are each then separated by an ampersand (<strong>&</strong>).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com/page?key1=value1&key2=value2
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>URL parameters are commonly used to sort content on a page, making it easier for users to navigate products in an online store. These query strings allow users to order a page according to specific filters and to view a set amount of items per page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Main page
+https://www.onlinestore.com/shoes
+
+// URL parameters
+https://www.onlinestore.com/shoes?rank=newest
+https://www.onlinestore.com/shoes?sessionid=niketrainers
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>There are two types of URL parameters:</p>
+
+            <ul>
+                <li><strong>Content-modifying parameters</strong> (active) - parameters that will modify the content displayed on the page, for example to send a user directly to a specific product.</li>
+                <li><strong>Tracking parameters</strong> (passive) - used for advanced tracking, parameters that will pass information about a click, for example which network it came from and/or campaign - this won't change the content on the page.</li>
+            </ul>
+
+            <p>Here's an example of a <strong>content-modifying parameter</strong> to send a user directly to a specific product called 'xyz':</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com?productid=xyz
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's an example of a <strong>tracking parameter</strong> used to track traffic from your newsletter:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com?utm_source=newsletter&utm_medium=email
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Or, to collect campaign data with custom URLs:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+https://www.domain.com?utm_source=twitter&utm_medium=tweet&utm_campaign=summer-sale
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>URL Parameter Examples</h3>
+
+            <ul>
+                <li><strong>Tracking</strong> - UTM codes used for tracking traffic from ads and campaigns</li>
+                <li><strong>Reordering</strong> - Ordering items according to specific parameters</li>
+                <li><strong>Searching</strong> - To find results using a site's internal search engine</li>
+                <li><strong>Identifying</strong> - Sorting pages, such as image gallery, by size, category etc.</li>
+                <li><strong>Paginating</strong> - Segment content on pages</li>
+                <li><strong>Translating</strong> - Adding the language name to the end of a URL string</li>
+                <li><strong>Filtering</strong> - Filter distinct fields</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Tracking
+https://www.domain.com?utm_content=bottom%20cta%20button?utm_source=newsletter123&utm_medium=email?sessionID=32764
+
+// Reordering
+https://www.domain.com?sort=price_ascending?order=highest_rated?rank=newest
+
+// Searching
+https://www.domain.com?search=search_term?query=search_term
+
+// Identifying
+https://www.domain.com?product=small_blue_shoes?category=shoes?productid=xyz
+
+// Paginating
+https://www.domain.com?page=2
+
+// Translating
+https://www.domain.com?language=en
+
+// Filtering
+https://www.domain.com?type=yellow?price_range=20-50
+<!-- Just leave this line alone -->
+    </code>
+</pre>         
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
