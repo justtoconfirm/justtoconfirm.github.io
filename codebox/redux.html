@@ -29,6 +29,8 @@
 
             <p>Redux is essentially a package that creates a global state which you can share between React components. When using Redux, you don't actually change the state, you create updated copies of the state that are then inserted into your React components.</p>
 
+            <p>As mentioned earlier, <strong>Redux is framework agnostic</strong>, meaning we can integrate it into a Vue or Angular project, just as with React.</p>
+
             <p>Redux was originally created by Dan Abramov and Andrew Clark. The documentation can be found <a href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
             <p>Redux has a few features that uses terminology you will beccome familiar with:</p>
@@ -42,6 +44,44 @@
             </ul>
 
             <p>We can also setup the <strong>Redux DevTools Extension</strong> which connects Redux to DevTools.</p>
+
+            <p>Redux can be installed using NPM (Node Package Manager):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install redux --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To work with React and access the store's global state within React components, the <strong>react-redux</strong> package must be installed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react-redux --save
+    </pre>
+</div>
+<!-- / Terminal -->
 
             <h2>The Redux Store</h2>
 
