@@ -27,6 +27,8 @@
 
             <p><strong>Redux is a state container for JavaScript applications</strong> and not just React. In a React application, state is managed within components (at a component level) and passed around using props. With Redux, the entire state of your application is managed within a single object.</p>
 
+            <p>Redux is essentially a package that creates a global state which you can share between React components. When using Redux, you don't actually change the state, you create updated copies of the state that are then inserted into your React components.</p>
+
             <p>Redux was originally created by Dan Abramov and Andrew Clark. The documentation can be found <a href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
             <p>Redux has a few features that uses terminology you will beccome familiar with:</p>
@@ -40,6 +42,40 @@
             </ul>
 
             <p>We can also setup the <strong>Redux DevTools Extension</strong> which connects Redux to DevTools.</p>
+
+            <h2>The Redux Store</h2>
+
+            <p>Redux places all of your components' state in one central location. This makes it accessible to all components. This location in which we hold the state is called a <strong>store</strong>.</p>
+
+            <p>The store is a global JavaScript object which can be accessed by all of our components. This object is immutable, meaning it cannot be changed directly, but it can be copied and then updated instead.</p>
+
+            <p>In order to create a store, we need to use the <strong>createStore()</strong> method from Redux. This creates a JavaScript object with a small API (a set of properties and functions) attached to it.</p>
+
+            <p>Create a directory named <strong>store</strong> in the <strong>src</strong> folder and add the following code inside a file called <strong>index.js</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/store/index.js
+
+import { createStore } from 'redux'
+
+const store = createStore()
+
+export default store
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>createStore()</strong> API includes the following:</p>
+
+            <ul>
+                <li><strong>getState</strong> - for accessing the current state of the application</li>
+                <li><strong>dispatch</strong> - for changing state via an action</li>
+                <li><strong>subscribe</strong> - for responding to state changes</li>
+            </ul>
+
+            <p>If you are using the <strong>Redux Toolkit</strong>, the store will be created using the <strong>configureStore()</strong> method which wraps the <strong>createStore()</strong> method of Redux to provide simplified configuration options and defaults.</p>
 
             <h2>Why use Redux?</h2>
 
