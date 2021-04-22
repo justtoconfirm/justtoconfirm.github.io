@@ -20,31 +20,48 @@
 
 			<h1>Redux</h1>
             <!-- https://www.taniarascia.com/redux-react-guide/ -->
+            <!-- https://redux-toolkit.js.org/tutorials/quick-start -->
+            <!-- https://medium.datadriveninvestor.com/createslice-in-redux-toolkit-c5e5441b75d9 -->
+            <!-- https://redux.js.org/redux-toolkit/overview#:~:text=Redux%20Toolkit%20is%20our%20official,toolset%20for%20efficient%20Redux%20development.&text=It%20also%20includes%20the%20most,can%20use%20them%20right%20away. -->
 
-            <p>Redux is a state container for JavaScript applications. Normally, with React, you manage state at a component level and pass state around via props. With Redux, the entire state of your application is managed in one immutable object.</p>
+            <p><strong>Redux is a state container for JavaScript applications</strong> and not just React. In a React application, state is managed within components (at a component level) and passed around using props. With Redux, the entire state of your application is managed within a single object.</p>
 
             <p>Redux was originally created by Dan Abramov and Andrew Clark. The documentation can be found <a href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
-            <ul>
-                <li>Access or update any part of the state from a Redux-connected component.</li>
-                <li>Keep track of changes with <strong>Redux DevTools</strong>. Any action or state change is tracked and easy to follow.</li>
-            </ul>
-
-            <p>Redux does require a lot of initial boilerplate to setup. A smaller application may also not need React and may instead benefit from using the <strong>Context API</strong> for global state needs. You may want to start building your app with the Context API and latet convert to using Redux as your app grows in size for better maintanence and organisation.</p>
-
-            <p>Redux has a number of key terms to be familiar with:</p>
+            <p>Redux has a few features that uses terminology you will beccome familiar with:</p>
 
             <ul>
-                <li>Actions</li>
-                <li>Reducers</li>
-                <li>Store</li>
-                <li>Dispatch</li>
-                <li>Connect</li>
+                <li><strong>Actions</strong></li>
+                <li><strong>Reducers</strong></li>
+                <li><strong>Store</strong></li>
+                <li><strong>Dispatch</strong></li>
+                <li><strong>Connect</strong></li>
             </ul>
 
-            <p>There is an <a href="getting-started-with-react.html">introductory guide to React</a>, should you need it.</p>
+            <p>We can also setup the <strong>Redux DevTools Extension</strong> which connects Redux to DevTools.</p>
 
-            <p>You may want to create the directories for Redux using your terminal:</p>
+            <h2>Why use Redux?</h2>
+
+            <ul>
+                <li><strong>Easily manage state</strong> - access or update any part of the state from any component that is connected to Redux</li>
+                <li><strong>Keep a track of changes</strong> - any action or state change is tracked and easy to follow with Redux.</li>
+            </ul>
+
+            <h2>Install - Redux Toolkit</h2>
+
+            <p>Redux have also recently introduced the <strong>Redux Toolkit</strong>, which simplifies setting up Redux in your project. The documentation for the Redux Toolkit can be found <a href="https://redux-toolkit.js.org/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+            <p>The Redux Toolkit package is intended to be the standard way to write Redux logic and to address many common concerns:</p>
+
+            <ul>
+                <li><strong>The Redux configuration is too complicated</strong></li>
+                <li><strong>Many packages are required to use Redux</strong></li>
+                <li><strong>Redux requires too much boilerplate code</strong></li>
+            </ul>
+
+            <p>Consider the React Toolkit as a tool in the spirit of <strong>create-react-app</strong>, it's designed to make setting up Redux easier and make our code better.</p>
+
+            <p>Redux Toolkit is available as a package on NPM (Node Package Manager) or using Yarn:</p>
 
 <!-- Terminal -->
 <div class="terminal terminal--shadow">
@@ -58,58 +75,266 @@
     </div>
     <pre class="terminal__body">
 <!-- Just leave this line alone -->
-    $ mkdir actions components pages reducers
+    # NPM
+    $ npm install @reduxjs/toolkit
+
+    # Yarn
+    $ yarn add @reduxjs/toolkit
     </pre>
 </div>
 <!-- / Terminal -->
 
-            <p>Both the <strong>pages</strong> and <strong>components</strong> directories are created for React, <strong>actions</strong> and <strong>reducers</strong> for Redux.</p>
+            <p>You will need to also ensure that <strong>react-redux</strong> is installed if your application is built using React.</p>
 
-            <p>The file structure for a React application using Redux may look like this:</p>
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react-redux
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You may not need Redux if you're building a small application and may instead benefit from using the <strong>Context API</strong>.</p>
+
+            <h2>Getting Started</h2>
+
+            <p>To begin, we may want to setup a React project. Following <a href="getting-started-with-react.html">this guide</a> will help with this.</p>
+
+            <p>All your application code will be in the <strong>src</strong> directory within your application. Within the src directory you will need to create an <strong>index.js</strong> file to build your basic React application.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-src /
-    actions /
-    components /
-    pages /
-    reducers /
-    App.js
-    index.js
+project /
+    src /
+        index.js
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <h2>Getting Started</h2>
+            <p>To keep things really simple our <strong>index.js</strong> code will look something like this:</p>
 
-            <p>Redux requires a few dependencies:</p>
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+
+const App = () => {
+    return &lt;h1&gt;Hello World&lt;/h1&gt;
+}
+
+render(
+    &lt;App /&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Create a Redux Store</h2>
+
+            <p>Create a file named <strong>store.js</strong> in the <strong>src</strong> directory of your project. Import the <strong>configureStore()</strong> API from Redux Toolkit and write the following code to create an empty Redux store.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { configureStore } from '@reduxjs/toolkit'
+
+export default configureStore({
+    reducer: {}
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This will create a Redux store and automatically configure the Redux DevTools extension so we can inspect the store during development.</p>
+
+            <p>Our file structure will now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    src /
+        store.js
+        index.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once the store is created we can make it available to our React components by adding <strong>&lt;Provider&gt;</strong> around our application in our <strong>index.js</strong> file. This is from the <strong>react-redux</strong> package and will import our Redux store into our application.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux
+import store from './store'
+
+const App = () => {
+    return &lt;h1&gt;Hello World&lt;/h1&gt;
+}
+
+render(
+    &lt;Provider store={store}&gt;
+        &lt;App /&gt;
+    &lt;/Provider&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Create a Redux State Slice</h2>
+
+            <p>We can use the <strong>createSlide()</strong> method of the Redux Toolkit to create a slice of the Redux store. This slide contains the reducer and actions within a single file.</p>
+
+            <p>We will import the <strong>createSlice()</strong> API from the Redux Toolkit and add an initial state value with one or more reducer functions to define how the state in the store can be updated.</p>
+
+            <p>Create a directory in the <strong>src</strong> folder named <strong>features/counter</strong> and add an empty JavaScript file named <strong>counterSlice.js</strong>. This will be the file containing our Redux State Slice for a counter. Now add the following code into the empty JavaScript file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { creeateSlice } from '@reduxjs/toolkit'
+
+export const counterSlice = createSlice({
+    name: 'counter',
+    initialState: {
+        value: 0
+    },
+    reducers: {
+        increment: (state) => {
+            state.value += 1
+        },
+        decrement: (state) => {
+            state.value -= 1
+        }
+    }
+})
+
+export const {
+    increment,
+    decrement
+} = counterSlice.actions
+
+export default counterSlice.reducer
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, we need to import the reducer function from the counter slice and add it to our store. We define a field inside the <strong>reducers parameter</strong> in our store to tell the store to use this slice reducer function and handle all updates to the state.</p>
+
+            <p>Update the code within the <strong>store.js</strong> file to import the slice:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from './features/counter/counterSlice'
+
+export default configureStore({
+    reducer: {
+        counter: counterReducer
+    }
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Use Redux in React Components</h2>
+
+            <p>Now we can use hooks to let React components interact with the Redux store. We can read data from the store with useSelector and dispatch using useDispatch.</p>
+
+            <p>Create an empty file named <strong>Counter.js</strong> in the <strong>features/counter/</strong> directory inside <strong>src</strong> and add the following code to build a counter component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, decrement } from './counterSlice'
+
+const Counter = () => {
+    
+    const count = useSelector((state) => state.counter.value)
+    const dispatch = useDispatch()
+
+    return (
+        &lt;&gt;
+            &lt;p&gt;{count}&lt;/p&gt;
+            &lt;button onClick={() =&gt; dispatch(increment())}&gt;Increment&lt;/button&gt;
+            &lt;button onClick={() =&gt; dispatch(decrement())}&gt;Decrement&lt;/button&gt;
+        &lt;/&gt;
+    )
+}
+
+export default Counter
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The file structure of the application should look like this (the features directory could be renamed components if you want):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    src /
+        store.js
+        index.js
+        features/counter /
+            Counter.js
+            counterSlide.js
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now import the Counter component into your React application. Update the <strong>index.js</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux
+import store from './store'
+import Counter from './features/counter/Counter'
+
+const App = () => {
+    return (
+        &lt;Counter /&gt;
+    )
+}
+
+render(
+    &lt;Provider store={store}&gt;
+        &lt;App /&gt;
+    &lt;/Provider&gt;,
+    document.getElementById('root')
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now when you click the "Increment" or "Decrement" buttons:</p>
 
             <ul>
-                <li><strong>Redux</strong> - Core library</li>
-                <li><strong>React Redux</strong> - React bindings for Redux</li>
-                <li><strong>Redux DevTools Extension</strong> - Connects Redux app to Redux DevTools</li>
+                <li>The corresponding Redux action will be dispatched to the Redux store</li>
+                <li>The counter slice reducer will see the actions and update its state</li>
+                <li>The Counter component will see the new state value from the store and re-render itself with the new data</li>
             </ul>
-
-            <p>The <strong>Redux</strong> & <strong>React Redux</strong> packages can be installed using NPM (Node Package Manager):</p>
-
-<!-- Terminal -->
-<div class="terminal terminal--shadow">
-    <div class="terminal__top">
-        <div class="terminal__buttons">
-            <span class="terminal__circle terminal__circle--red"></span>
-            <span class="terminal__circle terminal__circle--yellow"></span>
-            <span class="terminal__circle terminal__circle--green"></span>
-        </div>
-        <div class="terminal__title">bash -- 85x24</div>
-    </div>
-    <pre class="terminal__body">
-<!-- Just leave this line alone -->
-    $ npm install redux --save
-    $ npm install react-redux --save
-    </pre>
-</div>
-<!-- / Terminal -->
 
 		</div>
 	</div>
