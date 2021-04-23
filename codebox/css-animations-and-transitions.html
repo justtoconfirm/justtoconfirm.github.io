@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to CSS animations and transitions">
+
+	<title>Codebox - CSS Animations & Transitions</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+    <style>
+        /* The animation */
+        @keyframes background-color-change {
+            from {
+                background-color: red;
+            }
+            to {
+                background-color: yellow;
+            }
+        }
+
+        /* Apply the animation to the element */
+        .box {
+            width: 100%;
+            height: 100px;
+            background-color: red;
+            animation-name: background-color-change;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>CSS Animations & Transitions</h1>
+
+            <p>CSS allows animation of HTML elements without the need to use JavaScript. An animation lets an element gradually change from one style to another. You can change as many properties as you want and as many times as you want.</p>
+
+            <p>CSS animations are well supported in most modern browsers, with the exception of Internet Explorer (IE) 9 and below.</p>
+
+            <h2>@keyframes rule</h2>
+
+            <p>When you specify CSS styles inside the <strong>@keyframes</strong> rule, the animation will gradually change from the current style to the new style. The animation must bind to an element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* The animation */
+@keyframes background-color-change {
+    from {
+        background-color: red;
+    }
+    to {
+        background-color: yellow;
+    }
+}
+
+/* Apply the animation to the element */
+.box {
+    width: 100%;
+    height: 100px;
+    background-color: red;
+    animation-name: background-color-change;
+    animation-duration: 4s;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>animation-name</strong> property references the animation to be used.</p>
+
+            <p>The <strong>animation-duration</strong> property defines how long an animation should take to complete. This is required as without the property, no animation will occur as the default value is <strong>0</strong>.</p>
+
+            <p>Here is the demo of the code:</p>
+
+            <!-- Demo -->
+            <div class="box"></div>
+            <!-- / Demo -->
+
+            <p>In the example, the <strong>"from"</strong> keyword represents <strong>0%</strong> (start) and the <strong>"to"</strong> keyword represents <strong>100%</strong> (completed). It is possible to use percent to allow multiple style changes to be added.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* The animation */
+@keyframes background-color-change {
+    0% {
+        background-color: red;
+    }
+    25% {
+        background-color: yellow;
+    }
+    50% {
+        background-color: blue;
+    }
+    100% {
+        background-color: green;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Further properties can be added to each <strong>@keyframe</strong> if needed also.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* The animation */
+@keyframes background-color-change {
+    0% {
+        background-color: red;
+        left: 0;
+        top: 0;
+    }
+    25% {
+        background-color: yellow;
+        left: 200px;
+        top: 0;
+    }
+    50% {
+        background-color: blue;
+        left: 200px;
+        top: 200px;
+    }
+    75% {
+        background-color: green;
+        left: 0;
+        top: 200px;
+    }
+    100% {
+        background-color: red;
+        left: 0;
+        top: 0;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>animation-delay</strong> property specifies a delay for the start of an animation.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* Apply the animation to the element */
+.box {
+    animation-delay: 2s;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>animation-iteration-count</strong> property specifies the number of times an animation should run. The following example will run the animation three times before it stops.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* Apply the animation to the element */
+.box {
+    animation-iteration-count: 3;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we want to animation to be "infinite" we can also use the <strong>animation-iteration-count</strong> and update the value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* Apply the animation to the element */
+.box {
+    animation-iteration-count: infinite;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also use the shorthand property of <strong>animation</strong> to chain multiple values together.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* Apply the animation to the element */
+.box {
+    animation: background-color-change 5s infinite;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>So to summarise, the animation property will be the shorthand for:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.box {
+    animation: animation-name | animation-duration | animation-timing-function | animation-delay | animation-iteration-count | animation-direction
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Specify the Speed Curve</h2>
+
+            <p>The <strong>animation-timing-function</strong> property specifies the speed curve of the animation. This property can have the following values:</p>
+
+            <ul>
+                <li><strong>ease</strong> - specifies an animation with a slow start,  then fast, then end slowly (this is the default)</li>
+                <li><strong>linear</strong> - specifies an animation with the same speed from start to end</li>
+                <li><strong>ease-in</strong> - specifies an animation with a slow start</li>
+                <li><strong>ease-out</strong> - specifies an animation with a slow end</li>
+                <li><strong>ease-in-out</strong> - specifies an animation with a slow start and end</li>
+            </ul>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>

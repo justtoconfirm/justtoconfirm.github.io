@@ -39,6 +39,7 @@
             <!-- https://www.youtube.com/watch?v=Z6wjUOSh9Tk -->
             <!-- https://web.dev/content-visibility/ -->
             <!-- https://caniuse.com/?search=content-visibility -->
+            <!-- https://www.smashingmagazine.com/2021/04/guide-supported-modern-css-pseudo-class-selectors/ -->
 
             <p>CSS is not the largest asset to consider during development but it is the first the browswer discovers. The browser is blocked from rendering the page until the CSS is downloaded and parsed. It's always worthwhile making your CSS stylesheets as lean as possible to improve performance of your web page, website or application.</p>
 
@@ -488,6 +489,18 @@ p:empty {
     </code>
 </pre>
 
+            <p>You could use this selector for features like search results:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.search-results:empty {
+    display: none;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>The :is selector</h2>
 
             <p>The <strong>:is</strong> pseudo-class works by taking a passed selector list then translating it into an expanded selector list for us. This allows us to write more compact code. Aside from IE11 and Opera Mini, this has excellent <a href="https://caniuse.com/css-matches-pseudo" target="_blank" rel="noopener noreferrer">browser support</a>.</p>
@@ -542,6 +555,24 @@ p:empty {
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>:any-link</h2>
+
+            <p>This pseudo class has had <a href="https://caniuse.com/css-any-link" target="_blank" rel="noopener noreferrer">cross-browser support</a> for sometime, with the exclusion of Internet Explorer (IE). This can be used to match an anchor hyperlink as long as it has a <strong>href</strong> attribute and is the equivalent to both <strong>:link</strong> and <strong>:visited</strong> at once.</p>
+
+            <p>This may reduce your styles by one selector if you're adding basic properties such as <strong>color</strong> to apply to all links.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+:any-link {
+    color: blue;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>An important note about specificity, this property will win against <strong>a</strong> as a selector even if <strong>a</strong> is placed lower in the CSS cascade.</p>
 
             <h2>CSS Gradients</h2>
 
