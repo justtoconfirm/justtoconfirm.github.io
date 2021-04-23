@@ -256,7 +256,7 @@ project /
 <!-- Just leave this line alone -->
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux
+import { Provider } from 'react-redux'
 import store from './store'
 
 const App = () => {
@@ -275,7 +275,7 @@ render(
 
             <h2>Create a Redux State Slice</h2>
 
-            <p>We can use the <strong>createSlide()</strong> method of the Redux Toolkit to create a slice of the Redux store. This slide contains the reducer and actions within a single file.</p>
+            <p>We can use the <strong>createSlice()</strong> method of the Redux Toolkit to create a slice of the Redux store. This slide contains the reducer and actions within a single file.</p>
 
             <p>We will import the <strong>createSlice()</strong> API from the Redux Toolkit and add an initial state value with one or more reducer functions to define how the state in the store can be updated.</p>
 
@@ -405,7 +405,7 @@ render(
     </code>
 </pre>
 
-            <p>Now when you click the "Increment" or "Decrement" buttons:</p>
+            <p>Now when you click the <strong>"Increment"</strong> or <strong>"Decrement"</strong> buttons:</p>
 
             <ul>
                 <li>The corresponding Redux action will be dispatched to the Redux store</li>
