@@ -23,10 +23,11 @@
             <!-- https://blog.pusher.com/react-context-api/ -->
             <!-- https://chamikakasun.medium.com/react-context-api-whats-it-all-about-75a8a4bf62fa -->
             <!-- https://www.sitepoint.com/replace-redux-react-hooks-context-api/ -->
+            <!-- https://www.youtube.com/watch?v=5LrDIWkK_Bc -->
 
             <p>The <strong>Context API</strong> of React is a state management tool that can often be used in-place of <a href="redux.html">Redux</a> altogether. This replaces the need to use the central store in Redux using a native React API.</p>
 
-            <p>The Context APU was released in <strong>React v16.3.0</strong>.</p>
+            <p>The Context API was released in <strong>React v16.3.0</strong>.</p>
 
             <p>Context API provides a way of passing data through the components without having the pass props down through every level.</p>
 
@@ -41,7 +42,7 @@
 
             <h2>Setting up Context API</h2>
 
-            <p>As of React v16.8, <a href="react-hooks.html">Hooks</a> have allowed the implementation of a number of React features in components, such as state, without having to write a class. This includes better code reuse and sharing od state between components. We will be using the following React hooks:</p>
+            <p>As of React v16.8, <a href="react-hooks.html">Hooks</a> have allowed the implementation of a number of React features in components, such as state, without having to write a class. This includes better code reuse and sharing of state between components. We will be using the following React hooks:</p>
 
             <ul>
                 <li>useState</li>
@@ -63,7 +64,7 @@
 
             <h2>Counter Example</h2>
 
-            <p>For this example, we will build a simple counter. The count state will be shared globally among two components, both will be a child of <strong>CounterView</strong>, which will act as a container.</p>
+            <p>For this example, we will build a simple counter. The count state will be shared globally among two components, both will be a child of the <strong>Counter</strong> component, which will act as a container.</p>
 
             <p>Let's start by defining our count state in a context file called <strong>context/counter-context.js</strong> within the <strong>src</strong> directory of your React application.</p>
 
@@ -91,7 +92,9 @@ export const CounterContextProvider = props => {
     </code>
 </pre>
 
-            <p>Here we've defined a state called <strong>count</strong> with a default value of <strong>0</strong>. All components that consume the <strong>CounterContext.Provider</strong> will have access to the count state and the setCount function.</p>
+            <p>Notice how we've exported the <strong>createContext()</strong> method in our code so we can use it across our application.</p>
+
+            <p>Here we've defined a state called <strong>count</strong> with a default value of <strong>0</strong>. All components that consume the <strong>CounterContext.Provider</strong> will have access to the count state and the <strong>setCount</strong> function.</p>
 
             <p>We can now create a component for displaying the count state. Create an empty JavaScript file in the <strong>src</strong> directory with the directory and file name of <strong>/components/counter/Display.js</strong> and add the following code:</p>
 
@@ -146,7 +149,7 @@ export default CounterButtons
     </code>
 </pre>
 
-            <p>As it is, the useContext() method won't work since the <strong>Provider</strong> hasn't been specified. To specify the provider, create an empty file as a container with the filename <strong>/components/counter/Counter.js</strong> and insert the following code:</p>
+            <p>As it is, the <strong>useContext()</strong> method won't work since the <strong>Provider</strong> hasn't been specified. To specify the provider, create an empty file as a container with the filename <strong>/components/counter/Counter.js</strong> and insert the following code:</p>
 
 <pre>
     <code>
@@ -209,6 +212,182 @@ src /
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>Toggle Theme Example</h2>
+
+            <p>In this example, we're going to use the Context API to set and toggle a theme. In the App.js file, update your code so it looks like the example below:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useState, createContext } from 'react'
+import FunctionContextComponent from './FunctionContextComponent'
+
+export const ThemeContext = createContext()
+
+const App = () => {
+    const [ darkTheme, setDarkTheme ] = useState(true)
+
+    const toggleTheme = () = > {
+        setDarkTheme(prevDarkTheme => !prevDarkTheme)
+    }
+
+    return (
+        &lt;&gt;
+            &lt;ThemeContext.Provider value={darkTheme}&gt;
+                &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
+                &lt;FunctionContextComponent /&gt;
+            &lt;/ThemeContext.Provider&gt;
+        &lt;/&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Wrapping the Provider around all the components in the <strong>render()</strong> method allows the prop of darkTheme to be available to all of those components inside the Provider without the need to specifically add the prop to each one. It's like a global state for all our children of the Provider to access.</p>
+
+            <p>Let's now create the <strong>FunctionContextComponent</strong> component in a new file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React, { useContext } from 'react'
+import { ThemeContext } from './App'
+
+const FunctionContextComponent = () => {
+    
+    // Import ThemeContext from the App component
+    const darkTheme = useContext(ThemeContext)
+
+    const themeStyles = {
+        backgroundColor: darkTheme ? '#333' : '#ccc',
+        color: darkTheme ? '#ccc' : '#333',
+        padding: '2rem',
+        margin: '2rem'
+    }
+
+    return (
+        &lt;div style={themeStyles}&gt;Function Theme&lt;/div&gt;
+    )
+}
+
+export default FunctionContextComponent
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The code is relatively simple, but it would be better if we extract some of this code into it's own custom hook. We can create a template for any context using this example.</p>
+
+            <p>Create a new file named <strong>ThemeContext.js</strong> in the <strong>src</strong> directory. Add the following code into this new file:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/ThemeContext.js
+
+import React, { createContext, useContext, useState } from 'react'
+
+// Create Theme context
+const ThemeProvider = createContext()
+// Create Toggle context           
+const ThemeUpdateContext = createContext()  
+
+// Create hook to allow the ThemeContext to be used elsewhere
+export function useTheme()  {
+    return useContext(ThemeContext)
+}
+
+// Create hook to allow the ThemeUpdateContext to be used elsewhere
+export function useThemeUpdate()  {
+    return useContext(ThemeUpdareContext)
+} 
+
+const ThemeProvider = ({ children }) => {
+    const [ darkTheme, setDarkTheme ] = useState(true)
+
+    const toggleTheme = () = > {
+        setDarkTheme(prevDarkTheme => !prevDarkTheme)
+    }
+
+    return (
+        &lt;ThemeContext.Provider value={darkTheme}&gt;
+            &lt;ThemeContext.Provider value={toggleTheme}&gt;
+                { children }
+            &lt;/ThemeContext.Provider&gt;
+        &lt;/ThemeContext.Provider&gt;
+    )
+}
+
+export default ThemeProvider
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Update the <strong>FunctionContextComponent</strong> to include the button:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/FunctionContextComponent.js
+
+import React from 'react'
+import { useTheme, useThemeUpdate } from './ThemeContext'
+
+const FunctionContextComponent = () => {
+    
+    // Use hooks from ThemeContext
+    const darkTheme = useTheme()
+    const toggleTheme = useThemeUpdate()
+
+    const themeStyles = {
+        backgroundColor: darkTheme ? '#333' : '#ccc',
+        color: darkTheme ? '#ccc' : '#333',
+        padding: '2rem',
+        margin: '2rem'
+    }
+
+    return (
+        &lt;&gt;
+            &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
+            &lt;div style={themeStyles}&gt;Function Theme&lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default FunctionContextComponent
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can now update the <strong>App.js</strong> file to make it much simpler by importing our newly created <strong>ThemeContext.js</strong> context.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/App.js
+
+import React, { createContext } from 'react'
+import FunctionContextComponent from './FunctionContextComponent'
+import { ThemeProvider } from './ThemeContext'
+
+const App = () => {
+
+    return (
+        &lt;ThemeProvider&gt;
+            &lt;FunctionContextComponent /&gt;
+        &lt;/ThemeProvider&gt;
+    )
+}
+
+export default App
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>With these updates, we now have context created for our theme and toggle we can use in any of our components. <strong>ThemeProvider</strong> now handles its own internal state.</p>
 
 		</div>
 	</div>
