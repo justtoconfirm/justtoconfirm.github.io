@@ -20,6 +20,115 @@
 
 			<h1>Node & NPM</h1>
             <!-- https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/ -->
+            <!-- https://www.freecodecamp.org/news/what-exactly-is-node-js-ae36e97449f5/ -->
+            <!-- https://nodejs.dev/learn -->
+            <!-- https://socket.io/get-started/chat -->
+            <!-- https://freshman.tech/learn-node/ -->
+
+            <h2>Node</h2>
+
+            <p>Node (Node.js) is an open-source JavaScript runtime environment that runs and is built on Chrome's V8 JavaScript engine and executes JavaScript code outside a web browser. Chrome's V8 is an open-source runtime engine written in C++. Node was created by Ryan Dahl.</p>
+
+            <p>Node itself doesn't do anything, it's just another way to execute code using a JavaScript runtime. If you require Node to do something, such as to be a HTTP server, you have to write an HTTP server and use Node to run it. Node includes a number of libraries (<strong>modules</strong>) for adding functionality when needed. An example module is the built-in <strong>filesystem</strong> (<strong>fs</strong>) module making I/O easy.</p>
+
+            <p>If Node is installed, your terminal can be used to confirm the version:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node --version
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p><strong>NVM (Node Version Manager)</strong> is recommended to be used to install Node as it allows different versions of Node to be installed and used easily for different projects.</p>
+
+            <p>As an example, ensure that Node is installed on your machine and create a JavaScript file named <strong>app.js</strong> with the following JavaScript code inside:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log('Hello World');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Open your terminal, change the directory to the folder where you saved the app.js file and run the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node app.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p><strong>Hello World</strong> should appear in your terminal.</p>
+
+            <p>The most commin example when using Node is a web server. Open a file named <strong>server.js</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const http = require('http')
+const hostname = '127.0.0.1'
+const port = 9123
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('Hello World\n')
+})
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`)
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here we're using the <strong>http module</strong> to create the server.</p>
+
+            <p>Run the server using the terminal.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node server.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You can also use frameworks built on Node, such as <strong>Express</strong>, to create a server.</p>
+
+            <h2>NPM (Node Package Manager)</h2>
 
             <p>NPM stands for <strong>Node Package Manager</strong>. It is the largest software package library in the world with over 600,000 packages. The Node installation comes with a Command Line Interface (CLI) for NPM which allows developers to interact with packages locally on their machines.</p>
 
