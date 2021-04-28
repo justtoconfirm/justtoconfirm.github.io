@@ -341,6 +341,68 @@ export default About
 
             <p>To add a 404 error page, create a new page in the <strong>pages</strong> directory named <strong>404.js</strong>.</p>
 
+            <h2>Adding Styling using SCSS</h2>
+
+            <p>Begin by installing the following packages using NPM as dependencies:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install sass gatsby-plugin-sass
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In the root of your Gatbsy project folder, create a config file named <strong>gatsby-config.js</strong> and add the following code to add the <strong>gatsby-plugin-sass</strong> plugin to your application:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    plugins: [
+        `gatsby-plugin-sass`
+    ]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Create your SCSS partial file(s) containing your styling within the <strong>src</strong> directory. You will the need to import your SCSS partial into the React component/page you want to apply the styling.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { Link } from 'gatsby'
+
+import './main.scss'
+
+const Home = () => (
+    &lt;&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+        &lt;p&gt;This is the about page.&lt;/p&gt;
+
+        &lt;Link to='/'&gt;Home&lt;/Link&gt;
+        &lt;Link to='/about/'&gt;About&lt;/Link&gt;
+    &lt;&gt;
+)
+
+export default About
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the development server is running, your Gatsby application will reload and your styling will be applied.</p>
+
             <h2>Building the application</h2>
 
             <p>Once the development of the application is completed, the static code needs to be generated as HTML, CSS and JavaScript for deployment to an environment. Run the following terminal command to output the HTML, CSS & JavaScript in the <strong>public</strong> directory for hosting and create a production build.</p>
