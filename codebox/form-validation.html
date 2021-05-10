@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to Form Validation">
+
+	<title>Codebox - Form Validation</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+
+    <style>
+        input[type=email] {
+        -webkit-appearance: none;
+        appearance: none;
+        padding: 10px;
+        border: 1px solid #333;
+        margin: 0;
+        font-family: inherit;
+        box-sizing: border-box;
+    }
+
+    /* This is our style for the invalid fields */
+    input:invalid {
+        border-color: #900;
+        background-color: #FDD;
+    }
+
+    input:focus:invalid {
+        outline: none;
+    }
+
+    /* This is the style of our error messages */
+    .error {
+        width  : 100%;
+        padding: 0;
+        color: white;
+        background-color: #900;
+        border-radius: 0 0 5px 5px;
+        box-sizing: border-box;
+    }
+
+    .error--active {
+        padding: 0.3em;
+    }
+    </style>
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Form Validation</h1>
+            <!-- https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
+            <!-- https://zellwk.com/blog/check-empty-input-js/ -->
+
+            <p>For number fields, those with the <strong>type</strong> attribute of <strong>number</strong> for example, the <strong>min</strong> and <strong>max</strong> attributes can be used to provide a range of valid values. If the field contains a value outside this range, it will be invalid.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="number" id="number" name="number" value="1" min="1" max="10"&gt;
+&lt;input type="email" id="email-address" name="email-address" minlength="6" maxlength="8"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Events to validate input</h2>
+
+            <p>If you want to validate the input when a user types into the field, you can use the <strong>input</strong> event:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const input = document.querySelector('input');
+
+input.addEventListener('input', event => {
+    // Validate input
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you want to validate the input when a user submits a form, you can use the <strong>submit</strong> event. Make sure you prevent the default behaviour with <strong>preventDefault</strong>. If you don't prevent the default behaviour, browsers will navigate to the URL stated in the action attribute.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const input = document.querySelector('form');
+
+form.addEventListener('submit', event => {
+    event.preventDefault();
+    
+    // Validate input
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Validation using JavaScript</h2>
+
+            <p>You must use JavaScript if you want to take control over the look and feel of native error messages or to deal with legacy browsers that do no suppory the built-in HTML validation.</p>
+
+            <p><a href="https://caniuse.com/constraint-validation" target="_blank" rel="noopener noreferrer">Most browsers support</a> the <strong>Constraint Validation API</strong> that consists of methods and properties.</p>
+
+            <p>Let's start with some simple HTML:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form&gt;
+    &lt;label for="email-address">E-mail:&lt;/label&gt;
+    &lt;input type="email" id="email-address" name="email-address"&gt;
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, add the following JavaScript to the page:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const email = document.getElementById('email-address');
+
+email.addEventListener('input', function(event) {
+    if (email.validity.typeMismatch) {
+        email.setCustomValidity('Please enter a valid e-mail address');
+    } else {
+        email.setCustomValidity('');
+    }
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the form:</p>
+
+            <!-- Demo code -->
+            <form>
+                <label for="email-address">E-mail:</label>
+                <input type="email" id="email-address" name="email-address">
+                <button>Submit</button>
+            </form>
+            <!-- / Demo code -->
+
+            <p>The JavaScript code will check whether the email input's <strong>validity.typeMismatch</strong> property returns <strong>true</strong>, meaning the contained value doesn't match the pattern for an email address. If so, the <strong>setCustomValidity()</strong> method is called so we can pass in a custom message. This renders the input invalid, so the form submission will fail.</p>
+
+            <p>If the property returns a value of <strong>false</strong>, an empty string is returned, the form input is valid, so the form will submit.</p>
+
+            <p>We can use the <strong>novalidate</strong> attribute on the <strong>&lt;form&gt;</strong> element to turn off the browser's automatic validation. This lets our JavaScript code take control over the validation. This won't disable support for the <strong>Constraint Validation API</strong> nor CSS pseudo classes. This means that even though the browser doesn't automatically check the validity of the form before sending the data, we can do it ourselves and style the form accordingly.</p>
+
+            <p>The <strong>novalidate</strong> attribute on the form simply stops the form from showing its own error message bubbles and allows us to style the error messages using our own styling.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form novalidate&gt;
+    
+    &lt;!-- Form field here --&gt;
+
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Custom error messages can be placed inside a <strong>&lt;span&gt;</strong> or <strong>&lt;div&gt;</strong> element. The <strong>aria-live</strong> attribute can be added to this element to make sure our custom error message will be presented to all users, including being read out by screenreaders.</p>
+
+            <p>Here, we update the HTML form to include a custom error message:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form novalidate&gt;
+    &lt;p&gt;
+        &lt;label for="mail">E-mail:&lt;/label&gt;
+        &lt;input type="email" id="mail" name="mail" required minlength="8"&gt;
+        &lt;div class="error" aria-live="polite"&gt;&lt;/div&gt;
+    &lt;p&gt;
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here is the demo HTML form:</p>
+
+            <!-- Demo code -->
+            <form novalidate>
+                <p>
+                    <label for="mail">E-mail:</label>
+                    <input type="email" id="mail" name="mail" required minlength="8">
+                    <div class="error" aria-live="polite"></div>
+                <p>
+                <button>Submit</button>
+            </form>
+            <!-- / Demo code -->
+
+            <p>And now we can add the JavaScript code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// Get the form
+const form = document.getElementsByTagName('form')[0];
+
+const email = document.getElementById('mail');
+const emailError = document.querySelector('#mail + div.error');
+
+// Check the form field is valid each time the user enters a value
+email.addEventListener('input', function(event) {
+    
+    // If field is valid, remove the error message
+    if(email.validity.valid) {
+        emailError.textContent = '';
+        emailError.className = 'error'
+    } else {
+        showError();
+    }
+
+});
+
+// If the email field is value, we let the form submit
+form.addEventListener('submit', function(event) {
+   
+    // If email field is not valid, show error message
+    if(!email.validity.valid) {
+        showError();
+        // Prevent the form from being sent if error message is showing
+        event.preventDefault();
+    }
+
+});
+
+function showError() {
+
+    // If field is empty, display the following error message
+    if(email.validity.valueMissing) {
+        emailError.textContent = 'You need to enter an e-mail address';
+    } else if(email.validity.typeMismatch) {
+        // If field does not contain e-mail address, show message
+        emailError.textContent = 'Needs to be an e-mail address';
+    } else if(email.validity.tooShort) {
+        // if field value is too short
+        emailError.textContent = `E-mail should be at least ${ email.minLength } long; you entered ${ email.value.length }.`;
+    }
+
+    // Set the styling class if error is active
+    emailError.className = 'error error--active';
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>And the CSS styling:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+input[type=email] {
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 10px;
+    border: 1px solid #333;
+    margin: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+/* This is our style for the invalid fields */
+input:invalid {
+    border-color: #900;
+    background-color: #FDD;
+}
+
+input:focus:invalid {
+    outline: none;
+}
+
+/* This is the style of our error messages */
+.error {
+    width: 100%;
+    padding: 0;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+}
+
+.error--active {
+    padding: 0.3em;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+<script>
+const email = document.getElementById('email-address');
+
+email.addEventListener('input', function(event) {
+    if (email.validity.typeMismatch) {
+        email.setCustomValidity('Please enter a valid e-mail address');
+    } else {
+        email.setCustomValidity('');
+    }
+});
+</script>
+
+<script>
+// Get the form
+const form = document.getElementsByTagName('form')[0];
+
+const emailInput = document.getElementById('mail');
+const emailError = document.querySelector('#mail + div.error');
+
+// Check the form field is valid each time the user enters a value
+emailInput.addEventListener('input', function(event) {
+    
+    // If field is valid, remove the error message
+    if(emailInput.validity.valid) {
+        emailError.textContent = '';
+        emailError.className = 'error'
+    } else {
+        showError();
+    }
+
+});
+
+// If the email field is value, we let the form submit
+form.addEventListener('submit', function(event) {
+   
+    // If email field is not valid, show error message
+    if(!emailInput.validity.valid) {
+        showError();
+        // Prevent the form from being sent if error message is showing
+        event.preventDefault();
+    }
+
+});
+
+function showError() {
+
+    // If field is empty, display the following error message
+    if(emailInput.validity.valueMissing) {
+        emailError.textContent = 'You need to enter an e-mail address';
+    } else if(emailInput.validity.typeMismatch) {
+        // If field does not contain e-mail address, show message
+        emailError.textContent = 'Needs to be an e-mail address';
+    } else if(emailInput.validity.tooShort) {
+        // if field value is too short
+        emailError.textContent = `E-mail should be at least ${ emailInput.minLength } long you entered ${ emailInput.value.length }.`;
+    }
+
+    // Set the styling class if error is active
+    emailError.className = 'error error--active';
+}
+</script>
+
+</body>
+</html>
