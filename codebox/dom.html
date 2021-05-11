@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Guide to the DOM (Document Object Model)">
+
+	<title>Codebox - DOM (Document Object Model)</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>DOM (Document Object Model)</h1>
+            <!-- https://www.digitalocean.com/community/tutorials/how-to-make-changes-to-the-dom -->
+
+            <p>The <strong>Document Object Model</strong>, usually referred to as the <strong>DOM</strong>, is an essential part of making websites interactive. It is the inteface that allows a programming language to manipulate the content, structure and style of a website.</p>
+
+            <p>At the most basic level, a website consists of an HTML document. The browser being used to view the website is a program that interprets HTML and CSS to render the style, content, and structure into the page you see. In addition to parsing and rendering the page, the <strong>Document Object Model</strong> is created which is a representation of the document.</p>
+
+            <p>If you inspect a website within the <strong>Developer Tools</strong>, and select the <strong>Elements</strong> tab, you'll see the DOM. This may look similar to your HTML source code.</p>
+
+            <h2>The Document Object</h2>
+
+            <p>The <strong>document</strong> object is a built-in object that has many <strong>properties</strong> and <strong>methods</strong> that can be used to access and modify web pages.</p>
+
+            <p>In <strong>Developer Tools</strong>, move to the <strong>Console</strong> tab. Type <strong>document</strong> into the console and press <strong>ENTER</strong>. You will see the same output as what you see in the Elements tab.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">DevTools: Console</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    &gt; document
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p><strong>document</strong> is an object, <strong>body</strong> is a property of that object that we can access using dot notation. Submitting <strong>document.body</strong> to the console outputs the &lt;body&gt; element and everything inside it.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">DevTools: Console</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    &gt; document.body
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Within the console, we can change some of the live properties of the <strong>body</strong> object using the <strong>style</strong> attribute.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">DevTools: Console</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    &gt; document.body.style.backgroundColor = 'fuchsia';
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In <strong>Developer Tools</strong>, switching the the <strong>Elements</strong> tab, you'll see that the DOM has now changed.</p>
+
+            <p>In order to change the <strong>background-color</strong> CSS property, we had to type <strong>backgroundColor</strong> in JavaScript. Any hyphenated CSS property will be written in camelCase in JavaScript.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;body style="background-color: fuchsia;"&gt;
+
+&lt;/body&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We have now updated the DOM, however the source of the website does not contain the new style attribute. If you refresh the page, the new code we added in the console will disappear.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
