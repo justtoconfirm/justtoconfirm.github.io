@@ -52,6 +52,94 @@
             <!-- https://pageclip.co/blog/2018-02-20-you-should-use-html5-form-validation.html -->
             <!-- https://github.com/Pageclip/valid-form -->
             <!-- https://stackoverflow.com/questions/38301774/how-to-do-floating-of-labels-in-css -->
+            <!-- https://www.w3schools.com/html/html_form_elements.asp -->
+
+            <h2>The &lt;input&gt; element</h2>
+
+            <p>The HTML <strong>&lt;input&gt;</strong> element is the most used form element. It can be displayed in many ways, depending on the <strong>type</strong> attribute used. The default value of the <strong>type</strong> attribute is "text".</p>
+
+            <p>On mobile devices, the <strong>type</strong> attribute will determine the type of keyboard shown when the user interacts with the input element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="text"&gt;
+&lt;input type="radio"&gt;
+&lt;input type="checkbox"&gt;
+&lt;input type="number"&gt;
+&lt;input type="email"&gt;
+&lt;input type="password"&gt;
+&lt;input type="button"&gt;
+&lt;input type="submit"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The characters in a <strong>password</strong> field are masked (shown as asterisks or circles).</p>
+
+            <h2>The value attribute</h2>
+
+            <p>The <strong>value</strong> attribute specifies an initial value for an input field.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="text" value="Dan"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>the name attribute</h2>
+
+            <p>The <strong>name</strong> attribute specifies the name of an <strong>&lt;input&gt;</strong> element. It is used to reference elements in JavaScript, or to reference form data after a form is submitted.</p>
+
+            <p>Only form elements with a name attribute will have their values passed when submitting a form.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="text" name="firstname"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The placeholder attribute</h2>
+
+            <p>The <strong>placeholder</strong> attribute specifies a short hint that describes the expected value of an input field. This hint is displayed in the input field before the user enters a value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="email" placeholder="a@b.com"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The readonly attribute</h2>
+
+            <p>The <strong>readonly</strong> attribute specifies that a input field is read-only. The value of the field will still be sent when the form is submitted, however the field cannot be modified. The user can tab to the field, highlight the value and copy text from it.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="text" readonly&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The disabled attribute</h2>
+
+            <p>The <strong>disabled</strong> attribute specifies that an input field should be disabled. This field is then unusable and un-clickable. The value of a disabled field will not be sent when submitting the form.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="text" disabled&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Minimum & Maximum values</h2>
 
             <p>For number fields, those with the <strong>type</strong> attribute of <strong>number</strong> for example, the <strong>min</strong> and <strong>max</strong> attributes can be used to provide a range of valid values. If the field contains a value outside this range, it will be invalid.</p>
 
@@ -60,6 +148,203 @@
 <!-- Just leave this line alone -->
 &lt;input type="number" id="number" name="number" value="1" min="1" max="10"&gt;
 &lt;input type="email" id="email-address" name="email-address" minlength="6" maxlength="8"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The &lt;label&gt; element</h2>
+
+            <p>The <strong>&lt;label&gt;</strong> element defines a label for form elements. This is useful for screen reader users, because the screen reader will read out when the user focus is on the input.</p>
+
+            <p>The <strong>for</strong> attribute should be added to the <strong>&lt;label&gt;</strong> and should be equal to the id attribute of the <strong>&lt;input&gt;</strong> element to bind them together.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;label for="name">Name:&lt;/label&gt;
+&lt;input type="text" id="name"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Wrapping the <strong>&lt;label&gt;</strong> around the input allows you to omit the id attribute on the input element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;label&gt;
+    &lt;input type="text" name="firstname"&gt;
+&lt;/label&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Radio buttons</h2>
+
+            <p>The <strong>&lt;input&gt;</strong> element with the <strong>type</strong> of <strong>radio</strong> can be used to define a radio button.</p>
+
+            <p>Radio buttons must shate the same value in the <strong>name</strong> attribute so they can be grouped together. Selecting any radio button in that group automatically deselects any other selected radio button in the same group.</p>
+
+            <p>The <strong>value</strong> attribute defines the unique value associated with each radio button. This value is not shown to the user, but the value is sent to the server when the form is submitted to idenfify which radio button was selected.</p>
+
+            <p>Adding a <strong>&lt;label&gt;</strong> is recommended for accessibility.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="radio" id="male" name="gender" value="male"&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+
+&lt;input type="radio" id="female" name="gender" value="female"&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Checkbox</h2>
+
+            <p>Setting the <strong>type</strong> of an <strong>&lt;input&gt;</strong> to <strong>checkbox</strong> will define a checkbox.</p>
+
+            <p>The checkbox is shown as a square box that is ticket (checked) when active.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="checkbox" id="confirm" name="confirm" value="confirm"&gt;
+&lt;label for="confirm"&gt;I confirm and agree with the T&Cs&lt;/label&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>&lt;button&gt;</h2>
+
+            <p>The <strong>&lt;button&gt;</strong> tag defines a clickable button. Always specify the <strong>type</strong> attribute for a <strong>&lt;button&gt;</strong> element to tell the browser what type of button it is.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;button type="button">Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you include a <strong>&lt;button&gt;</strong> in a form element without specifying its a regular button - using the button type - it will default to a submit button.</p>
+
+            <ul>
+                <li><strong>button</strong> - the button is a clickable button</li>
+                <li><strong>submit</strong> - the button is a submit button for submitting form data</li>
+                <li><strong>reset</strong> - the button is a reset button to clear the form data to its initial values</li>
+            </ul>
+
+            <p>By default, HTML buttons are presented in a style resembling the platform the user agent runs on, but the styling can be amended using CSS.</p>
+
+            <p>While the <strong>&lt;input&gt;</strong> elements with type button are still perfectly valid HTML, the newer <strong>&lt;button&gt;</strong> element is now thee favored way to create buttons.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input type="button" value="Click me"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The &lt;form&gt; element</h2>
+
+            <p>Form elements should be wrapped between an opening &lt;form&gt; and closing &gt;/form&gt; tags. The &lt;form&gt; element is used to create an HTML form for user input.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form&gt;
+    &lt;label for="name">Name:&lt;/label&gt;
+    &lt;input type="text" id="name"&gt;
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>action</strong> attribute defines the action to be performed when the form is submitted. Usually, the form data is sent to a file on the server when the user clicks the submit button. In the example below, the form submission is sent to a file called <strong>form-submission.php</strong> containing the server-side script that handles the form data.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form action="/form-submission.php"&gt;
+    
+    &lt;!-- Form field here --&gt;
+
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If the action attribute is omitted, the action is set to the current page by default.</p>
+
+            <p>The <strong>method</strong> attribute specifies the HTTP method used when submitting the form data. The form data can be sent as URL parameters if using <strong>GET</strong> or as HTTP post transactions if using <strong>POST</strong>. The default HTTP method when submitting form data is GET.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form action="/form-submission.php" method="POST"&gt;
+    
+    &lt;!-- Form field here --&gt;
+
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Always use <strong>POST</strong> if your form data contains sensitive or personal information.</p>
+
+            <ul>
+                <li><strong>GET</strong> appends the form data to the URL as parameters in name/value pairs. Do not send sensitive data using GET as the data, such as passwords, will be visible in the URL.</li>
+                <li><strong>GET</strong> is limited to 2048 characters in the URL, <strong>POST</strong> has no size limitations so can be used to send large amounts of data when the form is submitted.</li>
+                <li><strong>GET</strong> is useful for bookmarking page results and non-secure data, like search queries. We cannot bookmark form submissions using <strong>POST</strong>.</li>
+                <li><strong>POST</strong> appends the form data inside the body of the HTTP request, the data is not visible in the URL.</li>
+            </ul>
+
+            <p>More information about URL parameters can be found <a href="url.html?page=url">here</a>.</p>
+
+            <p>We can use the <strong>novalidate</strong> attribute on the <strong>&lt;form&gt;</strong> element to turn off the browser's automatic validation. This lets our JavaScript code take control over the validation. This won't disable support for the <strong>Constraint Validation API</strong> nor CSS pseudo classes. This means that even though the browser doesn't automatically check the validity of the form before sending the data, we can do it ourselves and style the form accordingly.</p>
+
+            <p>The <strong>novalidate</strong> attribute on the form simply stops the form from showing its own error message bubbles and allows us to style the error messages using our own styling.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form novalidate&gt;
+    
+    &lt;!-- Form field here --&gt;
+
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>autocomplete</strong> attribute specifies whether a form should have autocomplete on or off. When autocomplete is on, the browser automatically completes values based on values the user has entered before.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form autocomplete="on"&gt;
+    
+    &lt;!-- Form field here --&gt;
+
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Styling HTML Forms</h2>
+
+            <p>Using CSS we can position position the <strong>&lt;label&gt;</strong> above the input field and the <strong>&lt;button&gt;</strong> below the input field by setting the <strong>display</strong> property to be <strong>block</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+label,
+button {
+    display: block;
+}
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -144,38 +429,9 @@ email.addEventListener('input', function(event) {
             </form>
             <!-- / Demo code -->
 
-            <p>Using CSS we can position position the <strong>&lt;label&gt;</strong> above the input field and the <strong>&lt;button&gt;</strong> below the input field by setting the <strong>display</strong> property to be <strong>block</strong>.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-label,
-button {
-    display: block;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
             <p>The JavaScript code will check whether the email input's <strong>validity.typeMismatch</strong> property returns <strong>true</strong>, meaning the contained value doesn't match the pattern for an email address. If so, the <strong>setCustomValidity()</strong> method is called so we can pass in a custom message. This renders the input invalid, so the form submission will fail.</p>
 
             <p>If the property returns a value of <strong>false</strong>, an empty string is returned, the form input is valid, so the form will submit.</p>
-
-            <p>We can use the <strong>novalidate</strong> attribute on the <strong>&lt;form&gt;</strong> element to turn off the browser's automatic validation. This lets our JavaScript code take control over the validation. This won't disable support for the <strong>Constraint Validation API</strong> nor CSS pseudo classes. This means that even though the browser doesn't automatically check the validity of the form before sending the data, we can do it ourselves and style the form accordingly.</p>
-
-            <p>The <strong>novalidate</strong> attribute on the form simply stops the form from showing its own error message bubbles and allows us to style the error messages using our own styling.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-&lt;form novalidate&gt;
-    
-    &lt;!-- Form field here --&gt;
-
-&lt;/form&gt;
-<!-- Just leave this line alone -->
-    </code>
-</pre>
 
             <h2>HTML5 Validation Form</h2>
             <!-- https://pageclip.co/blog/2018-02-20-you-should-use-html5-form-validation.html -->
