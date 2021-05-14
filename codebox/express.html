@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to Express">
+
+	<title>Codebox - Express</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>Express</h1>
+            <!-- https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction -->
+
+            <p>Express is a Node web application framework for web and mobile applications. Express itself if minimalist, but developers have created compatible middleware pages to extend the framework further. There are libraries to work with cookies, sessions, user logins, URL parameters, security headers, and many more.</p>
+
+            <p>A <strong>module</strong> is a JavaScript library/file that you can import into other code using Node's <strong>require()</strong> function. Express itself is a module as are the middleware and database libraries we use in our Express applications.</p>
+
+            <p>Express can also be used to robust APIs.</p>
+
+            <p>Create a <strong>package.json</strong> file and install Express as a dependency using NPM (Node Package Manager). If you deploy your application to <a href="heroku.html">Heroku</a>, only packages as dependencies will be executed.</p> 
+
+            <p><strong>Heroku</strong> is one of the longest-running cloud-based PaaS services and originally only supported Ruby applications. Now, Heroku can be used to host applications, including Node and Express.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install express
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next, open a new file in your project named <strong>app.js</strong> and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+    res.send('Hello World')
+})
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li>The first two lines of code import the Express module and create an instance of Express with the variable of <strong>app</strong>.</li>
+                <li>The <strong>app.get</strong> shows a route definition and is a method to specify a callback function that will be invoked whenever there is an HTTP GET request with a path <strong>('/')</strong> relative to the site root.</li>
+                <li>The callback takes a request and calls <strong>send()</strong> on the response to return the string 'Hello World'.</li>
+                <li>The final block of code starts up the server on the specified port of <strong>3000</strong>.</li>
+            </ul>
+
+            <p>Often it is useful to group route handlers for a particular part of a site together to access them using a common route-prefix. In Express this is achieved by using the <strong>express.Router</strong> object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const router = express.Router()
+
+// Home page route
+router.get('/', (req, res) => {
+    res.send('Home page')
+})
+
+// About page route
+router.get('/about', (req, res) => {
+    res.send('About page')
+})
+
+module.exports = router
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>Routing</strong> refers to how an application responds to a client request to a particular endpoint. Each route can have one or more handler functions, which are executed when the route is matched.</p>
+
+            <p>You should already have Node installed, as Express relies on Node, so open your terminal and navigate to the location of the <strong>app.js</strong> file created. Run the following command in the terminal to run your application:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node app.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Any changes you make to your Express website are currently not visible until you restart the server. It is useful to automate this process. A tool for the purpose is <strong>nodemon</strong>. We can install this locally as a devDependency using NPM.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install nodemon --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We can update our <strong>package.json</strong> file with a script for development, so the server will always run and update should we make any changes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "dev": "nodemon app.js"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To run the script:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We only want to use the tool during development and not in production.</p>
+
+            <h2>Using databases</h2>
+
+            <p>Express applications can use any database mechanism supported by Node. Express itself doesn't define any specific requirements for database management. There are many database options, including: PostgreSQL, MySQL, Redis, SQLite, MongoDB, and many more.</p>
+
+            <p>In order to use these databases you first have to install the database driver using NPM (Node Package Manager). For example, to install the driver for the popular NoSQL, MongoDB database, you would use the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install mongodb
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The database itself can be installed locally or on a cloud server. In your Express code you will require the driver to connect to the database.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const MongoClient = require('mongodb').MongoClient
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
