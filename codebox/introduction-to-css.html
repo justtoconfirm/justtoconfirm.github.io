@@ -26,6 +26,14 @@
         .container--radial-gradient {
             background: radial-gradient(circle, black, white);
         }
+
+        .list-inside {
+            list-style-position: inside;
+        }
+
+        .list-outside {
+            list-style-position: outside;
+        }
     </style>
 </head>
 <body>
@@ -676,6 +684,38 @@ p:empty {
 
             <p>An important note about specificity, this property will win against <strong>a</strong> as a selector even if <strong>a</strong> is placed lower in the CSS cascade.</p>
 
+            <h2>Lists</h2>
+
+            <p>Lists are indented into the page by default and the <strong>list-style-position</strong> property indicates whether the marker should appear on the inside or outside.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.list {
+    list-style-position: inside | outside;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Inside:</p>
+
+            <!-- Demo -->
+            <ul class="list-inside">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+            <!--/ Demo -->
+
+            <p>Outside:</p>
+
+            <!-- Demo -->
+            <ul class="list-outside">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+            <!--/ Demo -->
+
             <h2>CSS Gradients</h2>
 
             <p>We can tell the browser to create a gradient. Methods of defining a linear or radial colour gradient has good <a href="https://caniuse.com/?search=CSS%20gradients" target="_blank" rel="noopener noreferrer">browser support</a>.</p>
@@ -707,6 +747,92 @@ p:empty {
             <!-- Demo -->
             <div class="container container--radial-gradient"></div>
             <!-- / Demo -->
+
+            <h2>Colour</h2>
+
+            <p>You can specify colour using CSS in one of three ways:</p>
+
+            <ul>
+                <li><strong>RGB values</strong> - these express colours in terms of how much red, green and blue are used.</li>
+                <li><strong>Hex codes</strong> - six-digit codes that represent the amount of red, green and blue are used preceded by a pound/hash sign.</li>
+                <li><strong>Colour names</strong> - there are 147 predefined colour names that are recognised by the browser.</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/* RGB */
+.element {
+    background-color: rgb(100,100,90);
+}
+
+/* Hex code */
+.element {
+    background-color: #ee3e80;
+}
+
+/* Colour name */
+.element {
+    background-color: DarkCyan;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>CSS3 introduced the <strong>opacity</strong> property allowing you to specify the opacity of an element and any of its children. The value is a number between <strong>0.0</strong> and <strong>1.0</strong>. So, a value of <strong>0.5</strong> is <strong>50%</strong> and a value of <strong>0.15%</strong> is <strong>15%</strong> opacity.</p>  
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    background-color: rgb(0,0,0);
+    opacity: 0.5;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The CSS3 <strong>rgba</strong> property allows you to specify a colour, just like an <strong>rgb</strong> value, but adds a fourth value to specify opacity. This value is known as an <strong>alpha</strong> value and is between <strong>0.0</strong> and <strong>1.0</strong>. So a value of 0.5 is 50% opacity and 0.15 is 15% opacity. The rgba value will only affect the element on which it's applied.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>All modern browsers <a href="https://caniuse.com/?search=rgba" target="_blank" rel="noopener noreferrer">support rgba</a> including IE9-11.</p>
+
+            <p>The <strong>hsl</strong> colour property was introduced in CSS3 as an alternative way to specify colour.</p>
+
+            <ul>
+                <li><strong>Hue</strong> - expressed as an angle, between 0 and 360 degrees.</li>
+                <li><strong>Saturation</strong> - this is expressed as a percentage.</li>
+                <li><strong>Lightness</strong> - this is expressed as a percentage with 0% being white and, 50% normal, 100% black.</li>
+                <li><strong>Alpha</strong> - this is for hsla for opacity, with values between 0.0 and 1.0.</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.element {
+    background-color: #c8c8c8;
+    background-color: hsl(0,0%,78%);
+}
+
+.element {
+    background-color: #fff;
+    background-color: hsla(0,100%,100%,0.5);
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><a href="https://caniuse.com/?search=hsl" target="_blank" rel="noopener noferrer">Support for hsl</a> is really good in modern browsers.</p>
 
 		</div>
 	</div>
