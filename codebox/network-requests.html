@@ -240,6 +240,8 @@ request.send();
 
             <p>The Fetch API is a newer built-in feature of JavaScript that makes working with requests and responses easier. This is the modern equivalent to the XMLHttpRequest (XHR) object. It allows you to make network requests similar to XHR, the main difference is the <strong>Fetch API uses Promises</strong>, which enables a simpler and cleaner API avoiding 'callback hell' and having to remember the more complex API of XHR - it's easier to read/write.</p>
 
+            <p>The Fetch API is built into the browser to make asynchronous requests to different resources.</p>
+
             <p>With the Fetch API, a 404 or 500 error will not return an error, the promise returned from <strong>fetch()</strong> won't reject on HTTP error status, instead it will resolve normally (with <strong>ok</strong> status set to false). Only a network error or request not completing will throw an error.</p>
 
             <p>Here's an example Fetch API template for making a simple request:</p>
@@ -260,6 +262,92 @@ fetch('https://www.example.com')
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>Here's a further example using a fake API that will return a promise:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users')
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>A promise will allow to use async await, catch and then.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users')
+    .then(res => console.log(res))
+<!-- Just leave this line alone -->
+    </code>
+</pre>        
+
+            <p>We need to use a method to convert this response to JSON that will return another promise. This will return a status of 200.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users')
+    .then(res => res.json())
+    .then(data => console.log(data))
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Update the code if we want to get a single user, perhaps user 23 that does not exist and will return a status of 404.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users/23')
+    .then(res => res.json())
+    .then(data => console.log(data))
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Even with a 404, the fetch API will always succeed unless a network error occcurs. We can check for this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users/23')
+    .then(res => {
+        if (res.ok) {
+            console.log('SUCCESS')
+        } else {
+            console.log('ERROR')
+        }
+    })
+    .then(data => console.log(data))
+    .catch(error => console.log('ERROR'))
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
+
+            <p>Let's create a new user at the API by using a <strong>POST</strong> request.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+fetch('https://reqres.in/api/users', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: 'User 1'
+    })
+}).then(res => {
+    return res.json()
+})
+.then(data => console.log(data))
+.catch(error => console.log('ERROR'))
+<!-- Just leave this line alone -->
+    </code>
+</pre> 
 
 		</div>
 	</div>
