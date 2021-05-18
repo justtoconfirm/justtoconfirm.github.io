@@ -327,9 +327,123 @@ app.post('/quotes', (req, res) => {
     </code>
 </pre>
 
+            <h2>Using template engines</h2>
+
+            <p>We can use a templating engine within Express. We can install <strong>EJS</strong> (Embedded JavaScript) using NPM:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install ejs --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next, we need to set <strong>view engine</strong> to <strong>ejs</strong>. This tells Express we're using EJS as the template engine. This needs to be placed before any <strong>app.use</strong>, <strong>app.get</strong>, or <strong>app.post</strong> methods.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+app.set('view engine', 'ejs')
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can now generate the HTML. This process is called <strong>rendering the HTML</strong>.</p>
+
+            <p>We will use the <strong>render()</strong> method built into the Express response, using the following syntax:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+res.render(view, locals)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <ul>
+                <li><strong>view</strong> - is the name of the file we're rendering. This must be placed inside a <strong>views</strong> folder.</li>
+                <li><strong>locals</strong> - is the data passed into the file.</li>
+            </ul>
+
+            <p>We create a view with a file named <strong>index.ejs</strong> inside the <strong>views</strong> folder.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+project /
+    node_modules /
+    index.html
+    package-lock.json
+    package.json
+    server.js
+    views /
+        index.ejs
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Copy and paste everything from <strong>index.html</strong> into <strong>index.ejs</strong>.</p>
+
+            <p>Next, we use <strong>res.render</strong> to render this <strong>index.ejs</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+app.get('/', (req, res) => {
+    
+    // Code here
+
+    res.render('index.ejs', {})
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the index.ejs file, we can use place variables between <strong>&lt;%=</strong> and <strong>%&gt;</strong> tags.</p>
+
+            <p>This is our updated <strong>server.js</strong> code now rendering an EJS template file called <strong>index.ejs</strong> within the views directory:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const app = express()
+const bodyParser= require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => {
+    res.render('index.ejs', {})
+})
+
+app.post('/quotes', (req, res) => {
+    console.log(req.body)
+})
+
+app.listen(3000, () => {
+    console.log('Listening on port 3000')
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Using databases</h2>
 
             <p>Express applications can use any database mechanism supported by Node. Express itself doesn't define any specific requirements for database management. There are many database options, including: PostgreSQL, MySQL, Redis, SQLite, MongoDB, and many more.</p>
+
+            <p><strong>MongoDB</strong> is a database we can use to store information. You can use a framework for MongoDB such as <strong>Mongoose</strong> if you wish.</p>
 
             <p>In order to use these databases you first have to install the database driver using NPM (Node Package Manager). For example, to install the driver for the popular NoSQL, MongoDB database, you would use the following command:</p>
 
@@ -352,6 +466,8 @@ app.post('/quotes', (req, res) => {
 
             <p>The database itself can be installed locally or on a cloud server. In your Express code you will require the driver to connect to the database.</p>
 
+            <p>Most people store their databases on cloud services like <strong>MongoDB Atlas</strong>. You can create a database on your computer for development work.</p>
+
 <pre>
     <code>
 <!-- Just leave this line alone -->
@@ -360,6 +476,18 @@ const MongoClient = require('mongodb').MongoClient
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>We can then connect to the MongoDB database.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+MongoClient.connect('mongodb-connection-string', (err, client) => {
+    // Do something here
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>            
 
 		</div>
 	</div>
