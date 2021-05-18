@@ -603,5 +603,151 @@
 	</div>
 </main>
 
+<!-- FLEXBOX GRID -->
+<!-- grid.scss
+
+.g-container {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 0 $global-space;
+
+    @include breakpoint(small, min) {
+        max-width: $grid-size-small;
+    }
+
+    @include breakpoint(medium, min) {
+        max-width: $grid-size-medium;
+    }
+
+    @include breakpoint(large, min) {
+        max-width: $grid-size-large;
+    }
+
+    &--background-color-light {
+        background-color: color(white);
+
+        &-medium {
+            background-color: color(grey, light);
+        }
+    }
+}
+
+.g-row {
+    @extend %clearfix;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -$global-space;
+    margin-right: -$global-space;
+
+    // Nested rows with flex do not calculate the height correctly. This fixes that.
+    .g-row {
+        height: auto;
+    }
+
+    &--align-items-center {
+        align-items: center;
+    }
+}
+
+// This is a fallback for any column. It allows for columns to fully expand when not under a breakpoint.
+[class*='g-col-'] {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 1px;
+    padding: 0 $global-space;
+}
+
+// Create the column classes
+@each $modifier, $breakpoints in $breakpoints {
+    @include create-col-classes($modifier, 12, $breakpoints);
+}
+-->
+
+<!-- grid-mixin.scss
+
+@mixin create-col-classes($breakpoint, $grid-cols, $size) {
+
+    $modifier: '';
+
+    @if $size == 480px {
+        $modifier: '-xs';
+    } @else if $size == 576px {
+        $modifier: '-sm';
+    } @else if $size == 768px {
+        $modifier: '-md';
+    } @else if $size == 992px {
+        $modifier: '-lg';
+    } @else if $size == 1200px {
+        $modifier: '-xl';
+    }
+
+    @if $modifier != '' {
+
+        @include breakpoint($breakpoint, 'min') {
+
+            .g-col#{$modifier}-offset-0 {
+                margin-left: 0;
+            }
+
+            @for $i from 1 through $grid-cols {
+
+                .g-col#{$modifier}-#{$i} {
+
+                    width: (100 / ($grid-cols / $i) ) * 1%;
+                    padding: $global-space;
+                    float: none;
+                }
+
+                .g-col#{$modifier}-offset-#{$i} {
+                    margin-left: (100 / ($grid-cols / $i) ) * 1%;
+                }
+            }
+        }
+
+        @include breakpoint($breakpoint, 'max') {
+
+            .g-col#{$modifier}-max-offset-0 {
+                margin-left: 0;
+            }
+
+            @for $i from 1 through $grid-cols {
+
+                .g-col#{$modifier}-max-#{$i} {
+
+                    width: (100 / ($grid-cols / $i) ) * 1%;
+                    padding: $global-space;
+                    float: none;
+                }
+
+                .g-col#{$modifier}-max-offset-#{$i} {
+                    margin-left: (100 / ($grid-cols / $i) ) * 1%;
+                }
+            }
+        }
+    }
+}
+-->
+
+<!-- breakpoints-map.scss
+
+$breakpoints: (
+    small-xx: 480px,
+    small-x: 576px,
+    small: 768px,
+    medium: 992px,
+    large: 1200px
+) !default;
+-->
+
+<!-- grid-variables.scss
+
+$grid-size-small: 750px;
+$grid-size-medium: 970px;
+$grid-size-large: 1170px;
+-->
+
 </body>
 </html>
