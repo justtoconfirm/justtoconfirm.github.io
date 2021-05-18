@@ -24,6 +24,35 @@
 
             <p>Express is a Node web application framework for web and mobile applications. Express itself if minimalist, but developers have created compatible middleware pages to extend the framework further. There are libraries to work with cookies, sessions, user logins, URL parameters, security headers, and many more.</p>
 
+            <p>You must have Node installed to use Express. The simplest way to use Node is to run the <strong>node</strong> command and to specify a path to a file. Create a file called <strong>server.js</strong> and add a console.log so we know Node is running.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log('Node is running');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now run the following command and you'll see the log output in your terminal.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ node server.js
+    </pre>
+</div>
+<!-- / Terminal -->
+
             <p>A <strong>module</strong> is a JavaScript library/file that you can import into other code using Node's <strong>require()</strong> function. Express itself is a module as are the middleware and database libraries we use in our Express applications.</p>
 
             <p>Express can also be used to robust APIs.</p>
@@ -49,6 +78,25 @@
 </div>
 <!-- / Terminal -->
 
+            <p>To create a very basic Express example to test it's running, open the <strong>server.js</strong> file and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const app = express()
+
+app.listen(3000, function() {
+    console.log('listening on port 3000')
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now run the Node command and navigate to <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">http://localhost:3000</a> on your browser and you'll see the message that says: <strong>cannot GET /</strong> displayed. This is a good sign as it means we can now communicate to our express server through the browser.</p>
+
+            <p>You see the message <strong>cannot GET /</strong> in your browser because our server sent nothing back to the browser. In Express, we handle GET requests with the <strong>get()</strong> method.</p>
+
             <p>Next, open a new file in your project named <strong>app.js</strong> and add the following code:</p>
 
 <pre>
@@ -69,12 +117,44 @@ app.listen(port, () => {
     </code>
 </pre>
 
+            <p>We normally abbreviate 'request' to 'req' and 'response' to 'res'.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+app.get('/', function(req, res) {
+    
+    // Do something here
+
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>callback</strong> tells the server what to do when the requested endpoint matches the endpoint stated. This callback takes two arguments, a <strong>request</strong> object and a <strong>response</strong> object.</p>           
+
             <ul>
                 <li>The first two lines of code import the Express module and create an instance of Express with the variable of <strong>app</strong>.</li>
                 <li>The <strong>app.get</strong> shows a route definition and is a method to specify a callback function that will be invoked whenever there is an HTTP GET request with a path <strong>('/')</strong> relative to the site root.</li>
                 <li>The callback takes a request and calls <strong>send()</strong> on the response to return the string 'Hello World'.</li>
                 <li>The final block of code starts up the server on the specified port of <strong>3000</strong>.</li>
             </ul>
+
+            <p>We may want to serve up a file, such as <strong>index.html</strong>, back to the browser. To do this, we use the <strong>sendFile()</strong> method provided by the <strong>res</strong> object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p><strong>__dirname</strong> is the current directory you're in.</p>
+
+            <p>This is how Express handles <strong>GET</strong> requests (READ operations). Browsers can only perform <strong>CREATE</strong> operations within a CRUD application if they send a <strong>POST</strong> request to the server.</p>
 
             <p>Often it is useful to group route handlers for a particular part of a site together to access them using a common route-prefix. In Express this is achieved by using the <strong>express.Router</strong> object.</p>
 
@@ -170,7 +250,82 @@ module.exports = router
 </div>
 <!-- / Terminal -->
 
-            <p>We only want to use the tool during development and not in production.</p>
+            <p>We only want to use the tool during development and not in production. This is why Nodemon is installed as a devDependency and not a dependency in your project.</p>
+
+            <h2>Forms (CREATE/POST)</h2>
+
+            <p>Browsers can only perform CREATE operations if they send a <strong>POST</strong> request to the server. This POST request can be triggered through JavaScript or through a <strong>&lt;form&gt;</strong> element. To send a POST request through a &lt;form&gt;, you need to add this element to your <strong>index.html</strong> file. Your form may look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;form action="/quotes" method="POST"&gt;
+    &lt;input type="text" placeholder="name" name="name"&gt;
+    &lt;input type="quote" placeholder="quote" name="quote"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>For more information about forms, please read <a href="form.html">this document</a>.</p>
+
+            <p>Update the <strong>server.js</strong> code so we can handle this <strong>POST</strong> request. The path should be the value you placed in the <strong>action</strong> attribute of the form.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+app.post('/quotes', (req, res) => {
+    console.log('Form submission successful')
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>action</strong> attribute in the form tells the browser where to send the POST request. In this case, we're sending the request to <strong>/quotes</strong>.</p>
+
+            <p>Once your server has restarted and your browser refreshed, enter something into the form and click the submit button. Your command line will output: <strong>Form submission successful</strong>. Express is now handling our form, but we're not getting the form inputs that the user enters. Express doesn't handle reading data from the form itself, so we have to use a middleware package called <strong>body-parser</strong> to apply this functionality.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install body-parser --save
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Express lets us use middleware with the <strong>use</strong> method. The <strong>urlencoded()</strong> method within the body-parser tells the package to extract data from the &lt;form&gt; element and add them to the body property in the request object - <strong>req.body</strong>. If we console this out, we can see the data the user has entered when they submit the form.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const app = express()
+const bodyParser= require('body-parser')
+
+// Make sure you place body-parser before your CRUD handlers!
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// All your handlers here...
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html')
+})
+
+app.post('/quotes', (req, res) => {
+    console.log(req.body)
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <h2>Using databases</h2>
 

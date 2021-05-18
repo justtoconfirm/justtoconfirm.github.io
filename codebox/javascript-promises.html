@@ -22,6 +22,85 @@
 
             <p>Most modern browsers support JavaScript Promises, however a <a href="https://github.com/stefanpenner/es6-promise#readme" target="_blank" rel="noopener noreferrer">polyfill</a> is available should you need to support older browsers.</p>
 
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let p = new Promise((resolve, reject) => {
+
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>Promise()</strong> object will take one parameter, a function, that will pass two variables of <strong>resolve</strong> and <strong>reject</strong>. We now need to define what the promise does:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let p = new Promise((resolve, reject) => {
+    let a = 1 + 1
+
+    if (a == 2) {
+        resolve('Success')
+    } else {
+        reject('Failed')
+    }
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Anything inside a <strong>then</strong> is going to run for a resolve.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let p = new Promise((resolve, reject) => {
+    let a = 1 + 1
+
+    if (a == 2) {
+        resolve('Success')
+    } else {
+        reject('Failed')
+    }
+})
+
+p.then((message) => {
+    console.log('This is in the then: ' + message)
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To catch an error, we need to use <strong>catch</strong> to get an errors when the promise rejects.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+let p = new Promise((resolve, reject) => {
+    let a = 1 + 1
+
+    if (a == 2) {
+        resolve('Success')
+    } else {
+        reject('Failed')
+    }
+})
+
+p.then((message) => {
+    console.log('This is in the then: ' + message)
+}).catch((message) => {
+    console.log('This is in the catch: ' + message)
+})
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>then</strong> will be called when the promise resolves successfully, the <strong>catch</strong> will be called if an error occurs.</p>
+
+            <p>Promises can be used for downloads, like downloading images from a different server.</p>
+
             <p>A promise can be:</p>
 
             <ul>
