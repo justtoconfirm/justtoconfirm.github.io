@@ -19,6 +19,7 @@
 		<div class="columns small-12 large-12">
 
 			<h1>Images</h1>
+            <!-- https://css-tricks.com/using-webp-images/ -->
 
             <p>In HTML images are defined with the <strong>&lt;img&gt;</strong> tag. This tag is empty, meaning it has no content or closing tag, and only contains attributes. The <strong>src</strong> attribute specifies the location of the image.</p>
 
@@ -183,6 +184,26 @@ body {
     &lt;source media="(min-width: 64rem)" srcset="img/image-example-350-200.jpg"&gt;
     &lt;source srcset="img/image-example.jpg"&gt;
     &lt;img src="img/image-example.jpg" height="240" width="300" alt="An example image description here."&gt;
+&lt;/picture&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>WebP</h2>
+
+            <p>WebP is a modern image format that provides superior lossless compression for images on the web. WebP images are 26% smaller in size compared with PNG files and 25-34% smaller than JPEG files. This format also supports trasparency (alpha channel). The visual quality between files is comparable.</p>
+
+            <p>WebP is natively <a href="https://caniuse.com/webp" target="_blank" rel="noopener noreferrer">supported</a> by Google Chrome, Firefox, Edge and Opera browsers.</p>
+
+            <p>We can use the HTML5 <strong>&lt;picture&gt;</strong> element to apply WebP images with fallbacks for alternative image formats, such as JPEG and PNG, in browsers that do not support WebP.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;picture&gt;
+    &lt;source srcset="img/webp-image.webp" type="image/webp&gt;
+    &lt;source srcset="img/image.jpg" type="image/jpeg&gt;
+    &lt;img src="img/image.jpg" height="240" width="300" alt="An example image description here."&gt;
 &lt;/picture&gt;
 <!-- Just leave this line alone -->
     </code>
