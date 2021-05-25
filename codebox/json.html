@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JSON">
+
+	<title>Codebox - JSON</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JSON</h1>
+
+            <p><strong>JSON</strong> stands for <strong>JavaScript Object Notation</strong>. It works well with JavaScript as it's a superset of the JavaScript programming language.</p>
+
+            <p>JSON supports: Strings, Numbers, Boolean, null, Arrays and Objects.</p>
+
+            <ul>
+                <li>Date Representation Format, like XML or YAML.</li>
+                <li>Commonly used for APIs and Configurations.</li>
+                <li>Lightweight and easy to Read/Write compared with something like XML.</li>
+                <li>Most programming languages allow you to work with JSON.</li>
+            </ul>
+
+            <p>Create a file with the <strong>.json</strong> file extension.</p>
+
+            <p>An Array or an Object is usually at the top level of your JSON file. In the example below, we're using an object. The key and value pairs must use double-quotes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "key": "value",
+    "key": "value"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's a further example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "name": "Dan",
+    "favouriteNumber": 19,
+    "isDeveloper": true,
+    "hobbies": ["Football", "Programming", "Drawing"],
+    "friends": [{
+        "name": "Pearl",
+        "favouriteNumber": 100,
+        "isDeveloper": false
+    }]
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we add JSON to a HTML page within a &lt;script&gt; tag:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script&gt;
+let companies = 
+[
+    {
+        "name": "Big Company",
+        "employees": 2500,
+        "ceo": "Darren",
+        "rating": 4.5
+    },
+    {
+        "name": "Small Company",
+        "employees": 25,
+        "ceo": "Dave",
+        "rating": 5        
+    }
+]
+
+console.log(companies);
+&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Usually, when you work with JSON, such as with an API, the returned JSON will be as a string and not as an object - this is an emulation of this using backticks:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script&gt;
+let companies = 
+`[
+    {
+        "name": "Big Company",
+        "employees": 2500,
+        "ceo": "Darren",
+        "rating": 4.5
+    },
+    {
+        "name": "Small Company",
+        "employees": 25,
+        "ceo": "Dave",
+        "rating": 5        
+    }
+]`
+
+console.log(companies);
+&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can use <strong>JSON.parse()</strong> to convert this string to be a JSON object.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script&gt;
+let companies = 
+`[
+    {
+        "name": "Big Company",
+        "employees": 2500,
+        "ceo": "Darren",
+        "rating": 4.5
+    },
+    {
+        "name": "Small Company",
+        "employees": 25,
+        "ceo": "Dave",
+        "rating": 5        
+    }
+]`
+
+console.log(JSON.parse(companies));
+&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we wanted to get a specific value from our JSON object:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+console.log(JSON.parse(companies)[1].name);     // Small Company
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
