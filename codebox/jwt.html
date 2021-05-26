@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction JWT">
+
+	<title>Codebox - JSON Web Token (JWT)</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JSON Web Token (JWT)</h1>
+            <!-- https://medium.com/myplanet-musings/what-is-a-json-web-token-2193f383e963 -->
+            <!-- https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs -->
+
+            <p><strong>JSON Web Token (JWT)</strong>, pronounced 'jot', is a standard used to create access tokens for an application. It is an open standard that defines a secure way of transmitting information between parties as a JSON object. This information can be verified and trusted because it's digitally signed using JSON Web Signature (JWS). JWT can be signed using a secret or a public/private key pair.</p>
+
+            <p>Google, for example, uses JWT if you use Google APIs. Many APIs may use JWT to ensure they're secure.</p>
+
+            <p>The JWT structure consists of:</p>
+
+            <ul>
+                <li><strong>Header</strong></li>
+                <li><strong>Payload</strong> - this is a JSON string</li>
+                <li><strong>Signature</strong></li>
+            </ul>
+
+            <p>Here's the process of how a JWT works:</p>
+
+            <ul>
+                <li>The server generates a token that certifies the user identity, and sends the token to the client.</li>
+                <li>The client will send the token back to the server for every request so the server knows the request comes from a partcular identity.</li>
+            </ul>
+
+            <p>This architecture proves to be very effective in modern Web Applications, where after the user is authenticated and an API request using REST or GraphQL.</p>
+
+            <p>JWT is cryptographically signed, but not encrypted, so it's recommended to use HTTPS as mandatory when storing user data in the JWT. This ensures there is a guarantee we can trust it when we receive it, so no middleman can intercept and modify it.</p>
+
+            <p>HTTP (HyperText Transfer Protocol) is a stateless protocol, meaning that it doesn't remember anything from request to request. If you login for one request, you'll be forgotten and will need to login again to make another request. Sessions were previously used to implement a solution.</p>
+
+            <p>Explaining sessions:</p>
+
+            <ul>
+                <li>An object stored on the server that remembers if a user is still logged in, a reference to their profile.</li>
+                <li>A cookie on the client-side that stores some kind of ID that can be referenced on the server against the session ID.</li>
+            </ul>
+
+            <p><strong>JSON Web Tokens (JWT) are better than sessions</strong>.</p>
+
+            <p>JWT doesn't use sessions and work well with CORS. With JWT, you register yourself with the application, login with your credentials (e.g. username/password, or third-party oAuth), but instead of making a session and setting a cookie, the server will send you a JSON Web Token (JWT) instead. Now you can use that token to do whatever you want to do with the server that you're authorised to do.</p>
+
+            <h2>JWT Authentication using Node.js</h2>
+
+            <p>Begin by installing Node and setting up a <strong>package.json</strong> file in a new project folder. Once complete, install <strong>Express</strong> as a dependency package using NPM (Node Package Manager). We will also install a package called <strong>jsonwebtoken</strong> and a package named <strong>dotenv</strong> to allow us to use an <strong>.env</strong> file to contain our secret tokens for JWT.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install express jsonwebtoken dotenv
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You may also want to install <strong>nodemon</strong> as a devDependency to run the server continually as code changes are being made during development.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install nodemon --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Within your <strong>package.json</strong> file, add a script to run nodemon:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "dev": "nodemon server.js"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Create a file called <strong>server.js</strong> in the root of your project folder.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const express = require('express')
+const app = express()
+
+// Create the posts in an array
+const posts = [
+    {
+        username: 'Dan',
+        title: 'Post 1'
+    },
+    {
+        username: 'Pearl',
+        title: 'Post 2'
+    }
+]
+
+app.get('/posts', (req, res) => {
+    // Return the posts
+    res.json(posts)
+})
+
+// Express server to listen on the port referenced
+app.listen(3000)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
