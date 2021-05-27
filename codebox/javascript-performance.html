@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A guide to JavaScript Performance">
+
+	<title>Codebox - JavaScript Performance</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>JavaScript Performance</h1>
+            <!-- https://flaviocopes.com/javascript-async-defer/ -->
+
+            <p>When loading JavaScript on an HTML page, you need to be careful to not harm the loading performance of the page. Depending on where and how you add your scripts to an HTML document will influence the loading time.</p>
+
+            <p>A script is traditionally included in the page using this syntax:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="script.js"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This script maybe <strong>minified</strong> to reduce the file size of the script to better improve performance.</p>
+
+            <p>Whenever the HTML parser finds this line, a request is made to fetch and then execute the script. Once this process is done, the parsing can resume and the rest of the HTML can be rendered. If the script takes longer to execute, if for example the network is slow, the visitor will likely see an empty/blank page until the script is loaded and executed.</p>
+
+            <p>If the <strong>&lt;script&gt;</strong> is placed in the <strong>&lt;head&gt;</strong> of an HTML document, this can affect loading time and is generally considered bad practice. A common solution is to put the <strong>&lt;script&gt;</strong> tag at the bottom of the page, just before the closing <strong>&lt;/body&gt;</strong> tag. In doing so, the script is loaded and executed after the page has been parsed and loaded, which is a hugh improvement over the <strong>&lt;head&gt;</strong> alternative.</p>
+
+            <p>This is the best solution for browsers that do not support the <strong>async</strong> or <strong>defer</strong> boolean attributes.</p>
+
+            <ul>
+                <li>The browser support for the <a href="https://caniuse.com/script-async" target="_blank" rel="noopener noreferrer">async</a> attribute.</li>
+                <li>The browser support for the <a href="https://caniuse.com/script-defer" target="_blank" rel="noopener noreferrer">defer</a> attribute.</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Both <strong>async</strong> and <strong>defer</strong> attribute use is similar:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="script.js" async&gt;&lt;/script&gt;
+
+&lt;script src="script.js" defer&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you specify both, async will take precedence on modern browsers, while older browsers that support defer and not async, will fallback to defer.</p>
+
+            <p>These attributes only make sense when using the <strong>&lt;script&gt;</strong> in the <strong>&lt;head&gt;</strong> section of the document and are useless if you put the <strong>&lt;script&gt;</strong> in the <strong>&lt;body&gt;</strong> section before the closing tag.</p>
+
+            <p>With async and defer in the <strong>&lt;head&gt;</strong>:</p>
+
+            <ul>
+                <li><strong>async</strong> - the script is fetched asynchronously and when it's ready, the HTML parsing is paused to execute the script, then it's resumed.</li>
+                <li><strong>defer</strong> - the script is fetched asynchronously and executed only after the HTML parsing is done. Parsing finishes just like when we put the script at the end of the <strong>&lt;body&gt;</strong> tag, but overally the script execution ends well before because the script has been downloaded in parallel with the HTML parsing.</li>
+            </ul>
+
+            <p><strong>The async attribute blockes the parsing of the page while defer does not</strong>.</p>
+
+            <p>The scripts marked with async are executed in casual order, when they become available. Scripts marked with defer are executed, once parsing is complete, in the order in which they are defined in the markup.</p>
+
+            <h2>The quickest solution?</h2>
+
+            <p>The best thing to do to speed up you page loading when using scripts is to put them in the <strong>&lt;head&gt;</strong> and add a defer attribute to your <strong>&lt;script&gt;</strong> tag. This is the scenario that triggers the faster <strong>domInteractive</strong> event. Make sure that when the page is parsed, the JavaScript you want is already executed.</p>
+
+            <p>The <strong>domInteractive</strong> is important because its timing is recognised as a measure of perceived loading speeds. Scripts marked with defer are executed right after the domInteractive event, which happens after the HTML is loaded, parsed and the DOM (Document Object Model) is built. Once this is done, the browser will emit the <strong>domComplete</strong> event and then <strong>onLoad</strong>.</p>
+
+            <p>CSS and images, at this point, are still being parsed and loaded.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
