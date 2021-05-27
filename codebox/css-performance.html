@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to CSS Performance">
+
+	<title>Codebox - CSS Performance</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>CSS Performance</h1>
+            <!-- https://web.dev/defer-non-critical-css/ -->
+            <!-- https://web.dev/extract-critical-css/ -->
+            <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md -->
+
+            <p>CSS files are <strong>render-blocking resources</strong>, they must be loaded and processed before the browser renders the page. Web pages that contain unnecessarily large styles take longer to render. We can defer non-critical CSS with the goal of optimising the <strong>Critical Rendering Path</strong> and improving <strong>First Contentful Paint (FCP)</strong>.</p>
+
+            <p>The browser must download and parse CSS files before it can show the page, which makes CSS a <strong>render-blocking</strong> resource. If CSS files are large, or network conditions are poor, requests for CSS files can significantly increase the time it takes for a web page to render.</p>
+
+            <p>A Lighthouse audit may identify the opportunity to <strong>Eleminate render-blocking resources</strong> pointing to your CSS file. If Lighthouse detects that a page has at least 2048 bytes of CSS rules not being used while rendering above the fold content, you'll also receive a suggestion called <strong>Remove Unused CSS</strong>.</p>
+
+            <p>If you have poor <strong>First Contentful Paint (FCP)</strong> scores in Lighthouse, it's a good idea to give critical CSS a go.</p>
+
+            <p>To visualise how CSS blocks rendering in Chrome:</p>
+
+            <ul>
+                <li>Open your webpage in Chrome.</li>
+                <li>Press <strong>CTRL + SHIFT + J</strong> (or <strong>CMD + OPTION + J</strong>, on Mac), to open DevTools.</li>
+                <li>Click the <strong>Performance</strong> tab.</li>
+                <li>In the Performance panel, click <strong>Reload</strong>.</li>
+            </ul>
+
+            <p>The FCP marker is placed immediately after the CSS finishes loading. This means that the browser needs to wait for all CSS to load and get processed before painting a single pixel on the screen.</p>
+
+            <h2>Optimise your CSS</h2>
+
+            <p>To optimise you page, you'll need to know which classes are considered "critical". You can use the DevTools <strong>Coverage Tool</strong> for this.</p>
+
+            <ul>
+                <li>In DevTools, open the <strong>Command Menu</strong> by pressing <strong>Control + Shift + P</strong>, or <strong>Command + Shift + P</strong> on a Mac.</li>
+                <li>Type "Coverage" and select <strong>Show Coverage</strong>.</li>
+                <li>Click the <strong>Reload</strong> button to reload the page and start capturing the coverage.</li>
+            </ul>
+
+            <p>With this report, optimise your CSS so that the browser starts processing critical styles immediately after the page loads, while deferring non-critical CSS for later.</p>
+
+            <p><strong>Asynchronous</strong> - refers to something not occuring at the same time as another thing.</p>
+
+            <p>Double-click on the report to see the classes marked in two colours:</p>
+
+            <ul>
+                <li><strong>Green (critical)</strong> - these are the classes the browser needs to render the visible content.</li>
+                <li><strong>Red (non-critical)</strong> - these styles apply content that's not immediately visible.</li>
+            </ul>
+
+            <p>Critical CSS is a technique to identify and extract the CSS for above-the fold content in order to render content to the user as fast as possible.</p>
+
+            <p><strong>Above-the-fold</strong> is all the content a user sees on page load, before scrolling. There is no universally defined pixel height of what's considered above the fold content since there is a large variation of devices and screen sizes.</p>
+
+            <p>Extract the classes marked with green and put these inside a <strong>&lt;style&gt;</strong> block within the <strong>&lt;head&gt;</strong> section of your HTML document. This will be inline styling. Inlining extracted styles in the <strong>&lt;head&gt;</strong> of the HTML document eliminates the need to make an additional request to fetch these styles. The remainder of the CSS can be loaded asynchronously.</p>
+
+            <p>Keep in mind that if you inline a large amount of CSS, it delays the transmission of the rest of the HTML document and can prevent the browser from caching the CSS for reuse on subsequent page loads, so use sparingly. To reduce the number of roundtrips to first render, aim to keep the above-the-fold content under 14KB (compressed).</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;style&gt;
+    .elem {background-color: #eee; color: #ccc;}
+&lt;/style&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Then, load the rest of the classes <strong>asynchronously</strong>, by applying the following pattern:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="styles.min.css"&gt;&lt;/noscript&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's how it works:</p>
+
+            <ul>
+                <li><strong>&lt;link rel="preload" href="styles.min.css" as="style"&gt;</strong> requests the stylesheet asynchronously.</li>
+                <li>The <strong>onload</strong> attribute in the <strong>&lt;link&gt;</strong> allows the CSS to be processed when it finishes loading.</li>
+                <li>Setting <strong>null</strong> on the <strong>onload</strong> handler once it's used helps some browsers avoid re-calling the handler upon switching the <strong>rel</strong> attribute.</li>
+                <li>The reference to the stylesheet inside of <strong>&lt;noscript&gt;</strong> works as a fallback for browsers that don't execute JavaScript.</li>
+            </ul>
+
+            <p>Improving render times can make a huge difference in <strong>perceived performance</strong>.</p>
+
+            <p>Once the CSS has been optimised, run another Performance report and you should see the FCP marker appear before the page requests the CSS, which means the browser doesn't need to wait for the CSS to load before rendering the page. In Lighthouse, your FCP (First Contentful Paint) performance score should also be reduced and the opportunities should now show under the <strong>Passed audits</strong> section.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
