@@ -20,6 +20,15 @@
 
 			<h1>JavaScript Performance</h1>
             <!-- https://flaviocopes.com/javascript-async-defer/ -->
+            <!-- https://developer.mozilla.org/en-US/docs/Glossary/Code_splitting -->
+            <!-- https://developer.mozilla.org/en-US/docs/Glossary/Lazy_load -->
+            <!-- https://webpack.js.org/guides/code-splitting/ -->
+            <!-- https://web.dev/reduce-javascript-payloads-with-code-splitting/ -->
+            <!-- https://reactjs.org/docs/code-splitting.html -->
+            <!-- https://levelup.gitconnected.com/improving-javascript-performance-f34ef3ed903b -->
+            <!-- https://web.dev/how-to-measure-speed/ -->
+            <!-- https://web.dev/fast/ -->
+            <!-- https://web.dev/serve-modern-code-to-modern-browsers/ -->
 
             <p>When loading JavaScript on an HTML page, you need to be careful to not harm the loading performance of the page. Depending on where and how you add your scripts to an HTML document will influence the loading time.</p>
 
@@ -33,7 +42,7 @@
     </code>
 </pre>
 
-            <p>This script maybe <strong>minified</strong> to reduce the file size of the script to better improve performance.</p>
+            <p>This script maybe <strong>minified</strong> to reduce the file size of the script to better improve performance. Minification will reduce the number of characters in your file, thereby reducing the number of bytes of code within your JavaScript. <strong>Gzipping</strong> compresses the file further and should be used even if you don't minify.</p>
 
             <p>Whenever the HTML parser finds this line, a request is made to fetch and then execute the script. Once this process is done, the parsing can resume and the rest of the HTML can be rendered. If the script takes longer to execute, if for example the network is slow, the visitor will likely see an empty/blank page until the script is loaded and executed.</p>
 
@@ -103,6 +112,49 @@
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <p>JavaScript is single-threaded, a <strong>synchronous</strong> process is one request at a time, increasing the total execution time. An <strong>asynchronous</strong> process allows multiple requests at a time, reducing the total execution time.</p>
+
+            <p>We should always use asynchronous APIs in our code.</p>
+
+            <h2>Remove unused libraries</h2>
+
+            <p>Consider removing large libraries and update your code to only use the components of those libraries you require.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import firebase from 'firebase';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The import is updated to only import what we need and not the full library:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import firebase from 'firebase/app';
+import 'firebase/database';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Code splitting</h2>
+
+            <p><strong>Code splitting</strong> is the splitting of code into various bundles or components which can then be loaded on demand or in parallel.</p>
+
+            <p>As an application grows in complexity, CSS and JavaScript files, or bundles, grow in size. To prevent the downloading of large files, scripts can be split into multiple smaller files. Features required at page load can be downnloaded immediately with any additional scripts being <strong>lazy loaded</strong> after the page or application is interactive. This helps to improve performance. This keeps the code size the same but reduces the amount of code needed during the initial page load.</p>
+
+            <p>Code splitting, using dynamic imports, is a feature supported by bundlers such as <a href="webpack.html">Webpack</a>, <strong>Parcel</strong> and <strong>Rollup</strong>.</p> 
+
+            <p>In <a href="getting-started-with-react.html">React</a>, many of the files (or components used), will be "bundled" using tools such as Webpack. Bundling is the process of following imported files and merging them into a single file, a "bundle". This bundle can then be included on a webpage to load the entrie app at once.</p>
+
+            <p>As the app grows, the bundle will grow too. Multiple bundles can be generated using Webpack that can be dynamically loaded at runtime.</p>
+
+            <h2>Lazy loading</h2>
+
+            <p><strong>Lazy loading</strong> is a strategy that delays the loading of some assets, such as images, until they are needed. Typically these assets are only loaded when they are scrolled into view, such as below the fold. This reduces the amount of code and number of assets needed on the initial page load improving performance.</p>
 
 		</div>
 	</div>
