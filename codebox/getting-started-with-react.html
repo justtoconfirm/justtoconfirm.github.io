@@ -24,6 +24,7 @@
             <!-- https://reactjs.org/docs/strict-mode.html -->
             <!-- https://www.digitalocean.com/community/tutorials/react-server-side-rendering -->
             <!-- https://reactjs.org/docs/code-splitting.html -->
+            <!-- https://dev.to/cassidoo/react-18-alpha-is-out-now-what-2apj -->
 
             <ul>
                 <li><a href="https://github.com/justtoconfirm/react-setup" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
@@ -1598,6 +1599,79 @@ export default About
 <!-- Just leave this line alone -->
     </code>
 </pre>
+
+            <h2>React 18</h2>
+
+            <p>You can use the <strong>@alpha</strong> version of React 18 right away:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install react@alpha react-do@alpha
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <h3>New Root API</h3>
+
+            <p>React has always used a root element to render your application in the HTML using <strong>ReactDOM.render()</strong>. From React 18, this will now be called the <strong>Legacy Root API</strong> and can still be used, but will eventually be deprecated.</p>
+
+            <p>With this change, a few things happen:</p>
+
+            <ul>
+                <li>The <strong>hydrate</strong> method is gone and is now an option on <strong>createRoot</strong>.</li>
+                <li>The <strong>render</strong> callback is gone and can now be a prop passed into <strong>&lt;App /&gt;</strong> or whetever you give to the root.</li>
+            </ul>
+
+            <p>The new API is very similar to the legacy version, you now use <strong>ReactDOM.createRoot</strong> instead of the old method. By switching to the <strong>New Root API</strong>, you automatically get the new out-of-the-box React 18 improvements.</p>
+
+            <p>This is the only change needed to upgrade to React 18.</p>
+
+            <p>The new <strong>Root API</strong> will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(
+    &lt;App /&gt;
+)
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h3>&lt;Suspense /&gt;</h3>
+
+            <p>React 18 also introduces <strong>Suspense</strong>. React 16 has had support for Suspense, but it was never fully supported. This is a set of functionality that allows for waiting data to resolve before a state transition.</p>
+
+            <p>Wrap your components in a <strong>&lt;Suspense&gt;</strong> component, like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;Suspense fallback={&lt;Loading /&gt;}&gt;
+    &lt;ExampleComponent /&gt;
+&lt;/Suspense&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In this example, React will show the <strong>&lt;Loading /&gt;</strong> component at first, this will then be replaced with the <strong>&lt;ExampleComponent /&gt;</strong> being rendered when the data is resolved.</p>
+
+            <p>Nothing inside of the <strong>&lt;Suspense /&gt;</strong> component will be rendered until the data is resolved.</p>
 
 		</div>
 	</div>
