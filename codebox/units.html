@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to CSS">
+
+	<title>Codebox - CSS Units</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>CSS Units</h1>
+
+            <h2>Declaring a font size</h2>
+
+            <p>Recommended to use the <strong>rem</strong> (Root Element) unit to declare font sizes. They are relative to the root element (The HTML element of your HTML document). The default size is 16px, so 1rem = 16px.</p>
+
+            <p>Using <strong>rem</strong> units allows the size to adapt to the browser preferences and screen sizes.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+body {
+    font-size: 1rem;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Setting the root font size on the HTML element to <strong>62.5%</strong> which will set the base font size (root) to 10px and this will then make the rem value easier to calculate.</p>
+
+            <p>2.1rem x 10 = 21px</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 2.1rem;      // equal to 21px
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+            <p>Try avoiding the use of <strong>em</strong> for font sizes as this will use the parent element as the base font size and not the root.</p>
+
+            <h2>Declaring a width</h2>
+
+            <p>Use a <strong>percentage</strong> and a <strong>max-width</strong> property. We can also use the <strong>ch</strong> property to manage the number of characters in a line.</p>
+
+            <h2>Padding & Margin</h2>
+
+            <p>Use the <strong>rem</strong> or <strong>em</strong> unit for padding and margin where possible. Use <strong>px</strong> if you wish the margin and padding to be consistent, or rem units if you want it to adjust based on screen size and/or preferences.</p>
+
+            <p>Padding on <strong>buttons</strong> should use <strong>em</strong> units to allow the margin and padding to scale if the font-size changes.</p>
+
+            <p>Give all your text elements (list, heading, paragraphs) a <strong>margin-top</strong> of <strong>1rem</strong> and it will be consistent across the entire HTML document. You could also change this to <strong>1em</strong> and the headings will have greater spacing because they have a large font-size.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+p {
+    margin-top: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Media Queries</h2>
+
+            <p>Set media queries using the <strong>em</strong> unit. This helps to provide consistency across all browsers.</p>
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
