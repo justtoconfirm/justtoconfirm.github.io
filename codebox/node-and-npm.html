@@ -464,6 +464,200 @@ server.listen(port, hostname, () => {
 
             <p>You can create your own NPM packages by following the instructions from <a href="https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/" target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
             <!-- https://medium.com/the-andela-way/build-and-publish-your-first-npm-package-a4daf0e2431 -->
+            <!-- https://www.youtube.com/watch?v=J4b_T-qH3BY -->
+
+            <p>Being by creating a repository to store your code within GitHub. Next, create a package.json file and a README.md file in your repository.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm init -y
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>In your package.json file, the main property will expose the main JavaScript file, usually index.js, for your project. Many modules in NPM are starting to expose their CSS entry files in their package.json files allowing tools to import the module from the <strong>node_modules</strong> directory.</p>
+
+            <p>This is an example of the package.json from Bootstrap 4:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"style": "dist/css/bootstrap.css",
+"sass": "scss/bootstrap.scss",
+"main": "dist/js/bootstrap.js",
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>An example <strong>index.js</strong> file containing a JavaScript module we can export as an NPM package may look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function isWds(string) {
+    return string === 'WDS'
+}
+
+module.exports = isWds
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Once your module/package has been created, it's useful to test this locally on your own machine to confirm it works and check you can import the package before publishing to NPM.</p>
+
+            <p>In your current folder where the module/package is located, enter the NPM <strong>link</strong> command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm link
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>This allows us to allow our package to be installed locally from this location.</p>
+
+            <p>Next, create a seperate local folder/directory. Within our test folder, we can now link to the module locally using the NPM <strong>link</strong> command and specifying the name of the package/module. For example, our package is called <strong>jtc-test</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm link jtc-test
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>This will now generate a <strong>node_modules</strong> directory containing our <strong>jtc-test</strong> package in the test directory. Within this newly created node_modules folder you will find our code and a package.json file.</p>
+
+            <p>As before, we have an index.js file inside our module. In our test folder create a file named <strong>script.js</strong> and we can test our module works.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const isWds = require('is-wds')
+
+console.log(isWds("WDS"))       // True
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we can publish our package. You will need to have an NPM account created and be logged into NPM via the terminal. Your email will need to be verified when you create the NPM account to avoid a 403 Forbidden error.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm login
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>We can now publish our package.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm publish
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You cannot create a package with the same name as another package that already exists. To get around this, we can create a <strong>scoped</strong> or <strong>namespaced</strong> package. Babel does this where all packages in NPM are prefixed with <strong>@babel</strong>.</p>
+
+            <p>To do this, prefix your package name with your username:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+{
+    "name": "@justtoconfirm/jtc-test"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>By default, a namespaced package like this is set as <strong>private</strong>, but we want to make it <strong>public</strong>. So, when you publish a package with a namespace, use the terminal command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm publish --access=public
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>To create a namespaced package.json file when creating a project:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm init --scope=justtoconfirm
+    </pre>
+</div>
+<!-- / Terminal -->
 
 		</div>
 	</div>
