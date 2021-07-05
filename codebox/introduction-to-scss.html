@@ -42,6 +42,58 @@
 
             <p><strong>Ruby Sass</strong> was the original implementation of Sass, but it reached its <a href="https://sass-lang.com/ruby-sass" target="_blank" rel="noopener noreferrer">end-of-life</a> as of <strong>March 26, 2019</strong> and is no longer supported. Ruby Sass code is now considered as legacy. <strong>Dart Sass</strong> and <strong>LibSass</strong> are alternatives to Ruby Sass moving forward.</p>
 
+            <h2>Setup Dart Sass</h2>
+
+            <p><strong>node-sass</strong> is now deprecated and has since been replaced by <strong>Dart Sass</strong>. To use Dart Sass, create a project and a <strong>package.json</strong> file. Next, install the <strong>sass</strong> package as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install sass --save-dev
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Update your <strong>package.json</strong> file to add a script to compile the SCSS file into a CSS file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+"scripts": {
+    "compile": "sass index.scss index.css"
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Create a file named <strong>index.scss</strong> and run the compile command in your terminal to generate the <strong>index.css</strong> stylesheet.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm run compile
+    </pre>
+</div>
+<!-- / Terminal -->
+
             <h2>Partials</h2>
 
             <p>SCSS code can be written in individual files, named partials, that you can then include in other SCSS files. This helps to modularize your CSS and helps to keep things easier to maintain. A partial is a file named with a leading underscore.</p>
