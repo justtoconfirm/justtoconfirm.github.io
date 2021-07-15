@@ -13,6 +13,18 @@
 	<link rel="stylesheet" href="style/main.css">
 
     <style>
+        p {
+            color: red;
+        }
+
+        .btn {
+            color: red;
+        }
+
+        button {
+            border: 1px solid red;
+        }
+
         .header{
             border-bottom: 1px solid #E2E8F0;
         }
@@ -142,9 +154,69 @@
 
             <p>Test your code here.</p>
 
+            <div class="js-form"></div>
+
 		</div>
 	</div>
 </main>
+
+<!-- Test form -->
+<script>
+const formElement = document.querySelector('.js-form');
+//console.log(formElement);
+
+// Object containing properties we can use
+const post = {
+    title: 'Donate',
+    paragraph: 'I would like to donate:',
+    monthlyTooltip: '£25 per month can help fund vital research projects to put diabetes into remission.'
+}
+
+// Destructuring the properties from the object
+const {title, paragraph, monthlyTooltip} = post;
+
+// Create the form structure
+const obj = `
+    <div class="form">
+        <h2>${title}</h2>
+        
+        <button type="button" class="js-btn">Monthly</button>
+        <button type="button" class="js-btn">Single</button>
+        
+        <p>${paragraph}</p>
+        
+        <button type="button" class="test-btn js-btn">£5</button>
+        <button type="button" class="js-btn">£10</button>
+        <button type="button" class="js-btn">£20</button>
+        <button type="button" class="js-btn">Other</button>
+        
+        <div class="tooltip">
+            ${monthlyTooltip}
+        </div>
+    </div>
+`;
+
+//console.log(obj);
+
+// Inject the form object into the page
+formElement.innerHTML = obj;
+
+const greeting = () => {
+    console.log(`This is a test of a function - ${monthlyTooltip}`);
+}
+
+greeting();
+
+const testBtn = document.querySelector('.test-btn');
+
+console.log(testBtn);
+
+// Call function on button click
+testBtn.addEventListener('click', () => {
+    console.log('Yo Yo');
+});
+</script>
+<!-- / Test form -->
 
 <!-- Create test cookies -->
 <script>
