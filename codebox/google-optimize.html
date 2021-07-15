@@ -19,6 +19,9 @@
         }
     </style>
 
+    <!-- Google Optimize script -->
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TVT3MRR"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV8QE6V507"></script>
     <script>
@@ -83,6 +86,18 @@
                 <li>Click the <strong>Create</strong> button.</li>
             </ul>
 
+            <p>You will need to setup the Google Optimize code snippet and add it to the &lt;head&gt; section of your page or use Google Tag Manager (GTM) to inject it into the page within a tag.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;script src="https://www.googleoptimize.com/optimize.js?id=OPT_CONTAINER_ID"&gt;&lt;/script&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The container ID is part of your Optimize snippet and can be found within the container setup. As of the start of 2020, all IDs begin with <strong>OPT-</strong>.</p>
+
             <p>Within the Google Optimize dashboard, you will have an Original variant (this is the control and is the current website), and you can then create a new variant (which we will call Variant 1 for simplicity), that will be our test. Once you've completed the setup of your test you can then edit the weight of each variant as this is set to <strong>50%</strong> of traffic for each and preview/edit the variant as required.</p>
 
             <p>You will need to setup Google Analytics and link to your GA account to connect this to the Google Optimize test being created.</p>
@@ -94,6 +109,7 @@
             <ul>
                 <li>Click on a specific element and the <strong>Edit element</strong> button to edit the text, HTML, or run JavaScript.</li>
                 <li>Or, click the &lt;&gt; code button in the top-right corner of the dashboard to edit the CSS or the page and/or edit the global JavaScript of the page.</li>
+                <li>Remember to click <strong>Save</strong> after your code changes.</li>
             </ul>
 
             <p>In the dashboard, click the <strong>Edit</strong> button to do this.</p>
