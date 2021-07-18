@@ -236,6 +236,8 @@
                 <li><strong>reset</strong> - the button is a reset button to clear the form data to its initial values</li>
             </ul>
 
+            <p><strong>Adding the type attribute will also prevent the button refreshing the page when clicked. Always add the type attribute by default to buttons.</strong></p>
+
             <p>By default, HTML buttons are presented in a style resembling the platform the user agent runs on, but the styling can be amended using CSS.</p>
 
             <p>While the <strong>&lt;input&gt;</strong> elements with type button are still perfectly valid HTML, the newer <strong>&lt;button&gt;</strong> element is now thee favored way to create buttons.</p>
@@ -243,7 +245,31 @@
 <pre>
     <code>
 <!-- Just leave this line alone -->
-&lt;input type="button" value="Click me"&gt;
+&lt;button type="button"&gt;Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you are using links as buttons, you should add the <strong>role</strong> attribute to the link:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;input role="button" type="button" value="Button"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You will need to add some CSS to prevent the link styling from appearing when used as a button. Setting the <strong>text-align</strong>, <strong>text-decoration</strong> and <strong>display</strong> properties are advised. Setting the display property to be <strong>inline-block</strong> will allow you to set margin, padding and width to links styled as buttons to make them appear as block elements.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
 <!-- Just leave this line alone -->
     </code>
 </pre>

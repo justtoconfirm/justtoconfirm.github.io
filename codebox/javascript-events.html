@@ -168,6 +168,55 @@ button.removeEventListener('click', alertText);
     </code>
 </pre>
 
+            <h2>querySelector() &amp; querySelectorAll()</h2>
+
+            <p>Both <strong>querySelector()</strong> and <strong>querySelectorAll()</strong> are document methods used to match specific selectors, elements or tags in your HTML code. If no matches are found, <strong>null</strong> is returned.</p>
+
+            <ul>
+                <li><strong>querySelector()</strong> - returns the first element within the document.</li>
+                <li><strong>querySelectorAll()</strong> - returns a NodeList representing a list of elements that match the specified group, such as all the buttons.</li>
+            </ul>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const heading = document.querySelector('h1');
+
+console.log(heading);       // Will log the &lt;h1&gt; element
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When using the <strong>querySelectorAll()</strong> document method, we need to loop through all the elements to apply our code. In this example we are selecting all buttons and using a for loop to apply an eventListener to toggle the active class on or off:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btnDonationAmount = document.querySelectorAll('button');
+
+// Loop over all the buttons and add eventListener to toggle active class on/off when clicked
+btnDonationAmount.forEach(buttonAmount => {
+     buttonAmount.addEventListener('click', function() {
+        // Remove the active class from all buttons
+        btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
+        // Add the active class to the button being clicked
+        this.classList.add('btn--active');
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>It's often a good idea to use on class for styling on an element and one class, called a <strong>js-hook</strong>, to apply JavaScript code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btnDonationAmount = document.querySelectorAll('.js-button');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Keyboard Events</h2>
 
             <p><strong>Keyboard events</strong> are used for handling keyboard actions, such as pressing or holding down a key. Keyboard events have specific properties for accessing individual keys. In this example, we pass a parameter through to the event listener known as an <strong>event object</strong>. Using this object, we can access more information about the action that took place.</p>
