@@ -697,5 +697,185 @@ document.cookie='color=Blue';
 
 <!-- https://stackoverflow.com/questions/13140292/what-does-prototype-mean-here-in-the-jquery-source-code -->
 
+<!-- CRO TEST
+/*
+<style>
+.btn {
+  color: #111478;
+  background-color: #f4f4f4;
+  border-color: #db4500;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover,
+.btn:focus,
+.btn--active {
+  color: #fff;
+    background-color: #db4500;
+    border-color: #db4500;
+}
+
+.donations-heading {
+  font-family: cheddar_gothic_sansregular;
+    text-transform: lowercase;
+    font-weight: 400;
+    color: #111478;
+}
+
+.donations-form {
+  font-size: 0.7rem;
+}
+
+.donations-form p{
+  margin: 0;
+}
+
+.donations-form__row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 1px;
+  /*justify-content: space-between;*/
+}
+
+.donations-form__row button {
+  flex: auto;
+}
+
+.donations-form__copy {
+  margin: 20px 0;
+}
+
+input {
+  margin: 0;
+  font-size: 0.9rem;
+  padding: 10px;
+  color: #111478;
+}
+
+.form__tooltip {
+  color: #db4500;
+  border: 1px solid #db4500;
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+}
+</style>
+*/
+
+(function(document) {
+  
+  // Get the donations panel
+  const sidebarPanel = document.querySelector('#block-ctayoumakeourworkpossible-2');
+
+  // Get the heading/title from within the donations panel
+  const heading = sidebarPanel.querySelector('h3');
+
+  // Get the content element inside the donations panel
+  const content = sidebarPanel.querySelector('.content');
+
+  // Get the description section from within the donations panel
+  const description = sidebarPanel.querySelector('.description');
+
+  // Add class to the HTML body element to identify the CRO test
+  document.body.classList.add('FE-DB_007');
+
+  // Set the heading text for the donations panel
+  heading.innerText = 'Donate';
+  // Set class to the heading within the donation panel to set styling
+  heading.className = 'donations-heading';
+
+  // Object to generate the structure of the donations form
+  const formObj = `
+    <form class="donations-form">
+      <div class="donations-form__row">
+        <button type="button" id="monthly" class="btn js-btn--type btn--active">Monthly</button>
+        <button type="button" id="single" class="btn js-btn--type">Single</button>
+      </div>
+
+      <div class="donations-form__copy">
+        <p>I would like to donate:</p>
+      </div>
+
+      <div class="donations-form__row">
+        <button type="button" id="5" class="btn js-btn--amount">£5</button>
+        <button type="button" id="10" class="btn js-btn--amount btn--active">£10</button>
+        <button type="button" id="20" class="btn js-btn--amount">£20</button>
+        <button type="button" id="other" class="btn js-btn--amount">Other</button>
+      </div>
+
+      <div class="form__tooltip">
+        <p>
+          <span class="js-donation-amount">£10</span> <span class="js-donation-message">per month can help fund vital research projects to put diabetes into remission.</span>
+        </p>
+      </div>
+    </form>
+  `;
+
+  // Inject the form object into the donations panel
+  description.innerHTML = formObj;
+
+  // Get the donation type buttons of 'Monthly' or 'Single'
+  const btnDonationType = sidebarPanel.querySelectorAll('.js-btn--type');
+  // Get the donation amount buttons
+  const btnDonationAmount = sidebarPanel.querySelectorAll('.js-btn--amount');
+
+  // Get the elements within the tooltip to display the donation type and amount selected
+  const donationAmount = sidebarPanel.querySelector('.js-donation-amount');
+  const donationMessage = sidebarPanel.querySelector('.js-donation-message');
+
+  // Loop through all donation buttons and toggle active class on or off
+  btnDonationType.forEach(buttonType => {
+    buttonType.addEventListener('click', function() {
+      // Remove the active class from all buttons
+      btnDonationType.forEach(donationTypeButton => donationTypeButton.classList.remove('btn--active'));
+      // Add the active class to the button being clicked
+      this.classList.add('btn--active');
+
+      // Get the ID value of the button clicked and store in a variable
+      const buttonTypeID = event.srcElement.id;
+
+      if (buttonTypeID == 'monthly') {
+        // Message in the tooltip when the 'Monthly' option is selected
+        donationMessage.innerText = 'per month can help fund vital research projects to put diabetes into remission.';
+      } else {
+        // Message in the tooltip when the 'Single' option is selected
+        donationMessage.innerText = 'donation can help fund vital research projects to put diabetes into remission.';
+      }
+    });
+  });
+
+  // Loop through all donation amount buttons and toggle active class on or off
+  btnDonationAmount.forEach(buttonAmount => {
+    buttonAmount.addEventListener('click', function() {
+      // Remove the active class from all buttons
+      btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
+      // Add the active class to the button being clicked
+      this.classList.add('btn--active');
+
+      // Get the ID value of the button clicked and store in a variable
+      const buttonAmountID = event.srcElement.id;
+
+      // Check if donation buttons are clicked or if the 'other' button is selected using the ID
+      if (buttonAmountID !== 'other') {
+        // Remove the style attribute, if on donations message, to display message
+        donationMessage.removeAttribute('style');
+        // Output the donation amount using the button ID in the tooltip
+        donationAmount.innerText = `£${buttonAmountID}`;
+      } else {
+        // Hide the donation message as we only need to show the input field
+        donationMessage.style.display = 'none';
+        // Output whatever we want here when the 'Other' button is clicked
+        donationAmount.innerHTML = '<input class="donations-input" placeholder="£ Enter other amount">';
+      }
+    });
+  });
+
+})(document);
+CRO TEST -->
+
 </body>
 </html>
