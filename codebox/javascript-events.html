@@ -197,10 +197,33 @@ const btnDonationAmount = document.querySelectorAll('button');
 // Loop over all the buttons and add eventListener to toggle active class on/off when clicked
 btnDonationAmount.forEach(buttonAmount => {
      buttonAmount.addEventListener('click', function() {
-        // Remove the active class from all buttons
+        // Remove the active class from all buttons when clicked
         btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
         // Add the active class to the button being clicked
         this.classList.add('btn--active');
+    });
+});
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can also use this code to get the ID attribute value of the button that was clicked:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btnDonationAmount = document.querySelectorAll('button');
+
+// Loop over all the buttons and add eventListener to toggle active class on/off when clicked
+btnDonationAmount.forEach(buttonAmount => {
+     buttonAmount.addEventListener('click', function() {
+        // Remove the active class from all buttons when clicked
+        btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
+        // Add the active class to the button being clicked
+        this.classList.add('btn--active');
+
+        // Get the ID attribute value of the button clicked
+        const buttonTypeID = event.srcElement.id;
     });
 });
 <!-- Just leave this line alone -->
@@ -212,7 +235,9 @@ btnDonationAmount.forEach(buttonAmount => {
 <pre>
     <code>
 <!-- Just leave this line alone -->
-const btnDonationAmount = document.querySelectorAll('.js-button');
+&lt;button type="button" class="btn js-btn"&gt;Button&lt;/button&gt;
+
+const btnDonationAmount = document.querySelectorAll('.js-btn');
 <!-- Just leave this line alone -->
     </code>
 </pre>
