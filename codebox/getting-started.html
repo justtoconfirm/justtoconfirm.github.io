@@ -166,6 +166,206 @@ my-website /
     </code>
 </pre>
 
+            <h2>Adding Links</h2>
+
+            <p>The HTML <strong>&lt;a&gt;</strong> tag, often called an <strong>anchor</strong> tag, is used to define a link (hyperlink). We can use links to navigate to other pages across our website or to external sites.</p>
+
+            <p>A link has an opening anchor tag <strong>&lt;a&gt;</strong> with a label for the link that appears on the page followed by a closing anchor tag <strong>&lt;/a&gt;</strong>. This creates the link element.</p>
+
+            <p>We use a <strong>href</strong> attribute to specify the destination of the link. This is often a URL.</p>
+
+            <p>Here's an example link that will open the Hastings Direct homepage:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;a href="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/a&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As an example, add the link to your <strong>index.html</strong> page like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+
+    &lt;p&gt;This is an example paragraph.&lt;/p&gt;
+    &lt;p&gt;This is yet another example paragraph.&lt;/p&gt;
+
+    &lt;a href="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we wanted to instead link to a page within our current website, we can also use the link element. For example, say we have a second HTML page in our website called <strong>about.html</strong>. This is how the file structure of our website would look:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+my-website /
+    index.html
+    about.html
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within the <strong>href</strong> attribute of our link we simply add the name of the HTML page you want to open when you click the link.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;a href="about.html"&gt;About&lt;/a&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Meta tags</h2>
+
+            <p>Meta tags define metadata about the HTML document and are always placed between the opening <strong>&lt;head&gt;</strong> and closing <strong>&lt;/head&gt;</strong> tags of your HTML document. They are used to specify character set, page description, viewport settings, and much more.</p>
+
+            <p>We begin by specifying the character encoding for our HTML document. The <strong>charset</strong> attribute specifies this. This is usually <strong>UTF-8</strong>, which covers the most widely used characters and symbols.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;meta charset="utf-8"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Next, we add the <strong>viewport</strong> meta tag. This ensures that the browser has the instruction on how to control the dimensions and scale of the page and to ensure it is responsive on small screens/devices.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Adding the <strong>description</strong> meta tag will set the text that appears in <strong>SERPs (Search Engine Results Pages)</strong> when you search for your page. This is a consideration for <strong>SEO (Search Engine Optimisation)</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;meta name="description" content="This is my example test home page to show my development skills"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Let's update the <strong>index.html</strong> code with the meta tags.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;meta name="description" content="This is my example test home page to show my development skills"&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+
+    &lt;p&gt;This is an example paragraph.&lt;/p&gt;
+    &lt;p&gt;This is yet another example paragraph.&lt;/p&gt;
+
+    &lt;a href="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Setting the language</h2>
+
+            <p>The <strong>lang</strong> attribute helps to define the language of your HTML content. This is particularly useful for screen readers when thinking about accessibility as it defines how certain words or phrases are pronounced to users with visual impairments as well as setting languages for your audience if you are building a website for different geographical locations.</p>
+
+            <p>This attribute is added to the opening <strong>&lt;html&gt;</strong> tag.</p>
+
+            <p>By default, our page is English, so we will set the language to be English:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;html lang="en"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We could be more specific and set it to English (UK), if we prefer:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;html lang="en-GB"&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here are some of the common options:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;html lang="en"&gt;      // English
+&lt;html lang="es"&gt;      // Spanish
+&lt;html lang="fr"&gt;      // French
+&lt;html lang="de"&gt;      // German
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Let's update our HTML code in the <strong>index.html</strong> file to set the language:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;meta name="description" content="This is my example test home page to show my development skills"&gt;
+
+    &lt;title&gt;My Webpage&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+
+    &lt;p&gt;This is an example paragraph.&lt;/p&gt;
+    &lt;p&gt;This is yet another example paragraph.&lt;/p&gt;
+
+    &lt;a href="https://www.hastingsdirect.com"&gt;Hastings Direct&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
 		</div>
 	</div>
 </main>
