@@ -168,76 +168,128 @@ button.removeEventListener('click', alertText);
     </code>
 </pre>
 
-            <h2>querySelector() &amp; querySelectorAll()</h2>
+            <h2>Adding Events to Buttons</h2>
 
-            <p>Both <strong>querySelector()</strong> and <strong>querySelectorAll()</strong> are document methods used to match specific selectors, elements or tags in your HTML code. If no matches are found, <strong>null</strong> is returned.</p>
+            <p>When a HTML &lt;button&gt; is created, no actions or events are applied by default. We need to add event listeners to our JavaScript code to apply functionality to elements.</p>
 
-            <ul>
-                <li><strong>querySelector()</strong> - returns the first element within the document.</li>
-                <li><strong>querySelectorAll()</strong> - returns a NodeList representing a list of elements that match the specified group, such as all the buttons.</li>
-            </ul>
+            <p>Begin by creating a very simple HTML button:</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-const heading = document.querySelector('h1');
-
-console.log(heading);       // Will log the &lt;h1&gt; element
+&lt;button&gt;Button&lt;/button&gt;
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>When using the <strong>querySelectorAll()</strong> document method, we need to loop through all the elements to apply our code. In this example we are selecting all buttons and using a for loop to apply an eventListener to toggle the active class on or off:</p>
+            <p>We may want to add a class on our button to add styling using CSS.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-const btnDonationAmount = document.querySelectorAll('button');
+&lt;button class="btn"&gt;Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-// Loop over all the buttons and add eventListener to toggle active class on/off when clicked
-btnDonationAmount.forEach(buttonAmount => {
-     buttonAmount.addEventListener('click', function() {
-        // Remove the active class from all buttons when clicked
-        btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
-        // Add the active class to the button being clicked
-        this.classList.add('btn--active');
-    });
+            <p>Adding a further js-hook class will allow us to apply functionality using JavaScript. It's often better to have classes for styling and separate classes for functionality on your elements.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In our JavaScript code, we can select our button using the <strong>querySelector()</strong> method like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btn = document.querySelector('.js-btn');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The <strong>querySelector()</strong> document method is used to match the first element within the document. If no matches are found, null is returned (which you'll see in the console). We can now add an event listener that will show an alert when the button is clicked.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btn = document.querySelector('.js-btn');
+
+btn.addEventListener('click', () => {
+    alert('The button has been clicked');
 });
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>You can also use this code to get the ID attribute value of the button that was clicked:</p>
+            <p>Because the <strong>querySelector()</strong> method only selects the first element that matches the selector given, if we have multiple buttons, only the first button will apply the event listener. If we have more than one element with the same class, we need to use the <strong>querySelectorAll()</strong> document method.</p>
+
+            <p>The <strong>querySelectorAll()</strong> method returns a NodeList representing a list of elements that match a specified group.</p>
+
+            <p>Let's add more buttons to our HTML code:</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-const btnDonationAmount = document.querySelectorAll('button');
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-// Loop over all the buttons and add eventListener to toggle active class on/off when clicked
-btnDonationAmount.forEach(buttonAmount => {
-     buttonAmount.addEventListener('click', function() {
-        // Remove the active class from all buttons when clicked
-        btnDonationAmount.forEach(donationAmountButton => donationAmountButton.classList.remove('btn--active'));
-        // Add the active class to the button being clicked
-        this.classList.add('btn--active');
+            <p>When using the <strong>querySelectorAll()</strong> method, we need to loop through all the element to apply our code. Now we can apply the event listener to all buttons so when one of the buttons is clicked, the function will be executed.</p>
 
-        // Get the ID attribute value of the button clicked
-        const buttonTypeID = event.srcElement.id;
-    });
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btn = document.querySelectorAll('.js-btn');
+
+btn.forEach(selectedButton => {
+    selectedButton.addEventListener('click', function() {
+
+        alert('Specific button has been clicked');
+
+    }); 
 });
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>It's often a good idea to use on class for styling on an element and one class, called a <strong>js-hook</strong>, to apply JavaScript code.</p>
+            <p>We may wish to set a default active class on buttons.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-&lt;button type="button" class="btn js-btn"&gt;Button&lt;/button&gt;
+&lt;button class="btn js-btn btn--active"&gt;Button&lt;/button&gt;
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
-const btnDonationAmount = document.querySelectorAll('.js-btn');
+            <p>We can also toggle classes, such as active classes, to add classes to the button clicked and remove from all other buttons.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const btn = document.querySelectorAll('.js-btn');
+
+btn.forEach(selectedButton => {
+    selectedButton.addEventListener('click', function() {
+
+        // Remove the active class from all buttons
+        btn.forEach(button => button.classList.remove('btn--active'));
+        
+        // Add the active class to the button being clicked
+        this.classList.add('btn--active');
+
+    }); 
+});
 <!-- Just leave this line alone -->
     </code>
 </pre>
