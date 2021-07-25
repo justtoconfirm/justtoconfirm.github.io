@@ -451,6 +451,45 @@
             </div>
             <!-- / Demo -->
 
+            <h2>Spacing</h2>
+
+            <p>Here we will create a container with a number of items. The items will be spaced out with no margin or padding on the very end of the row:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="flex-gap"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+    &lt;div&gt;5&lt;/div&gt;
+    &lt;div&gt;6&lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>And out CSS will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex-gap {
+    display: inline-flex;
+    gap: 12px;
+    background-color: #ccc;     /* Added background-color to see the container */
+}
+
+/* Styling added to see the boxes */
+.flex-gap div {
+    padding: 20px;
+    background-color: #eee;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Building a Flexbox Grid</h2>
 
             <p>We're going to now build a grid using Flexbox in the vein of Bootstrap, Foundation and Skeleton. With only two classes of <strong>row</strong> and <strong>column</strong>, we can create an infinite equally spaced grid.</p>

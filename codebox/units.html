@@ -81,6 +81,35 @@ h1, h2, h3, h4, h5, h6 {
     </code>
 </pre>
 
+            <h2>Spacing</h2>
+
+            <p>It is often better to provide spacing between elements determines by the element's parent element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;ul class="nav"&gt;
+    &lt;li class="nav-item"&gt;Item one&lt;/li&gt;
+    &lt;li class="nav-item"&gt;Item two&lt;/li&gt;
+&lt;/ul&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Our CSS will look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Media Queries</h2>
 
             <p>Set media queries using the <strong>em</strong> unit. This helps to provide consistency across all browsers.</p>
