@@ -94,6 +94,104 @@
 </div>
 <!-- / Terminal -->
 
+            <h2>@use &amp; @forward</h2>
+
+            <p>When using dart-sass, we can use <strong>@use</strong> and <strong>@forward</strong>. Assume we have a SCSS partial called <strong>_color-variables.scss</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// _color-variables.scss
+
+$black: #000 !default;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then create a further SCSS partial and add the <strong>@use</strong> instruction to import this partial. This creates a namespace and replaces the now-legacy <strong>@import</strong> from the deprecated <strong>node-sass</strong>. We have to use a namespace to reference the file in the <strong>@use</strong> instruction, as this example shows:
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// _button.scss
+
+@use 'color-variables';
+
+.btn {
+    background-color: color-variables.$black;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can use an alias if we'd prefer. In this example, our alias is named <strong>color</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// _button.scss
+
+@use 'color-variables' as color;
+
+.btn {
+    background-color: color.$black;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Alternatively, we can use a <strong>wildcard (*)</strong> and remove the need for any alias.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// _button.scss
+
+@use 'color-variables' as *;
+
+.btn {
+    background-color: $black;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can still override default variables if we require. For example, if we use a library/framework such as <a href="https://getbootstrap.com/docs/5.0/customize/sass/" target="_blank" rel="noopener noreferrer">Bootstrap</a>, we may want to import the library/framework (perhaps using NPM), and then override the variable values in your own SCSS code to set the styling.</p>
+
+            <p>Here's an example file with our default variables, notice the <strong>!default</strong> flag after the variables:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// _library.scss
+
+$black: #000 !default;
+$border-radius: 0.25rem !default;
+
+.code {
+    color: $black;
+    border-radius: $border-radius;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then overrride this code in our own custom SCSS.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// style.scss
+
+// Override the default SCSS variables
+@use 'library' with (
+    $black: #222,
+    $border-radius: 0.1rem
+);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Partials</h2>
 
             <p>SCSS code can be written in individual files, named partials, that you can then include in other SCSS files. This helps to modularize your CSS and helps to keep things easier to maintain. A partial is a file named with a leading underscore.</p>
@@ -120,7 +218,7 @@ body {
 
             <h2>Nesting</h2>
 
-            <p>Unlike CSS, SCSS allows your CSS code to be nested. Beware havinf too many selectors nested as it will make the CSS code harder to maintain and is generally considered bad practice.</p>
+            <p>Unlike CSS, SCSS allows your CSS code to be nested. Beware having too many selectors nested as it will make the CSS code harder to maintain and is generally considered bad practice.</p>
 
 <pre>
     <code>
