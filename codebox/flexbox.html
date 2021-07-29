@@ -13,6 +13,104 @@
 	<link rel="stylesheet" href="style/main.css">
 
     <style>
+    .flex {
+        display: flex;
+    }
+
+    .flex--row {
+        flex-direction: row;
+    }
+
+    .flex--align {
+        align-items: stretch;
+    }
+
+    .flex-grow-8 {
+        flex-grow: 8;
+    }
+
+    .flex--column {
+        flex-direction: column;
+    }
+
+    .flex--row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .flex--column-reverse {
+        flex-direction: column-reverse;
+    }
+
+    .flex--basis-100 {
+        flex-basis: 100px;
+    }
+
+    .flex--basis-250 {
+        flex-basis: 250px;
+    }
+
+    .flex--basis-100-percent {
+        flex-basis: 100%;
+    }
+
+    .flex--wrap {
+        flex-wrap: wrap;
+    }
+
+    .flex--no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    .flex--start {
+        justify-content: flex-start;
+    }
+
+    .flex--center {
+        justify-content: center;
+    }
+
+    .flex--end {
+        justify-content: flex-end;
+    }
+
+    .flex--space-between {
+        justify-content: space-between;
+    }
+
+    .flex--space-around {
+        justify-content: space-around;
+    }
+
+    .flex--space-evenly {
+        justify-content: space-evenly;
+    }
+
+    .flex-gap {
+        display: inline-flex;
+        gap: 12px;
+    }
+
+    .flex-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 800px) {
+        .flex-responsive {
+            flex-direction: row;
+        }
+    }
+
+    /* Add styling so we can see the demo */
+    .flex__item {
+        padding: 10px;
+        background-color: #efefef;
+        border: 1px solid #ccc;
+    }
+    </style>
+
+    <!--
+    <style>
         .container,
         .container-responsive {
             display: flex;
@@ -82,6 +180,7 @@
             width: 150px;
         }
     </style>
+    -->
 </head>
 <body>
 
@@ -96,51 +195,66 @@
             <!-- https://www.smashingmagazine.com/2018/09/flexbox-sizing-flexible-box/ -->
             <!-- https://css-tricks.com/almanac/properties/f/flex/ -->
             <!-- https://css-tricks.com/understanding-flex-grow-flex-shrink-and-flex-basis/ -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox -->
+            <!-- https://www.w3docs.com/snippets/css/how-to-set-space-between-flexbox-items.html -->
 
-            <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong> as it's known, was introduced in 2009 and is a CSS3 web layout model that allows responsive elements within a container to be automatically arraged depending upon screen size.</p>
+            <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong>, was introduced in 2009 and is a one-dimensional layout model. When we describe flexbox as being one-dimensional, we are describing Flexbox as dealing with layout in one dimension at a time - either as a row, or as a column. This is in contrast to the CSS Grid, which controls both rows and columns together.</p>
 
-            <p>Flexbox is a <strong>one-dimensional layout method</strong> for laying out items in <strong>rows</strong> or <strong>columns</strong>. Items flex to fill additional space and shrink to fit smaller spaces.</p>
-
-            <p>Flexbox is supported across all modern browsers. <a href="https://caniuse.com/flexbox" target="_blank" rel="noopener noreferrer">IE11 has partial support</a>.</p>
-
-            <p>There are three versions of the Flexbox spec:</p>
+            <p>We begin by setting the <strong>display</strong> property on your container element to <strong>flex</strong>.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-.container {
-    display: flex;      // This is the one to use
-    display: flexbox;   // This was a draft spec implemented in IE10, avoid if possible
-    display: box;       // This is no longer used
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <h2>Specifying the layout to use Flexbox</h2>
-
-            <p>To begin, we need to first select the elements that are to be laid out as flexible boxes. To do this, we set the <strong>display</strong> property in our CSS on the parent element. This causes the element to become a <strong>flex container</strong> and its children to become <strong>flex items</strong>.</p>
-
-            <p>Summary: The <strong>flex container holds the flex items</strong>.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container {
+.flex {
     display: flex;
 }
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>With this one line of CSS code, every item inside the element turns into a flex item. The main direction that our flex items take in our flex container is a row.</p>
-
-            <p>You can set the <strong>flex-direction</strong> here to set the direction as a <strong>row</strong>, but it's not necessary:</p>
+            <p>This is our HTML code:</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-.container {
+&lt;div class="flex"&gt;
+    &lt;div&gt;One&lt;/div&gt;
+    &lt;div&gt;Two&lt;/div&gt;
+    &lt;div&gt;Three&lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The direct child elements of a flex container automatically becomes a <strong>flexible (flex)</strong> item.</p>
+
+            <p>By default, the <strong>flex</strong> display value sets the direction to be a <strong>row</strong>.</p>
+
+            <!-- Demo -->
+            <div class="flex">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Setting Columns &amp; Rows</h2>
+
+            <p>Flexbox has a <strong>main axis</strong> defined by the <strong>flex-direction</strong> CSS property. This property has four possible values:</p>
+
+            <ul>
+                <li><strong>row</strong></li>
+                <li><strong>row-reverse</strong></li>
+                <li><strong>column</strong></li>
+                <li><strong>column-reverse</strong></li>
+            </ul>
+
+            <p>Should you set the value as <strong>row</strong>, the axis will run along the row in the <strong>inline direction</strong>. Choosing <strong>column</strong> will set the axis to run from top to bottom in the <strong>block direction</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
     display: flex;
     flex-direction: row;
 }
@@ -148,351 +262,166 @@
     </code>
 </pre>
 
-            <p>The HTML for this example may look something like this:</p>
+            <p>Here, we're setting the direction to be a row (which is the default of the <strong>flex</strong> value of the <strong>display</strong> property):</p>
+
+            <!-- Demo -->
+            <div class="flex flex--row">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can change the <strong>flex-direction</strong> property to be <strong>column</strong> and the main axis changes to a column:</p>
+
+            <!-- Demo -->
+            <div class="flex flex--column">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>Here's how the CSS changed:</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-&lt;div class="container"&gt;
-    &lt;div class="container__item"&gt;One&lt;/div&gt;
-    &lt;div class="container__item"&gt;Two&lt;/div&gt;
-    &lt;div class="container__item"&gt;Three&lt;/div&gt;
-&lt;/div&gt;
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <!-- Demo -->
-            <div class="container">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">Three</div>
-            </div>
-            <!-- / Demo -->
-
-            <p>Within a responsive grid, you could consider the <strong>container</strong> class to be a row.</p>
-
-            <p><strong>This code will set the flex items to be in a row.</strong></p>
-
-            <p>The flex items are assigned a portion of the space in the container which corresponds to how much text is in each container/box. An item with a longer string of text is assigned more space - this means we don't end up with tall, skinny columns.</p>
-
-            <!-- Demo -->
-            <div class="container">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">rgeurguegruereugruegrygerugeruguefuevfuvefufuefufvfe</div>
-            </div>
-            <!-- / Demo -->
-
-            <p>We can change the direction of our flex items in our flex container to be a column rather than a row using the <strong>flex-direction</strong> property and setting the value to be <strong>column</strong>.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container {
+.flex {
+    display: flex;
     flex-direction: column;
 }
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p><strong>This code will set the flex items to be in a column.</strong></p>
+            <p>Setting the <strong>flex-direction</strong> property to <strong>row-reverse</strong>, will keep the items displaying along the row, however the start and end lines are switched.</p>
 
             <!-- Demo -->
-            <div class="container-column">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">Three</div>
+            <div class="flex flex--row-reverse">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
             </div>
             <!-- / Demo -->
 
-            <h2>Preferred Size</h2>
+            <p>If we change <strong>flex-direction</strong> to <strong>column-reverse</strong>, the main axis will switch to a column with our start and end items switched.</p>
 
-            <p>The preferred size of a container/box is the size defined by a <string>width</string> or a <string>height</string>.</p>
+            <!-- Demo -->
+            <div class="flex flex--column-reverse">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can change from a column on small screen sizes to rows on larger screen sizes, using a <strong>@media</strong> query and setting flex-direction property when a breakpoint is reached to create a responsive layout.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-.container__item {
-    width: 150px;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <p>We can also use the <strong>logical alias</strong> in the inline direction.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container__item {
-    inline-size: 150px;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <!-- Demo -->
-            <div class="container">
-                <div class="container__item-size">One</div>
-                <div class="container__item-size">Two</div>
-                <div class="container__item-size">Three</div>
-            </div>
-            <!-- / Demo -->
-
-            <h2>The flex-wrap property</h2>
-
-            <p>The <strong>flex-wrap</strong> CSS property sets whether flex items are forced onto one line or wrap onto multiple lines.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container {
-    flex-wrap: wrap;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <p>We can see here that the flex items wrap within the container if they cannot fit if we set the <strong>flex-wrap</strong> property value to be <strong>wrap</strong>.</p>
-
-            <!-- Demo -->
-            <div class="container-wrap">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">Three</div>
-                <div class="container__item">Four</div>
-                <div class="container__item">Five</div>
-                <div class="container__item">Six</div>
-                <div class="container__item">Seven</div>
-                <div class="container__item">Eight</div>
-            </div>
-            <!-- / Demo -->
-
-            <p>We can also set the value to be <strong>nowrap</strong> which causes the flex container to overflow.</p>
-
-            <!-- Demo -->
-            <div class="container-nowrap">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">Three</div>
-                <div class="container__item">Four</div>
-                <div class="container__item">Five</div>
-                <div class="container__item">Six</div>
-                <div class="container__item">Seven</div>
-                <div class="container__item">Eight</div>
-            </div>
-            <!-- / Demo -->
-
-            <h2>Responsive Flexbox</h2>
-
-            <p>We can use media queries to create different layout for different screen sizes and devices.</p>
-
-            <p>This code will display the items in a row on desktop (above 800px width) and stack the items as columns on mobile screens (below 800px) using a media query and the <strong>flex-direction</strong> property.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container {
-    display: flex
-    flex-direction: row;
+.flex {
+    display: flex;
+    flex-direction: column;
 }
 
-@media (max-width: 800px) {
-    .container {
-        flex-direction: column;
+@media (min-width: 800px) {
+    .flex {
+        flex-direction: row;
     }
 }
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
+            <p>Here's the demo:</p>
+
             <!-- Demo -->
-            <div class="container-responsive">
-                <div class="container__item">One</div>
-                <div class="container__item">Two</div>
-                <div class="container__item">Three</div>
+            <div class="flex-responsive">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
             </div>
             <!-- / Demo -->
 
-            <h2>The flex property</h2>
+            <h2>Flex Basis</h2>
 
-            <p>The <strong>flex</strong> property is a shorthand property for the <strong>flex-grow</strong>, <strong>flex-shrink</strong>, and <strong>flex-basis</strong> properties. This property sets the flexible length on the flex items within the container.</p>
+            <p>The <strong>flex-basis</strong> is what defines the size of each item. The initial value of this property is <strong>auto</strong>. If the items do not have a size, the content's size is used as the flex-basis. By default the items in a row will only take as much space as they need to display their contents.</p>
 
-            <p>The second and third parameters of <strong>flex-shrink</strong> and <strong>flex-basis</strong>, are optional.</p>
+            <p>This property specifies the initial length of a flex item.</p>
 
-            <ul>
-                <li><strong>flex-grow</strong></li>
-                <li><strong>flex-shrink</strong> (optional)</li>
-                <li><strong>flex-basis</strong> (optional)</li>
-            </ul>
+            <p>If we were to set the value of <strong>flex-basis</strong> to 100px, the items would have a width of 100px. You will need to set the flex-basis on the items within the container for this to take effect.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-.container__item {
-    flex: flex-grow | flex-shrink | flex-basis
+.flex {
+    display: flex;
 }
 
-/* OR */
-
-.container__item {
-    flex: max | min | ideal size
+.flex__item {
+    flex-basis: 100px;
 }
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>Using the below CSS code will set all flexible items to be the same length, regardless of content.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container__item {
-    flex: 1;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <p>Here's the demo if we set each flex item to use the above CSS code:</p>
+            <p>This is how the items will look:</p>
 
             <!-- Demo -->
-            <div class="container">
-                <div class="container__item container__item-flex">One</div>
-                <div class="container__item container__item-flex">Two</div>
-                <div class="container__item container__item-flex">Three</div>
+            <div class="flex">
+                <div class="flex__item flex--basis-100">One</div>
+                <div class="flex__item flex--basis-100">Two</div>
+                <div class="flex__item flex--basis-100">Three</div>
             </div>
             <!-- / Demo -->
 
-            <h3>flex-grow</h3>
-
-            <p>We are essentially setting the <strong>flex-grow</strong> property here using the shorthand <strong>flex</strong> property set to 1, meaning every item will set an equal size inside the flex container. This is the same as writing:</p>
+            <p>If we set the value of <strong>flex-basis</strong> to be <strong>100%</strong> with a single item, the container will be full width.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-.container__item {
-    flex-grow: 1;           // is the same as flex: 1;
+.flex {
+    display: flex;
+}
+
+.flex__item {
+    flex-basis: 100%;
 }
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
-            <p>If we were to give one of the child items a value of 2, that item would take up twice as much space as the others in the flex container.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container__item:nth-of-type(1),
-.container__item:nth-of-type(2) { 
-    flex-grow: 1;           // is the same as flex: 1;
-}
-
-.container__item:nth-of-type(3) { 
-    flex-grow: 2;           // is the same as flex: 2;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <p>We can see that the third item is much larger in length than the first and second items.</p>
+            <p>Demo:</p>
 
             <!-- Demo -->
-            <div class="container">
-                <div class="container__item container__item-grow">One</div>
-                <div class="container__item container__item-grow">Two</div>
-                <div class="container__item container__item-grow">Three</div>
+            <div class="flex">
+                <div class="flex__item flex--basis-100-percent">One</div>
             </div>
             <!-- / Demo -->
 
-            <h3>flex-basis</h3>
-
-            <p>The <strong>flex-basis</strong> property specifies the initial size of the flex item before any avialable space is distributed. When omitted from the <strong>flex</strong> shorthand property, its value is zero.</p>
-
-            <p>The default value for <strong>flex-basis</strong> is <strong>auto</strong>.</p>
-
-            <p><strong>flex-basis</strong> is the third (optional) parameter in the flex shorthand property.</p>
-
-            <p>Here we're setting the <strong>flex-basis</strong> of the second item to set the initial size to be 50%.</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.container__item:nth-of-type(2) { 
-    flex-basis: 50%;    
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
+            <p>If we add a further item, the container is now split 50/50.</p>
 
             <!-- Demo -->
-            <div class="container">
-                <div class="container__item container__item-basis">One</div>
-                <div class="container__item container__item-basis">Two</div>
-                <div class="container__item container__item-basis">Three</div>
+            <div class="flex">
+                <div class="flex__item flex--basis-100-percent">One</div>
+                <div class="flex__item flex--basis-100-percent">Two</div>
             </div>
             <!-- / Demo -->
 
-            <p>If we change the value of all our items by setting the <strong>flex-basis</strong> to be 100% and have a single item, the container will be full width:</p>
+            <p>And with three items, the container is now as thirds.</p>
 
             <!-- Demo -->
-            <div class="container">
-                <div class="container__item container__item-basis-full">One</div>
+            <div class="flex">
+                <div class="flex__item flex--basis-100-percent">One</div>
+                <div class="flex__item flex--basis-100-percent">Two</div>
+                <div class="flex__item flex--basis-100-percent">Three</div>
             </div>
             <!-- / Demo -->
 
-            <p>If we had a further item, the space will be shared equally within the row.</p>
+            <h2>A Responsive Flexbox Grid</h2>
 
-            <!-- Demo -->
-            <div class="container">
-                <div class="container__item container__item-basis-full">One</div>
-                <div class="container__item container__item-basis-full">Two</div>
-            </div>
-            <!-- / Demo -->
-
-            <h2>Spacing</h2>
-
-            <p>Here we will create a container with a number of items. The items will be spaced out with no margin or padding on the very end of the row:</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-&lt;div class="flex-gap"&gt;
-    &lt;div&gt;1&lt;/div&gt;
-    &lt;div&gt;2&lt;/div&gt;
-    &lt;div&gt;3&lt;/div&gt;
-    &lt;div&gt;4&lt;/div&gt;
-    &lt;div&gt;5&lt;/div&gt;
-    &lt;div&gt;6&lt;/div&gt;
-&lt;/div&gt;
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <p>And out CSS will look like this:</p>
-
-<pre>
-    <code>
-<!-- Just leave this line alone -->
-.flex-gap {
-    display: inline-flex;
-    gap: 12px;
-    background-color: #ccc;     /* Added background-color to see the container */
-}
-
-/* Styling added to see the boxes */
-.flex-gap div {
-    padding: 20px;
-    background-color: #eee;
-}
-<!-- Just leave this line alone -->
-    </code>
-</pre>
-
-            <h2>Building a Flexbox Grid</h2>
-
-            <p>We're going to now build a grid using Flexbox in the vein of Bootstrap, Foundation and Skeleton. With only two classes of <strong>row</strong> and <strong>column</strong>, we can create an infinite equally spaced grid.</p>
+            <p>We can use the <strong>flex-basis</strong> property to create a simplified responsive grid using Flexbox.</p>
 
 <pre>
     <code>
@@ -516,43 +445,883 @@
     </code>
 </pre>
 
-            <p>In a framework like Bootstrap, the grid is based on 12 columns. With flexbox, this can be simplified within our HTML code. This example will provide us with one 100% wide column.</p>
+            <p>We can change the widths of our columns to make the grid more flexible using the <strong>flex</strong> property.</p>
 
 <pre>
     <code>
 <!-- Just leave this line alone -->
-&lt;div class="row"&gt;
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .column {
+        flex: 1;
+    }
+
+    .column-25 {
+        flex: 2.5;
+    }
+
+    .column-55 {
+        flex: 5.5;
+    }
+
+    .column-20 {
+        flex: 2;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The grid should be wrapped inside a container so the content doesn't stretch beyond 1200px on large screens.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .column {
+        flex: 1;
+    }
+
+    .column-25 {
+        flex: 2.5;
+    }
+
+    .column-55 {
+        flex: 5.5;
+    }
+
+    .column-20 {
+        flex: 2;
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now if we want to create a row with three columns, we can write our HTML like so:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        
+        &lt;div class="column"&gt;
+            One
+        &lt;/div&gt;
+        &lt;div class="column"&gt;
+            Two
+        &lt;/div&gt;
+        &lt;div class="column"&gt;
+            Three
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Each column will have a 100% width on mobile having used the <strong>flex-basis</strong> property and will wrap.</p>
+
+            <h2>Wrapping</h2>
+
+            <p>While Flexbox is one dimensional, it is possible to cause our flex items to wrap onto multiple lines.</p>
+
+            <p>To apply wrapping behavior, add the <strong>flex-wrap</strong> property with the value of <strong>wrap</strong>. The initial value is set to <strong>nowrap</strong>. This will instead shrink to fit the container because they are using the initial flexbox values that allow items to shrink, but will cause an overflow if items are not able to shrink.</p>
+
+            <p>Now, if your items become too large to display on a single row, they will wrap onto another line.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex__item {
+    flex-basis: 250px;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--wrap">
+                <div class="flex__item flex--basis-250">One</div>
+                <div class="flex__item flex--basis-250">Two</div>
+                <div class="flex__item flex--basis-250">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>As an example, let's set <strong>nowrap</strong> to the <strong>flex-wrap</strong> property and see what happens.</p>
+
+            <!-- Demo -->
+            <div class="flex flex--no-wrap">
+                <div class="flex__item flex--basis-250">One</div>
+                <div class="flex__item flex--basis-250">Two</div>
+                <div class="flex__item flex--basis-250">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>The flex-flow shorthand</h2>
+
+            <p>We can combine both the <strong>flex-direction</strong> and <strong>flex-wrap</strong> properties into the shorthand <strong>flex-flow</strong> property.</p>
+
+            <p>The first value specified is the <strong>flex-direction</strong> and the second is the <strong>flex-wrap</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Justify Content</h2>
+
+            <p>The <strong>justify-content</strong> property is used to align the items on the main axis. The initial value is flex-start. This will set all the items on the left at the start edge of the container.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: flex-start;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--start">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can centre the content within the axis by using the <strong>center</strong> value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: center;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--center">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>If we want to place all our items in the axis to the right-hand side and line them up at the end, we can use <strong>flex-end</strong>.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: flex-end;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--end">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We can also use the <strong>space-between</strong>, <strong>space-evenly</strong> and <strong>space-around</strong> values to provide space around each item in the axis.</p>
+
+            <p>The <strong>space-between</strong> value takes all the spare space after the items have been positioned and shares this space out evenly between the items so there's an equal amount of space between each item.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--space-between">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>To add an equal amount of space to the left and right of each item, use the <strong>space-around</strong> value.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--space-around">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>With <strong>space-evenly</strong>, items have a full-size space on either end.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex flex--space-evenly">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Centering</h2>
+
+            <p>We can use the <strong>justify-content</strong> and <strong>align-items</strong> properties with value of <strong>center</strong> to perfectly centre a flex item both horizontally and vertically.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>The flex-grow property</h2>
+
+            <p>The <strong>flex-grow</strong> property specifies how much a flex item will grow relative to the rest of the flex items.</p>
+
+            <p>The default value is set to <strong>0</strong> and a number should be applied to the property.</p>
+
+            <!-- Demo -->
+            <div class="flex flex--align">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item flex-grow-8">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>Here's the CSS:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    align-items: stretch;
+}
+
+.flex__item--grow {
+    flex-grow: 8;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If we set the <strong>flex-grow</strong> property to a value of <strong>1</strong> for each flex item, each item will have an equal size inside the flex container.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+}
+
+.flex__item {
+    flex-grow: 1;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex">
+                <div class="flex__item" style="flex-grow: 1;">One</div>
+                <div class="flex__item" style="flex-grow: 1;">Two</div>
+                <div class="flex__item" style="flex-grow: 1;">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>We could the add a <strong>gap</strong> between each flex item.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: flex;
+    gap: 12px;
+}
+
+.flex__item {
+    flex-grow: 1;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Demo -->
+            <div class="flex" style="gap: 12px;">
+                <div class="flex__item" style="flex-grow: 1;">One</div>
+                <div class="flex__item" style="flex-grow: 1;">Two</div>
+                <div class="flex__item" style="flex-grow: 1;">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <h2>Gap</h2>
+
+            <p>We can use the <strong>gap</strong> property to apply spacing between the items in our Flexbox container.</p>
+
+            <p>In this example, we can equally space out our items in the row axis with no margin or padding needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+.flex {
+    display: inline-flex;
+    gap: 12px;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This is how our row now looks:</p>
+
+            <!-- Demo -->
+            <div class="flex-gap">
+                <div class="flex__item">One</div>
+                <div class="flex__item">Two</div>
+                <div class="flex__item">Three</div>
+            </div>
+            <!-- / Demo -->
+
+            <p>Setting the <strong>display</strong> property to <strong>inline-flex</strong> does not make the flex items display inline, it makes the flex container display inline.</p>
+
+            <p>You may want to add <strong>gap</strong> spacing using <strong>em</strong> or <strong>rem</strong> units instead of <strong>px</strong>.</p>
+
+            <!--
+            <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong> as it's known, was introduced in 2009 and is a CSS3 web layout model that allows responsive elements within a container to be automatically arraged depending upon screen size.</p>
+
+            <p>Flexbox is a <strong>one-dimensional layout method</strong> for laying out items in <strong>rows</strong> or <strong>columns</strong>. Items flex to fill additional space and shrink to fit smaller spaces.</p>
+
+            <p>Flexbox is supported across all modern browsers. <a href="https://caniuse.com/flexbox" target="_blank" rel="noopener noreferrer">IE11 has partial support</a>.</p>
+
+            <p>There are three versions of the Flexbox spec:</p>
+            -->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    display: flex;      // This is the one to use
+    display: flexbox;   // This was a draft spec implemented in IE10, avoid if possible
+    display: box;       // This is no longer used
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<h2>Specifying the layout to use Flexbox</h2>
+
+            <p>To begin, we need to first select the elements that are to be laid out as flexible boxes. To do this, we set the <strong>display</strong> property in our CSS on the parent element. This causes the element to become a <strong>flex container</strong> and its children to become <strong>flex items</strong>.</p>
+
+            <p>Summary: The <strong>flex container holds the flex items</strong>.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    display: flex;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>With this one line of CSS code, every item inside the element turns into a flex item. The main direction that our flex items take in our flex container is a row.</p>
+
+            <p>You can set the <strong>flex-direction</strong> here to set the direction as a <strong>row</strong>, but it's not necessary:</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    display: flex;
+    flex-direction: row;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>The HTML for this example may look something like this:</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--&lt;div class="container"&gt;
+    &lt;div class="container__item"&gt;One&lt;/div&gt;
+    &lt;div class="container__item"&gt;Two&lt;/div&gt;
+    &lt;div class="container__item"&gt;Three&lt;/div&gt;
+&lt;/div&gt;-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<p>Within a responsive grid, you could consider the <strong>container</strong> class to be a row.</p>
+
+            <p><strong>This code will set the flex items to be in a row.</strong></p>
+
+            <p>The flex items are assigned a portion of the space in the container which corresponds to how much text is in each container/box. An item with a longer string of text is assigned more space - this means we don't end up with tall, skinny columns.</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">rgeurguegruereugruegrygerugeruguefuevfuvefufuefufvfe</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<p>We can change the direction of our flex items in our flex container to be a column rather than a row using the <strong>flex-direction</strong> property and setting the value to be <strong>column</strong>.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    flex-direction: column;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p><strong>This code will set the flex items to be in a column.</strong></p>-->
+
+            <!-- Demo -->
+            <!--<div class="container-column">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h2>Preferred Size</h2>
+
+            <p>The preferred size of a container/box is the size defined by a <string>width</string> or a <string>height</string>.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item {
+    width: 150px;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>We can also use the <strong>logical alias</strong> in the inline direction.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item {
+    inline-size: 150px;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item-size">One</div>
+                <div class="container__item-size">Two</div>
+                <div class="container__item-size">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h2>The flex-wrap property</h2>
+
+            <p>The <strong>flex-wrap</strong> CSS property sets whether flex items are forced onto one line or wrap onto multiple lines.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    flex-wrap: wrap;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>We can see here that the flex items wrap within the container if they cannot fit if we set the <strong>flex-wrap</strong> property value to be <strong>wrap</strong>.</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container-wrap">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+                <div class="container__item">Four</div>
+                <div class="container__item">Five</div>
+                <div class="container__item">Six</div>
+                <div class="container__item">Seven</div>
+                <div class="container__item">Eight</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<p>We can also set the value to be <strong>nowrap</strong> which causes the flex container to overflow.</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container-nowrap">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+                <div class="container__item">Four</div>
+                <div class="container__item">Five</div>
+                <div class="container__item">Six</div>
+                <div class="container__item">Seven</div>
+                <div class="container__item">Eight</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h2>Responsive Flexbox</h2>
+
+            <p>We can use media queries to create different layout for different screen sizes and devices.</p>
+
+            <p>This code will display the items in a row on desktop (above 800px width) and stack the items as columns on mobile screens (below 800px) using a media query and the <strong>flex-direction</strong> property.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container {
+    display: flex
+    flex-direction: row;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!-- Demo -->
+            <!--<div class="container-responsive">
+                <div class="container__item">One</div>
+                <div class="container__item">Two</div>
+                <div class="container__item">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h2>The flex property</h2>
+
+            <p>The <strong>flex</strong> property is a shorthand property for the <strong>flex-grow</strong>, <strong>flex-shrink</strong>, and <strong>flex-basis</strong> properties. This property sets the flexible length on the flex items within the container.</p>
+
+            <p>The second and third parameters of <strong>flex-shrink</strong> and <strong>flex-basis</strong>, are optional.</p>
+
+            <ul>
+                <li><strong>flex-grow</strong></li>
+                <li><strong>flex-shrink</strong> (optional)</li>
+                <li><strong>flex-basis</strong> (optional)</li>
+            </ul>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item {
+    flex: flex-grow | flex-shrink | flex-basis
+}
+
+/* OR */
+
+.container__item {
+    flex: max | min | ideal size
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>Using the below CSS code will set all flexible items to be the same length, regardless of content.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item {
+    flex: 1;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>Here's the demo if we set each flex item to use the above CSS code:</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item container__item-flex">One</div>
+                <div class="container__item container__item-flex">Two</div>
+                <div class="container__item container__item-flex">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h3>flex-grow</h3>-->
+
+            <!--<p>We are essentially setting the <strong>flex-grow</strong> property here using the shorthand <strong>flex</strong> property set to 1, meaning every item will set an equal size inside the flex container. This is the same as writing:</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item {
+    flex-grow: 1;           // is the same as flex: 1;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>If we were to give one of the child items a value of 2, that item would take up twice as much space as the others in the flex container.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item:nth-of-type(1),
+.container__item:nth-of-type(2) { 
+    flex-grow: 1;           // is the same as flex: 1;
+}
+
+.container__item:nth-of-type(3) { 
+    flex-grow: 2;           // is the same as flex: 2;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>We can see that the third item is much larger in length than the first and second items.</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item container__item-grow">One</div>
+                <div class="container__item container__item-grow">Two</div>
+                <div class="container__item container__item-grow">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h3>flex-basis</h3>-->
+
+            <!--<p>The <strong>flex-basis</strong> property specifies the initial size of the flex item before any avialable space is distributed. When omitted from the <strong>flex</strong> shorthand property, its value is zero.</p>
+
+            <p>The default value for <strong>flex-basis</strong> is <strong>auto</strong>.</p>
+
+            <p><strong>flex-basis</strong> is the third (optional) parameter in the flex shorthand property.</p>
+
+            <p>Here we're setting the <strong>flex-basis</strong> of the second item to set the initial size to be 50%.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.container__item:nth-of-type(2) { 
+    flex-basis: 50%;    
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item container__item-basis">One</div>
+                <div class="container__item container__item-basis">Two</div>
+                <div class="container__item container__item-basis">Three</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<p>If we change the value of all our items by setting the <strong>flex-basis</strong> to be 100% and have a single item, the container will be full width:</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item container__item-basis-full">One</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<p>If we had a further item, the space will be shared equally within the row.</p>-->
+
+            <!-- Demo -->
+            <!--<div class="container">
+                <div class="container__item container__item-basis-full">One</div>
+                <div class="container__item container__item-basis-full">Two</div>
+            </div>-->
+            <!-- / Demo -->
+
+            <!--<h2>Spacing</h2>
+
+            <p>Here we will create a container with a number of items. The items will be spaced out with no margin or padding on the very end of the row:</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--&lt;div class="flex-gap"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+    &lt;div&gt;5&lt;/div&gt;
+    &lt;div&gt;6&lt;/div&gt;
+&lt;/div&gt;-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>And out CSS will look like this:</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.flex-gap {
+    display: inline-flex;
+    gap: 12px;
+    background-color: #ccc;     /* Added background-color to see the container */
+}
+
+/* Styling added to see the boxes */
+.flex-gap div {
+    padding: 20px;
+    background-color: #eee;
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<h2>Building a Flexbox Grid</h2>
+
+            <p>We're going to now build a grid using Flexbox in the vein of Bootstrap, Foundation and Skeleton. With only two classes of <strong>row</strong> and <strong>column</strong>, we can create an infinite equally spaced grid.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .column {
+        flex: 1;
+    }
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+            <!--<p>In a framework like Bootstrap, the grid is based on 12 columns. With flexbox, this can be simplified within our HTML code. This example will provide us with one 100% wide column.</p>-->
+
+<!--<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--&lt;div class="row"&gt;
     &lt;div class="column"&gt;
         &lt;!-- 100% width --&gt;
     &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>The width of each column is 100% divided by the number of columns within the flex container row.</p>
+            <!--<p>The width of each column is 100% divided by the number of columns within the flex container row.</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-&lt;div class="row"&gt;
+<!--&lt;div class="row"&gt;
     &lt;div class="column"&gt;
         &lt;!-- 50% width --&gt;
     &lt;/div&gt;
     &lt;div class="column"&gt;
         &lt;!-- 50% width --&gt;
     &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>This is another example showing equally dividing columns:</p>
+            <!--<p>This is another example showing equally dividing columns:</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-&lt;div class="row"&gt;
+<!--&lt;div class="row"&gt;
     &lt;div class="column"&gt;
         &lt;!-- 33.3% width --&gt;
     &lt;/div&gt;
@@ -562,17 +1331,17 @@
     &lt;div class="column"&gt;
         &lt;!-- 33.3% width --&gt;
     &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>We can change the widths of our columns to make the grid more flexible. We can use the <strong>flex</strong> property inside of a media query to create columns that are unique widths.</p>
+            <!--<p>We can change the widths of our columns to make the grid more flexible. We can use the <strong>flex</strong> property inside of a media query to create columns that are unique widths.</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-@media screen and (min-width: 800px) {
+<!--@media screen and (min-width: 800px) {
     .column_25 {
         flex: 2.5;
     }
@@ -584,21 +1353,21 @@
     .column_20 {
         flex: 2;
     }
-}
+}-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>We are currently using a single breakpoint to keep things simple for mobile/tablet (small screens) and desktop/laptop (large screens), however this can be extended further if needed. Using <strong>min-width</strong> media queries is optimal for mobile first layout designs.</p>
+            <!--<p>We are currently using a single breakpoint to keep things simple for mobile/tablet (small screens) and desktop/laptop (large screens), however this can be extended further if needed. Using <strong>min-width</strong> media queries is optimal for mobile first layout designs.</p>
 
             <p>Each column will have a 100% width on mobile having used the <strong>flex-basis</strong> property and will wrap down to the next column. On desktop, all columns will be contained to a single line. The <strong>flex-basis</strong> property specifies the initial main size of a flex item inside a flex container.</p> 
 
-            <p>Our HTML may look something like this:</p>
+            <p>Our HTML may look something like this:</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-&lt;div class="row"&gt;
+<!--&lt;div class="row"&gt;
     &lt;div class="column column_25"&gt;
         &lt;!-- 25% width --&gt;
     &lt;/div&gt;
@@ -608,35 +1377,35 @@
     &lt;div class="column column_20"&gt;
         &lt;!-- 20% width --&gt;
     &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>We should wrap the grid inside of a container so your content doesn't stretch beyond 1200px on large screens.</p>
+            <!--<p>We should wrap the grid inside of a container so your content doesn't stretch beyond 1200px on large screens.</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-.container {
+<!--.container {
     max-width: 1200px;
     margin: 0 auto;
-}
+}-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
-            <p>The HTML will look like this:</p>
+            <!--<p>The HTML will look like this:</p>-->
 
-<pre>
-    <code>
+<!--<pre>
+    <code>-->
 <!-- Just leave this line alone -->
-&lt;div class="container"&gt;
+<!--&lt;div class="container"&gt;
     &lt;!-- rows and columns --&gt;
-&lt;/div&gt;
+&lt;/div&gt;-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
 		</div>
 	</div>

@@ -20,6 +20,9 @@
 
 			<h1>Introduction to Gatsby</h1>
             <!-- https://www.gatsbyjs.com/how-it-works -->
+            <!-- https://www.sanity.io/docs/js-client -->
+            <!-- Wesbos uses Sanity as a backend / starter files - https://github.com/wesbos/master-gatsby -->
+            <!-- npm install @sanity/cli -g -->
 
             <p>Gatsby is a React-based, open-source framework for creating websites and web applications.</p>
 
@@ -37,12 +40,61 @@
 
             <p>A Gatsby site will be a lightning-fast <strong>Progressive Web App (PWA)</strong> out of the box.</p>
 
+            <p>Gatsby is a framework rather than a library because it comes with everything. Routing, data management, build process, and much more is all included.</p>
+
             <p>Gatsby uses a few technologies under the hood:</p>
 
             <ul>
                 <li><strong>React</strong> - A JavaScript library for building user interfaces. It's the library that Gatsby uses to build pages and structure content.</li>
                 <li><strong>GraphQL</strong> - A query language that allows you to pull data into your website. It's the interface Gatsby uses for managing site data.</li>
             </ul>
+
+            <p>Gatsby uses React under the hood but adds features on top to improve the development and build process. It is not a CMS (Content Management System), there's no backend admin to login to make changes, it is purely for frontend only.</p>
+
+            <p>Using <strong>React DevTools</strong> is a good way to debug your React components and Gatsby site.</p>
+
+            <p>You can use ESLint, which includes Prettier under the hood, to check the quality and tidy-up your code during the build. This cab be installed as a plugin for code editors such as VSCode or as an NPM package.</p>
+
+            <p>Gatsby has a plugin ecosystem allowing you to install plugins to extend the basic functionality.</p>
+
+            <p>Gatsby makes use of <strong>Rehydration</strong>, where we can have static HTML rendering the pages but use React/JavaScript to add dynamic content, such as a counter, or anything dynamic on the page.</p>
+
+            <h2>File Structure</h2>
+
+            <p>Everything must go through Gatsby - images, CSS, fonts, assets etc.</p>
+
+            <p>The <strong>public</strong> directory is where Gatsby will build and deploy our code that will regenerate when building your app. You shouldn't need to make any changes to the contents of this directory.</p>
+
+            <p>The <strong>static</strong> directory is for files that you simply want to be served up, for assets such as logos and favicons. These assets can be referenced by a static path, but it's often better to put all assets and code into the <strong>src</strong> directory.</p>
+
+            <p>Most of our Gatsby application code and assets will sit in the <strong>src</strong> directory. The <strong>src/pages</strong> directory is the only folder that is Gatsby specific.</p>
+
+            <p>You can add a <strong>.gitkeep</strong> file into empty directories so that Git doesn't delete the empty directory before you've added something to it when using version control.</p>
+
+            <p>An example <strong>src</strong> file structure (<strong>pages</strong> you need, everything else can be changed):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+src /
+    assets /
+        fonts /
+            fontfile.woff2
+        images /
+            bg.svg
+            stripes.svg
+    components /
+    pages /
+    styles /
+    templates /
+    utils /
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Code Editors</h2>
+
+            <p>If you are using <strong>Visual Studio Code (VSCode)</strong>, you can place a <strong>.vscode</strong> config file in your project where your VSCode settings are placed.</p>
 
             <h2>SEO (Search Engine Optimisation)</h2>
             <!-- https://www.gatsbyjs.com/docs/how-to/adding-common-features/seo/ -->
@@ -435,6 +487,10 @@ export const Frame
 
             <h2>Building &amp; Adding Pages</h2>
 
+            <p>As you navigate through a Gatsby site, you're not necessarily navigation from page to page, the application is loading the data it needs to render using the components built. This helps to make Gatsby extreamly fast. Gatsby generates the HTML from the data so this helps to make the site load much faster.</p>
+
+            <p>Pages can be dynamically or statically generated. Pages are written as functions in React and these are <strong>ECMAScript modules</strong> meaning that they need to be exported and imported. Gatsby uses <strong>hot reloading</strong> to update the page during development when changes are made.</p>
+
             <p>All pages within your Gatsby site are located within the <strong>src/pages</strong> directory of your project. To begin when you first create a project, you will see the <strong>index.js</strong> as the Homepage and <strong>404.js</strong> (404 page) by default.</p>
 
             <p>The pages are built using React components and are known as <strong>Page Components</strong>. This type of component contains all the UI (User Interface) elements for a specific page of your site, for example the Homepage, About us, Blog etc.</p>
@@ -471,6 +527,10 @@ export default IndexPage
 
             <p>If you attempt to visit a URL for a page that doesn't exist, Gatsby will display the 404 page component (<strong>src/pages/404.js</strong>) to show an error. If you attempt to view the 404 page on localhost, you'll need to click the <strong>Preview custom 404 page</strong> button on the development 404 page.</p>
 
+            <p>When creating a 404 page, the function cannot start with a number, so you may need to name it <strong>ErrorPage</strong> or <strong>FourOhFourPage</strong> instead.</p>
+
+            <p>The 404 page itself won't show up in development mode, but you can preview it. The page will be updated correctly when we move the site into production and deploy.</p>
+
             <p>Now that the Homepage has been created, we can add an About page. Create a new file named <strong>about.js</strong> in the <strong>src/pages</strong> directory.</p>
 
 <pre>
@@ -500,6 +560,12 @@ export default AboutPage
             <p>Once saved, your development server will rebuild the site and your About page will be available at: <a href="http://localhost:8000/about" target="_blank" rel="noopener noreferrer">http://localhost:8000/about</a></p>
 
             <p>Pages created in the src/pages directory use the filename of each page as the route. For example, if we have a page component named <strong>blog.js</strong>, the route for that page would be <strong>http://localhost:8000/blog</strong></p>
+
+            <h2>Components</h2>
+
+            <p>A component is a reusable piece of the UI (User Interface) we can use within our page components, such as Header, Footer, Navigation, Button, Link etc.</p>
+
+            <p>Unlike page file names, Component file names always start with an uppercase letter.</p>
 
             <h2>Links</h2>
 
@@ -587,9 +653,146 @@ export default AboutPage
     </code>
 </pre>
 
+            <h2>Building a Navigation Component</h2>
+
+            <p>We want to navigate around our site and a Navigation component will help us to do that. Begin by creating a new component named <strong>Nav.js</strong> in the <strong>src/components</strong> directory. Your code should look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { Link } from 'gatsby';
+
+const Nav = () => {
+    return (
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/beers"&gt;Beers&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/pizza"&gt;Pizzas&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/slicemasters"&gt;Slicemasters&lt;/Link&gt;&gt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    )
+}
+
+export default Nav;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Within your page, you can import the component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import Nav from '../components/Nav';
+
+const HomePage = () => {
+    return (
+        &lt;&gt;
+            &lt;Nav /&gt;
+
+            &lt;p&gt;Hey! I'm the home page&lt;/p&gt;
+        &lt;/&gt;
+    );
+}
+
+export default HomePage;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can also programatically create links, such as taking the user to a page when a form has been submitted, using the <strong>navigate</strong> function from gatsby.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { Link, navigate } from 'gatsby';
+
+const goToSlicemasters = () => {
+    // Navigate to the page after 2 seconds
+    setTimeout(() => {
+        navigate('/slicemasters');
+    }, 2000);
+}
+
+const Nav = () => {
+    return (
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;LOGO&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/beers"&gt;Beers&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/pizza"&gt;Pizzas&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;
+                    &lt;button type="button" onClick={goToSlicemasters}&gt;Slicemasters&lt;/button&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    )
+}
+
+export default Nav;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Reusable Layout Component</h2>
 
             <p>On most websites you may notice that there are a few repeating parts of the UI (User Interface) across all pages, such as the page title and navigation. This could be copied to each page individually, but if you then want to make changes, each page would then need to be updated. It's therefore better to create one common <strong>layout component</strong> that groups shared elements together so they can be reused. That way, you can make changes in one place and it will apply to every page.</p>
+
+            <p>Examples of Layout components can be Header and Footer.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/components/Footer.js
+
+import React from 'react';
+
+const Footer = () => {
+    return (
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; Slick's Slices {new Date().getFullYear()}&lt;/p&gt;
+        &lt;/footer&gt;
+    );
+}
+
+export default Footer;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the Layout component, we can then import the Footer component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/components/Layout.js
+
+import React from 'react';
+import Nav from './Nav';
+import Footer from './Footer';
+
+const Layout = () => {
+    return (
+        &lt;&gt;
+            &lt;Nav /&gt;
+
+            &lt;p&gt;I am the page content&lt;/p&gt;
+
+            &lt;Footer /&gt;
+        &lt;/&gt;
+    );
+}
+
+export default Layout;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
 
             <p>In Gatsby, this is known as a <strong>building-block component</strong>.</p>
 
@@ -722,7 +925,92 @@ export default AboutPage
 
             <p>It is recommended to create your Layout components alongside the rest of your components - e.g. <strong>src/components/</strong></p>
 
+            <h2>The gatsby-browser.js file</h2>
+
+            <p>The <strong>gatsby-browser.js</strong> file is placed in the root of your project folder, not inside the <strong>src</strong> directory.</p>
+
+            <a href="https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/" target="_blank" rel="noopener noreferrer">https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/</a>
+
+            <p>This is a file that lets us hook into different APIs of Gatsby if we need to. For instance, we could use the <strong>wrapPageElement</strong> hook from the Gatsby API to wrap all our pages with Layout component. Gatsby will automatically do that for us so we then don't need to do that manually on each page.</p>
+
+            <p>Gatsby will check this file and run any functions within by default when the site is built or published. You may need to restart your development server for the changes to take effect.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// gatsby-browser.js
+
+import React from 'react';
+import Layout from './src/components/Layout';
+
+export function wrapPageElement({ element, props }) {
+    return &lt;Layout {...props}&gt;{element}&lt;/Layout&gt;
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>This only works in the browser, so we will also need to put this into a file named <strong>gatsby-ssr.js</strong> for server-side rendering.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// gatsby-ssr.js
+
+import React from 'react';
+import Layout from './src/components/Layout';
+
+export function wrapPageElement({ element, props }) {
+    return &lt;Layout {...props}&gt;{element}&lt;/Layout&gt;
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now that the Layout component is being applied to all pages by default, we can remove it from being hardcoded in those pages.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const AboutPage = () => {
+    return (
+        &lt;&gt;
+            &lt;p&gt;Hi there, this is some information about me.&lt;/p&gt;
+        &lt;/&gt;
+    )
+}
+
+export default AboutPage
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <h2>Styling</h2>
+
+            <p>Gatsby will automatically load your critical CSS into your pages. This helps to reduce render-blocking which can slow a site down and avoids the <strong>FOUC (Flash Of Unstyled Content)</strong>.</p>
+
+            <p>You could begin by creating a simple CSS file in ths src/styles directory, add a CSS stylesheet and then import the CSS stylesheet into the <strong>gatsby-browser.js</strong> file to create a global style.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// gatsby-browser.js
+
+import React from 'react';
+import Layout from './src/components/Layout';
+
+import './src/styles/main.css';
+
+export function wrapPageElement({ element, props }) {
+    return &lt;Layout {...props}&gt;{element}&lt;/Layout&gt;
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Gatsby will use this to apply styling as part of the first render and stick this into the HTML that renders to avoid render blocking. You won't see it in the HTML source in development mode, but you will once the site has been built for production.</p>
 
             <p>Gatsby isn't strict about what styling approach you use. By default, Gatsby uses <strong>CSS modules</strong> to style components. This means that the styles are scoped to the components helping to avoid class name collisions between components.</p>
 
@@ -824,6 +1112,324 @@ const MyComponent = () => {
 }
 
 export default MyComponent
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>To set a reset/normalize and/or global styling, just import the CSS stylesheet into your Layout component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import 'normalize.css';
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the example above, this has been installed as an NPM dependency package, so it doesn't require a file path.</p>
+
+            <p>In the <strong>src/styles</strong> directory, create a stylesheet for the global CSS styling we're going to apply to our pages. This is named <strong>GlobalStyles.js</strong> and this is because we are using an NPM package called Styled Components.</p>
+
+            <p>This is the code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/styles/GlobalStyles.js
+
+import { createGlobalStyle } from 'styled-components';
+import bg from '../assets/images/bg.svg';
+import stripes from '../assets/images/stripes.svg';
+
+const GlobalStyles = createGlobalStyle`
+  :root {
+    --red: #FF4949;
+    --black: #2E2E2E;
+    --yellow: #ffc600;
+    --white: #fff;
+    --grey: #efefef;
+  }
+  html {
+    background-image: url(${bg});
+    background-size: 450px;
+    background-attachment: fixed;
+    font-size: 10px;
+  }
+  body {
+    font-size: 2rem;
+  }
+  fieldset {
+    border-color: rgba(0,0,0,0.1);
+    border-width: 1px;
+  }
+  button {
+    background: var(--red);
+    color: white;
+    border: 0;
+    padding: 0.6rem 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    --cast: 2px;
+    box-shadow: var(--cast) var(--cast) 0 var(--grey);
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
+    transition: all 0.2s;
+    &:hover {
+      --cast: 4px;
+    }
+  }
+  .gatsby-image-wrapper img[src*=base64\\,] {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+  }
+  /* Scrollbar Styles */
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--red) var(--white);
+  }
+  body::-webkit-scrollbar-track {
+    background: var(--white);
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--red) ;
+    border-radius: 6px;
+    border: 3px solid var(--white);
+  }
+  hr {
+    border: 0;
+    height: 8px;
+    background-image: url(${stripes});
+    background-size: 1500px;
+  }
+  img {
+    max-width: 100%;
+  }
+  .tilt {
+    transform: rotate(-2deg);
+    position: relative;
+    display: inline-block;
+  }
+`;
+
+export default GlobalStyles;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>As you can see, this can be written in a similar way to SCSS.</p>
+
+            <p>This can then be imported into the Layout component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import Nav from './Nav';
+import Footer from './Footer';
+import 'normalize.css';
+import GlobalStyles from '../styles/GlobalStyles';
+
+const Layout = ({ children }) => {
+    return (
+        &lt;&gt;
+            &lt;GlobalStyles /&gt;
+            &lt;Nav /&gt;
+            
+            {children}
+            
+            &lt;Footer /&gt;
+        &lt;/&gt;
+    );
+}
+
+export default Layout;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Here's the Typography styling that needs to be added to the <strong>src/styles/Typography.js</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import { createGlobalStyle } from 'styled-components';
+
+import font from '../assets/fonts/frenchfries.woff';
+
+const Typography = createGlobalStyle`
+  @font-face {
+    font-family: FrenchFries;
+    src: url(${font});
+  }
+  html {
+    font-family: FrenchFries, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--black);
+  }
+  p, li {
+    letter-spacing: 0.5px;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    margin: 0;
+  }
+  a {
+    color: var(--black);
+    text-decoration-color: var(--red);
+    /* Chrome renders this weird with this font, so we turn it off */
+    text-decoration-skip-ink: none;
+  }
+  mark, .mark {
+    background: var(--yellow);
+    padding: 0 2px 2px 2px;
+    margin: 0;
+    display: inline;
+    line-height: 1;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .tilt {
+    transform: rotate(-2deg);
+  }
+`;
+
+export default Typography;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Then update the Layout component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import Nav from './Nav';
+import Footer from './Footer';
+import 'normalize.css';
+import GlobalStyles from '../styles/GlobalStyles';
+import Typography from '../styles/Typography';
+
+const Layout = ({ children }) => {
+    return (
+        &lt;&gt;
+            &lt;GlobalStyles /&gt;
+            &lt;Typography /&gt;
+            &lt;Nav /&gt;
+            
+            {children}
+            
+            &lt;Footer /&gt;
+        &lt;/&gt;
+    );
+}
+
+export default Layout;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Styled Components</h2>
+
+            <p>As an alternative to CSS Modules, Styled Components can be used to style your pages and your Gatsby app. This allows your CSS to be scoped inside of React components.</p>
+
+            <a href="https://styled-components.com" target="_blank" rel="noopener noreferrer">https://styled-components.com</a>
+
+            <p>We can add styling directly into our components so that it's scoped to only that component that we're importing into out application. Open the Nav component.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
+
+const NavStyles = styled.nav`
+    background: red;
+
+    a {
+        background: green;
+    }
+
+    li {
+        --rotate: -2deg;
+        transform: rotate(var(--rotate)) scale(4);
+        order: 1;
+
+        &:nth-child {
+            --rotate: 1deg;
+        }
+    }
+`;
+
+const UlStyles = styled.ul`
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto 1fr 1fr;
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
+    list-style: none;
+`;
+
+const Nav = () => {
+    return (
+        &lt;NavStyles&gt;
+            &lt;UlStyles&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/"&gt;LOGO&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/beers"&gt;Beers&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/pizza"&gt;Pizzas&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to="/slicemasters"&gt;Slicemasters&lt;/Link&gt;&lt;/li&gt;
+            &lt;/UlStyles&gt;
+        &lt;/NavStyles&gt;
+    )
+}
+
+export default Nav;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You can wrap styling around the layout structure of a component if you wish.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react';
+import Nav from './Nav';
+import Footer from './Footer';
+import 'normalize.css';
+import GlobalStyles from '../styles/GlobalStyles';
+import Typography from '../styles/Typography';
+
+const ContentStyles = styled.div`
+    background: white;
+    padding: 2rem;
+`;
+
+const Layout = ({ children }) => {
+    return (
+        &lt;&gt;
+            &lt;GlobalStyles /&gt;
+            &lt;Typography /&gt;
+            &lt;ContentStyles&gt;
+                &lt;Nav /&gt;
+            
+                {children}
+            
+                &lt;Footer /&gt;
+            &lt;/ContentStyles&gt;
+        &lt;/&gt;
+    );
+}
+
+export default Layout;
 <!-- Just leave this line alone -->
     </code>
 </pre>
@@ -1122,11 +1728,101 @@ export default IndexPage
 
             <p>A <strong>headless CMS (Content Management System)</strong> enables writers and content editors to produce and organise content, whilst providing developers with the structured data that can be displayed using a separate system on the frontend of a website or app.</p>
 
+
             <p>Traditional, monolithic CMS platforms are responsible for both the backend management of content and serving the content to the end user. A headless CMS is decoupled from the frontend, meaning the developers can build great experiences for the end user using the best technologies available. Many traditional CMS platforms such as WordPress and Drupal, now support a "headless" or "decoupled" mode, which is ideal for Gatsby sites. Through the use of <strong>source plugins</strong>, Gatsby has support for many headless CMS options, allowing your content team to continue to use a familiar and/or preferred admin interface.</p>
 
             <p>If your preferred CMS integration with Gatsby is not available, you can open a pull request to add it. Alternatively, you can write your own source plugin.</p>
 
             <a href="https://www.gatsbyjs.com/docs/how-to/sourcing-data/headless-cms/" target="_blank" rel="noopener noreferrer">Content Management Systems (CMS) &amp; Gatsby</a>
+
+            <h2>Setting up a Headless CMS (Sanity)</h2>
+
+            <p>An example of a CMS used in some tutorials is <strong>Sanity</strong>. The CLI for Sanity can be installed using the terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install @sanity/cli -g
+    $ sanity init
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>The <strong>sanity init</strong> command will download all the starter files for you when you first start a project.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ sanity init --reconfigure
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>You will need to create an account with Sanity.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ sanity login
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Just like with NPM (Node Package Manager) or tools such as Heroku, you can login through the terminal using the CLI.</p>
+
+            <a href="https://www.sanity.io/" target="_blank" rel="noopener noreferrer">https://www.sanity.io/</a>
+
+            <p>The data from the CMS (backend) will be pulled into the frontend via Gatsby and the data layer.</p>
+
+            <p>To start the CMS, we can run:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ sanity start
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>This will start up a local development server called <strong>Sanity Studio</strong>. Sanity is the API we interact with and Sanity Studio is the UI to login and create, read, update and/or delete data.</p>
+
+            <p>Gatsby has a plugin for the Sanity CMS named <strong>gatsby-source-sanity</strong>.</p>
 
             <h2>GraphQL & Getting Data</h2>
 
@@ -1178,6 +1874,38 @@ module.exports = {
     },
     plugins: [
         ...
+    ],
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You don't want to place sensitive information into your <strong>gatsby-config.js</strong> file because it gets added to your version control. So don't include passwords or tokens from APIs into this file. Use a <strong>.env</strong> file for this that is added to the root of your project folder.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+SANITY_TOKEN=2t3bjbeibeieh73gbsbjdbsdbsbdbsdbjsdh
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then access this. You'll need to install the dotenv package and import it into the <strong>gatsby-config.js</strong> file.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env' });
+
+module.exports = {
+    siteMetadata: {
+        title: "My First Gatsby Site",
+    },
+    plugins: [
+        resolve: 'gatsby-source-sanity',
+        token: process.env.SANITY_TOKEN,
     ],
 };
 <!-- Just leave this line alone -->
@@ -1579,9 +2307,96 @@ export default BlogPage
     </code>
 </pre>
 
+            <p>You can also use an alias for your queries like so (ignore the use of <strong>dog</strong>, it's an example):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export const query = graphql`
+    query BlogQuery {
+        dog: allFile {
+            nodes {
+                name
+            }
+        }
+    }
+`
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you want to output the data being passed into your component from the GraphQL query in the page, you can do something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+
+const BlogPage = (props) => {
+
+    console.log(props);
+
+    return (
+        &lt;Layout pageTitle="Blog posts"&gt;
+            &lt;p&gt;A few blog post will go here.&lt;/p&gt;
+        &lt;/Layout&gt;
+    )
+}
+
+export const query = graphql`
+    query {
+        allFile {
+            nodes {
+                name
+            }
+        }
+    }
+`
+
+export default BlogPage
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>In the console, this will usually be inside a <strong>data</strong> object.</p>
+
+            <p>You can get specific data if you want by using <strong>dot notation (.)</strong></p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export const query = graphql`
+    query BlogQuery {
+        dog: allFile {
+            nodes {
+                name
+            }
+        }
+    }
+`
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>If you want to output the data being passed into your component from the GraphQL query in the page, you can do something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const BlogPage = (props) => {
+
+    console.log(props.data.dog);
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <p>Your page query needs to be defined outside of the page component, unlike <strong>useStaticQuery</strong>, where the query is defined inside your component.</p>
 
             <p>Add in the <strong>data</strong> prop to the function definition. When your site gets built, Gatsby will run the page query and pass the resulting data into your page component as a prop called <strong>data</strong>.</p>
+
+            <p>Our data is now <strong>destructured</strong>:</p>
 
 <pre>
     <code>
@@ -1591,7 +2406,7 @@ const BlogPage = ({ data }) => {
     </code>
 </pre>
 
-            <p>Use the <strong>data</strong> prop in your page component. You can use the JavaScript <strong>dot operator (.)</strong> to choose fields off of the data prop.</p>
+            <p>Use the <strong>data</strong> prop in your page component. You can use the JavaScript <strong>dot operator (.)</strong> to choose fields off of the <strong>data</strong> prop.</p>
 
             <p>We can now use the JavaScript array <strong>map()</strong> method to iterate over the nodes array and render the filename for each post onto the blog page. In React, when you use the <strong>map()</strong> method to render a list of elements, you should give each element in the list a unique <strong>key</strong> prop. This helps React to keep track of what values have changes and need to then be re-rendered.</p>
 
@@ -1602,7 +2417,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 
-const BlogPage = () => {
+const BlogPage = ({ data }) => {
     return (
         &lt;Layout pageTitle="Blog posts"&gt;
 
@@ -1611,6 +2426,51 @@ const BlogPage = () => {
                     data.allFile.nodes.map(node => (
                         &lt;li key={node.name}&gt;
                             {node.name}
+                        &lt;/li&gt;
+                    ))
+                }
+            &lt;/ul&gt;
+
+        &lt;/Layout&gt;
+    )
+}
+
+export const query = graphql`
+    query {
+        allFile {
+            nodes {
+                name
+            }
+        }
+    }
+`
+
+export default BlogPage
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We may also want to use a variable to make our rendering shorter.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+
+const BlogPage = ({ data }) => {
+
+    const name = node.name;
+
+    return (
+        &lt;Layout pageTitle="Blog posts"&gt;
+
+            &lt;ul&gt;
+                {
+                    data.allFile.nodes.map(node => (
+                        &lt;li key={name}&gt;
+                            {name}
                         &lt;/li&gt;
                     ))
                 }
@@ -1673,6 +2533,125 @@ export default Page
             <p>Now, when you look at your blog page in the browser, you should see a list with the filenames for each of your posts. If you add/remove any of the <strong>.mdx</strong> files in the <strong>blog/</strong> directory, the list with update and the page will re-render.</p>
 
             <p>The Gatsby site won't be able to render contents of the blog posts just yet since the site doesn't know how to process <strong>MDX</strong>.</p>
+
+            <h2>Looping over Data</h2>
+
+            <p>Begin by creating a list component in the <strong>src/components</strong> directory and importing the list component into one of your page components created.</p>
+
+            <p>The page query can be passed down into the List component via props. Imagine this is our page component:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import * as React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+
+const ComponentPage = ({ data }) => {
+
+    return (
+        &lt;List test = {data.test.nodes} /&gt;
+    )
+
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can then go into the List component and destructure the prop. We can use a <strong>map()</strong> function to loop over the data. We use this function to loop over something in React.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const List = ({ test }) => {
+
+    return (
+
+        &lt;&gt;
+            {test.map((singletest) => (
+                &lt;p&gt;{singletest.name}&lt;/p&gt;
+            ))}
+        &lt;/&gt;
+
+    )
+
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We could also use a seperate function (component) to render out the data.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+
+const SingleItem = ({ singletest }) => {
+    return &lt;p&gt;{singletest.name}&lt;/p&gt;;
+}
+
+const List = ({ test }) => {
+
+    return (
+
+        &lt;&gt;
+            {test.map((singletest) => (
+                &lt;SingleItem test={test} /&gt;
+            ))}
+        &lt;/&gt;
+
+    )
+
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>When looping through the data, each child in the list should have a <strong>key</strong> prop. This helps React to know which item to re-render if needed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;&gt;
+    {test.map((singletest) => (
+        &lt;p&gt;key={singletest.id} {singletest.name}&lt;/p&gt;
+    ))}
+&lt;/&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!-- Learning Gatsby Queries (Wesbos) -->
+
+            <h2>Creating Dynamic Pages</h2>
+            <!-- Dynamically creating pages with gatsby-node (Wesbos) -->
+
+            <p>If we have a site in Gastby that has a potential for multiple pages, we don't want to have to create each page manually, we want to dynamically generate pages based on the URL (slug) and show the content of what item has been selected on a new page.</p>
+
+            <p>We can do this using the <strong>gatsby-node.js</strong> file. This file will be in the root of your project folder.</p>
+
+            <p>We will be using the <strong>createPages</strong> hook (extension point) from the Gastby API.</p>
+
+            <p>Open the <strong>gatsby-node.js</strong> file and create a function.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export async function createPages(params) {
+    console.log('CREATING PAGES');
+    console.log('CREATING PAGES');
+    console.log('CREATING PAGES');
+    console.log('CREATING PAGES');
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>You may need to restart your development server to get this to run. You will see the console output in the terminal if this is working.</p>
+
+            <a href="https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/" target="_blank" rel="noopener noreferrer">https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/</a>
+
+            <p>As we are building templates for the dynamic pages, we may want to place the templates in a directory named <strong>src/templates</strong> inside the project folder. Template files should start with an uppercase letter, for example <strong>Bookings.js</strong>.</p>
 
             <h2>Build (Production)</h2>
 
