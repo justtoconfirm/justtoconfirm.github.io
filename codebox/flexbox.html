@@ -864,6 +864,63 @@
 
             <p>You may want to add <strong>gap</strong> spacing using <strong>em</strong> or <strong>rem</strong> units instead of <strong>px</strong>.</p>
 
+            <h2>Building a Navigation bar</h2>
+
+            <p>We can use Flexbox to build a navigation bar for a website.</p>
+
+            <p>Often, the navigation is placed inside of the HTML5 <strong>&lt;header&gt;</strong> element and within a <strong>&lt;nav&gt;</strong> element.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<header>
+    &lt;a href="/"&gt;
+        &lt;img src="logo.svg" height="50" width="100" alt=""&gt;
+    &lt;/a&gt;
+
+    &lt;nav role="navigation"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/blog.html"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Or CSS will look something like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We first apply flex using the display property, then we add space between the elements inside the <strong>&lt;header&gt;</strong> (the <strong>&lt;a&gt;</strong> and the <strong>&lt;nav&gt;</strong> elements), so that they are positioned at either end of the row, finally we align the elements vertically-centered using the align-items property.</p>
+
+            <p>On the unordered list containing our navigation links, we can use this CSS:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 4rem;
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
             <!--
             <p>The <strong>CSS Flexible Box Layout</strong>, or <strong>Flexbox</strong> as it's known, was introduced in 2009 and is a CSS3 web layout model that allows responsive elements within a container to be automatically arraged depending upon screen size.</p>
 
