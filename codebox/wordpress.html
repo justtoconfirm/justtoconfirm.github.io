@@ -124,6 +124,14 @@ module.exports = {
 
             <p>When doing this with SSL previosly, errors were being shown in the terminal so SSL is not in use on this guide currently.</p>
 
+            <h2>Advanced Custom Fields (ACF)</h2>
+
+            <p><strong>Advanced Custom Fields (ACF)</strong> is a WordPress plugin that allows you to add extra content fields to your WordPress edit screens in the dashboard. These extra fields are called <strong>Custom Field</strong>.</p>
+
+            <p>This plugin does not come pre-installed with WordPress, so you will need to import the plugin before it can be used. Search and Install the <strong>Advanced Custom Fields</strong> plugin from the plugins page.</p>
+
+            <p>Once installed, activate the plugin and you will see a <strong>Custom Fields</strong> option added to the sidebar in the admin dashboard.</p>
+
             <h2>Getting WordPress Posts</h2>
             <!-- https://css-tricks.com/using-new-gatsby-source-wordpress-plugin/ -->
 
@@ -211,6 +219,136 @@ query {
     }
 }
 `
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <h2>Creating pages for each post</h2>
+
+            <p>Gatsby uses the <strong>gatsby-node.js</strong> file, located in the root of our project, to dynamically generate blog posts. Create a <strong>gatsby-node.js</strong> file in the root of your project folder (if one is not already created).</p>
+
+            <p>Open this file and add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+const path = require(`path`)
+
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions
+
+    return graphql(`
+        {
+            allWpPost(sort: { fields: [date] }) {
+                nodes {
+                    title
+                    excerpt
+                    content
+                    slug
+                }
+            }
+        }
+   `).then(result => {
+        result.data.allWpPost.nodes.forEach(node => {
+            createPage({
+                path: node.slug,
+                component: path.resolve(`./src/templates/blog-post.js`),
+                context: {
+                    // This is the $slug variable passed to blog-post.js
+                    slug: node.slug,
+                },
+            })
+        })
+   })
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>The development server used by Gatsby will need to be restarted.</p>
+
+            <p>Gatsby required templates to build these dynamic pages. In the <strong>src/templates</strong> folder, create a <strong>blog-post.js</strong> file with the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const BlogPost = ({ data }) => {
+    const post = data.allWpPost.nodes[0]
+
+    return (
+        &lt;Layout&gt;
+            &lt;&gt;
+                &lt;h1&gt;{post.title}&lt;/h1&gt;
+                &lt;div dangerouslySetInnerHTML={{ __html: post.content }} /&gt;
+            &lt;/&gt;
+        &lt;/Layout&gt;
+    )
+}
+export const query = graphql`
+    query($slug: String!) {
+        allWpPost(filter: { slug: { eq: $slug } }) {
+            nodes {
+                title
+                content
+            }
+        }
+    }
+`
+
+export default BlogPost
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Restart the Gatsby development server.</p>
+
+            <p>Now if you edit the URL in the address bar, you can navigate to the blog post <a href="http://hostname:8888/hello-world" target="_blank" rel="noopener noreferrer">https://hostname:8888/hello-world</a></p>
+
+            <p>Next, to link our main blog page (the page that lists all our recent posts), to allow the user to open the dynamic blog post, we can update our <strong>blog.js</strong> page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+// src/pages/blog.js
+
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const BlogPage = ({ data }) => {
+
+    return (
+        &lt;Layout pageTitle="Blog"&gt;
+            {data.allWpPost.nodes.map(node => (
+                &lt;div key={node.slug}&gt;
+                    &lt;Link to={node.slug}&gt;
+                        &lt;h2&gt;{node.title}&lt;/h2&gt;
+                    &lt;/Link&gt;
+              
+                    &lt;div dangerouslySetInnerHTML={{ __html: node.excerpt }} /&gt;
+                &lt;/div&gt;
+            ))}
+        &lt;/Layout&gt;
+    )
+}
+
+export const pageQuery = graphql`
+query {
+    allWpPost(sort: { fields: [date] }) {
+        nodes {
+            title
+            excerpt
+            slug
+        }
+    }
+}
+`
+
+export default BlogPage
 <!-- Just leave this line alone -->
     </code>
 </pre>
