@@ -219,10 +219,13 @@ query {
     }
 }
 `
+
+export default BlogPage
 <!-- Just leave this line alone -->
     </code>
 </pre>
 
+            <!--
             <h2>Creating pages for each post</h2>
 
             <p>Gatsby uses the <strong>gatsby-node.js</strong> file, located in the root of our project, to dynamically generate blog posts. Create a <strong>gatsby-node.js</strong> file in the root of your project folder (if one is not already created).</p>
@@ -230,9 +233,9 @@ query {
             <p>Open this file and add the following code:</p>
 
 <pre>
-    <code>
+    <code>-->
 <!-- Just leave this line alone -->
-const path = require(`path`)
+<!--const path = require(`path`)
 
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions
@@ -260,9 +263,9 @@ exports.createPages = ({ graphql, actions }) => {
             })
         })
    })
-}
+}-->
 <!-- Just leave this line alone -->
-    </code>
+    <!--</code>
 </pre>
 
             <p>The development server used by Gatsby will need to be restarted.</p>
@@ -270,9 +273,9 @@ exports.createPages = ({ graphql, actions }) => {
             <p>Gatsby required templates to build these dynamic pages. In the <strong>src/templates</strong> folder, create a <strong>blog-post.js</strong> file with the following code:</p>
 
 <pre>
-    <code>
+    <code>-->
 <!-- Just leave this line alone -->
-import React from 'react'
+<!--import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 
@@ -299,9 +302,9 @@ export const query = graphql`
     }
 `
 
-export default BlogPost
+export default BlogPost-->
 <!-- Just leave this line alone -->
-    </code>
+    <!--</code>
 </pre>
 
             <p>Restart the Gatsby development server.</p>
@@ -311,9 +314,9 @@ export default BlogPost
             <p>Next, to link our main blog page (the page that lists all our recent posts), to allow the user to open the dynamic blog post, we can update our <strong>blog.js</strong> page.</p>
 
 <pre>
-    <code>
+    <code>-->
 <!-- Just leave this line alone -->
-// src/pages/blog.js
+<!--// src/pages/blog.js
 
 import React from 'react'
 import { Link, graphql } from 'gatsby'
@@ -348,10 +351,10 @@ query {
 }
 `
 
-export default BlogPage
+export default BlogPage-->
 <!-- Just leave this line alone -->
-    </code>
-</pre>
+    <!--</code>
+</pre>-->
 
 		</div>
 	</div>
