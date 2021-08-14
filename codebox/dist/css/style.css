@@ -102,6 +102,94 @@ section {
   padding: 0 1rem;
 }
 
+pre {
+  background-color: #333;
+  border-radius: 4px;
+  color: #b3b9c5;
+  overflow: scroll;
+  padding-left: 20px;
+}
+
+code {
+  font-size: 14px;
+  font-size: 1.4rem;
+}
+
+.terminal {
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  margin: 25px 0;
+}
+
+.terminal--shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.terminal__top {
+  background: #e8e6e8;
+  color: #000;
+  font-size: 14px;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+}
+
+.terminal__buttons {
+  position: absolute;
+  top: 7px;
+  left: 5px;
+}
+
+.terminal__circle {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 15px;
+  margin-left: 2px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.terminal__circle--red {
+  background-color: #ec6a5f;
+  border-color: #d04e42;
+}
+
+.terminal__circle--green {
+  background-color: #64cc57;
+  border-color: #4ea73b;
+}
+
+.terminal__circle--yellow {
+  background-color: #f5c04f;
+  border-color: #d6a13d;
+}
+
+.terminal__circle--clear {
+  clear: both;
+}
+
+.terminal__title {
+  text-align: center;
+}
+
+.terminal__body {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #000;
+  color: #64cc57;
+  font-size: 14px;
+  font-size: 1.4rem;
+  padding: 8px;
+  overflow: auto;
+}
+
+.terminal__body--error {
+  background-color: #800000;
+  color: #ff0033;
+}
+
 .fui-btn {
   cursor: pointer;
   display: inline-block;
