@@ -1,3 +1,11 @@
+@font-face {
+  font-display: fallback;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Nunito Regular"), local("Nunito-Regular"), url("../../fonts/nunito-v9-latin-regular.woff2") format("woff2"), url("../../fonts/nunito-v9-latin-regular.woff") format("woff"), url("../../fonts/nunito-v9-latin-regular.ttf") format("truetype"), url("../../fonts/nunito-v9-latin-regular.eot"), url("../../fonts/nunito-v9-latin-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/nunito-v9-latin-regular.svg#Nunito") format("svg");
+  /* Legacy iOS */
+}
 html {
   box-sizing: border-box;
   position: relative;
@@ -19,6 +27,7 @@ html {
 body {
   font-size: 16px;
   font-size: 1.6rem;
+  font-family: "Nunito", Helvetica Neue, Helvetica, Arial, sans-serif;
   background-color: #fff;
   color: #2b2d2f;
   -webkit-font-smoothing: antialiased;
