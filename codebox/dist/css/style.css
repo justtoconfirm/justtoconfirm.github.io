@@ -21,6 +21,7 @@ body {
   font-size: 1.6rem;
   background-color: #fff;
   color: #2b2d2f;
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
 }
