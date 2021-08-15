@@ -62,22 +62,17 @@ section {
   padding-block: min(20vh, 2rem);
 }
 
-/*
-pre code {
-	display: block;
-	color: $pre-color;
-	background-color: $pre-bg;
-	border-radius: 4px;
-	white-space: pre;
-	overflow: auto;
-	max-width: 100%;
-	tab-size: 0;
-	font-size: 1.4rem;
-	margin: 2rem 0;
-	padding: 2rem;
-	font-family: monospace;
+footer {
+  padding: 2rem 0;
 }
-*/
+
+.fui-heading--underline::after {
+  display: block;
+  max-width: 40px;
+  border: 1px solid #e37222;
+  content: "";
+}
+
 .fui-grid-container {
   margin: 0 auto;
 }
@@ -173,6 +168,11 @@ pre code {
   width: 100%;
 }
 
+a {
+  color: #e37222;
+  font-weight: bold;
+}
+
 pre {
   display: block;
   background-color: #333;
@@ -188,6 +188,16 @@ pre {
 code {
   font-size: 14px;
   font-size: 1.4rem;
+}
+
+.token-property {
+  color: #f5d67b;
+}
+.token-value {
+  color: #83ba52;
+}
+.token-class {
+  color: #e37222;
 }
 
 .terminal {
@@ -242,11 +252,11 @@ code {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  background-color: #000;
-  color: #fff;
+  background-color: #333;
+  color: #b3b9c5;
   font-size: 14px;
   font-size: 1.4rem;
-  padding: 2rem 0 1rem 1rem;
+  padding: 2.5rem 0 1rem 0;
   overflow: auto;
 }
 

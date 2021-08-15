@@ -1,8 +1,10 @@
+@use './color' as *;
+
 pre {
 	display: block;
-    background-color: #333;
+    background-color: $grey;
     border-radius: 4px;
-    color: #b3b9c5;
+    color: $grey-light;
     overflow: auto;
     padding: 2rem;
     max-width: 100%;
@@ -13,4 +15,18 @@ pre {
 code {
     font-size: 14px;
     font-size: 1.4rem;
+}
+
+.token {
+    &-property {
+        color: $orange;
+    }
+
+    &-value {
+        color: $green;
+    }
+
+    &-class {
+        color: $yellow;
+    }
 }

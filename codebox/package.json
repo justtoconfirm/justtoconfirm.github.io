@@ -13,6 +13,6 @@
     "sass": "^1.37.5"
   },
   "dependencies": {
-    "@frontend-ui/fed-ui": "^0.3.8"
+    "@frontend-ui/fed-ui": "^0.3.11"
   }
 }
