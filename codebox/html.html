@@ -17,34 +17,153 @@
             scroll-behavior: smooth;
         }
 
+        header {
+            padding: 3rem 2rem;
+            position: fixed;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+            z-index: 3;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lead {
+            font-size: 1.8rem;
+        }
+
+        .nav-list {
+            display: inline-flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            list-style-type: none;
+        }
+
         .btn-scroll {
             border: none;
             border-radius: 50%;
-            height: 50px;
-            line-height: 50px;
             width: 50px;
+            height: 50px;
             cursor: pointer;
-
+            font-size: 2.5rem;
+            display: inline-block;
+            align-items: center;
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 1;
             opacity: 0;
             transform: translateY(100px);
-            transition: all .5s ease;;
+            transition: all .5s ease;
+            background-color: #e37222;
+            color: #fff;
         }
 
         .btn-scroll--visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        #headingOne {
+            margin-top: 14rem;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: #333;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-list {
+                display: none;
+            }
+        }
+
+        .menu {
+            z-index: 2;
+            position: fixed;
+            transition: 0.5s;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        footer {
+            color: #b3b9c5;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            background-color: #333;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html">Home</a>
+    <nav>
+        <a href="index.html">Codebox</a>
+
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="/">HTML</a></li>
+            <li class="nav-item">
+                <a href="/">CSS</a></li>
+            <li class="nav-item">
+                <a href="/">JavaScript</a>
+            </li>
+            <li class="nav-item">
+                <a href="/">React</a>
+            </li>
+        </ul>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
 </header>
+
+<div class="menu">
+    <p>Menu</p>
+</div>
 
 <main role="main">
 
@@ -54,7 +173,7 @@
 
                 <h1 id="headingOne" class="fui-heading fui-heading--underline">Rebuild</h1>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis.</p>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis.</p>
 
                 <section>
                     <h2 id="headingTwo" class="fui-heading fui-heading--underline">Sub heading</h2>
@@ -141,6 +260,27 @@ scrollToTopBtn.addEventListener("click", scrollToTop);
 let observer = new IntersectionObserver(callback);
 
 observer.observe(target);
+</script>
+
+<script>
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".menu");
+
+hamburger.addEventListener("click", mobileMenu);
+
+function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+}
+
+const navLink = document.querySelectorAll(".nav-link");
+
+navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+function closeMenu() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+}
 </script>
 
 </body>
