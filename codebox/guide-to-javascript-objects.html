@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+
+	<title>Codebox | Guide to JavaScript Objects</title>
+
+</head>
+<body>
+
+	<main role="main">
+
+		<h1>JavaScript Objects</h1>
+
+		<p>Objects in JavaScript are used to group together variables and functions to act as a container for data values. The values are written as <strong>name:value</strong> pairs. The <strong>name:value</strong> pairs in a JavaScript object are called <strong>properties</strong>.</p>
+
+		<ul>
+			<li>A <strong>variable</strong> is referred to as a <strong>property</strong> when in an object.</li>
+			<li>A <strong>function</strong> is referred to as a <strong>method</strong> when in an object.</li>
+		</ul>
+
+		<p>It is common practice to <strong>declare</strong> (create) an object using the <strong>const</strong> keyword. Here we are creating an empty object called <strong>hotel</strong>. This is known as an <strong>object literal</strong> (also known as <strong>literal notation</strong>). This is often the easiest way to create objects in JavaScript.</p>
+
+		<pre>
+			<code>
+const hotel = {}
+			</code>
+		</pre>
+
+		<p>We can now add <strong>properties</strong> to this object. Properties tell us about the object. All hotel objects will have the same properties, but the property values will differ from hotel to hotel.</p>
+
+		<pre>
+			<code>
+const hotel = {
+	name: "Quay",
+	rooms: 150,
+	booked: 90,
+	gym: true,
+	pool: true,
+	roomType: ["Twin", "Double", "Suite"]
+}
+			</code>
+		</pre>
+
+		<p>We can output the values of the properties within the object using <strong>dot notation</strong> like so:</p>
+
+		<pre>
+			<code>
+objectName.propertyName
+			</code>
+		</pre>
+
+		<p>As an example, we can use dot notation to output the name of the hotel.</p>
+
+		<pre>
+			<code>
+hotel.name
+			</code>
+		</pre>
+
+		<p>Our hotel object can be updated to add a method to display the number of rooms available in the hotel.</p>
+
+		<pre>
+			<code>
+const hotel = {
+	name: "Quay",
+	rooms: 150,
+	booked: 90,
+	gym: true,
+	pool: true,
+	roomType: ["Twin", "Double", "Suite"],
+
+	checkRoomAvailability() {
+		return this.rooms - this.booked;
+	}
+}
+			</code>
+		</pre>
+
+		<p>To call the method, refence the object and then the name of the method itself.</p>
+
+		<pre>
+			<code>
+hotel.checkRoomAvailability()
+			</code>
+		</pre>
+
+		<p>The <strong>this</strong> keyword is used to indicate that the <strong>rooms</strong> and <strong>booked</strong> properties of this object are being used.</p>
+
+	</main>
+
+</body>
+</html>
