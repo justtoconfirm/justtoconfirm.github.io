@@ -4,7 +4,7 @@
   "description": "",
   "main": "sw.js",
   "scripts": {
-    "compile": "sass src/scss/index.scss dist/css/style.css"
+    "compile": "sass src/scss/main.scss dist/css/main.css"
   },
   "keywords": [],
   "author": "",

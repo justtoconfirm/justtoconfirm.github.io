@@ -1,0 +1,113 @@
+@font-face {
+  font-display: fallback;
+  font-family: "DarkerGrotesque";
+  font-style: normal;
+  font-weight: 400;
+  src: local("DarkerGrotesque Regular"), local("DarkerGrotesque-Regular"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2") format("woff2"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff") format("woff"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.ttf") format("truetype"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.eot"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.svg#DarkerGrotesque") format("svg");
+}
+html {
+  box-sizing: border-box;
+  position: relative;
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-family: "DarkerGrotesque", Helvetica Neue, Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 3rem 2rem;
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+h1, h2, h3, h4, h5, h6,
+p {
+  margin-top: 1.2rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  padding: 1.6rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  display: block;
+  min-height: 100vh;
+  padding-top: 10rem;
+}
+
+section {
+  padding-block: min(20vh, 2rem);
+}
+
+.container {
+  margin: 0 auto;
+}
+@media screen and (min-width: 800px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  gap: 1rem;
+}
+.row--fluid {
+  max-width: unset;
+}
+.row--fluid-full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.column {
+  flex-basis: 100%;
+}
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

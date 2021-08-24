@@ -6,107 +6,123 @@
 	<meta name="description" content="">
 
 	<title>Codebox | Introduction to WordPress</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 
+	<header role="banner">
+		<!-- Header -->
+	</header>
+
 	<main role="main">
 
-		<h1>Introduction to WordPress</h1>
+		<div class="container">
+			<div class="row">
+				<div class="column">
 
-		<p>WordPress (WP) is an open-source Content Management System (CMS) written in PHP and using a MySQL or MariaDB database.</p>
+					<h1>Introduction to WordPress</h1>
 
-		<section>
-			<h2>How to setup WordPress</h2>
+					<p>WordPress (WP) is an open-source Content Management System (CMS) written in PHP and using a MySQL or MariaDB database.</p>
 
-			<p>WordPress can be downloaded from the <a href="https://en-gb.wordpress.org/download/" target="_blank" rel="noopener noreferrer">WordPress.org</a> website.</p>
+					<section>
+						<h2>How to setup WordPress</h2>
 
-			<p>Recommended requirements:</p>
+						<p>WordPress can be downloaded from the <a href="https://en-gb.wordpress.org/download/" target="_blank" rel="noopener noreferrer">WordPress.org</a> website.</p>
 
-			<ul>
-				<li>PHP version 7.4 or greater</li>
-				<li>MySQL version 5.6 / MariaDB version 10.1 or greater</li>
-				<li>Apache or Nginx</li>
-			</ul>
+						<p>Recommended requirements:</p>
 
-			<p>http://localhost:8888/MAMP/</p>
+						<ul>
+							<li>PHP version 7.4 or greater</li>
+							<li>MySQL version 5.6 / MariaDB version 10.1 or greater</li>
+							<li>Apache or Nginx</li>
+						</ul>
 
-			<p>The WordPress setup page should now be displayed. The host in this example is named test.local and so our URL to view the WordPress setup is: <a href="https://test.local:8890/wp-admin/setup-config.php">https://test.local:8890/wp-admin/setup-config.php</a>.</p>
+						<p>http://localhost:8888/MAMP/</p>
 
-			<p>The setup process will generate the wp-config.php file to connect to our database. The database credentials may be provided by your Web Host, but for local development we will create test credentials. Click the Let's go! button to continue.<p>
+						<p>The WordPress setup page should now be displayed. The host in this example is named test.local and so our URL to view the WordPress setup is: <a href="https://test.local:8890/wp-admin/setup-config.php">https://test.local:8890/wp-admin/setup-config.php</a>.</p>
 
-			<p>At this stage we will want to create a database to store our WordPress data. If your web server has phpMyAdmin installed, you can create the local database here:</p>
+						<p>The setup process will generate the wp-config.php file to connect to our database. The database credentials may be provided by your Web Host, but for local development we will create test credentials. Click the Let's go! button to continue.<p>
 
-			<ul>
-				<li><a href="http://localhost:8888/phpMyAdmin5/" target="_blank" rel="noopener noreferrer">http://localhost:8888/phpMyAdmin5/</a></li>
-			</ul>
+						<p>At this stage we will want to create a database to store our WordPress data. If your web server has phpMyAdmin installed, you can create the local database here:</p>
 
-			<p>Set the language and encoding to be: utf8mb4_general_ci</p>
+						<ul>
+							<li><a href="http://localhost:8888/phpMyAdmin5/" target="_blank" rel="noopener noreferrer">http://localhost:8888/phpMyAdmin5/</a></li>
+						</ul>
 
-			<p>https://wordpress.org/support/article/creating-database-for-wordpress/</p>
+						<p>Set the language and encoding to be: utf8mb4_general_ci</p>
 
-			<p>For simplicity we will keep the default credentials (these need to match the database credentials used in phpMyAdmin) and click the Submit button. We can look to change these credentials in the wp-config.php file once it's been generated.</p>
+						<p>https://wordpress.org/support/article/creating-database-for-wordpress/</p>
 
-			<p>If successful, click the 'Run the installation' button to begin the installation.</p>
+						<p>For simplicity we will keep the default credentials (these need to match the database credentials used in phpMyAdmin) and click the Submit button. We can look to change these credentials in the wp-config.php file once it's been generated.</p>
 
-			<p>Next, we setup our login credentials to login to the WordPress admin. Click the Install WordPress button when ready.</p>
+						<p>If successful, click the 'Run the installation' button to begin the installation.</p>
 
-			<p>Your WordPress install should now be complete. Login to the dashboard using your username and password.</p>
-		</section>
+						<p>Next, we setup our login credentials to login to the WordPress admin. Click the Install WordPress button when ready.</p>
 
-		<section>
-			<h2>Themes</h2>
+						<p>Your WordPress install should now be complete. Login to the dashboard using your username and password.</p>
+					</section>
 
-			<p>The latest WordPress version (5.8, September 2021) comes installed with the Twenty Twenty-One theme by default. This theme can be changed if required.</p>
+					<section>
+						<h2>Themes</h2>
 
-			<ul>
-				<li><a href="https://en-gb.wordpress.org/themes/" target="_blank" rel="noopener noreferrer">WordPress Themes documentation</a></li>
-			</ul>
+						<p>The latest WordPress version (5.8, September 2021) comes installed with the Twenty Twenty-One theme by default. This theme can be changed if required.</p>
 
-			<p>To view the current theme installed:</p>
+						<ul>
+							<li><a href="https://en-gb.wordpress.org/themes/" target="_blank" rel="noopener noreferrer">WordPress Themes documentation</a></li>
+						</ul>
 
-			<ul>
-				<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-				<li>Select Appearance and Themes.</li>
-			</ul>
-		</section>
+						<p>To view the current theme installed:</p>
 
-		<section>
-			<h2>Advanced Custom Fields (ACF)</h2>
+						<ul>
+							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
+							<li>Select Appearance and Themes.</li>
+						</ul>
+					</section>
 
-			<p>Advanced Custom Fields (ACF) is a WordPress plugin that allows you to add extra content fields, also referred to as Custom Fields, to the WordPress edit screens in the dashboard.</p>
+					<section>
+						<h2>Advanced Custom Fields (ACF)</h2>
 
-			<ul>
-				<li><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF) documentation</a>
-			</ul>
+						<p>Advanced Custom Fields (ACF) is a WordPress plugin that allows you to add extra content fields, also referred to as Custom Fields, to the WordPress edit screens in the dashboard.</p>
 
-			<p>The Advanced Custom Fields plugin does not come pre-installed with WordPress so needs to be installed as a plugin to be applied.</p>
+						<ul>
+							<li><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF) documentation</a>
+						</ul>
 
-			<h3>Installation</h3>
+						<p>The Advanced Custom Fields plugin does not come pre-installed with WordPress so needs to be installed as a plugin to be applied.</p>
 
-			<ul>
-				<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-				<li>Select Plugins and Add New.</li>
-				<li>Search for Advanced Custom Fields within the Add Plugins page.</li>
-				<li>Click the Install Now button to install the plugin.</li>
-				<li>Click the Activate button.</li>
-				<li>The Custom Fields menu option will now appear in the side bar.</li>
-			</ul>
+						<h3>Installation</h3>
 
-			<p>Once installed, the plugin code can be located from within the wp-content/plugins directory of your WordPress installation. This is where WordPress stores plugins. It is possible to install plugins manually by extracting and copying them into this directory. Doing so will make them available for activation in the WordPress dashboard.</p>
+						<ul>
+							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
+							<li>Select Plugins and Add New.</li>
+							<li>Search for Advanced Custom Fields within the Add Plugins page.</li>
+							<li>Click the Install Now button to install the plugin.</li>
+							<li>Click the Activate button.</li>
+							<li>The Custom Fields menu option will now appear in the side bar.</li>
+						</ul>
 
-			<h3>Create a Custom Field</h3>
+						<p>Once installed, the plugin code can be located from within the wp-content/plugins directory of your WordPress installation. This is where WordPress stores plugins. It is possible to install plugins manually by extracting and copying them into this directory. Doing so will make them available for activation in the WordPress dashboard.</p>
 
-			<ul>
-				<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-				<li>Select Custom Fields and Add New.</li>
-				<li>Add a title.</li>
-				<li>Add a Field.</li>
-				<li>Select the Rule, so we could set this to a specific page or post. As all our pages use the Default Template, we will set it to be available for all pages that use the Default Template.</li>
-				<li>Click Publish and Update.</li>
-			</ul>
+						<h3>Create a Custom Field</h3>
 
-			<p>Now any page using the Default Template will display the custom field when you edit the page from within the dashboard.</p>
-		</section>
+						<ul>
+							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
+							<li>Select Custom Fields and Add New.</li>
+							<li>Add a title.</li>
+							<li>Add a Field.</li>
+							<li>Select the Rule, so we could set this to a specific page or post. As all our pages use the Default Template, we will set it to be available for all pages that use the Default Template.</li>
+							<li>Click Publish and Update.</li>
+						</ul>
+
+						<p>Now any page using the Default Template will display the custom field when you edit the page from within the dashboard.</p>
+					</section>
+				
+				</div><!-- / column -->
+			</div><!-- / row -->
+		</div><!-- / container -->
 
 	</main>
 
