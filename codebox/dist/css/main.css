@@ -34,7 +34,10 @@ body {
 }
 
 header {
-  padding: 3rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
   position: fixed;
   width: 100%;
   background-color: #fff;
@@ -59,6 +62,14 @@ ul {
   padding: 1.6rem;
 }
 
+.nav-list {
+  display: inline-flex;
+  gap: 2rem;
+}
+.nav-list__item {
+  list-style-type: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -67,7 +78,7 @@ img {
 main {
   display: block;
   min-height: 100vh;
-  padding-top: 10rem;
+  padding-top: 15rem;
 }
 
 section {
