@@ -38,96 +38,334 @@
 					<section>
 						<h2>How to setup WordPress</h2>
 
-						<p>WordPress can be downloaded from the <a href="https://en-gb.wordpress.org/download/" target="_blank" rel="noopener noreferrer">WordPress.org</a> website.</p>
+						<p>WordPress can be downloaded from the <a href="https://en-gb.wordpress.org/download/" target="_blank" rel="noopener noreferrer">WordPress.org</a> website. The latest version of WordPress is version <strong>5.8</strong>.</p>
+
+						<p>It is always recommended to never edit the core code of WordPress. Outside of configuring WordPress, almost everything you do in WordPress will be in the <strong>wp-content</strong> folder.</p>
 
 						<p>Recommended requirements:</p>
 
 						<ul>
-							<li>PHP version 7.4 or greater</li>
-							<li>MySQL version 5.6 / MariaDB version 10.1 or greater</li>
-							<li>Apache or Nginx</li>
+							<li><strong>Apache</strong> or <strong>Nginx</strong> server</li>
+							<li><strong>PHP</strong> version <strong>7.4</strong> or greater</li>
+							<li><strong>MySQL</strong> version <strong>5.6</strong> or <strong>MariaDB</strong> version <strong>10.1</strong> or greater.</li>
 						</ul>
 
-						<p>http://localhost:8888/MAMP/</p>
-
-						<p>The WordPress setup page should now be displayed. The host in this example is named test.local and so our URL to view the WordPress setup is: <a href="https://test.local:8890/wp-admin/setup-config.php">https://test.local:8890/wp-admin/setup-config.php</a>.</p>
-
-						<p>The setup process will generate the wp-config.php file to connect to our database. The database credentials may be provided by your Web Host, but for local development we will create test credentials. Click the Let's go! button to continue.<p>
-
-						<p>At this stage we will want to create a database to store our WordPress data. If your web server has phpMyAdmin installed, you can create the local database here:</p>
+						<p>To setup the Apache or Nginx webserver locally, install one of these recommended tools:</p>
 
 						<ul>
-							<li><a href="http://localhost:8888/phpMyAdmin5/" target="_blank" rel="noopener noreferrer">http://localhost:8888/phpMyAdmin5/</a></li>
+							<li><a href="https://www.mamp.info/en/mamp-pro/mac/" target="_blank" rel="noopener noreferrer">MAMP PRO (Mac)</a></li>
+							<li><a href="https://www.mamp.info/en/mamp-pro/windows/" target="_blank" rel="noopener noreferrer">MAMP PRO (Windows)</a></li>
+							<li><a href="https://www.wampserver.com/en/" target="_blank" rel="noopener noreferrer">WampServer</a></li>
+							<li><a href="https://www.apachefriends.org/index.html" target="_blank" rel="noopener noreferrer">XAMPP</a></li>
 						</ul>
 
-						<p>Set the language and encoding to be: utf8mb4_general_ci</p>
+						<p>Start the webserver and if successful the default page will show. In MAMP this will be: <a href="http://localhost:8888/MAMP/" target="_blank" rel="noopener noreferrer">http://localhost:8888/MAMP/</a>.</p>
 
-						<p>https://wordpress.org/support/article/creating-database-for-wordpress/</p>
+						<p>You may want to setup a host in your webserver for each WordPress project. In our example, we created a host named <strong>test.local</strong>. This host is connected to the location of the downloaded WordPress files.</p>
 
-						<p>For simplicity we will keep the default credentials (these need to match the database credentials used in phpMyAdmin) and click the Submit button. We can look to change these credentials in the wp-config.php file once it's been generated.</p>
+						<img src="img/wp-localhost.png">
 
-						<p>If successful, click the 'Run the installation' button to begin the installation.</p>
+						<p>The WordPress setup page can be viewed on our localhost using the URL of <a href="https://test.local:8890/wp-admin/setup-config.php">https://test.local:8890/wp-admin/setup-config.php</a>.</p>
 
-						<p>Next, we setup our login credentials to login to the WordPress admin. Click the Install WordPress button when ready.</p>
+						<p>This setup process will generate the <strong>wp-config.php</strong> file.</p>
 
-						<p>Your WordPress install should now be complete. Login to the dashboard using your username and password.</p>
+						<img src="img/wp-setup-screen.png">
+
+						<p>Click the <strong>Let's go!</strong> button to continue the setup process.</p>
+
+						<h3>Connecting to the Database</h3>
+
+						<p>The <strong>wp-config.php</strong> file is used to connect to the MySQL or MariaDB database used by WordPress. The database credentials are stored in this file. If your WordPress instance is hosted, these database credentials are often provided by your web host.</p>
+
+						<p>If your web server has <strong>phpMyAdmin</strong> installed, you can create your local database here. With the web server running, access phpMyAdmin using the URL of <a href="http://localhost:8888/phpMyAdmin5/" target="_blank" rel="noopener noreferrer">http://localhost:8888/phpMyAdmin5/</a>.</p>
+
+						<p>You can also setup the Database using tools such <a href="https://github.com/Sequel-Ace/Sequel-Ace" target="_blank" rel="noopener noreferrer">Sequel-Ace</a>, if you'd prefer.</p>
+
+						<p>You will need to set the language and encoding to be <strong>utf8mb4_general_ci</strong>.</p>
+
+						<p>Follow <a href="https://wordpress.org/support/article/creating-database-for-wordpress/" target="_blank" rel="noopener noreferrer">these instructions on the WordPress support documentation</a> to setup your database.</p> 
+
+						<p>The Database credentials should be entered into the WordPress setup screen. This will generate the <strong>wp-config.php</strong> file so WordPress can connect to your database. These credentials should match those in <strong>phpMyAdmin</strong>.</p>
+
+						<img src="img/wp-database-credentials.png">
+
+						<p>For simplicity we will keep the default credentials. These will match those credentials in <strong>phpMyAdmin</strong>. We can look to change these credentials in the <strong>wp-config.php</strong> file once the database and WordPress installation has been installed.</p>
+
+						<p>All tables within the database will have the prefix of <strong>wp_</strong> by default, unless something different is specified during the setup process.</p>
+
+						<p>Next, we run the installation.</p>
+
+						<img src="img/wp-run-installation.png">
+
+						<p>If successful, WordPress should now be connected to your database.</p>
+
+						<h3>Install WordPress</h3>
+
+						<p>The final part of the setup is to install WordPress and setup the admin username and password to login to the admin dashboard.</p>
+
+						<img src="img/wp-install.png">
+
+						<p>Fill in the form and then click the <strong>Install WordPress</strong> button to complete the installation process.</p>
+
+						<p>WordPress is now installed and setup. To login to the WordPress admin dashboard, use the URL of your WordPress host, such as: <a href="https://test.local:8890/wp-admin/" target="_blank" rel="noopener noreferrer">https://test.local:8890/wp-admin/</a>, and login with the username and password you provided during the setup process.</p> 
+					</section>
+
+					<section>
+						<h2>Post Types</h2>
+
+						<p>WordPress houses lots of different types of content that are divided into something called <strong>Post Types</strong>. By default WordPress stores all post types in the database under the <strong>wp_posts</strong> table.</p>
+
+						<p><strong>Posts</strong> and <strong>Pages</strong> are just two of the default post types that are included within a WordPress installation. The full list includes:</p>
+
+						<ul>
+							<li>Posts</li>
+							<li>Pages</li>
+							<li>Attachments</li>
+							<li>Revisions</li>
+							<li>Navigation menus</li>
+							<li>Custom CSS</li>
+							<li>Changesets</li>
+						</ul>
+
+						<p>We can also create our own <strong>Custom Post Types (CPT)</strong> if we choose.</p>
+
+						<h3>Custom Post Types (CPT)</h3>
+						<!-- https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/ -->
+
+						<p>Custom Post Types (CPT) transform a WordPres site into a powerful Content Management System (CMS). They allow you to go beyond posts and pages by creating different content types for your website.</p>
+
+						<p>A Custom Post Type can either be created using a plugin, such as <strong>CPT UI</strong>, or manually by writing PHP code.</p>
+
+						<p>To add a Custom Post Type, open the <strong>functions.php</strong> file in the theme and add the following code.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+
+// Our custom post type function
+function create_posttype() {
+ 
+    register_post_type( 'movies',
+    	// Custom post type options
+        array(
+            'labels' => array(
+                'name' => __( 'Movies' ),
+                'singular_name' => __( 'Movie' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'movies'),
+            'show_in_rest' => true,
+ 
+        )
+    );
+
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' ); 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>This example will add a Custom Post Type (CPT) named <strong>Movies</strong>, as an example, to the sidebar in the WordPress admin dashboard.</p>
+
+					</section>
+
+					<section>
+						<h2>Pages</h2>
+
+						<p>A page in WordPress is a default post type that is used to display content such as the Home, About and Contact us pages. You can create as many pages as required. Once a page has been created, it can be added to the site's navigation menu so your users can find it.</p>
+
+						<p>When WordPress is installed, two pages will be created by default:</p>
+
+						<ul>
+							<li>Privacy Policy</li>
+							<li>Sample Page</li>
+						</ul>
+
+						<p>You can add a new page to your WordPress site by opening the WordPress admin dashboard and selecting <strong>Add New</strong> from the <strong>Pages</strong> tab.</p>
+
+						<p>Pages can have four states:</p>
+
+						<ul>
+							<li><strong>Published</strong> - pages that are visible on your site.</li>
+							<li><strong>Draft</strong> - pages that are still being worked on and haven't yet been published.</li>
+							<li><strong>Scheduled</strong> - pages that have a set time to be published.</li>
+							<li><strong>Trash</strong> - pages that have been deleted.</li>
+						</ul>
 					</section>
 
 					<section>
 						<h2>Themes</h2>
 
-						<p>The latest WordPress version (5.8, September 2021) comes installed with the Twenty Twenty-One theme by default. This theme can be changed if required.</p>
+						<p>WordPress sites can be styled using themes. We have the option to install a theme or we can choose to create our own custom theme if we choose. A list of themes available to install can be found on the WordPress.org website at: <a href="https://en-gb.wordpress.org/themes/" target="_blank" rel="noopener noreferrer">https://en-gb.wordpress.org/themes/</a></p>
 
-						<ul>
-							<li><a href="https://en-gb.wordpress.org/themes/" target="_blank" rel="noopener noreferrer">WordPress Themes documentation</a></li>
-						</ul>
+						<p>The appearance of all the pages and posts that are created on a WordPress website is handled by a template file named <strong>page.php</strong> in your theme.</p>
 
-						<p>To view the current theme installed:</p>
+						<p>To view the templates from within the WordPress admin dashboard, open the <strong>Appearance/Themes</strong> section from the sidebar.</p>
 
-						<ul>
-							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-							<li>Select Appearance and Themes.</li>
-						</ul>
+						<img src="img/wp-appearance-themes.png">
+
+						<p>You will find any installed themes inside the <strong>wp-content/themes/</strong> directory of your WordPress installtion.</p>
+
+						<p>The current version of WordPress, version <strong>5.8</strong> comes installed with the <strong>Twenty Twenty-One</strong> theme by default. This can be changed. You may also see a number of other themes pre-installed that can be used if you choose.</p>
+
+						<p>Templates may contain a <strong>functions.php</strong> file in their directory. This is known as a theme functions file and it acts like a plugin for your WordPress site that's automatically activated with your current theme.</p>
+
+						<h3>Creating a custom theme</h3>
+
+						<p>Within the <strong>wp-content/themes</strong> directory, create an empty folder. This will contain the code for your custom theme. For this example, the folder will be named <strong>mytheme</strong>.</p>
+
+						<p>A WordPress theme needs two files to exist - <strong>style.css</strong> and <strong>index.php</strong>. In your custom theme folder, create <strong>style.css</strong> and add a code comment that will alert WordPress that a theme exists. Update the comment details for your own theme.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+/*
+	Theme Name: mytheme
+	Author: Justtoconfirm
+	Description: A custom theme as a demonstration for WordPress
+	Version: 0.0.1
+	Tags: mytheme
+*/     
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Next, create a simple file and save as <strong>index.php</strong> inside the folder containing your custom theme. Even without any PHP code inside the index.php file, your custom theme should be available from within the WordPress admin dashboard.</p>
+
+						<img src="img/wp-custom-theme.png">
+
+						<p>The file structure will look something like this (functions.php is optional):</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+wordpress /
+	wp-content /
+		themes /
+			mytheme /
+				functions.php 
+				index.php
+				style.css 
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Some themes will have a <strong>functions.php</strong> file. This is not strictly required but it does allow functionality to be added to your code. If you wish to add a functions.php file it should be placed into the root of your theme's folder (as above).</p>
+
+						<h3>Building the custom theme</h3>
+						<!-- https://websitesetup.org/wordpress-theme-development/ -->
+						<!-- https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/ -->
+
+						<p>Since <strong>index.php</strong> is going to be rendering all of our pages, it's going to be doing a lot of work. The index.php file will contain code that looks like HTML, but will also include the <strong>wp_head()</strong> action hook. This is core functionality and allows WordPress and third-party plugins to insert code into the header without modifying the template files.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html &lt;?php language_attributes(); ?&gt;&gt;
+&lt;head&gt;
+    
+	&lt;meta charset="&lt;?php bloginfo( 'charset' ); ?&gt;"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    
+	&lt;?php wp_head(); ?&gt;
+  
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>WordPress will use the <strong>wp_head()</strong> hook to dynamically insert the page title. You will need to create a <strong>functions.php</strong> file and use the WordPress built-in <strong>add_theme_support()</strong> function to output the page &lt;title&gt;:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php
+
+add_theme_support( 'title-tag' );
+
+?&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Next, we have the body of the page. The <strong>body_class()</strong> helper function is provided by WordPress to output a list of useful CSS classes that describe the page being displayed.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;body &lt;?php body_class(); ?&gt;&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>This also accepts parameters so you can add your own classes, for example:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;body &lt;?php body_class('wide-template dark-background'); ?&gt;&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Next, we have the template header. Here we are using the built-in template functions from WordPress to output the site title and description and the <strong>home_url()</strong> function to link back to the homepage.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;header class="site-header"&gt;
+	
+	&lt;a href="&lt;?php echo esc_url( home_url( '/' ) ); ?&gt;"&gt;
+		&lt;h1&gt;&lt;?php bloginfo( 'name' ); ?&gt;&lt;/h1&gt;
+	&lt;/a&gt;
+	
+	&lt;p class="site-description"&gt;&lt;?php bloginfo( 'description' ); ?&gt;&lt;/p&gt;
+
+&lt;/header&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>The header will use the <strong>bloginfo()</strong> method of WordPress to display the site information. This content displayed (name & description) can be found within the <strong>Settings/General Settings</strong> tab within the WordPress admin dashboard. <a href="https://developer.wordpress.org/reference/functions/bloginfo/" target="_blank" rel="noopener noreferrer">WordPress documentation around the bloginfo()</a> method is available.</p>
+
+						<p>Finally, we have the footer. This will use the <strong>wp_footer()</strong> hook used by WordPress and any plugins to include scripts in the footer needed to render the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;footer&gt;
+	&lt;?php wp_footer(); ?&gt;
+&lt;/footer&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<h3>Activate the theme</h3>
+
+						<p>Click the <strong>Activate</strong> button on the theme to apply your custom theme to your WordPress site.</p>
+					</section>
+
+					<section>
+						<h2>Plugins</h2>
+
+						<p>WordPress plugins are PHP scripts that extend the functionality of WordPress. They enhance the features or add new functionality to the CMS.</p>
+
+						<p>All plugins will be installed within the <strong>wp-content/plugins/</strong> directory of your WordPress installation. It is possible to install plugins manually by extracting and copying them into this directory. Doing so will make them available for activation within the admin dashboard.</p>
 					</section>
 
 					<section>
 						<h2>Advanced Custom Fields (ACF)</h2>
 
-						<p>Advanced Custom Fields (ACF) is a WordPress plugin that allows you to add extra content fields, also referred to as Custom Fields, to the WordPress edit screens in the dashboard.</p>
+						<p><strong>Advanced Custom Fields (ACF)</strong>, is a WordPress plugin that allows you to add extra content fields, known as <strong>Custom Fields</strong>, to the edit screens in the admin dashboard of WordPress.</p>
 
-						<ul>
-							<li><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF) documentation</a>
-						</ul>
+						<p>The <a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">documentation for Advanced Custom Fields (ACF)</a> is available.</p>
 
-						<p>The Advanced Custom Fields plugin does not come pre-installed with WordPress so needs to be installed as a plugin to be applied.</p>
-
-						<h3>Installation</h3>
-
-						<ul>
-							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-							<li>Select Plugins and Add New.</li>
-							<li>Search for Advanced Custom Fields within the Add Plugins page.</li>
-							<li>Click the Install Now button to install the plugin.</li>
-							<li>Click the Activate button.</li>
-							<li>The Custom Fields menu option will now appear in the side bar.</li>
-						</ul>
-
-						<p>Once installed, the plugin code can be located from within the wp-content/plugins directory of your WordPress installation. This is where WordPress stores plugins. It is possible to install plugins manually by extracting and copying them into this directory. Doing so will make them available for activation in the WordPress dashboard.</p>
-
-						<h3>Create a Custom Field</h3>
-
-						<ul>
-							<li>Login to the WordPress admin dashboard (if not already logged in).</li>
-							<li>Select Custom Fields and Add New.</li>
-							<li>Add a title.</li>
-							<li>Add a Field.</li>
-							<li>Select the Rule, so we could set this to a specific page or post. As all our pages use the Default Template, we will set it to be available for all pages that use the Default Template.</li>
-							<li>Click Publish and Update.</li>
-						</ul>
-
-						<p>Now any page using the Default Template will display the custom field when you edit the page from within the dashboard.</p>
+						<p>This plugin does not come pre-installed with WordPress so needs to be installed to be used. Once installed the plugin will be found inside the <strong>wp-content/plugins/</strong> directory of your WordPress installation.</p>
 					</section>
-				
+
 				</div><!-- / column -->
 			</div><!-- / row -->
 		</div><!-- / container -->
