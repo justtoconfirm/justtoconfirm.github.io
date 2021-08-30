@@ -63,7 +63,7 @@ a:hover {
 }
 
 ul {
-  padding: 1.6rem;
+  padding: 2rem;
 }
 
 .nav-list {
@@ -83,7 +83,6 @@ img {
 main {
   display: block;
   min-height: 100vh;
-  padding-top: 13rem;
 }
 
 section {
@@ -141,6 +140,25 @@ code {
   .column {
     flex: 1;
   }
+}
+
+.intro {
+  background-color: #00d494;
+  color: #fff;
+  padding-top: 13rem;
+  padding-bottom: 5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.intro__heading {
+  font-size: 5rem;
+  line-height: 0.85;
+}
+.intro__copy {
+  font-size: 2rem;
+  line-height: 1;
+  padding: 1rem 0;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */
