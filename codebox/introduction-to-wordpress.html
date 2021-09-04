@@ -50,6 +50,14 @@
 					<section>
 						<h2>How to setup WordPress</h2>
 
+						<!--
+							- Display posts on a page
+							- Filter posts (new/old etc)
+							- Filter posts by category
+							- Load more posts on a page
+							- Adding an ACF field to a page
+						-->
+
 						<p>WordPress can be downloaded from the <a href="https://en-gb.wordpress.org/download/" target="_blank" rel="noopener noreferrer">WordPress.org</a> website. The latest version of WordPress is version 5.8. It is recommended to never edit the core code of WordPress.</p>
 
 						<p>The recommended requirements:</p>
@@ -75,6 +83,27 @@
 					<p>WordPress houses lots of different types of content that are divided into something called <strong>Post Types</strong>. By default WordPress stores all post types in the database under the <strong>wp_posts</strong> table.</p>
 
 					<section>
+						<h2>Pages</h2>
+
+						<p>Pages are used for static content that is not affected by date. For example, an About page, Contact page, or Home page, are examples of pages. We may also have a Blog page used to display posts. Pages are typically listed in your site's navigation.</p>
+
+						<p>A page is an example of a <strong>Post Type</strong> in WordPress. This will be stored in the <strong>wp_posts</strong> table within the database.</p>
+
+						<p>To create your first page, log in to your WordPress dashboard and navigate to <strong>Pages/Add New</strong>.</p>
+
+						<p>Example pages:</p>
+
+						<ul>
+							<li>Home</li>
+							<li>About</li>
+							<li>Contact</li>
+							<li>Blog</li>
+						</ul>
+
+						<p>Pages do not use categories or tags, unlike posts. Instead, pages can be organised into parent and child page groups to group them hierarchically. For instance, you may have a parent page called "Apparel" which can then be split into "Women's Apparal" and "Men's Apparal".</p>
+					</section>
+
+					<section>
 						<h2>Posts</h2>
 
 						<p>Posts are entries listed in reverse chronological order on your site. Think of them as articles, or blog posts, that can be displayed on your site.</p>
@@ -89,36 +118,89 @@
 							<li><strong>Categories</strong> - are like a table of contents for your WordPress site. For instance, if you sell merchandise, one of your categories maybe "Shirts".</li>
 							<li><strong>Tags</strong> - are granular terms that are specific to a piece of content. For instance, if you want to publish an announcement about a new Shirt, you may use tags like "Organic Cotton" or "Sports" as descriptors.</li>
 						</ul>
-					</section>
 
-					<section>
-						<h2>Pages</h2>
+						<p>You may want to create a <strong>Blog</strong> page to display all your Blog posts, for example. It is often useful to create a custom template for displaying Blog posts.</p>
 
-						<p>Pages are used for static content that is not affected by date. For example, an About page, Contact page, or Home page, are examples of pages. We may also have a Blog page used to display posts. Pages are typically listed in your site's navigation.</p>
+						<h3>Adding Posts to your pages</h3>
+						<!-- https://www.youtube.com/watch?v=BzzzjoDTuJg -->
+						<!-- https://www.youtube.com/watch?v=TUaefFy9yi8 -->
+						<!-- https://www.youtube.com/watch?v=smgGaXRcbBU -->
+						<!-- https://artisansweb.net/display-posts-specific-category-wordpress-page/ -->
 
-						<p>A page is an example of a <strong>Post Type</strong> in WordPress. This will be stored in the <strong>wp_posts</strong> table within the database.</p>
+						<h3>Custom Post Types (CPT)</h3>
+						<!-- https://www.cloudways.com/blog/how-to-create-custom-post-types-in-wordpress/ -->
+						<!-- https://www.youtube.com/watch?v=q5mWGz4S3Lw -->
 
-						<p>To create your first page, log in to your WordPress dashboard and navigate to <strong>Pages/Add New</strong>.</p>
+						<p>WordPress houses lots of different types of content that are divided into something called <strong>Post Types</strong>. A single item is called a <strong>post</strong> which is a standard post type called <strong>posts</strong>. All post types are stored in the database under the <strong>wp_posts</strong> table.</p>
 
-						<p>Pages do not use categories or tags, unlike posts. Instead, pages can be organised into parent and child page groups to group them hierarchically. For instance, you may have a parent page called "Apparel" which can then be split into "Women's Apparal" and "Men's Apparal".</p>
-					</section>
+						<p>A <strong>post</strong> in WordPress is a post type that is typically used for blog posts. We may want to extend the amount of post types to allow us to break things down into smaller categories. For example, if we want to have a section on Books, it would be better suited to creating a <strong>Custom Post Type (CPT)</strong> for Books. Creating a Custom Post Type (CPT) can be done using the <strong>register_post_type()</strong> function.</p>
 
-					<section>
-						<h2>Plugins</h2>
+						<p>Creating a Custom Post Type as a plugin is recommended to ensure it can always be available if you decide to switch themes. Here, we're creating a Custom Post Type called Cars in the <strong>functions.php</strong> file:</p>
 
-						<p>WordPress plugins are PHP scripts that extend the functionality or add new features to WordPress. Any plugin installed will be placed within the <strong>wp-content/plugins/</strong> directory of your WordPress installation.</p>
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function my_first_post_type() {
 
-						<p>It's possible to install plugins manually by extracting and copying them into the plugins directory. Doing so will make them available for activation within the WordPress admin dashboard.</p>
-					</section>
+    $args = array(
 
-					<section>
-						<h2>Advanced Custom Fields (ACF)</h2>
+        'labels' => array(
+            'name' => 'Cars',
+            'singular_name' => 'Car',
+        ),
+        'hierarchical' => true,
+        'public' => true,
+        'menu_icon' => 'dashicons-images-alt2',
+        'has_achive' => true,
+        'supports' => array('title', 'editor', 'thumbnail'),
 
-						<p><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF)</a> is a WordPress plugin that allows you to add extra content fields, known as <strong>Custom Fields</strong>, to the edit screens within the admin dashboard of WordPress.</p>
+    );
 
-						<p>This plugin does not come pre-installed with WordPress so needs to be installed to be used. The plugin will be installed in the <strong>wp-content/plugins/</strong> directory of your WordPress installation.</p>
+    register_post_type('cars', $args);
 
-						<p>Once installed, we will see a <strong>Custom Fields</strong> tab in the sidebar of the WordPress admin dashboard.</p>
+}
+
+// WP fires this hook using 'init' hook just before the website loads
+add_action('init', 'my_first_post_type');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>When we save the <strong>functions.php</strong> file and refresh the WordPress admin page, the Cars Custom Post Type will now appear in the sidebar.</p>
+
+						<p>Now if we want to create sub-categories of the Cars, such as BMW, Audi, Nissan and others, we can use a <strong>taxonomy</strong>, which is much like a category and can be assigned to a post type.</p>
+
+						<p>Open the <strong>functions.php</strong> file and add the following code to create a taxonomy:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function my_first_taxonomy() {
+    
+    $args = array(
+        'labels' => array(
+            'name' => 'Brands',
+            'singular_name' => 'Brand',
+        ),
+        'public' => true,
+        'hierarchical' => true,
+    );
+
+    register_taxonomy('brands', array('cars'), $args);
+}
+
+add_action('init', 'my_first_taxonomy');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Now if we save the file and refresh the WordPress admin, you will see the Brands category (taxonomy) be added to the Cars Custom Post Type in the sidebar.</p>
+
+						<p>Next, create a new Car named <strong>Toyota Corolla</strong> in the admin and then in the <strong>Brands</strong> panel on the right of the admin page, click the <strong>+ Add New Category</strong> link and create a new category called <strong>Toyota</strong>.</p>
+
+						<p>Click the <strong>Publish</strong> button.</p>
+
+						<p>In the <strong>Settings/Permalinks</strong> page, select the <strong>Post name</strong> option and click <strong>Save Changes</strong>.</p>
 					</section>
 
 					<section>
@@ -130,7 +212,338 @@
 
 						<p>A WordPress theme needs two files to exist - <strong>style.css</strong> and <strong>index.php</strong>. Some themes will also have a <strong>functions.php</strong> file. This is known as a theme functions file and acts like a plugin for the WordPress site that's automatically activated within the current theme.</p>
 
-						<p>To view the templates from within the WordPress admin dashboard, open the <strong>Appearance/Themes</strong> tab from within the dashboard sidebar.</p>
+						<h3>Develop a custom theme</h3>
+						<!-- https://websitesetup.org/wordpress-theme-development/ -->
+						<!-- https://www.ostraining.com/blog/wordpress/custom-page-template-wordpress/ -->
+
+						<p>Begin by creating a new directory in the <strong>wp-content/themes</strong> directory. This folder will contain our custom theme, and as mentioned, requires the following files:</p>
+
+						<ul>
+							<li>index.php</li>
+							<li>style.css</li>
+							<li>functions.php (optional)</li>
+						</ul>
+
+						<p>The <strong>index.php</strong> file is the main template. If your theme provides its own template, index.php must be present. This will apply to all our pages and posts by default, so this is where our head content is placed.</p>
+
+						<p>The <strong>index.php</strong> file is going to be rendering all of our pages and posts when the theme is activated. To begin, we create the head section. This will be written in standard HTML. The <strong>wp_head()</strong> action hook is included as this is core functionality of WordPress and allows both WordPress and third-party plugins to insert code into the header without modifying the template files.</p>
+
+						<p>Within your theme, update the index.php file to add a head section.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+    
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+	&lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>We can update this further by using more WordPress hooks.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;!DOCTYPE html&gt;
+&lt;html &lt;?php language_attributes(); ?&gt;&gt;
+&lt;head&gt;
+	&lt;meta charset="&lt;?php bloginfo('charset'); ?&gt;"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+	&lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>There's no &lt;title&gt; tag here as WordPress uses the <strong>wp_head()</strong> hook to dynamically insert the page title.</p>
+
+						<p>Next, we have the body of the page:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;body &lt;?php body_class(); ?&gt;&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>The <strong>body_class()</strong> is a helper function provided by WordPress that will output a list of useful CSS classes to describe the page being displayed. Remember to add a closing <strong>&lt;/body&gt;</strong> tag.</p>
+
+						<p>We can add further classes to this helper function as it also accepts parameters.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;body &lt;?php body_class('wide-template dark-background'); ?&gt;&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Before the closing <strong>&lt;/body&gt;</strong> and <strong>&lt;/html&gt;</strong> tags, add the <strong>wp_footer()</strong> action hook used by WordPress and plugins to include scripts in the footer needed to render the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php wp_footer(); ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<h3>Title tag</h3>
+
+						<p>All themes should use the built-in functionality of WordPress to generate the title tag. Within the <strong>functions.php</strong> file, add the following code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php
+	add_theme_support('title-tag');
+?&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>This will display the page/post title followed by the site title. To update the site title, open the <strong>Settings/General</strong> and update the text within the <strong>Site Title</strong> input field.</p>
+
+						<h3>Template Parts</h3>
+
+						<p>We can use template parts to allow us to reuse code across multiple templates. For example, as our header and footer will be the same on every page, they are perfect candidates for using template parts.</p>
+
+						<p>We can move the footer code into a template part named <strong>footer.php</strong>:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php wp_footer(); ?&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>The <strong>index.php</strong> file can then be updated to include this template part using the <strong>get_template_part()</strong> function. When getting a template part, we omit the <strong>.php</strong> file extension.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php get_template_part('footer'); ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Repeat this process for the <strong>&lt;head&gt;</strong> - including the page title, meta tags etc. - and any other part of the code you may want to reuse.</p>
+
+						<p>Our <strong>index.php</strong> file will now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+&lt;?php get_template_part('head'); ?&gt;
+
+&lt;body &lt;?php body_class(); ?&gt;&gt;
+
+	&lt;!-- Page content goes here --&gt;
+
+	&lt;?php get_template_part('footer'); ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Our theme folder will now look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+wp-content /
+    themes /
+        mytheme /
+            footer.php
+            functions.php
+            head.php
+            index.php
+            style.css
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>This is only an example, so it's still best to use the core WordPress functionality of <strong>get_header()</strong> and <strong>get_footer()</strong> instead of the template parts for the header and footer.</p>
+					</section>
+
+					<section>
+						<h2>Adding a Navigation Menu</h2>
+						<!-- https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/ -->
+
+						<p>To add a custom navigation menu, we must first register a menu by adding code to the <strong>functions.php</strong> file or our theme. Once the following code has been added, the <strong>Menus</strong> option will appear in the <strong>Appearance</strong> tab.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function wpb_custom_new_menu() {
+	register_nav_menu('custom-menu',__('Custom Menu'));
+}
+
+add_action('init','wpb_custom_new_menu');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Now when we go to the <strong>Appearance/Menus</strong> page in the WordPress admin, we will see the <strong>Custom Menu</strong> listed in the <strong>Menu Settings</strong> section. Click the checkbox next to this menu and click the <strong>Save Menu</strong> button.</p>
+
+						<p>If you want to add more than one new navigation menu location, then use this code:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+function wpb_custom_new_menu() {
+	register_nav_menu(
+		array(
+			'custom-menu' => __('Custom Menu'),
+			'extra-menu' => __('Extra Menu')
+		)
+	);
+}
+
+add_action('init','wpb_custom_new_menu');
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>Once the menu location has been added, we can add some menu items in the WordPress admin. Next, we need to display the menu in our theme.</p>
+
+						<p>Open the <strong>index.php</strong> file (or your theme's template file) and add the following code where you want to display your menu.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+<?php
+	wp_nav_menu(array(
+		'theme_location' => 'custom-menu',
+		'container_class' => 'menu'
+	));
+?>
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+						<p>The <strong>theme location</strong> is the name of the menu that was given in the previous code. The <strong>container class</strong> is the CSS class that will be added to your navigation menu allowing you to style the menu using CSS.</p>
+
+						<p>This will initially render an unordered list without any styling for each of the menu items added on your pages that use the template.</p>
+					</section>
+
+					<!--
+					<section>
+						<h2>Templates</h2>
+
+						<p>The Default template is generated by the <strong>page.php</strong> file located in the <strong>wp-content/themes/</strong> folder.</p>
+
+						<h3>Create a new Template</h3>
+
+						<p>In the root of your theme folder - <strong>wp-content/themes/themename/</strong> - add a new PHP file with the name of your template. We will be creating a template to display our blog posts, so our template will be named <strong>blog-template.php</strong>.</p>
+
+						<p>Next, add a code comment to the top of the file that will assist WordPress in identifying the file as a template.</p>
+
+<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--&lt;?php
+
+/*
+	Template Name: Blog Template
+	Template Post Type: post, page
+*/-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>
+
+						<p>Once the template file is saved, a <strong>Template</strong> drop-down will appear in the sidebar of the WordPress admin edit screen. From the drop-down, select the template you wish to apply.</p>
+
+						<p>Our Blog page will be using our newly created Blog Template, so this will be selected.</p>
+
+						<p>Update the <strong>blog-template.php</strong> file to create a query that will list all posts that are added to our WordPress site onto any page that uses the Blog Template. This will display every post without pagination.</p>
+
+<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--&lt;?php
+
+/*
+	Template Name: Blog Template
+	Template Post Type: post, page
+*/
+
+?&gt;
+
+&lt;?php 
+	// WordPress Query to get all published posts without pagination
+	$post_query = new WP_Query(array(
+		'post_type' => 'post',
+		'post_status' => 'publish',
+		'posts_per_page' => -1
+	));
+?&gt;
+
+&lt;?php 
+	if ($post_query->have_posts()) :
+?&gt;
+
+&lt;ul&gt;
+	&lt;?php while ($post_query->have_posts()) : $post_query->the_post(); ?&gt;
+		&lt;li&gt;
+			&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;/li&gt;
+	&lt;?php endwhile; ?&gt;
+&lt;/ul&gt;
+
+&lt;?php wp_reset_postdata(); ?&gt;
+ 
+&lt;?php else : ?&gt;
+	&lt;p&gt;&lt;?php _e('Sorry, no posts are displayed.'); ?&gt;&lt;/p&gt;
+&lt;?php endif; ?&gt;-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>
+
+					</section>-->
+
+					<section>
+						<h2>Plugins</h2>
+
+						<p>WordPress plugins are PHP scripts that extend the functionality or add new features to WordPress. Any plugin installed will be placed within the <strong>wp-content/plugins/</strong> directory of your WordPress installation.</p>
+
+						<p>It's possible to install plugins manually by extracting and copying them into the plugins directory. Doing so will make them available for activation within the WordPress admin dashboard.</p>
+					</section>
+
+					<section>
+						<h2>GraphQL</h2>
+
+						<p>GraphQL can be installed using the <a href="https://www.wpgraphql.com/" target="_blank" rel="noopener noreferrer">WPGraphQL</a> plugin from within the WordPress admin.</p>
+					</section>
+
+					<section>
+						<h2>Advanced Custom Fields (ACF)</h2>
+
+						<p><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF)</a> is a WordPress plugin that allows you to add extra content fields, known as <strong>Custom Fields</strong>, to the edit screens within the admin dashboard of WordPress.</p>
+
+						<p>This plugin does not come pre-installed with WordPress so needs to be installed to be used. The plugin will be installed in the <strong>wp-content/plugins/</strong> directory of your WordPress installation.</p>
+
+						<p>Once installed, we will see a <strong>Custom Fields</strong> tab in the sidebar of the WordPress admin dashboard.</p>
 					</section>
 
 				</div><!-- / column -->
