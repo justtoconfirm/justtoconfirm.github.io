@@ -91,7 +91,7 @@ add_action('init', 'my_first_post_type');
 
 						<p>Once the Custom Post Type (CPT) has been created, we can now display these posts onto a page.</p>
 
-						<p>Open a template file in the themes folder - for simplicity, we can use the default theme template of <strong>index.php</strong> - and add the following code to list any posts added to our Books CPT:</p>
+						<p>Open a template file in the themes folder - for simplicity, we can use the default theme template of <strong>page.php</strong> or <strong>index.php</strong> - and add the following code to list any posts added to our Books CPT:</p>
 
 <pre>
 	<code>
@@ -104,23 +104,15 @@ add_action('init', 'my_first_post_type');
 	);
 
 	$query = new WP_Query($args);
-?&gt;
-
-&lt;?php
 
 	if($query->have_posts()) :
 		while($query->have_posts()) :
 
 			$query->the_post();
 
-			$post_title = the_title();				// Post Title
-			$post_content = the_content();			// Post Content
-			$post_permalink = the_permalink();		// Post Permalink to link to the post
-
-			// Output each post on the page using echo as a test
-			echo $post_title;
-			echo $post_content;
-			echo $post_permalink;
+			get_the_title();			// Post Title
+			get_the_content();			// Post Content
+			get_permalink();			// Post Permalink to link to the post
 
 		endwhile;
 	endif;
@@ -169,6 +161,129 @@ add_action('init', 'my_first_taxonomy');
 
 						<p>Now when we add a new Book post in the Custom Post Type, we can set it's category to be either fiction, non-fiction or any other category of book.</p>
 
+						<h3>Display Posts with a Taxonomy</h3>
+
+						<p>Within the <strong>page.php</strong> or <strong>index.php</strong> file, we can update our query to return posts that match a taxonomy. In this code example only posts that have the taxonomy category of <strong>fiction</strong> will be displayed on the page.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'posts_per_page' => 10,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_category',
+				'field' => 'slug',
+				'terms' => 'fiction'
+			)
+		),
+	);
+
+	$query = new WP_Query($args);
+
+	if($query->have_posts()) :
+		while($query->have_posts()) :
+
+			$query->the_post();
+
+			get_the_title();			// Post Title
+			get_the_content();			// Post Content
+			get_permalink();			// Post Permalink to link to the post
+
+		endwhile;
+	endif;
+
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>You may notice the <strong>wp_reset_postdata()</strong> method at the end of the code. This function resets back to the original loop when we use <strong>WP_Query</strong>, so will ensure everything works after we finish with our custom query. It's recommended to include this within your code.</p>
+					</section>
+
+					<section>
+						<h2>Create a Template</h2>
+
+						<p>In the root directory of your themes folder - <strong>wp-content/themes/themename/</strong> (<strong>themename</strong> is the name of the theme being used, as an example) - create an empty PHP file. This will be our template file. Add this code to the newly created PHP template file:</p>
+
+<pre>
+    <code>
+
+&lt;?php
+
+/*
+	Template Name: Blog Template
+	Template Post Type: post, page
+*/
+
+    </code>
+</pre>
+
+						<p>As this template will be used to display our Posts, the template will be namded <strong>blog-template.php</strong> within the <strong>wp-content/themes/themename/</strong> folder.</p>
+
+						<h3>Apply the Template to a Page</h3>
+
+						<p>Create a new page in the WordPress admin/edit dashboard. We will be calling this page <strong>Books</strong>. This page will be used to display our posts from within the <strong>Books Custom Post Type (CPT)</strong> we created earlier.</p>
+
+						<p>Within the edit area of the Books page, we should now see a <strong>Template</strong> panel on the right-side of the WordPress admin/edit dashboard. The drop-down will allow us to select the Blog Template. Once selected, click the <strong>Update</strong> button to apply our <strong>Blog Template</strong> - <strong>blog-template.php</strong> - to our newly created Books page.</p>
+
+						<h3>Display the Posts in our Template</h3>
+
+						<p>Update the <strong>blog-template.php</strong> file to display the posts from within the <strong>Books Custom Post Type (CPT)</strong> with the taxonomy of <strong>fiction</strong>.</p>
+
+<pre>
+    <code>
+
+&lt;?php
+
+	/*
+		Template Name: Blog Template
+		Template Post Type: post, page
+	*/
+
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'posts_per_page' => 10,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_category',
+				'field' => 'slug',
+				'terms' => 'fiction'
+			)
+		),
+	);
+
+	$query = new WP_Query($args);
+
+	if($query->have_posts()) :
+		while($query->have_posts()) :
+
+			$query->the_post();
+
+			$title = get_the_title();
+			$content = get_the_content();
+			$link = get_permalink();
+
+			echo $title;
+			echo $content;
+			echo $link;
+
+		endwhile;
+	endif;
+
+	wp_reset_postdata();
+	
+?>
+    </code>
+</pre>
+
+						<p>The code previously added to the <strong>page.php</strong> or <strong>index.php</strong> file can now be removed so the posts are not displayed on every page and/or post using the default template.</p>
 					</section>
 
 				</div><!-- / column -->
