@@ -22,8 +22,22 @@
 				<li class="nav-list__item">Item two</li>
 				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>
 			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
 		</nav>
 	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+		</ul>
+	</div>
 
 	<main role="main">
 
@@ -43,20 +57,22 @@
 		<a href="sitemap.html">Sitemap</a>
 	</footer>
 
-<script>
-// Register a service worker
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', function() {
-		navigator.serviceWorker.register('sw.js').then(function(registration) {
-			// Registration was successful
-			console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		}, function(err) {
-			// registration failed :(
-			console.log('ServiceWorker registration failed: ', err);
+	<script>
+	// Register a service worker
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', function() {
+			navigator.serviceWorker.register('sw.js').then(function(registration) {
+				// Registration was successful
+				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			}, function(err) {
+				// registration failed :(
+				console.log('ServiceWorker registration failed: ', err);
+			});
 		});
-	});
-}
-</script>
+	}
+	</script>
+
+	<script src="dist/js/menu.js"></script>
 
 </body>
 </html>
