@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introductory guide to PHP">
+
+	<title>Codebox | Introduction to PHP</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<li class="nav-list__item"><a href="introduction-to-php.html">PHP</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<a href="introduction-to-php.html" class="menu__list-link">PHP</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Introduction to PHP</h1>
+
+						<p class="intro__copy">PHP (PHP Hypertext Preprocessor) is an open-source, server-side scripting language.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Install &amp; Setup PHP</h2>
+
+						<p>If we use MAMP PRO to run our PHP code localhost will default to: <a href="http://localhost:8888/" target="_blank" rel="noopener noreferrer">http://localhost:8888/</a>.</p>
+
+						<p>Once MAMP PRO has been installed a <strong>Sites</strong> directory will be created where we can add our PHP files. For example, the document root for this machine will be: <strong>/Users/danieljackson/Sites/</strong> so any PHP files we want to run will need to be added to this directory.</p>
+
+						<p>If we create a file named <strong>test.php</strong> and save it to the root directory we can see our PHP code running on: <a href="http://localhost:8888/test.php" target="_blank" rel="noopener noreferrer">http://localhost:8888/test.php</a> if our server is running.</p>
+					</section>
+
+					<section>
+						<h2>PHP Syntax</h2>
+
+						<p>A PHP script starts with <strong>&lt;?php</strong> and ends with <strong>?&gt;</strong>. The default file extension for PHP files is <strong>.php</strong></p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>For PHP files that only contain PHP code, the closing <strong>?&gt;</strong> tag is not required. Omitting it prevents the accidental injection of trailing white space.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	</code>
+</pre>
+
+						<p>We can use the <strong>echo</strong> statement to output a value to the screen. All PHP statements should end with a semi-colon.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	echo "Hello World";
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>The PHP configuration</h2>
+
+						<p>The <strong>phpinfo()</strong> method outputs information about the current PHP configuration.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	phpinfo();
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding Comments to PHP</h2>
+
+						<p>A comment in the PHP code is a line that is not executed within the program and is used to explain to the developer what the code is doing.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	// This is a single-line comment in PHP
+
+	# This is also a single-line comment in PHP
+
+	/*
+		This is a multi-line comment block in PHP
+		that can span over multiple lines
+		of code
+	*/
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>PHP Variables</h2>
+
+						<p>In PHP, a variable is declared (created) with the dollar sign (<strong>$</strong>), followed by the name of the variable.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$name = "John Smith";
+	$age = 25;
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>We can use the <strong>echo</strong> statement to output the value of a variable.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$name = "John Smith";
+	$age = 25;
+	$currentYear = 2021;
+
+	echo "&lt;h2&gt;" . $name . "&lt;/h2&gt;";
+	echo "&lt;p&gt;" . $age . "&lt;/p&gt;";
+
+	echo $currentYear - $age;
+
+?&gt;
+
+	</code>
+</pre>
+
+						<h3>The var_dump() function</h3>
+
+						<p>The <strong>var_dump()</strong> function dumps information about PHP variables onto the page.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$name = "John Smith";
+
+	var_dump($name);
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>This will output the <strong>type</strong> and <strong>value</strong> of the variable:</p>
+
+<pre>
+	<code>
+
+string(10) "John Smith"
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Functions</h2>
+
+						<p>We can declare functions in PHP using the keyword of <strong>function</strong>. In the code example below, we can also demonstrate how to call the function.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	function functionName() {
+		
+		// Code to be executed 
+
+	}
+
+	functionName();		// Call the function
+
+?&gt;
+
+	</code>
+</pre>
+
+						<h3>Function Arguments</h3>
+
+						<p>Information can be passed to function through the use of <strong>arguments</strong>. An argument is placed within the parenthesis of a function and are like variables. We can add as many arguments as we wish, just separate them with a comma.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	function name($firstName) {
+		
+		echo "Hello $firstName";
+
+	}
+
+	name("Dan");
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>Since <strong>PHP 7</strong> the type declarations were introduced. This provides an option to specify the expected data type when declaring a function.</p>
+
+						<p>To apply this feature, we add the <strong>strict</strong> declaration to the top of the PHP script. This will throw a <strong>Fatal Error</strong> if the data type is not correct.</p>
+
+<pre>
+	<code>
+
+&lt;?php declare(strict_types=1);		// The strict declaration
+
+	function addNumbers(int $a, int $b) {
+		
+		return $a + $b;
+
+	}
+
+	echo addNumbers(5, 10);
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>We are using the <strong>return statement</strong> here to let the function return a value.</p>
+
+						<p>We can also set <strong>default parameters</strong> within a function. Here we set the default parameter value of <strong>20</strong> for <strong>$b</strong>. If no value is passed into this argument then the default value of 20 will be applied.</p>
+
+<pre>
+	<code>
+
+&lt;?php declare(strict_types=1);		// The strict declaration
+
+	function addNumbers(int $a, int $b = 20) {
+		
+		return $a + $b;
+
+	}
+
+	echo addNumbers(5);
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Arrays</h2>
+
+						<p>An array can be created using the <strong>array()</strong> language construct. It takes a number of comma-separated key/value pairs as arguments.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$array = array(
+		"foo" =&gt; "bar",
+		"bar" =&gt; "foo",
+	);
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Include &amp; Require</h2>
+
+						<p>It is possible to share code from one PHP file into another PHP file using the <strong>require</strong> or <strong>include</strong> statements.</p>
+
+						<ul>
+							<li><strong>require</strong> will produce a fatal error (E_COMPILE_ERROR) and the script will stop executing.</li>
+							<li><strong>include</strong> will produce a warning (E_WARNING) but the script will continue to execute.</li>
+						</ul>
+
+						<p>Building complex applications using PHP, such as frameworks or a CMS (Content Management System), it's recommended to use the <strong>require</strong> statement for security and integrity of your application.</p>
+
+						<p>Using either statement allows our code to be shared and reduces repetition.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	include 'header.php';
+
+	require 'footer.php';
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>As an example, we can create a navigation menu within a file named <strong>navigation.php</strong>.</p>
+
+<pre>
+	<code>
+
+&lt;nav&gt;
+	&lt;ul class="nav"&gt;
+		&lt;li class="nav__item"&gt;&lt;a href="index.php"&gt;Home&lt;/a&gt;&lt;/li&gt;
+		&lt;li class="nav__item"&gt;&lt;a href="about.php"&gt;About&lt;/a&gt;&lt;/li&gt;
+		&lt;li class="nav__item"&gt;&lt;a href="contact.php"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/nav&gt;
+
+	</code>
+</pre>
+
+						<p>The <strong>require</strong> statement can then be used to include our <strong>navigation.php</strong> file in each of our pages.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	require 'navigation.php';
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>PHP Sessions</h2>
+
+						<p>Session variables, also known as sessions, allow us to store information that can be used across multiple pages, such as the username once a user has logged into the site. By default, session variables last until the user closes the browser.</p>
+
+						<p>Most sessions set a user-key on the user's computer. When a session is opened on another page, it scans the computer for a user-key. If there's a match, the session is accessed.</p>
+
+						<p>For permanent storage, use a database.</p>
+
+						<p>A session is started with the <strong>session_start()</strong> function. We can set session variables using the PHP global variable of <strong>$_SESSION</strong>.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	// Start the session
+	session_start();
+
+	// Set the session variable(s)
+	$_SESSION["username"] = "codebox";
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>The value stored in a session variable, such as on a separate page, can be displayed like so:</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	echo "Username: " . $_SESSION["username"] . ".";
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>We can display all the session variables for a user session using the following code:</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	print_r($_SESSION);
+
+?&gt;
+
+	</code>
+</pre>
+
+						<h3>Remove/Delete PHP Sessions</h3>
+
+						<p>To remove all global session variables, use the <strong>session_unset()</strong> and <strong>session_destroy()</strong> functions.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	// Start the session
+	session_start();
+
+	// Set the session variable(s)
+	$_SESSION["username"] = "codebox";
+
+	// Remove all session variables
+	session_unset();
+
+	// Destroy the session
+	session_destroy();
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Forms &amp; PHP</h2>
+
+						<p>We can use the PHP superglobals of <strong>$_GET</strong> and <strong>$_POST</strong> to get data from a form. We can begin by writing a simple HTML form.</p>
+
+						<p>This form will submit to the same page as we have omitted the <strong>action</strong> attribute from the HTML <strong>&lt;form&gt;</strong> tag.</p>
+
+<pre>
+	<code>
+
+&lt;form method="GET"&gt;
+	&lt;label for="name"&gt;Name:&lt;/label&gt;
+	&lt;input type="text" name="name" id="name"&gt;
+
+	&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+	</code>
+</pre>
+
+						<p>Should we want to open a new page on the form submission, add the <strong>action</strong> attribute to the HTML <strong>&lt;form&gt;</strong> tag.</p>
+
+<pre>
+	<code>
+
+&lt;form action="welcome.php" method="GET"&gt;
+	&lt;label for="name"&gt;Name:&lt;/label&gt;
+	&lt;input type="text" name="name" id="name"&gt;
+
+	&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+	</code>
+</pre>
+
+						<p>When the form is submitted we can get the value of the input by using the <strong>$_GET</strong> PHP superglobal.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	echo $_GET["name"];
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
