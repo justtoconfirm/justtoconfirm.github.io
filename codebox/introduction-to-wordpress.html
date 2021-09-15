@@ -64,43 +64,123 @@
 				<div class="column">
 
 					<section>
+						<h2>Plugins</h2>
 
-						<h2>Creating a Custom Post Type (CPT)</h2>
+						<p>WordPress plugins are PHP scripts that extend the functionality or add new features to WordPress. Any plugin installed will be placed within the <strong>wp-content/plugins</strong> directory of your WordPress installation.</p>
 
-						<p>We are going to create a <strong>Custom Post Type (CPT)</strong> called Books.</p>
+						<p>It is also possible to install plugins manually by extracting and copying them into the <strong>wp-content/plugins</strong> directory. Doing so will make the plugin available for activation within the WordPress <strong>Plugins</strong> screen in the admin/edit dashboard.</p>
 
-						<p>Within the <strong>functions.php</strong> file of your theme, add the following function to create a Custom Post Type. This will add a <strong>Books</strong> post type in the sidebar of the WordPress admin/edit screen.</p>
+						<div class="image-container">
+							<img src="img/wordpress/plugins.png" width="1285" height="589" alt="The WordPress dashboard showing the plugins screen.">
+						</div>
+					</section>
+
+					<section>
+						<h2>Custom Post Type (CPT)</h2>
+
+						<p>We are going to create a <strong>Custom Post Type (CPT)</strong> called <strong>Books</strong>.</p>
+
+						<p>Within the <strong>functions.php</strong> file of your theme, add the following function to create a Custom Post Type called <strong>Books</strong>.</p>
 
 <pre>
 	<code>
 
-function my_first_post_type() {
-	
-	$args = array(
-		'labels' => array(
-			'name' => 'Books',
-			'singlular_name' => 'Book',
-		),
-		'hierarchical' => true,
-		'public' => true,
-		'menu_icon' => 'dashicons-images-alt2',
-		'has_archive' => true,
-		'supports' => array(
-			'title',
-			'editor',
-			'thumbnail'
-		)
-	);
+&lt;?php
 
-	register_post_type('books', $args);
-}
+	function my_first_post_type() {
+		
+		$args = array(
+			'labels' => array(
+				'name' => 'Books',
+				'singlular_name' => 'Book',
+			),
+			'hierarchical' => true,
+			'public' => true,
+			'menu_icon' => 'dashicons-images-alt2',
+			'has_archive' => true,
+			'supports' => array(
+				'title',
+				'editor',
+				'thumbnail'
+			)
+		);
 
-// WP fires this hook just before the website loads using 'init'
-add_action('init', 'my_first_post_type');
+		register_post_type('books', $args);
+	}
 
+	// WP fires this hook just before the website loads using 'init'
+	add_action('init', 'my_first_post_type');
+
+?&gt;
 	</code>
 </pre>
 
+						<p>This will add a <strong>Books</strong> custom post type in the sidebar of the WordPress admin/edit screen.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/custom-post-type-books.png" width="500" height="349" alt="The WordPress dashboard showing the Books Custom Post Type in the sidebar.">
+						</div>
+
+						<h3>Adding a Taxonomy to the Custom Post Type (CPT)</h3>
+						<!-- https://www.proteusthemes.com/blog/displaying-custom-post-types-templates-querying/ -->
+
+						<p>Now that we have created our Custom Post Type (CPT) named Books, we can add a <strong>Taxonomy</strong> to add categories.</p>
+
+						<p>Open the <strong>functions.php</strong> file and add the following code to create a Taxonomy for our Books custom post type so we can add categories of books.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	function my_first_taxonomy() {
+		
+		$args = array(
+			'labels' => array(
+				'name' => 'Categories',
+				'singular_name' => 'Category',
+			),
+			'public' => true,
+			'hierarchical' => true,
+		);
+
+		// Add the Taxonomy to the Books Content Post Type (CPT)
+		register_taxonomy('book_category', array('books'), $args);
+	}
+
+	// WP fires this hook just before the website loads using 'init'
+	add_action('init', 'my_first_taxonomy');
+
+?&gt;
+	</code>
+</pre>
+
+						<p>The <strong>Categories</strong> taxonomy will now appear under the Books content post type in the WordPress admin dashboard.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/custom-post-type-taxonomy.png" width="490" height="349" alt="The WordPress dashboard showing the Categories taxonomy in the sidebar.">
+						</div>
+
+						<p>We can now add categories of Books, such as <strong>fiction</strong> and <strong>non-fiction</strong>, using this Taxonomy. Click the <strong>Categories</strong> option to add or view the categories.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/taxonomy-categories.png" width="1318" height="444" alt="The WordPress dashboard showing the Categories taxonomy.">
+						</div>
+
+						<p>To add a new book post, click the <strong>Add New</strong> button under the <strong>Books</strong> custom post type and enter a title for the book. In the <strong>Categories</strong> panel, select which category to be applied, either <strong>Fiction</strong> or <strong>Non-Fiction</strong>. Click the <strong>Update</strong> button to add the book.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/create-new-book.png" width="1286" height="580" alt="Adding a new Book post.">
+						</div>
+
+						<p>We can now see all the posts under the Books custom post type:</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/books-posts.png" width="1285" height="617" alt="Displaying all posts in the Books custom post type.">
+						</div>
+					</section>
+
+					<section>
 						<h3>Display Posts from a Custom Post Type (CPT)</h3>
 						<!-- https://wordpress.org/support/topic/display-custom-post-type-on-a-wordpress-page/ -->
 						<!-- https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/ -->
@@ -143,41 +223,8 @@ add_action('init', 'my_first_post_type');
 					</section>
 
 					<section>
-						<h2>Adding a Taxonomy</h2>
-						<!-- https://www.proteusthemes.com/blog/displaying-custom-post-types-templates-querying/ -->
-
-						<p>We can now add sub-categories to our Custom Post Type by creating a <strong>Taxonomy</strong> that can then be assigned to a post type.</p>
-
-						<p>Open the <strong>functions.php</strong> file and add this code to create a Taxonomy for our Books Custom Post Type so we can add categories.</p>
-
-<pre>
-	<code>
-
-function my_first_taxonomy() {
-	
-	$args = array(
-		'labels' => array(
-			'name' => 'Categories',
-			'singular_name' => 'Category',
-		),
-		'public' => true,
-		'hierarchical' => true,
-	);
-
-	register_taxonomy('book_category', array('books'), $args);
-}
-
-// WP fires this hook just before the website loads using 'init'
-add_action('init', 'my_first_taxonomy');
-
-	</code>
-</pre>
-
-						<p>Once created the Taxonomy of <strong>Categories</strong> should be displayed under the Books Custom Post Type in the WordPress admin/edit sidebar. We can now add categories for our books such as fiction and non-fiction.</p>
-
-						<p>Now when we add a new Book post in the Custom Post Type, we can set it's category to be either fiction, non-fiction or any other category of book.</p>
-
 						<h3>Display Posts with a Taxonomy</h3>
+						<!-- https://www.youtube.com/watch?v=QH0kZnqVmFk -->
 
 						<p>Within the <strong>page.php</strong> or <strong>index.php</strong> file, we can update our query to return posts that match a taxonomy. In this code example only posts that have the taxonomy category of <strong>fiction</strong> will be displayed on the page.</p>
 
@@ -201,9 +248,7 @@ add_action('init', 'my_first_taxonomy');
 	$query = new WP_Query($args);
 
 	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
+		while($query->have_posts()) : $query->the_post();
 
 			get_the_title();			// Post Title
 			get_the_content();			// Post Content
@@ -219,7 +264,88 @@ add_action('init', 'my_first_taxonomy');
 	</code>
 </pre>
 
+						<p>The <strong>field</strong> should be the field we want to query on, which can be:</p>
+
+						<ul>
+							<li>term_id</li>
+							<li>name</li>
+							<li>slug</li>
+						</ul>
+
+						<p>If we want to display the <strong>fiction</strong> and <strong>non-fiction</strong> categories, we can update the query like so:</p>
+
+<pre>
+	<code>
+
+&lt;?php
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'posts_per_page' => 10,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_category',
+				'field' => 'slug',
+				'terms' => array('fiction', 'non-fiction'),
+			)
+		),
+	);
+?&gt;
+
+	</code>
+</pre>
+
 						<p>You may notice the <strong>wp_reset_postdata()</strong> method at the end of the code. This function resets back to the original loop when we use <strong>WP_Query</strong>, so will ensure everything works after we finish with our custom query. It's recommended to include this within your code.</p>
+
+						<h3>Display the Categories on the Page</h3>
+						<!-- https://developer.wordpress.org/reference/classes/wp_query/#taxonomy-parameters -->
+						<!-- https://wordpress.stackexchange.com/questions/165610/get-posts-under-custom-taxonomy -->
+
+						<p>We may want to display the categories for each post that have been created for our <strong>Custom Post Type (CPT)</strong> of <strong>Books</strong>. Our two categories are <strong>fiction</strong> and <strong>non-fiction</strong>. Here we're only displaying the posts that have the category of fiction.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'posts_per_page' => 10,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_category',
+				'field' => 'slug',
+				'terms' => 'fiction'
+			)
+		),
+	);
+
+	$query = new WP_Query($args);
+
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			$post_id = get_the_ID();				// Post ID
+			$post_terms = get_the_terms($post_id, 'book_category');		// Pass in the ID and the taxonomy
+			$posts = $post_terms[0];				// Convert the array into an object
+
+			$post_category = $posts->name;			// Post Category
+
+			$post_title = get_the_title();			// Post Title
+			$post_content = get_the_content();		// Post Content
+			$post_link = get_permalink();			// Post Permalink to link to the post
+
+			echo $post_category;					// Output the post category
+
+		endwhile;
+	endif;
+
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
 					</section>
 
 					<section>
@@ -278,9 +404,7 @@ add_action('init', 'my_first_taxonomy');
 	$query = new WP_Query($args);
 
 	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
+		while($query->have_posts()) : $query->the_post();
 
 			$title = get_the_title();
 			$content = get_the_content();
@@ -351,14 +475,6 @@ wp-content /
 </pre>
 
 						<p>Once the template files have been created, open the edit screen of each page and select the relevant template to be applied. We can now customise each template file.</p>
-					</section>
-
-					<section>
-						<h2>Plugins</h2>
-
-						<p>WordPress plugins are PHP scripts that extend the functionality or add new features to WordPress. Any plugin installed will be placed within the <strong>wp-content/plugins</strong> directory of your WordPress installation.</p>
-
-						<p>It is also possible to install plugins manually by extracting and copying them into the <strong>wp-content/plugins</strong> directory. Doing so will make the plugin available for activation within the WordPress <strong>Plugins</strong> screen in the admin/edit dashboard.</p>
 					</section>
 
 					<section>

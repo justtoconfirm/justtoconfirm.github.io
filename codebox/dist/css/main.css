@@ -145,8 +145,13 @@ nav {
 
 img {
   max-width: 100%;
-  margin: 2rem 0;
   height: auto;
+}
+
+.image-container {
+  display: flex;
+  margin: 4rem 0;
+  justify-content: center;
 }
 
 main {
@@ -167,7 +172,6 @@ pre {
   padding-left: 20px;
   padding-right: 20px;
   margin: 2rem 0;
-  max-height: 200px;
   tab-size: 4;
 }
 
