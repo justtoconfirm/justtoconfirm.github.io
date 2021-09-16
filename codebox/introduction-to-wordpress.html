@@ -64,23 +64,40 @@
 				<div class="column">
 
 					<section>
+						<h2>Templates</h2>
+
+						<p>WordPress themes are made up of template files. These are PHP files that contain a mixture of HTML, PHP and Template Tags.</p>
+
+						<p>Template Tags are built-in WordPress functions that we can use inside a template file to retrieve data. Examples include <strong>the_title()</strong> and <strong>the_content()</strong>.</p>
+
+						<ul>
+							<li><strong>page.php</strong> - WordPress will look for this template in the theme as the default page template.</li>
+							<li><strong>index.php</strong> - If no specific page template is found, including if the page.php file cannot be found, WordPress will default back to using this index file to render pages.</li>
+						</ul>
+
+						<p>Avoid using <strong>page-</strong> as a prefix when naming template files as WordPress will interpret the file as a specialist template meant to apply to only one page on your site.</p>
+
+						<p>If we build a custom theme, an <strong>index.php</strong> is required to be included to apply a default template to all pages.</p>
+					</section>
+
+					<section>
 						<h2>Plugins</h2>
 
 						<p>WordPress plugins are PHP scripts that extend the functionality or add new features to WordPress. Any plugin installed will be placed within the <strong>wp-content/plugins</strong> directory of your WordPress installation.</p>
 
-						<p>It is also possible to install plugins manually by extracting and copying them into the <strong>wp-content/plugins</strong> directory. Doing so will make the plugin available for activation within the WordPress <strong>Plugins</strong> screen in the admin/edit dashboard.</p>
-
 						<div class="image-container">
 							<img src="img/wordpress/plugins.png" width="1285" height="589" alt="The WordPress dashboard showing the plugins screen.">
 						</div>
+
+						<p>It is possible to install plugins manually by extracting and copying them into the wp-content/plugins directory. Doing so will make the plugin available for activation in the <strong>Plugins</strong> screen.</p>
 					</section>
 
 					<section>
-						<h2>Custom Post Type (CPT)</h2>
+						<h2>Custom Post Type</h2>
 
-						<p>We are going to create a <strong>Custom Post Type (CPT)</strong> called <strong>Books</strong>.</p>
+						<p>We are now going to create a Custom Post Type (CPT) called <strong>Books</strong>.</p>
 
-						<p>Within the <strong>functions.php</strong> file of your theme, add the following function to create a Custom Post Type called <strong>Books</strong>.</p>
+						<p>Within the <strong>function.php</strong> file of the theme add the following PHP function to create this custom post type.</p>
 
 <pre>
 	<code>
@@ -105,6 +122,7 @@
 			)
 		);
 
+		// Register the Custom Post Type (CPT)
 		register_post_type('books', $args);
 	}
 
@@ -112,21 +130,29 @@
 	add_action('init', 'my_first_post_type');
 
 ?&gt;
+
 	</code>
 </pre>
 
-						<p>This will add a <strong>Books</strong> custom post type in the sidebar of the WordPress admin/edit screen.</p>
+						<p>This will add the custom post type of <strong>Books</strong> in the sidebar of the WordPress admin dashboard:</p>
 
 						<div class="image-container">
 							<img src="img/wordpress/custom-post-type-books.png" width="500" height="349" alt="The WordPress dashboard showing the Books Custom Post Type in the sidebar.">
 						</div>
 
-						<h3>Adding a Taxonomy to the Custom Post Type (CPT)</h3>
-						<!-- https://www.proteusthemes.com/blog/displaying-custom-post-types-templates-querying/ -->
+						<p>You can view all posts under the custom post type that have been created:</p>
 
-						<p>Now that we have created our Custom Post Type (CPT) named Books, we can add a <strong>Taxonomy</strong> to add categories.</p>
+						<div class="image-container">
+							<img src="img/wordpress/books-posts.png" width="1285" height="617" alt="Displaying all posts in the Books custom post type.">
+						</div>
+					</section>
 
-						<p>Open the <strong>functions.php</strong> file and add the following code to create a Taxonomy for our Books custom post type so we can add categories of books.</p>
+					<section>
+						<h2>Taxonomy</h2>
+
+						<p>We can now add a taxonomy to our <strong>Books</strong> custom post type to allow us to add categories.</p>
+
+						<p>Open the <strong>functions.php</strong> file in the theme and add the following PHP function to create a taxonomy. We will register this taxonomy to our <strong>Books</strong> custom post type.</p>
 
 <pre>
 	<code>
@@ -152,771 +178,39 @@
 	add_action('init', 'my_first_taxonomy');
 
 ?&gt;
+
 	</code>
 </pre>
 
-						<p>The <strong>Categories</strong> taxonomy will now appear under the Books content post type in the WordPress admin dashboard.</p>
+						<p>We have now created a taxonomy called <strong>Categories</strong>. This will now appear under the <strong>Books</strong> custom post type where it has been registered.</p>
 
 						<div class="image-container">
 							<img src="img/wordpress/custom-post-type-taxonomy.png" width="490" height="349" alt="The WordPress dashboard showing the Categories taxonomy in the sidebar.">
 						</div>
 
-						<p>We can now add categories of Books, such as <strong>fiction</strong> and <strong>non-fiction</strong>, using this Taxonomy. Click the <strong>Categories</strong> option to add or view the categories.</p>
+						<p>We can now add <strong>terms</strong> to our taxonomy of <strong>Categories</strong>. This taxonomy is going to have two terms, one named <strong>Fiction</strong> and the other <strong>Non-Fiction</strong>.</p>
 
 						<div class="image-container">
 							<img src="img/wordpress/taxonomy-categories.png" width="1318" height="444" alt="The WordPress dashboard showing the Categories taxonomy.">
 						</div>
 
-						<p>To add a new book post, click the <strong>Add New</strong> button under the <strong>Books</strong> custom post type and enter a title for the book. In the <strong>Categories</strong> panel, select which category to be applied, either <strong>Fiction</strong> or <strong>Non-Fiction</strong>. Click the <strong>Update</strong> button to add the book.</p>
+						<p>When a new post is added within the custom post type of <strong>Books</strong>, we can set the category of each book using the terms in the <strong>Categories</strong> taxonomy.</p>
+
+						<p>Select the <strong>Add New</strong> option under the custom post type to add a new post.</p>
+
+						<p>In the example below we have created a new Book and set the category of this book to be Non-Fiction.</p>
+
+						<p>Click the <strong>Publish</strong> button to add the book.</p>
 
 						<div class="image-container">
 							<img src="img/wordpress/create-new-book.png" width="1286" height="580" alt="Adding a new Book post.">
-						</div>
-
-						<p>We can now see all the posts under the Books custom post type:</p>
-
-						<div class="image-container">
-							<img src="img/wordpress/books-posts.png" width="1285" height="617" alt="Displaying all posts in the Books custom post type.">
-						</div>
-					</section>
-
-					<section>
-						<h3>Display Posts from a Custom Post Type (CPT)</h3>
-						<!-- https://wordpress.org/support/topic/display-custom-post-type-on-a-wordpress-page/ -->
-						<!-- https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/ -->
-
-						<p>Once the <strong>Custom Post Type (CPT)</strong> has been created, we can now display these posts onto a page.</p>
-
-						<p>Open a template file in the themes folder - for simplicity, we can use the default theme template of <strong>page.php</strong> or <strong>index.php</strong> - and add the following code to list any posts added to our Books CPT:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 10,
-	);
-
-	$query = new WP_Query($args);
-
-	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
-
-			get_the_title();			// Post Title
-			get_the_content();			// Post Content
-			get_permalink();			// Post Permalink to link to the post
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-
-?&gt;
-
-	</code>
-</pre>
+						</div> 
 
 					</section>
 
-					<section>
-						<h3>Display Posts with a Taxonomy</h3>
-						<!-- https://www.youtube.com/watch?v=QH0kZnqVmFk -->
-
-						<p>Within the <strong>page.php</strong> or <strong>index.php</strong> file, we can update our query to return posts that match a taxonomy. In this code example only posts that have the taxonomy category of <strong>fiction</strong> will be displayed on the page.</p>
-
-<pre>
-	<code>
-
-&lt;?php
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 10,
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	$query = new WP_Query($args);
-
-	if($query->have_posts()) :
-		while($query->have_posts()) : $query->the_post();
-
-			get_the_title();			// Post Title
-			get_the_content();			// Post Content
-			get_permalink();			// Post Permalink to link to the post
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-
-?&gt;
-
-	</code>
-</pre>
-
-						<p>The <strong>field</strong> should be the field we want to query on, which can be:</p>
-
-						<ul>
-							<li>term_id</li>
-							<li>name</li>
-							<li>slug</li>
-						</ul>
-
-						<p>If we want to display the <strong>fiction</strong> and <strong>non-fiction</strong> categories, we can update the query like so:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 10,
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => array('fiction', 'non-fiction'),
-			)
-		),
-	);
-?&gt;
-
-	</code>
-</pre>
-
-						<p>You may notice the <strong>wp_reset_postdata()</strong> method at the end of the code. This function resets back to the original loop when we use <strong>WP_Query</strong>, so will ensure everything works after we finish with our custom query. It's recommended to include this within your code.</p>
-
-						<h3>Display the Categories on the Page</h3>
-						<!-- https://developer.wordpress.org/reference/classes/wp_query/#taxonomy-parameters -->
-						<!-- https://wordpress.stackexchange.com/questions/165610/get-posts-under-custom-taxonomy -->
-
-						<p>We may want to display the categories for each post that have been created for our <strong>Custom Post Type (CPT)</strong> of <strong>Books</strong>. Our two categories are <strong>fiction</strong> and <strong>non-fiction</strong>. Here we're only displaying the posts that have the category of fiction.</p>
-
-<pre>
-	<code>
-
-&lt;?php
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 10,
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	$query = new WP_Query($args);
-
-	if($query->have_posts()) :
-		while($query->have_posts()) : $query->the_post();
-
-			$post_id = get_the_ID();				// Post ID
-			$post_terms = get_the_terms($post_id, 'book_category');		// Pass in the ID and the taxonomy
-			$posts = $post_terms[0];				// Convert the array into an object
-
-			$post_category = $posts->name;			// Post Category
-
-			$post_title = get_the_title();			// Post Title
-			$post_content = get_the_content();		// Post Content
-			$post_link = get_permalink();			// Post Permalink to link to the post
-
-			echo $post_category;					// Output the post category
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-
-?&gt;
-
-	</code>
-</pre>
-					</section>
-
-					<section>
-						<h2>Create a Template</h2>
-
-						<p>In the root directory of your themes folder - <strong>wp-content/themes/THEMENAME-HERE</strong> (<strong>themename</strong> is the name of the theme being used, as an example) - create an empty PHP file. This will be our template file. Add this code to the newly created PHP template file:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-/*
-	Template Name: Blog Template
-	Template Post Type: post, page
-*/
-
-	</code>
-</pre>
-
-						<p>As this template will be used to display our Posts, the template will be named <strong>blog-template.php</strong> within the <strong>wp-content/themes/THEMENAME-HERE</strong> folder.</p>
-
-						<h3>Apply the Template to a Page</h3>
-
-						<p>Create a new page in the WordPress admin/edit dashboard. We will be calling this page <strong>Books</strong>. This page will be used to display our posts from within the <strong>Books Custom Post Type (CPT)</strong> we created earlier.</p>
-
-						<p>Within the edit area of the Books page, we should now see a <strong>Template</strong> panel on the right-side of the WordPress admin/edit dashboard. The drop-down will allow us to select the Blog Template. Once selected, click the <strong>Update</strong> button to apply our <strong>Blog Template</strong> - <strong>blog-template.php</strong> - to our newly created <strong>Books</strong> page.</p>
-
-						<h3>Display the Posts in our Template</h3>
-
-						<p>Update the <strong>blog-template.php</strong> file to display the posts from within the <strong>Books Custom Post Type (CPT)</strong> with the taxonomy of <strong>fiction</strong>.</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-	/*
-		Template Name: Blog Template
-		Template Post Type: post, page
-	*/
-
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 10,
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	$query = new WP_Query($args);
-
-	if($query->have_posts()) :
-		while($query->have_posts()) : $query->the_post();
-
-			$title = get_the_title();
-			$content = get_the_content();
-			$link = get_permalink();
-
-			echo $title;
-			echo $content;
-			echo $link;
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-	
-?&gt;
-
-	</code>
-</pre>
-
-						<p>The code previously added to the <strong>page.php</strong> or <strong>index.php</strong> file can now be removed so the posts are not displayed on every page and/or post using the default template.</p>
-					</section>
-
-					<section>
-						<h2>Page Templates</h2>
-
-						<p>Now that we can display our posts on a page, we will want to create templates for each of our pages so as to not use the <strong>Default Template</strong>. We will have pages for <strong>Home</strong>, <strong>About</strong> and <strong>Contact</strong> within our WordPress site.</p>
-
-						<ul>
-							<li>In the WordPress admin/edit screen select <strong>Pages</strong>.</li>
-							<li>Select the <strong>Add New</strong> option from the menu.</li>
-							<li>Create three pages: <strong>Home</strong>, <strong>About</strong>, and <strong>Contact</strong>.</li>
-						</ul>
-
-						<p>When a page is created in WordPress the <strong>Default Template</strong> is automatically applied.</p>
-
-						<p>Create three template files, one per page, in the root of the theme folder:</p>
-
-<pre>
-	<code>
-
-wp-content /
-	themes /
-		mytheme /
-			about-template.php
-			blog-template.php
-			contact-template.php
-			home-template.php
-			functions.php
-			index.php
-			style.css
-
-	</code>
-</pre>
-
-						<p>Each template file should look like this:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-/*
-	Template Name: Home Template
-	Template Post Type: page
-*/
-
-	</code>
-</pre>
-
-						<p>Once the template files have been created, open the edit screen of each page and select the relevant template to be applied. We can now customise each template file.</p>
-					</section>
-
-					<section>
-						<h2>Advanced Custom Fields (ACF)</h2>
-
-						<p><a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">Advanced Custom Fields (ACF)</a> is a WordPress plugin that allows you to add extra content fields, known as <strong>Custom Fields</strong>, to the edit screens within the admin dashboard of WordPress. This plugin does not come pre-installed with WordPress so it will need to be installed if we wish to use <strong>Advanced Custom Fields (ACF)</strong>.</p>
-
-						<p>Once the plugin is installed and activated, the <strong>Custom Fields</strong> option will be displayed in the sidebar of the WordPress admin/edit screen.</p>
-
-						<h3>Creating a Custom Field</h3>
-
-						<p>Now that the ACF plugin has been installed, we will create a new <strong>Field Group</strong> called <strong>Books</strong> to allow the content authors/editors to add more information (such as Authors, ISBN numbers, pages, and much more) about each book in our Books Custom Post Type (CPT).</p>
-
-						<ul>
-							<li>In <strong>Custom Fields</strong> within the WordPress admin/edit screen sidebar, select <strong>Add New</strong>.</li>
-							<li>Add the Title of the Field Group to be <strong>Books</strong>.</li>
-							<li>Click the <strong>Add Field</strong> button.</li>
-							<li>Add <strong>Author</strong> as the <strong>Field Label</strong>.</li>
-							<li>Add <strong>books_author</strong> as the <strong>Field Name</strong>. This will be the field we use to retrive the value.</li>
-							<li>The <strong>Field Type</strong> should be set to <strong>Text</strong> for this field example.</li>
-						</ul>
-
-						<p>We now need to update the <strong>Location</strong> options to set the <strong>Rules</strong> for where our custom field group will appear.</p>
-
-						<ul>
-							<li>Show the field group if <strong>Post Taxonomy is equal to Fiction</strong>.</li>
-						</ul>
-
-						<p>Once done, click the <strong>Update</strong> button to create the custom field group. As the location rule(s) have been set, this will only appear on our posts that have the taxonomy of fiction. Further rules can be added if needed.</p>
-
-						<h3>Retrieving a Custom Field</h3>
-
-						<p>We use the <strong>Field Name</strong> to retrieve the value of a custom field. For example, if we have a custom field with the <strong>Field Name</strong> of <strong>books_author</strong>, we can retieve the value of this field as a variable:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-	$author = get_field('books_author');
-	
-?&gt;
-
-	</code>
-</pre>
-
-						<p>We can then check that a value has been passed into the variable to only display the value itself if it exists.</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-	$author = get_field('books_author');
-
-	if ($author) :
-
-		echo $author;
-
-	endif;
-	
-?&gt;
-
-	</code>
-</pre>
-
-						<p>We can also check if specific values are passed into the custom field:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-	$author = get_field('books_author');
-
-	if ($author == 'JK Rowling') :
-
-		echo $author;
-
-	endif;
-	
-?&gt;
-
-	</code>
-</pre>
-
-						<p>The field itself can also be displayed without the use of a variable:</p>
-
-<pre>
-	<code>
-
-&lt;?php
-
-	the_field('books_author');
-	
-?&gt;
-
-	</code>
-</pre>
-					</section>
-
-				</div><!-- / column -->
-			</div><!-- / row -->
-		</div><!-- / container -->
-
-<!--
-SORT THE POSTS USING A DROP-DOWN
--->
-
-<!--
-<?php
-
-	/*
-		Template Name: Blog Template
-		Template Post Type: post, page
-	*/
-
-	//$term = get_queried_object();		// Get the current queries object, add to URL as parameter
-
-	//var_dump($termLoopId);
-
-	$getForm = $_GET;		// Get the form data values
-
-	var_dump($getForm);
-
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 8,
-		'order' => 'DESC',
-		'orderby' => 'date',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	if($getForm['orderby'] === 'latest') :
-
-		//echo 'Newest';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'oldest') :
-
-		//echo 'Oldest';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-asc') :
-
-		//echo 'Letter-Asc';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-desc') :
-
-		//echo 'Letter-Desc';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	$query = new WP_Query($args);
-
-?>
-
-<form method="GET">
-	<select name="orderby" onchange="this.form.submit()">
-		<option value="latest" <?php echo selected($getForm['orderby'], 'latest'); ?>>Newest</option>
-		<option value="oldest" <?php echo selected($getForm['orderby'], 'oldest'); ?>>Oldest</option>
-		<option value="letter-asc" <?php echo selected($getForm['orderby'], 'letter-asc'); ?>>A to Z</option>
-		<option value="letter-desc" <?php echo selected($getForm['orderby'], 'letter-desc'); ?>>Z to A</option>
-	</select>
-</form>
-
-<?php
-
-?>
-
-<?php
-
-	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
-
-			$title = get_the_title();
-			$content = get_the_content();
-			$link = get_permalink();
-
-			echo $title;
-			echo $content;
-			echo $link;
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-	
-?>
--->
-
-<!--
-	COUNT POSTS 
--->
-<!--
-<?php
-
-	/*
-		Template Name: Blog Template
-		Template Post Type: post, page
-	*/
-
-	//$term = get_queried_object();		// Get the current queries object, add to URL as parameter
-
-	//var_dump($termLoopId);
-
-	$getForm = $_GET;		// Get the form data values
-
-	var_dump($getForm);
-
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 8,
-		'order' => 'DESC',
-		'orderby' => 'date',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	if($getForm['orderby'] === 'latest') :
-
-		//echo 'Newest';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'oldest') :
-
-		//echo 'Oldest';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-asc') :
-
-		//echo 'Letter-Asc';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-desc') :
-
-		//echo 'Letter-Desc';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	$query = new WP_Query($args);
-
-?>
-
-<form method="GET">
-	<select name="orderby" onchange="this.form.submit()">
-		<option value="latest" <?php echo selected($getForm['orderby'], 'latest'); ?>>Newest</option>
-		<option value="oldest" <?php echo selected($getForm['orderby'], 'oldest'); ?>>Oldest</option>
-		<option value="letter-asc" <?php echo selected($getForm['orderby'], 'letter-asc'); ?>>A to Z</option>
-		<option value="letter-desc" <?php echo selected($getForm['orderby'], 'letter-desc'); ?>>Z to A</option>
-	</select>
-</form>
-
-<?php
-
-?>
-
-<?php
-
-	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
-
-			$count = $query->found_posts;		// Return the number of found posts
-
-			$title = get_the_title();
-			$content = get_the_content();
-			$link = get_permalink();
-
-			echo $count;						// output the count
-
-			echo $title;
-			echo $content;
-			echo $link;
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-	
-?>
--->
-
-<!--
-	ADVANCED CUSTOM FIELDS - GET FIELD VALUES
--->
-<!--
-<?php
-	
-global $wp_query;	// Global variable that gives us all the info about the page
-
-?>
-
-<?php
-
-	/*
-		Template Name: Blog Template
-		Template Post Type: post, page
-	*/
-
-	//$term = get_queried_object();		// Get the current queries object, add to URL as parameter
-
-	//var_dump($termLoopId);
-
-	$getForm = $_GET;		// Get the form data values
-
-	var_dump($getForm);
-
-	$args = array(
-		'post_type' => 'books',
-		'post_status' => 'publish',
-		'posts_per_page' => 8,
-		'order' => 'DESC',
-		'orderby' => 'date',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'book_category',
-				'field' => 'slug',
-				'terms' => 'fiction'
-			)
-		),
-	);
-
-	if($getForm['orderby'] === 'latest') :
-
-		//echo 'Newest';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'oldest') :
-
-		//echo 'Oldest';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'date';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-asc') :
-
-		//echo 'Letter-Asc';
-		$args['order'] = 'ASC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	if($getForm['orderby'] === 'letter-desc') :
-
-		//echo 'Letter-Desc';
-		$args['order'] = 'DESC';
-		$args['orderby'] = 'title';
-
-	endif;
-
-	$query = new WP_Query($args);
-
-?>
-
-<form method="GET">
-	<select name="orderby" onchange="this.form.submit()">
-		<option value="latest" <?php echo selected($getForm['orderby'], 'latest'); ?>>Newest</option>
-		<option value="oldest" <?php echo selected($getForm['orderby'], 'oldest'); ?>>Oldest</option>
-		<option value="letter-asc" <?php echo selected($getForm['orderby'], 'letter-asc'); ?>>A to Z</option>
-		<option value="letter-desc" <?php echo selected($getForm['orderby'], 'letter-desc'); ?>>Z to A</option>
-	</select>
-</form>
-
-<?php
-
-	if($query->have_posts()) :
-		while($query->have_posts()) :
-
-			$query->the_post();
-
-			// Get ACF field for the author
-			$author = get_field('books_author');
-
-			$count = $query->found_posts;
-
-			$title = get_the_title();
-			$content = get_the_content();
-			$link = get_permalink();
-
-			echo $count;
-
-			echo $title;
-			echo $content;
-			echo $link;
-
-			if($author) :
-				echo $author;
-			endif;
-
-		endwhile;
-	endif;
-
-	wp_reset_postdata();
-	
-?>
-
-<div id="more_posts">Load More</div>
--->
+				</div>
+			</div>
+		</div>
 
 	</main>
 
