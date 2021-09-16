@@ -78,6 +78,25 @@
 						<p>Avoid using <strong>page-</strong> as a prefix when naming template files as WordPress will interpret the file as a specialist template meant to apply to only one page on your site.</p>
 
 						<p>If we build a custom theme, an <strong>index.php</strong> is required to be included to apply a default template to all pages.</p>
+
+						<h3>Create a Page Template</h3>
+
+						<p>By default, a custom page template will be available to the <strong>page</strong> post type.</p>
+
+						<p>To create a page template to specific post types, add a line under the template name with the post types you would like the template to support.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+/*
+	Template Name: Full-width layout
+	Template Post Type: post, page
+*/
+
+	</code>
+</pre>
 					</section>
 
 					<section>
