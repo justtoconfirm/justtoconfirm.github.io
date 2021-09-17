@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to React">
+
+	<title>Codebox | React</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">React</h1>
+
+						<p class="intro__copy">React is an open-source, front-end JavaScript library for building user interfaces and components.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Requirements</h2>
+
+						<p>You will need to have the following installed on your machine to install and run React:</p>
+
+						<ul>
+							<li>Node 14.0.0 or later</li>
+							<li>npm 5.6 or later</li>
+						</ul>
+
+						<p>You can use <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> to switch Node versions between projects.</p>
+
+						<p>The following packages will be installed as dependencies:</p>
+
+						<ul>
+							<li><strong>react</strong> - the top-level API of the React library.</li>
+							<li><strong>react-dom</strong> - DOM specific methods used by React.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Frameworks that use React</h2>
+
+						<p>The following frameworks are built using React:</p>
+
+						<ul>
+							<li><strong>Next.js</strong> - lightweight framework for static and server-rendered applications built with React. It includes styling and routing solutions out of the box. Node.js is used as the server environment.</li>
+							<li><strong>Gatsby</strong> - framework used to create static websites with React using components. Outputs pre-rendered HTML and CSS to create fast load times.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Install React</h2>
+
+						<p>We can use <strong>Create React App</strong> to install React and to setup the development environment. This doesn't handle backend logic or databases, it just creates the frontend build pipeline, so we can use it with any backend we want.</p>
+
+						<p>This uses <strong>Babel</strong> and <strong>Webpack</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app my-app
+
+	cd my-app
+	npm start
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p><strong>npx</strong> is a package runner tool that comes with npm version 5.2 and later. This will install the current version of React (version 17 as of September 2021).</p>
+
+						<p>The start command will run the local development server on port 3000: <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">http://localhost:3000/</a>
+
+						<p>Once installed, the file structure of the application should look like this:</p>
+
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+		|_favicon.ico
+		|_index.html
+		|_logo192.png
+		|_logo512.png
+		|_manifest.json
+		|_robots.txt
+	|_src /
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+
+						<p>We can update the <strong>src/App.js</strong> file and the development server will reload the page.</p>
+					</section>
+
+					<section>
+						<h2>Simplify the Application</h2>
+
+						<p>Update the <strong>src/App.js</strong> file to simplify the code. For the moment we just need a simple JavaScript function. This will be our <strong>App</strong> component.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+	return (
+
+		&lt;h1&gt;Hello World&lt;/h1&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>This will render Hello World on the page.</p>
+
+						<p>If we want to add a further element to render, we will need to use <strong>React Fragments</strong> to wrap around the elements in the return statement. Without this a SyntaxError will occur as adjacent JSX elements must be wrapped in an enclosing tag. Fragments allow you to group elements without adding extra nodes such as <strong>&lt;div&gt;</strong> to the DOM (Document Object Model).</p>
+
+<pre>
+	<code>
+
+const App = () => {
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;Hello World&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>We can also simplify the <strong>src/index.js</strong> file where our <strong>App</strong> component is rendered.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { render } from 'react-dom';
+import App from './App';
+
+render(
+	&lt;React.StrictMode&gt;
+		&lt;App /&gt;
+	&lt;/React.StrictMode&gt;,
+	
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p><strong>StrictMode</strong> is a tool for highlighting potential problems in an application. Like a React Fragment, it does not render any visible UI and checks are run in development mode only, not production.</p>
+
+						<p>The React application will render in the <strong>root</strong> element within the <strong>public/index.html</strong> file. The root element has the id of "root", but this can be changed.</p>
+					</section>
+
+					<section>
+						<h2>Variables</h2>
+
+						<p>In this example, we declare a variable called <strong>name</strong> and use it inside JSX by wrapping it in curly braces.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+
+	const name = 'Dan';
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>You can put any valid JavaScript expression inside the curly braces in JSX. For example, putting 2 + 2 as an expression will output the value of 4.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+
+	const name = 'Dan';
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			{2 + 2}
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Classes</h2>
+
+						<p>In JSX we cannot use the class attribute as it's a JavaScript keyword. To add a class to an element in a React component we use the <strong>className</strong> attribute. This will automatically render as a class attribute.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+
+	const name = 'Dan';
+
+	return (
+
+		&lt;&gt;
+			&lt;h1 className="title"&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			{2 + 2}
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Build the Application</h2>
+
+						<p>When you're ready to deploy your React application to production, run the <strong>build</strong> command to create an optimised build of your app in the build folder.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run build
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>

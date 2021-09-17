@@ -198,6 +198,76 @@ code {
     font-size: 1.4rem;
 }
 
+.terminal {
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    margin: 2rem 0;
+
+    &--shadow {
+        box-shadow: 0 0 10px rgba(0,0,0,.4);
+    }
+
+    &__top {
+        background-color: #e8e6e8;
+        color: #000;
+        font-size: 14px;
+        font-size: 1.4rem;
+        padding: 0.5rem;
+        border-radius: 5px 5px 0 0;
+    }
+
+    &__buttons {
+        position: absolute;
+        top: 7px;
+        left: 5px;
+    }
+
+    &__circle {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        border-radius: 15px;
+        margin-left: 2px;
+        border-width: 1px;
+        border-style: solid;
+
+        &--red {
+            background-color: #ec6a5f; 
+            border-color: #d04e42; 
+        }
+
+        &--green {
+            background-color: #64cc57; 
+            border-color: #4ea73b;
+        }
+
+        &--yellow {
+            background-color: #f5c04f; 
+            border-color: #d6a13d; 
+        }
+
+        &--clear {
+            clear: both;
+        }
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__body {
+        margin-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: #333;
+        color: #b3b9c5;
+        font-size: 14px;
+        font-size: 1.4rem;
+        padding: 2.5rem 0 1rem 0;
+        overflow: auto;        
+    }
+}
+
 .container {
 	margin: 0 auto;
 

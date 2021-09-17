@@ -1,18 +1,20 @@
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".menu");
+((document) => {
 
-hamburger.addEventListener("click", mobileMenu);
+	const hamburger = document.querySelector('.hamburger');
+	const menu = document.querySelector('.menu');
+	const link = document.querySelectorAll('.nav-link');
 
-function mobileMenu() {
-	hamburger.classList.toggle("active");
-	navMenu.classList.toggle("active");
-}
+	const mobileMenu = () => {
+		hamburger.classList.toggle('active');
+		menu.classList.toggle('active');
+	}
 
-const navLink = document.querySelectorAll(".nav-link");
+	const closeMenu = () => {
+		hamburger.classList.remove('active');
+		menu.classList.remove('active');
+	}
 
-navLink.forEach(n => n.addEventListener("click", closeMenu));
+	hamburger.addEventListener('click', mobileMenu);
+	link.forEach(n => n.addEventListener('click', closeMenu));
 
-function closeMenu() {
-	hamburger.classList.remove("active");
-	navMenu.classList.remove("active");
-}
+})(document);
