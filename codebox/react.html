@@ -320,6 +320,463 @@ export default App;
 					</section>
 
 					<section>
+						<h2>Button</h2>
+
+						<p>Add a button to the <strong>index/App.js</strong> component and a function to show an alert when the button is clicked. We use the <strong>onClick</strong> prop to call the function. As with className, we use onClick in React in-place of onclick as this is a JavaScript keyword.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+
+	const name = 'Dan';
+
+	const showAlert = () => {
+		alert('Hello World');
+	}
+
+	return (
+
+		&lt;&gt;
+			&lt;h1 className="title"&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			{2 + 2}
+
+			&lt;button type="button" onClick={showAlert}&gt;Alert&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Link</h2>
+
+						<p>We can add a link to a React application using a standard HTML anchor tag.</p>
+
+<pre>
+	<code>
+
+const App = () => {
+
+	const name = 'Dan';
+
+	const showAlert = () => {
+		alert('Hello World');
+	}
+
+	return (
+
+		&lt;&gt;
+			&lt;h1 className="title"&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			{2 + 2}
+
+			&lt;a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer"&gt;React&lt;/a&gt;
+
+			&lt;button type="button" onClick={showAlert}&gt;Alert&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding CSS</h2>
+
+						<p>Within the application folder structure we have an <strong>App.css</strong> stylesheet in the root for the <strong>src</strong> directory. We can import this CSS stylesheet into our App component to apply styling to our application.</p>
+
+<pre>
+	<code>
+
+import './App.css';
+
+const App = () => {
+
+	const name = 'Dan';
+
+	const showAlert = () => {
+		alert('Hello World');
+	}
+
+	return (
+
+		&lt;&gt;
+			&lt;h1 className="title"&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			{2 + 2}
+
+			&lt;a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer"&gt;React&lt;/a&gt;
+
+			&lt;button type="button" onClick={showAlert}&gt;Alert&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>This will add a inline <strong>&lt;style&gt;</strong> tag containing the CSS from within the App.css stylesheet into the <strong>&lt;head&gt;</strong> section of the HTML document that renders the app. This can be seen from within the developer tools inspector.</p>
+					</section>
+
+					<section>
+						<h2>Image</h2>
+
+						<p>We have an SVG image named <strong>logo.svg</strong> in the <strong>src</strong> directory of our app. We can import this into the App component to render the image inside an <strong>&lt;img&gt;</strong> tag.</p>
+
+<pre>
+	<code>
+
+import './App.css';
+import logo from './logo.svg';
+
+const App = () => {
+
+	const name = 'Dan';
+
+	const showAlert = () => {
+		alert('Hello World');
+	}
+
+	return (
+
+		&lt;&gt;
+			&lt;h1 className="title"&gt;Hello {name}&lt;/h1&gt;
+			&lt;p&gt;Welcome to my React application.&lt;/p&gt;
+
+			&lt;img src={logo} alt="logo" /&gt;
+
+			{2 + 2}
+
+			&lt;a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer"&gt;React&lt;/a&gt;
+
+			&lt;button type="button" onClick={showAlert}&gt;Alert&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Reusable Components</h2>
+
+						<p>Within the <strong>src</strong> directory begin by creating a sub-directory named <strong>components</strong>. This directory will contain reusable components we can use throughout our application.</p>
+
+						<p>Inside this directory, create a file named <strong>Button.js</strong>. This will be our reusable button component. It is recommended to always name your components with an uppercase letter at the start.</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+	|_src /
+		|_components /
+			|_Button.js
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<p>Open the <strong>Button.js</strong> component file and add the following code. This will be a function that will render a button.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = () => {
+	return (
+
+		&lt;button&gt;Button&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>Update the <strong>App.js</strong> file to import the Button component - <strong>components/Button.js</strong> - into the app and replace the hard-coded button we were using previously. We will also need to remove the <strong>showAlert()</strong> function.</p>
+
+						<p>We have simplified the App component once again by removing all code except the Button component.</p>
+
+<pre>
+	<code>
+
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;Button /&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>We may want to change the button type. We can use props to do this. Update the Button component to include a type prop. This will have the default value of <strong>button</strong> if no value is passed into the component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = ({ type = 'button' }) => {
+	return (
+
+		&lt;button type={type}&gt;Button&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>If we don't want the Button to have the type of <strong>button</strong>, but a type of <strong>submit</strong>, we can pass this into the button <strong>type</strong> prop from the App component.</p>
+
+<pre>
+	<code>
+
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;Button type="submit" /&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<h3>The Children Prop</h3>
+
+						<p>When we render a component, the <strong>children</strong> prop will automatically be passed whatever content comes between the opening and closing tags. We can use the children prop to pass a button label into the Button component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = ({ type = 'button', children }) => {
+	return (
+
+		&lt;button type={type}&gt;{ children }&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>We can then update the App component to pass in the label of the button using the <strong>children</strong> prop. Our button will be called <strong>Register</strong> in this example.</p>
+
+<pre>
+	<code>
+
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;Button&gt;Register&lt;/Button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<h3>Adding the onClick Prop</h3>
+
+						<p>Once again we can add the <strong>onClick</strong> event handler as a prop in our Button component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = ({ type = 'button', onClick, children }) => {
+	return (
+
+		&lt;button type={type} onClick={onClick}&gt;{ children }&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>As before, the App component can be updated to use the onClick event handler prop to call a function when the button is clicked.</p>
+
+<pre>
+	<code>
+
+import Button from './components/Button';
+
+const App = () => {
+
+	const showAlert = () => {
+		alert('Hello World');
+	}
+
+	return (
+
+		&lt;&gt;
+			&lt;Button onClick={showAlert}&gt;Register&lt;/Button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Within our Button component we can tidy up the structure by placing our props inside an object.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		onClick,
+		children
+	} = props;
+
+	return (
+
+		&lt;button type={type} onClick={onClick}&gt;{ children }&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>Let's now add a <strong>className</strong> attribute so we can set a default class to each button. This will add the class of <strong>btn</strong> to each button that is rendered.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		onClick,
+		children
+	} = props;
+
+	return (
+
+		&lt;button type={type} className="btn" onClick={onClick}&gt;{ children }&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h3>Adding the Spread Operator</h3>
+
+						<p>The props within the component can make use of the <strong>Spread Operator</strong>.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		onClick,
+		children
+	} = props;
+
+	return (
+
+		&lt;button {...{ type, onClick }} className="btn"&gt;{ children }&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Build the Application</h2>
 
 						<p>When you're ready to deploy your React application to production, run the <strong>build</strong> command to create an optimised build of your app in the build folder.</p>
