@@ -774,6 +774,241 @@ export default Button;
 
 	</code>
 </pre>
+
+						<h3>Change how a component renders</h3>
+
+						<p>We may want to render our Button component as a <strong>&lt;button&gt;</strong> or a <strong>&lt;link&gt;</strong> using props. Update the Button component code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		url = '',
+		onClick,
+		children
+	} = props;
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'));
+
+	const renderAsLink = () =>
+		&lt;a href={url} role="button" className="btn"&gt;{ children }&lt;/a&gt;
+
+	const renderAsButton = () =>
+		&lt;button {...{ type, onClick }} className="btn"&gt;{ children }&lt;/button&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>If we don't pass a prop of <strong>url</strong> into the button component, a normal <strong>&lt;button&gt;</strong> element will be rendered. If we pass in a <strong>url</strong> prop into the button component, it will render as a link. The example code below shows how we can use the prop to render the button as a link.</p>
+
+<pre>
+	<code>
+
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;Button url="https://reactjs.org/"&gt;React&lt;/Button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Styled Components</h2>
+
+						<p><strong>Styled Components</strong> can be used to apply styling to your React components allowing your CSS to be scoped inside the component itself.</p>
+
+						<p>We can install the <a href="https://www.npmjs.com/package/styled-components" target="_blank" rel="noopener noreferrer">style-components</a> npm package:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can then import this into our Button component and apply the styling.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const ButtonStyle = styled.button`
+	cursor: pointer;
+`;
+
+const LinkStyle = styled.a`
+	text-decoration: none;
+`;
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		url = '',
+		onClick,
+		children
+	} = props;
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'));
+
+	const renderAsLink = () =>
+		&lt;LinkStyle href={url} role="button" className="btn"&gt;{ children }&lt;/LinkStyle&gt;
+
+	const renderAsButton = () =>
+		&lt;ButtonStyle {...{ type, onClick }} className="btn"&gt;{ children }&lt;/ButtonStyle&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h3>Adding a GlobalStyles stylesheet</h3>
+
+						<p>We may want a global stylesheet to be created for our application to apply global styles. Begin by creating a JavaScript file named <strong>GlobalStyles.js</strong> in the <strong>src</strong> directory.</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+	|_src /
+		|_components /
+			|_Button.js
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_GlobalStyles.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<p>Add the following code to the <strong>GlobalStyles.js</strong> file:</p>
+
+<pre>
+	<code>
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+	body {
+		background-color: #fff;
+	}
+`;
+
+export default GlobalStyle;
+
+	</code>
+</pre>
+
+						<p>You can add your CSS code and classes within this file.</p>
+
+						<p>Now open the <strong>App.js</strong> component and import the <strong>GlobalStyles</strong> to apply the styling across your app.</p>
+
+<pre>
+	<code>
+
+import GlobalStyles from './GlobalStyles';
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;GlobalStyles /&gt;
+
+			&lt;Button&gt;Register&lt;/Button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>You may also want to include a reset such as <strong>normalize.css</strong> into your application and this can be imported into the <strong>App</strong> component if required.</p>
+
+<pre>
+	<code>
+
+import 'normalize.css';
+import GlobalStyles from './GlobalStyles';
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;GlobalStyles /&gt;
+
+			&lt;Button&gt;Register&lt;/Button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
 					</section>
 
 					<section>
