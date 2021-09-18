@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to React">
+
+	<title>Codebox | Gatsby</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Gatsby</h1>
+
+						<p class="intro__copy">Gatsby is an open-source framework built using React for creating websites and applications.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Requirements</h2>
+
+						<p>You will need to have the following installed on your machine to install and run Gatsby:</p>
+
+						<ul>
+							<li>Node 12.13.0 or later</li>
+						</ul>
+
+						<p>You can use <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> to switch Node versions between projects.</p>
+					</section>
+
+					<section>
+						<h2>Technoligies</h2>
+
+						<p>Gatsby uses a few technologies under the hood:</p>
+
+						<ul>
+							<li><strong>React</strong> - a JavaScript library for building user interfaces and the UI components. This is used by Gatsby to build pages and structure content. <a href="react.html">View the React guide &#8594;</a></li>
+							<li><strong>GraphQL</strong> - a query language that allows you to pull data into your website. It's the interface Gatsby uses for managing site data.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Install Gatsby</h2>
+
+						<p>We can use <strong>Create React App</strong> to install React and to setup the development environment. This doesn't handle backend logic or databases, it just creates the frontend build pipeline, so we can use it with any backend we want.</p>
+
+						<p>This uses <strong>Babel</strong> and <strong>Webpack</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-cli -g
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed, the file structure of the application should look like this:</p>
+
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+		|_favicon.ico
+		|_index.html
+		|_logo192.png
+		|_logo512.png
+		|_manifest.json
+		|_robots.txt
+	|_src /
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+
+						<p>We can update the <strong>src/App.js</strong> file and the development server will reload the page.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>

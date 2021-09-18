@@ -21,6 +21,7 @@
 				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
 				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
 				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
 			</ul>
 
 			<div class="hamburger">
@@ -41,6 +42,9 @@
 			</li>
 			<li class="menu__list-item">
 				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
 			</li>
 		</ul>
 	</div>
@@ -94,7 +98,7 @@
 
 						<ul>
 							<li><strong>Next.js</strong> - lightweight framework for static and server-rendered applications built with React. It includes styling and routing solutions out of the box. Node.js is used as the server environment.</li>
-							<li><strong>Gatsby</strong> - framework used to create static websites with React using components. Outputs pre-rendered HTML and CSS to create fast load times.</li>
+							<li><strong>Gatsby</strong> - framework used to create static websites with React using components. Outputs pre-rendered HTML and CSS to create fast load times. <a href="gatsby.html">View the Gatsby guide &#8594;</a></li>
 						</ul>
 					</section>
 
@@ -183,6 +187,32 @@ const App = () => {
 }
 
 export default App;
+
+	</code>
+</pre>
+
+						<p>We can keep the <strong>index.js</strong> file as it is for now.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+	&lt;React.StrictMode&gt;
+		&lt;App /&gt;
+	&lt;/React.StrictMode&gt;,
+	document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
 
 	</code>
 </pre>
@@ -1009,6 +1039,535 @@ export default App;
 
 	</code>
 </pre>
+
+						<h3>Using the classNames packages</h3>
+
+						<p>To style our components we can also use the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">classNames</a> npm package.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install classnames
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>As an example we can update the Button component to apply classNames.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import classNames from 'classnames';
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		url = '',
+		className = '',
+		theme = '',
+		onClick,
+		children
+	} = props;
+
+    const buttonClass = classNames('btn', className, {
+		'btn--primary' : theme === 'primary',
+		'btn--secondary' : theme === 'secondary',
+		'btn--full-width' : isFullWidth
+    })
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'));
+
+	const renderAsLink = () =>
+		&lt;LinkStyle href={url} role="button" className={buttonClass}&gt;{ children }&lt;/LinkStyle&gt;
+
+	const renderAsButton = () =>
+		&lt;ButtonStyle {...{ type, onClick }} className={buttonClass}&gt;{ children }&lt;/ButtonStyle&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>Each time the button renders the btn class will be applied. We can pass props into the button to change the classes. For example, if we want to the button to secondary and full-width:</p>
+
+<pre>
+	<code>
+
+&lt;Button theme="primary" isFullWidth&gt;Register&lt;/Button&gt;
+
+	</code>
+</pre>
+
+						<p>This would apply the classes of: <strong>btn btn--secondary btn--full-width</strong></p>
+					</section>
+
+					<section>
+						<h2>Layout Component</h2>
+
+						<p>On most websites you may notice that there are a few repeating parts of the UI (User Interface) across all pages, such as the title, navigation, header and footer. It's often better to create one common layout component tht groups shared elements together so they can be reused.</p>
+
+						<p>Create an empty file named <strong>components/Layout.js</strong> with the following code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Layout = ({ children }) => {
+	return (
+
+		&lt;&gt;
+			&lt;header&gt;
+				header
+			&lt;/header&gt;
+
+			&lt;main role="main"&gt;
+
+				{children}
+
+			&lt;/main&gt;
+
+			&lt;footer&gt;
+				footer
+			&lt;/footer&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Layout;
+
+	</code>
+</pre>
+
+						<p>The header and footer can be moved into their own components to make it easier to structure the code.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+
+const Layout = ({ children }) => {
+	return (
+
+		&lt;&gt;
+			&lt;Header /&gt;
+
+			&lt;main role="main"&gt;
+
+				{children}
+
+			&lt;/main&gt;
+
+			&lt;Footer /&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Layout;
+
+	</code>
+</pre>
+
+						<p>The Header component - <strong>components/Header.js</strong> - will look like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Header = () => {
+	return (
+
+		&lt;header&gt;
+
+			Header
+
+		&lt;/header&gt;
+
+	);
+}
+
+export default Header;
+	</code>
+</pre>
+
+						<p>The Layout component can then be imported into the App component.</p>
+
+<pre>
+	<code>
+
+import GlobalStyles from './GlobalStyles';
+import Layout from './components/Layout';
+import Button from './components/Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;GlobalStyles /&gt;
+
+			&lt;Layout&gt;
+			
+				&lt;Button&gt;Register&lt;/Button&gt;
+
+			&lt;/Layout&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>The file structure will now look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+	|_src /
+		|_components /
+			|_Button.js
+			|_Footer.js
+			|_Header.js
+			|_Layout.js
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_GlobalStyles.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Build a Counter</h2>
+
+						<p>We will be using the <strong>useState</strong> hook to create a simple counter that increments when the button is clicked. Hooks were introduced from React 16.8.</p>
+
+						<p>Create a new component named <strong>Counter.js</strong> in the <strong>components</strong> directory. Add the following code to this component.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+import Button from './Button';
+
+const Counter = () => {
+
+	const [count, setCount] = useState(0);
+
+	return (
+
+		&lt;&gt;
+
+			&lt;p&gt;You clicked {count} times.&lt;/p&gt;
+
+			&lt;Button onClick={() => setCount(count + 1)}&gt;Increase Count&lt;/Button&gt;
+
+		&lt;/&gt;
+
+	);
+}
+
+export default Counter;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>React Router</h2>
+
+						<p><strong>React Router</strong> can be installed using npm.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install react-router-dom
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed, update the <strong>index.js</strong> by wrapping the <strong>&lt;BrowserRouter&gt;</strong> around the <strong>&lt;App /&gt;</strong> component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+
+render(
+	&lt;React.StrictMode&gt;
+		&lt;BrowserRouter&gt;
+			&lt;App /&gt;
+		&lt;/BrowserRouter&gt;
+	&lt;/React.StrictMode&gt;,
+	
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>Wherever we render our page content, we need to add the <strong>&lt;Switch&gt;</strong> element containg the <strong>&lt;Route&gt;</strong> tags for each component (page) to load.</p>
+
+						<p>Open the <strong>App.js</strong> file and update the code.</p>
+
+<pre>
+	<code>
+
+import GlobalStyles from './GlobalStyles';
+import { Switch, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Error from './pages/Error';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;GlobalStyles /&gt;
+
+			&lt;Layout&gt;
+			
+				&lt;Switch>
+					&lt;Route path="/" component={Home} exact /&gt;
+					&lt;Route path="/about" component={About} exact /&gt;
+					&lt;Route path="/contact" component={Contact} exact /&gt;
+					&lt;Route component={Error} /&gt;
+				&lt;/Switch>
+
+			&lt;/Layout&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>You may notice that we have imported components for each of our routes. These will be components that will act as pages as we navigate through the site. They've been added to a directory called <strong>pages</strong>.</p>
+
+						<p>Here's the code for the <strong>About</strong> component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const About = () => {
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;About&lt;/h1&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default About;
+	</code>
+</pre>
+
+						<p>Our updated file structure will look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+	|_src /
+		|_components /
+			|_Button.js
+			|_Counter.js
+			|_Footer.js
+			|_Header.js
+			|_Layout.js
+		|_pages /
+			|_About.js
+			|_Contact.js
+			|_Error.js
+			|_Home.js
+		|_App.css
+		|_App.js
+		|_App.test.js
+		|_GlobalStyles.js
+		|_index.css
+		|_index.js
+		|_logo.svg
+		|_reportWebVitals.js
+		|_setupTests.js
+	|_.gitignore
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<p>We need to navigate around the site. React Router has a built-in <strong>&lt;Link&gt;</strong> component. Open the <strong>Header.js</strong> component - or a location where you'd like the navigation links to be rendered - and update the following code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Header = () => {
+	return (
+
+		&lt;header&gt;
+
+			&lt;&gt;
+				&lt;nav&gt;
+					&lt;Link to="/"&gt;Home&lt;/Link&gt;
+					&lt;Link to="/about"&gt;About&lt;/Link&gt;
+					&lt;Link to="/contact"&gt;Contact&lt;/Link&gt;
+				&lt;/nav&gt;
+			&lt;/&gt;
+
+		&lt;/header&gt;
+
+	);
+}
+
+export default Header;
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>PropTypes</h2>
+
+						<p>Typechecking is used to catch bugs and errors in your code. For some applications, JavaScript extensions such as <a href="https://flow.org/" target="_blank" rel="noopener noreferrer">Flow</a> and <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a> can be used to typecheck your application. React itself has built-in typechecking.</p>
+
+						<p>We can install the <a href="https://www.npmjs.com/package/prop-types" target="_blank" rel="noopener noreferrer">PropTypes package</a> using npm to apply typechecking to our components.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install prop-types
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can then import the <strong>prop-types</strong> package into our Button component. For performance, typechecking is only checked during development and any errors will show in the terminal.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const ButtonStyle = styled.button`
+	cursor: pointer;
+`;
+
+const LinkStyle = styled.a`
+	text-decoration: none;
+`;
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		url = '',
+		onClick,
+		children
+	} = props;
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'));
+
+	const renderAsLink = () =>
+		&lt;LinkStyle href={url} role="button" className="btn"&gt;{ children }&lt;/LinkStyle&gt;
+
+	const renderAsButton = () =>
+		&lt;ButtonStyle {...{ type, onClick }} className="btn"&gt;{ children }&lt;/ButtonStyle&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+Button.propTypes = {
+	type: PropTypes.string
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>This will now check if the value passed into the <strong>type</strong> prop is a string. If it's not a string, an error will be shown.</p>
 					</section>
 
 					<section>
