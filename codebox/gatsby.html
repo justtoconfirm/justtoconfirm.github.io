@@ -22,6 +22,7 @@
 				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
 				<li class="nav-list__item"><a href="react.html">React</a></li>
 				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
 			</ul>
 
 			<div class="hamburger">
@@ -45,6 +46,9 @@
 			</li>
 			<li class="menu__list-item">
 				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="wordpress.html" class="menu__list-link">WordPress</a>
 			</li>
 		</ul>
 	</div>
@@ -72,6 +76,20 @@
 				<div class="column">
 
 					<section>
+						<h2>Introduction to Gatsby</h2>
+
+						<p>Components within Gatsby are built using React and rendered at build time to the DOM (Document Object Model) as static HTML, CSS and JavaScript files.</p>
+
+						<p>Gatsby can be used to build:</p>
+
+						<ul>
+							<li>Portfolio websites and/or blogs.</li>
+							<li>High-traffic eCommerce websites such as an online store.</li>
+							<li>Company homepage.</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>Requirements</h2>
 
 						<p>You will need to have the following installed on your machine to install and run Gatsby:</p>
@@ -97,9 +115,7 @@
 					<section>
 						<h2>Install Gatsby</h2>
 
-						<p>We can use <strong>Create React App</strong> to install React and to setup the development environment. This doesn't handle backend logic or databases, it just creates the frontend build pipeline, so we can use it with any backend we want.</p>
-
-						<p>This uses <strong>Babel</strong> and <strong>Webpack</strong>.</p>
+						<p>To install Gatsby itself we will need to install <strong>gatsby-cli</strong>, the command-line interface for Gatsby. This can be installed using npm. We need to install version 3 or later and this should be installed globally.</p>
 
 <!-- Terminal -->
 <div class="terminal terminal--shadow">
@@ -119,31 +135,178 @@
 </div>
 <!-- / Terminal -->
 
-						<p>Once installed, the file structure of the application should look like this:</p>
+						<p>Once installed we can confirm the version of Gatsby.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm gatsby --version
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Now that Gatsby has been installed, change into the location or directory where we want to create our Gatsby app and run the new command from within the command line. This will start-up an interactive prompt to assist you with creating your Gatsby site.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	gatsby new
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<h3>Start the development server</h3>
+
+						<p>Once the setup has been completed, change directory (cd) into the folder containing the Gatsby site and use the following command to start the development server:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run develop
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>The Gatsby site is not running locally on our development server: <a href="http://localhost:8000/" target="_blank" rel="noopener noreferrer">http://localhost:8000/</a></p>
+
+						<p>The file structure of the application should look like this:</p>
 
 
 <pre>
 	<code>
 
-my-app 
+my-gatsby-app 
+	|_.cache
 	|_node_modules /
 	|_public /
-		|_favicon.ico
-		|_index.html
-		|_logo192.png
-		|_logo512.png
-		|_manifest.json
-		|_robots.txt
 	|_src /
-		|_App.css
-		|_App.js
-		|_App.test.js
-		|_index.css
-		|_index.js
-		|_logo.svg
-		|_reportWebVitals.js
-		|_setupTests.js
+		|_images /
+			|_icon.png
+		|_pages /
+			|_404.js
+			|_index.js
 	|_.gitignore
+	|_gatsby-config.js
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Visual Studio Code (VSCode)</h2>
+
+						<p>If you are using Visual Studio Code (VSCode), you can place a <strong>.vscode</strong> config file in the root of the project folder where your VSCode settings are added.</p>
+					</section>
+
+					<section>
+						<h2>Gatsby Cloud</h2>
+
+						<p>Gatsby Cloud is a platform of tools created by Gatsby in late 2019 to automatically build, deploy, and host your Gatsby site from a GitHub repo.</p>
+
+						<p>As a developer, you write your code and push your changes to a remote GitHub repository. Gatsby Cloud will build your site from your repository. Once the build is complete, your site is then hosted on Gatsby Cloud. This is where your users can access the site.</p>
+
+						<ul>
+							<li><a href="https://www.gatsbyjs.com/products/cloud/" target="_blank" rel="noopener noreferrer">Gatsby Cloud</a></li>
+							<li><a href="https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/deploying-to-gatsby-cloud/" target="_blank" rel="noopener noreferrer">Gatsby Cloud Documentation</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Components</h2>
+
+						<p>Components in Gatsby are built using React. Gatsby has three types of component:</p>
+
+						<ul>
+							<li><strong>Page</strong> - contains the UI (User Interface) elements for a specific page of your site located within the src/pages directory.</li>
+							<li><strong>Building-blocks</strong> - smaller components that represent parts of the UI, not the entire page. These are reusable components.</li>
+							<li><strong>Pre-built</strong> - built into the Gatsby library and found in the npm package. Examples include the <strong>&lt;Link&gt;</strong> component.</li>
+						</ul>
+
+						<p>We have <a href="react.html">a React guide &#8594;</a> to document how to build React components.</p>
+					</section>
+
+					<section>
+						<h2>Pages</h2>
+
+						<p>Every page within a Gatsby site are located within the <strong>src/pages</strong> directory. The initial project has just two pages - <strong>index.js</strong>, which is our Homepage, and <strong>404.js</strong> is the 404 page. All pages are React components and are saved as JavaScript files with the file extension of <strong>.js</strong></p>
+
+						<p>Pages created in the <strong>src/pages</strong> directory use the filename of each page as the route.</p>
+
+						<h3>Adding Pages</h3>
+
+						<p>We can look to add an About page to our Gatsby site. Open a new file and save this file as <strong>src/about.js</strong>. This file should contain the following JavaScript code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const AboutPage = () => {
+	return (
+
+		&lt;h1&gt;About&lt;/h1&gt;
+
+	);
+}
+
+export default AboutPage;
+
+	</code>
+</pre>
+
+						<p>Once saved the development server will rebuild the site and the About page will be visible at: <a href="http://localhost:8000/about" target="_blank" rel="noopener noreferrer">http://localhost:8000/about</a>
+
+						<p>Our file structure will now look like this:</p>
+
+<pre>
+	<code>
+
+my-gatsby-app 
+	|_.cache
+	|_node_modules /
+	|_public /
+	|_src /
+		|_images /
+			|_icon.png
+		|_pages /
+			|_404.js
+			|_about.js
+			|_index.js
+	|_.gitignore
+	|_gatsby-config.js
 	|_package-lock.json
 	|_package.json
 	|_README.md
@@ -151,8 +314,354 @@ my-app
 	</code>
 </pre>
 
+						<h3>Link to Pages</h3>
 
-						<p>We can update the <strong>src/App.js</strong> file and the development server will reload the page.</p>
+						<p>Gatsby has a built-in <strong>Link</strong> component which is pre-built component we can use in our site to link to pages. This is defined and maintained by the Gatsby packages so we can import it for use within our components.</p>
+
+						<p>This is similar to a HTML anchor tag, but we use the prop of <strong>to</strong> in-place of the <strong>href</strong> attribute.</p>
+
+						<p>To link to external links and/or pages outside of the Gatsby site, it's recommended to use a normal HTML anchor tag and not the Link component - this is best used for linking to pages within your Gatsby site.</p>
+
+						<p>Here we are updating the About page to link back to the Homepage of the site.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { Link } from 'gatsby';
+
+const AboutPage = () => {
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;About&lt;/h1&gt;
+
+			&lt;Link to="/">Home&lt;/Link&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default AboutPage;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Images</h2>
+
+						<p>We can add responsive images to our Gatsby site using the <strong>gatsby-plugin-image</strong> plugin. This plugin will export a component called <strong>&lt;StaticImage&gt;</strong> which can be used to load images whilst maintaining performance.</p>
+
+						<p>Install the plugin along with a few dependencies that are needed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed, update the <strong>gatsby-config.js</strong> file. We may need to restart the development server to apply the changes.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		siteUrl: "https://www.yourdomain.tld",
+		title: "My Gatsby Site",
+	},
+	plugins: [
+		"gatsby-plugin-gatsby-cloud",
+		"gatsby-plugin-image",
+		"gatsby-plugin-sharp",
+	],
+};
+
+	</code>
+</pre>
+
+						<p>To test that the image is being displayed, update the <strong>pages/about.js</strong> page with the <strong>&lt;StaticImage&gt;</strong> component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+
+const AboutPage = () => {
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;About&lt;/h1&gt;
+
+			&lt;Link to="/">Home&lt;/Link&gt;
+
+            &lt;StaticImage
+                src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
+                alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
+            /&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default AboutPage;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Plugins</h2>
+
+						<p>Plugins are npm packages that can be installed to add extra features and functionality to your Gatsby site. Some of the plugins are built by Gatsby, others are built and maintained by community members and developers.</p>
+
+						<p>Browser the <a href="https://www.gatsbyjs.com/plugins" target="_blank" rel="noopener noreferrer">Gatsby Plugin Library</a> to view the plugins available we can install.</p>
+
+						<p>Once a plugin has been installed using npm it will need to be added/configured in our site's <strong>gatsby-config.js</strong> file. Our current gatsby-config.js file looks something like this:</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		siteUrl: "https://www.yourdomain.tld",
+		title: "My Gatsby Site",
+	},
+	plugins: ["gatsby-plugin-gatsby-cloud"],
+};
+
+	</code>
+</pre>
+
+						<p>The gatsby-config.js file is generated during the setup process. We already have the <strong>gatsby-plugin-gatsby-cloud</strong> plugin installed. Any new plugins will need to be added to the array once they have been installed using npm.</p>
+
+						<p>Certain plugins may require extra configuration options. In this case, we will need to add an object to the plugins array in the gatsby-config.js file.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		siteUrl: "https://www.yourdomain.tld",
+		title: "My Gatsby Site",
+	},
+	plugins: [
+		{
+			resolve: "gatsby-plugin-gatsby-cloud",
+			options: {
+				// Check the README file for the plugin for the options that go here
+			},
+		},
+	],
+};
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>GraphQL &amp; Data Layer</h2>
+
+						<p>Gatsby has a feature called the <strong>data layer</strong> we can use to pull data into our Gatsby site. This data layer is powered by a technology called <strong>GraphQL</strong>. GraphQL is a query language that allows us to ask for data we need from inside our components.</p>
+
+						<p>Gatsby keeps all the data for our site in the data layer. For example:</p>
+
+						<ul>
+							<li>Blog posts could be stored in a headless WordPress CMS.</li>
+							<li>Products for an eCommerce store could be within Shopify.</li>
+							<li>User data stored in Airtable.</li>
+							<li>Payment processing could be handled by Stripe.</li>
+						</ul>
+
+						<div class="image-container">
+							<img src="img/gatsby/gatsby-data-layer.png" width="768" height="505" alt="The GraphQL data later showing data from external sources being passed into Gatsby.">
+						</div>
+
+						<p>Gatsby automatically creates an endpoint that allows us to explore the data layer using an tool called <strong>GraphiQL</strong>. We can use this tool to build GraphQL queries to retrieve the data from the data layer.</p>
+
+						<p>GraphiQL can be viewed using this URL: <a href="http://localhost:8000/___graphql">http://localhost:8000/___graphql</a></p>
+
+						<h3>GraphQL query</h3>
+
+						<p>We're going to use GraphiQL to get the title of our Gatbsy site.</p>
+
+						<ul>
+							<li>Open up the GraphiQL tool with the development server running - <a href="http://localhost:8000/___graphql">http://localhost:8000/___graphql</a></li>
+							<li>Select the <strong>site</strong> option in the Explorer bar - this should be the blue link.</li>
+							<li>Within the site option, select <strong>siteMetadata</strong>.</li>
+							<li>Tick the <strong>title</strong> checkbox to select.</li>
+						</ul>
+
+						<p>Our GraphQL query of the site data layer should appear like so:</p>
+
+<pre>
+	<code>
+
+query MyQuery {
+	site {
+		siteMetadata {
+			title
+		}
+	}
+}
+
+	</code>
+</pre>
+
+						<p>Click the 'Play' button to test the GraphQL query to check the data is being returned from the data layer. Our returned query should look like this:</p>
+
+<pre>
+	<code>
+
+{
+	"data": {
+		"site": {
+			"siteMetadata": {
+				"title": "My Gatsby Site"
+			}
+		}
+	},
+	"extensions": {}
+}
+
+	</code>
+</pre>
+
+						<p>The <strong>title</strong> is being passed into the data layer from the <strong>gatsby-config.js</strong> file.</p>
+
+						<h3>Adding a query to the page</h3>
+
+						<p>Now that the query has been tested, we can add it to our About page, as an example, to demonstrate the title being rendered from the data layer. Update the <strong>page/about.js</strong> page to add a query.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+
+const AboutPage = ({ data }) => {
+	return (
+
+		&lt;&gt;
+			{data.site.siteMetadata.title}
+
+			&lt;h1&gt;About&lt;/h1&gt;
+
+			&lt;Link to="/">Home&lt;/Link&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export const query = graphql`
+	query AboutPageQuery {
+		site {
+			siteMetadata {
+				title
+			}
+		}
+	}
+`;
+
+export default AboutPage;
+
+	</code>
+</pre>
+
+						<p>We are passing the graphql query into the <strong>data</strong> prop of our component and then using dot.notation to output the value of the data from the data layer.</p>
+					</section>
+
+					<section id="gatsbyConnectWordPress">
+						<h2>Connect to the WordPress CMS</h2>
+
+						<p>We may want to use a CMS, such as WordPress, to manage our content as a headless CMS and display the content within our Gatsby site. We will therefore need to install the <a href="https://www.npmjs.com/package/gatsby-source-wordpress" target="_blank" rel="noopener noreferrer">gatsby-source-wordpress</a> npm package.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-source-wordpress
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>This will allow the data from WordPress to be passed into the Gatsby data layer. We can then use GraphQL to query the data layer to get the data from WordPress.</p>
+
+						<p><a href="wordpress.html#wordpressSetupGraphQL">How to setup GraphQL in WordPress &#8594;</a></p>
+
+						<p>You will need to update the <strong>gatsby-config.js</strong> file to add the plugin. Within WordPress a GraphQL endpoint will be created and this can be changed. This is going to be the endpoint Gatsby will use to connect to the WordPress CMS, so the endpoint will need to be added to <strong>gatsby-config.js</strong> file also.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		siteUrl: "https://www.yourdomain.tld",
+		title: "My Gatsby Site",
+	},
+	plugins: [
+		"gatsby-plugin-gatsby-cloud",
+		{
+			resolve: "gatsby-source-wordpress",
+			options: {
+				url: "http://localhost:8888/graphql",
+			},
+		},
+	],
+};
+
+	</code>
+</pre>
+
+						<p>Through the use of <a href="https://www.gatsbyjs.com/docs/how-to/sourcing-data/headless-cms/" target="_blank" rel="noopener noreferrer">source plugins</a>, Gatsby has support for many headless CMS options. If the preferred CMS integration with Gatsby is not available, a pull request can be created to add it, or we can write our own source plugin.</p>
+					</section>
+
+					<section>
+						<h2>Build the Application</h2>
+
+						<p>Once the development of the Gatsby site is complete we can create a production build that is optimised. This will output the built static files into the public directory. Once started, the site can be viewed at: <a href="http://localhost:9000" target="_blank" rel="noopener noreferrer">http://localhost:9000</a>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	gatsby build
+    
+	</pre>
+</div>
+<!-- / Terminal -->
 					</section>
 
 				</div>

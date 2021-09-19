@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction to WordPress">
+
+	<title>Codebox - WordPress</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="style/foundation.min.css">
+	<link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<main role="main">
+	<div class="row">
+		<div class="columns small-12 large-12">
+
+			<h1>WordPress</h1>
+
+            <p>Install <a href="https://www.mamp.info/en/mamp-pro/mac/" target="_blank" rel="noopener noreferrer">MAMP PRO</a> or a similar tool on your machine to download and install WordPress locally. This may require a licence to be purchased.</p>
+
+            <p><strong>MAMP PRO</strong> will create a localhost directory, which you can change, for your PHP or WordPress projects and when you start the server, you can view the localhost using the following default URL:</p>
+
+            <a href="http://localhost:8888/" target="_blank" rel="noopener noreferrer">http://localhost:8888/</a>
+
+            <p>If successful we should see that the <strong>virtual host</strong> has been setup successfully.</p>
+
+            <h2>Install WordPress</h2>
+
+            <p>In <strong>MAMP PRO 6.4</strong>, you can setup a new <strong>Host</strong> within the MAMP PRO dashboard and setup a WordPress install. This will setup your WordPress install on port <strong>8888</strong> by default, unless you change this. You will need to restart the server to apply any changes.</p>
+
+            <a href="http://hostname:8888/" target="_blank" rel="noopener noreferrer">http://hostname:8888/</a>
+
+            <p>Alternatively, you can download and install WordPress manually.</p>
+
+            <p>We are not using SSL initially, our URL will therefore be <strong>http</strong> and not <strong>https</strong>, so uncheck the SSL checkbox in MAMP PRO if it's selected.</p>
+
+            <h2>Login to the WordPress Admin</h2>
+
+            <p>Once installed, you can login to the WordPress Admin area using the following URL (remember you need the server running):</p>
+
+            <a href="http://hostname:8888/admin" target="_blank" rel="noopener noreferrer">https://hostname:8888/admin</a>
+
+            <p>Your <strong>username</strong> and <strong>password</strong> will be those with which you setup and installed WordPress during the installation process. Once logged in, we can the see our <strong>WordPress Dashboard</strong>.</p>
+
+            <h2>Connect to Gatsby</h2>
+
+            <p>We may want our WordPress CMS (Content Management System) to manage the content and for our front-end to be built using a framework/library such as <a href="introduction-to-gatsby.html">Gatsby</a> to become a <strong>headless CMS</strong>.</p>
+
+            <p>Setup Gatsby and then install the <a href="https://www.npmjs.com/package/gatsby-source-wordpress" target="_blank" rel="noopener noreferrer">https://www.npmjs.com/package/gatsby-source-wordpress</a> NPM (Node Package Manager) package.
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ npm install gatsby-source-wordpress
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>Next login to the admin of your WordPress installation and install <a href="https://wordpress.org/plugins/wp-gatsby/" target="_blank" rel="noopener noreferrer">WPGatsby</a> and <a href="https://github.com/wp-graphql/wp-graphql/releases" target="_blank" rel="noopener noreferrer">WPGraphQL</a> plugins to your WordPress site.</p>
+
+            <p>Now both WordPress plugins are installed, activate both from within the <strong>Plugins</strong> section of the WordPress dashboard.</p>
+
+            <p>Once activated, you should see a <strong>GraphQL</strong> option in the sidebar of the WordPress dashboard.</p>
+
+            <p>Within the GraphQL option, open the <strong>Settings</strong> menu and set the <strong>GraphQL Endpoint</strong>. By default, this will be something like: <strong>http://localhost:8888/graphql</strong> but you can change this. Remember to save the changes. This is going to be the endpoint Gatsby will use to connect to our WordPress CMS.</p>
+
+            <p>Next, update the <strong>gatsby-config.js</strong> file in your Gatsby project folder to add the plugin and configure WordPress. You may need to also install <strong>gatsby-transformer-sharp</strong> and <strong>gatsby-plugin-sharp</strong> as NPM packages. Our <strong>gatsby-config.js</strong> file should look like this:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+module.exports = {
+    siteMetadata: {
+        siteUrl: "https://www.yourdomain.tld",
+        title: "My Gatsby website",
+    },
+    plugins: [
+        "gatsby-plugin-gatsby-cloud",
+        {
+            resolve: `gatsby-source-wordpress`,
+            options: {
+                url: `http://localhost:8888/graphql`,
+            },
+        },
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+    ],
+};
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Run the Gatsby development server to confirm that Gatsby and WordPress are now connected. If successful, the build will complete and the terminal will output something like:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+    <div class="terminal__top">
+        <div class="terminal__buttons">
+            <span class="terminal__circle terminal__circle--red"></span>
+            <span class="terminal__circle terminal__circle--yellow"></span>
+            <span class="terminal__circle terminal__circle--green"></span>
+        </div>
+        <div class="terminal__title">bash -- 85x24</div>
+    </div>
+    <pre class="terminal__body">
+<!-- Just leave this line alone -->
+    $ info  gatsby-source-wordpress  Watching for WordPress changes
+    </pre>
+</div>
+<!-- / Terminal -->
+
+            <p>When doing this with SSL previosly, errors were being shown in the terminal so SSL is not in use on this guide currently.</p>
+
+            <h2>Advanced Custom Fields (ACF)</h2>
+
+            <p><strong>Advanced Custom Fields (ACF)</strong> is a WordPress plugin that allows you to add extra content fields to your WordPress edit screens in the dashboard. These extra fields are called <strong>Custom Field</strong>.</p>
+
+            <p>This plugin does not come pre-installed with WordPress, so you will need to import the plugin before it can be used. Search and Install the <strong>Advanced Custom Fields</strong> plugin from the plugins page.</p>
+
+            <p>Once installed, activate the plugin and you will see a <strong>Custom Fields</strong> option added to the sidebar in the admin dashboard.</p>
+
+            <h2>Getting WordPress Posts</h2>
+            <!-- https://css-tricks.com/using-new-gatsby-source-wordpress-plugin/ -->
+
+            <p>Now that everything is working, we can write a GraphQL query to get the posts from our WordPress CMS into our Gatsby frontend.</p>
+
+            <p>Make sure the development server is running for the Gatsby site and open the GraphiQL tool:</p>
+
+            <a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http://localhost:8000/___graphql</a>
+
+            <p>Next, set the GraphQL query to get the <strong>title</strong>, <strong>excerpt</strong> and <strong>slug</strong> for each post in WordPress. Once done, click the 'Play' button to test the query fetches the post(s) from WordPress.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+query MyQuery {
+    allWpPost {
+        nodes {
+            title
+            excerpt
+            slug
+        }
+    }
+}
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>Now we want to add this query to a Blog page (<strong>blog.js</strong>) and render out the posts onto the Gatsby frontend. This will loop over each post and render on the page.</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const BlogPage = ({ data }) => {
+
+    return (
+
+        &lt;Layout pageTitle="Blog"&gt;
+            
+            {data.allWpPost.nodes.map(node => (
+                &lt;div&gt;
+                    &lt;p&gt;{node.title}&lt;/p&gt;
+                    &lt;div dangerouslySetInnerHTML={{__html: node.excerpt}} /&gt;
+                &lt;/div&gt;
+            ))}
+
+        &lt;/Layout&gt;
+
+    )
+}
+
+export const pageQuery = graphql`
+query {
+    allWpPost {
+        nodes {
+            title
+            excerpt
+            slug
+        }
+    }
+}
+`
+
+export default BlogPage
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <p>We can tweak the GraphQL query to sort the posts by date:</p>
+
+<pre>
+    <code>
+<!-- Just leave this line alone -->
+export const pageQuery = graphql`
+query {
+    allWpPost(sort: { fields: [date] }) {
+        nodes {
+            title
+            excerpt
+            slug
+        }
+    }
+}
+`
+
+export default BlogPage
+<!-- Just leave this line alone -->
+    </code>
+</pre>
+
+            <!--
+            <h2>Creating pages for each post</h2>
+
+            <p>Gatsby uses the <strong>gatsby-node.js</strong> file, located in the root of our project, to dynamically generate blog posts. Create a <strong>gatsby-node.js</strong> file in the root of your project folder (if one is not already created).</p>
+
+            <p>Open this file and add the following code:</p>
+
+<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--const path = require(`path`)
+
+exports.createPages = ({ graphql, actions }) => {
+    const { createPage } = actions
+
+    return graphql(`
+        {
+            allWpPost(sort: { fields: [date] }) {
+                nodes {
+                    title
+                    excerpt
+                    content
+                    slug
+                }
+            }
+        }
+   `).then(result => {
+        result.data.allWpPost.nodes.forEach(node => {
+            createPage({
+                path: node.slug,
+                component: path.resolve(`./src/templates/blog-post.js`),
+                context: {
+                    // This is the $slug variable passed to blog-post.js
+                    slug: node.slug,
+                },
+            })
+        })
+   })
+}-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>
+
+            <p>The development server used by Gatsby will need to be restarted.</p>
+
+            <p>Gatsby required templates to build these dynamic pages. In the <strong>src/templates</strong> folder, create a <strong>blog-post.js</strong> file with the following code:</p>
+
+<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const BlogPost = ({ data }) => {
+    const post = data.allWpPost.nodes[0]
+
+    return (
+        &lt;Layout&gt;
+            &lt;&gt;
+                &lt;h1&gt;{post.title}&lt;/h1&gt;
+                &lt;div dangerouslySetInnerHTML={{ __html: post.content }} /&gt;
+            &lt;/&gt;
+        &lt;/Layout&gt;
+    )
+}
+export const query = graphql`
+    query($slug: String!) {
+        allWpPost(filter: { slug: { eq: $slug } }) {
+            nodes {
+                title
+                content
+            }
+        }
+    }
+`
+
+export default BlogPost-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>
+
+            <p>Restart the Gatsby development server.</p>
+
+            <p>Now if you edit the URL in the address bar, you can navigate to the blog post <a href="http://hostname:8888/hello-world" target="_blank" rel="noopener noreferrer">https://hostname:8888/hello-world</a></p>
+
+            <p>Next, to link our main blog page (the page that lists all our recent posts), to allow the user to open the dynamic blog post, we can update our <strong>blog.js</strong> page.</p>
+
+<pre>
+    <code>-->
+<!-- Just leave this line alone -->
+<!--// src/pages/blog.js
+
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const BlogPage = ({ data }) => {
+
+    return (
+        &lt;Layout pageTitle="Blog"&gt;
+            {data.allWpPost.nodes.map(node => (
+                &lt;div key={node.slug}&gt;
+                    &lt;Link to={node.slug}&gt;
+                        &lt;h2&gt;{node.title}&lt;/h2&gt;
+                    &lt;/Link&gt;
+              
+                    &lt;div dangerouslySetInnerHTML={{ __html: node.excerpt }} /&gt;
+                &lt;/div&gt;
+            ))}
+        &lt;/Layout&gt;
+    )
+}
+
+export const pageQuery = graphql`
+query {
+    allWpPost(sort: { fields: [date] }) {
+        nodes {
+            title
+            excerpt
+            slug
+        }
+    }
+}
+`
+
+export default BlogPage-->
+<!-- Just leave this line alone -->
+    <!--</code>
+</pre>-->
+
+		</div>
+	</div>
+</main>
+
+</body>
+</html>
