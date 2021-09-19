@@ -75,8 +75,619 @@
 			<div class="row">
 				<div class="column">
 
+					<section>
+						<h2>Themes</h2>
+
+						<p>Open the wp-content/themes directory and add a new folder with the name of your theme. In our example this will be called codebox.</p>
+
+						<p>WordPress needs the following files to create a theme:</p>
+
+						<ul>
+							<li>index.php</li>
+							<li>style.css</li>
+						</ul>
+
+						<p>An optional <strong>functions.php</strong> file can also be added into the theme folder.</p>
+
+						<p>The file structure will look like this:</p>
+
+<pre>
+	<code>
+
+wordpress /
+	|_wp-apmin /
+	|_wp-content /
+		|_languages /
+		|_plugins /
+		|_themes /
+			|_codebox /
+				|_functions.php
+				|_index.php
+				|_style.css
+
+	</code>
+</pre>
+
+						<p>Within the WordPress dashboard, select Appearance/Themes and a list of available themes will be displayed. More themes can be downloaded if required.</p>
+
+						<p>Select the theme you wish to apply and click the <strong>Activate</strong> button. As we can see our codebox theme is showing and has been activated.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/themes.png" alt="The themes available for activation in WordPress.">
+						</div>
+					</section>
+
+					<section>
+						<h2>Templates</h2>
+
+						<p>All themes require an <strong>index.php</strong> template. This is the main template file that applies to all post types such as pages and posts.</p>
+
+						<h3>Create a custom template</h3>
+
+						<p>Open a new PHP file and add a comment at the top of this file to set the name of the template and the post type where the template can be used. The ability to add page templates to post types other than the "page" post type is supported from WordPress 4.7 and later.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+/*
+	Template Name: Full Width Template
+	Template Post Type: post, page
+*/
+
+	</code>
+</pre>
+
+						<p>This has been named <strong>fullpage.php</strong> and has been placed in a sub-directory in the theme folder named <strong>page-templates</strong>.</p>
+
+<pre>
+	<code>
+
+wordpress /
+	|_wp-apmin /
+	|_wp-content /
+		|_languages /
+		|_plugins /
+		|_themes /
+			|_codebox /
+				|_page-templates /
+					|_fullwidth.php
+				|_functions.php
+				|_index.php
+				|_style.css
+
+	</code>
+</pre>
+
+						<p>Now if you go into a page or post, we can select the template to apply to our post type.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/select-template.png" alt="Selecting the template to the page or post.">
+						</div>
+					</section>
+
+					<section>
+						<h2>Custom Post Types (CPT)</h2>
+
+						<p>We are going to create a Custom Post Type. Within the theme folder add the following code to the <strong>functions.php</strong> file. If this file cannot be found, create a functions.php file in the theme.</p>
+
+						<p>This example will create a custom post type called <strong>Books</strong>.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	function books_post_type() {
+
+		$args = array(
+			'labels' => array(
+				'name' => 'Books',
+				'singlular_name' => 'Book',
+			),
+			'hierarchical' => true,
+			'public' => true,
+			'menu_icon' => 'dashicons-images-alt2',
+			'has_archive' => true,
+			'supports' => array(
+				'title',
+				'editor',
+				'thumbnail'
+			)
+		);
+
+		// Register the custom post type
+		register_post_type('books', $args);
+
+	}
+
+	// WP fires this hook just before the website loads using 'init'
+	add_action('init', 'books_post_type');
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>If we want to reference the custom post type we need to use <strong>books_custom_post_type</strong>.</p>
+
+						<p>The file structure of our theme will look like this:</p>
+
+<pre>
+	<code>
+
+wordpress /
+	|_wp-apmin /
+	|_wp-content /
+		|_languages /
+		|_plugins /
+		|_themes /
+			|_mythemename /
+				|_functions.php
+				|_index.php
+				|_style.css
+
+	</code>
+</pre>
+
+						<p>Once created the custom post type will be added to the sidebar in the WordPress admin.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/custom-post-type-added.png" alt="The custom post type added to the WordPress admin screen sidebar.">
+						</div>
+					</section>
+
+					<section>
+						<h2>Taxonomy</h2>
+
+						<p>We can add a Taxonomy to group posts together. For example, we can create a taxonomy for our <strong>Books</strong> custom post type named <strong>Genre</strong>. Within this taxonomy we can have mutiple terms like 'Fiction', 'Non-Fiction', 'Sci-Fi', and much more.</p> 
+
+						<p>Another example is where you might have a post type called Reviews and a new post called 'Best Films of the Year'. You can help define this content by having a taxonomy called 'Films' and create new terms such as 'Top Picks' or 'Film Reviews'. This helps to define your content into smaller chunks making it easier to find.</p>
+
+						<p>Open the <strong>functions.php</strong> file of the theme and add the function to create a Taxonomy.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	function genre_taxonomy() {
+		
+		$args = array(
+			'labels' => array(
+				'name' => 'Genres',
+				'singular_name' => 'Genre',
+			),
+			'public' => true,
+			'hierarchical' => true,
+		);
+
+		// Register and add the taxonomy to the registered custom post type
+		register_taxonomy('book_genre', array('books'), $args);
+	}
+
+	// WP fires this hook just before the website loads using 'init'
+	add_action('init', 'genre_taxonomy');
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>The taxonomy will now be added under the custom post type in the WordPress admin sidebar.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/genre-taxonomy.png" alt="The taxonomy for the custom post type.">
+						</div>
+
+						<h3>Creating Taxonomy Terms</h3>
+
+						<p>Open the taxonomy and add the name of your term in the <strong>Add New Category</strong> field. For example, for the Genres taxonomy we may want to create two terms, Fiction and Non-Fiction.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/genre-taxonomy-terms.png" alt="The taxonomy terms of the custom post type.">
+						</div>
+
+						<p>We can add terms to these parent categories to further categorise our posts using the <strong>Parent Category</strong> drop-down.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/genre-taxonomy-sub-terms.png" alt="The taxonomy sub-terms of the custom post type.">
+						</div>
+
+						<h3>Add Taxonomy terms to posts</h3>
+
+						<p>Now we have our taxonomy created, we can create posts in our custom post type and categorise each post with a taxonomy term.</p>
+
+						<p>Open the Books custom post type and click <strong>Add New</strong> to add a new post.</p>
+
+						<p>The Taxonomy created, named Genres, will be added as a panel to the WordPress dashboard. When creating the post, select the taxonomy term we wish to apply to our post. As our Book is science fiction, we will select 'Sci-Fi' as the taxonomy term. Click the <strong>Publish</strong> button to create the post.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/custom-post-type-add-taxonomy.png" alt="The taxonomy sub-terms of the custom post type.">
+						</div>
+					</section>
+
+					<section>
+						<h2>Display Posts</h2>
+
+						<p>The easiest way to display posts is to use the built-in <strong>WP_Query</strong> class.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$args = array(
+		'post_status' => 'publish',
+	);
+
+	// The Query
+	$query = new WP_Query($args);
+
+	// The Loop
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			// Post title
+			the_title();
+			// Post excerpt
+			the_excerpt(__('(more…)'));
+
+			?&gt;
+
+			&lt;!-- Link to the post --&gt;
+			&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+
+			&lt;?php
+
+		endwhile;
+	endif;
+
+	// Restore the original post data
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+
+						<h3>Display Custom Post Types</h3>
+
+						<p>If we have a posts added to a custom post type we can update the WP_Query class to display these posts. We just need to add the <strong>post_type</strong> property to the WP_Query array.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+	);
+
+	// The Query
+	$query = new WP_Query($args);
+
+	// The Loop
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			// Post title
+			the_title();
+			// Post excerpt
+			the_excerpt(__('(more…)'));
+
+			?&gt;
+
+			&lt;!-- Link to the post --&gt;
+			&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+
+			&lt;?php
+
+		endwhile;
+	endif;
+
+	// Restore the original post data
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+
+						<h3>Display Posts based on Taxonomy</h3>
+						<!-- https://www.youtube.com/watch?v=q5mWGz4S3Lw -->
+
+						<p>We may want to display our posts based on the taxonomy terms. To do this we can update the <strong>WP_Query</strong> to add the <strong>tax_query</strong> array and specific the taxonomy and terms we wish to return.</p>
+
+						<p>In this example we will return all posts in the custom post type that has the taxonomy of Genres and the term of 'sci-fi'.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_genre',
+				'field' => 'slug',
+				'terms' => 'books_genre_fiction_sci-fi',
+			)
+		),
+	);
+
+	// The Query
+	$query = new WP_Query($args);
+
+	// The Loop
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			// Post title
+			the_title();
+			// Post excerpt
+			the_excerpt(__('(more…)'));
+
+			?&gt;
+
+			&lt;!-- Link to the post --&gt;
+			&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+
+			&lt;?php
+
+		endwhile;
+	endif;
+
+	// Restore the original post data
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>We are using the slug of <strong>books_genre_fiction_sci-fi</strong> in this example.</p>
+					</section>
+
+					<section>
+						<h2>Sorting Posts</h2>
+
+						<p>We are curently displaying our posts, however we may want to allow our users to sort through the post that are returned.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$getForm = $_GET;	// Get the data from the form
+
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'order' => 'DESC',
+		'orderby' => 'date',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_genre',
+				'field' => 'slug',
+				'terms' => 'books_genre_fiction_sci-fi',
+			)
+		),
+	);
+
+	if($getForm['orderby'] === 'latest') :
+
+		//echo 'Newest';
+		$args['order'] = 'DESC';
+		$args['orderby'] = 'date';
+
+	endif;
+
+	if($getForm['orderby'] === 'oldest') :
+
+		//echo 'Oldest';
+		$args['order'] = 'ASC';
+		$args['orderby'] = 'date';
+
+	endif;
+
+	if($getForm['orderby'] === 'letter-asc') :
+
+		//echo 'Letter-Asc';
+		$args['order'] = 'ASC';
+		$args['orderby'] = 'title';
+
+	endif;
+
+	if($getForm['orderby'] === 'letter-desc') :
+
+		//echo 'Letter-Desc';
+		$args['order'] = 'DESC';
+		$args['orderby'] = 'title';
+
+	endif;
+
+	// The Query
+	$query = new WP_Query($args);
+
+?&gt;
+
+	&lt;form method="GET"&gt;
+		&lt;select name="orderby" onchange="this.form.submit()"&gt;
+			&lt;option value="latest" &lt;?php echo selected($getForm['orderby'], 'latest'); ?&gt;&gt;Newest&lt;/option&gt;
+			&lt;option value="oldest" &lt;?php echo selected($getForm['orderby'], 'oldest'); ?&gt;&gt;Oldest&lt;/option&gt;
+			&lt;option value="letter-asc" &lt;?php echo selected($getForm['orderby'], 'letter-asc'); ?&gt;&gt;A to Z&lt;/option&gt;
+			&lt;option value="letter-desc" &lt;?php echo selected($getForm['orderby'], 'letter-desc'); ?&gt;&gt;Z to A&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/form&gt;
+
+&lt;?php
+
+	// The Loop
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			// Post title
+			the_title();
+			// Post excerpt
+			the_excerpt(__('(more…)'));
+
+			?&gt;
+
+			&lt;!-- Link to the post --&gt;
+			&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+
+			&lt;?php
+
+		endwhile;
+	endif;
+
+	// Restore the original post data
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Advanced Custom Fields (ACF)</h2>
+
+						<p>Advanced Custom Fields (ACF) is a WordPress <a href="https://www.advancedcustomfields.com/" target="_blank" rel="noopener noreferrer">plugin</a> that allows us to add extra content fields, called custom fields, to the edit screen within the WordPress dashboard.</p>
+
+						<p>The plugin does not come pre-installed with WordPress so it needs to be installed as a plugin if we wish to use it. Search for <strong>Advanced Custom Fields</strong> in the Plugins page to find this plugin and install.</p>
+
+						<p>Once installed and activated the <strong>Custom Fields</strong> plugin will be displayed in the sidebar of the WordPress dashboard.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/acf-plugin.png" alt="Custom Fields plugin added to the dashboard sidebar.">
+						</div>
+
+						<h3>Create a Custom Field</h3>
+
+						<p>Within the <strong>Custom Fields</strong> option select <strong>Add New</strong> to create a new custom field. As an example we can create a text field to allow content editors to add the information, such as author and ISBN number, for each Book in our custom post type.</p>
+
+						<p>Create a Field Group called <strong>Book Details</strong>.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/add-custom-field.png" alt="Add custom field.">
+						</div>
+
+						<p>Next, set the location where we want to custom field to be applied.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/location-custom-field.png" alt="Location of the custom field.">
+						</div>
+
+						<p>Click the <strong>Publish/Update</strong> button to create the custom field.</p>
+
+						<p>If we now open the Books custom post type and select a book that has the taxonomy that matches the location, we can see the <strong>author</strong> text field has been added.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/book-edit-custom-field.png" alt="The author custom field appears in the edit screen.">
+						</div>
+
+						<h3>Get values from custom field</h3>
+
+						<p>Now that the custom field for the <strong>author</strong> has been created, we want to get the value entered and display it within the post.</p>
+
+						<p>Out custom field has the name of <strong>book_details_author</strong> so we just need to pass this into the <strong>get_field()</strong> function of Advanced Custom Fields to get the value. We can use a PHP variable named <strong>$author</strong> to then store this value.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$author = get_field('book_details_author');
+
+	echo $author;
+
+	</code>
+</pre>
+
+						<p>Here is how this would look within the post:</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+	$args = array(
+		'post_type' => 'books',
+		'post_status' => 'publish',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'book_genre',
+				'field' => 'slug',
+				'terms' => 'books_genre_fiction_sci-fi',
+			)
+		),
+	);
+
+	// The Query
+	$query = new WP_Query($args);
+
+	// The Loop
+	if($query->have_posts()) :
+		while($query->have_posts()) : $query->the_post();
+
+			$author = get_field('book_details_author');
+
+			// Post title
+			the_title();
+			// Post excerpt
+			the_excerpt(__('(more…)'));
+
+			if ($author) :
+				echo $author;
+			endif;
+
+			?&gt;
+
+			&lt;!-- Link to the post --&gt;
+			&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;
+
+			&lt;?php
+
+		endwhile;
+	endif;
+
+	// Restore the original post data
+	wp_reset_postdata();
+
+?&gt;
+
+	</code>
+</pre>
+
+						<p>If an author has been entered into the field then it should be displayed on the page.</p>
+					</section>
+
 					<section id="wordpressSetupGraphQL">
 						<h2>Setup GraphQL in WordPress</h2>
+
+						<p>We can install GraphQL into WordPress using the <a href="https://www.wpgraphql.com/" target="_blank" rel="noopener noreferrer">WPGraphQL</a> plugin.</p>
+
+						<p>The plugin provides an extendable GraphQL scheme and API.</p>
+
+						<p>Open the <strong>Plugins</strong> screen of the WordPress dashboard and click the <strong>Add New</strong> link. Search for the <strong>WPGraphQL</strong> plugin and click the <strong>Install Now</strong> button. Once installed, activate the plugin.</p>
+
+						<p>Once installed and activated, the GraphQL plugin will be added to the WordPress dashboard sidebar.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/graphql-plugin.png" alt="WPGraphQL plugin added to the dashboard sidebar.">
+						</div>
+
+						<p>We can open the WPGraphQL plugin and set the endpoint. This is used to connect WordPress to Gatbsy and other frameworks/libraries.</p>
+
+						<div class="image-container">
+							<img src="img/wordpress/graphql-endpoint.png" alt="Set the endpoint for the WPGraphQL plugin.">
+						</div>						
 
 						<p><a href="gatsby.html#gatsbyConnectWordPress">Connect WordPress to Gatsby &#8594;</a></p>
 					</section>
