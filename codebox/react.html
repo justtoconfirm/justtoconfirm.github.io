@@ -21,6 +21,7 @@
 				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
 				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
 				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
 				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
 				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
 			</ul>
@@ -43,6 +44,9 @@
 			</li>
 			<li class="menu__list-item">
 				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="vue.html" class="menu__list-link">Vue</a>
 			</li>
 			<li class="menu__list-item">
 				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
@@ -928,6 +932,57 @@ const Button = props => {
 
 	const renderAsButton = () =>
 		&lt;ButtonStyle {...{ type, onClick }} className="btn"&gt;{ children }&lt;/ButtonStyle&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h3>Working with props</h3>
+
+						<p>We may want to pass props into our components that will change the styling applied.</p>
+
+						<p>Let's update the Button component to use a <strong>primary</strong> prop to change the background colour of the button.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const ButtonStyle = styled.button`
+	cursor: pointer;
+	background-color: ${props => props.primary ? "red" : "white"};
+`;
+
+const LinkStyle = styled.a`
+	text-decoration: none;
+`;
+
+const Button = props => {
+
+	const {
+		type = 'button',
+		url = '',
+		onClick,
+		primary
+		children
+	} = props;
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto') || url.startsWith('/'));
+
+	const renderAsLink = () =>
+		&lt;LinkStyle href={url} role="button" {...{ primary }} className="btn"&gt;{ children }&lt;/LinkStyle&gt;
+
+	const renderAsButton = () =>
+		&lt;ButtonStyle {...{ type, onClick, primary }} className="btn"&gt;{ children }&lt;/ButtonStyle&gt;
 
 	return (
 

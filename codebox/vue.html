@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to Vue">
+
+	<title>Codebox | Vue</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="vue.html" class="menu__list-link">Vue</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Vue</h1>
+
+						<p class="intro__copy">Vue.js, is an open-source front-end JavaScript framework for building user interfaces and single-page applications (SPA).</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction</h2>
+						<!-- https://www.youtube.com/watch?v=qZXt1Aom3Cs -->
+
+						<p>Vue can be used as much or as little in our applications as we wish. Similar to how jQuery is used, we can build fully-featured single-page applications (SPA) using Vue or parts of an application using this framework.</p>
+					</section>
+
+					<section>
+						<h2>Requirements</h2>
+
+						<p>You will need to have the following installed on your machine to install and run React:</p>
+
+						<ul>
+							<li>Node 8.11 or later</li>
+							<li>npm or yarn</li>
+						</ul>
+
+						<p>You can use <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> to switch Node versions between projects.</p>
+					</section>
+
+					<section>
+						<h2>Install Vue</h2>
+						<!-- https://teamtreehouse.com/library/introducing-vuejs -->
+
+						<p>Vue does <strong>not</strong> support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8.</p>
+
+						<p>The recommended installation method for Vue is npm to install the latest stable version. Vue pairs well with module bundlers such as Webpack.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install vue
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>To install the CLI (Command-Line Interface), run the following command in your terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install @vue/cli --global
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed initialise a new project from within a terminal in the directory where we want to create the project. Replace <strong>&lt;project-name&gt;</strong> with the name of your project.</p>
+
+						<p>The CLI will give you a list of options to configure. These options let you configure things like TypeScript, linting, vue-router, testing, and more.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	vue create &lt;project-name&gt;
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<h3>Run development server</h3>
+
+						<p>Once installed, navigate into the directory of the Vue app and start the development server.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	cd &lt;project-name&gt;
+	npm run serve
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Our Vue app is now running on <a href="http://localhost:8080/" target="_blank" rel="noopener noreferrer">http://localhost:8080/</a> locally and on the network.</p> 
+
+						<p>Once installed, our file structure will look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+		|_favicon.ico
+		|_index.html
+	|_src /
+		|_assets /
+			|_logo.png
+		|_components /
+			|_HelloWorld.vue
+		|_App.vue
+		|_main.js
+	|_.gitignore
+	|_babel.config.js
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<h3>Creating a production build</h3>
+
+						<p>The Vue app is still in development mode and not optimised for production, so we need to build it once complete to optimise it for production when ready.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run build
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+					</section>
+
+					<section>
+						<h2>Getting Started</h2>
+
+						<p>The <strong>src/App.vue</strong> file is the root component of our app where all our components are nested. The <strong>src/main.js</strong> takes the <strong>src/App.vue</strong> file, renders it and mounts it to our <strong>public/index.html</strong> file.</p>
+
+						<p>This example is using <strong>Vue 3</strong>.</p>
+
+						<p>Open the <strong>src/main.js</strong> file and set the following code:</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue'
+import App from './App'
+
+createApp(App).mount('#app')
+
+	</code>
+</pre>
+
+						<p>In the <strong>src/App.vue</strong> file, update the code to include the HTML we want to render between an opening and closing <strong>&lt;template&gt;</strong> tag.</p>
+
+<pre>
+	<code>
+
+&lt;template&gt;
+	&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/template&gt;
+
+	</code>
+</pre>
+
+						<p>The file stucture of our app has been simplified and will look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+		|_index.html
+	|_src /
+		|_App.vue
+		|_main.js
+	|_.gitignore
+	|_babel.config.js
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<h3>Adding Components</h3>
+
+						<p>Create a <strong>components</strong> directory in the <strong>src</strong> folder. Within this newly-created directory, create a component named <strong>HelloWorld.vue</strong>. The file structure will now look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_node_modules /
+	|_public /
+		|_index.html
+	|_src /
+		|_components /
+			HelloWorld.vue
+		|_App.vue
+		|_main.js
+	|_.gitignore
+	|_babel.config.js
+	|_package-lock.json
+	|_package.json
+	|_README.md
+
+	</code>
+</pre>
+
+						<p>Within the <strong>src/components/HelloWorld.vue</strong> component, update the code.</p>
+
+<pre>
+	<code>
+
+&lt;template&gt;
+	&lt;h1&gt;Hello World Component&lt;/h1&gt;
+&lt;/template&gt;
+
+	</code>
+</pre>
+
+						<p>Next, update the <strong>src/App.vue</strong> file render the component.</p>
+
+<pre>
+	<code>
+
+&lt;template&gt;
+	&lt;HelloWorld /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import HelloWorld from './components/HelloWorld'
+
+export default {
+    components: {
+        HelloWorld
+    }
+}
+&lt;/script&gt;
+	</code>
+</pre>
+					</section>
+
+					<!--
+					<section>
+						<h2>Getting Started</h2>
+
+						<p>The <strong>index.html</strong> file is where the Vue app will be rendered. This is a normal HTML file in the <strong>public/</strong> directory with a root &lt;div&gt; element where the Vue app is injected.</p>
+
+						<p>All our components have the file extension of <strong>.vue</strong></p>
+
+						<p>The <strong>src/main.js</strong> file is what is injecting the Vue app into the HTML. This is importing the <strong>App.vue</strong> component currently. We use the <strong>mount()</strong> method to mount the app into the element matching the selector in our HTML. In this example, this would be the &lt;div&gt; with the ID of <strong>app</strong>.</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+
+	</code>
+</pre>
+
+						<p>We can amend this slightly and create a variable to build a simple template that is then rendered on the page to read <strong>Hello World</strong>.</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue/dist/vue.esm-bundler'
+
+const app = createApp({
+	template: '&lt;h1&gt;Hello World&lt;/h1&gt;'
+})
+
+app.mount('#app')
+
+	</code>
+</pre>
+
+						<h3>Render data</h3>
+
+						<p>We can use the <strong>data()</strong> method to render data and display in our template.</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue/dist/vue.esm-bundler'
+
+const app = createApp({
+	template: '&lt;h1&gt;Hello {{ firstName }}&lt;/h1&gt;',
+	data() {
+		return {
+			firstName: 'Dan'
+		}
+	}
+})
+
+app.mount('#app')
+
+	</code>
+</pre>
+
+						<p>We can remove the template from the <strong>src/main.js</strong> file so our file looks like this:</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue/dist/vue.esm-bundler'
+
+const app = createApp({
+	data() {
+		return {
+			firstName: 'Dan'
+		}
+	}
+})
+
+app.mount('#app')
+
+	</code>
+</pre>
+
+						<p>We can then move this into our <strong>index.html</strong> HTML code between the opening and closing tags of our root element and our data will still be rendered.</p>
+
+<pre>
+	<code>
+
+&lt;div id="app"&gt;
+
+	&lt;h1&gt;Hello {{ firstName }}&lt;/h1&gt;
+
+&lt;/div&gt;
+
+	</code>
+</pre>
+
+						<p>We can add more properties of data:</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue/dist/vue.esm-bundler'
+
+const app = createApp({
+	data() {
+		return {
+			firstName: 'Dan',
+			lastName: 'Smith',
+			email: 'dan@email.com',
+			picture: 'https://randomuser.me/api/portraits/men/10.jpg',
+		}
+	}
+})
+
+app.mount('#app')
+
+	</code>
+</pre>
+
+						<p>Our HTML can then be updated to render the data. For images we have to use the <strong>v-bind directive</strong></p>
+
+<pre>
+	<code>
+
+&lt;div id="app"&gt;
+
+	&lt;img v-bind:src="picture" v-bind:alt="firstName"&gt;
+	&lt;h1&gt;{{ firstName }} {{ lastName }}&lt;/h1&gt;
+	&lt;h2&gt;Email: {{ email }}&lt;/h2&gt;
+
+&lt;/div&gt;
+
+	</code>
+</pre>
+
+						<p>Notice the <strong>v-bind</strong> directive in our code. We can shorten this by using just the colon if we choose.</p>
+
+<pre>
+	<code>
+
+&lt;img :src="picture" :alt="firstName"&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>CSS Classes</h2>
+
+						<p>We can toggle CSS classes on our elements from our data.</p>
+
+						<p>If we have two CSS classes in our stylesheet, we can use the v-bind directive on the class attribute to toggle the classes. Our CSS looks like this:</p>
+
+<pre>
+	<code>
+
+.male {
+	color: blue;
+}
+
+.female {
+	color: red;
+}
+
+	</code>
+</pre>
+
+						<p>Our data now has a <strong>gender</strong> property with the default value set to <strong>male</strong>. This will set the class to be male, if we change the gender value to be female, that class will be applied.</p>
+
+<pre>
+	<code>
+
+import { createApp } from 'vue/dist/vue.esm-bundler'
+
+const app = createApp({
+	data() {
+		return {
+			firstName: 'Dan',
+			lastName: 'Smith',
+			email: 'dan@email.com',
+			gender: 'male',
+			picture: 'https://randomuser.me/api/portraits/men/10.jpg',
+		}
+	}
+})
+
+app.mount('#app')
+
+	</code>
+</pre>
+
+						<p>We now just need to add the <strong>v-bind</strong> directory to our element in the HTML code.</p>
+
+<pre>
+	<code>
+
+&lt;div id="app"&gt;
+
+	&lt;img v-bind:src="picture" v-bind:alt="firstName"&gt;
+	&lt;h1 v-bind:class="gender"&gt;{{ firstName }} {{ lastName }}&lt;/h1&gt;
+	&lt;h2 v-bind:class="gender"&gt;Email: {{ email }}&lt;/h2&gt;
+
+&lt;/div&gt;
+
+	</code>
+</pre>
+					</section>
+					-->
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
