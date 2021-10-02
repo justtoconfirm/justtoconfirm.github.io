@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to JavaScript">
+
+	<title>Codebox | JavaScript</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="javascript.html">JavaScript</a></li>
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">JavaScript</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="vue.html" class="menu__list-link">Vue</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">JavaScript</h1>
+
+						<p class="intro__copy">JavaScript (JS) is a high-level programming language that conforms to the ECMAScript specification.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Adding JavaScript to HTML</h2>
+
+						<p>Once a HTML document has been created, add a <strong>&lt;script&gt;</strong> tag before the closing <strong>&lt;/body&gt;</strong> tag to add a JavaScript script to your HTML.</p>
+
+<pre>
+	<code>
+
+	&lt;script src="js/script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+	</code>
+</pre>
+
+						<p>The script maybe <strong>minified</strong> to reduce the file size and better improve performance. Minification will reduce the number of characters in your file to reduce the number of bytes of code within your JavaScript. A minified file may have the following naming convention:</p>
+
+<pre>
+	<code>
+
+	&lt;script src="js/script.min.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Functions</h2>
+
+						<p>Functions are declared (created) using the <strong>function</strong> keyword.</p>
+
+<pre>
+	<code>
+
+function functionName() {
+	
+	// Code to be executed here
+
+}
+
+	</code>
+</pre>
+
+						<p>We can also write functions using the ES6 <strong>arrow syntax</strong>.</p>
+
+<pre>
+	<code>
+
+const functionName = () => {
+	
+	// Code to be executed here
+
+}
+
+	</code>
+</pre>
+
+						<p>Nothing will happen and no code will execute until we call (<strong>invoke</strong>) the function.</p>
+
+<pre>
+	<code>
+
+const functionName = () => {
+	
+	// Code to be executed here
+
+}
+
+// Call the function
+functionName();
+
+	</code>
+</pre>
+
+						<h3>Function Parameters</h3>
+
+						<p>Parameters allow our functions to be flexible. We can use parameters to pass values into functions. Within the following function, we use two parameters to calculate the area.</p>
+
+<pre>
+	<code>
+
+const area = (width, height) => {
+	
+	return width * height;
+
+}
+
+	</code>
+</pre>
+
+						<p>We pass values into the function parameters using <strong>arguments</strong>. We assign values when we invoke (call) our function.</p>
+
+<pre>
+	<code>
+
+const area = (width, height) => {
+	
+	return width * height;
+
+}
+
+area(5, 2);		// 5 * 2
+
+	</code>
+</pre>
+
+						<p><strong>Default parameters</strong> were introduced as part of the ES6 syntax. This allows us to set a default value if an argument is not provided when the function is called.</p>
+
+<pre>
+	<code>
+
+const area = (width = 5, height = 4) => {
+	
+	return width * height;
+
+}
+
+area();		// 5 * 4
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Objects</h2>
+
+						<p>A <strong>Literal notation</strong> is the easiest way to create an object in JavaScript. The object is stored in a variable. In this example, we would refer to this as the obj object.</p>
+
+<pre>
+	<code>
+
+const obj = {};
+
+	</code>
+</pre>
+
+						<p><strong>Properties</strong> can be added to objects. A property is similar to a variable and is a key/value pair.</p>
+
+<pre>
+	<code>
+
+const obj = {
+	key: value
+};
+
+	</code>
+</pre>
+
+						<p><strong>Methods</strong> can also be added to objects. A method is similar to function within an object.</p>
+
+<pre>
+	<code>
+
+const obj = {
+	key: value,
+
+	method() {
+		// code here
+	}	
+};
+
+	</code>
+</pre>
+
+						<p>We can use <strong>dot notation</strong> to access the value of an object <strong>property</strong>.</p>
+
+<pre>
+	<code>
+
+obj.key;
+
+	</code>
+</pre>
+
+						<p>A <strong>method</strong> can also be invoked (called) by referencing the object's name with the name of the method.</p>
+
+<pre>
+	<code>
+
+obj.method();
+
+	</code>
+</pre>
+
+						<p>Using the object literal notation, we can build an object that represents a hotel.</p>
+
+<pre>
+	<code>
+
+const hotel = {
+	name: 'The Grand Hotel',
+	rooms: 250,
+	roomsBooked: 189,
+	gym: true,
+	roomType: ['single', 'double', 'suite', 'penthouse'],
+
+	checkRoomsAvailable() {
+		return this.rooms - this.roomsBooked;
+	}	
+};
+
+	</code>
+</pre>
+
+						<p>We can check the number of rooms available in our hotel using the <strong>checkRoomsAvailable()</strong> method.</p>
+
+<pre>
+	<code>
+
+hotel.checkRoomsAvailable();
+
+	</code>
+</pre>
+
+						<h3>Destructuring</h3>
+
+						<p><strong>Object destructuring</strong> allows you to create a variable for each property allowing you to access properties of objects more easily and reducing the amount of code we need to write. This is a feature of the ES6 JavaScript syntax.</p>
+
+						<p>Here we have a simple object that represents a task.</p>
+
+<pre>
+	<code>
+
+const task = {
+	id: 1,
+	title: 'Learn JavaScript',
+	date: '01/01/2022'
+};
+
+	</code>
+</pre>
+
+						<p>We can now destructure the object using a single line of code to create new variables from each property in our object.</p>
+
+<pre>
+	<code>
+
+const { id, title, date } = task;
+
+	</code>
+</pre>
+
+						<p>We can then use these variables in our code. Here's the full code example.</p>
+
+<pre>
+	<code>
+
+const task = {
+	id: 1,
+	title: 'Learn JavaScript',
+	date: '01/01/2022'
+};
+
+const { id, title, date } = task;
+
+console.log(title);		// Learn JavaScript
+
+	</code>
+</pre>
+
+						<p>If the object has nested objects, we just need to update our destructure code slightly.</p>
+
+<pre>
+	<code>
+
+const task = {
+	id: 1,
+	title: 'Learn JavaScript',
+	date: '01/01/2022',
+	author,
+	author: {
+		firstName: 'Dan',
+		lastName: 'Smith'
+	}
+};
+
+const { id, title, date, author: { firstName, lastName } } = task;
+
+console.log(title);		// Learn JavaScript
+
+	</code>
+</pre>
+
+						<p>We can use a <strong>template literal</strong> to log the <strong>firstName</strong> and <strong>lastName</strong> property values.</p>
+
+<pre>
+	<code>
+
+console.log(`${firstName} ${lastName}`);
+
+	</code>
+</pre>
+
+						<p>We can also use destructuring to access the properties of an object. For example we can get the length of a String using destructuring.</p>
+
+<pre>
+	<code>
+
+const {length} = 'Learning JavaScript is fun';
+
+console.log(length);		// 26
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Arrays</h2>
+
+						<p>An Array is an object in JavaScript that is used to store data. They are useful for storing multiple values in a single variable.</p>
+
+						<p>An empty array can be declared like this:</p>
+
+<pre>
+	<code>
+
+const array = [];
+
+	</code>
+</pre>
+
+						<p>The <strong>length</strong> property of array can be used to output the total number of items in our array.</p>
+
+<pre>
+	<code>
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'PHP'];
+
+skills.length;		// 4
+
+	</code>
+</pre>
+
+						<p>A <strong>for loop</strong> also uses the length property to loop over the array.</p>
+
+<pre>
+	<code>
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'PHP'];
+
+let i;		// Declare a variable so not to declare on each loop
+
+for (i = 0; i < skills.length; i++) {
+	console.log(skills[i]);
+}
+
+	</code>
+</pre>
+
+						<p>The ES6 <strong>for loop</strong> syntax:</p>
+
+<pre>
+	<code>
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'PHP'];
+
+let i;		// Declare a variable so not to declare on each loop
+
+for (i of skills) {
+	console.log(i);
+}
+
+	</code>
+</pre>
+
+						<p>We can use the <strong>forEach()</strong> method to loop over each item contained within an array.</p>
+
+<pre>
+	<code>
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'PHP'];
+
+skills.forEach(skill => {
+	console.log(skill);
+});
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
