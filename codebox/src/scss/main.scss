@@ -94,6 +94,14 @@ nav {
 
 	&__item {
 		list-style-type: none;
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }
 
@@ -150,10 +158,10 @@ nav {
 
 		&-link {
 			color: #fff;
-			text-decoration: underline;
+			text-decoration: none;
 
 			&:hover {
-				text-decoration: none;
+				text-decoration: underline;
 			}
 		}
 	}
@@ -274,6 +282,10 @@ code {
 	@media screen and (min-width: 800px) {
 		max-width: 1200px;
 	}
+
+	&--home {
+		padding-top: 200px;
+	}
 }
 
 .row {
@@ -323,4 +335,78 @@ code {
 		padding: 1rem 0;
 		font-weight: bold;
 	}
+}
+
+.card-group {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 2rem;
+	padding: 2rem 0;
+
+	@media screen and (min-width: 767px) {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
+
+.card {
+	border: 1px solid #eee;
+	border-radius: 4px;
+	flex: 0 1 calc(33.33% - 1em); /* 33.33% sets the column width of each card */
+	width: 100%;
+	transition: 0.5s;
+
+	&:hover {
+		box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		padding: 2rem;
+		height: 100%;
+		justify-content: space-between;		
+	}
+
+	&__copy {
+		flex-grow: 1;
+	}
+
+	&__title {
+		margin: 0;
+		padding: 2rem 0;
+	}
+
+	&__footer {
+		padding-top: 4rem;
+	}
+}
+
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+
+	&--full-width {
+		width: 100%;
+	}
+
+	&__card {
+		border: 1px solid #eee;
+		padding: 1rem 2rem;
+		background-color: #00d494;
+		color: #fff;
+		font-weight: bold;
+		transition: 0.3s;
+
+		&:hover {
+			background-color: #a4d2ac;
+		}
+	}		
+}
+
+footer {
+	padding: 4rem 2rem;
 }
