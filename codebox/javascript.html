@@ -25,6 +25,7 @@
 				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
 				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
 				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
+				<li class="nav-list__item"><a href="python.html">Python</a></li>
 			</ul>
 
 			<div class="hamburger">
@@ -57,6 +58,9 @@
 			</li>
 			<li class="menu__list-item">
 				<a href="wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="python.html" class="menu__list-link">Python</a>
 			</li>
 		</ul>
 	</div>
@@ -461,6 +465,42 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'PHP'];
 
 skills.forEach(skill => {
 	console.log(skill);
+});
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Events</h2>
+
+						<h3>Adding Events to a Button</h3>
+
+						<p>When a HTML &lt;button&gt; is created, no actions or events are applied. We can add <strong>event listeners</strong> using JavaScript to apply functionality when the button is clicked.</p>
+
+						<p>Our button will have two classes. One will be a class used for styling. The other class, called a <strong>js-hook</strong>, will allow us to apply our JavaScript event listener. It's often good practice to have seperate classes for styling and functionality.</p>
+
+<pre>
+	<code>
+
+&lt;button class="btn js-btn"&gt;Button&lt;/button&gt;
+
+	</code>
+</pre>
+
+						<p>In our JavaScript code we can select our button using the <strong>querySelector()</strong> method.</p>
+
+						<p>The <strong>querySelector()</strong> method will only select the first element that matches the selector given. If no match for the selector is found, <strong>null</strong> is returned (which you'll see in the console).</p>
+
+						<p>We can add an event listener with a <strong>click</strong> event to our button. When the button is clicked, an alert will show.</p>
+
+<pre>
+	<code>
+
+const btn = document.querySelector('.js-btn');
+
+btn.addEventListener('click', () => {
+	alert('The button has been clicked');
 });
 
 	</code>

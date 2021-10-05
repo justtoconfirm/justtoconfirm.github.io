@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to Python">
+
+	<title>Codebox | Python</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="javascript.html">JavaScript</a></li>
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
+				<li class="nav-list__item"><a href="python.html">Python</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="vue.html" class="menu__list-link">Vue</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="python.html" class="menu__list-link">Python</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Python</h1>
+
+						<p class="intro__copy">Python is an interpreted, high-level programming language used to build websites, automate tasks, and conduct data analysis.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Install Python</h2>
+						<!-- https://realpython.com/intro-to-pyenv/ -->
+
+						<p>MacOS comes pre-installed with Python. To confirm the default version of Python installed, open your terminal and enter the command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	python --version
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>This is likely to be Python version 2.7, which is now deprecated by the Python developer community. It is recommended to install Python 3.x or Python 4.x as the latest versions.</p>
+
+						<p>It is best to install Python on Mac using <strong>Homebrew</strong>. Homebrew can be installed from within your terminal</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed, run this command to check there's nothing missing to complete the setup:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	brew doctor
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can install <strong>pyenv</strong> as a Python version manager to allow us to easily switch between multiple versions of Python.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	brew install pyenv
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>To install a specific version of Python (version 3.10.0 in this example). We can use the global keyword to then set the version of Python once it's been installed.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	pyenv install -v 3.10.0
+	pyenv global 3.10.0
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+<!--
+<pre>
+	<code>
+
+	&lt;script src="js/script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+	</code>
+</pre>
+-->
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
