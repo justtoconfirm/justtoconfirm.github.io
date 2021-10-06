@@ -90,6 +90,8 @@
 					<section>
 						<h2>Install Python</h2>
 						<!-- https://realpython.com/intro-to-pyenv/ -->
+						<!-- https://switowski.com/blog/pyenv -->
+						<!-- https://www.singlestoneconsulting.com/blog/setting-up-your-python-environment/ -->
 
 						<p>MacOS comes pre-installed with Python. To confirm the default version of Python installed, open your terminal and enter the command:</p>
 
@@ -194,18 +196,86 @@
 </div>
 <!-- / Terminal -->
 
-<!--
+					</section>
+
+					<section>
+						<h2>PIP</h2>
+
+						<p>PIP is a package manager for Python packages/modules. If you have Python version 3.4 or later installed, PIP is included by default. Modules are Python code libraries you can include in your project.</p>
+					</section>
+
+					<section>
+						<h2>Hello World</h2>
+
+						<p>Create an empty file with the file extension of <strong>.py</strong> for example, we will name this file <strong>helloworld.py</strong>. Add the following code to your file:</p>
+
+
 <pre>
 	<code>
 
-	&lt;script src="js/script.js"&gt;&lt;/script&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
+print("Hello World")
 
 	</code>
 </pre>
--->
+
+						<p>To run your Python script, open your terminal and enter the following command:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	python helloworld.py
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Variables</h2>
+
+						<p>Python has no command for declaring variables. A variable is created the moment we assign a value to it. Python variables do not need to be declared with a data type.</p>
+
+<pre>
+	<code>
+
+age = 28
+name = "Dan"
+
+	</code>
+</pre>
+
+						<p>We can use <strong>casting</strong> if we want to specify the data type of a variable.</p>
+
+<pre>
+	<code>
+
+age = int(28)
+name = str(Dan)
+
+	</code>
+</pre>
+
+						<p>Once a variable has been declared (created) its type can change.</p>
+
+<pre>
+	<code>
+
+x = 40
+x = "Cat"
+
+print(x)		# Cat
+
+	</code>
+</pre>
 					</section>
 
 				</div>
