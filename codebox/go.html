@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An guide to Go">
+
+	<title>Codebox | Go</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="javascript.html">JavaScript</a></li>
+				<li class="nav-list__item"><a href="react.html">React</a></li>
+				<li class="nav-list__item"><a href="vue.html">Vue</a></li>
+				<li class="nav-list__item"><a href="gatsby.html">Gatsby</a></li>
+				<li class="nav-list__item"><a href="wordpress.html">WordPress</a></li>
+				<li class="nav-list__item"><a href="python.html">Python</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-php.html" class="menu__list-link">PHP</a>-->
+			</li>
+			<li class="menu__list-item">
+				<!--<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>-->
+			</li>
+			<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="react.html" class="menu__list-link">React</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="vue.html" class="menu__list-link">Vue</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="gatsby.html" class="menu__list-link">Gatsby</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="wordpress.html" class="menu__list-link">WordPress</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="python.html" class="menu__list-link">Python</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Go</h1>
+
+						<p class="intro__copy">Go, sometimes called Golang, is a statically typed, compiled programming language created by Google with a syntax similar to C.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Install Go</h2>
+
+						<p>Begin by downloading the <a href="https://golang.org/doc/install" target="_blank" rel="noopener noreferrer">Go installer</a> for your operating system.</p>
+
+						<p>Once installed, open your terminal and enter the command the confirm Go is installed:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	go version
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Getting Started</h2>
+
+						<p>Once installed, open a command prompt and <strong>cd</strong> into your home directory. From here, create a hello directory for our first Go source code.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	cd
+
+	mkdir hello
+	cd hello
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Next, we need to add dependency tracking. This is defined by a <strong>go.mod</strong> file in our directory. We use the <strong>go mod init</strong> command to create this file. For the purpose of this example, we will just use <strong>example/hello</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	go mod init example/hello
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Create a file named <strong>hello.go</strong> within your directory and add the following code:</p>
+
+<pre>
+	<code>
+
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World")
+}
+
+	</code>
+</pre>
+
+						<p>Run the code from within the terminal to see the greeting.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	go run .
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>External Packages</h2>
+
+						<p>Visit <a href="https://pkg.go.dev/" target="_blank" rel="noopener noreferrer">pkg.go.dev</a> and search for a "quote" package. Find the <strong>rsc.io/quote</strong> package.</p>
+
+						<p>Packages are published in modules.</p>
+
+						<p>In the <strong>Documentation</strong> section, under <strong>Index</strong>, note the list of functions we can call from our code. We will us the <strong>Go</strong> function.</p>
+
+						<p>In our code, import the <strong>rsc.io/quote</strong> package and add a call to it's <strong>Go</strong> function.</p>
+
+<pre>
+	<code>
+
+package main
+
+import "fmt"
+import "rsc.io/quote"
+
+func main() {
+	fmt.Println(quote.Go())
+}
+
+	</code>
+</pre>
+
+						<p>Run the following command to authenticate modules. This will add a <strong>go.sum</strong> file for use in authenticating the module we have just imported.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	go mod tidy
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Run the code to see the message generated by the function we're calling.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	go run .
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>The file structure will look like this:</p>
+
+
+<pre>
+	<code>
+
+hello 
+	|_go.mod
+	|_go.sum
+	hello.go
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
