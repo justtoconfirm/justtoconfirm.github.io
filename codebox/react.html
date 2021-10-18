@@ -1355,42 +1355,6 @@ my-app
 					</section>
 
 					<section>
-						<h2>Build a Counter</h2>
-
-						<p>We will be using the <strong>useState</strong> hook to create a simple counter that increments when the button is clicked. Hooks were introduced from React 16.8.</p>
-
-						<p>Create a new component named <strong>Counter.js</strong> in the <strong>components</strong> directory. Add the following code to this component.</p>
-
-<pre>
-	<code>
-
-import React, { useState } from 'react';
-import Button from './Button';
-
-const Counter = () => {
-
-	const [count, setCount] = useState(0);
-
-	return (
-
-		&lt;&gt;
-
-			&lt;p&gt;You clicked {count} times.&lt;/p&gt;
-
-			&lt;Button onClick={() => setCount(count + 1)}&gt;Increase Count&lt;/Button&gt;
-
-		&lt;/&gt;
-
-	);
-}
-
-export default Counter;
-
-	</code>
-</pre>
-					</section>
-
-					<section>
 						<h2>React Router</h2>
 
 						<p><strong>React Router</strong> can be installed using npm.</p>
