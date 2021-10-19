@@ -1612,6 +1612,292 @@ export default Button;
 					</section>
 
 					<section>
+						<h2>Hooks</h2>
+
+						<p>Hooks were introduced in React 16.8.0 and let you use features of React, such as state, without having to write a class.</p>
+
+						<p>A hook is a special function that lets you "hook into" React features. They can only be used inisde of a function and not a class.</p>
+
+						<p>Hooks are functions that allow common logic to be shared between multiple components. Often Hooks will be prefixed with the keyword of <strong>use</strong>, followed by the name of the Hook, for example, <strong>useState</strong>.</p>
+
+						<h3>useState</h3>
+
+						<p>Here we're going to use the <strong>useState</strong> hook to manage state within a React component.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const App = () => {
+	
+	// Use the hook to manage state
+	const [ count, setCount ] = useState(4);
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1);
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount - 1);
+	}
+
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+			&lt;span&gt;{ count }&lt;/span&gt;
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>This will set the default state to have an initial value of 4.</p>
+
+						<ul>
+							<li><strong>count</strong> - this is our current state as a variable.</li>
+							<li><strong>setCount</strong> - is a function that allows us to update the state.</li>
+						</ul>
+
+						<p>To prevent the state being run everytime, impacting the performance of our code, we can revise our code to set the state only once when the component renders.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const App = () => {
+	
+	// Use the hook to manage state
+	const [ count, setCount ] = useState(() => {
+		return 4;
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1);
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount - 1);
+	}
+
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+			&lt;span&gt;{ count }&lt;/span&gt;
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<h3>useEffect</h3>
+						<!-- https://blog.logrocket.com/guide-to-react-useeffect-hook/ -->
+						<!-- https://daveceddia.com/useeffect-hook-examples/ -->
+						<!-- https://designcode.io/react-hooks-handbook-useeffect-hook -->
+
+						<p>By using this Hook, you tell React that your component needs to do something after render. This hook is used for <strong>side-effects</strong>. Examples of side-effects are fetch requests to get data, DOM manipulation, and using the timer function like setTimeout(), and much more.</p>
+
+						<p>The useEffect hook runs after every render of your component and is useful when you wish to run some functions during the component's lifecycle, for example if we want to update the UI when the state changes.</p>
+
+						<p>All hooks should be imported first:</p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+	</code>
+</pre>
+
+						<p>Let's update the earlier counter example to mount the count in the document title:</p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+const App = () => {
+	
+	// Use the hook to manage state
+	const [ count, setCount ] = useState(() => {
+		return 4;
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1);
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount - 1);
+	}
+
+	useEffect(() => {
+		document.title = `You clicked ${count} times.`;
+	}, [count]);
+
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+			&lt;span&gt;{ count }&lt;/span&gt;
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>With this code example, when the component renders with the updated count, the useEffect hook is then used to update the HTML title.</p>
+
+						<h3>useRef</h3>
+
+						<p>The useRef hook replaces the getElementById, getElementByClassName and querySelectors used in vanilla JavaScript.</p>
+					</section>
+
+					<section>
+						<h2>Conditional Rendering</h2>
+						<!-- https://designcode.io/react-hooks-handbook-conditional-rendering -->
+
+						<p>In React, we can create dynamic applications using conditional rendering. This is when we render different UI elements or components based on a condition.</p>
+
+						<p>Here, we can use the useState hook to display a notification component only when the user has one or more notifications.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const NotificationCard = () => {
+	const [ notificationNumber, setNotificationNumber ] = useState(1);
+
+	return (
+		&lt;&gt;
+			{notificationNumber >= 1 && (
+				&lt;p&gt;You have {notificationNumber} new notification&lt;/p&gt;
+			)}
+		&lt;/&gt;
+	);
+}
+
+export default NotificationCard;
+
+	</code>
+</pre>
+
+						<h3>If...else statement</h3>
+
+						<p>In this next example, we're showing the logout button depending on the value of isLoggedIn. This uses the useState hook once again.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const SignInButton = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+	if (isLoggedIn) {
+		return &lt;button&gt;Logout&lt;/button&gt;;
+	} else {
+		return &lt;button&gt;Login&lt;/button&gt;
+	}
+};
+
+export default SignInButton;
+
+	</code>
+</pre>
+
+						<h3>Ternary operator</h3>
+
+						<p>An alternative to the if...else statement is the ternary operator.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const SignInButton = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+	return (
+		&lt;&gt;
+			{ isLoggedIn ? &lt;button&gt;Logout&lt;/button&gt; : &lt;button&gt;Login&lt;/button&gt; }
+		&lt;/&gt;
+	);
+};
+
+export default SignInButton;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Fetch Data from an API</h2>
+						<!-- https://designcode.io/react-hooks-handbook-fetch-data-from-an-api -->
+
+						<p>It is very common, when building an application, to fetch data from an API. For example, we could use Contentful as a CMS to host our content, or Firebase Authentication as our user database. Often these tools have packages we can add to our application to fetch the data, however, we may also have to fetch data using a JSON API.</p>
+
+						<p>For this, we will fetch data using the Fetch APU and the useEffect hook.</p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+const App = () => {
+	const [advice, setAdvice] = useState("");
+
+	useEffect(() => {
+		const url = "https://api.adviceslip.com/advice";
+
+		const fetchData = async () => {
+			try {
+				const response = await fetch(url);
+				const json = await response.json();
+				setAdvice(json.slip.advice);
+			} catch (error) {
+				console.log("error", error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;{ advice }&lt;/p&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>React &amp; GraphQL</h2>
+						<!-- https://medium.com/swlh/using-a-graphql-api-in-react-f9e8aaaeea41 -->
+						<!-- https://www.takeshape.io/articles/how-to-use-react-query-with-react-and-graphql/ -->
+						<!-- https://www.freecodecamp.org/news/5-ways-to-fetch-data-react-graphql/ -->
+						<!-- https://blog.logrocket.com/graphql-react-for-noobs/ -->
+					</section>
+
+					<section>
 						<h2>Build the Application</h2>
 
 						<p>When you're ready to deploy your React application to production, run the <strong>build</strong> command to create an optimised build of your app in the build folder.</p>
