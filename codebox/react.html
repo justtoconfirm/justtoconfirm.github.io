@@ -1844,58 +1844,13 @@ export default SignInButton;
 </pre>
 					</section>
 
-					<section>
-						<h2>Fetch Data from an API</h2>
-						<!-- https://designcode.io/react-hooks-handbook-fetch-data-from-an-api -->
-
-						<p>It is very common, when building an application, to fetch data from an API. For example, we could use Contentful as a CMS to host our content, or Firebase Authentication as our user database. Often these tools have packages we can add to our application to fetch the data, however, we may also have to fetch data using a JSON API.</p>
-
-						<p>For this, we will fetch data using the Fetch APU and the useEffect hook.</p>
-
-<pre>
-	<code>
-
-import React, { useState, useEffect } from 'react';
-
-const App = () => {
-	const [advice, setAdvice] = useState("");
-
-	useEffect(() => {
-		const url = "https://api.adviceslip.com/advice";
-
-		const fetchData = async () => {
-			try {
-				const response = await fetch(url);
-				const json = await response.json();
-				setAdvice(json.slip.advice);
-			} catch (error) {
-				console.log("error", error);
-			}
-		};
-
-		fetchData();
-	}, []);
-
-	return (
-		&lt;&gt;
-			&lt;p&gt;{ advice }&lt;/p&gt;
-		&lt;/&gt;
-	);
-}
-
-export default App;
-
-	</code>
-</pre>
-					</section>
-
-					<section>
-						<h2>React &amp; GraphQL</h2>
+					<!--<section>-->
+						<!--<h2>React &amp; GraphQL</h2>-->
 						<!-- https://medium.com/swlh/using-a-graphql-api-in-react-f9e8aaaeea41 -->
 						<!-- https://www.takeshape.io/articles/how-to-use-react-query-with-react-and-graphql/ -->
 						<!-- https://www.freecodecamp.org/news/5-ways-to-fetch-data-react-graphql/ -->
 						<!-- https://blog.logrocket.com/graphql-react-for-noobs/ -->
-					</section>
+					<!--</section>-->
 
 					<section>
 						<h2>Build the Application</h2>
