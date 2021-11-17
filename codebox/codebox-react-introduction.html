@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introductory guide to React">
+
+	<title>Codebox | React Introduction</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">PHP</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="codebox-react-introduction.html">React</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="introduction-to-php.html" class="menu__list-link">PHP</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>-->
+			<li class="menu__list-item">
+				<a href="codebox-react-introduction.html" class="menu__list-link">React</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">React</h1>
+
+						<p class="intro__copy">React is an open-source, front-end JavaScript library for building user interfaces and components.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Requirements</h2>
+
+						<p>We will need to have the following installed on our machine to install and run React:</p>
+
+						<ul>
+							<li>Node 14.0.0 or later</li>
+							<li>npm 5.6 or later</li>
+						</ul>
+
+						<p>You can also install <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> to switch Node versions between projects.</p>
+					</section>
+
+					<section>
+						<h2>Install</h2>
+
+						<p>React can be installed using <strong>create-react-app</strong>. This will setup the development environment but will not handle backend logic or databases. This will only create the frontend build pipeline using <strong>Babel</strong> and <strong>Webpack</strong>, but we can use any backend we want.</p>
+
+						<p>To install React we will use <strong>npx</strong>, which is a package runner tool that comes with npm version 5.2 or later. This will install the current version of React.</p>
+
+						<p>In this example, our app is named my-app.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app my-app
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Start the development server</h2>
+
+						<p>Once React has been installed we can use the <strong>npm start</strong> command to run the local development server. This will run on port 3000 by default: <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">http://localhost:3000/</a></p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	cd my-app
+	npm start
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Hello World</h2>
+
+						<p>Within the <strong>src/index.js</strong> file of the React app, simplify the code so we can display Hello World onto the page.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+	&lt;p&gt;Hello World&lt;/p&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>The attribute of <strong>root</strong> is the ID of the root element where the app will render in the <strong>public/index.html</strong> HTML document.</p>
+
+<pre>
+	<code>
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+	</code>
+</pre>
+
+						<p>We call this a <strong>root</strong> DOM node inside our HTML because everything inside will be managed by the React DOM.</p>
+					</section>
+
+					<section>
+						<h2>Embedding Expressions</h2>
+
+						<p>We can use curly braces inside JSX to embed JavaScript expressions and data into our React application.</p>
+
+						<p>Here we declare a variable called name and then use it inside the curly braces to render the value:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const name = 'Dan';
+
+ReactDOM.render(
+	&lt;p&gt;Hello {name}&lt;/p&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>As mentioned previously we can also put any valid JavaScript expression inside curly braces.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+	&lt;p&gt;{2 + 2}&lt;/p&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>Here is an example that renders the current year:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+	&lt;p&gt;{new Date().getFullYear()}&lt;/p&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Components</h2>
+
+						<p>Components let you split our User Interface (UI) into independent and reusable pieces. Components are like JavaScript functions. They accept inputs, called <strong>props</strong> (properties), and return React elements describing what should appear on the screen.</p>
+
+						<p>The simplest way to create a component is to write a JavaScript function.</p>
+
+						<p>Here we add a function as a component called <strong>Welcome</strong> and we can then pass in a value of a name into the props of our component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Welcome = (props) => {
+	return (
+		&lt;p&gt;Hello {props.name}&lt;/p&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;Welcome name="Dan" /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Composing Components</h2>
+
+						<p>Components can refer to other components in their output. This lets us reuse components easily.</p>
+
+						<p>For example, we can create an <strong>App</strong> component that renders the <strong>Welcome</strong> component many times.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Welcome = (props) => {
+	return (
+		&lt;p&gt;Hello {props.name}&lt;/p&gt;
+	);
+}
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" /&gt;
+			&lt;Welcome name="Pearl" /&gt;
+			&lt;Welcome name="Jack" /&gt;
+		&lt;/&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Destructuring</h2>
+
+						<p>We can apply <strong>destructuring</strong> to our React components for the props.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Welcome = ({ name = '' }) => {
+
+	return (
+		&lt;p&gt;Hello {name}&lt;/p&gt;
+	);
+}
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" /&gt;
+			&lt;Welcome name="Pearl" /&gt;
+			&lt;Welcome name="Jack" /&gt;
+		&lt;/&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>We can also create an object to contain all of our props.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Welcome = props => {
+
+	const {
+		name = '',
+	} = props;
+
+	return (
+		&lt;p&gt;Hello {name}&lt;/p&gt;
+	);
+}
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" /&gt;
+			&lt;Welcome name="Pearl" /&gt;
+			&lt;Welcome name="Jack" /&gt;
+		&lt;/&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Separating the Components</h2>
+
+						<p>Now that we have a few components built, we can look to amend our file structure and seperate the components into individual files.</p>
+
+						<p>Inside the <strong>src</strong> directory, create a <strong>Welcome.js</strong> file that will contain the Welcome component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Welcome = props => {
+
+	const {
+		name = '',
+	} = props;
+
+	return (
+		&lt;p&gt;Hello {name}&lt;/p&gt;
+	);
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
+						<p>If not created already, inside the <strong>src</strong> directory, create an <strong>App.js</strong> file and update the code. We will import the <strong>Welcome</strong> component here.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Welcome from './Welcome';
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" /&gt;
+			&lt;Welcome name="Pearl" /&gt;
+			&lt;Welcome name="Jack" /&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Our <strong>index.js</strong> file in the <strong>src</strong> directory will import the <strong>App</strong> component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>The file structure of our app <strong>src</strong> directory will look like this:</p>
+
+<pre>
+	<code>
+
+my-app 
+	|_src /
+		|__App.js
+		|__index.js
+		|__Welcome.js
+
+	</code>
+</pre>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
