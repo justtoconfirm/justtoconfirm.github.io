@@ -166,6 +166,20 @@ ReactDOM.render(
 					</section>
 
 					<section>
+						<h2>The className attribute</h2>
+
+						<p>The class keyword is a reserved JavaScipt keyword. In React, we use <strong>className</strong> to add a class attribute to your elements and components.</p>
+
+<pre>
+	<code>
+
+&lt;div className="foo"&gt;&lt;/div&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Embedding Expressions</h2>
 
 						<p>We can use curly braces inside JSX to embed JavaScript expressions and data into our React application.</p>
@@ -441,6 +455,121 @@ my-app
 		|__App.js
 		|__index.js
 		|__Welcome.js
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Conditional Rendering</h2>
+
+						<p>In React, we can render components depending on the state of your application.</p>
+
+						<p>Consider these two components:</p>
+
+<pre>
+	<code>
+
+const UserGreeting = () => {
+	
+	return (
+		&lt;h1&gt;Welcome back&lt;/h1&gt;
+	);
+
+};
+
+const GuestGreeting = () => {
+
+	return (
+		&lt;h1&gt;Please sign in&lt;/h1&gt;
+	);
+	
+};
+
+	</code>
+</pre>
+
+						<p>We can create a Greeting component that displays either of these components depending on whether a user is logged in, or not.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import UserGreeting from './UserGreeting';
+import GuestGreeting from './GuestGreeting';
+
+const Greetings = props => {
+	
+	const isLoggedIn = props.isLoggedIn;
+
+	if (isLoggedIn) {
+		return &lt;UserGreeting /&gt;;
+	}
+
+	return &lt;GuestGreeting /&gt;;
+
+}
+
+ReactDOM.render(
+	&lt;Greeting isLoggedIn={false} /&gt;,
+	document.getElementById('root')
+);
+	</code>
+</pre>
+
+						<p>We can also use <strong>ternary operators</strong> to conditionally render components based on data being passed in the props.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Button = props => {
+	
+	const {
+		type = "button",
+		url = "",
+		children,
+		onClick
+	} = props;
+
+	const isAnchor = url && (url.includes('http') || url.startsWith('#') || url.startsWith('mailto'));
+
+	const renderAsLink = () =>
+		&lt;a href={ url } role="button"&gt;{ children }&lt;/a&gt;
+
+	const renderAsButton = () =>
+		&lt;button {...{ type, onClick }}&gt;{ children }&lt;/button&gt;
+
+	return (
+
+		isAnchor ? renderAsLink() : renderAsButton()
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>If we want to render the Button component as a button element:</p>
+
+<pre>
+	<code>
+
+&lt;Button onClick={methodNameHere}&gt;Click me&lt;/Button&gt;
+
+	</code>
+</pre>
+
+						<p>If we want to render the Button component as a link, we need to pass a value into a <strong>url</strong> prop:</p>
+
+<pre>
+	<code>
+
+&lt;Button url="https://example.com"&gt;Click me&lt;/Button&gt;
 
 	</code>
 </pre>

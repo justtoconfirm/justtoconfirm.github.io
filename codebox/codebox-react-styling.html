@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introductory guide to applying styling to your React application">
+
+	<title>Codebox | Styling</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">PHP</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="codebox-react-introduction.html">React</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="introduction-to-php.html" class="menu__list-link">PHP</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>-->
+			<li class="menu__list-item">
+				<a href="codebox-react-introduction.html" class="menu__list-link">React</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Styling</h1>
+
+						<p class="intro__copy">Adding styling to your React application using GlobalStyles, CSS and SCSS.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Styled Components</h2>
+
+						<p>Styled Components allows styling to be scoped inside the React component itself. We can use the <a href="https://www.npmjs.com/package/styled-components" target="_blank" rel="noopener noreferrer">style-components</a> npm package for this.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once the package has been installed, we can then import this into our component.</p>
+
+<pre>
+	<code>
+
+import styled from 'styled-components';
+
+	</code>
+</pre>
+
+						<p>The styling can then be applied to the component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const HeadingStyle = styled.h1`
+	padding: 1rem;
+	text-align: center;
+`;
+
+const Heading = ({ children }) => {
+
+	return (
+
+		&lt;HeadingStyle&gt;{ children }&lt;/HeadingStyle&gt;
+
+	);
+
+};
+
+export default Heading;
+
+	</code>
+</pre>
+
+						<p>We may want to change the styling of our component using props.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const HeadingStyle = styled.h1`
+	padding: 1rem;
+	text-align: center;
+	color: ${props => props.primary ? "#efefef" : "#fff" };
+`;
+
+const Heading = ({ children, primary }) => {
+
+	return (
+
+		&lt;HeadingStyle {...{ primary }}&gt;{ children }&lt;/HeadingStyle&gt;
+
+	);
+
+};
+
+export default Heading;
+
+	</code>
+</pre>
+
+						<p>If we want to apply the primary colour, we can then render the Heading component and pass in the <strong>primary prop</strong>.</p>
+
+<pre>
+	<code>
+
+&lt;Heading primary&gt;Hello World&lt;/Heading&gt;
+
+	</code>
+</pre>
+
+						<h3>Adding global styling</h3>
+
+						<p>We can use the styled-components package to create a global stylesheet for our application styling. Begin by creating a <strong>GlobalStyles.js</strong> file in the <strong>src</strong> directory.</p>
+
+						<p>Once the file has been created, add the following code:</p>
+
+<pre>
+	<code>
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
+	
+	body {
+		background-color: #fff;
+	}
+
+`;
+
+export default GlobalStyles;
+
+	</code>
+</pre>
+
+						<p>Open the <strong>App.js</strong> component file in the <strong>src</strong> directory and import GloablStyles to apply styling across your app.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import GlobalStyles from './GlobalStyles';
+
+const App = () => {
+	return (
+
+		&lt;GlobalStyles /&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>If you wish to also include a CSS reset, such as <strong>normalize.css</strong>, into your application, this can also be imported into the App component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import 'normalize.css';
+import GlobalStyles from './GlobalStyles';
+
+const App = () => {
+	return (
+
+		&lt;GlobalStyles /&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Using the classNames package</h2>
+
+						<p>We can alsouse the <a href="https://www.npmjs.com/package/classnames" target="_blank" rel="noopener noreferrer">classNames</a> npm package to style our components using props.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install classnames
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once installed, we can update our earlier component to use the <strong>classnames</strong> package.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import classNames from 'classnames';
+
+const Heading = ({ theme = '', children }) => {
+
+	const headingClass = classNames('heading', className, {
+		'heading--primary' : theme === 'primary',
+		'heading--secondary' : theme === 'secondary',
+		'heading--full-width' : isFullWidth
+	});
+
+	return (
+
+		&lt;h1 className={headingClass}&gt;{ children }&lt;/h1&gt;
+
+	);
+
+};
+
+export default Heading;
+
+	</code>
+</pre>
+
+						<p>When we now render the Heading component, we can use the <strong>theme prop</strong> to set the theme. We can also use the <strong>isFullWidth</strong> prop to set the heading to have a CSS class that will be full width.</p>
+
+<pre>
+	<code>
+
+&lt;Heading theme="primary" isFullWidth&gt;Hello World&lt;/Heading&gt;
+
+	</code>
+</pre>
+
+						<p>This heading component when rendered will have the classes of <strong>heading heading--primary heading--full-width</strong>.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>

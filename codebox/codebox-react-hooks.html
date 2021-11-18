@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introductory guide to React Hooks">
+
+	<title>Codebox | React Hooks</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">PHP</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="codebox-react-introduction.html">React</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="introduction-to-php.html" class="menu__list-link">PHP</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>-->
+			<li class="menu__list-item">
+				<a href="codebox-react-introduction.html" class="menu__list-link">React</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">React Hooks</h1>
+
+						<p class="intro__copy">React Hooks were introduced in React version 16.8.0 and allow us to use state and other React features without writing a class.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>What is a Hook?</h2>
+
+						<p>A Hook is a function that lets you "hook into" features of React. Hooks are prefixed with the keyword of <strong>use</strong>, followed by the name of the Hook.</p>
+
+						<p>An example of a common React Hook in use is <strong>useState</strong> which lets you add state to a function component.</p>
+
+						<p>Hooks can only be used inside a functional component, they cannot be used inside of a class component.</p>
+					</section>
+
+					<section>
+						<h2>useState</h2>
+
+						<p>Here we are going to use the <strong>useState</strong> hook to manage state within a React component. We begin by importing the useState hook.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+	</code>
+</pre>
+
+						<p>Next, we write our functional component. This component will create a counter.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+	
+	return (
+
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+
+						<p>Now that the component has been built, we need to apply the <strong>useState</strong> hook.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	// Hook
+	const [ count, setCount ] = useState(4);
+	
+	return (
+
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+
+						<ul>
+							<li><strong>count</strong> - this is a variable and is our current state.</li>
+							<li><strong>setCount</strong> - this is a function that allows us to update our state.</li>
+						</ul>
+
+						<p>The default state, in this example, is set to 4. For a counter, you may want to set this to 0 as the default value.</p>
+
+						<p>We can now add two methods, one to increase and the other the decrease the count. For this we will call the <strong>setCount</strong> method to update the state. We pass in a new function, called <strong>prevCount</strong> into the setCount method to allow us to take the previous state value.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	// Hook
+	const [ count, setCount ] = useState(4);
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+
+						<p>We need to display the current count when the component renders. For this, we will use curly braces and reference the <strong>count</strong> variable.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	// Hook
+	const [ count, setCount ] = useState(4);
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+		&lt;span&gt;{ count }&lt;/span&gt;
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+
+						<p>Finally, we can add two buttons that will call each function to increase, or decrease, the counter value.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	// Hook
+	const [ count, setCount ] = useState(4);
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+
+			&lt;span&gt;{ count }&lt;/span&gt;
+
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+
+						<p>We can make one final change to improve performance. We can update our hook to only run it once instead of everytime.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	// Hook - with improved performance
+	const [ count, setCount ] = useState(() => {
+		return 4;
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+
+			&lt;span&gt;{ count }&lt;/span&gt;
+
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>useEffect</h2>
+
+						<p>Using the <strong>useEffect</strong> hook lets you perform side effects in functional components. The useEffect hook is similar to the <strong>componentDidMount</strong> and <strong>componentDidUpdate</strong> lifecycle methods.</p>
+
+						<p>We can update our earlier counter example to add the useEffect hook. This code will set the document title to a custom message that includes the counter value.</p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+const Counter = () => {
+
+	// Hook - with improved performance
+	const [ count, setCount ] = useState(() => {
+		return 4;
+	});
+
+	// The useEffect hook
+	useEffect(() => {
+
+		// Update the document title using the browser API
+		document.title = `You clicked ${count} times.`;
+
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; - &lt;/button&gt;
+
+			&lt;span&gt;{ count }&lt;/span&gt;
+
+			&lt;button onClick={increaseCount}&gt; + &lt;/button&gt;
+		&lt;/&gt;
+	);
+}
+
+export default Counter;
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>

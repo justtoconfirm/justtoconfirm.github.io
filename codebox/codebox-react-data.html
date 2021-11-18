@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introductory guide to React and Fetching Data">
+
+	<title>Codebox | Data</title>
+
+	<link rel="shortcut icon" type="image/ico" href="favicon/code.ico">
+	<link rel="stylesheet" href="dist/css/main.css">
+	<link rel="preload" href="fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">PHP</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+				<li class="nav-list__item"><a href="codebox-react-introduction.html">React</a></li>
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="introduction-to-php.html" class="menu__list-link">PHP</a>
+			</li>
+			<li class="menu__list-item">
+				<a href="introduction-to-wordpress.html" class="menu__list-link">WordPress</a>
+			</li>-->
+			<li class="menu__list-item">
+				<a href="codebox-react-introduction.html" class="menu__list-link">React</a>
+			</li>
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Data</h1>
+
+						<p class="intro__copy">There is a variety of ways to fetch data in React, including using the built-in Fetch API, Axios, async/await, and more.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>How to fetch data in React</h2>
+						<!-- https://www.better.dev/fetch-data-from-an-api-with-react -->
+						<!-- https://www.pluralsight.com/guides/access-data-from-an-external-api-into-a-react-component -->
+						<!-- https://designcode.io/react-hooks-handbook-fetch-data-from-an-api -->
+
+						<p>If you're starting our with React, you may have only worked on simple project that do not need access to data. As we build more complex projects, your app will require the need to fetch data.</p>
+
+						<p>Usually when we build simple applications, like a ToDo app or Counter, we add the data to the state of our application. At some point we may want to request real world data from an API (Application Program Interface).</p>
+
+						<p>We can use the <strong>useEffect</strong> hook to fetch data. In a class-based component, fetching data is done through the <strong>componentDidMount</strong> lifecycle method. This is the method used to fetch data on the first mounting of the component.</p>
+
+						<p>We can also fetch data on the triggering of an event, such as a button click.</p>
+
+						<p>There are many ways to extract data from an API in a React application:</p>
+
+						<ul>
+							<li>Fetch API</li>
+							<li>React Query library</li>
+							<li>GraphQL</li>
+							<li>Custom hooks</li>
+							<li>async-await syntax</li>
+							<li>Axios library</li>
+						</ul>
+
+						<p>We will create a simple app that will call an API when the user lands on our page. Essentially, this will call the APU during the mounting part of the component's lifecycle.</p>
+
+						<p>The API being used will get a random quote/advice. We will create an asynchronous function to fetch our data. An <strong>asynchronous function</strong> is a function that needs to wait after the promise is resolved before continuing. In this example, the function will need to wait until after the data is fetched before continuing.</p>
+
+						<p>This function is added to the <strong>useEffect</strong> hook so it can be called and will use the <strong>Fetch API</strong> for get the JSON data from the API.</p>
+
+						<p>Once the response is received, we will parse it using the <strong>.json()</strong> function, transforming the response into JSON data which can easily be read. This data can be saved in the local state of the component using the useState hook.</p>
+
+<pre>
+	<code>
+
+import React, { useEffect, useState } from 'react';
+
+const App = () => {
+	const [ advice, setAdvice ] = useState("");
+
+	useEffect(() => {
+		const url = "https://api.adviceslip.com/advice";
+
+		const fetchData = async() => {
+			try {
+
+				const response = await.fetch(url);
+				const json = await response.json();
+
+				setAdvice(json.slip.advice);
+
+			} catch(error) {
+
+				console.log("error", error);
+
+			}
+		};
+
+		fetchData();
+	}, []);
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;{ advice }&lt;/p&gt;
+		&lt;/&gt;
+	);
+};
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="dist/js/menu.js"></script>
+
+</body>
+</html>
