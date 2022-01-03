@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to the JavaScript Resize Observer API">
+
+	<title>Codebox | JavaScript | Resize Observer API</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Resize Observer API</h1>
+
+						<p class="intro__copy">The Resize Observer API allows code to monitor an element for changes to its size.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Resize Observer</h2>
+
+						<p>The <strong>Resize Observer</strong> is used to observe individual elements on the page using JavaScript. CSS media queries are used to target the entire page.</p>
+
+						<p>This is the HTML code:</p>
+
+<pre>
+	<code>
+
+&lt;!DOCTYPE&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+	&lt;title&gt;Resize Observer&lt;/title&gt;
+
+	&lt;link rel="stylesheet" href="style.css"&gt;
+
+	&lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+	&lt;main role="main"&gt;
+		&lt;div class="container"&gt;
+			&lt;div class="box"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/main&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+	</code>
+</pre>
+
+						<p>Save the code below as a JavaScript file named <strong>script.js</strong>.</p>
+
+<pre>
+	<code>
+
+const box = document.querySelector('.box');
+const container = document.querySelector('.container');
+
+// Return an array called entries for all the things we want to observe
+const observer = new ResizeObserver((entries) => {
+
+	// Get the first element from the array, the box
+	const boxElement = entries[0];
+	// If box is less than 150 px
+	const isSmall = boxElement.contentRect.width < 150;
+
+	// Change the colour of the box if size is below 150 px
+	boxElement.target.style.backgroundColour = isSmall ? "blue" : "red";
+	
+	// This will output in the log each time the elements change size
+	console.log(entries);
+
+});
+
+// Observe a single item called box
+observer.observe(box);
+// Observe a single item called container
+observer.observe(container);
+
+	</code>
+</pre>
+
+					</section>
+
+					<section>
+						<h2>Browser Support</h2>
+
+						<ul>
+							<li>Chrome - 64 and greater</li>
+							<li>Edge - 79 and greater</li>
+							<li>Firefox - 69 and greater</li>
+							<li>Internet Explorer (IE) - No</li>
+							<li>Safari - 13.1 and greater</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API" target="_blank" rel="noopener noreferrer">MDN Web Docs</a></li>
+							<li><a href="https://www.youtube.com/watch?v=M2c37drnnOA" target="_blank" rel="noopener noreferrer">Web Dev Simplified (YouTube)</a></li>
+							<li><a href="https://www.digitalocean.com/community/tutorials/js-resize-observer" target="_blank" rel="noopener noreferrer">Digital Ocean</a></li>
+							<li><a href="https://web.dev/resize-observer/" target="_blank" rel="noopener noreferrer">Web.Dev</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

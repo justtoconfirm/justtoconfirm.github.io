@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to JavaScript Events">
+
+	<title>Codebox | JavaScript | Events</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Events</h1>
+
+						<p class="intro__copy">Events are JavaScript actions that have taken place in the browser.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Events</h2>
+
+						<p>Events in JavaScript are actions that have taken place in the browser. Here are a few common events that can happen on a website:</p>
+
+						<ul>
+							<li>The page finishes loading</li>
+							<li>The user clicks a button</li>
+							<li>The user hovers over a dropdown</li>
+							<li>The user submits a form</li>
+							<li>The user presses a key on their keyboard</li>
+						</ul>
+
+					</section>
+
+					<section>
+						<h2>Adding Events to Buttons</h2>
+
+						<p>No actions or events are applied by default to an HTML <strong>&lt;button&gt;</strong> element. We need to use JavaScript to add an event listener to apply functionality for when the button is clicked.</p>
+
+<pre>
+	<code>
+
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+
+	</code>
+</pre>
+
+						<p>Using JavaScript, we can use the <strong>querySelector()</strong> document method to match the first element within the document - in our example, the first element with the <strong>js-button</strong> class. If no match is found, null is returned in the console.</p>
+
+						<p>An event listener can now be added to our button using JavaScript to show an alert:</p>
+
+<pre>
+	<code>
+
+const button = document.querySelector('.js-button');
+
+button.addEventListener('click', () => {
+	
+	alert('The button has been clicked');
+
+});
+
+	</code>
+</pre>
+
+						<p>The <strong>querySelector()</strong> method only selects the first element that matches the given selector. If we have multiple buttons, only the first button will have the event listener applied.</p>
+
+						<p>We can use the <strong>querySelectorAll()</strong> document method for multiple elements.</p>
+
+
+<pre>
+	<code>
+
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+
+	</code>
+</pre>
+
+						<p>When using the <strong>querySelectorAll()</strong> method, we need to loop over the multiple elements to apply our code.</p>
+
+<pre>
+	<code>
+
+const button = document.querySelectorAll('.js-button');
+
+button.forEach(selectedButton => {
+
+	selectedButton.addEventListener('click', () => {
+		
+		alert('A specific button has been clicked');
+
+	});
+	
+});
+
+	</code>
+</pre>
+
+					</section>
+
+					<section>
+						<h2>Toggle CSS Classes using Events</h2>
+
+						<p>We may wish to toggle CSS classes, such as an active class, on buttons. We can do this using events.</p>
+
+<pre>
+	<code>
+
+&lt;button class="js-button btn--active"&gt;Button&lt;/button&gt;
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+&lt;button class="js-button"&gt;Button&lt;/button&gt;
+
+	</code>
+</pre>
+
+						<p>Our JavaScript code can be updated:</p>
+
+<pre>
+	<code>
+
+const button = document.querySelectorAll('.js-button');
+
+button.forEach(selectedButton => {
+
+	selectedButton.addEventListener('click', () => {
+		
+		// Remove the active class from all buttons
+		button.forEach(btn => btn.classList.remove('btn--active'));
+
+		// Add the active class to the button being clicked
+		this.classList.add('btn--active');
+
+	});
+	
+});
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to building React Components">
+
+	<title>Codebox | React | Components</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">React Components</h1>
+
+						<p class="intro__copy">Components let you split the UI into independent, reusable pieces of code.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Components</h2>
+
+						<p>React components implement a <strong>render()</strong> method that takes input data and returns what to display. React uses an XML-like syntax called <strong>JSX</strong>.</p>
+
+						<p>Components let you split the UI into independent, reusable pieces of code. Components are conceptually like JavaScript functions. They accept inputs called <strong>props</strong> (properties) and return React elements on the screen.</p>
+
+						<p>The simplest way to define a component is to write a JavaScript function.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+function Welcome(props) {
+	return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
+						<p>We can re-write the function using ES6 arrow function syntax:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Welcome = (props) => {
+	return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
+						<p>We can remove the brackes if we choose when a single parameter is being used:</p>
+
+<pre>
+	<code>
+
+const Welcome = props => {
+
+	</code>
+</pre>
+
+						<p>We can also destructure the props so we don't have to use <strong>props.name</strong>, and just use <strong>name</strong>:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Welcome = ({ name }) => {
+	return &lt;h1&gt;Hello {name}&lt;/h1&gt;;
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
+						<p>We can pass a value into this Welcome component by passing a value into the <strong>name</strong> prop:</p>
+
+<pre>
+	<code>
+
+&lt;Welcome name="Dan" /&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Composing Components</h2>
+
+						<p>Components can refer to other components in their output. For example, we can use the <strong>src/App.tsx</strong> component that can render our Welcome component multiple times.</p>
+
+						<p>Typically, React applications have a single App component at the very top.</p>
+
+						<p>Remember to wrap multiple JSX components/elements with <strong>React fragments</strong> - &lt;&gt; and &lt;/&gt; - to avoid JSX errors.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Welcome from './Welcome';
+
+const App = () => {
+	return (
+
+		&lt;&gt;
+			&lt;Welcome name="Dan" /&gt;
+			&lt;Welcome name="Pearl" /&gt;
+			&lt;Welcome name="Brian" /&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Functional Components</h2>
+
+						<p>Functional components in React are simple and purely functional, often written as JavaScript functions.</p>
+
+						<p>We have to import React into our components to make the JSX code compile.</p>
+
+						<p>Here's an example of a simple component written in TypeScript:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+type CardProps = {
+	title: string,
+	paragraph: string
+}
+
+const Card = ({ title, paragraph }: CardProps) => {
+	return (
+
+		&lt;aside&gt;
+			&lt;h2&gt;{ title }&lt;/h2&gt;
+			&lt;p&gt;{ paragraph }&lt;/p&gt;
+		&lt;/aside&gt;
+
+	)
+}
+
+export default Card;
+
+	</code>
+</pre>
+
+						<p>Here we are using as little TypeScript as possible. We are creating a type for our properties and telling TypeScript that the parameters of our functional component are of that type. As we type, we will get nice suggestions in our VS Code editor and errors when we compile without passing all required properties.</p>
+
+						<p>If we want to make some properties optional, we can set that in the respective Props type:</p>
+
+<pre>
+	<code>
+
+type CardProps = {
+	title: string,
+	paragraph?: string			// This prop is now optional
+}
+
+	</code>
+</pre>
+
+						<p>We can then pass values as props into our Card component.</p>
+
+<pre>
+	<code>
+
+&lt;Card title="Welcome" paragraph="This is an example" /&gt;
+
+	</code>
+</pre>
+
+						<p>We can use the generic <strong>FunctionComponent</strong> to allow for optional children components, even if we haven't defined them in our CardProps.</p>
+
+<pre>
+	<code>
+
+import React, { FunctionComponent } from 'react';	
+
+type CardProps = {
+	title: string,
+	paragraph: string
+}
+
+const Card: FunctionComponent&lt;CardProps&gt; = ({ title, paragraph, children }) => {
+	return (
+
+		&lt;aside&gt;
+			&lt;h2&gt;{ title }&lt;/h2&gt;
+			&lt;p&gt;{ paragraph }&lt;/p&gt;
+
+			{ children }
+		&lt;/aside&gt;
+
+	)
+}
+
+export default Card;
+
+	</code>
+</pre>
+
+						<p>If we don't use desructuring, our component code will look like this:</p>
+
+<pre>
+	<code>
+
+import React, { FunctionComponent } from 'react';	
+
+type CardProps = {
+	title: string,
+	paragraph: string
+}
+
+const Card: FunctionComponent&lt;CardProps&gt; = (props) => {
+	return (
+
+		&lt;aside&gt;
+			&lt;h2&gt;{ props.title }&lt;/h2&gt;
+			&lt;p&gt;{ props.paragraph }&lt;/p&gt;
+
+			{ props.children }
+		&lt;/aside&gt;
+
+	)
+}
+
+export default Card;
+
+	</code>
+</pre>
+
+						<p>We can then pass anthing we want into the children prop when we render the component:</p>
+
+<pre>
+	<code>
+
+&lt;Card title="Welcome" paragraph="This is an example"&gt;
+	&lt;p&gt;This is what we are passing into the children prop.&lt;/p&gt;
+&lt;/Card&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>React.FC</h2>
+
+						<p>Since React was not written in TypeScript, it was written in JavaScript, the community provides types with the <strong>@types/react</strong> package. In there is a generic type called <strong>FC</strong> that allows us to type our function components like this when using TypeScript:</p>
+
+<pre>
+	<code>
+
+import React, { FC } from 'react';
+
+type GreetingProps = {
+	name: string;
+}
+
+const Greeting:FC&lt;GreetingProps&gt; = ({ name }) => {
+	return &lt;h1&gt;Hello {name}&lt;/h1&gt;
+};
+
+export default Greeting;
+
+	</code>
+</pre>
+
+						<p>Typing with React.FC also opens your components for children. We don't need to change the component at all to do this.</p>
+
+<pre>
+	<code>
+
+&lt;Greeting name="Dan"&gt;
+	&lt;span&gt;{"Hello, this is being passed to the children prop"}&lt;/span&gt;
+&lt;/Greeting&gt;
+
+	</code>
+</pre>
+
+						<p><strong>Prect</strong> does the same thing as React.FC, the <strong>preact/compat</strong> package makes sure you're compatible with the React ecosystem. Preact is written in TypeScript.</p>
+					</section>
+
+					<section>
+						<h2>Default Props</h2>
+
+						<p>Since version 3.1, TypeScript has a mechanism to understand defaultProps and can set default values based on the values you set. We cannot use React.FC with defaultProps as it causes the code to break, so we use regular functions instead.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+type GreetingProps = {
+	name: string;
+}
+
+const Greeting = ({ name }: GreetingProps) => {
+	return &lt;h1&gt;Hello {name}&lt;/h1&gt;
+};
+
+Greeting.defaultProps = {
+	name: "World"
+};
+
+export default Greeting;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://reactjs.org/docs/components-and-props.html" target="_blank" rel="noopener noreferrer">Components & Props</a></li>
+							<li><a href="https://fettblog.eu/typescript-react/components/" target="_blank" rel="noopener noreferrer">TypeScript Components</a></li>
+							<li><a href="https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/" target="_blank" rel="noopener noreferrer">React.FC</a></li>
+							<li><a href="https://preactjs.com/" target="_blank" rel="noopener noreferrer">Preact</a>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

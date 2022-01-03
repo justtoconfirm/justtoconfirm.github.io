@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to React Hooks">
+
+	<title>Codebox | React | Hooks</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Hooks</h1>
+
+						<p class="intro__copy">Hooks allow function components to have access to state and other React features.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Hooks</h2>
+
+						<p>Hooks were added to React in version 16.8. Although Hooks generally replace class components, there are no plans to remove classes from React at this time. Hooks will not work in React class components.</p>
+
+						<p>Hooks are reusable functions and start with "use", for example "useState".</p>
+
+						<p>Hooks allow us to "hook" into React features such as state and lifecycle methods.</p>
+					</section>
+
+					<section>
+						<h2>Import a Hook</h2>
+
+						<p>Within our component, we first import the Hook we want to use. This example is using the <strong>useState</strong> hook.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Set the Initial State</h2>
+
+						<p>Within the function itself, using the <strong>useState</strong> Hook, we then set the default value of "red" in the state.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const FavouriteColor = () => {
+	
+	const [color, setColor] = useState("red");
+
+}
+
+	</code>
+</pre>
+
+						<p>To improve the performance of our app, we can update our hook to only run once instead of each time the component renders/re-renders.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const FavouriteColor = () => {
+
+	const [color, setColor] = useState(() => {
+		return "red";
+	});
+
+}
+
+	</code>
+</pre>
+
+						<ul>
+							<li>The first value, <strong>color</strong>, is our current state as a variable.</li>
+							<li>The second value, <strong>setColor</strong>, is the function that is used to update our state.</li>
+						</ul>
+
+						<p>If we don't want to set an initial state, we can use an empty string:</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const FavouriteColor = () => {
+	
+	const [color, setColor] = useState("");
+
+}
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Update the State</h2>
+
+						<p>We can then update the state within the component.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const FavouriteColor = () => {
+	
+	const [color, setColor] = useState("red");
+
+	return (
+		
+		&lt;&gt;
+			&lt;h1&gt;My favourite colour is: { color }&lt;/h1&gt;
+
+			&lt;button type="button" onClick={() => setColor("blue")}&gt;Blue&lt;/button&gt;
+			&lt;button type="button" onClick={() => setColor("green")}&gt;Green&lt;/button&gt;
+			&lt;button type="button" onClick={() => setColor("red")}&gt;Red&gt;/button&gt;
+			&lt;button type="button" onClick={() => setColor("yellow")}&gt;Yellow&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default FavouriteColor;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Building a Counter</h2>
+
+						<p>Here we are building a simple component to increase or decrease a count using the <strong>useState</strong> hook.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+
+	const [ count, setCount ] = useState(() => {
+		return 4;
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+	
+	return (
+		
+		&lt;&gt;
+			&lt;button onClick={decreaseCount}&gt; Decrease &lt;/button&gt;
+
+			&lt;span&gt;{ count }&lt;/span&gt;
+
+			&lt;button onClick={increaseCount}&gt; Increase &lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Counter;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Multiple States</h2>
+
+						<p>We could create multiple state Hooks to track individual values.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+	
+	const [brand, setBrand] = useState("Ford");
+	const [model, setModel] = useState("Mustang");
+	const [year, setYear] = useState("1964");
+	const [color, setColor] = useState("red");
+
+	return (
+		
+		&lt;&gt;
+			&lt;p&gt;It is a { color } { brand } { model } from { year }.&lt;/p&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Car;
+
+	</code>
+</pre>
+
+						<p>We can also create a single Hook that holds an object:</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+	
+	const [car, setCar] = useState({
+		brand: "Ford",
+		model: "Mustang",
+		year: "1964",
+		color: "red"
+	});
+
+	return (
+		
+		&lt;&gt;
+			&lt;p&gt;It is a { car.color } { car.brand } { car.model } from { car.year }.&lt;/p&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Car;
+
+	</code>
+</pre>
+
+						<p>We can use the JavaScript spread operator to update state. We add a function to update the colour in the state using a button.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+	
+	const [car, setCar] = useState({
+		brand: "Ford",
+		model: "Mustang",
+		year: "1964",
+		color: "red"
+	});
+
+	const updateColor = () => {
+		setCar(previousState => {
+			return { ...previousState, color: "blue" }
+		});
+	}
+
+	return (
+		
+		&lt;&gt;
+			&lt;p&gt;It is a { car.color } { car.brand } { car.model } from { car.year }.&lt;/p&gt;
+			&lt;button type="button" onClick={ updateColor }&gt;Blue&lt;/button&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default Car;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>The useEffect Hook</h2>
+
+						<p>The <strong>useEffect</strong> Hook allows you to perform side effects in your components. The useEffect Hook runs on every render. We should always include the second parameter which accepts an array.</p>
+
+<pre>
+	<code>
+
+useEffect(() => {
+	// Runs on every render
+});
+
+useEffect(() => {
+	// Runs only on the first render
+}, []);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.w3schools.com/REACT/react_customhooks.asp" target="_blank" rel="noopener noreferrer">W3Schools</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

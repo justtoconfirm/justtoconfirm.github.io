@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Building a Todo List React app">
+
+	<title>Codebox | React | Build a Todo List React app</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Build a Todo List React app</h1>
+
+						<p class="intro__copy">Building a Todo List application in React.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Creating a Todo List Item</h2>
+
+						<p>Create a new file called <strong>TodoListItem.tsx</strong> in the <strong>src</strong> directory. This will contain holding code. This file should contain the following code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const TodoListItem = () => {
+
+	return (
+
+		&lt;li&gt;content&lt;/li&gt;
+
+	);
+};
+
+export default TodoListItem;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding Props</h2>
+
+						<p>Now that we have the basic component template, we can start adding props. Our component will at least take a <strong>todo</strong> item as a prop. That item will have a <strong>text</strong> property, which will be a <strong>string</strong>, and a <strong>complete</strong> property, which will be a <strong>boolean</strong>.</p>
+
+						<p>We create an <strong>interface</strong> to do the typechecking.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+interface Todo {
+	text: string;
+	complete: boolean;
+}
+
+const TodoListItem = () => {
+
+	return (
+
+		&lt;li&gt;content&lt;/li&gt;
+
+	);
+};
+
+export default TodoListItem;
+
+	</code>
+</pre>
+
+						<p>We can now define our props and declare our component as a functional component - <strong>React.FC</strong> - then pass our Props as a generic.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+interface Todo {
+	text: string;
+	complete: boolean;
+}
+
+interface Props {
+	todo: Todo;
+}
+
+const TodoListItem: React.FC&lt;Props&gt; = (props) => {
+
+	return (
+
+		&lt;li&gt;content&lt;/li&gt;
+
+	);
+};
+
+export default TodoListItem;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Using the Props</h2>
+
+						<p>Let's now use the props that have been defined. We can put a checkbox in each list item. The checkbox will be checked when <strong>todo.complete</strong> is <strong>true</strong>. A label will be populated with our <strong>todo.text</strong>.</p>
+
+						<p>We can use the <strong>style</strong> attribute to put a strike-through when an item is complete.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+interface Todo {
+	text: string;
+	complete: boolean;
+}
+
+interface Props {
+	todo: Todo;
+}
+
+const TodoListItem: React.FC&lt;Props&gt; = ({ todo }) => {
+
+	return (
+
+		&lt;li&gt;
+			&lt;label
+				style={{ textDecoration: todo.complete ? 'line-through' : undefined }}
+			&gt;
+
+				&lt;input type="checkbox" checked={todo.complete} /&gt; {todo.text}
+				
+			&lt;/label&gt;
+		&lt;/li&gt;
+
+	);
+};
+
+export default TodoListItem;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Importing the TodoListItem component</h2>
+
+						<p>Open the <strong>src/App.tsx</strong> file and update the code to include the component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { TodoListItem } from './TodoListItem';
+
+const App = () => {
+	return (
+
+		&lt;TodoListItem /&gt;
+
+	);
+};
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>The app will fail as we need to pass a todo prop into the component. We will make a <strong>Todos</strong> array to create and display our todos.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { TodoListItem } from './TodoListItem';
+
+const todos: Todo[] = [
+	{
+		text: 'Walk to dog',
+		complete: false,
+	},
+	{
+		text: 'Build app',
+		complete: true,
+	},
+];
+
+const App = () => {
+	return (
+
+		&lt;ul&gt;
+			&lt;TodoListItem todo={ todos[0] } /&gt;
+			&lt;TodoListItem todo={ todos[1] } /&gt;
+		&lt;/ul&gt;
+
+	);
+};
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Toggle Todos</h2>
+
+						<p>We now want to toggle the todo items listed. We cannot rely on the array to do this, but we need some state to manage things. For this, we will use the <strong>useState</strong> React hook in the <strong>src/App.tsx</strong> file.</p>
+
+						<p>The array will be renamed to <strong>initialTodos</strong> since it represents only the initial state.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+import { TodoListItem } from './TodoListItem';
+
+const initialTodos: Todo[] = [
+	{
+		text: 'Walk to dog',
+		complete: false,
+	},
+	{
+		text: 'Build app',
+		complete: true,
+	},
+];
+
+const App = () => {
+
+	const [todos, setTodos] = useState(initialTodos);
+
+	const toggleTodo = (selectedTodo: Todo) => {
+		const newTodos = todos.map((todo) => {
+
+			if (todo === selectedTodo) {
+				return {
+					...todo,
+					complete: !todo.complete,
+				};
+			}
+
+		});
+
+		setTodos(newTodos);
+	};
+
+	return (
+
+		&lt;ul&gt;
+			&lt;TodoListItem todo={ todos[0] } toggleTodo={ toggleTodo } /&gt;
+			&lt;TodoListItem todo={ todos[1] } toggleTodo={ toggleTodo } /&gt;
+		&lt;/ul&gt;
+
+	);
+};
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Here we are creating a <strong>toggleTodo</strong> function in our <strong>src/App.tsx</strong> file. This function will take a selected todo and toggle the <strong>complete</strong> prop for that todo.</p>
+
+						<p>Then, we can pass <strong>toggleTodo</strong> to each <strong>TodoListItem</strong>.</p>
+					</section>
+
+					<section>
+						<h2>Create a Type Declaration File</h2>
+
+						<p>Our <strong>Todo</strong> is going to be used across the app, so we can choose to use a Type Declaration File. Let's call this file <strong>types.d.ts</strong> and put it into the <strong>src</strong> folder.</p>
+
+						<p>Our TypeScript compiler will recognise the types in there as global to the project and we don't need to explicitly import or export them.</p>
+
+						<p>Remove the <strong>Todo</strong> interface declared in the <strong>src/TodoListItem.tsx</strong> file and into the <strong>src/types.d.ts</strong> file.</p>
+
+<pre>
+	<code>
+
+interface Todo {
+	text: string;
+	complete: boolean;
+}
+
+	</code>
+</pre>
+
+						<p>We need to update this file further because <strong>toggleTodo</strong> is not an expected prop for our <strong>TodoListItem</strong> component.</p>
+
+<pre>
+	<code>
+
+interface Todo {
+	text: string;
+	complete: boolean;
+}
+
+type ToggleTodo = (selectedTodo: Todo) => void;
+
+	</code>
+</pre>
+
+						<p>Now when we add <strong>toggleTodo</strong> as a prop for the <strong>src/TodoListItem</strong> component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+interface Props {
+	todo: Todo;
+	toggleTodo: ToggleToDo;
+}
+
+const TodoListItem: React.FC&lt;Props&gt; = ({ todo, toggleTodo }) => {
+
+	return (
+
+		&lt;li&gt;
+			&lt;label
+				style={{ textDecoration: todo.complete ? 'line-through' : undefined }}
+			&gt;
+
+				&lt;input 
+					type="checkbox" 
+					checked={todo.complete} 
+					onClick={() => {
+						toggleTodo(todo);
+					}}
+				/&gt;{' '} 
+
+				{todo.text}
+				
+			&lt;/label&gt;
+		&lt;/li&gt;
+
+	);
+};
+
+export default TodoListItem;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Creating a TodoList Component</h2>
+
+						<p>We can use the <strong>map</strong> to allow us to map over our todos rather than listing them individually. This allows us to have a multiple number of todos. We pass each <strong>TodoListItem</strong> a <strong>key</strong> prop. This is needed by React's diffing algorithm to reconcile arrays of elements.</p>
+
+						<p>Create a new component called <strong>src/TodoList</strong> component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { TodoListItem } from './TodoListItem';
+
+interface Props {
+	todos: Todo[];
+	toggleTodo: ToggleTodo;
+}
+
+const TodoList: React.FC&lt;Props&gt; = ({ todos, toggleTodo }) => {
+	return (
+
+		&lt;ul&gt;
+			{todos.map(( todo ) => {
+				&lt;TodoListItem key={todo.text} todo={todo} toggleTodo={toggleTodo} /&gt;
+			})}
+		&lt;/ul&gt;
+
+	);
+};
+
+export default TodoList;
+
+	</code>
+</pre>
+
+						<p>We can replace much of the code in our <strong>src/App.tsx</strong> file with our <strong>TodoList</strong> component.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+import { TodoList } from './TodoList';
+
+const initialTodos: Todo[] = [
+	{
+		text: 'Walk to dog',
+		complete: false,
+	},
+	{
+		text: 'Build app',
+		complete: true,
+	},
+];
+
+const App = () => {
+
+	const [todos, setTodos] = useState(initialTodos);
+
+	const toggleTodo = (selectedTodo: Todo) => {
+		const newTodos = todos.map((todo) => {
+
+			if (todo === selectedTodo) {
+				return {
+					...todo,
+					complete: !todo.complete,
+				};
+			}
+
+		});
+
+		setTodos(newTodos);
+	};
+
+	return (
+
+		&lt;TodoList todos={todos} toggleTodo={toggleTodo} /&gt;
+
+	);
+};
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding Todo Items</h2>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://typeofnan.dev/your-first-react-typescript-project-todo-app/" target="_blank" rel="noopener noreferrer">Typeofnan.dev</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

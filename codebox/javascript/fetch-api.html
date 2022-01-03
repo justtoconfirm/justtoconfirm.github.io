@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to the Fetch API">
+
+	<title>Codebox | JavaScript | Fetch API</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Fetch API</h1>
+
+						<p class="intro__copy">The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Fetch API</h2>
+
+						<p>The Fetch API provides functionality that was previously achieved using the <strong>XMLHttpRequest</strong> (XHR) object. Fetch API provides a better alternative that can easily used by other technologies such as Service Workers and a logical place to define other HTTP-related concepts such as CORS (Cross-Origin Resource Sharing).</p>
+
+						<p>A basic fetch requst is simple to set up:</p>
+
+<pre>
+	<code>
+
+fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+	.then(response => response.json())		// Convert response to JSON object
+	.then(data => console.log(data));
+
+	</code>
+</pre>
+
+						<p>Here we are fetching JSON code showing the current Bitcoin price and printing it to the console. The Fetch API takes one argument - the path to the resource you want to fetch - this does not directly return the JSON response, but instead returns a promise.</p>
+
+						<p>We use the <strong>json()</strong> method to extract the JSON body content from the Response object.</p>
+
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener noreferrer">MDN Web Docs</a></li>
+							<li><a href="https://apipheny.io/free-api/" target="_blank" rel="noopener noreferrer">Apipheny: Free APIs</a></li>
+							<li><a href="https://any-api.com/" target="_blank" rel="noopener noreferrer">Any API</a></li>
+							<li><a href="https://caniuse.com/fetch" target="_blank" rel="noopener noreferrer">Can I Use</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to applying styling to React applications">
+
+	<title>Codebox | React | Styling</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Styling</h1>
+
+						<p class="intro__copy">Apply styling using CSS, SCSS, and packages/libraries to your React applications and components.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Adding CSS</h2>
+
+						<p>We can begin by creating a simple CSS stylesheet.</p>
+
+<pre>
+	<code>
+
+.btn {
+	display: inline-block;
+	text-align: center;
+	padding: 1rem 2rem;
+	text-decoration: none;
+}
+
+	</code>
+</pre>
+
+						<p>Within our React component, we can then import our CSS stylesheet to apply the styling.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import './Button.css';
+
+const Button = () => {
+	return (
+
+		&lt;button role="button" className="btn"&gt;Button&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding CSS classes to React components</h2>
+
+						<p>We can use the <strong>className</strong> prop to apply a class attribute to a React component. We cannot use class as it's considered a keyword.</p>
+
+<pre>
+	<code>
+
+&lt;button role="button" className="btn"&gt;Button&lt;/button&gt;
+
+	</code>
+</pre>
+
+						<p>It is common for CSS classes to depend on the component prop or state.</p>
+
+<pre>
+	<code>
+
+let className = 'btn';
+
+if (this.props.isActive) {
+	className += ' btn--active';
+}
+
+return (
+
+	&lt;button role="button" className={ className }&gt;Button&lt;/button&gt;
+
+)
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>styled-components</h2>
+
+						<p><a href="https://styled-components.com/" target="_blank" rel="noopener noreferrer">styled-components</a> is a library for React and React Native that allows you to use component-level styles in your application written with a mixture of JavaScript and CSS.</p>
+
+						<p>styled-components allows React developers to write plain CSS in React components without having to worry about clashing of class names.</p>
+
+						<p>We first need to install the styled-components library. This can be done using npm.</p>
+
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components --save
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>As an example, we can update the earlier Button component to use the styled-components library.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+	display: inline-block;
+	text-align: center;
+	padding: 1rem 2rem;
+	text-decoration: none;
+
+	&:hover {
+		opacity: 0.9;
+	}	
+`;
+
+const Button = () => {
+	return (
+
+		&lt;Button role="button"&gt;Button&lt;/Button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>We can also use the style-components library to create a global stylesheet for our React application.</p>
+
+						<p>Begin by creating a <strong>GlobalStyles.js</strong> file in the <strong>src</strong> directory of the app.</p>
+
+<pre>
+	<code>
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
+	
+	body {
+		background-color: #fff;
+	}
+
+`;
+
+export default GlobalStyles;
+
+	</code>
+</pre>
+
+						<p>Open the <strong>src/App.tsx</strong> file and import GlobalStyles.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import GlobalStyles from './GlobalStyles';
+
+const App = () => {
+	return (
+
+		&lt;&gt;
+			&lt;GlobalStyles /&gt;
+
+			&lt;h1&gt;Hello World&lt;/h1&gt;
+		&lt;/&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.smashingmagazine.com/2020/05/styling-components-react/" target="_blank" rel="noopener noreferrer">Smashing Magazine</a></li>
+							<li><a href="https://daveceddia.com/use-css-in-react/" target="_blank" rel="noopener noreferrer">Use CSS-in-React</a></li>
+							<li><a href="https://styled-components.com/" target="_blank" rel="noopener noreferrer">styled-components</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
