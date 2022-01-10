@@ -48,7 +48,7 @@
 
 						<h1 class="intro__heading">Store</h1>
 
-						<p class="intro__copy">TBC.</p>
+						<p class="intro__copy">A store is a state container which holds the application's state. Redux can have only a single store in your application. Whenever a store is created in Redux, you need to specify the reducer.</p>
 
 					</div><!-- / column -->
 				</div><!-- / row -->
@@ -61,7 +61,9 @@
 				<div class="column">
 
 					<section>
-						<h2>Introduction</h2>
+						<h2>Setup React</h2>
+
+						<p>Begin by using the <strong>create-react-app</strong> tool to setup React. Here, we setup React as a TypeScript application.</p>
 
 <!-- Terminal -->
 <div class="terminal terminal--shadow">
@@ -75,26 +77,149 @@
 	</div>
 	<pre class="terminal__body">
     
+	npx create-react-app APP-NAME-HERE --template typescript
+
 	</pre>
 </div>
 <!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Install Redux Toolkit &amp; react-redux</h2>
+
+						<p>Once React is setup, we can install Redux using the <strong>Redux Toolkit (RTK)</strong>. This will also install <strong>react-redux</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	npm install @reduxjs/toolkit react-redux
+
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Create the Store (Redux Toolkit)</h2>
+
+						<p>Create a file named <strong>src/app/store.js</strong>. Import the <strong>configureStore API</strong> from Redux Toolkit. Here we then have an empty Redux store that we can then export.</p>
 
 <pre>
 	<code>
 
-src /
-	|_actions /
-	|_components /
-	|_pages /
-	|_reducers /
-	|_App.js
-	|_index.css
-	|_index.js
+import { configureStore } from '@reduxjs/toolkit';
+
+export const store = configureStore({
+	reducer: {},
+});
+
+	</code>
+</pre>
+
+						<p>In <strong>TypeScript</strong>, this will be named <strong>src/app/store.tsx</strong>:</p>
+
+<pre>
+	<code>
+
+import { configureStore } from '@reduxjs/toolkit';
+
+export const store = configureStore({
+	reducer: {},
+})
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType&lt;typeof store.getState&gt;
+
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+
+	</code>
+</pre>
+
+						<p>This creates a Redux store and automatically configures the Redux DevTools extension so you can inspect the store during development.</p>
+					</section>
+
+					<section>
+						<h2>Add Slice to the Store</h2>
+
+						<p>To add a <Strong>slice</Strong> to the store, we just need to define a field inside the reducer parameter, we then tell the store to use this slice reducer function to handle all updates to that state.</p>
+
+<pre>
+	<code>
+
+import { configureStore } from '@reduxjs/toolkit';
+import exampleReducer from '../slices/exampleSlice';
+
+export const store = configureStore({
+	reducer: {
+		example: exampleReducer,
+	},
+});
 
 	</code>
 </pre>
 					</section>
 
+					<section>
+						<h2>Connect Store to React</h2>
+
+						<p>Once the store is created, we can make it available to our React components by putting a react-redux <strong>&lt;Provider&gt;</strong> around our application in the <strong>src/index.js</strong> file (or <strong>src/index.tsx</strong> if TypeScript).</Provider>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+
+ReactDOM.render(
+	&lt;Provider store={store}&gt;
+		&lt;App /&gt;
+	&lt;/Provider&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>File structure</h2>
+
+						<p>This is the basic file structure within the <strong>src</strong> directory:</p>
+
+<pre>
+	<code>
+
+src /
+	|_app /
+		|_store.js
+	|_slices /
+		|_exampleSlice.js
+	|_index.js
+	|_index.css
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://redux-toolkit.js.org/tutorials/quick-start" target="_blank" rel="noopener noreferrer">Redux Toolkit: Quick Start</a></li>
+						</ul>
+					</section>
 				</div>
 			</div>
 		</div>
