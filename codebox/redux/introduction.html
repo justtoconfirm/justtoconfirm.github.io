@@ -475,6 +475,144 @@ render(
 
 					<section>
 						<h2>Setup Actions</h2>
+
+						<p>Without actions, the reducer will only return the state without modifying it. Actions allow us to communicate with the Redux store. For this app, we are going to want to fetch posts from an API and put them into our Redux store.</p>
+
+						<p>Since fetching the posts is an asychronous action, it will require the use of the Redux <strong>thunk</strong> middleware.</p>
+
+						<p>Create an <strong>src/actions/postsActions.js</strong> file first which we will use to define the action types and constants. We want to do three things:</p>
+
+						<ul>
+							<li><strong>getPosts</strong> - begin telling Redux that we're going to fetch posts from an API.</li>
+							<li><strong>getPostsSuccess</strong> - pass the posts to Redux on a successful API call.</li>
+							<li><strong>getPostsFailure</strong> - inform Redux if an error was encountered during a failed API call.</li>
+						</ul>
+
+<pre>
+	<code>
+
+// Create Redux action types
+export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
+export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE';
+
+	</code>
+</pre>
+
+						<p>Below this code, we then create <strong>action creators</strong>. These are functions that return an action, which consists of the <strong>type</strong> and <strong>payload</strong> (optional) containing the data.</p>
+
+<pre>
+	<code>
+
+// Create Redux action creators that return an action
+export const getPosts = () => ({
+	type: GET_POSTS,
+});
+
+export const getPostsSuccess = (posts) => ({
+	type: GET_POSTS_SUCCESS,
+	payload: posts,
+});
+
+export const getPostsFailure = () => ({
+	type: GET_POSTS_FAILURE,
+});
+
+	</code>
+</pre>
+
+						<p>We can use the <strong>thunk</strong> action to combine all three of these actions. When called, it will dispatch the initial <strong>getPosts()</strong> action to inform Redux to prepare for an API call, then in a try/catch, it will do everything necessary to get the data and dispatch a success or failure action if needed.</p>
+
+<pre>
+	<code>
+
+// Combine all actions in an asynchronous thunk
+export function fetchPosts() {
+	return async (dispatch) => {
+		dispatch(getPosts());
+
+		try {
+			const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+			const data = await response.json();
+
+			dispatch(getPostsSuccess(data));
+		} catch (error) {
+			dispatch(getPostsFailure());
+		}
+	};
+};
+
+	</code>
+</pre>
+
+						<p>Our actions are now created. We now need to tell the reducer what to do with the state on each action.</p>
+					</section>
+
+					<section>
+						<h2>Adding our Actions</h2>
+
+						<p>Back to our reducer, we have a switch statement that isn't doing anything apart from returning the state as a default.</p>
+
+						<p>Now that we have actions, we can bring them in from the <strong>src/actions/postsActions.js</strong> code. Open the <strong>src/reducers/index.js</strong> file and import our actions:</p>
+
+<pre>
+	<code>
+
+// Import all actions
+import * as actions from '../actions/postsActions';
+
+	</code>
+</pre>
+
+						<p>For each action, we will make a <strong>case</strong> within the switch statement, that returns the entire state plus whatever change we make to the state. <strong>GET_POSTS</strong>, for example, will return the state and tell the app to set <strong>loading</strong> to <strong>true</strong> since we will be making an API call.</p>
+
+						<ul>
+							<li><strong>GET_POSTS</strong> - begin loading</li>
+							<li><strong>GET_POSTS_SUCCESS</strong> - the app has posts, no errors, should stop loading</li>
+							<li><strong>GET_POSTS_FAILURE</strong> - the app has errors and should stop loading</li>
+						</ul>
+
+						<p>We have updated the reducers further by setting the initial state with two empty arrays, one called <strong>loading</strong>, the other <strong>hasErrors</strong>.</p>
+
+<pre>
+	<code>
+
+// Import all actions
+import * as actions from '../actions/postsActions';
+
+export const initialState = {
+	posts: [],
+	loading: false,
+	hasErrors: false,
+}
+
+export default function postsReducer(state = initialState, action) {
+	switch (action.type) {
+		case actions.GET_POSTS:
+			return {
+				...state, loading: true
+			}
+		case actions.GET_POSTS_SUCCESS:
+			return {
+				posts: action.payload, loading: false, hasErrors: false
+			}
+		case actions.GET_POSTS_FAILURE:
+			return {
+				...state, loading: false, hasErrors: true
+			}
+		default:
+			return state
+	};
+};
+
+	</code>
+</pre>
+
+						<p>Now that the actions and reducers are ready, we just need to connect everything to the React app.</p>
+					</section>
+
+					<section>
+						<h2>Connecting Redux to React Components</h2>
 					</section>
 
 					<section>
@@ -482,6 +620,7 @@ render(
 
 						<ul>
 							<li><a href="https://www.taniarascia.com/redux-react-guide/" target="_blank" rel="noopener noreferrer">Tania Rascia: Redux Tutorial</a></li>
+							<li><a href="https://github.com/justtoconfirm/learning-redux" target="_blank" rel="noopener noreferrer">Source Code: Demo application (GitHub)</a></li>
 						</ul>
 					</section>
 
