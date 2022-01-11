@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Testing React components">
+
+	<title>Codebox | React | Testing</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Testing</h1>
+
+						<p class="intro__copy">Testing React components using Jest & Enzyme.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Jest</h2>
+
+						<p>Jest is a testing framework maintained by Facebook, usually used with React to test components.</p>
+
+						<ul>
+							<li><strong>Jest</strong> - JavaScript testing framework</li>
+							<li><strong>Enzyme</strong> - React-specific testing library, allows you to manipulate and render components, access props, access state, and more.</li>
+						</ul>
+
+						<p>Enzyme provides the ability to "shallow" render a component - only rendering the content of the tested component and not of any child components.</p>
+					</section>
+
+					<section>
+						<h2>Using Enzyme</h2>
+
+						<p>Enzyme is not installed with <strong>create-react-app</strong>. We can install Enzyme:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	npm install enzyme --save-dev
+
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Using create-react-app, there will be a file named <strong>setupTest.js</strong> in the root of our app. If using React 17, we can use the unofficial version of the Enzyme adapter to get Enzyme running.</p>
+
+<pre>
+	<code>
+
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+
+import '@testing-library/jest-dom';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+configure({ adapter: new Adapter() });
+
+	</code>
+</pre>
+
+						<p>We will need to install the <a href="https://www.npmjs.com/package/@wojtekmaj/enzyme-adapter-react-17" target="_blank" rel="noopener noreferrer">@wojtekmaj/enzyme-adapter-react-17</a> package for React 17</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	npm install @wojtekmaj/enzyme-adapter-react-17
+
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>It is useful to test the component as an isolated unit and prevent the behaviour of its child components from affecting the test. We should always use shallow rendering in our tests, if possible.</p>
+
+						<p>This is our test file for a simple Link component - <strong>src/Link.test.js</strong></p>
+
+<pre>
+	<code>
+
+import { shallow } from 'enzyme';
+import Link from './Link'
+
+const wrapper = shallow(&lt;Link /&gt;);
+
+	</code>
+</pre>
+
+						<p>To run the tests:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	npm run test
+
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Snapshots</h2>
+
+						<p>This will need to run using <strong>Node v16</strong> or greater.</p>
+
+						<p>The <strong>create-react-app</strong> tool ships with <strong>Jest</strong>, you only need to add <strong>react-test-renderer</strong> for rendering snapshots.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+    # npm
+	npm install react-test-renderer --save-dev
+
+	# Yarn
+	yarn add --dev react-test-renderer
+
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Snapshot tests are very useful to make sure your UI does not change unexpectedly. A typical snapshot test case renders a UI component, takes a snapshot, then compares it to reference a snapshot file stored alongside the test. The test will fail if the two snapshots do not match.</p>
+
+						<p>Instead of rendering the entire app to be rebuilt, we can use a test renderer to quickly generate a snapshot.</p>
+
+						<p>The snapshot artifact should be committed alongside code changes and reviewed as part of your code review process. On subsequent test runs, Jest will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code - the component - that should be fixed, or the snapshot needs updating.</p>
+
+						<p>To update and regenerate snapshots:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	jest --updateSnapshot
+
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<h3>React Component</h3>
+
+						<p>Build an example React component for a <strong>Link</strong> component within the <strong>src/Link.js</strong> directory of the React application.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Link = ({ href, children }) => {
+	return (
+
+		&lt;a href={href}&gt;{children}&lt;/a&gt;
+
+	);
+};
+
+export default Link;
+
+	</code>
+</pre>
+
+						<p>We can then write a test script for our Link component that will test the component and generate a snapshot. This file will be <strong>src/Link.test.js</strong></p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Link from './Link';
+import renderer from 'react-test-renderer';
+
+it('renders correctly', () => {
+	const tree = renderer.create(
+
+		&lt;Link href="https://www.facebook.com"&gt;Facebook&lt;/Link&gt;
+
+	).toJSON();
+	expect(tree).toMatchSnapshot();
+});
+
+	</code>
+</pre>
+
+						<p>To run the tests:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+    
+	npm run test
+
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>When run, this will create a <strong>__snapshots__</strong> directory containing a file named <strong>Link.test.js.snap</strong> and this will be our snapshot.</p>
+
+<pre>
+	<code>
+
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+&lt;a
+	href="https://www.facebook.com"
+&gt;
+	Facebook
+&lt;/a&gt;
+`;
+
+	</code>
+</pre>
+
+					</section>
+
+					<section>
+						<h2>Mocks</h2>
+						<!-- https://medium.com/opendoor-labs/testing-react-components-with-jest-a7e8e4d312d8 -->
+
+						<p>Jest provides the functionality to create mock functions using <strong>jest.fn()</strong> and this can be really powerful when combined with Enzyme to test the effect of certain user actions.</p>
+
+						<p>In many cases, we want to test that a component's behaviour after a user performs an action - such as entering text into an input, or pressing a button - matches what we expect.</p>
+
+						<ul>
+							<li>We can use Enzyme to select the element of interest (e.g. Button)</li>
+							<li>Simulate the event (e.g. a click event)</li>
+							<li>Use Jest to check that the mocked function is called as expected</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://jestjs.io/docs/tutorial-react" target="_blank" rel="noopener noreferrer">Jest Tutorial</a></li>
+							<li><a href="https://jest-bot.github.io/jest/docs/snapshot-testing.html" target="_blank" rel="noopener noreferrer">Snapshot Testing</a></li>
+							<li><a href="https://medium.com/opendoor-labs/testing-react-components-with-jest-a7e8e4d312d8" target="_blank" rel="noopener noreferrer">Testing React Components with Jest</li>
+							<li><a href="https://enzymejs.github.io/enzyme/docs/installation/index.html" target="_blank" rel="noopener noreferrer">Install Enzyme</a></li>
+							<li><a href="https://stackoverflow.com/questions/64658031/which-enzyme-adapter-works-with-react-17" target="_blank" rel="noopener noreferrer">Enzyme with React 17</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
