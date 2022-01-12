@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to JavaScript Variables">
+
+	<title>Codebox | JavaScript | Variables</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Variables</h1>
+
+						<p class="intro__copy">Variables are containers for storing data.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Declaring Variables</h2>
+
+						<p>To use a variable, you've got to first create it - more accurately, we call this declaring the variable.</p>
+
+						<p>JavaScript is a <strong>dynamically typed language</strong>, which means that unlike some other languages, you don't need to specify what data type a variable will contain (numbers, strings, arrays, and more).</p>
+
+						<p>There are three ways to declare variables in JavaScript:</p>
+
+						<ul>
+							<li>var</li>
+							<li>let</li>
+							<li>const</li>
+						</ul>
+
+						<p>We type the keyword of the variable - <strong>var</strong>, <strong>const</strong>, or <strong>let</strong> - followed by the name you want to call your variable.</p>
+
+						<p>Variables should always be declared with <strong>var</strong>, <strong>let</strong>, or <strong>const</strong>. The <strong>let</strong> and <strong>const</strong> keywords were added to JavaScript in 2015.</p>
+
+						<p>It's recommended to always declare variables with <strong>const</strong>. Use const when you can, and use let when you have to.</p>
+
+<pre>
+	<code>
+
+const variableName = 'value';
+
+	</code>
+</pre>
+
+						<p>If you think a value of a variable can change, use <strong>let</strong>.</p>
+
+<pre>
+	<code>
+
+let variableName;
+
+	</code>
+</pre>
+
+						<p>If an empty variable has no value, they are empty containers. If a variable is is without a value, <strong>undefined</strong> is returned.</p>
+
+						<p>If is recommended to always declare variables are the top of their scope (the top of global code and the top of function code) so it's clear which variable are function scoped (local) and which are resolved on the scope chain.</p>
+					</section>
+
+					<section>
+						<h2>Initializing a variable</h2>
+
+						<p>Once a variable has been declared, you can initialize it with a value. You do this by typing the variable name, followed by an equals sign (=), followed by the value you want the variable to have.</p>
+
+<pre>
+	<code>
+
+const myName = 'Dan';
+const myAge = 25;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Updating a variable</h2>
+
+						<p>Once a variable has been initialized with a value, you can change (or update) that value by giving it a different value.</p>
+
+<pre>
+	<code>
+
+let myAge = 25;
+myAge = 36;
+
+	</code>
+</pre>
+
+						<p>This is also called <strong>reassigning</strong> the variable.</p>
+					</section>
+
+					<section>
+						<h2>Constants in JavaScript</h2>
+
+						<p>As well as variables, you can declare constants.</p>
+
+						<ul>
+							<li>You must initialize them when you declare them.</li>
+							<li>You cannot assign a constant with a new value after you've initialized them.</li>
+						</ul>
+
+						<p>This will lead to an error as the constant is not initialized with a value:</p>
+
+<pre>
+	<code>
+
+const count;
+
+	</code>
+</pre>
+
+						<p>Trying to do this using <strong>const</strong> will also lead to an error:</p>
+
+	<code>
+
+const count = 1;
+count = 2;
+
+	</code>
+</pre>
+
+						<p>You can update, add, or remove properties of an object declared using const, because even though content of the object has changed, the constant is still pointing to the same object.</p>
+
+<pre>
+	<code>
+
+const dog = {
+	name: 'Spot',
+	breed: 'Dalmation',
+	gender: 'Male'
+};
+
+dog.name = 'Fido';
+
+console.log(dog.name);			// Fido
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>const</h2>
+
+						<p>Variables declared with const maintain constant values. This type of variable can only be accessed within the block they were declared - they are <strong>block scoped</strong>.</p>
+
+						<p>The value declared within const remains the same within its scope and cannot be updated or re-declared. We cannot do this:</p>
+
+<pre>
+	<code>
+
+let greeting = "Say Hello";
+greeting = "Say Hi instead";		// error: Assignment to constant variable.
+
+	</code>
+</pre>
+
+						<p>Every const declaration must have a value and be initialized when declared.</p>
+					</section>
+
+					<section>
+						<h2>Scope</h2>
+
+						<p>Scope essentially means where variables are available for use. Variables can have global scope or block/local scope.</p>
+					</section>
+
+					<section>
+						<h2>Hoisting</h2>
+
+						<p>Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.</p>
+					</section>
+
+					<section>
+						<h2>var</h2>
+
+						<p>Any variable declared with var outside a function block is available for use in the whole window. The scope is global when a var variable is declared outside a function. Declarations using var are globally scoped or function/locally scoped.</p>
+
+						<p>var is function scoped when it's declared within a function. This means that is it available and can be accessed only within that function.</p>
+
+<pre>
+	<code>
+
+var greeting = "Hello World";
+
+const func = () => {
+	
+	var hello = "Say Hello";
+
+};
+
+console.log(hello);			// error: hello is not defined
+
+	</code>
+</pre>
+
+						<p>Here, <strong>greeting</strong> is globally scoped because it exists outside of a function while hello is function scoped. We cannot access the variable <strong>hello</strong> outside of a function.</p>
+					</section>
+
+					<section>
+						<h2>let</h2>
+
+						<p>let is now the preferred method of declaring variables. A let variable is <strong>block scoped</strong>, meaning it is only available for use within that block {}.</p>
+
+<pre>
+	<code>
+
+let greeting = "Hello World";
+
+const func = () => {
+	
+	let hello = "Say Hello";
+
+};
+
+console.log(hello);			// hello is not defined
+
+	</code>
+</pre>
+
+						<p>We see that using hello outside the function - it's block - returns an error. This is because let variables are block scoped.</p>
+
+						<h3>let can be updated but not re-declared</h3>
+
+						<p>Like var, a variable declared with let can be updates within its scope. Unlike var, a let variable cannot be re-declared within its scope.</p>
+
+<pre>
+	<code>
+
+let greeting = "Say Hello";
+greeting = "Say Hi instead";
+
+	</code>
+</pre>
+
+						<p>This will return an error, unlike var:</p>
+
+<pre>
+	<code>
+
+let greeting = "Say Hello";
+let greeting = "Say Hi instead";		// error: Identifier 'greeting' has already been declared
+
+	</code>
+</pre>
+
+						<p>If the same variable is defined in different scopes, there will be no error:</p>
+
+<pre>
+	<code>
+
+let greeting = "Hello World";
+
+const func = () => {
+	
+	let greeting = "Say Hello";
+	console.log(greeting);			// Say Hello
+
+};
+
+console.log(hello);			// Hello World
+
+	</code>
+</pre>
+
+						<p>Both instances are treated as different variables since they have different scopes - no errors. We can use variables with the same name as a variable only exists within its scope.</p>
+
+						<p>Always declare a let variable before using it to avoid a <strong>Reference Error</strong>.</p>
+					</section>
+
+					<section>
+						<h2>Objects</h2>
+
+						<p>In programming, an object is a structure of code that models a real-life object. You could have a simple object that represents a box and contains information about its width, length, and height. Another example could be an object that represents a person, containing data about their name, height, weight, language, and more.</p>
+
+<pre>
+	<code>
+
+const dog = {
+	name: 'Spot',
+	breed: 'Dalmation',
+	gender: 'Male'
+};
+
+	</code>
+</pre>
+
+						<p>To retrieve the information stored in the object, we can use the <strong>dot.notation</strong> syntax:</p>
+
+<pre>
+	<code>
+
+dog.name
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/" target="_blank" rel="noopener noreferrer">Freecodecamp: Variables</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
