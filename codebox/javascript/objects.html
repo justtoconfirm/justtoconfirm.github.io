@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to JavaScript Objects">
+
+	<title>Codebox | JavaScript | Objects</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Objects</h1>
+
+						<p class="intro__copy">JavaScript Objects are containers for named values called properties. Objects can also have methods.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Creating Objects</h2>
+
+						<p>Objects can be created using literal notation:</p>
+
+<pre>
+	<code>
+
+const hotel = {
+	name: 'Quay',
+	rooms: 40,
+	booked: 25,
+	
+	checkAvailability: function() {
+		return this.rooms - this.booked;
+	}
+}
+
+	</code>
+</pre>
+
+						<p>We can then return the properties and/or call the methods within the object:</p>
+
+<pre>
+	<code>
+
+hotel.name
+
+hotel.checkAvailability();
+
+	</code>
+</pre>
+
+						<p>Sometimes you may want to create multiple objects to represent similar things. Object constructors can use a function as a template for creating objects.</p>
+
+<pre>
+	<code>
+
+const hotel = (name, rooms, booked) => {
+	this.name = name;
+	this.rooms = rooms;
+	this.booked = booked;
+	
+	this.checkAvailability = function() {
+		return this.rooms - this.booked;
+	}
+}
+
+	</code>
+</pre>
+
+						<p>We can then use the new keyword to create multiple hotel objects, we can just get the object and pass in the data:</p>
+
+<pre>
+	<code>
+
+const quayHotel = new Hotel('Quay', 40, 25);
+const parkHotel = new Hotel('Park', 120, 71);
+
+	</code>
+</pre>
+
+						<p>We can then output the properties and/or methods of each object using a reference to the variable name.</p>
+
+<pre>
+	<code>
+
+quayHotel.name;
+
+quayHotel.checkAvailability();
+
+	</code>
+</pre>
+
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
