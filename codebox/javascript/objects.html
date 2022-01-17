@@ -136,6 +136,65 @@ quayHotel.checkAvailability();
 
 					</section>
 
+					<section>
+						<h2>Object.values() method</h2>
+
+						<p>The <strong>Object.values()</strong> method returns an array of a given object's property values:</p>
+
+<pre>
+	<code>
+
+const hotel = {
+	name: 'Quay',
+	rooms: 40,
+	booked: 25
+}
+
+Object.values(hotel);		// (3) ['Quay', 40, 25]
+
+	</code>
+</pre>
+
+						<p>This method was introduced in ECMAScript 8 (ES8) and works similar to <strong>Object.keys()</strong>. It returns the value of all properties in an object as an array. We can then loop through these values in the array by usin the <strong>forEach()</strong> method.</p>
+
+<pre>
+	<code>
+
+Object.values(hotel).forEach(val => console.log(val));
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Object.keys() method</h2>
+
+						<p>The <strong>Object.keys()</strong> method returns an array of a given object's property names (keys):</p>
+
+<pre>
+	<code>
+
+const hotel = {
+	name: 'Quay',
+	rooms: 40,
+	booked: 25
+}
+
+Object.keys(hotel);		// (3) ['name', 'rooms', 'booked']
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener noreferrer">MDN: Global Objects</a></li>
+							<li><a href="https://flexiple.com/loop-through-object-javascript/" target="_blank" rel="noopener noreferrer">Loop through an object</a></li>
+						</ul>
+					</section>
+
 				</div>
 			</div>
 		</div>
