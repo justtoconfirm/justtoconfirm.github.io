@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to JavaScript Arrays">
+
+	<title>Codebox | JavaScript | Arrays</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Arrays</h1>
+
+						<p class="intro__copy">An array os a variabe that can hold more than one value.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Creating an Array</h2>
+
+						<p>Here we create an empty array. To create an array, we use square brackets []. This will create an empty array.</p>
+
+<pre>
+	<code>
+
+const a = [];
+
+	</code>
+</pre>
+
+						<p>Adding items to the array is really simple. Here we have an array with four elements:</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+	</code>
+</pre>
+
+						<p>Every element in an array has an index. The first element, <strong>A</strong>, has an index of <strong>0</strong> and the final element, <strong>D</strong>, has an index of <strong>3</strong>.</p>
+					</section>
+
+					<section>
+						<h2>Accessing Elements in an Array</h2>
+
+						<p>Now we have created an array, to access an element within the array, we can reference the name of the array followed by square brackets that will contain the index of the element we want to return. For example, if we want to return B, we will use index 1.</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+console.log(a[1]);
+
+	</code>
+</pre>
+
+						<p>We will return <strong>undefined</strong> if we attempt to get an element from our array that does not exist.</p>
+
+						<p>If we want to get the number of total elements in our array, the length, we can use the <strong>length</strong> property. This will return 4 as we have 4 elements.</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+console.log(a.length);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Changing Elements in an Array</h2>
+
+						<p>We can change elements in an array by using the index. For example, we can change "C" to be the number 22, like so:</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+a[2] = 22;
+
+console.log(a);		// (4) ["A", "B", 22, "D"]
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding Elements to an Array</h2>
+
+						<p>To add a new element to an array, we can use the <strong>push()</strong> method. This code example, below, will add "E" to our array.</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+a.push("E");
+
+	</code>
+</pre>
+
+						<p>We can also push another array into our array if we choose.</p>
+
+<pre>
+	<code>
+
+const a = ["A", "B", "C", "D"];
+
+a.push([1, 2, 3]);
+
+	</code>
+</pre>
+
+						<p>This added array would have the index of <strong>4</strong>.</p>
+
+						<h3>Nested Arrays</h3>
+
+						<p>This is similar to a <strong>nested array</strong>:</p>
+
+<pre>
+	<code>
+
+const a = [
+	["A", "B", "C", "D"],
+	[1, 2, 3],
+];
+
+	</code>
+</pre>
+
+						<p>To access the second element of the first array - "B" - we can use the following code:</p>
+
+<pre>
+	<code>
+
+const a = [
+	["A", "B", "C", "D"],
+	[1, 2, 3],
+];
+
+console.log(a[0][1]);
+	</code>
+</pre>
+
+						<p>The first index - [0] - is the first array, the second index - [1] - is the second element of that array.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.youtube.com/watch?v=7W4pQQ20nJg&t=71s" target="_blank" rel="noopener noreferrer">Web Dev Simplified: Arrays</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
