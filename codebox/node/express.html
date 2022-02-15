@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Express JS">
+
+	<title>Codebox | Node | Express JS</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Express JS</h1>
+
+						<p class="intro__copy">A backend web application framework for Node.js.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Install Express</h2>
+
+						<p>Begin by having Node installed. It is recommended to install Node using <strong>nvm (Node Version Manager)</strong>.</p>
+
+						<p>You can also install <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> for Windows machines to switch Node versions between projects.</p>
+
+						<p>Once Node is installed, setup a basic <strong>package.json</strong> file in your project folder/directory.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm init -y
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Next, install Express:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install express
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can also install the <strong>nodemon</strong> package as a devDependency to restart our server each time we make changes.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install nodemon --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can then add a script to run the server file - named <strong>server.js</strong> in our project - in the <strong>package.json</strong> file.</p>
+
+<pre>
+	<code>
+
+"scripts": {
+	"devStart": "nodemon server.js"
+},
+
+	</code>
+</pre>
+
+						<p>In the root of your project folder, create the <strong>server.js</strong> file as an empty JavaScript file.</p>
+
+						<p>To run our code in server.js use the script:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run devStart
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+					</section>
+
+					<section>
+						<h2>Creating the Express Server</h2>
+
+						<p>Within the <strong>server.js</strong> file we need to require the Express library and calling the <strong>express()</strong> function inside of a variable to begin.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+	</code>
+</pre>
+
+						<p>To make our server run, we can use the <strong>listen()</strong> function and pass in a port number.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>The server will now be running on <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">localhost:3000</a>. The page will show <strong>Cannot GET /</strong> meaning that our application has no routes setup.</p>
+					</section>
+
+					<section>
+						<h2>Adding Routes</h2>
+
+						<p>We can the the <strong>get()</strong> function to setup routes. This function has two parameters including <strong>request</strong> and <strong>response</strong>.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	// Run code here when the index root is reached
+	console.log('Homepage');
+	// Send response to the user onto the page
+	res.send('Hello');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>We can use the <strong>sendStatus()</strong> function to pass down HTTP status codes. With the HTTP 500 code, we will return an <strong>Internal Server Error</strong> code to the user.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	// Run code here when the index root is reached
+	console.log('Homepage');
+
+	// Send HTTP status code - error on the server (500)
+	res.sendStatus(500);
+	// Send response to the user onto the page
+	res.send('Hello');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>If we want to send an error code with a message, we can use the <strong>status()</strong> function.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	// Run code here when the index root is reached
+	console.log('Homepage');
+
+	// Log HTTP code in the console and output message to the user
+	res.status(500).send('Hello');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<h3>JSON</h3>
+
+						<p>The <strong>send()</strong> function will send down a text string to the user, but perhaps we want to return JSON instead.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	// Run code here when the index root is reached
+	console.log('Homepage');
+
+	// Log HTTP code in the console and output message as JSON to the user
+	res.status(500).json({ message: "Error" });
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>This is a really great way of sending data as JSON to the client from within an API. We can remove the status should a successful 200 HTTP be returned.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	// Run code here when the index root is reached
+	console.log('Homepage');
+
+	// Log HTTP code in the console and output message as JSON to the user
+	res.json({ message: "Error" });
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<h3>Download Files</h3>
+
+						<p>The <strong>download()</strong> function can be used to download a file, for example the <strong>server.js</strong> file.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	res.download('server.js');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<h3>Render HTML</h3>
+
+						<p>We mostly will use Express to render an HTML document. We can use the <strong>render()</strong> function to do this. In this example, we are rendering a file named <strong>index</strong> when the user gets this route.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	res.render('index');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>In order to render this HTML, we need to tell Express where to locate these files. Create a folder called <strong>views</strong> within the root of your project. Inside the views directory, create an <strong>index.html</strong> file containing your HTML code.</p>
+
+						<p>We will get an error. We need a view engine setup. Examples of view engines include EJS and Pug, for example. View engines allow us to pass data from our server into our views code, in this example, the index.html file.</p>
+
+						<p>Install <strong>EJS</strong> using npm:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install ejs
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once EJS has been installed, we need to tell Express what view engine to use by passing it into our <strong>server.js</strong> Express server code.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// Set the view engine
+app.set('view engine', 'ejs');
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	res.render('index');
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>Rename the HTML file of <strong>index.html</strong> to have an <strong>.ejs</strong> file extension. VSCode has syntax highlighting for EJS as an extension called EJS Language Support.</p>
+
+						<h3>Pass data from server to Views</h3>
+
+						<p>We can use the <strong>render()</strong> function to pass an object into our views.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// Set the view engine
+app.set('view engine', 'ejs');
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	res.render('index', { text: 'World' });
+
+});
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<p>We can now access this information inside our views using the EJS templating language/syntax. Open the <strong>index.ejs</strong> file and add the following code:</p>
+
+<pre>
+	<code>
+
+Hello &lt;%= text %&gt; 
+
+	</code>
+</pre>
+
+						<p>To avoid a reference error should the variable of <strong>text</strong> not be defined on the server, we can do this:</p>
+
+<pre>
+	<code>
+
+Hello &lt;%= locals.text %&gt; 
+
+	</code>
+</pre>
+
+						<p>We can also set a default should we not pass a value.</p>
+
+<pre>
+	<code>
+
+Hello &lt;%= locals.text || 'Default' %&gt; 
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Router</h2>
+
+						<p>Express has a Router to avoid having all your routes in the main server file.</p>
+
+						<p>In the root of your project folder, create a folder named <strong>routes</strong>.</p>
+
+						<p>Next, create a file named <strong>users.js</strong> and add it to the routes folder. This file will contain all the routes for our users. You can see from our code that we call Express once again to create an almost mini application and then call the <strong>Router()</strong> method of Express to create this as a router.</p>
+
+<pre>
+	<code>
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+
+	res.send('User List');
+
+});
+
+router.get('/new', (req, res) => {
+
+	res.send('New User Form');
+
+});
+
+module.exports = router;
+
+	</code>
+</pre>
+
+						<p>We can now import our Users Router into our <strong>server.js</strong> file.</p>
+
+<pre>
+	<code>
+
+const express = require('express');
+const app = express();
+
+// Set the view engine
+app.set('view engine', 'ejs');
+
+// When user makes a GET request to this route, run this function
+app.get('/', (req, res) => {
+
+	res.render('index', { text: 'World' });
+
+});
+
+// Import the routes in the router
+const userRouter = require('./routes/users');
+
+// Provide the parent path of each route in the userRouter
+app.use('/users', userRouter);
+
+app.listen(3000);
+
+	</code>
+</pre>
+
+						<h3>Dynamic Parameters</h3>
+
+						<p>Dynamic parameters are created with a colon followed by the variable name. We can use this within our Users route to return the individual user details based on the id of the user.</p>
+
+<pre>
+	<code>
+
+router.get('/:id', (req, res) => {
+
+	res.send(`Get user with ID ${req.params.id}`);
+
+});
+
+	</code>
+</pre>
+
+						<p>We can then go the the URL of: <a href="http://localhost:3000/users/2" target="_blank" rel="noopener noreferrer">http://localhost:3000/users/2</a>.</p>
+
+						<p>This is pulling the ID number directly from the URL.</p>
+
+<pre>
+	<code>
+
+// Update the user using the ID
+router.put('/:id', (req, res) => {
+
+	res.send(`Update user with ID ${req.params.id}`);
+
+});
+
+// Delete the user using the ID
+router.delete('/:id', (req, res) => {
+
+	res.send(`Delete user with ID ${req.params.id}`);
+
+});
+
+	</code>
+</pre>
+
+						<p>Express has a method called <strong>route()</strong> that allows us to chain together these different methods of Get, Post, Put, and Delete.</p>
+
+<pre>
+	<code>
+
+router
+	.route('/:id')
+	.get(( req, res ) => {
+		
+		res.send(`Get user with ID ${req.params.id}`);
+
+	})
+	.put(( req, res ) => {
+
+		res.send(`Update user with ID ${req.params.id}`);
+
+	})
+	.delete(( req, res ) => {
+
+		res.send(`Delete user with ID ${req.params.id}`);
+
+	});
+
+	</code>
+</pre>	
+
+						<p>Express has a <strong>param()</strong> function that runs anytime a parameter is found. Whenever a parameter of id is found, a function can be called.</p>
+
+<pre>
+	<code>
+
+router.param('id', (req, res, next, id) => {
+
+	// Log the id out into the console
+	console.log(id);
+	next();
+
+});
+
+	</code>
+</pre>	
+
+						<p>The <strong>param()</strong> function is <strong>Middleware</strong>. Middleware is what runs between the request being sent and the response being received. Middleware runs before the response is returned to the user.</p>
+
+<pre>
+	<code>
+
+router
+	.route('/:id')
+	.get(( req, res ) => {
+		
+		console.log(req.user);
+		res.send(`Get user with ID ${req.params.id}`);
+
+	})
+	.put(( req, res ) => {
+
+		res.send(`Update user with ID ${req.params.id}`);
+
+	})
+	.delete(( req, res ) => {
+
+		res.send(`Delete user with ID ${req.params.id}`);
+
+	});
+
+const users = [
+	{
+		name: 'Dan'
+	},
+	{
+		name: 'Pearl'
+	}
+];
+
+router.param('id', (req, res, next, id) => {
+
+	req.user = users[id];
+	next();
+
+});
+
+	</code>
+</pre>
+
+						<p>We will see the output in the terminal.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
