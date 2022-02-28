@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="An introduction to PHP">
+
+	<title>Codebox | PHP | Introduction to PHP</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">An Introduction to PHP</h1>
+
+						<p class="intro__copy">PHP is a popular general-purpose server scripting language that is especially suited to web development.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to PHP</h2>
+
+						<p>PHP (PHP Hypertext Preprocessor) scripts usually have the file extension of <strong>.php</strong></p>
+
+						<p>The file extension of .php tells the web server to send the file to the PHP interpreter so that it can follow the instructions written in PHP code.</p>
+
+						<p>Many PHP pages mix HTML and PHP code. The PHP code is written between PHP tags. The opening and closing PHP tags, plus any PHP code they contain, are known as a <strong>PHP block</strong>.</p>
+
+						<p>PHP is a type of programming language known as a <strong>scripting language</strong>. Scripting languages are designed to run in a particular environment. PHP was created to work with a PHP interpreter on a web server. An individual PHP page is often called a <strong>script</strong>.</p>
+
+						<ul>
+							<li>Opening tag indicates that the PHP interpreter must start processing the code before sending any content back to the browser.</li>
+							<li>The closing tag indicates that the PHP interpreter can stop processing the code.</li>
+						</ul>
+
+<pre>
+	<code>
+
+&lt;?php	?&gt;
+
+	</code>
+</pre>
+
+					</section>
+
+					<section>
+						<h2>Code Blocks</h2>
+
+						<p>PHP uses curly braces to surround related sets of statements in our PHP code. The braces and the statements inside them form a <strong>code block</strong>.</p>
+
+<pre>
+	<code>
+
+{
+	// Curly braces indicate the
+	// start and the end of a
+	// code block.
+}
+
+	</code>
+</pre>
+
+						<p>Braces let the PHP interpreter known where a code block starts and ends. The block allows the PHP interpreter to run, skip, or repeat the statements that they contain. There should be no semi-colon at the end of the code block.</p>
+					</section>
+
+					<section>
+						<h2>Variables</h2>
+
+						<p>Variables store data that can change each time a PHP page is requested.</p>
+
+						<ul>
+							<li>The <strong>name</strong> describes the type of data that the variable holds.</li>
+							<li>The <strong>value</strong> is the value the variable should hold when the page is requested.</li>
+						</ul>
+
+						<p>To create a variable and store a value in it, you need:</p>
+
+						<ul>
+							<li>A variable name which must start with a dollar sign, followed by one or more words that describe the type of information the variable can hold.</li>
+							<li>An equals sign which is known as the <strong>assignment operator</strong> because it assigns a value to the variable name.</li>
+							<li>The value you want the variable to hold.</li>
+							<li>Underscores are allowed in the name of a variable, no dashes or periods however.</li>
+						</ul>
+
+<pre>
+	<code>
+
+$name = 'Dan';
+$age = 26;
+
+	</code>
+</pre>
+
+						<p>Once a variable has been declared and a value assigned to it, the variable name can be used in the PHP code. When the PHP comes across a variable name, it replaces the name with the value it holds.</p>
+
+<pre>
+	<code>
+
+echo $name;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Array</h2>
+
+						<p>To create an associative array, give each element (item) in the array a <strong>key</strong> that describes the data it holds.</p>
+
+<pre>
+	<code>
+
+$users = [
+		'name' => 'Dan',
+		'age' => '26',
+		'country' => 'United Kingdom',
+];
+
+	</code>
+</pre>
+
+						<p>In this example, the key would be something like <strong>name</strong>, the operator would be <strong>=&gt;</strong> and the value would be <strong>Dan</strong>.</p>
+
+						<p>To access an element from an associative array:</p>
+
+<pre>
+	<code>
+
+$users['name'];
+
+	</code>
+</pre>
+
+						<p>When an array is created, if a key is not assigned for each element, the PHP interpreter will assign it a number called an <strong>index number</strong>. These index numbers start at zero (0), not one (1).</p>
+
+<pre>
+	<code>
+
+$shopping_list = ['bread', 'milk', 'cheese',];
+
+	</code>
+</pre>
+
+						<p>This array above can also be created using the syntax below:</p>
+
+<pre>
+	<code>
+
+$shopping_list = array(
+	'bread', 
+	'milk', 
+	'cheese'
+);
+
+	</code>
+</pre>
+
+						<p>To access the third item in the array:</p>
+
+<pre>
+	<code>
+
+$shopping_list[2];
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Echo</h2>
+
+						<p>Instead of writing the echo statement, we can use the shorthand.</p>
+
+<pre>
+	<code>
+
+// Longhand
+&lt;?php echo $name; ?&gt;
+
+// Shorthand
+&lt;?= $name; ?&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Conditional Statements</h2>
+
+						<p>A condition always results in, or evaluates into, a boolean value of either <strong>true</strong> or <strong>false</strong>. The result determines which code block is run.</p>
+
+<pre>
+	<code>
+
+if ($logged_in === true) {
+	$link = '&lt;a href="member.php"&gt;My Profile&lt;/a&gt;';
+} else {
+	$link = '&lt;a href="login.php"&gt;Login&lt;/a&gt;';
+}
+
+	</code>
+</pre>
+
+						<p>We can also use a <strong>ternary operator</strong> to check a condition then provide one value to use if the condition is true and another value if the condition is false.</p>
+
+<pre>
+	<code>
+
+&lt;?php
+
+		$stock = 5;
+
+		$message = ($stock > 0) ? 'In stock' : 'No stock';
+
+?&gt;
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

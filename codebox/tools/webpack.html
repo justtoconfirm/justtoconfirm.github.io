@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Webpack">
+
+	<title>Codebox | Tools | Webpack</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Webpack</h1>
+
+						<p class="intro__copy">Webpack is an open-source module bundler.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Webpack</h2>
+
+						<p>Webpack is an open-source module bundler. Its main purpose is to bundle JavaScript code for use in the browser. As a module bundler, Webpack packs all our code as bundles and allows us to write modern JavaScript using Babel or TypeScript. This can then be compiled into code that is cross-browser compatible and minified to improve performance.</p>
+
+						<p>This guide is based on <strong>Webpack 5.69.1</strong></p>
+
+						<p>Both the <strong>vue create</strong> and <strong>create-react-app</strong> tools use Webpack under the hood.</p>
+
+						<p>By default, Webpack will search for a <strong>src</strong> directory containing a file named <strong>index.js</strong>. Once the build has completed, a bundle file will be generated called <strong>main.js</strong> inside a directory called <strong>dist</strong>. Webpack usually runs in production mode, so this should be minified by default.</p>
+
+						<p>Webpack is now known to be <strong>zero-configuration</strong> as we no longer need a config file to setup the module bundler out-of-the-box.</p>
+
+						<h3>Alternatives to Webpack</h3>
+
+						<ul>
+							<li><a href="https://www.snowpack.dev/" target="_blank" rel="noopener noreferrer">Snowpack</a></li>
+							<li><a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">Vite</a></li>
+							<li><a href="https://rome.tools/" target="_blank" rel="noopener noreferrer">Rome</a></li>
+							<li><a href="https://parceljs.org/" target="_blank" rel="noopener noreferrer">Parcel</a></li>
+							<li><a href="https://rollupjs.org/guide/en/" target="_blank" rel="noopener noreferrer">Rollup.js</a></li>
+							<li><a href="https://esbuild.github.io/" target="_blank" rel="noopener noreferrer">esbuild</a></li>
+							<li><a href="https://gulpjs.com/" target="_blank" rel="noopener noreferrer">Gulp</a></li>
+							<li><a href="https://gruntjs.com/" target="_blank" rel="noopener noreferrer">Grunt</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Install Webpack</h2>
+
+						<p>Begin by setting up a directory/folder and creating a <strong>package.json</strong> file. To install Webpack, we want to install both <strong>webpack</strong> and <strong>webpack-cli</strong> as devDependencies using npm.</strong></p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install webpack webpack-cli --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<ul>
+							<li><strong>webpack</strong> - the module and asset bundler.</li>
+							<li><strong>webpack-cli</strong> - the command-line interface for Webpack.</li>
+						</ul>
+
+						<p>Once installed, create a src directory with an empty JavaScript file named <strong>index.js</strong>.</strong> Our project file structure should look like this:</p>
+
+<pre>
+	<code>
+
+project /
+		|_package.json
+		|_package-lock.json
+		|_src /
+			index.js
+
+	</code>
+</pre>
+
+						<p>Within the <strong>package.json</strong>, add a script to run Webpack. By default Webpack will look inside the src directory for an index.js file and generate a bundle from this which will be output inside a <strong>dist</strong> folder when Webpack runs.</p>
+
+<pre>
+	<code>
+
+"scripts": {
+	"dev": "webpack"
+},
+
+	</code>
+</pre>
+
+						<p>To run Webpack and generate the bundle, open the terminal and run the script.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Our project file structure will now be updated to generate the bundled file named <strong>main.js</strong>:</p>
+
+<pre>
+	<code>
+
+project /
+		|_package.json
+		|_package-lock.json
+		|_dist /
+			main.js
+		|_src /
+			index.js
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Mode</h2>
+
+						<p>Webpack introduces the concept of <strong>Mode</strong>. Usually when working on a project, we are in development, but when ready to deploy, we want to optimise our application code ready for production. Webpack allows us to set this using the mode paramater. This parameter can either be: <strong>production</strong>, <strong>development</strong>, or <strong>none</strong>.</p>
+
+						<p>This allows Webpack to use built-in optimisation that corresponds to each environment.</p>
+
+						<p>By default, Webpack will always use the production mode. The production bundle will be minified and optimised for production.</p>
+
+						<p>We can update the <strong>package.json</strong> file to have two scripts and set the development and production modes.</p>
+
+<pre>
+	<code>
+
+"scripts": {
+	"dev": "webpack --mode development",
+	"prod": "webpack --mode production"
+},
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Webpack Config</h2>
+
+						<p>Although Webpack is considered <strong>zero-configuration</strong>, a config file can be added to extend the functionality of Webpack. This config file is named <strong>webpack.config.js</strong> that will sit in the root of our project.</p>
+
+<pre>
+	<code>
+
+project /
+		|_package.json
+		|_package-lock.json
+		|_dist /
+			main.js
+		|_src /
+			index.js
+		webpack.config.js
+
+	</code>
+</pre>
+
+						<p>Within our config file we can define an entry point where Webpack will look for files to compile. In this example, we are setting the entry point to be <strong>src/index.js</strong>.</p>
+
+<pre>
+	<code>
+
+const path = require('path');
+
+module.exports = {
+	entry: {
+		main: path.resolve(__dirname, './src/index.js')
+	}
+}
+
+	</code>
+</pre>
+
+						<p>The <strong>output</strong> is where the bundled files will be output once the Webpack build has completed. By default this usually the <strong>dist</strong> directory. The <strong>[name]</strong> in the output will be <strong>main</strong> as specified in the entry object, so the bundle will be named <strong>main.bundle.js</strong>.</p>
+
+<pre>
+	<code>
+
+const path = require('path');
+
+module.exports = {
+	entry: {
+		main: path.resolve(__dirname, './src/index.js')
+	},
+	output: {
+		path: path.resolve(__dirname, './dist'),
+		filename: '[name].bundle.js'
+	}
+}
+
+	</code>
+</pre>
+
+						<p>We can set the name of the bundle if the production or development mode is used.</p>
+
+						<p>Within the <strong>package.json</strong> file can set a <strong>NODE_ENV</strong> environment variable for each mode.</p>
+
+<pre>
+	<code>
+
+"scripts": {
+	"dev": "NODE_ENV=development webpack --mode=development --progress",
+	"prod": "NODE_ENV=production webpack --mode=production --progress"
+},
+
+	</code>
+</pre>
+
+						<p>Once done, we can update the config file to set the bundle file based on these variables.</p>
+
+						<p>A progress flag has been added to each script to see the progress of the build in the terminal output.</p>
+
+<pre>
+	<code>
+
+const env = process.env.NODE_ENV;
+const path = require('path');
+
+module.exports = {
+	entry: {
+		main: path.resolve(__dirname, './src/index.js')
+	},
+	output: {
+		path: path.resolve(__dirname, './dist'),
+		filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+	}
+}
+
+	</code>
+</pre>
+
+						<p>We can update our config file further to generate a separate bundle for our <strong>runtime</strong> code. This is the code Webpack needs to connect to your application whilst running in the browser and contains the loading and resolving logic to connect to modules or lazy-load those modules which are yet to be loaded. The runtime bundle should be placed as the first script inside your HTML.</strong></p>
+
+<pre>
+	<code>
+
+const env = process.env.NODE_ENV;
+const path = require('path');
+
+module.exports = {
+	entry: {
+		main: path.resolve(__dirname, './src/index.js')
+	},
+	output: {
+		path: path.resolve(__dirname, './dist'),
+		filename: env === 'production' ? '[name].bundle.min.js' : '[name].bundle.js'
+	},
+    optimization: {
+        runtimeChunk: {
+            name: 'runtime'
+        },
+    }
+}
+
+	</code>
+</pre>
+
+						<p>Running Webpack will generate the runtime bundle named <strong>runtime.bundle.min.js</strong> inside the <strong>dist</strong> directory folder.</p>
+
+<pre>
+	<code>
+
+project /
+		|_package.json
+		|_package-lock.json
+		|_dist /
+			main.bundle.js
+			main.bundle.min.js 
+			runtime.bundle.min.js
+		|_src /
+			index.js
+		webpack.config.js
+
+	</code>
+</pre>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

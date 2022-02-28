@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Gatsby">
+
+	<title>Codebox | Frameworks | Gatsby</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!--<li class="nav-list__item"><a href="introduction-to-php.html">React</a></li>
+				<li class="nav-list__item"><a href="introduction-to-wordpress.html">WordPress</a></li>-->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+				<a href="javascript.html" class="menu__list-link">JavaScript</a>
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Gatsby</h1>
+
+						<p class="intro__copy">Gatsby is a React-based, open-source framework for creating websites and web applications.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Gatsby</h2>
+
+						<p>Components within Gatsby are built using React and are rendered at build time to the DOM (Document Object Model) as static HTML, CSS & JavaScript files.</p>
+
+						<p>Gatsby is a framework rather than a library because it comes with everything included out-of-the-box, including Routing, Data Management, build process, and much more.</p>
+
+						<p>Gatsby uses a few technologies under the hood:</p>
+
+						<ul>
+							<li><strong>React</strong> - JavaScript library for building user interfaces. React is used to build pages and structure content.</li>
+							<li><strong>GraphQL</strong> - A query language that allows us to pull data into our website. GraphQL is used by Gatsby for managing site data.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Install Gatsby</h2>
+
+						<p>We need to have Node version <strong>12.13.0</strong> or later to be installed to run Gatsby. The Gatsby CLI (Command Line Interface) tool is a published npm package which means we can install it using npm. To install Gatsby, we need to install the Gatsby CLI version 3 or later globally.</p>
+
+						<p>The Gatsby CLI is a tool that lets us quickly create a new Gatsby site and run commands during development. The npm package is named <strong>gatsby-cli</strong>.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-cli -g
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once Gatsby CLI is installed, we can check the version of Gatsby installed.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm gatsby --version
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+<!--
+<pre>
+	<code>
+
+import React from 'react';
+
+	</code>
+</pre>
+-->
+
+
+					</section>
+
+					<section>
+						<h2>Creating a Gatsby site</h2>
+
+						<p>Once Gatsby CLI has been installed, we can use the CLI tool to setup a Gatsby site.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	gatsby new
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>This will start up the interactive prompt to assist us with creating our Gatsby site. Once the configuration has completed we should have our new Gatsby site. The configuration will generate the folder and allow you to set the name of your application and any further initial settings.</p>
+					</section>
+
+					<section>
+						<h2>Running Gatsby</h2>
+
+						<p>Now that the Gatsby website is setup and installed, we can begin development. First, we can change into the directory where the site is located using the terminal and we can then use the following command to run our Gatsby application locally on a local server.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run develop
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Gatsby has a development server built-i so we can view the site in our browser locally. After a few moments the command-line should output a message confirming the development server is running and ready to go. Open a web browser and navigate to: <a href="http://localhost:8000/" target="_blank" rel="noopener noreferrer"> http://localhost:8000/</a>. If you want to access the GraphiQL interface: <a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http://localhost:8000/___graphql</a>.</p>
+
+						<p>To stop the development server, go back into your terminal and hit <strong>CTRL + C</strong>.</p>
+					</section>
+
+					<section>
+						<h2>Pages</h2>
+
+						<p>All pages within our Gatsby website are located within the <strong>src/pages</strong> directory within your project. Our project to begin will have an <strong>index.js</strong> script as the homepage and a <strong>404.js</strong> script as the 404 page.</p>
+
+						<p>Pages are built using React components and are referred to as <strong>Page Components</strong>.</p>
+
+<pre>
+	<code>
+
+project /
+		|_src /
+			|_pages /
+				404.js
+				index.js
+
+	</code>
+</pre>
+
+						<p>If we update our pages, or create new pages, once saved the development server will reload and the changes will be visible in the browser. We will need to wait a comment whilst the development server rebuilds.</p>
+
+						<h3>Adding a new page</h3>
+
+						<p>Add a new JavaScript file named <strong>about.js</strong> in the <strong>src</strong> directory. This will be the About page and is simply a React component.</p>
+
+<pre>
+	<code>
+
+import * as React from 'react';
+
+const AboutPage = () => {
+	return (
+		&lt;h1&gt;About&lt;/h1&gt;
+	)
+}
+
+export default AboutPage;
+
+	</code>
+</pre>
+
+						<p>The About page can be accessed using the filename: <a href="http://localhost:8000/about" target="_blank" rel="noopener noreferrer">http://localhost:8000/about</a>.</p>
+
+						<p>Our file structure will look like this:</p>
+
+<pre>
+	<code>
+
+project /
+		|_src /
+			|_pages /
+				404.js
+				about.js
+				index.js
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Links</h2>
+
+						<p>Gatsby has a built-in Link component. This is a pre-built component that is defined and maintained by the Gatsby package so we can import and use it within our components.</p>
+
+						<p>This link component allows us to link our pages within our Gatsby site. The component takes a prop called <strong>to</strong> which is similar to the <strong>href</strong> attribute within a HTML link. The value within the <strong>to</strong> prop should be the URL path to the page we want to link to.</p>
+
+						<p>To link to external links/URLs, use the regular HTML anchor tag, not the Gatsby link component.</p>
+
+						<p>We begin by importing the Link component from Gatsby into our page component.</p>
+
+<pre>
+	<code>
+
+import { Link } from 'gatsby';
+
+	</code>
+</pre>
+
+						<p>Once imported, the Link component can be used.</p>
+
+<pre>
+	<code>
+
+&lt;Link to="/"&gt;Home&lt;/Link&gt;
+
+&lt;Link to="/about"&gt;About&lt;/Link&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>GraphQL & Data Layer</h2>
+
+						<p>Gatsby has a feature called the <strong>data layer</strong> that allows us to pull data into our site from external sources.</p>
+
+						<p>The data layer is powered by a technology called <strong>GraphQL</strong>, a query language with a syntax that lets us ask for the data you need from inside our components. All data we need for our site is kept within the data layer and accessed by Gatsby.</p>
+
+						<ul>
+							<li>Headless CMS, for example a WordPress CMS</li>
+							<li>Database</li>
+							<li>Shopify containing all your products for an eCommerce store</li>
+							<li>Data help within Airtable</li>
+							<li>Add JSON from a payment processor</li>
+							<li>Markdown</li>
+						</ul>
+
+						<p>With the data layer we can combine data from multiple sources.</p>
+
+						<h3>Explore the Data Layer</h3>
+
+						<p>Gatsby creates an endpoint that allows us to explore the data layer using an in-browser tool called <strong>GraphiQL</strong>. This tool can be accessed here: <a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http://localhost:8000/___graphql</a>.</p>
+
+						<p>We can use this tool to test our GraphQL queries before we add them into our component code.</p>
+					</section>
+
+					<section>
+						<h2>Build (Production)</h2>
+
+						<p>Once the initial development of the Gatsby site is complete, we can create a production build. To create the production build, stop the development server (if running) and execute the following command in the terminal:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run build
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>This creates the production build of our site and outputs the static files into the <strong>public</strong> directory. Once this starts we can view our site at: <a href="http://localhost:9000" target="_blank" rel="noopener noreferrer">http://localhost:9000</a></p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<a href="../sitemap.html">Sitemap</a>
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
