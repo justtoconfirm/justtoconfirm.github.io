@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to React">
+
+	<title>Code | React | Install & Setup</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Install & Setup React</h1>
+
+						<p class="intro__copy">React is an open-source, front-end JavaScript library for building user interfaces and components.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Requirements</h2>
+
+						<p>We will need to have the following installed on our machine to install and run React:</p>
+
+						<ul>
+							<li>Node 14.0.0 or later</li>
+							<li>npm 5.6 or later</li>
+						</ul>
+
+						<p>You can also install <a href="https://github.com/nvm-sh/nvm#installation" target="_blank" rel="noopener noreferrer">nvm</a> (Node Version Manager) or <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows" target="_blank" rel="noopener noreferrer">nvm-windows</a> for Windows machines to switch Node versions between projects.</p>
+					</section>
+
+					<section>
+						<h2>Install React</h2>
+
+						<p>React can be installed using <strong>create-react-app</strong> and this will setup the development environment but this will not handle backend logic or databases.</p>
+
+						<p>This will create the frontend build pipeline using <strong>Babel</strong> and <strong>Webpack</strong>.</p>
+
+						<p>We use <strong>npx</strong> to install React. This is a package runner tool that comes with npm version 5.2 or later and will install the latest version of React.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app APP-NAME-HERE
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+					</section>
+
+					<section>
+						<h2>Install React - Setup TypeScript</h2>
+
+						<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+
+						<p>To start a new <strong>create-react-app</strong> project with TypeScript, you can run:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app APP-NAME-HERE --template typescript
+
+	# or
+
+	yarn create react-app APP-NAME-HERE --template typescript
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>To add TypeScript to an existing create-react-app project,first install it:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+
+	# or
+
+	yarn add typescript @types/node @types/react @types/react-dom @types/jest
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Next, rename any JavaScript file to be a TypeScript file - for example, <strong>src/index.js</strong> to <strong>src/index.tsx</strong> - then restart the development server.</p>
+
+						<ul>
+							<li><strong>@types/react</strong> - type definitions for React</li>
+							<li><strong>@types/react-dom</strong> - type definitions for the React DOM library</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>What is TypeScript?</h2>
+
+						<p>TypeScript is a programming language developed and maintained by Microsoft. It is a superset of JavaScript. It helps you to catch mistakes early through a type system and to make development more efficient.</p>
+
+						<ul>
+							<li>TypeScript is known as an Object-Oriented Programming Language (OOPL), JavaScript is a scripting language.</li>
+							<li>TypeScript has a feature known as Static typing but JavaScript does not have this feature.</li>
+							<li>TypeScript gives support for modules, JavaScript does not support modules.</li>
+						</ul>
+
+						<p>TypeScript helps spot common errors as you type code.</p>
+
+						<p>The <strong>tsconfig.json</strong> file contains configuration for the typescript compiler.</p>
+
+						<p>TypeScript files have a file extension of <strong>.tsx</strong></p>
+					</section>
+
+					<section>
+						<h2>Imports</h2>
+
+						<p>We need to import the React library to make JSX compile.</p>
+
+						<p>TypeScript supports the <strong>ES module notation</strong>. You can import React with:</p>
+
+<pre>
+	<code>
+
+import * as React from 'react';
+
+	</code>
+</pre>
+
+						<p>A cleaner way to write an import is like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+	</code>
+</pre>
+
+						<p>We can also import type definitions and React features in a destructured way:</p>
+
+<pre>
+	<code>
+
+import React { Component, FunctionComponent } from 'react';
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
+						<h2>Start the development server</h2>
+
+						<p>Once React has been installed we can use npm to start the local development server. This will run on port 3000 by default on the localhost - <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">http://localhost:3000/</a></p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	cd APP-NAME-HERE
+	npm start
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>File Structure</h2>
+
+						<p>The file structure of our application once installed will look like this:</p>
+
+<pre>
+	<code>
+
+APP-NAME-HERE /
+	|_node_modules /
+	|_public /
+		favicon.ico
+		index.html
+		logo192.png
+		logo512.png
+		manifest.json
+		robots.txt
+	|_src /
+		App.css
+		App.js
+		App.test.js
+		index.css
+		index.js
+		logo.svg
+		reportWebVitals.js
+		setupTests.js
+	.gitignore
+	package-lock.json
+	package.json
+	README.md
+
+	</code>
+</pre>
+
+						<p>A <strong>tsconfig.json</strong> file will be generated for TypeScript projects in the root of the file structure. The JavaScript files will now also be TypeScript files with the file extension of <strong>.tsx</strong></p>
+
+<pre>
+	<code>
+
+APP-NAME-HERE /
+	|_node_modules /
+	|_public /
+		favicon.ico
+		index.html
+		logo192.png
+		logo512.png
+		manifest.json
+		robots.txt
+	|_src /
+		App.css
+		App.tsx
+		App.test.tsx
+		index.css
+		index.tsx
+		logo.svg
+		react-app-env.d.ts
+		reportWebVitals.ts
+		setupTests.ts
+	.gitignore
+	package-lock.json
+	package.json
+	README.md
+	tsconfig.json
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Code examples</h2>
+
+						<p>Here's the <strong>src/App.tsx</strong> code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+	return (
+		&lt;div className="App"&gt;
+			&lt;header className="App-header"&gt;
+				&lt;img src={logo} className="App-logo" alt="logo" /&gt;
+				&lt;p&gt;
+					Edit &lt;code&gt;src/App.js&lt;/code&gt; and save to reload.
+				&lt;/p&gt;
+				&lt;a
+					className="App-link"
+					href="https://reactjs.org"
+					target="_blank"
+					rel="noopener noreferrer"
+				&gt;
+					Learn React
+				&lt;/a&gt;
+			&lt;/header&gt;
+		&lt;/div&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Here's the <strong>src/index.tsx</strong> code:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+	&lt;React.StrictMode&gt;
+		&lt;App /&gt;
+	&lt;/React.StrictMode&gt;,
+	document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+	</code>
+</pre>
+
+						<p>The <strong>public/index.html</strong> file is where the app renders using the <strong>root</strong> element.</p>
+
+<pre>
+	<code>
+
+&lt;div id="root"&gt;&lt;/div&gt;
+
+	</code>
+</pre>
+
+						<p>The root DOM node is managed by React DOM. Applications built with React usually have a single root DOM node. We use the <strong>ReactDOM.render()</strong> method to render the React application into the root DOM.</p>
+					</section>
+
+					<section>
+						<h2>Hello World</h2>
+
+						<p>The smallest React example can be created in the <strong>src/index.tsx</strong> file and it looks like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+	&lt;h1&gt;Hello World&lt;/h1&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>Here's the updated code to display a simple Hello World message on screen.</p>
+
+						<p>Here's the <strong>src/App.tsx</strong> file:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const App = () => {
+	return (
+
+		&lt;h1&gt;Hello World&lt;/h1&gt;
+
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Here's the <strong>src/index.tsx</strong> file:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import { render } from 'react-dom';
+import App from './App';
+
+render(
+	&lt;React.StrictMode&gt;
+		&lt;App /&gt;
+	&lt;/React.StrictMode&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>The <strong>public/index.html</strong> file has not changed.</p>
+					</section>
+
+					<section>
+						<h2>Embedding Expressions in JSX</h2>
+
+						<p>In the example below, we declare a variable called <strong>name</strong> and then use it inside JSX within <strong>src/index.tsx</strong> by wrapping it in curly braces:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const name = 'Dan';
+
+ReactDOM.render(
+	&lt;h1&gt;Hello {name}&lt;/h1&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>By default, React DOM escapes any values embedded in JSX before rendering. Everything is converted to a string before being rendered helping to prevent <strong>XSS (cross-site-scripting)</strong> attacks.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://create-react-app.dev/docs/adding-typescript/" target="_blank" rel="noopener noreferrer">Create React App: Adding TypeScript</a></li>
+							<li><a href="https://fettblog.eu/typescript-react/getting-started/" target="_blank" rel="noopener noreferrer">Getting Started: TypeScript</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

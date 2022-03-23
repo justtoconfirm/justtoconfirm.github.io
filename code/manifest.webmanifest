@@ -1,0 +1,21 @@
+{
+	"name": "Codebox",
+	"short_name": "Codebox",
+	"description": "Developer guides & resources",
+	"icons": [
+	    {
+	      "src": "icons/developer.png",
+	      "type": "image/png",
+	      "sizes": "800x600"
+	    },
+	    {
+	      "src": "icons/developer-144.png",
+	      "type": "image/png",
+	      "sizes": "144x144"
+	    }
+	],
+	"start_url": "index.html",
+	"background_color": "#fff",
+	"display": "standalone",
+	"theme_color": "#e8e6e8"
+}
