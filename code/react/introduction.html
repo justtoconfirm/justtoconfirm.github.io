@@ -64,7 +64,19 @@
 
 						<p>React is an open-source, front-end JavaScript library for building user interfaces using components. It is maintained by Meta (formally Facebook).</p>
 
-						<p>React uses an XML-like syntax called <strong>JSX</strong>.</p>
+						<h3>JSX (JavaScript XML)</h3>
+
+						<p>React uses an XML-like syntax called <strong>JSX (JavaScript XML)</strong>.</p>
+
+						<p>JSX is a syntax extension for JavaScript tht was written to be used with React. JSX is not valid JavaScript so browsers cannot read it. If a file contains JSX then the code will need to be compiled. A JSX compiler will translate the JSX syntax into regular JavaScript code. Often a tool such as <strong>Babel</strong> will be used to do this.</p>
+
+						<p>When coding in JavaScript, it's always best to include semicolons (;) at the end of statements as to not always rely on <strong>Automatic Semicolon Insertion (ASI)</strong>.</p>
+					</section>
+
+					<section>
+						<h2>React DevTools</h2>
+
+						<p>React DevTools (also known as React Developer Tools), is a browser extension for Chrome that will allow working with React to be much easier. Once installed, you will see a tab for React when you open your browser's developer tool inspector. The <strong>Elements</strong> tab will show the actual DOM (Document Object Model) output.</p>
 					</section>
 
 					<section>
@@ -108,6 +120,39 @@
 	</pre>
 </div>
 <!-- / Terminal -->
+
+						<h3>File Structure</h3>
+
+						<p>Once a React application has been setup with JavaScript, the file structure will look something like this:</p>
+
+<pre>
+	<code>
+
+project /
+	|__node_modules /
+	|__public /
+		favicon.ico
+		index.html
+		logo192.png
+		logo512.png
+		manifest.json
+		robots.txt
+	|__src /
+		App.css
+		App.js
+		App.test.js
+		index.css
+		index.js
+		logo.svg
+		reportWebVitals.ts
+		setupTests.ts
+	.gitignore
+	package-lock.json
+	package.json
+	README.md
+
+	</code>
+</pre>
 					</section>
 
 					<section>
@@ -134,6 +179,8 @@
 	</pre>
 </div>
 <!-- / Terminal -->
+
+						<p>Use this command to start a JavaScript or TypeScript React application.</p>
 					</section>
 
 					<section>
@@ -228,6 +275,8 @@ ReactDOM.render(
 						<h2>Building Components</h2>
 
 						<p>React applications are built using Reusable components. Components let you split the UI (User Interface) into independent, reusable pieces of code. Conceptually, components are like JavaScript functions. They accept inputs called <strong>props</strong> (properties) and return elements onto the screen.</p>
+
+						<p>Components will have the file extension of <strong>.js</strong> or <strong>.jsx</strong> and should start with an uppercase letter for the name.</p>
 
 						<p>The simplest way to create a React component is to write a JavaScript function. Functional components in React are simple and purely functional, often written as JavaScript functions.</p>
 
@@ -400,6 +449,28 @@ export default Welcome;
 	</code>
 </pre>
 
+						<p>We can also pass props into our component using an object:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Welcome = props => {
+
+	const {
+		name = "Pearl",
+		age
+	} = props;
+
+	return &lt;h1&gt;Hello {name}, you are {age} years old.&lt;/h1&gt;;
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
 						<p>Now when we import and use the component, we can pass in more than one value to be rendered.</p>
 
 <pre>
@@ -413,6 +484,201 @@ ReactDOM.render(
 	&lt;Welcome name="Dan" age="34" /&gt;,
 	document.getElementById('root')
 );
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Adding Attributes</h2>
+
+						<p>We can use the <strong>className</strong> prop to apply a class attribute to a React component. We cannot use <strong>class</strong> as it's considered a keyword.</p>
+
+						<p>Here, we add a class of <strong>title</strong> to our component using the <strong>className</strong> prop:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Welcome = ({ name = 'Pearl', age }) => {
+	return (
+		&lt;h1 className="title"&gt;Hello {name}, you are {age} years old.&lt;/h1&gt;;
+	);
+}
+
+export default Welcome;
+
+	</code>
+</pre>
+
+						<p>If we want to add the <strong>for</strong> attribute to a component, such as a label, we can use the <strong>htmlFor</strong> prop:</p>
+
+<pre>
+	<code>
+
+&lt;label htmlFor="name"&gt;Name&lt;/label&gt;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Composing Components</h2>
+
+						<p>Components can refer to other components in their output. This allows us to use the same component multiple times.</p>
+
+						<p>In this example, we will extend the code inside of <strong>src/index.js</strong> to include a new component called <strong>App</strong> which is basically just a function, and this will render the <strong>Welcome</strong> component twice.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Welcome from './Welcome';
+
+const App = () => {
+	return (
+		&lt;div&gt;
+			&lt;Welcome name="Dan" age="36" /&gt;
+			&lt;Welcome name="Archie" age="25" /&gt;
+		&lt;/div&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Fragments</h2>
+
+						<p>To avoid any JSX syntax errors, if we are composing components, we need to wrap a parent element around the components used. In the earlier example, this was a <strong>&lt;div&gt;</strong> element, but we can use <strong>Fragments</strong> (&lt;&gt; & &lt;/&gt;) that will prevent adding anything extra to the DOM.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Welcome from './Welcome';
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" age="36" /&gt;
+			&lt;Welcome name="Archie" age="25" /&gt;
+		&lt;/&gt;
+	);
+}
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Separating Components</h2>
+
+						<p>It's often best to separate components into individual files to make it easier to manage the code in your project.</p>
+
+						<p>Move the code for the <strong>App</strong> component into a file called <strong>src/App.js</strong></p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Welcome from './Welcome';
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" age="36" /&gt;
+			&lt;Welcome name="Archie" age="25" /&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>The App component will still import the <strong>src/Welcome.js</strong> component as before.</p>
+
+						<p>We can the import the App component into the <strong>src/index.js</strong> file.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+	&lt;App /&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>
+
+						<p>In a basic React application file structure, our files would look like this inside the <strong>src</strong> directory:</p>
+
+<pre>
+	<code>
+
+project /
+	|__src /
+		App.js
+		index.js
+		Welcome.js
+
+	</code>
+</pre>
+
+						<p>It is often better to also move components into individual directories to make the folder structure cleaner. We have now renamed the Welcome component to use <strong>index.js</strong></p>
+
+<pre>
+	<code>
+
+project /
+	|__src /
+		|__components /
+			|__Welcome /
+				index.js
+		App.js
+		index.js
+
+	</code>
+</pre>
+
+						<p>Then update the path inside the App component following this change.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Welcome from './components/Welcome';
+
+const App = () => {
+	return (
+		&lt;&gt;
+			&lt;Welcome name="Dan" age="36" /&gt;
+			&lt;Welcome name="Archie" age="25" /&gt;
+		&lt;/&gt;
+	);
+}
+
+export default App;
 
 	</code>
 </pre>
@@ -458,6 +724,43 @@ ReactDOM.render(
 	</pre>
 </div>
 <!-- / Terminal -->
+
+						<h3>File Structure</h3>
+
+						<p>Once a React application has been setup with TypeScript, the file structure will look something like this:</p>
+
+<pre>
+	<code>
+
+project /
+	|__node_modules /
+	|__public /
+		favicon.ico
+		index.html
+		logo192.png
+		logo512.png
+		manifest.json
+		robots.txt
+	|__src /
+		App.css
+		App.test.tsx
+		App.tsx
+		index.css
+		index.tsx
+		logo.svg
+		react-app-env.d.ts
+		reportWebVitals.ts
+		setupTests.ts
+	.gitignore
+	package-lock.json
+	package.json
+	README.md
+	tsconfig.json
+
+	</code>
+</pre>
+
+						<p>Unlike with JavaScript, TypeScript files will have the file extension of <strong>.tsx</strong> or <strong>.ts</strong></p>
 					</section>
 
 					<section>
