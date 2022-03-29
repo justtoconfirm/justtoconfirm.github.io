@@ -74,6 +74,17 @@
 					</section>
 
 					<section>
+						<h2>Frameworks & Libraries</h2>
+
+						<p>Here are a few frameworks and libraries that use React:</p>
+
+						<ul>
+							<li><strong>Next.js</strong> - An open-source web development framework built on top of Node enabling React applications to be built that have server-side rendering capablities and can be used to generate static websites/web applications.</li>
+							<li><strong>GatsbyJS</strong> - is a React-based, GraphQL powered, framework for generating static websites.</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>React DevTools</h2>
 
 						<p>React DevTools (also known as React Developer Tools), is a browser extension for Chrome that will allow working with React to be much easier. Once installed, you will see a tab for React when you open your browser's developer tool inspector. The <strong>Elements</strong> tab will show the actual DOM (Document Object Model) output.</p>
@@ -679,6 +690,371 @@ const App = () => {
 }
 
 export default App;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Styling</h2>
+
+						<p>Styling can be added to a React component using a simple CSS stylesheet.</p>
+
+<pre>
+	<code>
+
+.btn {
+	display: inline-block;
+	text-align: center;
+	padding: 1rem 2rem;
+	text-decoration: none;
+}
+
+	</code>
+</pre>
+
+						<p>Within our React component, we can then import our CSS stylesheet to apply our styling:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import './Button.css';
+
+const Button = () => {
+
+	return (
+
+		&lt;button type="button" className="btn"&gt;Button&lt;/button&gt;
+
+	);
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>It can be common for CSS classes to depend on the component prop or state:</p>
+
+<pre>
+	<code>
+
+let className = 'btn';
+
+if (this.props.isActive) {
+	className += ' btn--active';
+}
+
+return (
+
+	&lt;button type="button" className={className}&gt;Button&lt;/button&gt;
+
+)
+
+	</code>
+</pre>
+
+						<h3>Styled Components</h3>
+
+						<p>Styled Components is a library for React to write and manage your CSS. It is a "CSS-in-JS" solution, meaning you write your CSS in JavaScript files, usually within your components, which are JavaScript (or TypeScript) files.</p>
+
+						<p>The benefits of this:</p>
+
+						<ul>
+							<li>It's plain CSS, so the CSS syntax is unchanged.</li>
+							<li>Vendor prefixes are automatically added when using Styled Components, improving performance.</li>
+							<li>All unused CSS and styling is removed automatically.</li>
+							<li>Class names are generated automatically so there's no need to manage CSS class naming methodologies such as BEM.</li>
+						</ul>
+
+						<p>To install the <strong>styled-components</strong> package in our project:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Every file that uses styled-components needs to add this <strong>import</strong>:</p>
+
+<pre>
+	<code>
+
+import styled from 'styled-components';
+
+	</code>
+</pre>
+
+						<p>We are now ready to work with styled-components.</p>
+
+						<p>Open an existing React project or create a new project with <strong>create-react-app</strong> and add Styled Components to a component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const ButtonStyle = styled.a`
+	background-color: teal;
+	color: white;
+	padding: 1rem 2rem;
+`;
+
+const Button = () => {
+	return (
+		
+		&lt;ButtonStyle&gt;I am a button&lt;/ButtonStyle&gt;
+
+	)
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h4>Global Styles</h4>
+
+						<p>One of the main models for React is how you treat everything as components. You essentially break the interface down into tiny chunks. This approach has many advantages, but also issues can surface. For example, we need an approach to style parts of your design that are consistent across multiple components. To put another way, how can you set global styles.</p>
+
+						<p>For example, you may want to:</p>
+
+						<ul>
+							<li>Set a font-family for all your typography.</li>
+							<li>Set the background color on every page.</li>
+							<li>Override some browser default styling.</li>
+						</ul>
+
+						<p>Styled Components has a solution for global styles using the <strong>createGlobalStyle</strong> function.</p>
+
+						<p>First, navigate to the component which is at the top of your React tree. This is likely to be the <strong>App</strong> (<strong>src/App.js</strong>) file.</p>
+
+						<p>Here, you'll need to import <strong>createGlobalStyle</strong> into your project and set some styles to a <strong>&lt;GlobalStyle /&gt;</strong> component.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Container, Nav, Content } from '../components';
+
+const GlobalStyle = createGlobalStyle`
+
+	body {
+		margin: 0;
+		padding: 0;
+		background-color: teal;
+		font-family: Open-Sans, Helvetica, Sans-Serif;
+	}
+`;
+
+const App = () => {
+
+	return (
+		&lt;&gt;
+			&lt;GlobalStyle /&gt;
+			&lt;Container&gt;
+				&lt;Nav /&gt;
+				&lt;Content /&gt;
+			&lt;/Container&gt;
+    	&lt;/&gt;
+	)
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<h4>Styling with Props</h4>
+
+						<p>Imaging we have a <strong>&lt;Button /&gt;</strong> component and we need to style different variants of that button to add a theme (primary, secondary etc.). Styled Components has an elegant solution for this where we can leverage props to make the component styles dynamic.</p>
+
+						<p>Here we are rendering two Button components, one has a primary prop:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+import Button from './Button';
+
+const App = () => {
+
+	return (
+
+		&lt;&gt;
+			&lt;Button&gt;I am a button&lt;/Button&gt;
+			&lt;Button primary&gt;I am a primary button&lt;/Button&gt;
+		&lt;/&gt;
+
+	)
+}
+
+export default App;
+
+	</code>
+</pre>
+
+						<p>Now, inside of the <strong>&lt;Button /&gt;</strong> component, we can add the dynamic styles.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled from 'styled-components';
+
+const ButtonStyle = styled.a`
+	display: inline-block'
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	border: 2px solid white;
+	background-color: ${props => props.primary ? 'white' : 'palevioletred'}
+	color: ${props => props.primary ? 'palevioletred' : 'white'}
+`;
+
+const Button = () => {
+
+	return (
+		&lt;ButtonStyle&gt;I am a button&lt;/ButtonStyle&gt;
+	)
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<p>This works fine if we have a few props, but it can get messy if we have multiple props (e.g. primary, secondary, danger etc.). Often, it makes more sense to import { css } from <strong>styled-components</strong>, like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+const ButtonStyle = styled.a`
+	display: inline-block'
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	border: 2px solid white;
+	background-color: transparent;
+	color: white;
+
+	${props => props.primary && css`
+		background-color: white;
+		color: palevioletred;
+	`}
+
+	${props => props.danger && css`
+		background-color: red;
+		color: white;
+	`}
+`;
+
+const Button = () => {
+
+	return (
+		&lt;ButtonStyle&gt;I am a button&lt;/ButtonStyle&gt;
+	)
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h4>Hover States</h4>
+
+						<p>Adding a hover state to our &lt;Button /&gt; component would look like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+const ButtonStyle = styled.a`
+	display: inline-block'
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	border: 2px solid white;
+	background-color: transparent;
+	color: white;
+
+	:hover {
+		border-color: green;
+	}
+`;
+
+const Button = () => {
+
+	return (
+		&lt;ButtonStyle&gt;I am a button&lt;/ButtonStyle&gt;
+	)
+}
+
+export default Button;
+
+	</code>
+</pre>
+
+						<h4>Media Queries</h4>
+
+						<p>Adding media queries inside your template literal, like this:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+const ButtonStyle = styled.a`
+	display: inline-block'
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	border: 2px solid white;
+	background-color: transparent;
+	color: white;
+
+	@media (min-width: 768px) {
+		padding: 1rem 2rem;
+	}
+
+	@media (min-width: 1024px) {
+		padding: 1.5rem 2.5rem;
+	}
+
+`;
+
+const Button = () => {
+
+	return (
+
+		&lt;ButtonStyle&gt;I am a button&lt;/ButtonStyle&gt;
+
+	)
+}
+
+export default Button;
 
 	</code>
 </pre>
