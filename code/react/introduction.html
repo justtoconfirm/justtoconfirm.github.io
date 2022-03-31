@@ -1075,6 +1075,16 @@ export default Button;
 							<li>TypeScript gives support for modules, JavaScript does not support modules.</li>
 						</ul>
 
+						<p>Benefits of using TypeScript with React:</p>
+
+						<ul>
+							<li><strong>Code Suggestions</strong> - TypeScript provides suggestions and choices as you type. This saves a lot of time, making it simpler for new developers to use the source code.</li>
+							<li><strong>Readability & Validation</strong></li>
+							<li><strong>Identify bugs faster with IntelliSense</strong> - TypeScript provides the potential to identify bugs as early as possible and before the code runs, allowing time to be saved and fixes to be applied.</li>
+							<li><strong>Code Maintenance & Refactoring</strong> - TypeScript lets you refactor code to avoid typos, making it much easier to manage and upgrade.</li>
+							<li><strong>Enhanced use of JavaScript</strong> - TypeScript blends with JavaScript and uses the latest functionality available. React projects developed with TypeScript compile to JavaScript for use in the browser.</li>
+						</ul>
+
 						<h3>Setup TypeScript with React</h3>
 
 						<p>To setup TypeScript with <strong>create-react-app</strong>:</p>
@@ -1137,6 +1147,249 @@ project /
 </pre>
 
 						<p>Unlike with JavaScript, TypeScript files will have the file extension of <strong>.tsx</strong> or <strong>.ts</strong></p>
+
+						<h3>Components</h3>
+
+						<p>We can create functional components in TypeScript, like we would in JavaScript. The main difference is the <strong>FC</strong> interface, which stands for Functional Component. We use this to tell TypeScript that this is a React function component and not just a regular function.</p>
+
+						<p>Since React was not written in TypeScript, it was written in JavaScript, the community provides types with the <strong>@types/react</strong> package. This should be listed within the <strong>package.json</strong> file. Within this package is a generic type called <strong>FC (FunctionalComponent)</strong> that allows us to type check our functional components when using TypeScript.</p>
+
+						<p>Preact does the same thing as FC, the <strong>preact/compat</strong> packages makes sure that your code is compatible with React and Preact was written in TypeScript.</p>
+
+						<p>Optionally, we can add types for the props by defining an interface and passing it to the generic FC.</p>
+
+						<p>In React we may often see a functional component written like this:</p>
+
+<pre>
+	<code>
+
+import React, { FC } from 'react';
+
+interface TitleProps {
+	title: string;
+}
+
+const Title: FC&lt;TitleProps&gt; = ({ title, subtitle }) => {
+
+	return (
+		&lt;&gt;
+			&lt;h1&gt;{title}&lt;/h1&gt;
+			&lt;h2&gt;{subtitle}&lt;/h2&gt;
+		&lt;/&gt;
+	);
+
+};
+
+export default Title;
+
+	</code>
+</pre>
+
+						<p>Generic types in TypeScript are like functions that accept parameters. Instead of parenthesis, generic types use angle brackets (&lt;&gt;).</p>
+
+						<p>For the FC interface, we don't need to pass any parameters, so you could use it without the generic type by omitting the angle brackets altogether when your component doesn't accept props:</p>
+
+<pre>
+	<code>
+
+const Title: FC = () => {
+
+	// ...
+
+}
+
+	</code>
+</pre>
+
+						<p>Not all props need to be required. We can make props optional by adding a question mark to the interface:</p>
+
+<pre>
+	<code>
+
+interface TitleProps {
+	title: string;    		// required
+	subtitle?: string;		// optional
+}
+
+	</code>
+</pre>
+
+						<p>This will allow you to omit the prop when you don't need it.</p>
+
+						<h3>Alternatives to the FC interface</h3>
+
+						<p>Many developers write function components like this in TypeScript and do not apply the prop interface to the function parameters itself.</p>
+
+<pre>
+	<code>
+
+const Title = ({ title, subtitle }: TitleProps) => {
+
+	// ...
+
+}
+
+	</code>
+</pre>
+
+						<p>We may not need an interface using this syntax, but instead we can apply type checking using type:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+type TitleProps {
+	title: string;
+	subtitle?: string;
+}
+
+const Title = ({ title, subtitle }: TitleProps) => {
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;{title}&lt;/h1&gt;
+			&lt;h2&gt;{subtitle}&lt;/h2&gt;
+		&lt;/&gt;
+
+	);
+};
+
+export default Title;
+
+	</code>
+</pre>
+
+						<p>However, the reason why you might want to use use generic type like FC is that this comes with all the typings that you could possibly need for a function component. This includes the children prop. Being a default prop of any React component, we don't need to add the children prop to our interface.</p>
+
+<pre>
+	<code>
+
+import React, { FC } from 'react';
+
+interface TitleProps {
+  title: string;
+  subtitle?: string;
+}
+
+const Title: FC&lt;TitleProps&gt; = ({ title, subtitle, children }) => {
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;{title}&lt;/h1&gt;
+			&lt;h2&gt;{subtitle}&lt;/h2&gt;
+			&lt;div&gt;{children}&lt;/div&gt;
+		&lt;/&gt;
+
+	);
+};
+
+export default Title;
+
+	</code>
+</pre>
+
+						<p>The FC interface always adds the children prop, regardless of whether we use it or not, so if we don't want our component to accept children, this could be seen as a disadvantage.</p>
+
+						<p>It would be better to define the props without React's generic interface and use FC in the case you want to access the children prop.</p>
+
+						<p>Both <strong>FC</strong> and <strong>FunctionComponent</strong> refer to the same interface.</p>
+
+<pre>
+	<code>
+
+import React, { FunctionalComponent } from 'react';
+
+interface TitleProps {
+  title: string;
+  subtitle?: string;
+}
+
+const Title: FunctionalComponent&lt;TitleProps&gt; = ({ title, subtitle, children }) => {
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;{title}&lt;/h1&gt;
+			&lt;h2&gt;{subtitle}&lt;/h2&gt;
+			&lt;div&gt;{children}&lt;/div&gt;
+		&lt;/&gt;
+
+	);
+};
+
+export default Title;
+
+	</code>
+</pre>
+
+						<p>If we don't use destructuring, our component code will look like this:</p>
+
+<pre>
+	<code>
+
+import React, { FunctionalComponent } from 'react';
+
+interface TitleProps {
+  title: string;
+  subtitle?: string;
+}
+
+const Title: FunctionalComponent&lt;TitleProps&gt; = (props) => {
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;{props.title}&lt;/h1&gt;
+			&lt;h2&gt;{props.subtitle}&lt;/h2&gt;
+			&lt;div&gt;{props.children}&lt;/div&gt;
+		&lt;/&gt;
+
+	);
+};
+
+export default Title;
+
+	</code>
+</pre>
+
+						<h3>Default props</h3>
+
+						<p>Since <strong>TypeScript 3.1</strong>, <strong>defaultProps</strong> can set default values. We cannot use FC and defaultProps as it will cause the code to break, so we use a regular functional component instead:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+type TitleProps {
+	title: string;
+	subtitle?: string;
+}
+
+const Title = ({ title, subtitle, children }: TitleProps) => {
+
+	return (
+
+		&lt;&gt;
+			&lt;h1&gt;{title}&lt;/h1&gt;
+			&lt;h2&gt;{subtitle}&lt;/h2&gt;
+			&lt;div&gt;{children}&lt;/div&gt;
+		&lt;/&gt;
+
+	);
+};
+
+Title.defaultProps = {
+	name: "Hello World"
+};
+
+export default Title;
+
+	</code>
+</pre>
 					</section>
 
 					<section>
@@ -1145,6 +1398,8 @@ project /
 						<ul>
 							<li><a href="https://create-react-app.dev/docs/adding-typescript/" target="_blank" rel="noopener noreferrer">Create React App: Adding TypeScript</a></li>
 							<li><a href="https://fettblog.eu/typescript-react/getting-started/" target="_blank" rel="noopener noreferrer">Getting Started: TypeScript</a></li>
+							<li><a href="https://codersera.com/blog/how-to-use-typescript-with-react/#:~:text=React%20is%20a%20%E2%80%9C%20JavaScript%20library%20for%20creating,create%20our%20UIs%20using%20a%20JavaScript%20typed%20version." target="_blank" rel="noopener noreferrer">How to use TypeScript with React</a></li>
+							<li><a href="https://felixgerschau.com/react-typescript-components/" target="_blank" rel="noopener noreferrer">React TypeScript Components</a></li>
 						</ul>
 					</section>
 
