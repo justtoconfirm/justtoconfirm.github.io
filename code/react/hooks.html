@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to React Hooks">
+
+	<title>Code | React | Hooks</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Hooks</h1>
+
+						<p class="intro__copy">Hooks are reusable functions that allow us to "hook" into React features, such as state, and generally replace the class syntax.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Hooks</h2>
+
+						<p>Hooks were introduced in React 16.8.0 as reusable functions that allow us to "hook" into React features, such as state, without the need to uses classes.</p>
+
+						<p>Hooks generally replace the use of class components, although there are no plans currently to remove classes completely from React.</p>
+
+						<p>Hooks will not work in class components, only functional components.</p>
+					</section>
+
+					<section>
+						<h2>Import Hooks</h2>
+
+						<p>We must import Hooks from the React library. The naming convention for each Hook should start with "use", for example, "useState".</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+	</code>
+</pre>
+
+						<p><strong>State</strong> generally refers to application data or properties that need to be tracked.</p>
+					</section>
+
+					<section>
+						<h2>The useState Hook</h2>
+
+						<p>We can manage state within our component using the <strong>useState</strong> hook.</p>
+
+						<p>The useState Hook will look like this, with no initial value set:</p>
+
+<pre>
+	<code>
+
+const [variable, function] = useState("");
+
+	</code>
+</pre>
+
+						<p>If we want to set an initial value, such as a string, our code will look like this:</p>
+
+<pre>
+	<code>
+
+const [variable, function] = useState("string");
+
+	</code>
+</pre>
+
+						<p>To improve the performance of our code, we can update our Hook to run once instead of each time the component renders.</p>
+
+<pre>
+	<code>
+
+const [variable, function] = useState(() => {
+	return "string";
+});
+
+	</code>
+</pre>
+
+						<ul>
+							<li><strong>variable</strong> - the first value is the current state as a variable.</li>
+							<li><strong>function</strong> - this is a function used to update our state.</li>
+						</ul>
+
+						<p>To output the value stored within the state, we can use the JSX expression syntax to output the value from the variable.</p>
+
+<pre>
+	<code>
+
+return (
+	
+	&lt;p&gt;The value in state: {variable}&lt;/p&gt;
+
+)
+
+	</code>
+</pre>
+
+						<h3>Example:</h3>
+
+						<p>Here we are writing a simple component that will use the <strong>useState</strong> Hook to store the colour of a car.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+	
+	const [color, setColor] = useState(() => {
+		return "Red";
+	});
+
+	return (
+		&lt;p&gt;The colour of the car is: {color}&lt;/p&gt;
+	)
+}
+
+export default Car;
+
+	</code>
+</pre>	
+
+						<p>We can add more than one useState Hook to our component to manage state within our component.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+
+	const [name, setName] = useState(() => {
+		return "Citroen C1";
+	});
+	
+	const [color, setColor] = useState(() => {
+		return "Red";
+	});
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;The car is a: {name}&lt;/p&gt;
+			&lt;p&gt;The colour of the car is: {color}&lt;/p&gt;
+		&lt;/&gt;
+	)
+}
+
+export default Car;
+
+	</code>
+</pre>	
+
+						<p>We can also combine both states into a single Hook that holds an object.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Car = () => {
+
+	const [car, setCar] = useState({
+		name: "Citroen C1",
+		color: "Red"
+	});
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;The car is a: {car.name}&lt;/p&gt;
+			&lt;p&gt;The colour of the car is: {car.color}&lt;/p&gt;
+		&lt;/&gt;
+	)
+}
+
+export default Car;
+
+	</code>
+</pre>
+
+						<p>Here we are building a simple Counter component in JavaScript to increase or decrease the count.</p>
+
+<pre>
+	<code>
+
+import React, { useState } from 'react';
+
+const Counter = () => {
+	
+	const [count, setCount] = useState(() => {
+		return 0;
+	});
+
+	const increaseCount = () => {
+		setCount(prevCount => prevCount + 1)
+	}
+
+	const decreaseCount = () => {
+		setCount(prevCount => prevCount -1)
+	}
+
+	return (
+
+		&lt;p&gt;{count}&lt;/p&gt;
+
+		&lt;button onClick={increaseCount}&gt;Add&lt;/button&gt;
+		&lt;button onClick={decreaseCount}&gt;Remove&lt;/button&gt;
+
+	);
+}
+
+export default Counter;
+
+	</code>
+</pre>
+
+						<h3>TypeScript</h3>
+
+						<p>When using TypeScript, import the <strong>useState</strong> hook next to <strong>FunctionalComponent</strong>.</p>
+
+<pre>
+	<code>
+
+import React, { FunctionalComponent, useState } from 'react';
+
+	</code>
+</pre>
+
+						<p>Here is a counter that is written in TypeScript and uses the useState hook.</p>
+
+<pre>
+	<code>
+
+import React, { FunctionalComponent, useState } from 'react';
+
+// Our initial prop sets a default value of 0 as the initial value
+const Counter: FunctionalComponent&lt;{ initial?: number }&gt; = ({ initial = 0 }) => {
+	
+	// We pass the value from the initial prop into the component state
+	const [count, setCount] = useState(initial);
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;{count}&lt;/p&gt;
+
+			&lt;button onClick={() => setCount(count +1)}&gt;Add&lt;/button&gt;
+			&lt;button onClick={() => setCount(count -1)}&gt;Remove&lt;/button&gt;
+		&lt;/&gt;
+	)
+}
+
+export default Counter;
+
+	</code>
+</pre>
+
+						<p>We could perhaps simplify this component:</p>
+
+<pre>
+	<code>
+
+import React, { FC, useState } from 'react';
+
+interface CounterProps {
+	initial?: number;
+}
+
+// Our initial prop sets a default value of 0 as the initial value
+const Counter: FC&lt;CounterProps&gt; = ({ initial = 0 }) => {
+	
+	// We pass the value from the initial prop into the component state
+	const [count, setCount] = useState(initial);
+
+	return (
+		&lt;&gt;
+			&lt;p&gt;{count}&lt;/p&gt;
+
+			&lt;button onClick={() => setCount(count +1)}&gt;Add&lt;/button&gt;
+			&lt;button onClick={() => setCount(count -1)}&gt;Remove&lt;/button&gt;
+		&lt;/&gt;
+	)
+}
+
+export default Counter;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>The useEffect Hook</h2>
+
+						<p>The <strong>useEffect</strong> Hook is here for all side effects. Adding event listeners, changing things in the document, fetching data, timers and much more. This Hook is used for everything you would use component lifecycle methods for (<strong>componentDidUpdate, componentDidMount, componentWillUnmount</strong>).</p>
+
+						<p>This Hook accepts two arguments, although the second argument is optional.</p>
+
+						<p>No dependencies are passed, the useEffect Hook will run on every render:</p>
+
+<pre>
+	<code>
+
+useEffect(() => {
+	
+	// Runs on every render
+
+});
+
+	</code>
+</pre>
+
+						<p>If we add an empty array as the second argument (optional), the useEffect Hook will only run on the first render:</p>
+
+<pre>
+	<code>
+
+useEffect(() => {
+	
+	// Runs on first render
+
+}, []);
+
+	</code>
+</pre>
+
+						<p>With this syntax, we can run the useEffect Hook either on the first render or anytime the dependencies change, such as props or state:</p>
+
+<pre>
+	<code>
+
+useEffect(() => {
+	
+	// Runs on first render, or when the dependencies change.
+
+}, [prop, state]);
+
+	</code>
+</pre>
+
+						<p>To summarise:</p>
+
+						<ul>
+							<li>A function that is called without any arguments. This is the side-effect you want to call.</li>
+							<li>An array of values of type <strong>any</strong>. This argument is optional. If this is not provided, the function is called each time the component updates. If the second argument (optional) is provided, React will check if those values did change and trigger the function only if there's a difference.</li>
+						</ul>
+
+						<p>The useEffect Hook is imported in the same way as any other Hook:</p>
+
+<pre>
+	<code>
+
+import React, { useEffect } from 'react';
+
+	</code>
+</pre>
+
+						<p>To import multiple Hooks:</p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+	</code>
+</pre>
+
+						<p>A standard use case:</p>
+
+<pre>
+	<code>
+
+// Set a default value in the component's state using the useState Hook
+const [name, setName] = useState("Dan");
+
+useEffect(() => {
+	
+	document.title = `Hello ${name}`;
+
+}, [name]);
+
+	</code>
+</pre>
+
+						<p>In this example, the useEffect Hook will only run on the first render of the component or if the name state value changes, which will then update the document title.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="../react/introduction.html">Introduction to React</a></li>
+							<li><a href="https://fettblog.eu/typescript-react/hooks/" target="_blank" rel="noopener noreferrer">TypeScript and React: Hooks</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
