@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to Regex">
+
+	<title>Code | JavaScript | Regex</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Regex</h1>
+
+						<p class="intro__copy">Regular Expressions (Regex) is a sequence of characters that specifies a search pattern within a string.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>What is Regex?</h2>
+
+						<p>Regex stands for Regular Expression and is a sequence of characters used to specify a search pattern. In JavaScript, Regex is used in many applications, including form validation. Essentially, Regex are text patterns that we can use to match, or replace, elements within strings.</p>
+
+						<p>To check our Regular Expressions, we can use online Regex checkers:</p>
+
+						<ul>
+							<li><a href="https://regex101.com/" target="_blank" rel="noopener noreferrer">https://regex101.com/</a></li>
+							<li><a href="https://regexr.com/" target="_blank" rel="noopener noreferrer">https://regexr.com/</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Creating a Regular Expression</h2>
+
+						<p>You can construct a regular expression in one of two ways:</p>
+
+						<p>Using a regular expression literal, which consists of a pattern enclosed between slashes, which compiles when the script is loaded:</p>
+
+<pre>
+	<code>
+
+const regex = /ab+c/;
+
+	</code>
+</pre>
+
+						<p>Or, we can call the constructor function of the <strong>RegExp</strong> object:</p>
+
+<pre>
+	<code>
+
+const regex = new RegExp('ab+c');
+
+	</code>
+</pre>
+
+						<p>We use the literal method if the expression remains constant and the constructor function when we know the Regex will change, such as from user input.</p>
+					</section>
+
+					<section>
+						<h2>Syntax</h2>
+
+						<p>Regex is made up of simple characters and patterns.</p>
+
+						<h3>Direct match</h3>
+
+						<p>For example, the following pattern will match with a string only when the exact sequence of "abc" occurs in the same order:</p>
+
+<pre>
+	<code>
+
+/abc/
+
+	</code>
+</pre>
+
+						<ul>
+							<li>Hi, do you know your <strong>abc</strong>'s?</li>
+							<li>The latest place designs evolved from sl<strong>abc</strong>raft.</li>
+						</ul>
+
+						<p>There would be no match in the string "Grab crab" because while it contains "ab c", it does not contain the exact substring of "abc".</p>
+
+						<p>Further examples:</p>
+
+<pre>
+	<code>
+
+"the" =&gt; The fat cat sat on <u>the</u> mat.
+
+"The" =&gt; <u>The</u> fat cat sat on the mat
+
+	</code>
+</pre>
+
+						<h3>The Full Stop</h3>
+
+						<p>The full stop (.) is the simplest example of a meta character. This matches any single character. For example, the Regex of <strong>.ar</strong> means, any character, followed by the letter <strong>a</strong>, followed by the letter <strong>r</strong>.</p>
+
+<pre>
+	<code>
+
+".ar" =&gt; The <u>car</u> <u>par</u>ked in the <u>gar</u>age.
+
+	</code>
+</pre>
+
+						<h3>The Caret</h3>
+
+						<p>The caret symbol (^) is used to check if a matching character is the first character of a string.</p>
+
+						<p>If we apply <strong>^a</strong>, meaning "a" is the starting character to the string "abc", it will match "a". If we apply the Regex of <strong>^b</strong> to the same string, it won't match because "b" is not the starting character in the "abc" string.</p>
+
+						<p>In this example, the first character in the string must either be an uppercase "T" or a lowercase "t".</p>
+
+<pre>
+	<code>
+
+"^(T|t)" =&gt; <u>T</u>he car is parked in the garage.
+
+	</code>
+</pre>
+
+						<p>We can extend this further to match the first character of "T" or "t" followed by a lowercase "h" and "e":</p>
+
+<pre>
+	<code>
+
+"^(T|t)he" =&gt; <u>The</u> car is parked in the garage.
+
+	</code>
+</pre>
+
+						<p>Then to find all instances of "The" or "the" in the string, we can remove the caret.</p>
+
+<pre>
+	<code>
+
+"(T|t)he" =&gt; <u>The</u> car is parked in <u>the</u> garage.
+
+	</code>
+</pre>
+
+						<h3>The Question Mark</h3>
+
+						<p>The meta character (?) makes the preceding character optional. For example, the Regex below will search for an uppercase "T" followed by a lowercase "h" followed by a lowercase "e".</p>
+
+<pre>
+	<code>
+
+"[T]he" =&gt; <u>The</u> car is parked in the garage.
+
+"[T]?he" =&gt; <u>The</u> car is parked in t<u>he</u> garage.
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener noreferrer">MDN: Regex</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet" target="_blank" rel="noopener noreferrer">MDN: Regex Cheatsheet</a></li>
+							<li><a href="https://github.com/ziishaned/learn-regex" target="_blank" rel="noopener noreferrer">GitHub: Learn Regex</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
