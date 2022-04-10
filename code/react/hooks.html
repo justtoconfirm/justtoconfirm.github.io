@@ -429,6 +429,75 @@ useEffect(() => {
 					</section>
 
 					<section>
+						<h2>The useContext Hook</h2>
+
+						<p>React's <strong>useContext</strong> Hook makes it easier to pass data throughout your application without manually passing props down the tree (called "prop drilling"). It makes up part of React's <strong>Context API</strong> (the other parts being the Provider and Consumer components). Context can make a nice simple alternative to Redux when your data is simple or your app is small.</p>
+
+						<p>It is a way to manage state globally. It can be used together with the useState Hook to share state between nested components.</p>
+
+						<p>State should be held within the parent component. We can pass the state as props through each nested component. This is called "prop drilling". Creating context avoids this issue.</p>
+
+						<p>To create context, we must import <strong>createContext</strong>:</p>
+
+<pre>
+	<code>
+
+import { useState, createContext } from 'react';
+
+const UserContext = createContext();
+
+	</code>
+</pre>
+
+						<p>In order to use the Context in a child component, we need to access it using the useContext Hook.</p>
+
+						<p>First, include the useContext in the import statement:</p>
+
+<pre>
+	<code>
+
+import { useState, createContext, useContext } from 'react';
+
+	</code>
+</pre>
+
+						<p>Here's the full code example:</p>
+
+<pre>
+	<code>
+
+import React, { useState, createContext, useContext } from 'react';
+
+const UserContext = createContext();
+
+const ComponentOne = () => {
+
+	const [user, setUser] = useState("Dan");
+
+	return (
+		&lt;UserContext.Provider value={user}&gt;
+			&lt;h1&gt;{`Hello ${user}`}&lt;/h1&gt;
+		&lt;/UserContext.Provider&gt;
+	);
+}
+
+const ComponentFive = () => {
+
+	const user = useContext(UserContext);
+
+	return (
+		&lt;&gt;
+			&lt;h1&gt;{`Hello ${user}`}&lt;/h1&gt;
+		&lt;/&gt;
+	);
+
+}
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Custom Hooks</h2>
 
 						<p>Hooks are reusable functions. When we have component logic that needs to be used by multiple components, we can extract this logic and create a custom Hook. As with any Hook, the naming convention should start with <strong>use</strong>, such as <strong>useFetch</strong>.</p>
@@ -536,6 +605,8 @@ export default ToDoList;
 							<li><a href="../react/introduction.html">Introduction to React</a></li>
 							<li><a href="https://fettblog.eu/typescript-react/hooks/" target="_blank" rel="noopener noreferrer">TypeScript and React: Hooks</a></li>
 							<li><a href="https://www.w3schools.com/react/react_customhooks.asp" target="_blank" rel="noopener noreferrer">W3Schools: Custom Hooks</a></li>
+							<li><a href="https://www.w3schools.com/react/react_usecontext.asp" target="_blank" rel="noopener noreferrer">W3Schools: useContext Hook</a></li>
+							<li><a href="https://daveceddia.com/usecontext-hook/" target="_blank" rel="noopener noreferrer">Dave Ceddia: useContext Hook</a></li>
 						</ul>
 					</section>
 
