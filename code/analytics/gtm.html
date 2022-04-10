@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to Google Tag Manager (GTM)">
+
+	<title>Code | Analytics | Google Tag Manager (GTM)</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Google Tag Manager (GTM)</h1>
+
+						<p class="intro__copy">GTM is a Tag Management System (TMS) that allows us to instantly deploy tags and tagging to a website or mobile app.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+					<section>
+						<h2>Introduction to GTM</h2>
+
+						<p>Here is a simple introduction to GTM:</p>
+
+						<ul>
+							<li><strong>Tags</strong> - Tags contain the tracking code that is added to your website. Google provides some templated tags for Google Analytics and other third parties. Custom tags can also be created to suit your needs.</li>
+							<li><strong>Triggers</strong> - Formally called rules, they control when a tag should be fired, on certain pages or upon certain user interactions. A tag can have more than one trigger.</li>
+							<li><strong>Variables</strong> - Formally called macros, they store information about the page of your website and the element on it. We can reuse variables across any number of rules and tags.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Adding Google Tag Manager (GTM) to a website</h2>
+
+						<p>The GTM code snippet to add to your website can be found within your Google Tag Manager account dashboard.</p>
+
+						<p>It is highly recommended that you place the GTM <strong>&lt;script&gt;</strong> code into the <strong>&lt;head&gt;</strong> section of your website code. For better tracking, the higher up the code snippet is, the faster it will be loaded.</p>
+
+						<p>Older versions of GTM recommended that the code snippet be placed in the <strong>&lt;body&gt;</strong> tag, but this would potentially miss uses that had left the page before the <strong>&lt;body&gt;</strong> tag loaded due to slow page speeds. The lower the tracking codes are placed in the website's code, the later the tracking will load.</p>
+
+						<p>Google Tag Manager (GTM) can be used to add Google Analytics code to your website.</p>
+
+						<p>If our website is already using Google Tag Manager (GTM) then the <strong>gtag.js</strong> script is not necessary to be added. Google Analytics (GA) can be added using an analytics tag within GTM.</p>
+					</section>
+
+					<section>
+						<h2>What is the data layer?</h2>
+
+						<p>The <strong>data layer</strong> is a JSON (JavaScript Object Notation) object used by Google Tag Manager (GTM) that temporarily stores the information you need.</p>
+
+						<p>The data layer object will be within the GTM script code and will look like this:</p>
+
+<pre>
+	<code>
+
+window.dataLayer = window.dataLayer || [];
+
+	</code>
+</pre>
+
+						<p>The data layer is like a virtual layer of your website which contains various data points that GTM can use within tags, triggers and/or variables.</p>
+
+						<p>This data can then be transferred to other tools such as Google Analytics (GA), Google Ads, Facebook Pixel, or any further tools/applications.</p>
+
+						<p>When the GTM script/code is placed on a web page it automatically creates the data layer.</p>
+
+						<ul>
+							<li>The website will push data to the data layer.</li>
+							<li>The data layer is then used by GTM to temporarily store this data.</li>
+							<li>We can then push this data to tools such as GA (Google Analytics).</li>
+						</ul>
+
+						<h3>Pushing data to the data layer</h3>
+
+						<p>The recommended way to push data to the data layer is to use the <strong>push()</strong> method:</p>
+
+<pre>
+	<code>
+
+dataLayer.push()
+
+	</code>
+</pre>
+
+						<p>It's often useful to prefix the <strong>window</strong> object to the <strong>dataLayer.push()</strong> method to push the data to the data layer.</p>
+
+						<p>The push to the data layer can be placed above or below the GTM container.</p>
+
+<pre>
+	<code>
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+	'event': 'new_subscriber'
+});
+
+	</code>
+</pre>
+
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

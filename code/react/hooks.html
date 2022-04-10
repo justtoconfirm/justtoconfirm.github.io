@@ -429,11 +429,113 @@ useEffect(() => {
 					</section>
 
 					<section>
+						<h2>Custom Hooks</h2>
+
+						<p>Hooks are reusable functions. When we have component logic that needs to be used by multiple components, we can extract this logic and create a custom Hook. As with any Hook, the naming convention should start with <strong>use</strong>, such as <strong>useFetch</strong>.</p>
+
+						<p>Within the following code, we are fetching fake data from the <strong>JSONPlaceholder</strong> service and rendering it inside a component. This component will be called <strong>ToDoList</strong></p>
+
+<pre>
+	<code>
+
+import React, { useState, useEffect } from 'react';
+
+const ToDoList = () => {
+
+	// Set the component state to have no default value using the useState Hook
+	const [data, setData] = useState(null);
+
+	// Run the useEffect Hook on the first render and use the Fetch API to get the API data
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/todos")
+			.then((res) => res.json())
+			.then((data) => setData(data));
+	}, []);
+
+	return (
+		&lt;&gt;	
+			// Use map to loop over the data and output the title
+			{data &&
+				data.map((item) => {
+					return &lt;p key={item.id}&gt;{item.title}&lt;/p&gt;;
+				})
+			}
+		&lt;/&gt;
+	);
+};
+
+export default ToDoList;
+
+	</code>
+</pre>
+
+						<p>This fetch logic maybe needed in other components. For this reason, we can extract that into a custom Hook.</p>
+
+						<p>Our custom Hook will be named <strong>useFetch.js</strong>. We may want to place this inside a directory called <strong>Hooks</strong> within our project folder.</p>
+
+<pre>
+	<code>
+
+import { useState, useEffect } from 'react';
+
+const useFetch = (url) => {
+
+	const [data, setData] = useState(null);
+
+	useEffect(() => {
+		fetch(url)
+			.then((res) => res.json())
+			.then((data) => setData(data));
+	}, [url]);
+
+	return [data];
+};
+
+export default useFetch;
+
+	</code>
+</pre>
+
+						<p>Then inside our component, we can make use of the <strong>useFetch</strong> custom Hook we've just written.</p>
+
+						<p>We removed the hard-coded URL and replaced it with a url variable that can be passed to the custom Hook.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import useFetch from './useFetch';
+
+const ToDoList = () => {
+
+	const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
+
+	return (
+		&lt;&gt;
+			{data &&
+				data.map((item) => {
+					return &lt;p key={item.id}&gt;{item.title}&lt;/p&gt;;
+				})
+			}
+		&lt;/&gt;
+	);
+};
+
+export default ToDoList;
+
+	</code>
+</pre>
+
+						<p>Now we can reuse this custom Hook in any component to fetch data from any URL.</p>
+					</section>
+
+					<section>
 						<h2>Useful Links</h2>
 
 						<ul>
 							<li><a href="../react/introduction.html">Introduction to React</a></li>
 							<li><a href="https://fettblog.eu/typescript-react/hooks/" target="_blank" rel="noopener noreferrer">TypeScript and React: Hooks</a></li>
+							<li><a href="https://www.w3schools.com/react/react_customhooks.asp" target="_blank" rel="noopener noreferrer">W3Schools: Custom Hooks</a></li>
 						</ul>
 					</section>
 

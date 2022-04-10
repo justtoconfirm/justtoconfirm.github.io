@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to Google Analytics (GA)">
+
+	<title>Code | Analytics | Google Analytics (GA)</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Google Analytics (GA)</h1>
+
+						<p class="intro__copy">Google Analytics (GA) is used as an analytics tool to reveal who is visiting your website.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+					<section>
+						<h2>What is Google Analytics (GA)?</h2>
+
+						<p>Google Analytics (GA) is used as an analytics tool to reveal who is visiting your website. The data collected can then be used to continually improve your website.</p>
+
+						<p>A property in Google Analytics (GA) needs to be setup which allows you to generate a <strong>tracking ID</strong>. This tracking ID is a unique identifier created for your Google Analytics (GA) account.</p>
+
+						<p>Google Analytics allows:</p>
+
+						<ul>
+							<li>Tracking the number of visitors to our website.</li>
+							<li>Understand the time spent on the website.</li>
+							<li>Record goal conversions.</li>
+							<li>much more...</li>
+						</ul>
+
+						<p>Google Analytics (GA) will automatically begin measuring traffic to your website and user interactions such as: page scrolls, site searches, engagement, downloads, and much more.</p>
+
+						<p>The <strong>Google Tag Assistant</strong> Chrome extension can be used to test that GA has been setup on a website. This is a legacy product but still works.</p>
+
+						<h3>gtag.js</h3>
+
+						<p>Once the tracking ID has been identified we will ned to get our tracking code snippet which can be found as the <strong>Global Site Tag (gtag.js)</strong>. The gtag.js is the tracking code for this property.</p>
+
+						<p>gtag.js was launched in 2017 and is a newer and more expanded version of analytics.js.</p>
+
+						<p>This gtag.js code snippet will need to be copied and pasted into every webpage we want to track in Google Analytics (GA) within our website.</p>
+
+						<p>This gtag.js snippet is often pasted right after the opening <strong>&lt;head&gt;</strong> tag on each page of the website you want to track.</p>
+
+						<p>If using Google Tag Manager (GTM), we can use a tag to add Google Analytics (GA) instead of using the gtag.js code snippet.</p>
+					</section>
+
+					<section>
+						<h2>Introducing Google Analytics 4 (GA4)</h2>
+
+						<p>Google Analytics 4 (GA4) is a web analytics tool from Google that lets you track and measure user traffic and behaviour on your website. It is used by an estimated 28.8 million websites, giving an estimated 85.9% share of the web analytics market.</p>
+
+						<p>GA4 replaced Universal Analytics in October 2020 and is now the default Google Analytics (GA) property.</p>
+
+						<p>Data within Google Analytics 4 (GA4) can be exported into a PDF or CSV file format.</p>
+					</section>
+
+					<section>
+						<h2>Page View Tracking</h2>
+
+						<p>A <strong>pageview</strong> is defined as a view of a page on your website that is being tracked by the Analytics tracking code.</p>
+
+						<p>If a user clicks reload after reaching a web page, this is counted as an additional pageview. if a user navigates to a different page than returns to the original page, a second pageview is recorded.</p>
+
+						<p>To confirm if pageview is defined:</p>
+
+						<ul>
+							<li>Open the <strong>Network</strong> tab in the browser <strong>DevTools</strong>.</li>
+							<li>Refresh the webpage.</li>
+							<li>Type 'google' into the <strong>Filter</strong> field inside the Network tab.</li>
+							<li><strong>t=pageview</strong> within the <strong>Name</strong> field would suggest that GA pageview is active. We may see this as a URL parameter (t is the track type).</li>
+						</ul>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

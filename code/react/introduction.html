@@ -152,6 +152,28 @@
 </div>
 <!-- / Terminal -->
 
+						<h3>Install React 18</h3>
+
+						<p>Updating from React 17 to React 18 requires a very simple update:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install react@18 react-dom@18
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
 						<h3>File Structure</h3>
 
 						<p>Once a React application has been setup with JavaScript, the file structure will look something like this:</p>
@@ -216,6 +238,30 @@ project /
 					</section>
 
 					<section>
+						<h2>Strict Mode</h2>
+
+						<p>StrictMode is a tool for highlighting potential problems in an application. StrictMode does not render any visible UI, it simply activates additional checks and warnings. Checks are run in development mode only and do not impact the production build.</p>
+
+<pre>
+	<code>
+
+const Component = () => {
+	return (
+		&lt;&gt;
+			&lt;React.StrictMode&gt;
+				&lt;h1&gt;Test of StrictMode&lt;/h1&gt;
+			&lt;/React.StrictMode&gt;
+		&lt;/&gt;
+	);
+}
+
+	</code>
+</pre>
+
+						<p>When StrictMode is enabled, React will log warning messages and information in the console.</p>
+					</section>
+
+					<section>
 						<h2>Import React</h2>
 
 						<p>We need to import the React library to make JSX compile.</p>
@@ -247,6 +293,18 @@ import * as React from 'react';
 
 	</code>
 </pre>
+
+						<h3>Update to React 18</h3>
+
+						<p>Go to your root entry file, typically this will be <strong>index.js</strong> and change the <strong>react-dom</strong> import:</p>
+
+<pre>
+	<code>
+
+import ReactDOM from 'react-dom/client';
+
+	</code>
+</pre>
 					</section>
 
 					<section>
@@ -274,6 +332,24 @@ ReactDOM.render(
 	<code>
 
 &lt;div id="root"&gt;&lt;/div&gt;
+
+	</code>
+</pre>
+
+						<h3>Update to React 18</h3>
+
+						<p>When React 18 is installed, replace <strong>ReactDOM.render()</strong> method:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+ReactDOM.render(
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	root.render(&lt;h1&gt;Hello World&lt;/h1&gt;);
+);
 
 	</code>
 </pre>
@@ -1440,6 +1516,8 @@ export default Title;
 							<li><a href="https://codersera.com/blog/how-to-use-typescript-with-react/#:~:text=React%20is%20a%20%E2%80%9C%20JavaScript%20library%20for%20creating,create%20our%20UIs%20using%20a%20JavaScript%20typed%20version." target="_blank" rel="noopener noreferrer">How to use TypeScript with React</a></li>
 							<li><a href="https://felixgerschau.com/react-typescript-components/" target="_blank" rel="noopener noreferrer">React TypeScript Components</a></li>
 							<li><a href="https://fettblog.eu/typescript-react/context/" target="_blank" rel="noopener noreferrer">TypeScript and React: Context</a></li>
+							<li><a href="https://academind.com/tutorials/react-18-update-guide" target="_blank" rel="noopener noreferrer">React 18: update guide</a></li>
+							<li><a href="https://reactjs.org/docs/strict-mode.html" target="_blank" rel="noopener noreferrer">React StrictMode</a></li>
 						</ul>
 					</section>
 
