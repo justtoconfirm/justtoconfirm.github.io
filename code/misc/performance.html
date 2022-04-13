@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Performance">
+
+	<title>Code | Other | Performance</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Performance</h1>
+
+						<p class="intro__copy">Measuring and improving the performance of you pages and applications.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+					<section>
+						<h2>Lighthouse Metrics</h2>
+
+						<p>Here are the explinations of the metrics in Lighthouse:</p>
+
+						<ul>
+							<li><strong>FCP (First Contentful Paint)</strong> - measures how long it takes the browser to render the first piece of DOM (Document Object Model) content after the user navigates to the webpage. Anything within an &lt;iframe&gt; is not included in this metric. 0-1.8 seconds (Green), 1.8-3 seconds (Orange), 3 seconds and above (Red)</li>
+							<li><strong>TTI (Time to Interactive)</strong> - measures how long it takes a page to become fully interactive. This is when the page displayes useful content, event handlers are registered and the page responds to user interactions within 50 milliseconds. 0-3.8 seconds (Green), 3.9-7.3 seconds (Orange), 7.3 seconds and above (Red)</li>
+							<li><strong>Speed Index</strong> - measures how quickly content is visually displayed during page load. Lighthouse will first capture a video of the page loading in the browser and computes the visual progression between frames. 0-3.4 seconds (Green), 3.4-5.8 seconds (Orange), 5.8 seconds and above (Red)</li>
+							<li><strong>Total Blocking Time (TBT)</strong> - measures the total amount of time that a page is blocked from responding to user input, such as mouse clicks. 0-200 m/s (Green), 200-600 m/s (Orange), 600 m/s and above (Red)</li>
+							<li><strong>LCP (Largest Contentful Paint)</strong> - measures the perceived load speed. It marks the point in the page load timeline when the page's main content has likely loaded. This metric reports the render time of the largest image or text block visible within the viewport relative to when the page first started loading.</li>
+							<li><strong>CLS (Cumulative Layout Shift)</strong> - measures unexpected layout shifts that occur during the lifespan of a page. For example, the user attempts to click a button on the page, something renders and the page layout changes. This is a layout shift. A layout shift occurs any time a visible element changes its position from one rendered frame to the next. A score of 0.1 or less is a good CLS score.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Minification</h2>
+
+						<p>Every unnecesary piece of code adds to the size of our page and increases the time it takes to load. It is important to minimise files where possible to eliminate white space, line breaks, indentations, and remove comments. This will help to ensure that our pages are as lean as possible.</p>
+
+						<p>Often minified files will have the file extension of: <strong>.min.js</strong> or <strong>.min.css</strong></p>
+					</section>
+
+					<section>
+						<h2>Preload</h2>
+
+						<p>The preload value of a <strong>&lt;link&gt;</strong> element lets us declare fetch requests in the &lt;head&gt; section of our HTML document. This ensures the resources are available earlier and are less likely to block to page render. This helps to improve performance.</p>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
