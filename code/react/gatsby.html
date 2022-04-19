@@ -61,7 +61,7 @@
 					<section>
 						<h2>Introduction</h2>
 
-						<p>Gatsby is a framework rather than a library because it comes with eveerything included out-of-the-box, including Routing, Data Management, build process, and much more.</p>
+						<p>Gatsby is a framework rather than a library because it comes with everything included out-of-the-box, including Routing, Data Management, build process, and much more.</p>
 
 						<p>Gatsby uses a few technologies under the hood:</p>
 
@@ -69,6 +69,8 @@
 							<li><strong>React</strong> - A JavaScript library for building user interfaces. React is used to build pages and structure content.</li>
 							<li><strong>GraphQL</strong> - A query language that allows us to pull data into our website. GraphQL is used by Gatsby for managing site data.</li>
 						</ul>
+
+						<p>React is the JavaScript library that Gatsby uses under the hood to create User Interfaces (UI). With React, we can break down our UI into smaller, reusable pieces called <strong>components</strong>.</p>
 					</section>
 
 					<section>
@@ -144,6 +146,47 @@
 					</section>
 
 					<section>
+						<h2>File Structure</h2>
+
+						<p>Once created, the file structure of our Gatsby site should look like this:</p>
+
+<pre>
+	<code>
+
+project /
+	|__node_modules /
+	|__src /
+		|__components /
+			header.js
+			layout.css
+			layout.js
+			seo.js
+		|__images /
+			gatsby-astronaut.png
+			gatsby-icon.png
+		|__pages /
+			404.js
+			index.js
+			page-2.js
+			using-ssr.js
+			using-typescript.tsx
+	.gitignore
+	.prettierignore
+	.prettierrc
+	gatsby-browser.js
+	gatsby-config.js
+	gatsby-node.js
+	gatsby-ssr.js
+	LICENCE
+	package-lock.json
+	package.json
+	README.md
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Running Gatsby</h2>
 
 						<p>Now that the Gatsby website is setup and installed, we can begin development.</p>
@@ -193,6 +236,8 @@ project /
 </pre>
 
 						<p>Pages in Gatsby are built using React functional components and are referred to as <strong>Page Components</strong>.</p>
+
+						<p>Gatsby automatically creates pages for React components that are the default export of files in the <strong>src/pages</strong> directory.</p>
 
 						<p>If pages are updated or new pages added, the development server will reload and the changes will be visible.</p>
 
@@ -259,9 +304,11 @@ import { Link } from 'gatsby';
 
 						<p>The data layer is powered by a technology called <strong>GraphQL</strong>.</p>
 
-						<p>Gatsby creates an endpoint that allows us to explore the data layer using an in-browser tool called <strong>GraphiQL</strong>: <a href="http:://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http:://localhost:8000/___graphql</a>. We can use this tool to test our GraphQL queries before we add them into our components.</p> 
+						<p>Gatsby creates an endpoint that allows us to explore the data layer using an in-browser tool called <strong>GraphiQL</strong>: <a href="http:://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http:://localhost:8000/___graphql</a>. We can use this IDE tool to test our GraphQL queries before we add them into our components and explore our site's data and schema.</p> 
 
 						<p>All the data we need for our site is kept within the data layer and accessed by Gatsby. Within the data layer we can combine data from multiple sources.</p>
+
+						<img src="img/data-layer.png" alt="Digram showing the data layer">
 
 						<p>Examples of data:</p>
 

@@ -78,13 +78,361 @@
 
 						<p>Every unnecesary piece of code adds to the size of our page and increases the time it takes to load. It is important to minimise files where possible to eliminate white space, line breaks, indentations, and remove comments. This will help to ensure that our pages are as lean as possible.</p>
 
+						<p>Minifying JavaScript files can reduce payload sizes and script parse time. Lighthouse will report all unminified JavaScript files, along with potential savings in <strong>Kibibytes (KiB)</strong> when these files are minified.</p>
+
+						<p><a href="https://github.com/terser/terser" target="_blank" rel="noopener noreferrer">Terser</a> is a popular JavaScript compression tool. Webpack 4 includes a plugin for this library by default to create minified build files.</p>
+
 						<p>Often minified files will have the file extension of: <strong>.min.js</strong> or <strong>.min.css</strong></p>
 					</section>
 
 					<section>
-						<h2>Preload</h2>
+						<h2>Images</h2>
 
-						<p>The preload value of a <strong>&lt;link&gt;</strong> element lets us declare fetch requests in the &lt;head&gt; section of our HTML document. This ensures the resources are available earlier and are less likely to block to page render. This helps to improve performance.</p>
+						<p>We should always include <strong>width</strong> and <strong>height</strong> size attributes on your images and video elements. This ensures the browser can allocate the correct amount of space in the document while the image is loading.</p>
+
+						<p>The height and width attributes do not include units. These "pixel" dimensions would ensure a 640x360 area would be reserved.</p>
+
+						<p>In the early days of the web, developers would add width and height attributes to the <strong>&lt;img&gt;</strong> tags to ensure sufficient space as allowed on the page before the browser started fetching the images. This would minimize reflow and re-layout.</p>
+
+
+<pre>
+	<code>
+
+&lt;!-- set a 640:360 i.e a 16:9 - aspect ratio --&gt;
+&lt;img src="puppy.jpg" width="640" height="360" alt="Puppy with balloons"&gt;
+
+	</code>
+</pre>
+
+						<p>When <strong>Responsive Web Design (RWD)</strong> was introduced, developers began to omit width and height, using CSS to resize images instead.</p>
+
+<pre>
+	<code>
+
+img {
+	width: 100%;	/* or max-width: 100%; */
+	height: auto;
+}
+
+	</code>
+</pre>
+
+						<p>The downside to this approach is space could only be allocated for an image once it began to download and the browser could determine its dimensions. As images loaded in, the page would reflow as each image appeared on screen. This is where the <strong>aspect ratio</strong> comes in.</p>
+
+						<p>The aspect ratio of an image is the ratio of its width to its height. It's common to see it expressed as two numbers separated by a colon, for example 16:9 or 4:3. The image is x units wide and y units high.</p>
+
+						<p>An aspect ratio describes the relationship between an element's width and height. For example, an aspect ratio of 1:1 would say that the width and height of an element are always th same, a square, whereas an aspect ratio of 16:9 says that the element has 16 units of width for every 9 units of height.</p>
+
+						<ul>
+							<li>For example, if puppy.jpg is 360px height, width is 360 x (16/9) = 640px.</li>
+							<li>For example, if puppy.jpg is 640px width, height is 640 x (9/16) - 360px.</li>
+						</ul>
+
+						<p>Knowing the aspect ratio allows the browser to calculate and reserve sufficient space for the height and associated area.</p>
+
+						<p><a href="https://aspectratiocalculator.com/16-9.html" target="_blank" rel="noopener noreferrer">Aspect Ratio calculator</a></p>
+
+						<p>Modern browsers now set the default aspect ratio of images based on an image's width and height attribute so it's valuable to set them to prevent layout shifts. This it automatically applied using the <strong>aspect-ratio</strong> CSS property to any element that has an explicit width and height set as HTML attributes.</p>
+
+						<p>Each browser has a basic stylesheet that gives a default style to any document. These stylesheets are named <strong>user-agent stylesheets (UA Stylesheets)</strong>. Some browsers let users modify the user-agent stylesheet. To simplify the development process, developers will often use a CSS reset style sheet, forcing common properties and values to a known state before beginning to make alterations to suit their specific needs.</p>
+
+						<p>The UA stylesheets of all browsers adds a default aspect ratio based on the element's existing width and height attributes.</p>
+
+						<p>The browser would use these two numbers to compute the image's aspect ratio, applying this CSS as part of the user-agent stylesheet:</p>
+
+<pre>
+	<code>
+
+img {
+	aspect-ratio: auto 640 / 360;
+}
+
+	</code>
+</pre>
+
+						<p>Because our browser already knows the width of the image's containing block, it knows the image's aspect ratio because we've provided a width and height as HTML attributes. It can therefore calculate the precise height the image will occupy once it's been downloaded. Thus, the browser can reserve that amount of space ahead of time preventing a layout shift from occuring later on.</p>
+
+						<p>To recap, this markup:</p>
+
+<pre>
+	<code>
+
+&lt;img src="puppy.jpg" width="640" height="360" alt="Puppy with balloons"&gt;
+
+	</code>
+</pre>	
+
+						<p>Will produce this CSS:</p>
+
+<pre>
+	<code>
+
+img {
+	width: 640px;
+	height: 360px;
+	aspect-ratio: auto 640 / 360;
+}
+
+	</code>
+</pre>		
+
+						<p>If we were to stop here, our images would always render at the width and height that has been specified. This is not desirable because the width of the source image may actually be wider than the content area in which the image renders, especially on mobile, causing overflow.</p>
+
+						<p>The first option is to restrict the image's maximum width to its containing block:</p>
+
+<pre>
+	<code>
+
+img {
+	max-width: 100%;
+}
+
+	</code>
+</pre>
+
+						<p>This allows the image to resize its width responsively as the device width changes. The height is still fixed to whatever value has been set in the HTML height attribute.</p>
+
+						<p>Always try to use the <strong>max-width</strong> property as using width means that smaller images may end up getting stretched to fill their container, making them blurry.</p>	
+
+						<p>If we set the height property to be auto this will allow the image to resize its height relative to the currently rendered width.</p>
+
+<pre>
+	<code>
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+	</code>
+</pre>	
+
+						<p>The height set here will override the height that the browser applied when we set the HTML attribute. We are not however overriding the aspect-ratio property calculated by the browser. We only change the image's rendered height. We can therefore set any responsive width and height in our image's CSS while preserving the aspect ratio generated by the UA stylesheet.</p> 
+
+						<p>The width and height will initialise an image's aspect ratio, not for dictating the width and height of the image at which it renders, this will be the role of the CSS. Once an image has loaded in, we can use CSS to resize it differently. This will improve our CLS score as the content will no longer shift after the images once they load in and our images will be responsive.</p>
+
+						<p>If we are not using frameworks or libraries, this will have to be done by hand. Gatsby offers image plugins that automatically set a width and height at build time. </p>
+
+						<h3>srcset</h3>
+
+						<p>When workin with responsive images, <strong>srcset</strong> can be used to define the images you allow the browser to select between and what size each image is. To ensure <strong>&lt;img&gt;</strong> width and height attributes can be set, each image should use the same aspect ratio.</p>
+
+<pre>
+	<code>
+
+&lt;img
+	width="640"
+	height="360"
+	src="puppy-640.jpg"
+	srcset="puppy-1000.jpg 1000w, puppy-2000.jpg 2000w, puppy-3000.jpg 3000w"
+	alt="Puppy with balloons"
+&gt;
+
+	</code>
+</pre>
+
+						<p>Pages may wish to display images on narrow viewports with a different image displayed on desktop:</p>
+
+<pre>
+	<code>
+
+&lt;picture&gt;
+	&lt;source media="(max-width: 799px)" srcset="puppy-480w-cropped.jpg"&gt;
+	&lt;source media="(min-width: 800px)" srcset="puppy-800w.jpg"&gt;
+	&lt;img src="puppy-800w.jpg" alt="Puppy with balloons" &gt;
+&lt;/picture&gt;
+
+	</code>
+</pre>
+
+						<p>It's possible these images could have different aspect ratios.</p>
+					</section>
+
+					<section>
+						<h2>Ensure text remains visible during webfont load</h2>
+
+						<p>Fonts are often large files that take a while to load. Some browsers hide text until font loads, this can cause a <strong>Flash of Invisible Text (FOIT)</strong>.</p>
+
+						<p>Lighthouse flags any font URLs that may flash invisible text.</p>
+
+						<p>The easiest way to avoid showing invisible text while custom fonts are loading is to temporarily show a system font. By including <strong>font-display: swap</strong> in our <strong>@font-face</strong> styles, we can avoid FOIT in most modern browsers.</p>
+
+<pre>
+	<code>
+
+@font-face {
+	font-family: 'Pacifico';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico.woff2) format('woff2');
+	font-display: swap;
+}
+
+	</code>
+</pre>
+
+						<p>The <strong>font-display API</strong> specifies how a font is displayed. The <strong>swap</strong> property tells the browser that text using the font should be displayed immediately using a syste font. Once the custom font is ready, it replaces the system font. Not all major browsers support this swap property (IE is not supported), so alternative solutions will be needed for those browsers that are not supported.</p>
+
+						<p>We can also use <strong>preload</strong> to fetch font files earlier to improve performance and remove any FOUT. Place the following code in the <strong>&lt;head&gt;</strong> section of your website:</p>
+
+<pre>
+	<code>
+
+&lt;link rel="preload" href="/assets/Pacifico-Bold.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+	</code>
+</pre>
+
+						<p>The <strong>crossorigin</strong> attribute indicates whether a resource should be fetched with a CORS request as the font may come from a different domain. Without this attribute, the preloaded font is ignored by the browser.</p>
+
+						<p>Since the font is used in the page header, we can add a preload tag to fetch is sooner. It is important to preload the font file because it may style the text below the fold.</p>
+					</section>
+
+					<section>
+						<h2>Preload & Preconnect</h2>
+
+						<p>Before the browser can request a resource from a server, it must establish a connection. In each step, the browser sends a piece of data to a server and the server sends back a response. This journey, from origin to destination and back, is called a <strong>round trip</strong>. Depending on network conditions, a single round trip might take a significant amount of time. Taking care of all this ahead of time will make the application feel much faster.</p>
+
+						<p>Modern browsers try their best to anticipate what connections a page will need, but they cannot reliably predict them all. We can provide a resource hint using <strong>preconnect</strong> or <strong>preload</strong>.</p>
+
+						<p>Adding <strong>preconnect</strong> to a link informs the browser that your page intends to establish a connection to another domain. We want this process to start as soon as possible. Resources will load more quickly because the setup process has been completed by the time the browser requests them. Preconnecting is only effective for domains other than the origin domain, so you shouldn't use it for files hosted on your own site.</p>
+
+						<p>Only preconnect to critical domains you will use soon because the browser closes any connection that isn't used within 10 seconds.</p>
+
+						<p>We can speed up the load time by 100-500ms by establishing early connections to third-party origins.</p>
+
+						<p>Place the following link in the <strong>&lt;head&gt;</strong> section of your website:</p>
+
+<pre>
+	<code>
+
+&lt;link rel="preconnect" href="https://example.com"&gt;
+
+	</code>
+</pre>
+
+						<p>This lets the browser know that the page intends to connect to example.com and retrieve content from there.</p>
+
+						<p>preconnect can sometimes take up valuable CPU time, particularly on secure connections. In general try to use <strong>preload</strong> as it's a more comprehensive tweak and use preconnect for edge cases.</p>
+
+<pre>
+	<code>
+
+&lt;link rel="preload" href="https://example.com"&gt;
+
+	</code>
+</pre>
+
+						<p>The <strong>dns-prefetch</strong> is another link type related to connections. This handles DNS lookup only, but it's got wider browser support so it may serve as a nice fallback.</p>
+
+<pre>
+	<code>
+
+&lt;link rel="dns-prefetch" href="https://example.com"&gt;
+
+	</code>
+</pre>
+
+						<p>Browser support for dns-prefetch is slightly different from preconnect support so dns-prefetch can serve as a fallback for browsers that don't support preconnect, such as <a href="https://caniuse.com/?search=dns-prefetch" target="_blank" rel="noopener noreferrer">Internet Explorer (IE)</a>.</p>
+
+<pre>
+	<code>
+
+&lt;link rel="preconnect" href="https://example.com"&gt;
+&lt;link rel="dns-prefetch" href="https://example.com"&gt;
+
+	</code>
+</pre>
+
+						<p>We can also intiate a preconnect via the Link HTTP header:</p>
+
+<pre>
+	<code>
+
+Link: &lt;https://example.com/&gt;; rel=preconnect
+
+	</code>
+</pre>	
+
+						<p>A benefit of specifying a preconnect hint in the HTTP header is that it doesn't rely on markup being parsed and it can be triggered by requests for stylesheets, scripts, and more.</p>		
+					</section>
+
+					<section>
+						<h2>Avoid document.write()</h2>
+
+						<p>Using <strong>document.write()</strong> can delay the display of page content by tens of seconds and is particalar problematic for users on slow connections. Chrome therefore blocks the execution of document.write() in many cases, meaning we cannot rely on it.</p>
+
+						<p>Lighthouse flags calls to document.write() that weren't blocked by Chrome. Chrome will either block calls to document.write() or emit a console warning depending on the connection speed. This is something that affects performance no matter how it's used.</p>
+
+						<p>Remove all uses of document.write() in your code. If it's being used to inject third-party scripts, try using <strong>asynchronous loading</strong> instead. If third-party code is using document.write(), ask the provider to support asynchronous loading.</p>
+
+						<p>By default all JavaScript is <strong>render blocking</strong> because the browser does not know what the script is planning to do on the page. We can send a signal to the browser that the script does not need to be executed at the exact point where it is referenced allowing the browser to continue to parse the HTML and let the script execute when ready. To achieve this, we mark our script as <strong>async</strong>:</p>
+
+<pre>
+	<code>
+
+&lt;script src="script.js" async&gt;&lt;/script&gt;
+
+	</code>
+</pre>	
+
+						<p>The <strong>async</strong> attribute is only for external scripts.</p>
+
+						<p>This would be a script that will be downloaded in parallel to parsing the page and executed as soon as it is available. The parsing of the page is interrupted once the script is downloaded completely and then the script is executed before the parsing of the rest of the page continues.</p>
+
+						<p>Adding the asnyc keyword to the script tag tells the browser not to block DOM construction while it waits for the script to become available, which can significatly improve performance.</p>
+
+						<p>The async attribute is an asynchronous operation that executes the file as soon as it has been downloaded. As such, the total time to parse a page with async will be slightly higher as the browser will briefly stop parsing HTML to execue the file. Just be aware that async can cause errors with your website if the file is requesting information that has not yet been loaded.</p>
+
+						<p>If <strong>defer</strong> is present, and not async, the script is downloaded in parallel to parsing the page and executed after the page has finished parsing. If a JavaScript file does require information, defer is the preferred option as it ensures all content is retrieved correctly before the file is executed. The goal of both async and defer is to reduce render blocking of the page rendering and this will improve the page loading times.</p>
+
+<pre>
+	<code>
+
+&lt;script src="script.js" defer&gt;&lt;/script&gt;
+
+	</code>
+</pre>	
+
+						<p>document.write() is not blocking, but rather all script execution is blocking, unless we use defer or async. document.write() cannot be called from an asynchronous script because it's detached from the document and therefore the JS parser doesn't know where to put it.</p>
+					</section>
+
+					<section>
+						<h2>Eliminate Render Blocking</h2>
+
+						<p>Within Lighthouse, a list of all the URLs blocking the first paint of your page may be displayed. The goal is to reduce the impact of these render-blocking URLs by inlining critical resources, deferring non-critical resources, and removing anything unused.</p>
+
+						<p>Lighthouse will flag two types of render-blocking URLs: scripts and stylesheets.</p>
+
+						<p>A &lt;script&gt; tag that:</p>
+
+						<ul>
+							<li>Is in the <strong>&lt;head&gt;</strong> of the document.</li>
+							<li>Does not have a <strong>defer</strong> attribute.</li>
+							<li>Does not have an <strong>asnyc</strong> attribute.</li>
+						</ul>
+
+						<p>A &lt;link rel="stylesheet"&gt; tag that:</p>
+
+						<ul>
+							<li>Does not have a <strong>disabled</strong> attribute. When this attribute is present, the browser does not download the stylesheet.</li>
+							<li>Does not have a media attribute that matches the device specifically. <strong>media="all"</strong> is considered render-blocking.</li>
+						</ul>
+
+						<p>The first step to reducing the impact of render-blocking resources it to identify what's critical and what's not. Use the Coverage tab in Chrome DevTools to identify non-critical CSS and JS. When you load or run a page, the tab tells you how much code was used, versus how much was loaded.</p>
+
+						<p>Code in JavaScript files within Chrome DevTools Coverage tab are marked in two colours:</p>
+
+						<ul>
+							<li><strong>Green</strong> (critical) - code that's critical to the page's core functionality.</li>
+							<li><strong>Red</strong> (non-critical) - code not being used in the page's core functionality.</li>
+						</ul>
+
+						<p>Once you've identified critical code, move that code from the render-blocking URL to an inline &lt;script&gt; tag in your HTML page. When the page loads, it will have what it needs to handle the page's core functionality.</p>
+
+						<p>If there's code in a render-blocking URL that's not critical, you can keep it in the URL and then mark the URL with async or defer attributes.</p>
+
+						<p>Code that isn't being used at all should be removed.</p>
 					</section>
 				</div>
 			</div>
