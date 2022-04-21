@@ -62,10 +62,117 @@
 					<section>
 						<h2>Introduction to Testing</h2>
 
+						<p>For getting started with writing unit tests in React, you'll need the following types of tools:</p>
+
+						<ul>
+							<li>Test runner - <strong>Jest</strong>.</li>
+							<li>Testing utilities - <strong>Enzyme</strong> or <strong>React Testing Library (RTL)</strong>.</li>
+						</ul>
+
+						<p>A <strong>test runner</strong> is a program that is used to execute our tests and identify when tests are passing or failing. We can automate the execution of our unit tests and also make unit tests part of a CI pipeline.</p>
+
+						<p>In React, the most used test runner is <strong>Jest</strong>. We can run Jest in watch mode that will run our tests each time we save a file. We can also use tools such as <strong>Mocha</strong> to test our React components, which provides similar features.</p>
+
+						<p>Testing utilities, such as <strong>Enzyme</strong> and <strong>React Testing Library (RTL)</strong> are the most widely used utility tools for React. They help to make testing React components much easier.</p>
+
+						<p><strong>Jest</strong> is a JavaScript test runner that lets us access the DOM (Document Object Model) via <strong>jsdom</strong>. This is often good enough for testing React components.</p>
+
+						<p>The <strong>React Testing Library (RTL)</strong> got released as an alternative to Airbnb's Enzyme. This is not an alternative to Jest, but is an additional tool.</p>
+					</section>
+
+					<section>
+						<h2>Jest</h2>
+
+						<p>Jest was introduced by Facebook for testing JavaScript, especially React applications. Jest comes with its own test runner and all tests are defined as test suites and test cases.</p>
+
+						<p>The <strong>create-react-app</strong> and <strong>React Testing Library (RTL)</strong> tools comes included by default when creating a React application using create-react-app.</p>
+
+						<p>We can install Jest using npm:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install jest --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Within the <strong>package.json</strong> file, we can add an npm script to run Jest:</p>
+
 <pre>
 	<code>
 
+"scripts": {
+	"test": "jest"
+},
 
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>Unit Testing</h2>
+
+						<p>Unit testing is a level of software testing where individual units or components of an application are tested. In React, this means testing components or pure functions.</p>
+
+						<p>Unit tests are used to test the smallest possible unit, mocking any dependencies the component may have. Unit tests lay the foundation for all other tests. This is because unit tests are easier to write and it's best to create tests as part of writing code and fixing bugs.</p>
+
+						<ul>
+							<li>Unit tests help to prevent regression.</li>
+							<li>They help to exercise your code.</li>
+							<li>They provide faster feedback during development.</li>
+						</ul>
+
+						<p>In other words, writing unit tests means that we write code that verifies that our code works as expected. Writing tests for our React application increases the code-coverage of our front-end projects.</p>
+					</section>
+
+					<section>
+						<h2>Writing Tests</h2>
+
+						<p>Jest will run test files with the file extensions of <strong>.test.js</strong> or <strong>.spec.js</strong>.</p>
+
+						<p>The <strong>describe-block</strong> is the test suite. The <strong>test-block</strong> (which can also be named <strong>it</strong> instead of <strong>test</strong>), is the test case. A test suite can have multiple test cases and a test case doesn't have to be in a test suite. What you put into the test cases are called assertions which either turn out to be successful (green) or erroneous (red).</p>
+
+						<p>This is a template:</p>
+
+<pre>
+	<code>
+
+describe('my function or component', () => {
+	test('does the following', () => {
+
+		..//
+
+	});
+});
+
+	</code>
+</pre>
+
+						<p>This is a test suite example:</p>
+
+<pre>
+	<code>
+
+describe('true is truthy and false is falsy', () => {
+	test('true is truthy', () => {
+		expect(true).toBe(true);
+	});
+
+	test('false is falsy', () => {
+		expect(false).toBe(false);
+	});
+});
 
 	</code>
 </pre>
