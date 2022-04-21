@@ -63,12 +63,22 @@
 
 						<p>Gatsby is a framework rather than a library because it comes with everything included out-of-the-box, including Routing, Data Management, build process, and much more.</p>
 
+						<ul>
+							<li>Gatsby is a flexible framework for building headless websites with any CMS, API or database.</li>
+							<li>Deploy and host on CDN, delivering content to visitors faster than traditional servers.</li>
+							<li>Statically generated sites have less vulnerabilities than traditional websites and platforms.</li>
+						</ul>
+
+						<p>Gatsby has a unified data layer that enables developer to easily combine data from different sources and render them alongside each other. Add content to your site from Shopify, WordPress, Stripe, and other sources, for example.</p>
+
 						<p>Gatsby uses a few technologies under the hood:</p>
 
 						<ul>
 							<li><strong>React</strong> - A JavaScript library for building user interfaces. React is used to build pages and structure content.</li>
 							<li><strong>GraphQL</strong> - A query language that allows us to pull data into our website. GraphQL is used by Gatsby for managing site data.</li>
 						</ul>
+
+						<p>Gatsby is built on top of React and combines cutting edge technologies like GraphQL, Webpack and more to create an elegant developer experience.</p>
 
 						<p>React is the JavaScript library that Gatsby uses under the hood to create User Interfaces (UI). With React, we can break down our UI into smaller, reusable pieces called <strong>components</strong>.</p>
 					</section>
@@ -298,15 +308,216 @@ import { Link } from 'gatsby';
 					</section>
 
 					<section>
+						<h2>Plugins</h2>
+
+						<p>In Gatsby, a plugin is a separate npm package that you install to add extra features to your site. There are a variety of plugins that each have different use cases. Some plugins provide pre-built components, others add analytics, others let you pull data into your site, such as from a CMS (Content Management System) like WordPress or a database.</p>
+
+						<p>Gatsby has a <a href="https://www.gatsbyjs.com/plugins" target="_blank" rel="noopener noreferrer">Plugin Library</a> that lists all the plugins that can be installed.</p>
+
+						<p>We don't always need to use plugins, we could build out the same functionality from scratch ourselves, but plugins save time. We will likely use plugins in almost every Gatsby site we build.</p>
+
+						<p>Some Gatsby plugins are built by employees of Gatsby, while others are developed and maintained by community members.</p>
+
+						<ul>
+							<li>We install the plugin using npm as each plugin is an npm package.</li>
+							<li>The plugin is added to the plugins array inside the <strong>gatsby-config.js</strong> file.</li>
+							<li>We can then use the plugin features in the site, as needed.</li>
+						</ul>
+
+						<p>We install a Gatsby plugin the same way as we install most npm packages:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install plugin-name-here
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Installing the plugin will add the plugin as a dependency in your <strong>package.json</strong> and <strong>package-lock.json</strong> files. Depending on what plugin is being installed, there may be more dependencies that also need to be installed.</p>
+
+						<p>The <strong>gatsby-config.js</strong> file contains information about the site, including the configuration for plugins. You can add a plugin to the <strong>plugins</strong> array inside the gatsby-config.js file.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		title: "My First Gatsby Site",
+	},
+	plugins: ["plugin-name-here"],
+};
+
+	</code>
+</pre>
+
+						<p>Some plugins require extra configuration options. In this case, you'll add an object to the plugins array:</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		title: "My First Gatsby Site",
+	},
+	plugins: [
+		{
+			resolve: "plugin-name",
+			options: {
+				// Check the plugin README for what options go in here
+			}
+		},
+	]
+};
+
+	</code>
+</pre>
+
+						<p>After you make updates to your gatsby-config.js file, you'll need to restart your gatsby develop process for your changes to be picked up. Now the plugin can be used within your Gatsby site as needed.</p>
+					</section>
+
+					<section>
+						<h2>Images</h2>
+
+						<p>We can use the <strong>gatsby-plugin-image</strong> plugin to add responsive images to your site while maintaining high performance scores. The gatbsy-plugin-image plugin exports a component called <strong>StaticImage</strong>, which we can use to load images from a remote URL or our local filesystem.</p>
+
+						<p>Begin by installing the <strong>gatsby-plugin-image</strong> plugin and its dependencies:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>The <strong>StaticImage</strong> component requires a few additional plugins to work. These extra plugins are called peer dependencies and need to be installed along with the gatsby-plugin-image package:</p>
+
+						<ul>
+							<li><strong>gatsby-plugin-sharp</strong> - Handles the actual image processing that is used by gatsby-plugin-image.</li>
+							<li><strong>gatsby-source-filesystem</strong> - Lets you pull in data from your filesystem.</li>
+						</ul>
+
+						<p>Next, the gatsby-plugin-image and gatsby-plugin-sharp plugins are added to the <strong>gatsby-config.js</strong> file.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		title: "My First Gatsby Site",
+	},
+	plugins: [
+		"gatsby-plugin-image",
+		"gatsby-plugin-sharp",
+	],
+};
+
+	</code>
+</pre>
+
+						<p>Now that the plugins have been installed and configured, we can use the <strong>StaticImage</strong> component in our Gatsby site. We can use the StaticImage component in a similar way to how we would use the HTML <strong>&lt;img&gt;</strong> tag.</p>
+
+						<p>The StaticImage component expects the following props:</p>
+
+						<ul>
+							<li><strong>src (string)</strong> - The URL to the image we want to load. This is similar to the src attribute in an HTML <strong>&lt;img&gt;</strong> tag.</li>
+							<li><strong>alt (string)</strong> - The alt text used to describe the image.</li>
+						</ul>
+
+						<p>We can then import the StaticImage component into our React components or pages:</p>
+
+<pre>
+	<code>
+
+import { StaticImage } from 'gatsby-plugin-image';
+
+	</code>
+</pre>
+
+						<p>Then add images to our pages from an external URL:</p>
+
+<pre>
+	<code>
+
+&lt;StaticImage
+	alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
+	src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
+/&gt;
+
+	</code>
+</pre>	
+
+						<p>If we want to add an image from our local filesystem using StaticImage.</p>
+
+						<ul>
+							<li>Place local images in a directory named <strong>src/images</strong>.</li>
+							<li>Update the <strong>src</strong> prop in the page to be a relative path to your file instead of an external URL. Update the <strong>alt</strong> prop if needed.</li>
+						</ul>
+
+<pre>
+	<code>
+
+&lt;StaticImage
+	alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
+	src="../images/clifford.jpg"
+/&gt;
+
+	</code>
+</pre>	
+
+						<p>Text and content, such as images, can be added directly into our React components. But often it's easier to create and maintain data somewhere else, like a folder of Markdown files or a Content Management System (CMS), then pull this data into your components as needed. That way, updates to the content can be made without affecting the code for our site.</p>
+					</section>
+
+					<section>
 						<h2>Data Layer & GraphQL</h2>
 
-						<p>Gatsby has a feature called the <strong>data layer</strong> that allows us to pull data into our site from external sources.</p>
+						<p>Gatsby has a feature called the <strong>data layer</strong> that allows us to pull data into our site from external sources. The GraphQL data layer is where Gatsby keeps all the data for your site.</p>
 
-						<p>The data layer is powered by a technology called <strong>GraphQL</strong>.</p>
+						<p>The data layer is powered by a technology called <strong>GraphQL</strong>. GraphQL is a query language with a special syntax that lets us ask for the data you need inside a component.</p>
+
+						<ul>
+							<li>Use <strong>GraphiQL</strong> to explore data in the dta layer and build your own GraphQL queries.</li>
+							<li>Use the <strong>useStaticQuery</strong> hook to pull data into the "building-block" components.</li>
+							<li>Use the <strong>gatsby-source-filesystem</strong> plugin to pull data into your site from our computer's filesystem.</li>
+							<li>Create a <strong>page query</strong> to pull data into a page component.</li>
+						</ul>
+
+						<h3>Source Plugins</h3>
+
+						<p>By adding a type of plugin to your site called a <strong>source plugin</strong>, we can get data from its source into the data layer. Each source plugin is designed to communicate with a specific source. When you build your site, each source plugin pulls data from its particular source and adds it to your site's GatsbyQL data layer. A source plugin typically starts with <strong>gatsby-source-</strong>, such as <strong>gatsby-source-filesystem</strong> and <strong>gatsby-source-contentful</strong>.</p>
+
+						<p>We use source plugins to connect to the source of data, such as a CMS, API, Database, or anything else so we can then get this data into the data layer.</p>
+
+						<h3>GraphiQL</h3>
 
 						<p>Gatsby creates an endpoint that allows us to explore the data layer using an in-browser tool called <strong>GraphiQL</strong>: <a href="http:://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">http:://localhost:8000/___graphql</a>. We can use this IDE tool to test our GraphQL queries before we add them into our components and explore our site's data and schema.</p> 
 
+						<h3>The Data Layer</h3>
+
 						<p>All the data we need for our site is kept within the data layer and accessed by Gatsby. Within the data layer we can combine data from multiple sources.</p>
+
+						<p>This data layer lets us pull data into our site from anywhere. For example, keeping your blog posts in WordPress, products in Shopify and user data in Airtable isn't a problem. The data later allows us to combine data from multiple sources letting us choose the best platform for each type of data.</p>
 
 						<img src="img/data-layer.png" alt="Digram showing the data layer">
 
@@ -320,6 +531,33 @@ import { Link } from 'gatsby';
 							<li>JSON from a payment processor.</li>
 							<li>Markdown</li>
 						</ul>
+
+						<h3>Getting Data</h3>
+
+						<p>Once the data is in the data layer we need to get this data back out. We can write GraphQL queries inside our components to pull out the data we want to use in the site. When we build the site, Gatsby will find all of the GraphQL queries in our components, run them, and put the resulting data in your component.</p>
+
+						<p>The process for using GraphQL queries in your components looks slightly different depending on whether it's a <strong>page component</strong> or a <strong>building-block component</strong>. To begin, we can pull data into a building-block component to pull the title of our site.</p>
+
+						<p>Within the <strong>gatsby-config.js</strong> file, there's already some information there about your site within the <strong>siteMetadata</strong> object:</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		title: "My First Gatsby Site",
+	},
+	plugins: [
+		// ...
+	],
+};
+
+	</code>
+</pre>
+
+						<p>This data was added to the <strong>gatsby-config.js</strong> file automatically when we created the Gatsby site. This automatically gets pulled into the GraphQL data layer automatically, so we don't need a source plugin for this.</p>
+
+						<p>We can use the <strong>useStaticQuery</strong> hook to pull the site title into a component. We can only call useStaticQuery once per file.</p>
 					</section>
 
 					<section>
