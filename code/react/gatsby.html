@@ -156,6 +156,35 @@
 					</section>
 
 					<section>
+						<h2>Gatsby Project Structure</h2>
+
+						<p>It is common to use standard React code organisation patterns such as folders like <strong>/components</strong> and <strong>/utils</strong> inside the <strong>/src</strong> directory.</p>
+
+						<ul>
+							<li><strong>/.cache</strong> - Automatically generated. This folder is an internal cache created automatically by Gatsby. The files inside this folder are not meant for modification. The /.cache directory should be added to the .gitignore file.</li>
+							<li><strong>/plugins</strong> - This folder hosts any local plugins that aren't published as an npm package.</li>
+							<li><strong>/public</strong> - Automatically generated. The output of the build process will be exposed inside this folder. Should be added to the .gitignore file if not added already.</li>
+							<li><strong>/src</strong> - This directory contains all of the code related to what we will see on the frontend of our site. This is where our source code for the site is located.</li>
+							<ul>
+								<li><strong>/api</strong> - JavaScript and TypeScript files under the src/api become functions automatically with paths based on their file name.</li>
+								<li><strong>/pages</strong> - Components under src/pages become pages automatically with paths based on their file name.</li>
+								<li><strong>/templates</strong> - Contains templates for programmatically creating pages.</li>
+								<li><strong>html.js</strong> - For custom configuration of default .cache/default_html.js.</li>
+							</ul>
+							<li><strong>/static</strong> - If you put a file into the static folder, it will not be processed by Webpack. Instead it will be copied into the public folder untouched.</li>
+						</ul>
+
+						<p>Here are the files:</p>
+
+						<ul>
+							<li><strong>gatsby-browser.js</strong> - This file is where Gatsby expects to find any usage of the Gatsby browser APIs (if any). These allow customisation/extension of default Gatsby settings affecting the browser.</li>
+							<li><strong>gatsby-config.js</strong> - This is the main configuration file for a Gatsby site. This is where you specify information about your site (metadata) like the site title and description, which Gatsby plugins to be included.</li>
+							<li><strong>gatsby-node.js</strong> - This file is where Gatsby expects to find any usage of the Gatsby node APIs (if any). These allow customisation/extension of default Gatsby settings affecting pieces of the site build process.</li>
+							<li><strong>gatsby-ssr-js</strong> - This file is where Gatsby expects to find usage of the Gatsby server-side rendering APIs (if any). These allow customisation of default Gatsby settings affecting server-side rendering.</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>File Structure</h2>
 
 						<p>Once created, the file structure of our Gatsby site should look like this:</p>
@@ -194,6 +223,22 @@ project /
 
 	</code>
 </pre>
+					</section>
+
+					<section>
+						<h2>Static Folder</h2>
+
+						<p>You can create a folder named <strong>static</strong> at the root of your project. Every file you put into that folder will be copied into the <strong>public</strong> folder. For example, add a file named <strong>sun.jpg</strong> to the static folder and it'll be copied to <strong>public/sun.jpg</strong>.</p>
+
+						<p>You can reference assets from the static folder in our code without anything special being required.</p>
+
+						<p>However, no files in the static folder will be post-processed or minified and missing files will not be called at compilation time, causing a 404 error for our users.</p>
+					</section>
+
+					<section>
+						<h2>Fonts</h2>
+
+						<p>Get started by using local fonts and adding them into the <strong>src</strong> directory, such as <strong>src/fonts/fontname.woff2</strong>. Some common font file extensions are: <strong>.woff2</strong> and <strong>.woff</strong></p>
 					</section>
 
 					<section>
@@ -490,6 +535,67 @@ import { StaticImage } from 'gatsby-plugin-image';
 					</section>
 
 					<section>
+						<h2>Layout</h2>
+
+						<p>Layout components are for sections of your site that you want to share across multiple pages. For example, Gatsby sites will commonly have a layout component with a shared header and footer. Other common things to add to layouts are a sidebar and/or navigation menu.</p>
+
+						<p>It is recommended to create your layout components alongside the rest of your components within <strong>src/components</strong>.</p>
+
+						<p>Here's an example of a very basic layout component at <strong>src/components/layout.js</strong></p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Layout = ({ children }) => {
+	return (
+		&lt;&gt;
+			{children}
+		&lt;/&gt;
+	);
+}
+
+export default Layout;
+
+	</code>
+</pre>
+
+						<p>If you want to apply a layout to a page, we need to include the Layout component and wrap our page in it. For example, here is how you would apply your layout to an example page component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Layout from '../components/layout';
+
+const HomePage = () => {
+	return (
+		&lt;Layout&gt;
+			&lt;h1&gt;I'm in a layout!&lt;/h1&gt;
+		&lt;/Layout&gt;
+	);
+}
+
+export default HomePage;
+
+	</code>
+</pre>
+
+						<p>We could then add a header and footer component inside of the layout component that will then be shared across multiple pages. Repeat for every page and template that needs this layout.</p>
+					</section>
+
+					<section>
+						<h2>Headless CMS</h2>
+
+						<p>A headless CMS is a Content Management System that enables writes and content creators to produce and organise content, while providing developers with structured data that can be displayed using a separate system on the frontend of a website or app.</p>
+
+						<p>A traditional, monolithic CMS is responsible for both the backend management of content and serving that content to end users. In contrast, a headless CMS is decoupled from frontend concerns which frees the developers to build rich experiences for end users using the best technology available.</p>
+
+						<p>Many traditional Content Management Systems (CMS), like WordPress and Drupal, now support a "headless" or "decoupled" mode, which is perfect for Gatsby sites. Through the use of source plugins, Gatsby has support for dozens of headless CMS options, allowing content teams the comfort and familiarity of the preferred admin interface.</p>
+					</section>
+
+					<section>
 						<h2>Data Layer & GraphQL</h2>
 
 						<p>Gatsby has a feature called the <strong>data layer</strong> that allows us to pull data into our site from external sources. The GraphQL data layer is where Gatsby keeps all the data for your site.</p>
@@ -516,6 +622,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 						<h3>The Data Layer</h3>
 
 						<p>All the data we need for our site is kept within the data layer and accessed by Gatsby. Within the data layer we can combine data from multiple sources.</p>
+
+						<p>A core feature of Gatsby is its ability to load data from anywhere, CMS, Markdown, other third-party systems, even spreadsheets. This allows teams to manage their content in nearly any backend they prefer.</p>
 
 						<p>This data layer lets us pull data into our site from anywhere. For example, keeping your blog posts in WordPress, products in Shopify and user data in Airtable isn't a problem. The data later allows us to combine data from multiple sources letting us choose the best platform for each type of data.</p>
 
@@ -558,6 +666,16 @@ module.exports = {
 						<p>This data was added to the <strong>gatsby-config.js</strong> file automatically when we created the Gatsby site. This automatically gets pulled into the GraphQL data layer automatically, so we don't need a source plugin for this.</p>
 
 						<p>We can use the <strong>useStaticQuery</strong> hook to pull the site title into a component. We can only call useStaticQuery once per file.</p>
+					</section>
+
+					<section>
+						<h2>Testing</h2>
+
+						<p>To preserve code quality over time, you may want to add testing to your Gatsby site using tools such as <strong>Jest</strong>, for unit tests, <strong>react-testing-library</strong> for React component tests, and end-to-end tests using <strong>Cypress</strong>.</p>
+
+						<p>The most popular testing framework for React is Jest. While Jest is a general-purpose JavaScript unit testing framework, it has lots of features that make it work particularly well with React.</p>
+
+						<p>Unit testing is a great way to protect against errors in your code before you deploy it. While Gabsy does not include support for unit testing out of the box, it only takes a few steps to get up and running. There are a few features of the Gatsby build process that means the standard Jest setup doesn't quite work.</p>
 					</section>
 
 					<section>
