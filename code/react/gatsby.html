@@ -589,7 +589,7 @@ module.exports = {
 		title: `Gatsby Default Starter`,
 		description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
 		author: `@gatsbyjs`,
-	siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+		siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
 	},
 	plugins: [
 		`gatsby-plugin-react-helmet`,
@@ -988,9 +988,67 @@ export default HomePage;
 					</section>
 
 					<section>
+						<h2>SEO</h2>
+
+						<p>To set the page title in our Gatsby website, we can create a new SEO component within a file named <strong>src/components/SEO/index.js</strong>.</p>
+
+						<p>This file will contain the following code:</p>
+
+<pre>
+	<code>
+
+import React from "react"
+import { Helmet } from "react-helmet"
+
+const Seo = ({ title }) => {
+
+    return (
+        &lt;Helmet
+            title={title}
+        /&gt;
+    )
+}
+
+export default Seo
+
+	</code>
+</pre>
+
+						<p>As we can see, we are using the <strong>react-helmet</strong> package, which has been installed as a dependency within our <strong>package.json</strong> file.</p>
+
+						<p>The <a href="https://www.npmjs.com/package/react-helmet" target="_blank" rel="noopener noreferrer">react-helmet package</a> can be installed using npm.</p>
+
+						<p>This package will manage all of our changes to the document head.</p>
+
+						<p>Within a page component, we can then pass in the value to set as the page title.</p>
+
+<pre>
+	<code>
+
+import React from "react"
+
+import Layout from "../components/Layout/"
+import Seo from "../components/SEO/"
+
+const AboutPage = () => (
+    &lt;Layout&gt;
+        &lt;Seo title="My website | About" /&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+    &lt;/Layout&gt;
+)
+
+export default AboutPage
+
+	</code>
+</pre>			
+					</section>
+
+					<section>
 						<h2>Headless CMS</h2>
 
 						<p>A headless CMS is a Content Management System that enables writes and content creators to produce and organise content, while providing developers with structured data that can be displayed using a separate system on the frontend of a website or app.</p>
+
+						<p>A headless CMS is a back-end only Content Management System (CMS) that makes content accessible via a <strong>RESTful API</strong> or <strong>GraphQL</strong>.</p>
 
 						<p>A traditional, monolithic CMS is responsible for both the backend management of content and serving that content to end users. In contrast, a headless CMS is decoupled from frontend concerns which frees the developers to build rich experiences for end users using the best technology available.</p>
 
