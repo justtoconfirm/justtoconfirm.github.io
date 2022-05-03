@@ -925,6 +925,100 @@ module.exports = {
 					</section>
 
 					<section>
+						<h2>Styling</h2>
+
+						<p>We can apply styling to our Gatsby application in many different ways.</p>
+
+						<h3>Tailwind CSS</h3>
+
+						<p>We can install <strong>Tailwind CSS</strong> and its dependencies as devDependencies using npm.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install tailwindcss postcss autoprefixer gatsby-plugin-postcss --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->		
+
+						<p>Once installed, run the <strong>init</strong> command to generate the <strong>tailwind.config.js</strong> and <strong>postcss.config.js</strong> files in the root of our Gatsby project.</p>	
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx tailwindcss init -p
+    
+	</pre>
+</div>
+<!-- / Terminal -->	
+
+						<p>In the <strong>gatsby-config.js</strong> file, add the <strong>gatsby-plugin-postcss</strong> plugin.</p>			
+<pre>
+	<code>
+
+module.exports = {
+	plugins: [
+		'gatsby-plugin-postcss',
+		// ...
+	],
+}
+
+	</code>
+</pre>
+
+						<p>Update the <strong>tailwind.config.js</strong> file to point to all the paths of our template files:</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	content: [
+		"./src/**/*.{js,jsx,ts,tsx}"
+	],
+	theme: {
+		extend: {},
+	},
+	plugins: [],
+}
+
+	</code>
+</pre>
+
+						<p>Add a new file named <strong>src/styles/global.css</strong> inside our project folder to add any global styles we wish to apply to our Gatsby application.</p>
+
+						<p>Import this file into the <strong>gatsby-browser.js</strong> file in the root of our project to apply the global styles.</p>
+
+<pre>
+	<code>
+
+import './src/styles/global.css'
+
+	</code>
+</pre>
+
+						<p>We can now start using Tailwind CSS inside our Gatsby application.</p>
+					</section>
+
+					<section>
 						<h2>Images</h2>
 
 						<p>We can use the <strong>gatsby-plugin-image</strong> plugin to add responsive images to your site while maintaining high performance scores. The gatbsy-plugin-image plugin exports a component called <strong>StaticImage</strong>, which we can use to load images from a remote URL or our local filesystem.</p>
@@ -1155,18 +1249,6 @@ require("dotenv").config({
 					</section>
 
 					<section>
-						<h2>Headless CMS</h2>
-
-						<p>A headless CMS is a Content Management System that enables writes and content creators to produce and organise content, while providing developers with structured data that can be displayed using a separate system on the frontend of a website or app.</p>
-
-						<p>A headless CMS is a back-end only Content Management System (CMS) that makes content accessible via a <strong>RESTful API</strong> or <strong>GraphQL</strong>.</p>
-
-						<p>A traditional, monolithic CMS is responsible for both the backend management of content and serving that content to end users. In contrast, a headless CMS is decoupled from frontend concerns which frees the developers to build rich experiences for end users using the best technology available.</p>
-
-						<p>Many traditional Content Management Systems (CMS), like WordPress and Drupal, now support a "headless" or "decoupled" mode, which is perfect for Gatsby sites. Through the use of source plugins, Gatsby has support for dozens of headless CMS options, allowing content teams the comfort and familiarity of the preferred admin interface.</p>
-					</section>
-
-					<section>
 						<h2>Data Layer & GraphQL</h2>
 
 						<p>Gatsby has a feature called the <strong>data layer</strong> that allows us to pull data into our site from external sources. The GraphQL data layer is where Gatsby keeps all the data for your site.</p>
@@ -1240,6 +1322,95 @@ module.exports = {
 					</section>
 
 					<section>
+						<h2>Headless CMS</h2>
+
+						<p>A headless CMS is a Content Management System that enables writes and content creators to produce and organise content, while providing developers with structured data that can be displayed using a separate system on the frontend of a website or app.</p>
+
+						<p>A headless CMS is a back-end only Content Management System (CMS) that makes content accessible via a <strong>RESTful API</strong> or <strong>GraphQL</strong>.</p>
+
+						<p>A traditional, monolithic CMS is responsible for both the backend management of content and serving that content to end users. In contrast, a headless CMS is decoupled from frontend concerns which frees the developers to build rich experiences for end users using the best technology available.</p>
+
+						<p>Many traditional Content Management Systems (CMS), like WordPress and Drupal, now support a "headless" or "decoupled" mode, which is perfect for Gatsby sites. Through the use of source plugins, Gatsby has support for dozens of headless CMS options, allowing content teams the comfort and familiarity of the preferred admin interface.</p>
+
+						<h3>Contentful CMS</h3>
+
+						<p>We can connect Gatsby to a headless CMS like <strong>Contentful</strong> using source plugins. We will need to first create a <a href="https://www.contentful.com/" target="_blank" rel="noopener noreferrer">Contentful CMS account</a>.</p>
+
+						<p>Once logged into the Contentful CMS dashboard:</p>
+
+						<ul>
+							<li>Go to <strong>Settings</strong> then <strong>API keys</strong>.</li>
+							<li>Create an API key.</li>
+							<li>Copy the <strong>Space ID</strong> value that is generated.</li>
+							<li>Copy the <strong>Content Delivery API - access token.</strong>
+						</ul>
+
+						<p>Next, install the <strong>gatsby-source-contentful</strong> source plugin. This will be listed in our <strong>package.json</strong> file once installed.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install gatsby-source-contentful
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Inside the <strong>gatsby-config.js</strong> file, add the <strong>gatsby-source-contenful</strong> source plugin to the plugins array. Replace the values with those generated for the <strong>Space ID</strong> and <strong>Content Delivery API - access token</strong>.</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	plugins: [
+		{
+			resolve: `gatsby-source-contentful`,
+			options: {
+				spaceId: `your_space_id`,
+				accessToken: `your_content_delivery_api_access_token_here`,
+			},
+		},
+	],
+}
+
+	</code>
+</pre>
+
+						<p>We may want to use environment variables to protect our API key from Git/version control.</p>
+
+						<p>Run the Gatsby build. If successful, the build will connect the the Contentful CMS.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	gatsby develop
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Open the <a href="http://localhost:8000/___graphql" target="_blank" rel="noopener noreferrer">GraphiQL</a> tool and if connected, we can the make GraphQL queries to the Contentful CMS with <strong>contentfulAsset</strong> and <strong>contentfulEntry</strong>.</p> 
+					</section>
+
+					<section>
 						<h2>Testing</h2>
 
 						<p>To preserve code quality over time, you may want to add testing to your Gatsby site using tools such as <strong>Jest</strong>, for unit tests, <strong>react-testing-library</strong> for React component tests, and end-to-end tests using <strong>Cypress</strong>.</p>
@@ -1279,10 +1450,12 @@ module.exports = {
 						<h2>Useful Links</h2>
 
 						<ul>
-							<li><a href="https://www.gatsbyjs.com/plugins/gatsby-source-contentful" target="_blank" rel="noopener noreferrer">Gatsby & Contenful CMS</a>
+							<li><a href="https://www.gatsbyjs.com/plugins/gatsby-source-contentful" target="_blank" rel="noopener noreferrer">Gatsby & Contentful CMS</a>
 							<li><a href="https://gatsby.dev/env-vars" target="_blank" rel="noopener noreferrer">Gatsby Environment Variables</a>
 							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-1/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 1)</a></li>
 							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-2/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 2)</a></li>
+							<li><a href="https://tailwindcss.com/docs/guides/gatsby" target="_blank" rel="noopener noreferrer">Install Tailwind CSS with Gatsby</a></li>
+							<li><a href="https://daily.dev/blog/why-i-moved-from-styled-components-to-tailwind-css-and-whats-the-future-of-css-in-js" target="_blank" rel="noopener noreferrer">Tailwind & Styled Components</a></li>
 						</ul>
 					</section>
 				</div>
