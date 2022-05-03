@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to JavaScript Prototype">
+
+	<title>Code | JavaScript | Prototype</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Prototype</h1>
+
+						<p class="intro__copy">The prototype is essentially an object to which we can attach methods and properties, allowing other objects to inherit these methods and properties.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Prototype</h2>
+
+						<p>JavaScript is a prototype based language, meaning object properties and methods can be shared through objects. Whenever we create an object, such as a function or array, the JavaScript engine will add an internal prototype property inside our object where methods and properties can be attached. This is known as the <strong>Prototype Object</strong> and is identified as <strong>[[Prototype]]</strong>.</p>
+
+						<p>Every object, those that we create and built-in objects such as Date or Array, in JavaScript, has an internal property called <strong>[[Prototype]]</strong>. The double square brackets that enclose <strong>[[Prototype]]</strong> signify that this is an internal property and cannot be accessed directly in the code.</p>
+
+						<p>The prototype is essentially an object to which we can attach methods and properties, allowing other objects to inherit these methods and properties. Every object in JavaScript has a <strong>[[Prototype]]</strong> as it creates a way for two or more objects to be linked.</p>
+
+						<p>If we add a property or method to an object, the additional properties and methods can only be accessed by that object as it's only been defined in the one object. We can therefore use <strong>prototype</strong> to add new properties and methods to an object so that they can be inherited by other objects.</p>
+					</section>
+
+					<section>
+						<h2>Demonstration of JavaScript Prototype</h2>
+
+						<p>An Array has many built-in methods, such as <strong>pop()</strong> and <strong>push()</strong>. We can access these methods when we create an array because any array we create has access to the properties and methods on the <strong>Array.prototype</strong>.</p>
+
+						<p>Here we are creating an empty array:</p>
+
+<pre>
+	<code>
+
+let y = [];
+
+	</code>
+</pre>
+
+						<p>Every object, those that we create and built-in objects such as <strong>Date</strong> or <strong>Array</strong>, in JavaScript has an internal property called <strong>[[Prototype]]</strong>.</p>
+
+						<h3>Accessing the Prototype Object</h3>
+
+						<p>To find the <strong>[[Prototype]]</strong> of an object, we will use the <strong>getPrototypeOf()</strong> method. The <strong>Object.getPrototypeOf()</strong> method returns the prototype object (the value of the internal <strong>[[Prototype]]</strong> property).</p>
+
+<pre>
+	<code>
+
+Object.getPrototypeOf(y);		// Return the [[Prototype]] object of the array
+
+	</code>
+</pre>
+
+						<p>The browser support for the <strong>Object.getPrototypeOf()</strong> method:</p>
+
+						<ul>
+							<li>Chrome - version 5 +</li>
+							<li>Edge - version 12 +</li>
+							<li>Firefox - version 3.5 +</li>
+							<li>Internet Explorer 9 (IE9) +</li>
+							<li>Opera - version 12.1 +</li>
+							<li>Safari - version 5 +</li>
+						</ul>
+
+						<p>We can also find the <strong>[[Prototype]]</strong> through the <strong>__proto__</strong> property, however, this property is a legacy feature and should not be used in production code.</p>
+
+<pre>
+	<code>
+
+y.__proto__ 		// Legacy, avoid for production, use Object.getPrototypeOf()
+
+	</code>
+</pre>
+
+						<p>If we take a look at the <strong>[[Prototype]]</strong> of our array object, we can see that it has more properties and methods that a simple object.</p>
+
+<pre>
+	<code>
+
+[constructor: ƒ, concat: ƒ, pop: ƒ, push: ƒ, …] 
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>ES6 Classes</h2>
+
+						<p>ECMAScript 2015 (ES6) introduced JavaScript classes. This is primarily syntactical sugar over JavaScript's existing prototype-based inheritance. This does not introduce a new object-orientated inheritance model to JavaScript.</p>
+					</section>
+
+					<section>
+						<h2>Prototype Inheritance</h2>
+
+						<p>When we attempt to access a property or method of an object, JavaScript will first search on the object itself. If the property or method is not found, it will search the object's <strong>[[Prototype]]</strong>. If the property or method is not still not found in the object or <strong>[[Prototype]]</strong>, JavaScript will check the prototype of the linked object and will continue searching until the end of the prototype chain is reached.</p>
+
+						<p>At the end of the prototype chain is <strong>Object.prototype</strong>. All objects inherit the properties and methods of Object. Any attempt to search beyond the end of the chain results in <strong>null</strong> being returned.</p>
+
+						<p>We can create an empty object:</p>
+
+<pre>
+	<code>
+
+let x = {}
+
+	</code>
+</pre>	
+
+						<p>We can log the object into the console and this will also show the prototype object.</p>
+
+<pre>
+	<code>
+
+console.log(x);
+
+	</code>
+</pre>	
+
+						<p>our empty object inherits from <strong>Object</strong>. Our object can use any property of method of Object, such as <strong>toString()</strong>, for example.</p>	
+
+<pre>
+	<code>
+
+x.toString();
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
+						<h2>Constructor Functions</h2>
+
+						<p>A Constructor Function is just a regular function but it is called on by an instance with the <strong>new</strong> keyword. In JavaScript, we capitalize the first letter of a Constructor Function by convention.</p>
+
+						<p>One way to create an object in JavaScript is with a function. Properties and values can be added to an object using <strong>dot notation</strong>.</p>
+
+						<p>When a function is declared, the <strong>[[Prototype]]</strong> object will be created. In JavaScript, a function is also an object.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.w3schools.com/js/js_object_prototypes.asp" target="_blank" rel="noopener noreferrer">W3Schools: Prototypes</a></li>
+							<li><a href="https://www.freecodecamp.org/news/javascript-prototype-explained-with-examples/" target="_blank" rel="noopener noreferrer">freeCodeCamp: Prototype Explained</a></li>
+							<li><a href="https://www.taniarascia.com/understanding-prototypes-and-inheritance-in-javascript/" target="_blank" rel="noopener noreferrer">Tania Rascia: Understanding Prototypes and Inheritance in JavaScript</a></li>
+							<li><a href="https://codedamn.com/news/javascript/prototype-in-javascript" target="_blank" rel="noopener noreferrer">https://codedamn.com/news/javascript/prototype-in-javascript</a></li>
+							<li><a href="https://www.geeksforgeeks.org/prototype-in-javascript/" target="_blank" rel="noopener noreferrer">Geeks for Geeks: Prototype in JavaScript</a></li>
+							<li><a href="https://www.tutorialsteacher.com/javascript/prototype-in-javascript" target="_blank" rel="noopener noreferrer">https://www.tutorialsteacher.com/javascript/prototype-in-javascript</a></li>
+							<li><a href="https://medium.com/geekculture/javascript-prototype-f2c451029ec0" target="_blank" rel="noopener noreferrer">Geekculture: JavaScript Prototype</a></li>
+							<li><a href="https://www.toolsqa.com/javascript/prototype-in-javascript/" target="_blank" rel="noopener noreferrer">https://www.toolsqa.com/javascript/prototype-in-javascript/</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/object/getprototypeof" target="_blank" rel="noopener noreferrer">Mozilla: getPrototypeOf Method</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

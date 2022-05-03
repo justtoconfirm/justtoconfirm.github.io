@@ -84,6 +84,24 @@
 					</section>
 
 					<section>
+						<h2>Setup the .gitignore file</h2>
+
+						<p>We will want to exclude some of the project files from being committed to Git. Include these files in the <strong>.gitignore</strong> file within our project:</p>
+
+<pre>
+	<code>
+
+// .gitignore
+
+.cache
+node_modules
+public
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
 						<h2>Install Gatsby</h2>
 
 						<p>We need to have Node version <strong>12.13.0</strong> or later to be installed to run Gatsby. The Gatsby CLI (Command Line Interface) tool is a published npm package which means we can install it using npm. To install Gatsby we need to globally install Gatsby CLI version 3 or later.</p>
@@ -1162,6 +1180,15 @@ module.exports = {
 <!-- / Terminal --> 
 
 						<p>This will create the production build of our site and will output the static files into the <strong>public</strong> directory.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-1/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 1)</a></li>
+							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-2/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 2)</a></li>
+						</ul>
 					</section>
 				</div>
 			</div>
