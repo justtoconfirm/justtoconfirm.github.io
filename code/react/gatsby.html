@@ -732,6 +732,69 @@ public
 						<h2>Fonts</h2>
 
 						<p>Get started by using local fonts and adding them into the <strong>src</strong> directory, such as <strong>src/fonts/fontname.woff2</strong>. Some common font file extensions are: <strong>.woff2</strong> and <strong>.woff</strong></p>
+
+						<h3>Self-host Google Fonts with Fontsource</h3>
+
+						<p><strong>Fontsource</strong> is a project to provide open-source fonts from Google Fonts as npm packages.</p>
+
+						<p>Begin by installing the font from Fontsource required in our Gatsby application as an npm package.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install @fontsource/open-sans
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>The package will be installed as a dependency and listed within the <strong>package.json</strong> file.</p>
+
+						<p>Once the npm package has been installed, import the font package into your app entry file or site component. Usually it's recommended to import the package into the Layout template, although it can also be imported into <strong>gatsby-browser.js</strong>.</p>
+
+<pre>
+	<code>
+
+import "@fontsource/open-sans"		// Defaults to weight 400 with all styles included.
+
+	</code>
+</pre>	
+
+						<p>If we wish to select a particular weight or style, we can specify it by changing the import path. These variations will be listed in each package's README file.</p>
+
+<pre>
+	<code>
+
+import "@fontsource/open-sans/500.css"				// Weight 500 with all styles included.
+import "@fontsource/open-sans/900-normal.css"		// Select either normal or italic.
+
+	</code>
+</pre>
+
+						<p>Once imported, you can reference the font name in a CSS stylesheet, CSS Module, or CSS-in-JS.</p>
+
+<pre>
+	<code>
+
+body {
+	font-family: "Open Sans";
+}
+
+	</code>
+</pre>
+
+						<p>By self-hosting fonts, the site's loading time can be greatly reduced.</p>
+
+						<p><a href="https://www.npmjs.com/search?q=fontsource" target="_blank" rel="noopener noreferrer">Fontsource npm packages</a></p>
 					</section>
 
 					<section>
@@ -1456,6 +1519,7 @@ module.exports = {
 							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-2/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 2)</a></li>
 							<li><a href="https://tailwindcss.com/docs/guides/gatsby" target="_blank" rel="noopener noreferrer">Install Tailwind CSS with Gatsby</a></li>
 							<li><a href="https://daily.dev/blog/why-i-moved-from-styled-components-to-tailwind-css-and-whats-the-future-of-css-in-js" target="_blank" rel="noopener noreferrer">Tailwind & Styled Components</a></li>
+							<li><a href="https://www.gatsbyjs.com/docs/how-to/styling/using-web-fonts/" target="_blank" rel="noopener noreferrer">Using Web Fonts</a></li>
 						</ul>
 					</section>
 				</div>
