@@ -78,6 +78,8 @@
 							<li><strong>GraphQL</strong> - A query language that allows us to pull data into our website. GraphQL is used by Gatsby for managing site data.</li>
 						</ul>
 
+						<p><strong>ESLint</strong>, <strong>Webpack</strong> and <strong>Babel</strong> are automatically configured and setup for our project as part of Gatsby.</p>
+
 						<p>Gatsby is built on top of React and combines cutting edge technologies like GraphQL, Webpack and more to create an elegant developer experience.</p>
 
 						<p>React is the JavaScript library that Gatsby uses under the hood to create User Interfaces (UI). With React, we can break down our UI into smaller, reusable pieces called <strong>components</strong>.</p>
@@ -646,6 +648,77 @@ module.exports = {
 					</section>
 
 					<section>
+						<h2>Prettier</h2>
+
+						<p>Prettier is a code formatter that will help keep our code consistent during development. If not installed, Prettier can be installed using npm.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install prettier --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Once installed, create a <strong>.prettierignore</strong> file in the root of the project folder.</p>
+
+<pre>
+	<code>
+
+// .prettierignore
+
+.cache
+package.json
+package-lock.json
+public
+
+	</code>
+</pre>
+
+						<p>Next, create a <strong>.prettierrc</strong> file, also in the root of the project folder.</p>
+
+<pre>
+	<code>
+
+// .prettierrc
+
+{
+	"arrowParens": "avoid",
+	"semi": false
+}
+
+	</code>
+</pre>	
+
+						<p>We can choose to extend this file further if we wish.</p>
+
+<pre>
+	<code>
+
+// .prettierrc
+
+{
+	"arrowParens": "avoid",
+	"semi": false,
+	"tabWidth": 4,
+	"singleQuote": true
+}
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
 						<h2>Static Folder</h2>
 
 						<p>You can create a folder named <strong>static</strong> at the root of your project. Every file you put into that folder will be copied into the <strong>public</strong> folder. For example, add a file named <strong>sun.jpg</strong> to the static folder and it'll be copied to <strong>public/sun.jpg</strong>.</p>
@@ -1062,6 +1135,26 @@ export default AboutPage
 					</section>
 
 					<section>
+						<h2>Environment Variables</h2>
+
+						<p>Gatsby has built-in support for loading environment variables into the browser and functions. In development, Gatsby will load environment variables from a file named <strong>.env.development</strong> and for builds, it will load from <strong>.env.production</strong></p>
+
+						<p>Environment variable files should not be committed to Git as they often contain secret information, such as access tokens or API keys, and are not safe to add to version control. Add <strong>.env.*</strong> to your <strong>.gitignore</strong> file and setup environment variables manually.</p>
+
+						<p>Within the <strong>gatsby-config.js</strong> file, add the following code block at the very top of the file:</p>
+
+<pre>
+	<code>
+
+require("dotenv").config({
+	path: `.env.${process.env.NODE_ENV}`,
+})
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Headless CMS</h2>
 
 						<p>A headless CMS is a Content Management System that enables writes and content creators to produce and organise content, while providing developers with structured data that can be displayed using a separate system on the frontend of a website or app.</p>
@@ -1186,6 +1279,8 @@ module.exports = {
 						<h2>Useful Links</h2>
 
 						<ul>
+							<li><a href="https://www.gatsbyjs.com/plugins/gatsby-source-contentful" target="_blank" rel="noopener noreferrer">Gatsby & Contenful CMS</a>
+							<li><a href="https://gatsby.dev/env-vars" target="_blank" rel="noopener noreferrer">Gatsby Environment Variables</a>
 							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-1/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 1)</a></li>
 							<li><a href="https://www.danielnorris.co.uk/blog/posts/how-to-build-a-portfolio-using-gatsby-part-2/" target="_blank" rel="noopener noreferrer">Daniel Norris: How to build a portfolio using Gatsby (Part 2)</a></li>
 						</ul>
