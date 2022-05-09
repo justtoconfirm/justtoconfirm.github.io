@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to TypeScript">
+
+	<title>Code | JavaScript | TypeScript</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">TypeScript</h1>
+
+						<p class="intro__copy">TypeScript is a strongly typed programming language that is a subset of JavaScript.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+
+						<h2>Introduction to TypeScript</h2>
+
+						<p>TypeScript is a strongly typed programming language developed and maintained by Microsoft. It was created by Anders Hejlsberg. TypeScript builds on, and is a subset, or JavaScript.</p>
+
+						<p>TypeScript code converts and transpiles to JavaScript. JavaScript code is also valid TypeScript code. The <strong>Angular 2</strong> framework is written in TypeScript and counterparts of TypeScript include <strong>Dart</strong> and <strong>CoffeeScript</strong>.</p>
+
+						<p>Detecting errors in code without running the code is referred to as <strong>static checking</strong>. Determining what is an error and what's not based on the kinds of values being operated on, is known as <strong>static type checking</strong>.</p>
+
+						<p>TypeScript checks a program for errors before execution. The main benefit of TypeScript is that it can highlight unexpected behavior in our code, lowering the chance of bugs.</p>
+
+						<p>The first step to use TypeScript is to rename all JavaScript files from <strong>.js</strong> to <strong>.ts</strong> files. If your file uses JSX, it will need to be renamed to <strong>.jsx</strong>. Restart the server once changes have been made.</p>
+					</section>
+
+					<section>
+						<h2>Install & Setup</h2>
+
+						<p>When a TypeScript script gets compiled, there is an option to generate a declaration file, with the extension of <strong>.d.ts</strong> and this provides intellisense for our code and support for JavaScript libraries.</p>
+
+						<p>TypeScript is very helpful when using IDEs such as VSCode, Atom, Webstorm, Eclipse, any many more. These provide better autocomplete and snippet generation, which helps to make development faster. TypeScript also supports JSX within React.</p>
+
+						<p>TypeScript can be installed through the use of an npm package available on the npm registry. We will need to have Node installed as the environment to run the package. We may also use yarn, rather than npm, to install TypeScript in our project.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install typescript --save-dev			# NPM
+
+	yarn add typescript --dev 					# Yarn
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Both of these dependency managers support lockfiles, ensuring that everyone working on the project is using the same version of the language. The TypeScript compiler can then be run using a command.</p> 
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx tsc
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<h3>VSCode</h3>
+
+						<p>If you're in VSCode and hover over any underlined element, you'll get the message "Cannot use JSX unless the '---jsx' flag is provided". At this point, you can either click the "Quick Fix" option, or we can fix it manually. If we click "Quick Fix", we will get the option that says "Enable the '---jsx' flag in your configuration file" Once you click on it, it takes a second or two to load and the errors should go away.</p>
+
+						<p>If you want to do it manually, go into the tsconfig.json file, locate the key of "jsx" and change the value to "react" instead of "react-jsx".</p>
+
+						<p>If the error still occurs, you maybe using a different version of TypeScript.</p>
+
+						<h3>React & TypeScript</h3>
+
+						<p>The <strong>create-react-app</strong> tool now has TypeScript integrated. If we are building a new React project using create-react-app, we can use the <strong>typescript</strong> flag to setup the project to use TypeScript.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app &lt;APP-NAME-HERE&gt; --template typescript
+
+	# OR
+
+	yarn create react-app &lt;APP-NAME-HERE&gt; --template typescript
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>When converting an existing React application, using JavaScript, into TypeScript, we can install the dependencies we need as packages:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We can also setup TypeScript within a <a href="https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/" target="_blank" rel="noopener noreferrer">Gatsby application</a>.</p>
+
+						<h3>Import with React</h3>
+
+						<p>The most futureproof way to import React:</p>
+
+<pre>
+	<code>
+
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+
+	</code>
+</pre>
+
+						<p>If we set <strong>--allowSyntheticDefaultImports</strong> (or add "allowSyntheticDefaultImports": true) in our <strong>tsconfig.json</strong> file, we can add more familiar imports:</p>
+
+<pre>
+	<code>
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+	</code>
+</pre>
+
+						<h3>Props</h3>
+
+						<p>One of the core concepts of React is reusable components. In TypeScript, props can be defined by either an <strong>interface</strong> or <strong>type</strong>.</p>
+
+<pre>
+	<code>
+
+interface Props {
+	employeeName: string;
+	employeeCode: number;
+}
+
+type OtherProps = {
+	employeeName: string;
+	employeeCode: number;
+}
+
+	</code>
+</pre>
+
+						<h3>Configuration File</h3>
+
+						<p>The basic React/TypeScript installation will generate a basic configuration file named <strong>tsconfig.json</strong>. This is the configuration file for the TypeScript compiler.</p>
+
+						<p>We can configure the compiler using the <strong>tsconfig.json</strong> file to set how strict we want TypeScript to be. Here we can define and target versions of ECMAScript we want to use and include source maps. By default, TypeScript will use a default configuration.</p>
+
+						<p>TypeScript always checks for this configuration file in the project root folder for instructions. When it find this file, it loads the settings defined in the file and uses them to build the project.</p>
+
+						<p>This is a basic <strong>tsconfig.json</strong> file:</p>
+
+<pre>
+	<code>
+
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"module": "es6",
+		"target": "es5",
+		"jsx": "react",
+		"allowJs": true,
+		"moduleResolution": "node",
+  	}
+}
+
+	</code>
+</pre>
+
+						<p>When we rename files from <strong>.js</strong> to <strong>.ts</strong> and begin the server, this will generate the <strong>tsconfig.json</strong> configuration file automatically. We can then use TypeScript within a React application.</p>
+					</section>
+
+					<section>
+						<h2>Benefits of TypeScript</h2>
+
+						<p>Here are a few benefits of TypeScript:</p>
+
+						<ul>
+							<li><strong>Compilation</strong> - JavaScript is an interpreted lnguage, hence, it needs to be run to test that it is valid. This means that we write all the code and errors can be difficult to find. The TypeScript transpiler provides the error-checking feature. TypeScript will compile the code and generate compilation errors if syntax errors are found. This helps to highlight errors before the script is run.</li>
+							<li><strong>Code Suggestions</strong> - TypeScript provides suggestions and choices as you type. This saves time.</li>
+							<li><strong>Readability & Validation</strong> - Because TypeScript is a statically typed program, we are allowed to add types to variables, functions, and properties, making the code much simpler to understand. TypeScript is often used to remove the PropTypes of React as TypeScript does prop checking by default.</li>
+							<li><strong>Identify bugs faster and IntelliSense</strong> - One of the most popular features of TypeScript is its potential to identify bugs as early as possible. TypeScript demonstrates the bugs before we run the code, allowing us time to fix bugs and rectify them.</li>
+							<li><strong>Effective code maintenance and refactoring</strong> - TypeScript lets you refactor code to avoid typos, making it much easier to manage and upgrade without modifying any of its behaviors.</li>
+							<li><strong>Enhance the use of JavaScript</strong> - TypeScript blends entirely with JavaScript and uses the latest functionality available to JavaScript developers. React projects developed with TypeScript compile to a JavaScript version running within the browser.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.tutorialspoint.com/typescript/typescript_overview.htm" target="_blank" rel="noopener noreferrer">https://www.tutorialspoint.com/typescript/typescript_overview.htm</a></li>
+							<li><a href="https://www.typescriptlang.org/?msclkid=75a99258cf7011ecbd4b85b96d1ac2f5" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/?msclkid=75a99258cf7011ecbd4b85b96d1ac2f5</a></li>
+							<li><a href="https://www.typescriptlang.org/docs/handbook/react.html?msclkid=a50b184dcf7311ec9d996bff19e50231" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/react.html?msclkid=a50b184dcf7311ec9d996bff19e50231</a></li>
+							<li><a href="https://blog.logrocket.com/using-typescript-with-react-tutorial-examples/?msclkid=a50bbe24cf7311ec878ed34142981994" target="_blank" rel="noopener noreferrer">https://blog.logrocket.com/using-typescript-with-react-tutorial-examples/?msclkid=a50bbe24cf7311ec878ed34142981994</a></li>
+							<li><a href="https://www.digitalocean.com/community/tutorials/react-typescript-with-react?msclkid=a50d57abcf7311ecb1e67792694e13ce" target="_blank" rel="noopener noreferrer">https://www.digitalocean.com/community/tutorials/react-typescript-with-react?msclkid=a50d57abcf7311ecb1e67792694e13ce</a></li>
+							<li><a href="https://medium.com/codex/typescript-and-create-react-app-11bdebcbf763" target="_blank" rel="noopener noreferrer">https://medium.com/codex/typescript-and-create-react-app-11bdebcbf763</a></li>
+							<li><a href="https://www.section.io/engineering-education/building-a-react-app-with-typescript/?msclkid=c6b1a371cf7611ecab845700a091f550" target="_blank" rel="noopener noreferrer">https://www.section.io/engineering-education/building-a-react-app-with-typescript/?msclkid=c6b1a371cf7611ecab845700a091f550</a></li>
+							<li><a href="https://react-typescript-cheatsheet.netlify.app/docs/basic/setup" target="_blank" rel="noopener noreferrer">https://react-typescript-cheatsheet.netlify.app/docs/basic/setup</a></li>
+							<li><a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html</a></li>
+							<li><a href="https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
