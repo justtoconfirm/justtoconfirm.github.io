@@ -1474,6 +1474,154 @@ module.exports = {
 					</section>
 
 					<section>
+						<h2>Dynamic Navigation</h2>
+
+						<p>We can use the <strong>gatbsy-config.js</strong> file to dynamically generate the navigation menu within our Gatsby website.</p>
+
+						<p>Begin by updating the <strong>gatsby-config.js</strong> file like so to add the links and URLs we want to use within the <strong>menuLinks</strong> object:</p>
+
+<pre>
+	<code>
+
+module.exports = {
+	siteMetadata: {
+		title: `Gatsby Default Starter`,
+		description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+		author: `@gatsbyjs`,
+		siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+		menuLinks: [
+			{
+				name: 'home',
+				link: '/',
+			},
+			{
+				name: 'about',
+				link: '/about',
+			},
+			{
+				name: 'contact',
+				link: '/contact',
+			},
+		],
+	},
+	plugins: [ ]
+	}
+}
+
+	</code>
+</pre>
+
+						<p>Remember to restart the development server for these changes to be implemented.</p>
+
+						<p>This should now be passed into the GraphQL data layer. Within the <strong>GraphiQL</strong> tool we can test the query to ensure the links are being passed into the data layer.</p>
+
+<pre>
+	<code>
+
+query MyQuery {
+	site {
+		siteMetadata {
+			menuLinks {
+				name
+				link
+			}
+		}
+	}
+}
+
+	</code>
+</pre>
+
+						<p>Within the <strong>&lt;Layout /&gt;</strong> component, we can add import <strong>useStaticQuery</strong> hook and <strong>graphql</strong> from Gatsby into our component and add the query to get the data into the component to render.</p>
+
+<pre>
+	<code>
+
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+
+import Header from "../../components/Header/"
+import Footer from "../../components/Footer/"
+
+const Layout = ({ children }) => {
+
+	// This is the StaticQuery to get the menuLinks data from gatsby-config.js using GraphQL
+    const { site } = useStaticQuery(
+        graphql`
+            query {
+                site {
+                    siteMetadata {
+                        menuLinks {
+                            name
+                            link
+                        }
+                    }
+                }
+            }
+        `
+    )
+
+    return (
+        &lt;&gt;
+            &lt;Header /&gt;
+
+            &lt;main role="main"&gt;
+                {children}
+            &lt;/main&gt;
+
+            &lt;Footer /&gt;
+        </>
+    )
+}
+
+export default Layout
+
+	</code>
+</pre>
+
+						<p>In this component, add a prop called <strong>menuLinks</strong> to the <strong>&lt;Header /&gt;</strong> component in the <strong>&lt;Layout /&gt;</strong> component.</p>
+
+<pre>
+	<code>
+
+&lt;Header menuLinks={site.siteMetadata.menuLinks} /&gt;
+
+	</code>
+</pre>
+
+						<p>Here, we are passing all the menuLinks data into the Header using the prop.</p>
+
+						<p>Inside the <strong>&lt;Header /&gt;</strong> component itself, update the component to use this data from the prop and loop over this data to generate the links for each of the <strong>menuLinks</strong> added to the <strong>gatsby-config.js</strong> file dynamically.</p>
+
+<pre>
+	<code>
+
+import React from "react"
+import { Link } from "gatsby"
+
+const Header = ({ menuLinks }) => (
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                {menuLinks.map(link => (
+                    &lt;li key={link.name}&gt;
+                        &lt;Link to={link.link}&gt;{link.name}&lt;/Link&gt;
+                    &lt;/li&gt;
+                ))}
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+)
+
+export default Header
+
+	</code>
+</pre>
+
+						<p>The navigation within the Gatsby site should dynamically generate from the <strong>gatsby-config.js</strong> file.</p>
+					</section>
+
+					<section>
 						<h2>Testing</h2>
 
 						<p>To preserve code quality over time, you may want to add testing to your Gatsby site using tools such as <strong>Jest</strong>, for unit tests, <strong>react-testing-library</strong> for React component tests, and end-to-end tests using <strong>Cypress</strong>.</p>
