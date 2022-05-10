@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Installing and Using Storybook">
+
+	<title>Code | React | Storybook</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Storybook</h1>
+
+						<p class="intro__copy">Storybook is a tool for UI development. It makes development faster and easier by isolating components. This allows a UI to be developed without needing to start up a complex development stack or application.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Storybook</h2>
+
+						<p>Storybook is a tool for UI development. It makes development faster and easier by isolating components. This allows a UI to be developed without needing to start up a complex development stack or application.</p>
+
+						<p>Storybook integrates with the most popular JavaScript frameworks and libraries, including <strong>React</strong>.</p>
+
+						<p>Storybook helps us to document components for reuse and visually test our components to prevent bugs.</p>
+
+						<p>We can extend Storybook using <strong>addons</strong>, to fine-tune responsive layouts or verify accessibility.</p>
+					</section>
+
+					<section>
+						<h2>Install</h2>
+
+						<p>Storybook needs to be installed into a project that is already set up with a framework. It will not work on an empty project.</p>
+
+						<p>We can use the <strong>Storybook CLI</strong> to install Storybook in a single command within our existing project's root directory:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx sb init
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Once installed, start Storybook locally in development mode:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run storybook
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Once the command has successfully run, a working version of Storybook should start running at <a href="http://localhost:6006/" target="_blank" rel="noopener noreferrer">http://localhost:6006/</a>. It will automatically open the address in a new browser tab and the welcome screen will be displayed.</p>
+					</section>
+
+					<section>
+						<h2>What is a Story?</h2>
+
+						<p>A story captures the rendered state of a UI component. Developers write multiple stories per component that describe the states a component can support.</p>
+
+						<p>The stories can be viewed in the Storybook UI and the code behind each story can be found in files that end with <strong>.stories.js</strong> or <strong>.stories.ts</strong></p>
+
+						<p>The stories are written in <strong>Component Story Format (CSF)</strong>, an ES6 modules-based standard for writing component examples.</p>
+
+						<p>The Storybook CLI will demonstrate the types of components we can build with Storybook: Button, Header, and Page.</p>
+					</section>
+
+					<section>
+						<h2>What is a Design System?</h2>
+
+						<p>A design system is a collection of reusable components that can be assembled together to build applications and act as a single source of truth.</p>
+
+						<img src="img/storybook.png" alt="Digram showing how Storybook works within a design system.">
+					</section>
+
+					<section>
+						<h2>Addons</h2>
+
+						<p>An <strong>addon</strong> allows us to extend the basic functionality of Storybook and add new features.</p>
+
+						<p>If we include Storybook in our project, the <strong>Essentials</strong> addon - <strong>@storybook/addon-essentials</strong> - is already installed and configured for you. The Essentials addon is "zero-config" meaning it comes with a recommended configuration out of the box.</p>
+
+						<p>To install an addon, we use npm or yarn.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	# npm
+	npm install @storybook/addon-essentials --save-dev
+
+	# yarn
+	yarn add @storybook/addon-essentials --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>Once installed, we include addons in the Storybook configuration file, <strong>.storybook/main.js</strong></p>			
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
