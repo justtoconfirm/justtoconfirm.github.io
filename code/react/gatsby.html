@@ -992,6 +992,131 @@ module.exports = {
 
 						<p>We can apply styling to our Gatsby application in many different ways.</p>
 
+						<h3>Styled Components</h3>
+
+						<p>The <a href="https://styled-components.com/" target="_blank" rel="noopener noreferrer">styled-components</a> library for React and React Native, can be used to allow us to have component-level styles in our application written with a mixture of JavaScript and CSS. This is known as <strong>CSS-in-JS</strong>.</p>
+
+						<p>The <strong>styled-components</strong> library allows React developers to write plain CSS in React components without having to worry about the clashing of class names.</p>
+
+						<p>We first need to install the styled-components library. This can be installed using npm.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components --save
+    
+	</pre>
+</div>
+<!-- / Terminal -->	
+
+						<p>We can create a global CSS stylesheet for our React application by creating a file named <strong>GlobalStyles.js</strong> in the <strong>src</strong> directory of our project.</p>
+
+<pre>
+	<code>
+
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyles = createGlobalStyle`
+	
+	body {
+		background-color: #fff;
+	}
+
+`
+
+export default GlobalStyles
+
+	</code>
+</pre>
+
+						<p>Inside of our &lt;Layout /&gt; component, we can import this file to render our global styles.</p>
+
+<pre>
+	<code>
+
+import React from "react"
+import GlobalStyles from "../../GlobalStyles"
+
+import Header from "../../components/Header/"
+import Footer from "../../components/Footer/"
+
+const Layout = ({ children }) => {
+
+    return (
+        &lt;&gt;
+            &lt;GlobalStyles /&gt;
+
+            &lt;Header /&gt;
+
+            &lt;main role="main"&gt;
+                {children}
+            &lt;/main&gt;
+
+            &lt;Footer /&gt;
+        &lt;/&gt;
+    )
+}
+
+export default Layout
+
+	</code>
+</pre>
+
+						<p>If we inspect the application when Gatsby is running, the global CSS styles will be injected into the page inside the &lt;head&gt; section of the HTML within an inline &lt;style&gt; tag.</p>
+
+						<p>To add styling within our components, we can follow this example:</p>
+
+<pre>
+	<code>
+
+import React from "react"
+import { Link } from "gatsby"
+import styled from "styled-components"
+
+const ButtonStyles = styled.button`
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+`
+
+const Button = props => {
+
+    const {
+        type = "button",
+        to = "",
+        onClick,
+        children
+    } = props
+
+    // Check if the component has the 'to' prop to render as a link
+    const isLink = to && (to.startsWith('/'))
+
+    const renderAsLink = () =>
+        &lt;Link to={to} role="button"&gt;{children}&lt;/Link&gt;
+
+    const renderAsButton = () => 
+        &lt;ButtonStyles {...{type, onClick}}&gt;{children}&lt;/ButtonStyles&gt;
+
+    return (
+        // If the component has a value passed into the 'to' prop, render as a link, otherwise render as a button
+        isLink ? renderAsLink() : renderAsButton()
+    )
+}
+
+export default Button
+
+	</code>
+</pre>
+
 						<h3>Tailwind CSS</h3>
 
 						<p>We can install <strong>Tailwind CSS</strong> and its dependencies as devDependencies using npm.</p>
