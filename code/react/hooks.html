@@ -498,6 +498,71 @@ const ComponentFive = () => {
 					</section>
 
 					<section>
+						<h2>Refs Function & useRef Hook</h2>
+
+						<p>React's functional components are essential for writing modern React applications. React Hooks makes it possible to write entire applications with React components.</p>
+
+						<p>React's <strong>useRef</strong> Hook, short for <strong>reference</strong>, allows us to persist data across renders without causing the component to re-render.</p>
+
+						<p>A typical use case for this Hook would be to store a DOM element, which we can use to access programmatically. We can also use it to keep a reference to the previous state of a component.</p>
+
+						<p>We can use the <strong>useRef</strong> Hook to access all properties and methods of an element which is used to invoke methods.</p>
+
+						<p>The first step of working with refs is initialisation. We do this by calling React's <strong>useRef</strong> function, passing as the only argument the initial value we want our reference to have.</p>
+
+<pre>
+	<code>
+
+const reference = useRef("initial value here");
+
+	</code>
+</pre>
+
+						<p>Any change that we make will persist across all renders of our React component.</p>
+
+						<p>This is similar to <strong>useState</strong>, but <strong>useRef</strong> will store the state without rerendering the component. This is ideal if we want to store this information which persists between multiple renders but doesn't update the state.</p>
+
+						<p>A common scenario for using useRef is that we want to focus an input field when the user clicks a button. Unfortunately, React doesn't have a built-in way of doing this so we need to access the DOM element somehow and call the focus function that's part of it.</p>
+
+						<p>React provides a solution that's much easier to use than vanilla JavaScript.</p>
+
+						<p>Every element in JSX has an optional <strong>ref</strong> property. If we pass a ref object to it (which we created with useRef), it gets updated to contain the HTML element.</p>
+
+						<p>We can then use this reference to manipulate the DOM as we want.</p>
+
+<pre>
+	<code>
+
+import React, { useRef } from "react";
+
+const App = () => {
+	const inputRef = useRef(null);
+
+	return (
+		&lt;&gt;
+			&lt;input
+				ref={inputRef}
+				value={name}
+				onChange={handleChange}
+			/&gt;
+			&lt;button
+				onClick={() => inputRef.current.focus()}
+			&gt;
+				FOCUS BUTTON
+			&lt;/button&gt;
+		&lt;/&gt;
+	);
+};
+
+	</code>
+</pre>
+
+						<p>If we log the <strong>inputRef</strong> object, we will see that it contains the DOM element.</p>
+
+						<p>We can also have the focus on an input field, by default, when we refresh our browser. This way the user can start writing their input without clicking on the e-mail input.</p>
+					</section>
+
+					<section>
 						<h2>Custom Hooks</h2>
 
 						<p>Hooks are reusable functions. When we have component logic that needs to be used by multiple components, we can extract this logic and create a custom Hook. As with any Hook, the naming convention should start with <strong>use</strong>, such as <strong>useFetch</strong>.</p>

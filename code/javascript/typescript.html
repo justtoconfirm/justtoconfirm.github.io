@@ -79,6 +79,14 @@
 
 						<p>When a TypeScript script gets compiled, there is an option to generate a declaration file, with the extension of <strong>.d.ts</strong> and this provides intellisense for our code and support for JavaScript libraries.</p>
 
+						<p>To setup a new React application with TypeScript, we will need to the follow tools:</p>
+
+						<ul>
+							<li>Node and npm. We need at least version 5.2</li>
+							<li>A code editor/IDE, something like VSCode</li>
+							<li>create-react-app (CRA)</li>
+						</ul>
+
 						<p>TypeScript is very helpful when using IDEs such as VSCode, Atom, Webstorm, Eclipse, any many more. These provide better autocomplete and snippet generation, which helps to make development faster. TypeScript also supports JSX within React.</p>
 
 						<p>TypeScript can be installed through the use of an npm package available on the npm registry. We will need to have Node installed as the environment to run the package. We may also use yarn, rather than npm, to install TypeScript in our project.</p>
@@ -122,16 +130,34 @@
 	</pre>
 </div>
 <!-- / Terminal -->
+					</section>
 
-						<h3>VSCode</h3>
+					<section>
+						<h2>TSDoc Comments</h2>
+
+						<p>We can add <strong>TSDoc</strong> comments if required to add descriptive comments to our code.</p>
+
+<pre>
+	<code>
+
+/** comments */
+
+	</code>
+</pre>	
+					</section>				
+
+					<section>
+						<h2>VSCode</h2>
 
 						<p>If you're in VSCode and hover over any underlined element, you'll get the message "Cannot use JSX unless the '---jsx' flag is provided". At this point, you can either click the "Quick Fix" option, or we can fix it manually. If we click "Quick Fix", we will get the option that says "Enable the '---jsx' flag in your configuration file" Once you click on it, it takes a second or two to load and the errors should go away.</p>
 
 						<p>If you want to do it manually, go into the tsconfig.json file, locate the key of "jsx" and change the value to "react" instead of "react-jsx".</p>
 
 						<p>If the error still occurs, you maybe using a different version of TypeScript.</p>
+					</section>
 
-						<h3>React & TypeScript</h3>
+					<section>
+						<h2>React & TypeScript</h2>
 
 						<p>The <strong>create-react-app</strong> tool now has TypeScript integrated. If we are building a new React project using create-react-app, we can use the <strong>typescript</strong> flag to setup the project to use TypeScript.</p>
 
@@ -203,7 +229,190 @@ import ReactDOM from "react-dom";
 	</code>
 </pre>
 
-						<h3>Props</h3>
+						<p>With components using <strong>React.FC</strong>, you'll often see the import statement written like so:</p>
+
+<pre>
+	<code>
+
+import React, { FC } from "react";
+
+	</code>
+</pre>
+
+						<h3>Components</h3>
+
+						<p>Components can be written as normal functions that take prop arguments and returns a JSX element.</p>
+
+						<p>We can build a component without defining a given type of our props. TypeScript will designate the <strong>any</strong> type. To solve this, we use type annotations for props.</p>
+
+<pre>
+	<code>
+
+const Hello = (props: { who: string }) => (
+	&lt;p&gt;Hello, {props.who}&lt;/p&gt;
+);
+
+	</code>
+</pre>
+
+						<p>This will flag an error. To resolve this, we pass a value using a prop into the component as a string.</p>
+
+<pre>
+	<code>
+
+&lt;Hello who="Dave" /&gt;
+
+	</code>
+</pre>
+
+						<p>We can improve the component by destructuring the <strong>props</strong> parameter:</p>
+
+<pre>
+	<code>
+
+const Hello = ({ who}: { who: string }) => (
+	&lt;p&gt;Hello, {who}&lt;/p&gt;
+);
+
+	</code>
+</pre>	
+
+						<p>This can also be written as a regular function rather than as an arrow function:</p>
+
+<pre>
+	<code>
+
+function Hello({ who }: Props) {
+	return &lt;p&gt;Hello, {who}&lt;/p&gt;
+}
+
+	</code>
+</pre>					
+
+						<p>We can first declare the type of props. Here we are using <strong>type</strong> definition.</p>
+
+<pre>
+	<code>
+
+type AppProps = {
+	message: string;
+};
+
+	</code>
+</pre>
+
+						<p>The easiest way to declare a component is using a function.</p>
+
+<pre>
+	<code>
+
+const App = ({ message }: AppProps) => 
+	&lt;div&gt;{message}&lt;/div&gt;;
+
+	</code>
+</pre>
+
+						<p>Annotate the return type so an error is raised if we accidentally return some other type.</p>
+
+<pre>
+	<code>
+
+const App = ({ message }: AppProps): JSX.Element => 
+	&lt;div&gt;{message}&lt;/div&gt;;
+
+	</code>
+</pre>
+
+						<p>Inline the type declaration, this eliminates naming the prop types, but looks repetative
+
+<pre>
+	<code>
+
+const App = ({ message }: {message: string}) => 
+	&lt;div&gt;{message}&lt;/div&gt;;
+
+	</code>
+</pre>	
+
+						<p>We may also see this in many React/TypeScript codebases:</p>
+
+<pre>
+	<code>
+
+const App: React.FunctionComponent<{ message: string}> = ({ message }) => (
+	&lt;div&gt;{message}&lt;/div&gt;
+);
+
+// OR, the shorthand version
+const App: React.FC<{ message: string}> = ({ message }) => (
+	&lt;div&gt;{message}&lt;/div&gt;
+);
+
+	</code>
+</pre>
+
+						<p>The general consensus today is that <strong>React.FunctionComponent</strong> (or shorthand, <strong>React.FC</strong>) is discouraged. React provides <strong>React.FC</strong> type to define the component that accepts <strong>children</strong> as a prop.</p>
+
+<pre>
+	<code>
+
+import React, { FC } from "react";
+
+type Props = {
+	text: string;
+}
+
+export const Component: FC&lt;Props&gt; = ({ text, children }) => {
+	return (
+		&lt;&gt;
+			&lt;p&gt;{text}&lt;/p&gt;
+			{children}
+		&lt;/&gt;
+	)
+}
+
+	</code>
+</pre>	
+
+						<p>React also includes <strong>React.PropsWithChildren</strong> type to enhance custom type with a definition for children. <strong>PropsWithChildren</strong> is nothing more than a generic type that takes some type as an argument and combines it with <strong>React.ReactNode</strong> type.</p>	
+
+<pre>
+	<code>
+
+import React, { PropsWithChildren } from "react";
+
+type Props = PropsWithChildren<{
+	text: string;
+}>
+
+export const Component = ({ text, children }: props) => {
+	return (
+		&lt;div&gt;
+			&lt;p&gt;{text}&lt;/p&gt;
+			{children}
+		&lt;/div>
+	)
+}
+
+	</code>
+</pre>
+
+						<p>The same effect can be achieved manually by including children on the props that is passed to a component:</p>
+
+<pre>
+	<code>
+
+import React, { ReactNode } from "react";
+
+type Props = {
+	text: string;
+	children?: ReactNode;
+}
+
+	</code>
+</pre>		
+
+						<h3>Types & Interfaces</h3>
 
 						<p>One of the core concepts of React is reusable components. In TypeScript, props can be defined by either an <strong>interface</strong> or <strong>type</strong>.</p>
 
@@ -222,6 +431,63 @@ type OtherProps = {
 
 	</code>
 </pre>
+
+						<p>We can either use Types or Interfaces to type Props and State. User Interface until you need Type.</p>
+
+<pre>
+	<code>
+
+type AppProps = {
+	message: string;
+	count: number;
+	disabled: boolean;
+	array: string[];
+	status: "waiting" | "success";
+	obj: object;
+	obj2: {};
+	obj3: {
+		id: string;
+		title: string;
+	}
+	onClick: () => void;			/** function that doesn't take or return anything (common) */
+	onChange: (id: number) => void;		/** Funcion with a named prop (common) */
+}
+
+	</code>
+</pre>
+
+						<p>Optional props are marked by a <strong>?</strong>:</p>
+
+<pre>
+	<code>
+
+type AppProps {
+	optional?: string;
+}
+
+	</code>
+</pre>
+
+						<p>We can also export the Prop types using the <strong>export</strong> keyword.</p>
+
+<pre>
+	<code>
+
+export type AppProps {
+	optional?: string;
+}
+
+	</code>
+</pre>
+
+						<ul>
+							<li>Always use interface for public APIs definitions when authoring a library or 3rd party type definition. This allows a consumer to extend them.</li>
+							<li>Consider using type for your React component Props and State for consistency and because it is more constrained.</li>
+						</ul>
+
+						<h3>Default Props</h3>
+
+						<p>The <strong>defaultProps</strong> will eventually be deprecated. <strong>React.FC</strong> breaks defaultProps.</p>
 
 						<h3>Configuration File</h3>
 
@@ -273,6 +539,8 @@ type OtherProps = {
 						<h2>Useful Links</h2>
 
 						<ul>
+							<li><a href="https://www.typescriptlang.org/docs/handbook/react.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/react.html</a></li>
+							<li><a href="https://create-react-app.dev/docs/adding-typescript/" target="_blank" rel="noopener noreferrer">https://create-react-app.dev/docs/adding-typescript/</a></li>
 							<li><a href="https://www.tutorialspoint.com/typescript/typescript_overview.htm" target="_blank" rel="noopener noreferrer">https://www.tutorialspoint.com/typescript/typescript_overview.htm</a></li>
 							<li><a href="https://www.typescriptlang.org/?msclkid=75a99258cf7011ecbd4b85b96d1ac2f5" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/?msclkid=75a99258cf7011ecbd4b85b96d1ac2f5</a></li>
 							<li><a href="https://www.typescriptlang.org/docs/handbook/react.html?msclkid=a50b184dcf7311ec9d996bff19e50231" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/react.html?msclkid=a50b184dcf7311ec9d996bff19e50231</a></li>
@@ -283,6 +551,8 @@ type OtherProps = {
 							<li><a href="https://react-typescript-cheatsheet.netlify.app/docs/basic/setup" target="_blank" rel="noopener noreferrer">https://react-typescript-cheatsheet.netlify.app/docs/basic/setup</a></li>
 							<li><a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html</a></li>
 							<li><a href="https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html" target="_blank" rel="noopener noreferrer">https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html</a></li>
+							<li><a href="https://www.educative.io/blog/react-and-typescript" target="_blank" rel="noopener noreferrer">https://www.educative.io/blog/react-and-typescript</a></li>
+							<li><a href="https://www.mendelowski.com/docs/react/children-props-with-typescript/" target="_blank" rel="noopener noreferrer">https://www.mendelowski.com/docs/react/children-props-with-typescript/</a></li>
 						</ul>
 					</section>
 
