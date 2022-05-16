@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to JavaScript Requests">
+
+	<title>Code | JavaScript | Requests</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Requests & APIs</h1>
+
+						<p class="intro__copy">Guide to requests using the XMLHttpRequest (XHR) object and Fetch API.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>API (Application Program Interface)</h2>
+
+						<p>API stands for <strong>Application Program Interface</strong>, which can be defined as a set of methods of communication between various software components. In other words, an API allows software to communicate.</p>
+
+						<p>Web APIs allow a web server to interact with third-party software. The web server maybe using HTTP requests to communicate to a publicly available URL endpoint containing JSON data.</p>
+
+						<p>A Web API often uses HTTP requests such as <strong>Create</strong> (POST), <strong>Read</strong> (GET), <strong>Update</strong> (PUT/PATCH), and <strong>Delete</strong> (DELETE). This is known as <strong>CRUD</strong>.</p>
+
+						<p>APIs can be accessed by many different methods - JavaScript, PHP, Ruby, Python, and so on. The documentation for most APIs doesn't tend to give specific instructions on how to connect.</p>
+
+						<h3>REST & RESTful APIs</h3>
+
+						<p><strong>REST</strong> and <strong>RESTful APIs</strong> simply refer to a set of standards tat conform to a specific architectural style. Many web apps conform to REST standards.</p>
+					</section>
+
+					<section>
+						<h2>XMLHttpRequest (XHR) object</h2>
+
+						<p>XMLHttpRequest (XHR) objects are used to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enabled a Web page to update a part of a page without disrupting what the user is doing. XMLHttpRequest is used heavily in AJAX.</p>
+
+						<p>Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML.</p>
+
+						<ul>
+							<li>Update a web page without reloading the page</li>
+							<li>Request data from a server after the page has loaded</li>
+							<li>Receive data from a server after the page has loaded</li>
+							<li>Send data to a server in the background</li>
+						</ul>
+
+						<p>We can use the XMLHttpRequest (XHR) object to connect to an API with JavaScript.</p>
+
+						<p>XMLHttpRequest (XHR) was created by Microsoft in the early 1990s and became the go-to technology for aynchronous server interactions. With XHR is became possible to update parts of a web page without reloading the whole web page.</p>
+
+						<p>XMLHttpRequest (XHR) is a built-in browser object in al modern browsers that can be used to make HTTP requests in JavaScript to exchange data between the web browsr and the server.</p>
+
+						<p>We can find the XHR object by typing <strong>XMLHttpRequest</strong> into the browser console inside DevTools.</p>
+
+						<p>The jQuery <strong>$.ajax()</strong> method uses XHR under the hood.</p>
+
+						<p>To send an HTTP request using XHR, create an XMLHttpRequest object, open a connection to a URL, and send the request. Once the request completes, the object will contain useful information such as the response body and the HTTP status code.</p>
+
+						<p>We can test a <strong>REST API</strong> to send a <strong>GET</strong> request using XMLHttpRequest (XHR):</p>
+
+<pre>
+	<code>
+
+// Create an XHR object
+const xhr = new XMLHttpRequest();
+
+// Listen for 'onload' event
+xhr.onload = () => {
+	// Process the response
+	if (xhr.status == 200) {
+		// Parse the JSON data
+		console.log(JSON.parse(xhr.response));
+	} else {
+		console.log('Error');
+	}
+};
+
+// Create a GET request
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+
+// Send the request
+xhr.send();
+
+	</code>
+</pre>
+
+						<p>The JSON Placeholder tool - <a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">https://jsonplaceholder.typicode.com/</a> - can be used for testing and prototyping.</p>
+
+						<p>In the example above, we passed the HTTP method and a URL to the request to the <strong>open()</strong> method. This method is normally called right after <strong>new XMLHttpRequest()</strong>. We can use this method to specify the main parameters of the request.</p>
+
+<pre>
+	<code>
+
+xhr.open(method, URL, [async, user, password]);
+
+	</code>
+</pre>
+
+						<p>The <strong>open()</strong> method does not open the connection to the URL. It only configures the HTTP request.</p>
+
+						<ul>
+							<li><strong>method</strong> - HTTP request method. It can be GET, POST, DELETE, PUT, etc.</li>
+							<li><strong>URL</strong> - The URL to request, a string or a URL object</li>
+							<li><strong>asnyc</strong> - Specify whether the request should be made asynchronously or not, default value is true</li>
+							<li><strong>username/password</strong> - Credentials for basic HTTP authentication</li>
+						</ul>
+
+						<p>The <strong>xhr.onload</strong> event only works in modern browsers (IE10+, Firefox, Chrome, Safari). If we need to support older browsers, use <strong>xhr.onreadystatechange</strong> event instead.</p>
+
+						<h3>Cross-Origin Requests & Cookies</h3>
+
+						<p><strong>XMLHttpRequest</strong> can send cross-origin requests, but it is subjected to special security measures. To request a resource from a different server, the server must explicitly support using <strong>CORS (Cross-Origin Resource Sharing)</strong>. Just like Fetch API, XHR does not send cookies and HTTP authorisation to another origin.</p>
+
+						<p>To send cookies, we can use the <strong>withCredentials</strong> property.</p>
+
+<pre>
+	<code>
+
+xhr.withCredentials = true;
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
+						<h2>Fetch API</h2>
+
+						<p>The Fetch API provides an interface for fetching resources, including across a network. The Fetch API will be familiar to anyone who has used XMLHttpRequest (XHR).</p>
+
+						<p>The Fetch API is a promise-based, modern alternative to XHR. It is often found in <strong>PWA Service Workers</strong>.</p>
+
+						<p>The API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. The API provides a global <strong>fetch()</strong> method that provides an easy, logical way to fetch resources asynchronously across the network. This kind of functionality was previously achieved using the XMLHttpRequest object. Fetch provides a better alternative that can easily be used by other technologies such as Service Workers.</p>
+
+						<p>Fetch also provides a single logical place to define other HTTP-related concepts such as <strong>CORS</strong> and extensions to HTTP.</p>
+
+						<p>A basic fetch request is really simple to set up:</p>
+
+<pre>
+	<code>
+
+fetch('http://example.com/movies.json')
+	.then(response => response.json())
+	.then(data => console.log(data));
+
+	</code>
+</pre>
+
+						<p>Here we are fetching a JSON file across the network and printing it to the console. The simplest use of <strong>fetch()</strong> takes one argument - the path to the resource you want to fetch - and does not directly return the JSON response body but instead returns a promise that resolves with a Response object.</p>
+
+						<p>The Response object, in turn, does not directly contain the actual JSON response body but instead a representation of the entire HTTP response. So, to extract the JSON body content from the Response object, we use the <strong>json()</strong> method which returns a second promise that resolves with the result of parsing the response body text as JSON.</p>
+
+						<p>Fetch requests are controlled by the <strong>connect-src</strong> directive of <strong>Content Security Policy</strong>, rather than the directive of the resources it's retrieving.</p>
+
+						<p>The Fetch API interface allows web browsers to make HTTP requests to web servers. This can be used in-place of the XMLHttpRequest (XHR) object and is supported by modern browsers.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest</a></li>
+							<li><a href="https://www.w3schools.com/XML/dom_http.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/XML/dom_http.asp</a></li>
+							<li><a href="https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/" target="_blank" rel="noopener noreferrer">https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/</a></li>
+							<li><a href="https://attacomsian.com/blog/http-requests-xhr" target="_blank" rel="noopener noreferrer">https://attacomsian.com/blog/http-requests-xhr</a></li>
+							<li><a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">https://jsonplaceholder.typicode.com/</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a></li>
+							<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></li>
+							<li><a href="https://www.w3schools.com/js/js_api_fetch.asp" target="_blank" rel="noopener noreferrer">https://www.w3schools.com/js/js_api_fetch.asp</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
