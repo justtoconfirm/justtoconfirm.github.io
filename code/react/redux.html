@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Installing and Using Redux">
+
+	<title>Code | React | Redux</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Redux</h1>
+
+						<p class="intro__copy">Redux is a state container for JavaScript and TypeScript applications.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>What is Redux?</h2>
+
+						<p>Redux is a state container for JavaScript and TypeScript applications. React components have state at component level. With Redux, the entire state of our application is managed in a single "global" object.</p>
+
+						<p>We can setup Redux with our React application, or we can use the <strong>Redux Toolkit</strong>, which avoids the boilerplate code that's needed when installing Redux. A small React application may not need Redux to manage state and may instead benefit from using the <strong>Context API</strong> to manage state across our application.</p>
+
+						<p>Common concerns with Redux that Redux Toolkit helps to solve:</p>
+
+						<ul>
+							<li>Configuration of a Redux store is too complicated.</li>
+							<li>Packages need to be added to get Redux to do anything useful.</li>
+							<li>Redux requires lots of boilerplate code.</li>
+						</ul>
+
+						<p>The benefits of using React Toolkit:</p>
+
+						<ul>
+							<li>Easier to setup (less dependencies).</li>
+							<li>Reduction of boilerplate code.</li>
+							<li>Dependencies - Redux Thunk (redux-thunk), Redux DevTools (redux-devtools-extension) are built in, so we no longer need to install as packages.</li>
+							<li>Ability to use direct state mutation sinch React Toolkit uses the Immer library under the hood.</li>
+						</ul>
+
+						<p>Redux Toolkit is the recommended method to setup Redux within a React application. It is intended to be the standard way to write Redux logic.</p>
+
+						<p>Redux Toolkit (also known as "RTK" for short) includes the Redux core, as well as other key packages that are essential for building Redux applications, such as Redux Thunk.</p>
+
+						<p>If we want to test our application with an API, we can use <strong>JSON Placeholder API</strong>.</p>
+					<section>
+
+					<section>
+						<h2>Terminology</h2>
+
+						<p>Redux has a number of key terms and definitions to become familiar with:</p>
+
+						<ul>
+							<li>Actions</li>
+							<li>Reducers</li>
+							<li>Store</li>
+							<li>Dispatch</li>
+							<li>Connect</li>
+						</ul>
+
+						<h3>Actions</h3>
+
+						<p>An action sends data from your application to the Redux store. An action is an object with two properties, <strong>type</strong> and <strong>payload</strong> (optional). The type is generally an uppercase string that describes the action. The payload is additional data that maybe passed.</p>
+
+						<h3>Reducers</h3>
+
+						<p>A reducer is a function that takes two paramaters, <strong>state</strong> and <strong>action</strong>. A reducer is immutable, meaning it cannot be changed, and always returns a copy of the entire state. A reducer will typically consist of a switch statement that does through all the possible action types.</p>
+
+						<h3>Store</h3>
+
+						<p>A store holds the whole state tree of our application. The only way to change the state inside the store is to dispatch an action on it. A store is just an object with a few methods. To create the store, we use the <strong>createStore</strong> method. With React Toolkit we only need to use <strong>configureStore</strong> instead of createStore to create the Store object.</p>
+
+						<h3>Dispatch</h3>
+
+						<p>Dispatch is a method of the Redux store. This is the only way to trigger a state change. With React Redux, our components can never access the store directly, connect() does it for us. We call <strong>store.dispatch</strong> to dispatch an action. Dispatch is a method available on the store object that accepts an object which is used to update the Redux state.</p>
+
+						<h3>connect()</h3>
+
+						<p>The <strong>connect()</strong> function is the typical way to connect React and Redux. A connected component is sometimes referred to as a container.</p>
+					</section>
+
+					<section>
+						<h2>Getting Started with React</h2>
+
+						<p>For ease of getting started with React, use <strong>create-react-app</strong>:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx create-react-app &lt;APP-NAME-HERE&gt;
+
+	cd &lt;APP-NAME-HERE&gt;
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+			
+					</section>
+
+					<section>
+						<h2>Install React & Redux</h2>
+
+						<p>We can first create a React application using <strong>create-react-app</strong> and install <strong>Redux Toolkit</strong> when creating a new application:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	# Redux Toolkit and JavaScript 
+	npx create-react-app &lt;APP-NAME-HERE&gt; --template redux
+
+	# Redux Toolkit and TypeScript
+	npx create-react-app &lt;APP-NAME-HERE&gt; --template redux-typescript
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>If we have an existing React application and want to add Redux Toolkit, we can use npm or yarn:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	# npm  
+	npm install @reduxjs/toolkit react-redux
+
+	# yarn
+	yarn add @reduxjs/toolkit react-redux
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>The <strong>@reduxjs/toolkit</strong> package wraps around the core redux package and contains API methods and common dependencies that are useful for building a Redux application.</p>
+
+						<p>Should we not want to use Redux Toolkit in our React application, we can install the dependencies as packages using npm:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install redux react-redux redux-thunk redux-devtools-extension
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<ul>
+							<li><strong>Redux</strong> - the core library</li>
+							<li><strong>React Redux</strong> - React bindings for Redux, connects React and Redux</li>
+							<li><strong>Redux Thunk</strong> - Asynchronous middleware for Redux</li>
+							<li><strong>Redux DevTools</strong> - connects the Redux app to Redux DevTools</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Create the Redux Store</h2>
+
+						<p>The store is the object that holds the application's "global" state. This creates a Redux store and automatically configures the Redux DevTools extension so we can inspect the store during development.</p>
+
+						<p><strong>configureStore()</strong> wraps <strong>createStore</strong> to provide configuration options. This enables use of the Redux DevTools extension and we can add whatever middleware we supply, includes redux-thunk by default.</p>
+
+						<p>We can start by creating an empty Redux store and exporting it.</p>
+
+						<p>Create a file named <strong>src/app/store.js</strong> and import the <strong>configureStore API</strong> from Redux Toolkit.</p>
+
+<pre>
+	<code>
+
+// src/app/store.js (Redux Toolkit)
+
+import { configureStore } from '@reduxjs/toolkit'
+
+export default configureStore({
+	reducer: {}
+});
+
+	</code>
+</pre>
+
+						<p>In TypeScript this file would be named <strong>src/app/store.tsx</strong>.</p>
+
+						<p>The code below is used to create the store if we're not using React Toolkit. Here we're using the <strong>createStore</strong> method from Redux:</p>
+
+<pre>
+	<code>
+
+// src/app/store.js
+
+import { createStore } from 'redux'
+
+const store = createStore()
+
+export default store
+
+	</code>
+</pre>						
+					</section>
+
+					<section>
+						<h2>Connect Redux Store to React App</h2>
+
+						<p>Once the store is created, we can make it available to our React components. By putting a React-Redux <strong>&lt;Provider&gt;</strong> around our application in the <strong>src/index.js</strong> file. We must import the Redux store we created and pass the store as a prop.</p>
+
+<pre>
+	<code>
+
+// src/index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom;
+import App from './App';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+
+ReactDOM.render(
+	&lt;Provider store={store}&gt;
+		&lt;App /&gt;
+	&lt;/Provider&gt;,
+	document.getElementById('root')
+);
+
+	</code>
+</pre>	
+					</section>
+
+					<section>
+						<h2>Slices</h2>
+
+						<p>Slices automatically generates reducers, action types, and action creators in a single folder named slices. This removes the need to deal with reducers and actions as separate files.</p>
+
+						<p>We no longer need to return the entire state when using a slice, we just mutate (change) the state within our slice.</p>
+
+						<p>To create a slice we import the <strong>createSlice API</strong> from Redux Toolkit.</p>
+
+<pre>
+	<code>
+
+import { createSlice } from '@reduxjs/toolkit'
+
+	</code>
+</pre>
+
+						<p>The <strong>createSlice()</strong> method helps us to create a slice of the Redux Store when using React Toolkit. This method aims to reduce the boilerplate required to add data to Redux. Internally, it uses <strong>createAction</strong> and <strong>createReducer</strong>.</p>
+
+						<p>We must first import the <strong>createSlice()</strong> method from the React Toolkit library, We then use the <strong>createSlice()</strong> method to create our slice.</p>
+
+<pre>
+	<code>
+
+const exampleSlice = createSlice({
+	
+	// ...
+
+})
+
+	</code>
+</pre>
+
+						<p>Redux Toolkit allows us to write "mutating" logic in reducers. It doesn't actually mutate the state because it uses the <strong>Immer library</strong> which detects changes to a "draft state" and produces a brand new immutable state based off those changes.</p>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://redux-toolkit.js.org/" target="_blank" rel="noopener noreferrer">https://redux-toolkit.js.org/</a></li>
+							<li><a href="https://redux-toolkit.js.org/introduction/getting-started" target="_blank" rel="noopener noreferrer">https://redux-toolkit.js.org/introduction/getting-started</a></li>
+							<li><a href="https://medium.com/geekculture/understanding-createslice-in-redux-toolkit-reactjs-eca8d20f45d7" target="_blank" rel="noopener noreferrer">https://medium.com/geekculture/understanding-createslice-in-redux-toolkit-reactjs-eca8d20f45d7</a></li>
+							<li><a href="https://medium.com/nonstopio/slicing-redux-in-reactjs-43ee5f1d4855" target="_blank" rel="noopener noreferrer">https://medium.com/nonstopio/slicing-redux-in-reactjs-43ee5f1d4855</a></li>
+							<li><a href="https://www.taniarascia.com/redux-react-guide/" target="_blank" rel="noopener noreferrer">https://www.taniarascia.com/redux-react-guide/</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
