@@ -62,6 +62,10 @@
 					<section>
 						<h2>Introduction to Testing</h2>
 
+						<p>The main reason we write tests is to prevent bugs, keep code clean and maintainable. Testing is done to ensure that our app will work as intended for our users. Having tests will make our app more robust and less error prone. It is a way to verify that the code is doing what the developers intended.</p>
+
+						<p>Tests should test the functionality of the app and mimic how it will be used by the end users. We won't test third party libraries as this is not our job to test third party code.</p>
+
 						<p>For getting started with writing unit tests in React, you'll need the following types of tools:</p>
 
 						<ul>
@@ -71,9 +75,15 @@
 
 						<p>A <strong>test runner</strong> is a program that is used to execute our tests and identify when tests are passing or failing. We can automate the execution of our unit tests and also make unit tests part of a CI pipeline.</p>
 
+						<p><strong>Jest</strong> is a JavaScript unit testing framework, used by Facebook, to test services and React applications. Jest acts as a test runner, assertion library and mocking library. Jest also provides Snapshot testing, the ability to create rendered 'snapshots' of a component and compare it to a previously saved 'snapshot'. The test will fail if the two do not match.</p>
+
 						<p>In React, the most used test runner is <strong>Jest</strong>. We can run Jest in watch mode that will run our tests each time we save a file. We can also use tools such as <strong>Mocha</strong> to test our React components, which provides similar features.</p>
 
 						<p>Testing utilities, such as <strong>Enzyme</strong> and <strong>React Testing Library (RTL)</strong> are the most widely used utility tools for React. They help to make testing React components much easier.</p>
+
+						<p>Both <strong>Jest</strong> and <strong>Enzyme</strong> are specifically designed to test React applications. Jest can be used with any other JavaScript app, but Enzyme only works with React. Enzyme simply adds additional functionality alongside Jest. If not Jest, Enzyme must be paired with another test runner.</p>
+
+						<p>The app is in a certain state, we then act so something happens and we <strong>assert</strong>, or make a hypothesis, of the new state of our app. The tests will pass if our hypothesis is correct and fail it is wrong.</p>
 
 						<p><strong>Jest</strong> is a JavaScript test runner that lets us access the DOM (Document Object Model) via <strong>jsdom</strong>. This is often good enough for testing React components.</p>
 
@@ -81,11 +91,27 @@
 					</section>
 
 					<section>
+						<h2>Types of Tests</h2>
+
+						<ul>
+							<li><strong>Unit testing</strong> - testing an isolated part of our app, usually done in combination with shallow rendering. Example, a component renders with the default props.</li>
+							<li><strong>Integration testing</strong> - testing if different parts work or integrate with each other. Usually done with mounting or rendering a component. Example, test if a child component can update context state in a parent.</li>
+							<li><strong>End-to-End testing</strong> - usually a multi step test combining multiple unit and integration tests into one big test. usually very little is mocked or stubbed. Tests are done in a simulated browser, there may or may not be a UI while the test is running. Example, testing an entire authentication flow.</li>
+						</ul>
+					</section>
+
+					<section>
 						<h2>Jest</h2>
 
 						<p>Jest was introduced by Facebook for testing JavaScript, especially React applications. Jest comes with its own test runner and all tests are defined as test suites and test cases.</p>
 
+						<p>The create-react-app (CRA) tool comes bundled with Jest; it does not need to be installed separately.</p>
+
+						<p>Tests are not executed in the browser. Jest is used as a test runner and framework used by React. Jest is the environment where all of our tests are actually executed. We do not need to import expect and describe in our test file. These functions are already available globally in the Jest environment.</p>
+
 						<p>The <strong>create-react-app</strong> and <strong>React Testing Library (RTL)</strong> tools comes included by default when creating a React application using create-react-app.</p>
+
+						<p>The <strong>react-testing-library</strong> in React is used specifically to test application behavior and avoid testing implementation. We can also use libraries like Enzyme to do this. The react-testing-library comes pre-packaged with create-react-app.</p>
 
 						<p>We can install Jest using npm:</p>
 
@@ -118,6 +144,26 @@
 
 	</code>
 </pre>
+
+						<p>We can install the <strong>react-testing-library</strong> using <strong>npm</strong>, if not using <strong>create-react-app</strong> (this comes installed with create-react-app):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install @testing-library/react
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
 					</section>
 
 					<section>
@@ -176,6 +222,334 @@ describe('true is truthy and false is falsy', () => {
 
 	</code>
 </pre>
+
+						<p>An example test may look something like this:</p>
+
+<pre>
+	<code>
+
+describe('Testing sum', () => {
+    function sum(a, b) {
+       return a + b;
+    }
+
+    it('should equal 4',()=>{
+       expect(sum(2,2)).toBe(4);
+	})
+
+    test('also should equal 4', () => {
+        expect(sum(2,2)).toBe(4);
+	}) 
+});
+
+	</code>
+</pre>
+
+						<p>The <strong>toBe()</strong> method is a matcher that works with expect to allow us to make assertions (hypothesis).</p>
+
+						<h3>Link Component Example</h3>
+
+						<p>Build an example React component for a Link component within the <strong>src/Link.js</strong> directory of the React application.</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Link = ({ href, children }) => {
+	return (
+
+		&lt;a href={href}&gt;{children}&lt;/a&gt;
+
+	);
+};
+
+export default Link;
+
+	</code>
+</pre>
+
+						<p>We can then write a test script for our Link component that will test the component and generate a snapshot. This file will be <strong>src/Link.test.js</strong></p>
+
+<pre>
+	<code>
+
+import React from 'react';
+import Link from './Link';
+import renderer from 'react-test-renderer';
+
+it('renders correctly', () => {
+	const tree = renderer.create(
+
+		&lt;Link href="https://www.facebook.com"&gt;Facebook&lt;/Link&gt;
+
+	).toJSON();
+	expect(tree).toMatchSnapshot();
+});
+
+	</code>
+</pre>
+
+						<p>To run the tests:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run test
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>When run, this will create a <strong>__snapshots__</strong> directory containing a file named <strong>Link.test.js.snap</strong> and this will be our snapshot.</p>
+					</section>
+
+					<section>
+						<h2>Mount & Shallow rendering</h2>
+
+						<p><strong>Mount</strong> actually executes the HTML, CSS and JavaScript code like a browser would within a simulated way. It is "headless" meaning it doesn't render or paint anything to a UI, but acts as a simulated web browser and executes code in the background.</p>
+
+						<p>Mount/render is typically used for integration testing and shallow is used for unit testing.</p>
+
+						<p><strong>Shallow</strong> rendering only renders the single component we are testing. It does not render child components. This allows us to test our component in isolation.</p>
+
+						<p>For example, consider this child and parent component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const App = () => {
+	return (
+		&lt;div&gt;
+			&lt;ChildComponent /&gt;
+		&lt;/div&gt;
+	)
+}
+
+const ChildComponent = () => {
+	return (
+		&lt;div&gt;
+			&lt;p&gt;Child components&lt;/p&gt;
+		&lt;/div&gt;
+	)
+}
+
+	</code>
+</pre>
+
+						<p>If we used shallow rendering we would get something like the test below. Notice none of the DOM nodes for the child component are present, hence the term shallow render:</p>
+
+<pre>
+	<code>
+
+&lt;App&gt;
+	&lt;div&gt;
+		&lt;ChildComponent /&gt;
+	&lt;/div&gt;
+&lt;/App&gt;
+
+	</code>
+</pre>
+
+						<p>We can compare this to mounting of the component:</p>
+
+<pre>
+	<code>
+
+&lt;App&gt;
+	&lt;div&gt;
+		&lt;ChildComponent&gt;
+			&lt;div&gt;
+				&lt;p&gt;Child components&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/ChildComponent&gt;
+	&lt;/div&gt;
+&lt;/App>
+
+	</code>
+</pre>
+
+						<p>What we have above is much closer to what our app will look like in the browser, hence the superiority of mount/render.</p>
+					</section>
+
+					<section>
+						<h2>Snapshot Testing</h2>
+
+						<p>The snapshot test tells us whether the syntax of out code has changed since the last test.</p>
+
+						<p>Essentially snapshot testing allows us to see how our component has changed since the last test, line by line. The lines of code that have changed is known as the <strong>diff</strong>.</p>
+
+						<p>We may need to install the <strong>react-test-renderer</strong> package for rendering snapshots when using Jest and create-react-app. We will need to run the application in Node version 16 or greater. Instead of rendering the entire app to be rebuilt, we can use a test renderer to quickly generate a snapshot.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+    # npm
+	npm install react-test-renderer --save-dev
+
+	# Yarn
+	yarn add --dev react-test-renderer
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>If we have not run this command before, a <strong>__snapshots__</strong> folder and <strong>test.js.snap</strong> file will be created for us automatically. On every subsequent test the new snapshot will be compared to the existing snapshot file. The test will pass if the snapshot has not changed and fail it it has changed.</p>
+
+						<p>Here is our basic component we are snapshot testing:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Basic = () => {
+	return (
+		&lt;div&gt;
+			&lt;h1&gt;Basic Test&lt;/h1&gt;
+			&lt;p&gt;This is a basic Test Component&lt;/p&gt;
+		&lt;/div&gt;
+	);
+}
+
+export default Basic;
+
+	</code>
+</pre>
+
+						<p>Here is a test using the <strong>toMatchSnapshot()</strong> method to run a Snapshot test:</p>
+
+<pre>
+	<code>
+
+it('renders correctly enzyme', () => {
+	const wrapper = shallow(&lt;Basic /&gt;)
+
+	expect(toJson(wrapper)).toMatchSnapshot();
+});
+
+	</code>
+</pre>
+
+						<p>Running the above test will generate a file that will look like this. This is essentially our tree of React DOM nodes:</p>
+
+<pre>
+	<code>
+
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly enzyme 1`] = `
+&lt;div&gt;
+	&lt;h1&gt;
+		Basic Test
+	&lt;/h1&gt;
+	&lt;p&gt;
+		This is a basic Test Component
+	&lt;/p&gt;
+&lt;/div&gt;
+`;
+
+	</code>
+</pre>
+
+						<p>If we change our basic component:</p>
+
+<pre>
+	<code>
+
+import React from 'react';
+
+const Basic = () => {
+	return (
+		&lt;div&gt;
+			&lt;h1&gt;Basic Test&lt;/h1&gt;
+
+		&lt;/div&gt;
+	);
+}
+
+export default Basic;
+
+	</code>
+</pre>
+
+						<p>Our snapshots will now fail and will also give us the diff. Just like Git, the "<strong>-</strong>" before each line means it was removed.</p>
+
+						<p>A failed test doesn't mean our app isn't working as intended, only that our code has changed since the last time we ran the test. We need to be careful to not update the test without looking too closely at what has changed.</p>
+
+						<p>If we update our snapshot, the snapshot file will automatically be updated with the new snapshot and the test will pass.</p>
+
+<pre>
+	<code>
+
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly enzyme 1`] = `
+&lt;div&gt;
+	&lt;h1&gt;
+		Basic Test
+	&lt;/h1&gt;
+&lt;/div&gt;
+`;
+
+	</code>
+</pre>
+
+						<p>it is usually recommended to not use shallow rendering with snapshot testing as it doesn't render the child components so it doesn't give the developer any insights at all.</p>
+
+						<p>The snapshot artifact should be committed alongside code changes and reviewed as part of your code review process.</p>
+
+						<h3>Update Snapshot</h3>
+
+						<p>To update and regenerate a snapshot:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	jest --updateSnapshot
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://soshace.com/how-to-write-effective-tests-for-react-apps-with-react-testing-library/" target="_blank" rel="noopener noreferrer">https://soshace.com/how-to-write-effective-tests-for-react-apps-with-react-testing-library/</a></li>
+							<li><a href="https://www.freecodecamp.org/news/testing-react-hooks/#:~:text=%20React-testing-library%20%201%20useState.%20The%20more%20your,will%20work%20through%20the%20React%20state...%20More%20" target="_blank" rel="noopener noreferrer">https://www.freecodecamp.org/news/testing-react-hooks/#:~:text=%20React-testing-library%20%201%20useState.%20The%20more%20your,will%20work%20through%20the%20React%20state...%20More%20</a></li>
+							<li><a href="https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675" target="_blank" rel="noopener noreferrer">https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675</a></li>
+						</ul>
 					</section>
 
 				</div>
