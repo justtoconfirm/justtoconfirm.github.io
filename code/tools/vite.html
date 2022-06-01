@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to Vite">
+
+	<title>Code | Tools | Vite</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Vite</h1>
+
+						<p class="intro__copy">JavaScript build tool that has performance benefits over Webpack.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to Vite</h2>
+
+						<p>Vite is a new generation JavaScript build tool that aims to improve the developer experience over Webpack when it comes to building JavaScript applications.</p>
+
+						<p>Vite leverages two improvements made recently in the JavaScript ecosystem to offer a better developer experience. The availability of <strong>ES Modules (ESM)</strong> in the browser and compile-to-native bundler tools like <strong>esbuild</strong>.</p>
+
+						<p>The availability of <strong>ES Modules (ESM)</strong> in the browser allow you to run a JavaScript application within the browser without having to bundle them together. Vite serves a piece of our application code using ES Modules when the browser requests it.</p>
+
+						<p>When we start the development build, Vite will start by dividing the JavaScript modules into two categories:</p>
+
+						<ul>
+							<li>dependency modules</li>
+							<li>application modules</li>
+						</ul>
+
+						<p>The <strong>dependency modules</strong> are JavaScript modules that we have imported from the node_modules folder. These modules will be processed and bundled using <strong>esbuild</strong>, a JavaScript bundler written in <strong>Go</strong> that performs 10-100x faster than Webpack.</p>
+
+						<p>The <strong>application modules</strong> are modules that we write for our application which often involves library-specific extensions like <strong>.jsx</strong>, <strong>.vue</strong> or <strong>.scss</strong> files.</p>
+
+						<p>Vite supports the following languages and requires Node version 12.2.0 or greater:</p>
+
+						<ul>
+							<li>JavaScript</li>
+							<li>TypeScript</li>
+						</ul>
+
+						<p>Vite uses <strong>esbuild</strong> which is written in <strong>Go</strong> and pre-bundles dependencies 10-100x faster than JavaScript-based bundlers.</p>
+
+						<p>While a bundler-based workflow like Webpack will have to process the entire JavaScript modules before a single browser request, Vite only processes the dependency modules before a single browser request.</p>
+
+						<p>The application modules will be transformed and served by Vite when they are required by the application.</p>
+
+						<p>Vite ships with a pre-configured build command that bundles the application using <strong>Rollup</strong>. By using Rollup, Vite ensures performance optimisation like <strong>tree-shaking</strong>, <strong>lazy-loading</strong>, and <strong>chunk splitting</strong> are implemented into the production build.</p>
+					</section>
+
+					<section>
+						<h2>Vite & React</h2>
+
+						<p><strong>Create React App (CRA)</strong> uses Webpack to bundle to code. Webpack bundles the entire code, so if our codebase grows, the development server may take longer to start. While Webpack is still the default JavaScript build tool for many popular applications, like Create React App (CRA), Vite is becoming more popular.</p>
+
+						<p>Instead of using CRA, we could migrate to Vite. Vite is a newer frontend tool for building web applications.</p>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

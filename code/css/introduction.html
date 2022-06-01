@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to CSS">
+
+	<title>Code | CSS | Introduction</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">CSS</h1>
+
+						<p class="intro__copy">Introduction to CSS (Cascading Style Sheets) to style web pages and web applications.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction to CSS</h2>
+
+						<p>If we use a CSS property or value that a browser does not understand, the browser will ignore it. If the browser does not understand that line of CSS, it just skips it and gets on with the next thing it does understand.</p>
+					</section>
+
+					<section>
+						<h2>Feature Queries</h2>
+
+						<p>We can detect support for new CSS properties using <strong>feature queries</strong>.</p>
+
+						<p>Testing for support is the simplest case, we can use <strong>@supports</strong> and then test for a CSS property and value. The content inside the Feature Query will only run if the browser responds with true.</p>
+
+<pre>
+	<code>
+
+@supports (display: grid) and (shape-outside: circle()) {
+	.item {
+		/* CSS from browsers which support the grid layout and CSS shapes */
+	}
+}
+
+	</code>
+</pre>
+
+						<p>We can also ask the browser if it does not support a feature. In this case, the code inside the feature query will only run if the browser indicates it has no support.</p>
+
+<pre>
+	<code>
+
+@supports not (display: grid) {
+	.item {
+		/* CSS from browsers which do not support the grid layout */
+	}
+}
+
+	</code>
+</pre>
+
+						<p>CSS feature queries are not supported in Internet Explorer (IE), but are supported in most modern browsers.</p>
+					</section>
+
+					<section>
+						<h2>CSS: content-visibility</h2>
+
+						<p><strong>Replace the use of display: none; in your CSS code.</strong></p>
+
+						<p>The <strong>content-visibility</strong> property is new to CSS. Firsty, using <strong>display: none;</strong> in our CSS will hide an element and its inner properties. However, those elements will still be downloaded and rendered by the browsers, despite being invisible. This can take up time and CPU that could be used elsewhere.</p>
+
+						<p>With <strong>content-visibility: hidden;</strong>, Chromium browsers will spend the time (main thread) on other tasks, leading to better <strong>First Contentful Paint (FCP)</strong> metrics when considering page speed performance. Moreover, images that are set with this property won't also be downloaded.</p>
+
+<pre>
+	<code>
+
+.element {
+	content-visibility: hidden;
+	display: none;
+}
+
+	</code>
+</pre>
+
+						<p>This property will only work in <a href="https://caniuse.com/?search=content-visibility" target="_blank" rel="noopener noreferrer">Chrome, Edge and Opera</a>. IE, Safari and Firefox do not support this property.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

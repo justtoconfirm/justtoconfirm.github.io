@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to AWS">
+
+	<title>Code | DevOps | AWS</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">AWS</h1>
+
+						<p class="intro__copy">Amazon Web Services (AWS) is a cloud computing platform for web services provided by Amazon.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Amazon Web Services (AWS)</h2>
+
+						<p><strong>Amazon Web Services (AWS)</strong> is a set of web services provided by Amazon. AWS is a cloud computing platform. The first product, <strong>S3 (Amazon Simple Storage Service)</strong>, was released in 2006.</p>
+
+						<ul>
+							<li>AWS is the largest of the cloud providers.</li>
+							<li>AWS competence and experience is popular in the job market.</li>
+						</ul>
+
+						<p>Cloud computing is pay-as-you-go model for delivering IT resources. We only pay for what we use.</p>
+
+						<p>AWS offers a <a href="https://aws.amazon.com/free/" target="_blank" rel="noopener noreferrer">free tier</a> for one-year, allowing us to explore and try services AWS offers.</p>
+					</section>
+
+					<section>
+						<h2>AWS Lambda</h2>
+
+						<p><strong>AWS Lambda</strong> is a service which computes the code without any server and is said to be serverless.</p>
+
+						<p>We can run code without managing infrastructure. Simply write and upload the code. To work with AWS Lambda, we need to login to AWS. Lambda will only work with AWS services.</p>
+
+						<p>Supported languages:</p>
+
+						<ul>
+							<li>Node</li>
+							<li>Java</li>
+							<li>Python</li>
+							<li>C#</li>
+							<li>Go</li>
+						</ul>
+
+						<p>For writing code, we can use the AWS online editor, we can use the following:</p>
+
+						<ul>
+							<li>Visual Studio IDE</li>
+							<li>Eclipse IDE</li> 
+						</ul>
+
+						<p>We also have <strong>AWS-cli</strong> to create and deploy code.</p>
+
+						<p>It is not suitable for small projects and since AWS Lambda relies completely on AWS for the infrastructure, we cannot install any additional software if our code demands it.</p>
+
+						<p>To get working with AWS Lambda, we just have to push the code in AWS Lambda service. All other tasks, infrastructure and resources, such as operating system, maintenance of the server, code monitoring, logs and security, is taken care of by AWS.</p>
+
+						<p>The code is executed based on the response of events in AWS services such as adding/removing files in an S3 (Amazon Simple Storage Service) bucket, updating Amazon DynamoDB tables, HTTP requests from Amazon API Gateway, and much more.</p>
+
+						<p>Examples of when code could be executed:</p>
+
+						<ul>
+							<li>User uploads files to an S3 (Amazon Simple Storage Service) bucket.</li>
+							<li>HTTP GET/POST endpoint URL is hit.</li>
+							<li>Data is added/updated/deleted in Dynamo DB tables.</li>
+							<li>Push notifications.</li>
+							<li>GET/POST calls to an API Gateway.</li>
+							<li>Hosting of website.</li>
+							<li>Sending of Email.</li>
+							<li>Log history in CloudTrail.</li>
+						</ul>
+
+						<p><strong>AWS Lambda</strong> executes your code only when needed and scales automatically, from a few requests per day to thousands per second. We only pay for the compute time we consume/use. There is no charge when our code is not running.</p>
+
+						<h3>Use cases of AWS Lambda</h3>
+
+						<ul>
+							<li><strong>S3 Object</strong> : Amazon S3 passes the event details to AWS Lambda when there is any file upload in S3. The details of the file upload, movement, or deletion of a file is passed to AWS Lambda. The code in AWS Lambda can take the necessary step for when it receives the event details. For example, creating a thumbnail of the image inserted into S3.</li>
+							<li><strong>DynamoDB and AWS Lambda</strong> : DynamoDB can trigger AWS Lambda when there is data added, updated or deleted from the table. AWS Lambda event has all the details of the AWS DynamoDB table.</li>
+							<li><strong>API Gateway</strong> : Can trigger AWS Lambda on GET/POST methods. We can create a from and share details with the API Gateway endpoint and use it with AWS Lambda for further processing.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://www.w3schools.com/aws/index.php" target="_blank" rel="noopener noreferrer">W3Schools: AWS</a></li>
+							<li><a href="https://aws.amazon.com/lambda/" target="_blank" rel="noopener noreferrer">AWS Lambda</a></li>
+							<li><a href="https://www.tutorialspoint.com/aws_lambda/index.htm" target="_blank" rel="noopener noreferrer">Tutorialspoint: AWS Lambda</a></li>
+						</ul>
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
