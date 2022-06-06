@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Building a React Component Library">
+
+	<title>Code | React | Component Library</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Component Library</h1>
+
+						<p class="intro__copy">Guide to building a React Component Library.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Setup</h2>
+
+						<p>Our Component Library (CR) will have components, tests, stories, and types within our project. To begin, we will initialise our project by creating a <strong>package.json</strong> file.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm init -y
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>It is worth making sure that the <strong>.gitignore</strong> file in the root directory does not include the auto generated directories of <strong>node_modules</strong> and <strong>dist</strong> in version control.</p>
+
+<pre>
+	<code>
+
+dist
+node_modules
+
+	</code>
+</pre>						
+
+						<p>Next, we will install <strong>TypeScript</strong> and <strong>React</strong>. These are the tools necessary to create our components and should be installed as a devDependency.</p>
+
+						<p>This library will be used inside a React project, therefore we don't need to bundle it.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install react typescript @types/react --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+
+						<p>We now want to install the <strong>styled-components</strong> library. Once again, this will be installed as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install styled-components @types/styled-components --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal --> 
+					</section>
+
+					<section>
+						<h2>TypeScript & Rollup configuration</h2>
+
+						<p>Now it's time to configure TypeScript with Rollup. We are using TypeScript to build the components and we are using Rollup in order to build the library as a module.</p>
+
+						<p>We have already installed TypeScript, we just need to add the TypeScript configuration file, named <strong>tsconfig.js</strong> to the root of our project.</p>
+
+						<p>We can use the TypeScript CLI to generate the file:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx tsc --init
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once the TypeScript configuration file has been generated, we can make a few changes to it:</p>
+
+<pre>
+	<code>
+
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"jsx": "react",
+		"module": "ESNext",  
+		"declaration": true,
+		"declarationDir": "types",
+		"sourceMap": true,
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"emitDeclarationOnly": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+	},
+	"exclude": [
+		"dist",
+		"node_modules",
+		"src/**/*.test.tsx",
+		"src/**/*.stories.tsx",
+	],
+}
+
+	</code>
+</pre>	
+
+						<p>Now that TypeScript has been configured, we can now configure Rollup.</p>
+
+						<p>We now install Rollup as a devDependency.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install rollup --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>We also need to install a number of plugins for Rollup:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install @rollup/plugin-node-resolve @rollup/plugin-commonjs @rollup/plugin-typescript rollup-plugin-peer-deps-external rollup-plugin-terser rollup-plugin-dts --save-dev
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Now that the Rollup plugins are installed, create a <strong>rollup.config.js</strong> file in the root of our project.</p>
+
+						<p>Update the <strong>rollup.config.js</strong> configuration file with the following code:</p>
+
+<pre>
+	<code>
+
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "@rollup/plugin-typescript";
+import dts from "rollup-plugin-dts";
+import { terser } from "rollup-plugin-terser";
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+
+const packageJson = require("./package.json");
+
+export default [
+    {
+        input: "src/index.ts",
+        output: [
+            {
+                file: packageJson.main,
+                format: "cjs",
+                sourcemap: true,
+            },
+            {
+                file: packageJson.module,
+                format: "esm",
+                sourcemap: true,
+            },
+        ],
+        plugins: [
+            peerDepsExternal(),
+            resolve(),
+            commonjs(),
+            typescript({ tsconfig: "./tsconfig.json" }),
+            terser(),
+        ],
+        external: ["react", "react-dom", "styled-components"]
+    },
+    {
+        input: "dist/esm/types/index.d.ts",
+        output: [{ file: "dist/index.d.ts", format: "esm" }],
+        plugins: [dts()],
+    },
+];
+
+
+	</code>
+</pre>	
+
+						<p>This will allow our Component Library to be built with both <strong>CommonJS</strong> and <strong>ES modules (ESM)</strong> to be more compatible in projects with different JavaScript versions.</p>
+					</section>
+
+					<section>
+						<h2>Update the package.json file</h2>
+
+						<p>We now define our paths in the <strong>package.json</strong> file for both ES modules (ESM) and CommonJS.</p>
+
+<pre>
+	<code>
+
+"main": "dist/cjs/index.js",
+"module": "dist/esm/index.js",
+
+	</code>
+</pre>	
+
+						<p>The <strong>package.json</strong> file is also updated to have a build script.</p>
+
+<pre>
+	<code>
+
+"scripts": {
+	"build": "rollup -c"
+},
+
+	</code>
+</pre>	
+
+						<p>Now we can run our build from within the terminal.</p>
+
+						<p>This command will generate a directory called <strong>dist</strong> which is our build directory defined in the Rollup configuration.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm run build
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+					</section>
+
+					<section>
+						<h2>Creating Components</h2>
+
+						<p>In the root of our project folder, begin by creating a <strong>src</strong> directory. This will be where our components will be located.</p>
+
+						<p>Next, create a file structure inside the <strong>src</strong> directory that looks like this:</p>
+
+<pre>
+	<code>
+
+src /
+	components /
+		Button /
+			Button.tsx
+			index.ts
+		index.ts
+	index.ts
+
+	</code>
+</pre>
+
+						<p>We want to export our components so they can be used within our React applications. Begin by updating src/components/Button/index.ts:</p>
+
+<pre>
+	<code>
+
+// src/components/Button/index.ts
+
+export { default } from "./Button";
+
+	</code>
+</pre>
+
+						<p>Next, export the Button component from the directory.</p>
+
+<pre>
+	<code>
+
+// src/components/index.ts
+
+export { default as Button } from "./Button";
+
+	</code>
+</pre>	
+
+						<p>And finally, we will export all of our components from the base <strong>src</strong> directory.</p>
+
+<pre>
+	<code>
+
+// src/index.ts
+
+export * from "./components";
+
+	</code>
+</pre>	
+
+						<p>We can now create a simple Button component.</p>
+
+<pre>
+	<code>
+
+// src/components/Button/Button.tsx
+
+import React from "react";
+
+export interface ButtonProps {
+	label: string;
+}
+
+const Button = (props: ButtonProps) => {
+	return &lt;button&gt;{props.label}&lt;/button&gt;
+};
+
+export default Button;
+
+
+
+	</code>
+</pre>		
+
+						<p>The build should run without any errors.</p>												
+					</section>
+
+					<section>
+						<h2>Storybook</h2>
+
+						<p>The next step is to integrate Storybook into our library. Storybook is an open-source tool for building UI components in isolation. Storybook will help us to render our components and view how they render.</p>
+
+						<p>We can install Storybook into our project using the Storybook CLI tool:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npx sb init
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>When the command is executed, the <strong>.storybook</strong> and <strong>stories</strong> directories will be created in the root and <strong>src</strong> folder of our project.</p>
+
+						<ul>
+							<li><strong>.storybook</strong> - holds all the configurations.</li>
+							<li><strong>stories</strong> - holds the stories for our compoenents. A story is a unit that captures the rendered state of a UI component.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://blog.logrocket.com/build-component-library-react-typescript/" target="_blank" rel="noopener noreferrer">https://blog.logrocket.com/build-component-library-react-typescript/</a></li>
+							<li><a href="https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe" target="_blank" rel="noopener noreferrer">https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
