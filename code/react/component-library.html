@@ -249,7 +249,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 const packageJson = require("./package.json");
 
@@ -416,8 +416,6 @@ const Button = (props: ButtonProps) => {
 
 export default Button;
 
-
-
 	</code>
 </pre>		
 
@@ -455,6 +453,116 @@ export default Button;
 							<li><strong>.storybook</strong> - holds all the configurations.</li>
 							<li><strong>stories</strong> - holds the stories for our compoenents. A story is a unit that captures the rendered state of a UI component.</li>
 						</ul>
+					</section>
+
+					<section>
+						<h2>Publish the Component Library</h2>
+
+						<p>We can publish our Component Library via npm through hosting on GitHub so we can download our library for use in other projects.</p>
+
+						<p>Here, we will be hosting our Component Library on <strong>GitHub</strong> within a repository.</p>
+
+						<p>This works best if the GitHub repository is public and not private.</p>
+
+						<p>Update the <strong>package.json</strong> file like so:</p>
+
+<pre>
+	<code>
+
+{
+	"name": "@YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/YOUR_GITHUB_USERNAME"
+	},
+	...  
+}
+
+	</code>
+</pre>	
+
+						<p>The <strong>name</strong> field and <strong>publishConfig</strong> field should use the GitHub account name where the Component Library is being hosted.</p>
+
+						<p>In the global <strong>.npmrc</strong> file, we need to make further updates so we can install our Component Library once it's published.</p>
+
+						<p>For Windows users, this is found in the home directory: <strong>C:\Users\{YOUR_WINDOWS_USERNAME}</strong>, for MacOS/Linux users, it is also in the home directory: <strong>~/.npmrc</strong>.</p>
+
+						<p>Update the <strong>.npmrc</strong> file:</p>
+
+<pre>
+	<code>
+
+registry=https://registry.npmjs.org/
+@YOUR_GITHUB_USERNAME:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=YOUR_AUTH_TOKEN
+
+	</code>
+</pre>
+
+						<p>Again, the username should be the name of the GitHub repository where the Component Library is stored. The YOUR_AUTH_TOKEN is the token created within the GitHub account itself.</p>
+
+						<p>Users of our library will also need to use these credentials in their global <strong>.npmrc</strong> files. For extra security, we can provide our users with an access token that has only <strong>read privileges</strong> and not write.</p>
+
+						<p>We need to <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer">Generate a new token</a> in GitHub with a suitable name and to set the access value to be <strong>write:packages</strong>.</p>	
+
+						<p>Once this is done, we can publish our Component Library. Once published, this will show as a <strong>package</strong> in the GitHub repository itself.</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm publish
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Remember to publish any updates to the Component Library using this npm command.</p>
+
+						<h3>Install Component Library</h3>
+
+						<p>Now that the Component Library has been published, we can look to import it into a React application.</p>
+
+						<p>Open your React application and install the Component Library using npm (update details where applicable):</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install @YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>For example, our repository and package could be called: <strong>@justtoconfirm/react-component-libary</strong>, and this is what we should use.</p>
+
+						<p>Once installed, the Component Library will be listed as a dependency inside the <strong>package.json</strong> file.</p>
+
+						<p>In the React component itself, we can then import a component from the Component Library:</p>
+
+<pre>
+	<code>
+
+import { Button } from "@justtoconfirm/react-component-library";
+
+	</code>
+</pre>			
 					</section>
 
 					<section>

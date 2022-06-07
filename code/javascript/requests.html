@@ -200,6 +200,58 @@ fetch('http://example.com/movies.json')
 					</section>
 
 					<section>
+						<h2>Axios</h2>
+
+						<p>Axios is an HTTP client library based on promises. It makes sending asynchronous HTTP requests to REST endpoints easier and helps perform CRUD (Create, Read, Update, Delete) operations.</p>
+
+						<p>Axios uses <strong>XMLHttpRequest (XHR)</strong> under the hood so it's widely supported by most browsers, including older browsers such as IE11. Axios automatically signifies the data, unlike <strong>fetch()</strong> which requires us to do it manually. Axios also has better error handling and can throw 400 and 500 errors, <strong>fetch()</strong> requires us to check the status code and throw errors ourselves.</p>
+
+						<p>The REST endpoint/API could be an external API like the Google API, GitHub API, and so on, or it could be our own backend Node server.</p>
+
+						<p>GET, POST, and DELETE API requests are among the most common requests made by developers. We will need to use this to fetch data to display on our application or perform operations, as well as delete data to/from our API.</p>
+
+						<h3>Install Axios</h3>
+
+						<p>We can install Axios using npm:</p>
+
+<!-- Terminal -->
+<div class="terminal terminal--shadow">
+	<div class="terminal__top">
+		<div class="terminal__buttons">
+			<span class="terminal__circle terminal__circle--red"></span>
+			<span class="terminal__circle terminal__circle--yellow"></span>
+			<span class="terminal__circle terminal__circle--green"></span>
+		</div>
+		<div class="terminal__title">bash -- 85x24</div>
+	</div>
+	<pre class="terminal__body">
+
+	npm install axios
+    
+	</pre>
+</div>
+<!-- / Terminal -->
+
+						<p>Once Axios has been installed, it's a good idea to create an instance of Axios.</p>
+
+						<p>To create an instance, we us the <strong>create()</strong> method which lets us specify information such as the URL and possible headers.</p>
+
+						<p>Here, we're using the example API of <a href="https://jsonplaceholder.typicode.com/posts" target="_blank" rel="noopener noreferrer">https://jsonplaceholder.typicode.com/posts</a>.</p>
+
+<pre>
+	<code>
+
+import axios from "axios";
+
+const client = axios.create({
+	baseURL: "https://jsonplaceholder.typicode.com/posts" 
+});
+
+	</code>
+</pre>
+					</section>
+
+					<section>
 						<h2>Useful Links</h2>
 
 						<ul>

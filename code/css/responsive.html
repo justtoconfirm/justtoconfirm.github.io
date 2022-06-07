@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to Responsive Grid & Frameworks">
+
+	<title>Code | CSS | Responsive Grid & Frameworks</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Responsive Grid & Frameworks</h1>
+
+						<p class="intro__copy">Guide to building a Responsive Grid/Framework for responsive, mobile-first layouts.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction</h2>
+
+						<p>Many web pages are based on a <strong>grid-view</strong>, which means that the page is divided into columns. Using a grid-view is very helpful when building web pages. It makes it easier to place elements on the page.</p>
+
+						<p>A responsive grid-view often has 12 columns with a total width of 100%. This will shrink and expand as we resize the browser window.</p>
+
+						<h3>Building a simple responsive grid</h3>
+
+						<p>We must first ensure that all HTML elements have the <strong>box-sizing</strong> property set to <strong>border-box</strong>. This makes sure that the padding and border are included in the total width and height of the elements.</p>
+
+<pre>
+	<code>
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+	</code>
+</pre>
+
+						<p>We must then calculate the percentage for one column: 100% / 12 columns = 8.33%</p>
+
+						<p>We can then make one class for each of the 12 columns:</p>
+
+<pre>
+	<code>
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+	</code>
+</pre>		
+
+						<p>Many developers jump to a web design framework for their responsive grid needs. We can code a responsive grid ourselves.</p>
+
+						<p>Let's start with 12 "cards":</p>	
+
+<pre>
+	<code>
+
+&lt;div class="cards"&gt;
+	&lt;div class="card"&gt;ONE&lt;/div&gt;
+	&lt;div class="card"&gt;TWO&lt;/div&gt;
+	&lt;div class="card"&gt;THREE&lt;/div&gt;
+	&lt;div class="card"&gt;FOUR&lt;/div&gt;
+	&lt;div class="card"&gt;FIVE&lt;/div&gt;
+	&lt;div class="card"&gt;SIX&lt;/div&gt;
+	&lt;div class="card"&gt;SEVEN&lt;/div&gt;
+	&lt;div class="card"&gt;EIGHT&lt;/div&gt;
+	&lt;div class="card"&gt;NINE&lt;/div&gt;
+	&lt;div class="card"&gt;TEN&lt;/div&gt;
+	&lt;div class="card"&gt;ELEVEN&lt;/div&gt;
+	&lt;div class="card"&gt;TWELVE&lt;/div&gt;
+&lt;/div&gt;
+
+	</code>
+</pre>		
+
+						<p>We are coding <strong>mobile-first</strong>, so we assume the user is using a small screen and the cards will take up a whole row each (one column). We can make the cards responsive for large screen sizes using @media queries:</p>
+
+<pre>
+	<code>
+
+@media (min-width: 600px) {
+	.cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+	</code>
+</pre>
+
+						<p>If the screen is larger than 900px, we can make it 3 columns:</p>
+
+<pre>
+	<code>
+
+@media (min-width: 900px) {
+	.cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+	</code>
+</pre>		
+
+						<p>Once the parent has display: grid, all the magic comes from adjusting <strong>grid-template-columns: repeat(NUM_COLUMNS, 1fr)</strong> for different media breakpoints: <strong>@media (min-width: SOME_WIDTH)</strong>.</p>	
+
+						<p>In some cases, we maybe able to avoid media queries by using <strong>minmax()</strong>.</p>	
+
+						<p>Add the following line of code to the <strong>.cards</strong> selector in the CSS and remove the <strong>@media queries</strong>:</p>
+
+<pre>
+	<code>
+
+.cards {
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+	</code>
+</pre>	
+
+						<p>The columns will automatically break when each one gets below 300px. We no longer need the @media queries in our CSS code.</p>	
+					</section>
+
+					<section>
+						<h2>Useful Links</h2>
+
+						<ul>
+							<li><a href="https://travishorn.com/responsive-grid-in-2-minutes-with-css-grid-layout-4842a41420fe" target="_blank" rel="noopener noreferrer">https://travishorn.com/responsive-grid-in-2-minutes-with-css-grid-layout-4842a41420fe</a></li>
+							<li><a href="https://codepen.io/travishorn/pen/RdPLwj" target="_blank" rel="noopener noreferrer">https://codepen.io/travishorn/pen/RdPLwj</a></li>
+						</ul>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

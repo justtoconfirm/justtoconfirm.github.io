@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to JavaScript Array">
+
+	<title>Code | JavaScript | Array</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Array</h1>
+
+						<p class="intro__copy">An array is an object which can hold more than one value.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction</h2>
+
+						<p>In JavaScript, the array data type consists of a list of elements. There are many useful built-in methods avalable for JavaScript developers to work with when using arrays. Methods that modify the original array are known as <strong>mutator methods</strong>, and methods that return a new value or representation are known as <strong>accessor methods</strong>.</p>
+
+						<p>There is a third class of array methods, known as <strong>iteration methods</strong> which are methods that operate on every item in an array, one at a time. These methods are closely associated with loops.</p>
+
+						<p>Here's an example of a simple array in JavaScript with a list of elements:</p>
+
+<pre>
+	<code>
+
+const cars = ["BMW", "Audi", "Volkswagen"];
+
+	</code>
+</pre>
+
+						<p>The <strong>forEach()</strong> method calls a function for each element in an array. We can use <strong>forEach()</strong> to print each item in the cars array to the console:</p>
+
+<pre>
+	<code>
+
+cars.forEach(individualCar => {
+	console.log(individualCar);
+});
+
+	</code>
+</pre>
+
+						<p>Another way to do this is using the <strong>for</strong> loop keyword and testing it against the length property of the array:</p>
+
+<pre>
+	<code>
+
+for (let i = 0; i < cars.length; i++) {
+	console.log(cars[i]);
+}
+
+	</code>
+</pre>
+
+						<p>This will provide the same output in the console as the <strong>forEach()</strong> method.</p>
+					</section>
+
+					<section>
+						<h2>The map() method</h2>
+
+						<p>The <strong>map()</strong> method creates a new array. The original array is unchanged. We can use <strong>map()</strong> to change the values of each item in the array without changing the original array. To demonstrate this, we can add something (the word 'car') to the end of each item in the cars array.</p>
+
+<pre>
+	<code>
+
+let addToCars = cars.map(individualCar => {
+	return `${individualCar} car`;
+});
+
+// Call the function
+addToCars;
+
+	</code>
+</pre>
+					</section>
+
+					<section>
+						<h2>The filter() method</h2>
+
+						<p>The <strong>filter()</strong> method creates a new array with the elements that pass the result of a given test. We could use <strong>filter()</strong> to return a new array containing only the items in a list that start with a specific letter.</p>
+
+<pre>
+	<code>
+
+// Filter all cars that start with "A" into a new list
+let filterList = cars.filter(car => {
+	return car[0] === "A";
+}); 
+
+// Call the function
+filteredList;
+
+	</code>
+</pre>
+
+						<p><strong>filter()</strong> is an iteration method and does not mutate the original array.</p>
+					</section>
+
+					<section>
+						<h2>The reduce() method</h2>
+
+						<p>The <strong>reduce()</strong> method will reduce the array to a single value. This is seen commonly with numbers, such as finding the sum of all numbers in an array.</p>
+
+<pre>
+	<code>
+
+let numbers = [42, 23, 16, 15, 4, 8];
+
+// Get the sum of all numerical values
+let sum = numbers.reduce((a, b) => {
+	return a + b;
+});
+
+// Call the function
+sum;
+
+	</code>
+</pre>
+
+						<p>The <strong>reduce()</strong> method is an iteration method that does not mutate the original array.</p>
+					</section>
+
+					<section>
+						<h2>The find() & findIndex() methods</h2>
+
+						<p>The <strong>find()</strong> method returns the first value in an array that passes a given test. With the cars array, we can use <strong>find()</strong> to test if any of the cars in the array match Volkswagen group vehicles.</p>
+
+<pre>
+	<code>
+
+const isVolkswagenGroup = volkswagenGroup => {
+	return ["Audi", "Volkswagen"].includes(volkswagenGroup);
+}
+
+cars.find(isVolkswagenGroup);
+
+	</code>
+</pre>	
+
+						<p>Since "Audi" was the first entry in the array to satisfy the test in the function, it is the first value to be returned. The <strong>find()</strong> method can help us to work with arrays that contain many values.</p>
+
+						<p>The <strong>findIndex()</strong> method returns the first index in an array that passes a given test.</p>
+
+<pre>
+	<code>
+
+const isVolkswagenGroup = volkswagenGroup => {
+	return ["Audi", "Volkswagen"].includes(volkswagenGroup);
+}
+
+cars.findIndex(isVolkswagenGroup);
+
+	</code>
+</pre>
+
+						<p>"Audi" is the first item to match the test and has an index of 1, therefore it is the index number that is returned. If the test is not satisfied, <strong>findIndex()</strong> will return -1.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>

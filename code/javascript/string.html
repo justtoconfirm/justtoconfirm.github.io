@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Introduction to JavaScript String">
+
+	<title>Code | JavaScript | String</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">String</h1>
+
+						<p class="intro__copy">Strings stores a series of characters such as "First name".</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction</h2>
+
+						<p>Primitive values, like "Dan", cannot have properties and methods because they're not objects. JavaScript treats primitive values as objects when executing methods and properties.</p>
+
+						<p>A string can be any text inside double or single quotes.</p>
+
+						<h3>Length</h3>
+
+						<p>The <strong>length</strong> property returns the length of a string:</p>
+
+
+<pre>
+	<code>
+
+let txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let length = txt.length;
+
+	</code>
+</pre>
+
+						<h3>The slice() method</h3>
+
+						<p>The <strong>slice()</strong> method extracts a part of a string and returns the extracted part in a new string. The method takes 2 parameters, the start position, and the end position (not included).</p>
+
+						<p>JavaScript counts positions from <strong>0</strong>, so the first position is <strong>0</strong> and the second position is <strong>1</strong>.</p>
+
+<pre>
+	<code>
+
+let string = "Apple, Banana, Kiwi";
+let part = string.slice(7, 13);			// "Banana"
+
+	</code>
+</pre>
+
+						<p>If the parameter is negative, the position is counted from the end of the string.</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
