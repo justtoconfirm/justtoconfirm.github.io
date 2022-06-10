@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Guide to Design Tokens">
+
+	<title>Code | Tools | Design Tokens</title>
+
+	<link rel="shortcut icon" type="image/ico" href="../favicon/code.ico">
+	<link rel="stylesheet" href="../dist/css/main.css">
+	<link rel="preload" href="../fonts/darker-grotesque-v2-latin/darker-grotesque-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+	<header role="banner">
+		<a href="../index.html">Home</a>
+
+		<nav>
+			<ul class="nav-list">
+				<!-- -->
+			</ul>
+
+			<div class="hamburger">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</div>
+		</nav>
+	</header>
+
+	<div class="menu">
+		<ul class="menu__list">
+			<!--<li class="menu__list-item">
+
+			</li>-->
+		</ul>
+	</div>
+
+	<main role="main">
+
+		<div class="intro">
+
+			<div class="container">
+				<div class="row">
+					<div class="column">
+
+						<h1 class="intro__heading">Design Tokens</h1>
+
+						<p class="intro__copy">Design Tokens are a set of styles - colours, typography, and more, used across the project/product that can be converted into a format for different platforms.</p>
+
+					</div><!-- / column -->
+				</div><!-- / row -->
+			</div><!-- / container -->
+
+		</div><!-- / intro -->
+
+		<div class="container">
+			<div class="row">
+				<div class="column">
+
+					<section>
+						<h2>Introduction</h2>
+
+						<p>Design systems are a great tool to speed up the design and development process. However, there is still a delay between a change in the design and when it applies to the development environment. One way to speed up this process is by creating <strong>Design Tokens</strong>.</p>
+
+						<p>Design Tokens help to keep things consistent between design and development. After the initial setup, these tokens will help push changes from our design tool, such as <strong>Figma</strong>, to the development environment - completely automating the process.</p>
+
+						<p>Design Tokens are sometimes called <strong>style properties</strong>.</p>
+
+						<p>Simply put - Design Tokens are a set of styles - colours, typography, and more, used across the project/product that can be converted into a format for different platforms such as: Android/iOS and web applications.</p>
+
+						<p>Design Tokens are entities in the shape of key/value pairs, often in a specific format usually JSON or YAML.</p>
+
+						<p>Examples of Design Tokens include:</p>
+
+						<ul>
+							<li>Colour</li>
+							<li>Typography/Font</li>
+							<li>Spacers (Padding/Margin)</li>
+							<li>Shadows</li>
+							<li>Animations</li>
+						</ul>
+
+						<p>An example:</p>
+
+						<ul>
+							<li>Colour specified in the design system tool e.g. <strong>#0473DF</strong></li>
+							<li>Token for this colour e.g. <strong>--color-primary</strong></li>
+							<li>This is then applied to the UI component(s).</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Figma API</h2>
+
+						<p>We can hook up directly to the Figma API, if we want to use Design Tokens.</p>
+
+						<p>The API documentation can be found on the <a href="https://www.figma.com/developers" target="_blank" rel="noopener noreferrer">Figma developer platform</a> pages.</p>
+
+						<p>Once an account has been created on Figma, to get data from the Figma API, we need an <strong>Auth Token</strong> and the <strong>ID</strong> of our Figma.</p>
+
+						<h3>Auth Token (API Key)</h3>
+
+						<p>The Auth Token can be generated under <strong>Settings</strong> in Figma and then <strong>Personal access tokens</strong>. Give the token a name, hit Enter and the token will be generated. The token itself will only appear once, so make a note of this somewhere safe/secure.</p>
+
+						<h3>Figma ID</h3>
+
+						<p>The ID of our Figma is in the URL. This will normally be the string <strong>?fuid</strong> query parameter in the URL. In the example URL below, the ID would be <strong>1234</strong></p>
+
+<pre>
+	<code>
+
+https://www.figma.com/files/recent?fuid=1234
+
+	</code>
+</pre>
+
+						<h3>The File Key</h3>
+
+						<p>To access data from a specific file in Figma using the API, we need to get the <strong>File Key</strong>. This is the identifier that identifies the file within Figma.</p>
+
+						<p>We can retrieve the File Key from the URL of the file. In this case, <strong>FILE_KEY_HERE</strong> is the File Key:</p>
+
+<pre>
+	<code>
+
+https://www.figma.com/file/FILE_KEY_HERE/sampleFileName
+
+	</code>
+</pre>			
+
+						<h3>API Endpoint</h3>
+
+						<p>We can use <strong>cURL</strong>, a tool for transferring data using various network protocols, to get data from Figma using the API.</p>
+
+						<p>This will pass the Personal token to the header to authorise the request.</p>
+
+<pre>
+	<code>
+
+curl -H 'X-FIGMA-TOKEN: PERSONAL_AUTH_TOKEN_HERE' 'https://api.figma.com/v1/files/FILE_KEY_HERE'
+
+	</code>
+</pre>		
+					</section>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		&copy;2022.
+	</footer>
+
+	<script src="../dist/js/menu.js"></script>
+
+</body>
+</html>
